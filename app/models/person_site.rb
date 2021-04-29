@@ -1,0 +1,2 @@
+class PersonSite < ApplicationRecord
+end

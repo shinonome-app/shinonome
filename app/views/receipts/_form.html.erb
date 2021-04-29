@@ -1,0 +1,202 @@
+<%= form_with(model: receipt) do |form| %>
+  <% if receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+
+      <ul>
+        <% receipt.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :sakuhinmeiyomi %>
+    <%= form.text_area :sakuhinmeiyomi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sakuhinmei %>
+    <%= form.text_area :sakuhinmei %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fukudaiyomi %>
+    <%= form.text_area :fukudaiyomi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fukudai %>
+    <%= form.text_area :fukudai %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sakuhinshuumeiyomi %>
+    <%= form.text_area :sakuhinshuumeiyomi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sakuhinshuumei %>
+    <%= form.text_area :sakuhinshuumei %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gendai %>
+    <%= form.text_area :gendai %>
+  </div>
+
+  <div class="field">
+    <%= form.label :kana %>
+    <%= form.text_area :kana %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shoshutu %>
+    <%= form.text_area :shoshutu %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memo %>
+    <%= form.text_area :memo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bikou %>
+    <%= form.text_area :bikou %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_area :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :statusdate %>
+    <%= form.text_area :statusdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :copyright %>
+    <%= form.check_box :copyright %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seiyomi %>
+    <%= form.text_area :seiyomi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sei %>
+    <%= form.text_area :sei %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seieiji %>
+    <%= form.text_area :seieiji %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meiyomi %>
+    <%= form.text_area :meiyomi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mei %>
+    <%= form.text_area :mei %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meieiji %>
+    <%= form.text_area :meieiji %>
+  </div>
+
+  <div class="field">
+    <%= form.label :jbikou %>
+    <%= form.text_area :jbikou %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seimeiyomi %>
+    <%= form.text_area :seimeiyomi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seimei %>
+    <%= form.text_area :seimei %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_area :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_area :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bookname %>
+    <%= form.text_area :bookname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publisher %>
+    <%= form.text_area :publisher %>
+  </div>
+
+  <div class="field">
+    <%= form.label :firstversion %>
+    <%= form.text_area :firstversion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :versioninput %>
+    <%= form.text_area :versioninput %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bookname2 %>
+    <%= form.text_area :bookname2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publisher2 %>
+    <%= form.text_area :publisher2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :firstversion2 %>
+    <%= form.text_area :firstversion2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :personid %>
+    <%= form.text_area :personid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :workerid %>
+    <%= form.text_area :workerid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :insdate %>
+    <%= form.date_select :insdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sts %>
+    <%= form.number_field :sts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bkbikou %>
+    <%= form.text_area :bkbikou %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

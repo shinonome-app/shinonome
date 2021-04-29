@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Original Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Title</th>
+      <th>Publisher</th>
+      <th>First pubyear</th>
+      <th>Input edition</th>
+      <th>Proof edition</th>
+      <th>Booktype name</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @original_books.each do |original_book| %>
+      <tr>
+        <td><%= original_book.book_id %></td>
+        <td><%= original_book.title %></td>
+        <td><%= original_book.publisher %></td>
+        <td><%= original_book.first_pubyear %></td>
+        <td><%= original_book.input_edition %></td>
+        <td><%= original_book.proof_edition %></td>
+        <td><%= original_book.booktype_name %></td>
+        <td><%= original_book.note %></td>
+        <td><%= link_to 'Show', original_book %></td>
+        <td><%= link_to 'Edit', edit_original_book_path(original_book) %></td>
+        <td><%= link_to 'Destroy', original_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Original Book', new_original_book_path %>

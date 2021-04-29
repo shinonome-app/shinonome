@@ -1,0 +1,2 @@
+class Proofread < ApplicationRecord
+end

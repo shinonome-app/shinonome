@@ -1,0 +1,2 @@
+class BookSite < ApplicationRecord
+end

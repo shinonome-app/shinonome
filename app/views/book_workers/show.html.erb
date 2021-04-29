@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @book_worker.book_id %>
+</p>
+
+<p>
+  <strong>Woker:</strong>
+  <%= @book_worker.woker_id %>
+</p>
+
+<p>
+  <strong>Worker role:</strong>
+  <%= @book_worker.worker_role_id %>
+</p>
+
+<%= link_to 'Edit', edit_book_worker_path(@book_worker) %> |
+<%= link_to 'Back', book_workers_path %>

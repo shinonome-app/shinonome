@@ -1,0 +1,92 @@
+<%= form_with(model: proofread) do |form| %>
+  <% if proofread.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(proofread.errors.count, "error") %> prohibited this proofread from being saved:</h2>
+
+      <ul>
+        <% proofread.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :book_id %>
+    <%= form.number_field :book_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :book_copy %>
+    <%= form.text_area :book_copy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :book_print %>
+    <%= form.text_area :book_print %>
+  </div>
+
+  <div class="field">
+    <%= form.label :refbook %>
+    <%= form.text_area :refbook %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bookfile_id %>
+    <%= form.number_field :bookfile_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memo %>
+    <%= form.text_area :memo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :worker_id %>
+    <%= form.number_field :worker_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :woker_kana %>
+    <%= form.text_area :woker_kana %>
+  </div>
+
+  <div class="field">
+    <%= form.label :worker_name %>
+    <%= form.text_area :worker_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_area :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_area :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.number_field :person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sts1 %>
+    <%= form.text_area :sts1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sts2 %>
+    <%= form.text_area :sts2 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

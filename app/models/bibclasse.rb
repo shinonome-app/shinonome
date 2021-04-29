@@ -1,0 +1,2 @@
+class Bibclasse < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class Filetype < ApplicationRecord
+end

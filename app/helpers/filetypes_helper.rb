@@ -1,0 +1,2 @@
+module FiletypesHelper
+end

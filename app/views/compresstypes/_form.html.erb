@@ -1,0 +1,27 @@
+<%= form_with(model: compresstype) do |form| %>
+  <% if compresstype.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(compresstype.errors.count, "error") %> prohibited this compresstype from being saved:</h2>
+
+      <ul>
+        <% compresstype.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_area :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :extension %>
+    <%= form.text_area :extension %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

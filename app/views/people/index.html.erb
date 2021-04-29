@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>People</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Last name</th>
+      <th>Last name kana</th>
+      <th>Last name en</th>
+      <th>First name</th>
+      <th>First name kana</th>
+      <th>First name en</th>
+      <th>Born on</th>
+      <th>Died on</th>
+      <th>Copyright flag</th>
+      <th>Email</th>
+      <th>Url</th>
+      <th>Description</th>
+      <th>Note user</th>
+      <th>Basename</th>
+      <th>Note</th>
+      <th>Updated by</th>
+      <th>Sortkey</th>
+      <th>Sortkey2</th>
+      <th>Input count</th>
+      <th>Publish count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.last_name %></td>
+        <td><%= person.last_name_kana %></td>
+        <td><%= person.last_name_en %></td>
+        <td><%= person.first_name %></td>
+        <td><%= person.first_name_kana %></td>
+        <td><%= person.first_name_en %></td>
+        <td><%= person.born_on %></td>
+        <td><%= person.died_on %></td>
+        <td><%= person.copyright_flag %></td>
+        <td><%= person.email %></td>
+        <td><%= person.url %></td>
+        <td><%= person.description %></td>
+        <td><%= person.note_user_id %></td>
+        <td><%= person.basename %></td>
+        <td><%= person.note %></td>
+        <td><%= person.updated_by %></td>
+        <td><%= person.sortkey %></td>
+        <td><%= person.sortkey2 %></td>
+        <td><%= person.input_count %></td>
+        <td><%= person.publish_count %></td>
+        <td><%= link_to 'Show', person %></td>
+        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Person', new_person_path %>

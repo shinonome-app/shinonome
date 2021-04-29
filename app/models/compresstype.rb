@@ -1,0 +1,2 @@
+class Compresstype < ApplicationRecord
+end

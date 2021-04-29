@@ -1,0 +1,2 @@
+class FileEncoding < ApplicationRecord
+end

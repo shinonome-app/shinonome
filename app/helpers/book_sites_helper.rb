@@ -1,0 +1,2 @@
+module BookSitesHelper
+end

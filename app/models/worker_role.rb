@@ -1,0 +1,2 @@
+class WorkerRole < ApplicationRecord
+end
