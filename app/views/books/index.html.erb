@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Title kana</th>
+      <th>Subtitle</th>
+      <th>Subtitle kana</th>
+      <th>Collection</th>
+      <th>Collection kana</th>
+      <th>Orig title</th>
+      <th>Kana type</th>
+      <th>Author display name</th>
+      <th>First appearance</th>
+      <th>Description</th>
+      <th>Description person</th>
+      <th>Status</th>
+      <th>Started on</th>
+      <th>Copyright flag</th>
+      <th>Note</th>
+      <th>Orig text</th>
+      <th>Updated at</th>
+      <th>User</th>
+      <th>Update flag</th>
+      <th>Sortkey</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.title_kana %></td>
+        <td><%= book.subtitle %></td>
+        <td><%= book.subtitle_kana %></td>
+        <td><%= book.collection %></td>
+        <td><%= book.collection_kana %></td>
+        <td><%= book.orig_title %></td>
+        <td><%= book.kana_type_id %></td>
+        <td><%= book.author_display_name %></td>
+        <td><%= book.first_appearance %></td>
+        <td><%= book.description %></td>
+        <td><%= book.description_person_id %></td>
+        <td><%= book.status %></td>
+        <td><%= book.started_on %></td>
+        <td><%= book.copyright_flag %></td>
+        <td><%= book.note %></td>
+        <td><%= book.orig_text %></td>
+        <td><%= book.updated_at %></td>
+        <td><%= book.user_id %></td>
+        <td><%= book.update_flag %></td>
+        <td><%= book.sortkey %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book', new_book_path %>

@@ -1,0 +1,2 @@
+module BasePeopleHelper
+end

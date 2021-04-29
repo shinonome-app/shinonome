@@ -1,0 +1,109 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Title kana:</strong>
+  <%= @book.title_kana %>
+</p>
+
+<p>
+  <strong>Subtitle:</strong>
+  <%= @book.subtitle %>
+</p>
+
+<p>
+  <strong>Subtitle kana:</strong>
+  <%= @book.subtitle_kana %>
+</p>
+
+<p>
+  <strong>Collection:</strong>
+  <%= @book.collection %>
+</p>
+
+<p>
+  <strong>Collection kana:</strong>
+  <%= @book.collection_kana %>
+</p>
+
+<p>
+  <strong>Orig title:</strong>
+  <%= @book.orig_title %>
+</p>
+
+<p>
+  <strong>Kana type:</strong>
+  <%= @book.kana_type_id %>
+</p>
+
+<p>
+  <strong>Author display name:</strong>
+  <%= @book.author_display_name %>
+</p>
+
+<p>
+  <strong>First appearance:</strong>
+  <%= @book.first_appearance %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @book.description %>
+</p>
+
+<p>
+  <strong>Description person:</strong>
+  <%= @book.description_person_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @book.status %>
+</p>
+
+<p>
+  <strong>Started on:</strong>
+  <%= @book.started_on %>
+</p>
+
+<p>
+  <strong>Copyright flag:</strong>
+  <%= @book.copyright_flag %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @book.note %>
+</p>
+
+<p>
+  <strong>Orig text:</strong>
+  <%= @book.orig_text %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @book.updated_at %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @book.user_id %>
+</p>
+
+<p>
+  <strong>Update flag:</strong>
+  <%= @book.update_flag %>
+</p>
+
+<p>
+  <strong>Sortkey:</strong>
+  <%= @book.sortkey %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>

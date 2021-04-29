@@ -1,0 +1,122 @@
+<%= form_with(model: book) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_area :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_kana %>
+    <%= form.text_area :title_kana %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtitle %>
+    <%= form.text_area :subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtitle_kana %>
+    <%= form.text_area :subtitle_kana %>
+  </div>
+
+  <div class="field">
+    <%= form.label :collection %>
+    <%= form.text_area :collection %>
+  </div>
+
+  <div class="field">
+    <%= form.label :collection_kana %>
+    <%= form.text_area :collection_kana %>
+  </div>
+
+  <div class="field">
+    <%= form.label :orig_title %>
+    <%= form.text_area :orig_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :kana_type_id %>
+    <%= form.number_field :kana_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author_display_name %>
+    <%= form.text_area :author_display_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :first_appearance %>
+    <%= form.text_area :first_appearance %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description_person_id %>
+    <%= form.number_field :description_person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_area :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :started_on %>
+    <%= form.date_select :started_on %>
+  </div>
+
+  <div class="field">
+    <%= form.label :copyright_flag %>
+    <%= form.check_box :copyright_flag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :orig_text %>
+    <%= form.text_area :orig_text %>
+  </div>
+
+  <div class="field">
+    <%= form.label :updated_at %>
+    <%= form.datetime_select :updated_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :update_flag %>
+    <%= form.number_field :update_flag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sortkey %>
+    <%= form.text_area :sortkey %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

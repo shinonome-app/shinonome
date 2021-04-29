@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Base People</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @base_people.each do |base_person| %>
+      <tr>
+        <td><%= base_person.person_id %></td>
+        <td><%= link_to 'Show', base_person %></td>
+        <td><%= link_to 'Edit', edit_base_person_path(base_person) %></td>
+        <td><%= link_to 'Destroy', base_person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Base Person', new_base_person_path %>
