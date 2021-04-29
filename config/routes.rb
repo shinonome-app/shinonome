@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :book_people
   resources :books
   resources :base_people
   resources :news
