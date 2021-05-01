@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: compresstypes
+#
+#  id         :bigint           not null, primary key
+#  name       :text
+#  extension  :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Compresstype, type: :model do
