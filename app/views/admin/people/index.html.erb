@@ -52,9 +52,9 @@
         <td><%= person.sortkey2 %></td>
         <td><%= person.input_count %></td>
         <td><%= person.publish_count %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [:admin, person] %></td>
+        <td><%= link_to 'Edit', edit_admin_person_path(person) %></td>
+        <td><%= link_to 'Destroy', [:admin, person], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -62,4 +62,4 @@
 
 <br>
 
-<%= link_to 'New Person', new_person_path %>
+<%= link_to 'New Person', new_admin_person_path %>

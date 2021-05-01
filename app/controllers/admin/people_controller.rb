@@ -1,4 +1,4 @@
-class PeopleController < ApplicationController
+class Admin::PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   # GET /people
@@ -24,7 +24,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
 
     if @person.save
-      redirect_to @person, notice: 'Person was successfully created.'
+      redirect_to [:admin, @person], notice: 'Person was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1
   def update
     if @person.update(person_params)
-      redirect_to @person, notice: 'Person was successfully updated.'
+      redirect_to [:admin, @person], notice: 'Person was successfully updated.'
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class PeopleController < ApplicationController
   # DELETE /people/1
   def destroy
     @person.destroy
-    redirect_to people_url, notice: 'Person was successfully destroyed.'
+    redirect_to admin_people_url, notice: 'Person was successfully destroyed.'
   end
 
   private

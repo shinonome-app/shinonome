@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   resources :workers
   resources :receipts
   resources :proofreads
-  resources :people
   resources :person_sites
   resources :bookfiles
   resources :book_people
@@ -29,5 +28,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'top#index'
+
+    resources :people
   end
 end
