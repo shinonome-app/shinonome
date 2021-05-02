@@ -1,5 +1,401 @@
-<h1>New Receipt</h1>
-
-<%= render 'form', receipt: @receipt %>
-
-<%= link_to 'Back', receipts_path %>
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+  <div class="px-8 max-w-6xl mx-auto">
+    <a name="top">&nbsp;</a>
+    <div class="flex justify-end text-base">
+      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<span class="text-red-500 font-semibold">作業着手連絡システム</span>
+    </div>
+    <div class="flex justify-center bg-yellow-100 py-3 border-t-2 border-b-2 border-gray-400">
+      <h1 class="text-3xl font-semibold">入力受付システム：必要事項の記入</h1>
+    </div>
+    <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+      <ul class="my-2 mx-8 list-disc text-base">
+        <li><span class="text-red-500">（必須）</span>は必ず入力してください。<span class="text-red-500">（必須）</span>以外は、わかる範囲で入力してください。</li>
+        <li>「入力者データ」、「著者データ」では、まず<a href="../idlist.html" target="_blank">「ID一覧インデックス」</a>の工作員ID一覧、人物ID一覧を参照して、IDを入力してください。IDが記入できれば、<font color="#ff0000">（必須）</font>を含む、「入力者データ」、「著者データ」のその他の項目は必要はありません。IDが確認できない場合に限り、各項目欄に記入してください。<br>
+          <li>「底本データ」「作品データ」は、必ず記入してください。</li>
+          <li>「著者データ」「作品データ」のとりかたを、<a href="https://www.aozora.gr.jp/metadata_collection/index.html"  target="_blank">「青空文庫における書誌データのとりかた」</a>で、詳しく説明しています。</li>
+          <li>「備考」「作品について」は、2000文字（原稿用紙5枚分）以内で記入してください。全角／半角とも、１文字として計算します。「記入事項の確認」画面で末尾が切れている場合は、2000文字以内に書き直すか、reception@aozora.gr.jpにメールで送ってください。</li>
+          <li>入力が終わったら、一番下の「確認」ボタンを押してください。「記入事項の確認」画面が現れます。誤りが無いことを確認してから、「登録」ボタンを押してください。</li>
+          <li>中止する場合は、「確認」ボタンを押さずにブラウザを閉じてください。</li>
+        </ul>
+      </div>
+      <%= form_with(model: @receipt) do |form| %>
+        <% if @receipt.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@receipt.errors.count, "error") %> prohibited this receipt from being saved:
+            </h2>
+            <ul>
+              <% @receipt.errors.each do |error| %>
+                <li>
+                  <%= error.full_message %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+          <h2 class="font-semibold">入力者データ</h2>
+        </div>
+        <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+          <ul class="my-2 mx-8 list-disc text-base">
+            <li>まず<a href="/idlist/" target="_blank">「工作員ID一覧」</a>を参照して、IDを入力してください。</li>
+            <li>IDが入力されていれば、<span class="text-red-500">（必須）</span>の項目も含めて、その他の項目の記入は必要ありません。</li>
+            <li>工作員IDのない人は、「入力者データ」に、お名前とメールアドレスを書き込んでください。仮名、ハンドルネームでもかまいません。</li>
+          </ul>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :worker_id, class: "mb-2 text-lg text-grey-darkest" do %>工作員ID<% end %>
+            <%= form.text_field :worker_id, class: "border py-2 px-2 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base m-auto">
+            123<br>
+            ※工作員IDは、<a href="/idlist/" target="_blank">「工作員ID一覧」</a>を参照してください。<br>
+            IDを入力できれば、その他の項目を記入する必要はありません。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :worker_yomi, class: "mb-2 text-lg text-grey-darkest" do %>工作員読み<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :worker_yomi, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base m-auto">
+            あおぞらたろう
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :worker_name, class: "mb-2 text-lg text-grey-darkest" do %>工作員名<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :worker_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            青空太郎
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :worker_email, class: "mb-2 text-lg text-grey-darkest" do %>e-mail<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :worker_email, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            reception@aozora.gr.jp
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :worker_url, class: "mb-2 text-lg text-grey-darkest" do %>ホームページ<% end %>
+            <%= form.text_field :worker_url, class: "border py-2 px-3 text-grey-darkest w-full"  %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            https://www.aozora.gr.jp
+          </div>
+        </div>
+        <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+          <h2 class="font-semibold">著者データ</h2>
+        </div>
+        <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+          <ul class="my-2 mx-8 list-disc text-base">
+            <li>まず<a href="../idlist.html" target="_blank">「人物ID一覧」</a>を参照して、IDを入力してください。IDが入力されていれば、<font color="#ff0000">（必須）</font>の項目も含めて、その他の項目の記入は必要ありません。IDが確認できない場合に限り、各項目に記入してください。</li>
+            <li>ただし、著者が複数にわたる場合、翻訳者、校訂者、編者などがある場合には、著者（著者が複数の場合は、そのうちのひとり）のみIDを入力し、２人目以降の人物のデータを、「作品データ」の「備考」欄に記入してください。</li>
+            <li>人名は、新字で入力してください。（底本に旧字で記載されている場合は、表記をあらためてください。）<br>
+              　【例】芥川龍之介→芥川竜之介、與謝野晶子→与謝野晶子、國木田獨歩→国木田独歩
+            </li>
+            <li>読みがわからない場合は、「？」と入力してください。</li>
+          </ul>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :person_id, class: "mb-2 text-lg text-grey-darkest" do %>人物ID<% end %>
+            <%= form.text_field :person_id, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            879<br>
+            ※人物IDは、<a href="../idlist.html" target="_blank">「人物ID一覧」</a>を参照してください。<br>
+            IDが確認できない場合のみ、その他の項目を入力してください。         </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :person_sei_yomi, class: "mb-2 text-lg text-grey-darkest" do %>姓読み<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :person_sei_yomi, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            あくたがわ
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :person_sei, class: "mb-2 text-lg text-grey-darkest" do %>姓<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :person_sei, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            芥川
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :person_mei_yomi, class: "mb-2 text-lg text-grey-darkest" do %>名読み<% end %>
+            <%= form.text_field :person_mei_yomi, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            りゅうのすけ
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :person_mei, class: "mb-2 text-lg text-grey-darkest" do %>名<% end %>
+            <%= form.text_field :person_mei, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            竜之介
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :person_note, class: "mb-2 text-lg text-grey-darkest" do %>備考<% end %>
+            <%= form.text_area :person_note, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※著者が外国人で、原綴りがわかる場合、ここに記入してください。原綴りのアクセント記号は省略してください。<br>
+            生没年月日がわかる場合は、ここに記入してください。
+          </div>
+        </div>
+        <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+          <h2 class="font-semibold">底本データ</h2>
+        </div>
+        <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+          <ul class="my-2 mx-8 list-disc text-base">
+            <li>「底本の親本」とは、底本（入力時に参照する本）の元になった本です。巻末などに記載されていることがあります。</li>
+            <li>「初版発行年」「入力に使用する版」などの数字はすべて、1バイト（半角）のアラビア数字で入れてください。<br>
+              西暦と元号の相関は、「<a href="https://www.aozora.gr.jp/guide/koyomi.html" target="_blank">西暦（和暦）年の記述</a>」を参照してください。</li>
+            <li>「初版発行年」には、年月日のみ記入します。「初版」「第1刷」などは外してください。</li>
+            <li>「入力に使用する版」には、底本の記載どおりに記入します。「第○刷」「初版」なども、底本どおりに記入してください。</li>
+          </ul>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :teihon_name, class: "mb-2 text-lg text-grey-darkest" do %>底本名<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :teihon_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            芥川龍之介全集２<br>
+            ※底本の表記通り入力してください。旧字旧仮名も、そのまま記入します。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :publisher, class: "mb-2 text-lg text-grey-darkest" do %>出版社名<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :publisher, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ちくま文庫、筑摩書房<br>
+            ※文庫や新書の場合は、「、」で区切って記入してください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion, class: "mb-2 text-lg text-grey-darkest" do %>初版発行年<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :firstversion, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base m-auto">
+            1986（昭和61）年10月28日<br>
+            ※数字はすべて、1バイト（半角）のアラビア数字で入れてください。<br>
+            西暦と元号の相関は、「<a href="https://www.aozora.gr.jp/guide/koyomi.html" target="_blank">西暦（和暦）年の記述</a>」を参照してください。<br>
+            改版されている場合は、「、」で区切って、「1986（昭和61）年10月28日、1996（平成8）年4月1日改版」のように記入してください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :inputversion, class: "mb-2 text-lg text-grey-darkest" do %>入力に使用する版<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :inputversion, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base m-auto">
+            1996（平成8）年7月15日第11刷<br>
+            ※「第○刷」「初版」等の表記は、底本に従ってください。書き方に迷った場合は、底本の奥付に記載されているとおりに、「備考」欄に記入してください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :book_note, class: "mb-2 text-lg text-grey-darkest" do %>備考<% end %>
+            <%= form.text_area :book_note, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※底本および底本の親本に関し、通常の入力欄に書ききれない内容は、ここに書き込んでください。<br>
+            複数の底本を使って１つの作品を入力する際は、２冊目以降の底本のデータを、ここに書き入れてください。底本の親本に関しても、複数の親本がある場合などは、この欄を使ってください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :bookname2, class: "mb-2 text-lg text-grey-darkest" do %>底本の親本名<% end %>
+            <%= form.text_area :bookname2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            筑摩全集類聚版芥川龍之介全集<br>
+            ※底本の元になった本の書名です。巻末などに記載のある場合があります。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :publisher2, class: "mb-2 text-lg text-grey-darkest" do %>底本の親本出版社名<% end %>
+            <%= form.text_area :publisher2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            筑摩書房
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion2, class: "mb-2 text-lg text-grey-darkest" do %>底本の親本初版発行年<% end %>
+            <%= form.text_area :firstversion2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            1971（昭和46）年3月～11月に刊行
+          </div>
+        </div>
+        <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+          <h2 class="font-semibold">作品データ</h2>
+        </div>
+        <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+          <ul class="my-2 mx-8 list-disc text-base">
+            <li>作品名は、漢字は新字で、仮名は底本どおりに入力してください。（底本に旧字で記載されている場合は、表記をあらためてください。）<br>
+              　【例】華嚴瀧→華厳滝、蛇くひ→蛇くひ</li>
+            <li>読みは新仮名で入力してください。<br>
+              　【例】蛇くひ→へびくい</li>
+            <li>作品名に片仮名、外来語、アルファベットが含まれている場合、その部分の読みは片仮名で入力してください。<br>
+              　【例】ラジオ雑感→ラジオざっかん、巴里より→パリより、Ｍ侯爵と写真師→エムこうしゃくとしゃしんし</li>
+            <li>作品名に記号が含まれている場合、読みには記号をそのまま入力してください。<br>
+              　【例】「三人姉妹」のマーシャ→「さんにんしまい」のマーシャ</li>
+            <li>以下の言葉は、読みを統一します。<br>
+              　【私】→【わたし】　【日本】→【にほん】</li>
+            <li>読みがわからない場合は、「？」と入力してください。</li>
+            <li>副題がある場合の、副題および副題読みの入力のしかたは、作品名と同じです。</li>
+            <li>「作品について」に書き込まれた内容は、図書カードに表示することを検討します。著作権は書いた人に帰属しますが、これを含む青空文庫一式の複製などにあたって、そのつど著作権者の許諾を得ることは行いません。この条件を受けいれられる場合に限って、記入してください。</li>
+            <li>「著作権」は、著作権が消滅した作品を「なし」、存続している作品を「あり」としてください。著者が複数にわたる場合、翻訳者、校訂者、編者などがある場合は、全員の著作権が消滅した時点で「なし」となります。</li>
+            <li>一つの底本から、同じ著者の複数の作品を入力する際は、「作品データ」欄の下にある「作品データを追加する」ボタンを利用してください。「作品データ」だけを、追加することができます。いちどに登録できる作品数は、最大20作品です。</li>
+          </ul>
+        </div>
+        <h3 class="text-lg mt-3 mb-4">作品データ1</h3>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :teihon_name, class: "mb-2 text-lg text-grey-darkest" do %>作品名読み<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :teihon_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            くものいと<br>
+            ※新仮名で入力してください。<br>
+            片仮名、外来語、アルファベットの読みは片仮名で入力してください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :teihon_name, class: "mb-2 text-lg text-grey-darkest" do %>作品名<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :teihon_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            蜘蛛の糸<br>
+            ※漢字は新字で、仮名は底本どおりに入力してください。<br>
+            底本でふりがながついていても、ふりがなは省いてください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion2, class: "mb-2 text-lg text-grey-darkest" do %>副題読み<% end %>
+            <%= form.text_field :firstversion2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※副題がある場合のみ。<br>
+            新仮名で入力してください。<br>
+            片仮名、外来語、アルファベットの読みは片仮名で入力してください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion2, class: "mb-2 text-lg text-grey-darkest" do %>副題<% end %>
+            <%= form.text_field :firstversion2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※副題がある場合のみ。<br>
+            漢字は新字で、仮名は底本どおりに入力してください。<br>
+            底本でふりがながついていても、ふりがなは省いてください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion2, class: "mb-2 text-lg text-grey-darkest" do %>原題<% end %>
+            <%= form.text_field :firstversion2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※翻訳物などの場合。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :kana_type_id, class: "mb-2 text-lg text-grey-darkest" do %>文字遣い種別<% end %>
+            <%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※←ポップアップにて選択、わからない場合は「新字新仮名」にしてください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion2, class: "mb-2 text-lg text-grey-darkest" do %>初出<% end %>
+            <%= form.text_field :firstversion2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            「赤い鳥」1918（大正7）年7月<br>
+            ※数字はすべて、1バイト（半角）のアラビア数字で入れてください。<br>
+            西暦と元号の相関は、「<a href="https://www.aozora.gr.jp/guide/koyomi.html" target="_blank">西暦（和暦）年の記述</a>」を参照してください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion2, class: "mb-2 text-lg text-grey-darkest" do %>作品について<% end %>
+            <%= form.text_area :firstversion2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※文学事典などの内容をそのまま記入することは、著作権を侵害する行為です。<font color="red">絶対に避けてください</font>。<br>
+            末尾に、（　）におさめて、署名をそえてください。無署名、ペンネーム、ハンドルネームでもかまいません。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <%= form.label :firstversion2, class: "mb-2 text-lg text-grey-darkest" do %>備考<% end %>
+            <%= form.text_area :firstversion2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※他に伝えることがある場合、記入してください。<br>
+            著者が複数にわたる場合、翻訳者、校訂者、編者などがある場合には、ここに２人目以降の人物のデータを記入してください。同じ底本の複数の作品で、著者、翻訳者、校訂者、編者などが共通であれば、作品データ１に記入し、「全作品に共通」と書き添えてください。
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+          <div class="flex-1 mr-2">
+            <p class="mb-2 text-lg text-grey-darkest">著作権<span class="text-red-500">（必須）</span></p>
+            <%= form.label :copyright_flag_1 do %>
+              <%= form.radio_button :copyright_flag, "1", {class: "mr-1"} %><span class="text-base">あり（保護期間内）</span>
+            <% end %>
+            <%= form.label :copyright_flag_0 do %>
+              <%= form.radio_button :copyright_flag, "0", {class: "mr-1"} %><span class="text-base">なし（期限切れ）</span>
+            <% end %>
+          </div>
+          <div class="flex-1 text-base  m-auto">
+            ※記入する当日を基準に、どちらかを選んでください。<br>
+            著作権の有無は、<a href="https://www.aozora.gr.jp/siryo1.html" target="_blank">「著作権の消滅した作家一覧」</a>を参照して確認してください。
+          </div>
+        </div>
+        <hr>
+        <div>
+          同じ底本、同じ著者の他の作品も入力する場合は、このボタンを押してください。
+        </div>
+        <div class="actions">
+          <%= form.submit "作品データを追加する", name: "add_books" %>
+        </div>
+        <div>
+          データの入力が終わったら、「確認」ボタンを押して確認画面に進んでください。
+        </div>
+        <div class="actions">
+          <%= form.submit "確認" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
