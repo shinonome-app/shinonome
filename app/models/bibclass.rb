@@ -12,6 +12,6 @@
 #  updated_at :datetime         not null
 #  book_id    :bigint
 #
-class Bibclasse < ApplicationRecord
+class Bibclass < ApplicationRecord
   belongs_to :book
 end

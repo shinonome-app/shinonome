@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :original_books
   resources :book_workers
   resources :compresstypes
-  resources :bibclasses
   resources :filetypes
   resources :workers, only: %i[index show]
   resources :receipts, only: %i[new create] do
