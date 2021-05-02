@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :file_encoding do
-    name { "MyText" }
+    name { 'MyText' }
   end
 end

@@ -25,12 +25,12 @@ FactoryBot.define do
     compresstype_id { 1 }
     filesize { 1 }
     user_id { 1 }
-    url { "MyText" }
-    filename { "MyText" }
-    opened_on { "2021-04-29" }
+    url { 'MyText' }
+    filename { 'MyText' }
+    opened_on { '2021-04-29' }
     fixnum { 1 }
-    file_encoding_id { "" }
+    file_encoding_id { '' }
     charset_id { 1 }
-    note { "MyText" }
+    note { 'MyText' }
   end
 end

@@ -24,16 +24,16 @@ Rails.application.routes.draw do
   resources :base_people
   resources :news
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   namespace :admin do
     get '/' => 'top#index'
 
     devise_for :users, controllers: {
-                 passwords: 'admin/passwords',
-                 registrations: 'users/registrations',
-                 sessions: 'admin/sessions'
-               }
+      passwords: 'admin/passwords',
+      registrations: 'users/registrations',
+      sessions: 'admin/sessions'
+    }
 
     resources :people
     # resources :kana_types

@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :kana_type do
-    name { "MyText" }
+    name { 'MyText' }
   end
 end

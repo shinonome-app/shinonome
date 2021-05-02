@@ -1,5 +1,5 @@
 class BasePeopleController < ApplicationController
-  before_action :set_base_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_base_person, only: %i[show edit update destroy]
 
   # GET /base_people
   def index
@@ -7,8 +7,7 @@ class BasePeopleController < ApplicationController
   end
 
   # GET /base_people/1
-  def show
-  end
+  def show; end
 
   # GET /base_people/new
   def new
@@ -16,8 +15,7 @@ class BasePeopleController < ApplicationController
   end
 
   # GET /base_people/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /base_people
   def create
@@ -46,13 +44,14 @@ class BasePeopleController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_base_person
-      @base_person = BasePerson.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def base_person_params
-      params.require(:base_person).permit(:person_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_base_person
+    @base_person = BasePerson.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def base_person_params
+    params.require(:base_person).permit(:person_id)
+  end
 end

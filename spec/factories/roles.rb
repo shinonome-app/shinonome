@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :role do
-    name { "MyText" }
+    name { 'MyText' }
   end
 end

@@ -1,5 +1,5 @@
 class WorkerRolesController < ApplicationController
-  before_action :set_worker_role, only: [:show, :edit, :update, :destroy]
+  before_action :set_worker_role, only: %i[show edit update destroy]
 
   # GET /worker_roles
   def index
@@ -7,8 +7,7 @@ class WorkerRolesController < ApplicationController
   end
 
   # GET /worker_roles/1
-  def show
-  end
+  def show; end
 
   # GET /worker_roles/new
   def new
@@ -16,8 +15,7 @@ class WorkerRolesController < ApplicationController
   end
 
   # GET /worker_roles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /worker_roles
   def create
@@ -46,13 +44,14 @@ class WorkerRolesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_worker_role
-      @worker_role = WorkerRole.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def worker_role_params
-      params.require(:worker_role).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_worker_role
+    @worker_role = WorkerRole.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def worker_role_params
+    params.require(:worker_role).permit(:name)
+  end
 end

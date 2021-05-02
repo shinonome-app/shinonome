@@ -1,5 +1,5 @@
 class BibclassesController < ApplicationController
-  before_action :set_bibclass, only: [:show, :edit, :update, :destroy]
+  before_action :set_bibclass, only: %i[show edit update destroy]
 
   # GET /bibclasses
   def index
@@ -7,8 +7,7 @@ class BibclassesController < ApplicationController
   end
 
   # GET /bibclasses/1
-  def show
-  end
+  def show; end
 
   # GET /bibclasses/new
   def new
@@ -16,8 +15,7 @@ class BibclassesController < ApplicationController
   end
 
   # GET /bibclasses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bibclasses
   def create
@@ -46,13 +44,14 @@ class BibclassesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bibclass
-      @bibclass = Bibclasse.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def bibclass_params
-      params.require(:bibclass).permit(:book_id, :name, :num, :note)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bibclass
+    @bibclass = Bibclasse.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def bibclass_params
+    params.require(:bibclass).permit(:book_id, :name, :num, :note)
+  end
 end

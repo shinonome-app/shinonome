@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: %i[show edit update destroy]
 
   # GET /books
   def index
@@ -7,8 +7,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1
-  def show
-  end
+  def show; end
 
   # GET /books/new
   def new
@@ -16,8 +15,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /books
   def create
@@ -46,13 +44,15 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def book_params
-      params.require(:book).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana, :orig_title, :kana_type_id, :author_display_name, :first_appearance, :description, :description_person_id, :status, :started_on, :copyright_flag, :note, :orig_text, :updated_at, :user_id, :update_flag, :sortkey)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def book_params
+    params.require(:book).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
+                                 :orig_title, :kana_type_id, :author_display_name, :first_appearance, :description, :description_person_id, :status, :started_on, :copyright_flag, :note, :orig_text, :updated_at, :user_id, :update_flag, :sortkey)
+  end
 end

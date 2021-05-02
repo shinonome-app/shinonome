@@ -1,5 +1,5 @@
 class BookfilesController < ApplicationController
-  before_action :set_bookfile, only: [:show, :edit, :update, :destroy]
+  before_action :set_bookfile, only: %i[show edit update destroy]
 
   # GET /bookfiles
   def index
@@ -7,8 +7,7 @@ class BookfilesController < ApplicationController
   end
 
   # GET /bookfiles/1
-  def show
-  end
+  def show; end
 
   # GET /bookfiles/new
   def new
@@ -16,8 +15,7 @@ class BookfilesController < ApplicationController
   end
 
   # GET /bookfiles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bookfiles
   def create
@@ -46,13 +44,15 @@ class BookfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bookfile
-      @bookfile = Bookfile.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def bookfile_params
-      params.require(:bookfile).permit(:book_id, :filetype_id, :compresstype_id, :filesize, :user_id, :url, :filename, :opened_on, :fixnum, :file_encoding_id, :charset_id, :note)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bookfile
+    @bookfile = Bookfile.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def bookfile_params
+    params.require(:bookfile).permit(:book_id, :filetype_id, :compresstype_id, :filesize, :user_id, :url, :filename,
+                                     :opened_on, :fixnum, :file_encoding_id, :charset_id, :note)
+  end
 end

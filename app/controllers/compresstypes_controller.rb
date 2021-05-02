@@ -1,5 +1,5 @@
 class CompresstypesController < ApplicationController
-  before_action :set_compresstype, only: [:show, :edit, :update, :destroy]
+  before_action :set_compresstype, only: %i[show edit update destroy]
 
   # GET /compresstypes
   def index
@@ -7,8 +7,7 @@ class CompresstypesController < ApplicationController
   end
 
   # GET /compresstypes/1
-  def show
-  end
+  def show; end
 
   # GET /compresstypes/new
   def new
@@ -16,8 +15,7 @@ class CompresstypesController < ApplicationController
   end
 
   # GET /compresstypes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /compresstypes
   def create
@@ -46,13 +44,14 @@ class CompresstypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_compresstype
-      @compresstype = Compresstype.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def compresstype_params
-      params.require(:compresstype).permit(:name, :extension)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_compresstype
+    @compresstype = Compresstype.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def compresstype_params
+    params.require(:compresstype).permit(:name, :extension)
+  end
 end

@@ -1,5 +1,5 @@
 class ProofreadsController < ApplicationController
-  before_action :set_proofread, only: [:show, :edit, :update, :destroy]
+  before_action :set_proofread, only: %i[show edit update destroy]
 
   # GET /proofreads
   def index
@@ -7,8 +7,7 @@ class ProofreadsController < ApplicationController
   end
 
   # GET /proofreads/1
-  def show
-  end
+  def show; end
 
   # GET /proofreads/new
   def new
@@ -16,8 +15,7 @@ class ProofreadsController < ApplicationController
   end
 
   # GET /proofreads/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /proofreads
   def create
@@ -46,13 +44,15 @@ class ProofreadsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_proofread
-      @proofread = Proofread.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def proofread_params
-      params.require(:proofread).permit(:book_id, :book_copy, :book_print, :refbook, :bookfile_id, :address, :memo, :worker_id, :worker_kana, :worker_name, :email, :url, :person_id, :sts1, :sts2)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_proofread
+    @proofread = Proofread.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def proofread_params
+    params.require(:proofread).permit(:book_id, :book_copy, :book_print, :refbook, :bookfile_id, :address, :memo,
+                                      :worker_id, :worker_kana, :worker_name, :email, :url, :person_id, :sts1, :sts2)
+  end
 end

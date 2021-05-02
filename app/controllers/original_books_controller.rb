@@ -1,5 +1,5 @@
 class OriginalBooksController < ApplicationController
-  before_action :set_original_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_original_book, only: %i[show edit update destroy]
 
   # GET /original_books
   def index
@@ -7,8 +7,7 @@ class OriginalBooksController < ApplicationController
   end
 
   # GET /original_books/1
-  def show
-  end
+  def show; end
 
   # GET /original_books/new
   def new
@@ -16,8 +15,7 @@ class OriginalBooksController < ApplicationController
   end
 
   # GET /original_books/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /original_books
   def create
@@ -46,13 +44,15 @@ class OriginalBooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_original_book
-      @original_book = OriginalBook.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def original_book_params
-      params.require(:original_book).permit(:book_id, :title, :publisher, :first_pubyear, :input_edition, :proof_edition, :booktype_name, :note)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_original_book
+    @original_book = OriginalBook.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def original_book_params
+    params.require(:original_book).permit(:book_id, :title, :publisher, :first_pubyear, :input_edition,
+                                          :proof_edition, :booktype_name, :note)
+  end
 end

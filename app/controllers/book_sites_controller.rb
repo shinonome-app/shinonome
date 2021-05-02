@@ -1,5 +1,5 @@
 class BookSitesController < ApplicationController
-  before_action :set_book_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_book_site, only: %i[show edit update destroy]
 
   # GET /book_sites
   def index
@@ -7,8 +7,7 @@ class BookSitesController < ApplicationController
   end
 
   # GET /book_sites/1
-  def show
-  end
+  def show; end
 
   # GET /book_sites/new
   def new
@@ -16,8 +15,7 @@ class BookSitesController < ApplicationController
   end
 
   # GET /book_sites/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /book_sites
   def create
@@ -46,13 +44,14 @@ class BookSitesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book_site
-      @book_site = BookSite.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def book_site_params
-      params.require(:book_site).permit(:book_id, :site_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book_site
+    @book_site = BookSite.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def book_site_params
+    params.require(:book_site).permit(:book_id, :site_id)
+  end
 end

@@ -1,5 +1,5 @@
 class NewsController < ApplicationController
-  before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_action :set_news, only: %i[show edit update destroy]
 
   # GET /news
   def index
@@ -7,8 +7,7 @@ class NewsController < ApplicationController
   end
 
   # GET /news/1
-  def show
-  end
+  def show; end
 
   # GET /news/new
   def new
@@ -16,8 +15,7 @@ class NewsController < ApplicationController
   end
 
   # GET /news/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /news
   def create
@@ -46,13 +44,14 @@ class NewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news
-      @news = News.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def news_params
-      params.require(:news).permit(:published_on, :title, :body, :flag)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news
+    @news = News.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def news_params
+    params.require(:news).permit(:published_on, :title, :body, :flag)
+  end
 end

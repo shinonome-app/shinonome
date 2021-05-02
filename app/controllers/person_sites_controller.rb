@@ -1,5 +1,5 @@
 class PersonSitesController < ApplicationController
-  before_action :set_person_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_person_site, only: %i[show edit update destroy]
 
   # GET /person_sites
   def index
@@ -7,8 +7,7 @@ class PersonSitesController < ApplicationController
   end
 
   # GET /person_sites/1
-  def show
-  end
+  def show; end
 
   # GET /person_sites/new
   def new
@@ -16,8 +15,7 @@ class PersonSitesController < ApplicationController
   end
 
   # GET /person_sites/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /person_sites
   def create
@@ -46,13 +44,14 @@ class PersonSitesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person_site
-      @person_site = PersonSite.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def person_site_params
-      params.require(:person_site).permit(:person_id, :site_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_person_site
+    @person_site = PersonSite.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def person_site_params
+    params.require(:person_site).permit(:person_id, :site_id)
+  end
 end

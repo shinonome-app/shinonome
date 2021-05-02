@@ -1,5 +1,5 @@
 class FileEncodingsController < ApplicationController
-  before_action :set_file_encoding, only: [:show, :edit, :update, :destroy]
+  before_action :set_file_encoding, only: %i[show edit update destroy]
 
   # GET /file_encodings
   def index
@@ -7,8 +7,7 @@ class FileEncodingsController < ApplicationController
   end
 
   # GET /file_encodings/1
-  def show
-  end
+  def show; end
 
   # GET /file_encodings/new
   def new
@@ -16,8 +15,7 @@ class FileEncodingsController < ApplicationController
   end
 
   # GET /file_encodings/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /file_encodings
   def create
@@ -46,13 +44,14 @@ class FileEncodingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_file_encoding
-      @file_encoding = FileEncoding.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def file_encoding_params
-      params.require(:file_encoding).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_file_encoding
+    @file_encoding = FileEncoding.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def file_encoding_params
+    params.require(:file_encoding).permit(:name)
+  end
 end

@@ -1,5 +1,5 @@
 class Admin::PeopleController < Admin::ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: %i[show edit update destroy]
 
   # GET /people
   def index
@@ -7,8 +7,7 @@ class Admin::PeopleController < Admin::ApplicationController
   end
 
   # GET /people/1
-  def show
-  end
+  def show; end
 
   # GET /people/new
   def new
@@ -16,8 +15,7 @@ class Admin::PeopleController < Admin::ApplicationController
   end
 
   # GET /people/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /people
   def create
@@ -46,13 +44,15 @@ class Admin::PeopleController < Admin::ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person
-      @person = Person.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def person_params
-      params.require(:person).permit(:last_name, :last_name_kana, :last_name_en, :first_name, :first_name_kana, :first_name_en, :born_on, :died_on, :copyright_flag, :email, :url, :description, :note_user_id, :basename, :note, :updated_by, :sortkey, :sortkey2, :input_count, :publish_count)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_person
+    @person = Person.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def person_params
+    params.require(:person).permit(:last_name, :last_name_kana, :last_name_en, :first_name, :first_name_kana,
+                                   :first_name_en, :born_on, :died_on, :copyright_flag, :email, :url, :description, :note_user_id, :basename, :note, :updated_by, :sortkey, :sortkey2, :input_count, :publish_count)
+  end
 end

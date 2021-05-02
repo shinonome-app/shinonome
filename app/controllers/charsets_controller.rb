@@ -1,5 +1,5 @@
 class CharsetsController < ApplicationController
-  before_action :set_charset, only: [:show, :edit, :update, :destroy]
+  before_action :set_charset, only: %i[show edit update destroy]
 
   # GET /charsets
   def index
@@ -7,8 +7,7 @@ class CharsetsController < ApplicationController
   end
 
   # GET /charsets/1
-  def show
-  end
+  def show; end
 
   # GET /charsets/new
   def new
@@ -16,8 +15,7 @@ class CharsetsController < ApplicationController
   end
 
   # GET /charsets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /charsets
   def create
@@ -46,13 +44,14 @@ class CharsetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_charset
-      @charset = Charset.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def charset_params
-      params.require(:charset).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_charset
+    @charset = Charset.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def charset_params
+    params.require(:charset).permit(:name)
+  end
 end

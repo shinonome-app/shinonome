@@ -1,5 +1,5 @@
 class FiletypesController < ApplicationController
-  before_action :set_filetype, only: [:show, :edit, :update, :destroy]
+  before_action :set_filetype, only: %i[show edit update destroy]
 
   # GET /filetypes
   def index
@@ -7,8 +7,7 @@ class FiletypesController < ApplicationController
   end
 
   # GET /filetypes/1
-  def show
-  end
+  def show; end
 
   # GET /filetypes/new
   def new
@@ -16,8 +15,7 @@ class FiletypesController < ApplicationController
   end
 
   # GET /filetypes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /filetypes
   def create
@@ -46,13 +44,14 @@ class FiletypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_filetype
-      @filetype = Filetype.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def filetype_params
-      params.require(:filetype).permit(:name, :extension)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_filetype
+    @filetype = Filetype.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def filetype_params
+    params.require(:filetype).permit(:name, :extension)
+  end
 end
