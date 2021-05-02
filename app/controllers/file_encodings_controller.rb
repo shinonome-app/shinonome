@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FileEncodingsController < ApplicationController
   before_action :set_file_encoding, only: %i[show edit update destroy]
 

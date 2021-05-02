@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NewsController < ApplicationController
   before_action :set_news, only: %i[show edit update destroy]
 

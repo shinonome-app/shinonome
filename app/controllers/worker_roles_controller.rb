@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorkerRolesController < ApplicationController
   before_action :set_worker_role, only: %i[show edit update destroy]
 

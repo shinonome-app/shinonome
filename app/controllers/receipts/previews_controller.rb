@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Receipts
   # 入力受付プレビュー用
   class PreviewsController < ApplicationController

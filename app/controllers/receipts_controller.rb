@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReceiptsController < ApplicationController
   # GET /receipts/new
   def new

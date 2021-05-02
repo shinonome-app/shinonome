@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookWorkersController < ApplicationController
   before_action :set_book_worker, only: %i[show edit update destroy]
 

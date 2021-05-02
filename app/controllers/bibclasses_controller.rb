@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BibclassesController < ApplicationController
   before_action :set_bibclass, only: %i[show edit update destroy]
 

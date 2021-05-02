@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 kana_types = {
   1 => '旧字旧仮名',
   2 =>	'旧字新仮名',

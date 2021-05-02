@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProofreads < ActiveRecord::Migration[6.1]
   def change
     create_table :proofreads do |t|

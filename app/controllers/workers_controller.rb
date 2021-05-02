@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorkersController < ApplicationController
   # GET /workers
   def index

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProofreadsController < ApplicationController
   before_action :set_proofread, only: %i[show edit update destroy]
 

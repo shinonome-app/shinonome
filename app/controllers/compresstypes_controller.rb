@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompresstypesController < ApplicationController
   before_action :set_compresstype, only: %i[show edit update destroy]
 
