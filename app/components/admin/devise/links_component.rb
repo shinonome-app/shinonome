@@ -2,6 +2,7 @@
 
 module Admin
   module Devise
+    # ログイン画面の各種リンク用コンポーネント
     class LinksComponent < ViewComponent::Base
       def initialize(resource_name:, devise_mapping:)
         super
