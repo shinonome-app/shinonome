@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-
+  get 'idlist/index'
   get 'top/index'
   root to: 'top#index'
 
   resources :worker_roles
   resources :roles
-  resources :kana_types
-  resources :charsets
-  resources :file_encodings
   resources :sites
   resources :book_sites
   resources :original_books
@@ -15,8 +12,10 @@ Rails.application.routes.draw do
   resources :compresstypes
   resources :bibclasses
   resources :filetypes
-  resources :workers
-  resources :receipts
+  resources :workers, only: %i[index show]
+  resources :receipts, only: %i[new create] do
+    resources :previews, only: %i[create]
+  end
   resources :proofreads
   resources :person_sites
   resources :bookfiles
@@ -24,11 +23,21 @@ Rails.application.routes.draw do
   resources :books
   resources :base_people
   resources :news
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   namespace :admin do
     get '/' => 'top#index'
 
+    devise_for :users, controllers: {
+                 passwords: 'admin/passwords',
+                 registrations: 'users/registrations',
+                 sessions: 'admin/sessions'
+               }
+
     resources :people
+    # resources :kana_types
+    # resources :charsets
+    # resources :file_encodings
   end
 end
