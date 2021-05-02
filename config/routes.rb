@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :receipts do
+    get 'thanks/index'
+  end
   get 'idlist/index'
   get 'top/index'
   root to: 'top#index'
@@ -32,7 +35,7 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: {
       passwords: 'admin/passwords',
-      registrations: 'users/registrations',
+      registrations: 'admin/registrations',
       sessions: 'admin/sessions'
     }
 

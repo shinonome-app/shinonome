@@ -1,0 +1,2 @@
+module Receipts::ThanksHelper
+end
