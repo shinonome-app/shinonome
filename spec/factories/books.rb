@@ -3,28 +3,28 @@
 # Table name: books
 #
 #  id                    :bigint           not null, primary key
-#  title                 :text
-#  title_kana            :text
-#  subtitle              :text
-#  subtitle_kana         :text
+#  author_display_name   :text
 #  collection            :text
 #  collection_kana       :text
-#  orig_title            :text
-#  kana_type_id          :integer
-#  author_display_name   :text
-#  first_appearance      :text
-#  description           :text
-#  description_person_id :integer
-#  status                :text
-#  started_on            :date
 #  copyright_flag        :boolean
+#  description           :text
+#  first_appearance      :text
 #  note                  :text
 #  orig_text             :text
-#  user_id               :integer
-#  update_flag           :integer
+#  orig_title            :text
 #  sortkey               :text
+#  started_on            :date
+#  status                :text
+#  subtitle              :text
+#  subtitle_kana         :text
+#  title                 :text
+#  title_kana            :text
+#  update_flag           :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  description_person_id :bigint
+#  kana_type_id          :bigint
+#  user_id               :bigint
 #
 FactoryBot.define do
   factory :book do

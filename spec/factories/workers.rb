@@ -3,15 +3,15 @@
 # Table name: workers
 #
 #  id         :bigint           not null, primary key
+#  email      :text
 #  name       :text
 #  name_kana  :text
-#  email      :text
-#  url        :text
 #  note       :text
-#  user_id    :integer
 #  sortkey    :text
+#  url        :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint
 #
 FactoryBot.define do
   factory :worker do

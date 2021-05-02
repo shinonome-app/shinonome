@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
   enable_extension "plpgsql"
 
   create_table "base_people", force: :cascade do |t|
-    t.integer "person_id"
+    t.bigint "person_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "bibclasses", force: :cascade do |t|
-    t.integer "book_id"
+    t.bigint "book_id"
     t.text "name"
     t.text "num"
     t.text "note"
@@ -31,40 +31,40 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
   end
 
   create_table "book_people", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "person_id"
-    t.integer "role_id"
+    t.bigint "book_id"
+    t.bigint "person_id"
+    t.bigint "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "book_sites", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "site_id"
+    t.bigint "book_id"
+    t.bigint "site_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "book_workers", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "worker_id"
-    t.integer "worker_role_id"
+    t.bigint "book_id"
+    t.bigint "worker_id"
+    t.bigint "worker_role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "bookfiles", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "filetype_id"
-    t.integer "compresstype_id"
+    t.bigint "book_id"
+    t.bigint "filetype_id"
+    t.bigint "compresstype_id"
     t.integer "filesize"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "url"
     t.text "filename"
     t.date "opened_on"
     t.integer "fixnum"
-    t.integer "file_encoding_id"
-    t.integer "charset_id"
+    t.bigint "file_encoding_id"
+    t.bigint "charset_id"
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -78,17 +78,17 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
     t.text "collection"
     t.text "collection_kana"
     t.text "orig_title"
-    t.integer "kana_type_id"
+    t.bigint "kana_type_id"
     t.text "author_display_name"
     t.text "first_appearance"
     t.text "description"
-    t.integer "description_person_id"
+    t.bigint "description_person_id"
     t.text "status"
     t.date "started_on"
     t.boolean "copyright_flag"
     t.text "note"
     t.text "orig_text"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "update_flag"
     t.text "sortkey"
     t.datetime "created_at", precision: 6, null: false
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
   end
 
   create_table "original_books", force: :cascade do |t|
-    t.integer "book_id"
+    t.bigint "book_id"
     t.text "title"
     t.text "publisher"
     t.text "first_pubyear"
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
     t.text "email"
     t.text "url"
     t.text "description"
-    t.integer "note_user_id"
+    t.bigint "note_user_id"
     t.text "basename"
     t.text "note"
     t.text "updated_by"
@@ -175,26 +175,26 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
   end
 
   create_table "person_sites", force: :cascade do |t|
-    t.integer "person_id"
-    t.integer "site_id"
+    t.bigint "person_id"
+    t.bigint "site_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "proofreads", force: :cascade do |t|
-    t.integer "book_id"
+    t.bigint "book_id"
     t.text "book_copy"
     t.text "book_print"
     t.text "refbook"
-    t.integer "bookfile_id"
+    t.bigint "bookfile_id"
     t.text "address"
     t.text "memo"
-    t.integer "worker_id"
+    t.bigint "worker_id"
     t.text "worker_kana"
     t.text "worker_name"
     t.text "email"
     t.text "url"
-    t.integer "person_id"
+    t.bigint "person_id"
     t.text "sts1"
     t.text "sts2"
     t.datetime "created_at", precision: 6, null: false
@@ -272,7 +272,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
     t.text "email"
     t.text "url"
     t.text "note"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "sortkey"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

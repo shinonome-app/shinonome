@@ -13,7 +13,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.text :email
       t.text :url
       t.text :description
-      t.integer :note_user_id
+      t.bigint :note_user_id
       t.text :basename
       t.text :note
       t.text :updated_by

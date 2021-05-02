@@ -3,11 +3,11 @@
 # Table name: book_workers
 #
 #  id             :bigint           not null, primary key
-#  book_id        :integer
-#  worker_id       :integer
-#  worker_role_id :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  book_id        :bigint
+#  worker_id      :bigint
+#  worker_role_id :bigint
 #
 require 'rails_helper'
 

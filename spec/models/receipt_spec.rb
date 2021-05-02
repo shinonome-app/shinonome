@@ -3,43 +3,43 @@
 # Table name: receipts
 #
 #  id                 :bigint           not null, primary key
-#  sakuhinmeiyomi     :text
-#  sakuhinmei         :text
-#  fukudaiyomi        :text
-#  fukudai            :text
-#  sakuhinshuumeiyomi :text
-#  sakuhinshuumei     :text
-#  gendai             :text
-#  kana               :text
-#  shoshutu           :text
-#  memo               :text
 #  bikou              :text
-#  status             :text
-#  statusdate         :text
+#  bkbikou            :text
+#  bookname           :text
+#  bookname2          :text
 #  copyright          :boolean
-#  seiyomi            :text
-#  sei                :text
-#  seieiji            :text
-#  meiyomi            :text
+#  email              :text
+#  firstversion       :text
+#  firstversion2      :text
+#  fukudai            :text
+#  fukudaiyomi        :text
+#  gendai             :text
+#  insdate            :date
+#  jbikou             :text
+#  kana               :text
 #  mei                :text
 #  meieiji            :text
-#  jbikou             :text
-#  seimeiyomi         :text
-#  seimei             :text
-#  email              :text
-#  url                :text
-#  bookname           :text
-#  publisher          :text
-#  firstversion       :text
-#  versioninput       :text
-#  bookname2          :text
-#  publisher2         :text
-#  firstversion2      :text
+#  meiyomi            :text
+#  memo               :text
 #  personid           :text
-#  workerid           :text
-#  insdate            :date
+#  publisher          :text
+#  publisher2         :text
+#  sakuhinmei         :text
+#  sakuhinmeiyomi     :text
+#  sakuhinshuumei     :text
+#  sakuhinshuumeiyomi :text
+#  sei                :text
+#  seieiji            :text
+#  seimei             :text
+#  seimeiyomi         :text
+#  seiyomi            :text
+#  shoshutu           :text
+#  status             :text
+#  statusdate         :text
 #  sts                :integer
-#  bkbikou            :text
+#  url                :text
+#  versioninput       :text
+#  workerid           :text
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

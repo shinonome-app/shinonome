@@ -3,20 +3,20 @@
 # Table name: bookfiles
 #
 #  id               :bigint           not null, primary key
-#  book_id          :integer
-#  filetype_id      :integer
-#  compresstype_id  :integer
-#  filesize         :integer
-#  user_id          :integer
-#  url              :text
 #  filename         :text
-#  opened_on        :date
+#  filesize         :integer
 #  fixnum           :integer
-#  file_encoding_id :integer
-#  charset_id       :integer
 #  note             :text
+#  opened_on        :date
+#  url              :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  book_id          :bigint
+#  charset_id       :bigint
+#  compresstype_id  :bigint
+#  file_encoding_id :bigint
+#  filetype_id      :bigint
+#  user_id          :bigint
 #
 FactoryBot.define do
   factory :bookfile do

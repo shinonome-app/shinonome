@@ -3,23 +3,23 @@
 # Table name: proofreads
 #
 #  id          :bigint           not null, primary key
-#  book_id     :integer
+#  address     :text
 #  book_copy   :text
 #  book_print  :text
-#  refbook     :text
-#  bookfile_id :integer
-#  address     :text
-#  memo        :text
-#  worker_id   :integer
-#  worker_kana  :text
-#  worker_name :text
 #  email       :text
-#  url         :text
-#  person_id   :integer
+#  memo        :text
+#  refbook     :text
 #  sts1        :text
 #  sts2        :text
+#  url         :text
+#  worker_kana :text
+#  worker_name :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  book_id     :bigint
+#  bookfile_id :bigint
+#  person_id   :bigint
+#  worker_id   :bigint
 #
 FactoryBot.define do
   factory :proofread do

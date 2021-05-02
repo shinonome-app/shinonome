@@ -6,7 +6,7 @@ class CreateWorkers < ActiveRecord::Migration[6.1]
       t.text :email
       t.text :url
       t.text :note
-      t.integer :user_id
+      t.bigint :user_id
       t.text :sortkey
 
       t.timestamps

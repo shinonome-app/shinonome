@@ -3,10 +3,10 @@
 # Table name: book_sites
 #
 #  id         :bigint           not null, primary key
-#  book_id    :integer
-#  site_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  book_id    :bigint
+#  site_id    :bigint
 #
 class BookSite < ApplicationRecord
   belongs_to :book
