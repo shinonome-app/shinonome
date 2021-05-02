@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :receipts do
-    get 'thanks/index'
+    get 'thanks' => '/receipts/thanks#index'
   end
   get 'idlist/index'
   get 'top/index'
