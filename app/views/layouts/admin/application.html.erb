@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shinonome</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind" %>
+    <%= stylesheet_link_tag "inter-font" %>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <style>
+/*      a { text-decoration: underline blue; color: blue; }
+      a:hover { text-decoration: none; background-color: transparent; color: inherit; } */
+      a:hover { background-color: transparent; color: inherit; }
+      svg { transition: all .3s ease; }
+      #usermenu > div       { transition: all .1s ease-in-out; }
+      #usermenu:hover svg   { transform: translateX(35px) rotate(180deg); opacity: 0; }
+      #usermenu:hover > div { visibility: visible; }
+    </style>
+  </head>
+
+  <body class="bg-gray-100">
+    <%= yield %>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-class Admin::PeopleController < ApplicationController
+class Admin::PeopleController < Admin::ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   # GET /people
