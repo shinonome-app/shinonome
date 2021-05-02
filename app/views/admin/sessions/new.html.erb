@@ -1,26 +1,47 @@
-<h2>Log in</h2>
+<div class="justify-center items-center bg-blue-100 content-center w-screen h-screen">
+  <h2 class="pt-4 text-2xl font-bold flex justify-center">青空文庫DBへログインします。</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <hr>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <div class="border-2 border-gray-500 my-4 w-3/4 max-w-xl mx-auto px-6 py-4 bg-yellow-100 text-base">
 
-  <% if devise_mapping.rememberable? %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full" %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "w-full" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.label :remember_me do  %>
+      <%= f.check_box :remember_me %>
+      ブラウザにログイン情報を保存
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="rounded-md shadow">
+      <%= f.submit "ログイン", class: "w-full flex items-center justify-center px-8 py-3 text-base border border-gray-800 font-medium rounded-md text-gray-900 bg-gray-300 hover:bg-gray-400 md:py-4 md:text-lg md:px-10" %>
+    </div>
+    <% end %>
+
+    <%= render Admin::Devise::LinksComponent.new(resource_name: resource_name, devise_mapping: devise_mapping) %>
   </div>
-<% end %>
 
-<%= render "admins/shared/links" %>
+  <hr>
+
+  <div class="w-2/3 max-w-3xl mx-auto px-6 py-2 text-base">
+    <p class="text-base">
+      編集作業を行うにはログインが必要です。
+    </p>
+    <p class="text-base">
+      念のため、作業修了時にはログアウトを行ってください。
+      ログインするためには、クッキー機能が使用できる環境にしてください。
+    </p>
+  </div>
+</div>

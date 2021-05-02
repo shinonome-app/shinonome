@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 module Admin
+  # ナビゲーション用コンポーネント
   class NaviComponent < ViewComponent::Base
-    def initialize(title:)
+    def initialize(title:, user:)
       super
       @title = title
+      @user = user
     end
   end
 end
