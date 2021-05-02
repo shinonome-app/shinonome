@@ -10,4 +10,6 @@
 #  updated_at     :datetime         not null
 #
 class BookWorker < ApplicationRecord
+  belongs_to :book
+  belongs_to :worker
 end

@@ -22,4 +22,7 @@
 #  updated_at  :datetime         not null
 #
 class Proofread < ApplicationRecord
+  belongs_to :book
+  belongs_to :bookfile
+  belongs_to :worker
 end

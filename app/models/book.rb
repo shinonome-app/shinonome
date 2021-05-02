@@ -27,4 +27,16 @@
 #  updated_at            :datetime         not null
 #
 class Book < ApplicationRecord
+  has_many :book_sites
+  has_many :sites, through: :book_sites
+  has_many :book_people
+  has_many :people, through: :book_people
+  has_many :book_workers
+  has_many :workers, through: :book_workers
+
+  has_one :bibclass
+
+  belongs_to :user
+  belongs_to :kana_type
+  has_many :description_people
 end

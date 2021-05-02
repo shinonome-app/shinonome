@@ -14,4 +14,5 @@
 #  updated_at :datetime         not null
 #
 class Worker < ApplicationRecord
+  belongs_to :user
 end

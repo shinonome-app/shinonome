@@ -27,4 +27,5 @@
 #  updated_at      :datetime         not null
 #
 class Person < ApplicationRecord
+  belongs_to :note_user
 end

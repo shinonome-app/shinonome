@@ -11,4 +11,5 @@
 #  updated_at :datetime         not null
 #
 class Bibclasse < ApplicationRecord
+  belongs_to :book
 end

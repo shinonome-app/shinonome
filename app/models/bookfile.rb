@@ -19,4 +19,10 @@
 #  updated_at       :datetime         not null
 #
 class Bookfile < ApplicationRecord
+  belongs_to :book
+  belongs_to :filetype
+  belongs_to :compresstype
+  belongs_to :user
+  belongs_to :file_encoding
+  belongs_to :charset
 end

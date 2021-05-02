@@ -8,4 +8,5 @@
 #  updated_at :datetime         not null
 #
 class BasePerson < ApplicationRecord
+  belongs_to :person
 end

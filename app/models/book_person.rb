@@ -10,4 +10,7 @@
 #  updated_at :datetime         not null
 #
 class BookPerson < ApplicationRecord
+  belongs_to :book
+  belongs_to :person
+  belongs_to :role
 end

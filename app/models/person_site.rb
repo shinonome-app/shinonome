@@ -9,4 +9,6 @@
 #  updated_at :datetime         not null
 #
 class PersonSite < ApplicationRecord
+  belongs_to :person
+  belongs_to :site
 end

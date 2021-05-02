@@ -15,4 +15,5 @@
 #  updated_at    :datetime         not null
 #
 class OriginalBook < ApplicationRecord
+  belongs_to :book
 end

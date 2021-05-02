@@ -9,4 +9,6 @@
 #  updated_at :datetime         not null
 #
 class BookSite < ApplicationRecord
+  belongs_to :book
+  belongs_to :site
 end
