@@ -41,6 +41,8 @@ group :development, :test do
   gem 'annotate'
 
   gem 'letter_opener_web', '~> 1.0'
+
+  gem 'rubocop'
 end
 
 group :development do

@@ -10,7 +10,7 @@
 # See https://docs.rubocop.org/rubocop/configuration
 
 AllCops:
-  NewCops: enabled
+  NewCops: enable
 
 Metrics/BlockLength:
   Max: 200
