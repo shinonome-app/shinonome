@@ -1,7 +1,7 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "admins/shared/error_messages", resource: resource %>
+  <%= render "admin/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -26,4 +26,4 @@
   </div>
 <% end %>
 
-<%= render "admins/shared/links" %>
+<%= render Admin::Devise::LinksComponent.new(resource_name: resource_name, devise_mapping: devise_mapping) %>
