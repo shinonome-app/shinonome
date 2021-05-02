@@ -9,7 +9,7 @@ class CreateProofreads < ActiveRecord::Migration[6.1]
       t.text :address
       t.text :memo
       t.integer :worker_id
-      t.text :woker_kana
+      t.text :worker_kana
       t.text :worker_name
       t.text :email
       t.text :url

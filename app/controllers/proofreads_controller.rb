@@ -53,6 +53,6 @@ class ProofreadsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def proofread_params
-      params.require(:proofread).permit(:book_id, :book_copy, :book_print, :refbook, :bookfile_id, :address, :memo, :worker_id, :woker_kana, :worker_name, :email, :url, :person_id, :sts1, :sts2)
+      params.require(:proofread).permit(:book_id, :book_copy, :book_print, :refbook, :bookfile_id, :address, :memo, :worker_id, :worker_kana, :worker_name, :email, :url, :person_id, :sts1, :sts2)
     end
 end

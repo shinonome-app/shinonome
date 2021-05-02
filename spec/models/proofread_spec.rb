@@ -11,7 +11,7 @@
 #  address     :text
 #  memo        :text
 #  worker_id   :integer
-#  woker_kana  :text
+#  worker_kana  :text
 #  worker_name :text
 #  email       :text
 #  url         :text

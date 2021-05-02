@@ -53,6 +53,6 @@ class BookWorkersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_worker_params
-      params.require(:book_worker).permit(:book_id, :woker_id, :worker_role_id)
+      params.require(:book_worker).permit(:book_id, :worker_id, :worker_role_id)
     end
 end

@@ -1,79 +1,81 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Book:</strong>
-  <%= @proofread.book_id %>
+<p id="notice">
+    <%= notice %>
 </p>
 
 <p>
-  <strong>Book copy:</strong>
-  <%= @proofread.book_copy %>
+    <strong>Book:</strong>
+    <%= @proofread.book_id %>
 </p>
 
 <p>
-  <strong>Book print:</strong>
-  <%= @proofread.book_print %>
+    <strong>Book copy:</strong>
+    <%= @proofread.book_copy %>
 </p>
 
 <p>
-  <strong>Refbook:</strong>
-  <%= @proofread.refbook %>
+    <strong>Book print:</strong>
+    <%= @proofread.book_print %>
 </p>
 
 <p>
-  <strong>Bookfile:</strong>
-  <%= @proofread.bookfile_id %>
+    <strong>Refbook:</strong>
+    <%= @proofread.refbook %>
 </p>
 
 <p>
-  <strong>Address:</strong>
-  <%= @proofread.address %>
+    <strong>Bookfile:</strong>
+    <%= @proofread.bookfile_id %>
 </p>
 
 <p>
-  <strong>Memo:</strong>
-  <%= @proofread.memo %>
+    <strong>Address:</strong>
+    <%= @proofread.address %>
 </p>
 
 <p>
-  <strong>Worker:</strong>
-  <%= @proofread.worker_id %>
+    <strong>Memo:</strong>
+    <%= @proofread.memo %>
 </p>
 
 <p>
-  <strong>Woker kana:</strong>
-  <%= @proofread.woker_kana %>
+    <strong>Worker:</strong>
+    <%= @proofread.worker_id %>
 </p>
 
 <p>
-  <strong>Worker name:</strong>
-  <%= @proofread.worker_name %>
+    <strong>worker kana:</strong>
+    <%= @proofread.worker_kana %>
 </p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @proofread.email %>
+    <strong>Worker name:</strong>
+    <%= @proofread.worker_name %>
 </p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @proofread.url %>
+    <strong>Email:</strong>
+    <%= @proofread.email %>
 </p>
 
 <p>
-  <strong>Person:</strong>
-  <%= @proofread.person_id %>
+    <strong>Url:</strong>
+    <%= @proofread.url %>
 </p>
 
 <p>
-  <strong>Sts1:</strong>
-  <%= @proofread.sts1 %>
+    <strong>Person:</strong>
+    <%= @proofread.person_id %>
 </p>
 
 <p>
-  <strong>Sts2:</strong>
-  <%= @proofread.sts2 %>
+    <strong>Sts1:</strong>
+    <%= @proofread.sts1 %>
+</p>
+
+<p>
+    <strong>Sts2:</strong>
+    <%= @proofread.sts2 %>
 </p>
 
 <%= link_to 'Edit', edit_proofread_path(@proofread) %> |
-<%= link_to 'Back', proofreads_path %>
+    <%= link_to 'Back', proofreads_path %>

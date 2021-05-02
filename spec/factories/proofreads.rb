@@ -11,7 +11,7 @@
 #  address     :text
 #  memo        :text
 #  worker_id   :integer
-#  woker_kana  :text
+#  worker_kana  :text
 #  worker_name :text
 #  email       :text
 #  url         :text
@@ -31,7 +31,7 @@ FactoryBot.define do
     address { "MyText" }
     memo { "MyText" }
     worker_id { 1 }
-    woker_kana { "MyText" }
+    worker_kana { "MyText" }
     worker_name { "MyText" }
     email { "MyText" }
     url { "MyText" }

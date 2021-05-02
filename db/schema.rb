@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
 
   create_table "book_workers", force: :cascade do |t|
     t.integer "book_id"
-    t.integer "woker_id"
+    t.integer "worker_id"
     t.integer "worker_role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_114559) do
     t.text "address"
     t.text "memo"
     t.integer "worker_id"
-    t.text "woker_kana"
+    t.text "worker_kana"
     t.text "worker_name"
     t.text "email"
     t.text "url"
