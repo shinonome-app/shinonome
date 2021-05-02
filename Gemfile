@@ -28,6 +28,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'pg'
 
+gem 'rexml'
+
 gem "view_component", require: "view_component/engine"
 
 gem 'devise'
@@ -37,6 +39,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'annotate'
+
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :development do
