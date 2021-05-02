@@ -92,4 +92,5 @@ worker_roles.each do |k, v|
   WorkerRole.create!(id: k, name: v)
 end
 
+require_relative "seeds/users"
 require_relative "seeds/workers"
