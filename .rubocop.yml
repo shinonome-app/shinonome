@@ -32,8 +32,8 @@ Metrics/PerceivedComplexity:
 Style/Documentation:
   Exclude:
     - "db/migrate/*.rb"
-    - "app/controllers/*.rb"
-    - "app/helpers/*.rb"
+    - "app/controllers/**/*.rb"
+    - "app/helpers/**/*.rb"
 
 Style/AsciiComments:
   Enabled: false
