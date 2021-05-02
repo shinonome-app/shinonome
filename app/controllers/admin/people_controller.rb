@@ -56,7 +56,9 @@ module Admin
     # Only allow a list of trusted parameters through.
     def person_params
       params.require(:person).permit(:last_name, :last_name_kana, :last_name_en, :first_name, :first_name_kana,
-                                     :first_name_en, :born_on, :died_on, :copyright_flag, :email, :url, :description, :note_user_id, :basename, :note, :updated_by, :sortkey, :sortkey2, :input_count, :publish_count)
+                                     :first_name_en, :born_on, :died_on, :copyright_flag, :email, :url,
+                                     :description, :note_user_id, :basename, :note, :updated_by,
+                                     :sortkey, :sortkey2, :input_count, :publish_count)
     end
   end
 end

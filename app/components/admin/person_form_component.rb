@@ -3,6 +3,7 @@
 module Admin
   class PersonFormComponent < ViewComponent::Base
     def initialize(person:)
+      super
       @person = person
     end
   end

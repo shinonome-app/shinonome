@@ -35,7 +35,7 @@ RSpec.describe '/bibclasses', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      bibclasse = Bibclasse.create! valid_attributes
+      πbibclasse = Bibclasse.create! valid_attributes
       get bibclass_url(bibclass)
       expect(response).to be_successful
     end
@@ -116,10 +116,10 @@ RSpec.describe '/bibclasses', type: :request do
 
   describe 'DELETE /destroy' do
     it 'destroys the requested bibclasse' do
-      bibclasse = Bibclasse.create! valid_attributes
+      bibclass = Bibclass.create! valid_attributes
       expect do
         delete bibclass_url(bibclass)
-      end.to change(Bibclasse, :count).by(-1)
+      end.to change(Bibclass, :count).by(-1)
     end
 
     it 'redirects to the bibclasses list' do
