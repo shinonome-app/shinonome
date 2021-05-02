@@ -45,7 +45,7 @@
             <div class="absolute border border-t-0 border-gray-100 invisible rounded-b-lg bg-white p-2 w-48">
               <a href="#" class="px-4 py-2 block text-gray-800">Account Settings</a>
               <hr class="border-t mx-2 border-gray-100">
-              <a href="#" class="px-4 py-2 block text-gray-800">Logout</a>
+              <%= link_to "Logout", destroy_admin_user_session_path, method: :delete, class: "px-4 py-2 block text-gray-800" %>
             </div>
           </div>
         </div>
