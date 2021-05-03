@@ -1,8 +1,7 @@
-<%= form_with(model: book) do |form| %>
+<%= form_with(model: [:admin, book]) do |form| %>
   <% if book.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
-
       <ul>
         <% book.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,112 +9,70 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_area :title %>
+    <%= form.label :title_kana, "作品名読み" %>
+    <%= form.text_field :title_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :title_kana %>
-    <%= form.text_area :title_kana %>
+    <%= form.label :sortkey, "ソート用読み" %>
+    <%= form.text_field :sortkey %>
   </div>
-
   <div class="field">
-    <%= form.label :subtitle %>
-    <%= form.text_area :subtitle %>
+    <%= form.label :title, "作品名" %>
+    <%= form.text_field :title %>
   </div>
-
   <div class="field">
-    <%= form.label :subtitle_kana %>
-    <%= form.text_area :subtitle_kana %>
+    <%= form.label :subtitle_kana, "副題読み" %>
+    <%= form.text_field :subtitle_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :collection %>
-    <%= form.text_area :collection %>
+    <%= form.label :subtitle, "副題" %>
+    <%= form.text_field :subtitle %>
   </div>
-
   <div class="field">
-    <%= form.label :collection_kana %>
-    <%= form.text_area :collection_kana %>
+    <%= form.label :collection_kana, "作品集名読み" %>
+    <%= form.text_field :collection_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :orig_title %>
-    <%= form.text_area :orig_title %>
+    <%= form.label :collection, "作品集名" %>
+    <%= form.text_field :collection %>
   </div>
-
   <div class="field">
-    <%= form.label :kana_type_id %>
+    <%= form.label :orig_title, "原題" %>
+    <%= form.text_field :orig_title %>
+  </div>
+  <div class="field">
+    <%= form.label :kana_type_id, "仮名遣い種別" %>
     <%= form.number_field :kana_type_id %>
   </div>
-
   <div class="field">
-    <%= form.label :author_display_name %>
-    <%= form.text_area :author_display_name %>
+    <%= form.label :first_appearance, "初出" %>
+    <%= form.text_field :first_appearance %>
   </div>
-
   <div class="field">
-    <%= form.label :first_appearance %>
-    <%= form.text_area :first_appearance %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, "作品について" %>
     <%= form.text_area :description %>
   </div>
-
   <div class="field">
-    <%= form.label :description_person_id %>
-    <%= form.number_field :description_person_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_area :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :started_on %>
-    <%= form.date_select :started_on %>
-  </div>
-
-  <div class="field">
-    <%= form.label :copyright_flag %>
-    <%= form.check_box :copyright_flag %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note %>
+    <%= form.label :note, "備考" %>
     <%= form.text_area :note %>
   </div>
-
   <div class="field">
-    <%= form.label :orig_text %>
+    <%= form.label :orig_text, "底本管理情報" %>
     <%= form.text_area :orig_text %>
   </div>
-
   <div class="field">
-    <%= form.label :updated_at %>
-    <%= form.datetime_select :updated_at %>
+    <%= form.label :status, "状態" %>
+    <%= form.select :status, Book::STATUS_LIST, {include_blank: false}, {class: 'text-gray-800'} %>
   </div>
-
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.label :started_on, "状態の開始日" %>
+    <%= form.date_select :started_on %>
   </div>
-
   <div class="field">
-    <%= form.label :update_flag %>
-    <%= form.number_field :update_flag %>
+    <%= form.label :copyright_flag, "著作権フラグ" %>
+    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], {include_blank: false}, {class: 'text-gray-800'} %>
   </div>
-
-  <div class="field">
-    <%= form.label :sortkey %>
-    <%= form.text_area :sortkey %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
