@@ -1,0 +1,42 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1>工作員データ</h1>
+  <p>
+    <strong>工作員ID:</strong>
+    <%= @worker.id %>
+  </p>
+  <p>
+    <strong>姓名読み:</strong>
+    <%= @worker.name_kana %>
+  </p>
+  <p>
+    <strong>ソート用読み:</strong>
+    <%= @worker.sortkey %>
+  </p>
+  <p>
+    <strong>姓名:</strong>
+    <%= @worker.name %>
+  </p>
+  <p>
+    <strong>email:</strong>
+    <%= @worker.email %>
+  </p>
+  <p>
+    <strong>URL:</strong>
+    <%= @worker.url %>
+  </p>
+  <p>
+    <strong>備考:</strong>
+    <%= @worker.note %>
+  </p>
+  <p>
+    <strong>最終更新日:</strong>
+    <%= @worker.updated_at %>
+  </p>
+  <p>
+    <strong>更新者:</strong>
+    <%= @worker.user_id %>
+  </p>
+  <%= link_to '修正', edit_admin_worker_path(@worker) %> |
+  <%= link_to '戻る', admin_workers_path %>
+</div>

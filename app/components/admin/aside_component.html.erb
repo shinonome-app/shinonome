@@ -13,9 +13,9 @@
       </a>
     </div>
     <div>
-      <a class="block py-3 px-5 border border-gray-200 bg-gray-600 flex justify-between" href="#">
-        <div class="text-white">
-          <i class="icon ion-ios-person mr-2 text-gray-500 inline-block"></i>作品検索
+      <a class="block py-3 px-5" href="#">
+        <div class="text-gray-700">
+          <i class="icon ion-ios-person mr-2 text-gray-600 inline-block"></i>作品検索
         </div>
       </a>
     </div>
@@ -34,18 +34,18 @@
       <% end %>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to new_admin_worker_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-bicycle mr-2 text-gray-600 inline-block"></i>工作員新規登録
         </div>
-      </a>
+      <% end %>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to admin_workers_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-images mr-2 text-gray-600 inline-block"></i>工作員検索
         </div>
-      </a>
+      <% end %>
     </div>
     <div>
       <a class="block py-3 px-5" href="#">

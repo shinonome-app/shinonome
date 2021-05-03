@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
     resources :people
     resources :news
+    resources :workers
     # resources :kana_types
     # resources :charsets
     # resources :file_encodings

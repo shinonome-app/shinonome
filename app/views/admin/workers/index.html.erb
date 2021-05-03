@@ -1,21 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<h1>■工作員一覧</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>工作員ID</th>
-      <th>姓名</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @workers.each do |worker| %>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl">■工作員一覧</h1>
+  <table>
+    <thead>
       <tr>
-        <td><%= worker.id %></td>
-        <td><%= worker.name %></td>
+        <th>工作員ID</th>
+        <th>姓名</th>
+        <th>読み</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @workers.each do |worker| %>
+        <tr>
+          <td><%= worker.id %></td>
+          <td><%= link_to worker.name, admin_worker_path(worker) %></td>
+          <td><%= worker.name_kana %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
