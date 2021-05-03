@@ -17,7 +17,7 @@
         <tr>
           <td><%= news.published_on %></td>
           <td><%= news.title %></td>
-          <td><%= truncate(news.body, length: 60) %></td>
+          <td><%= truncate(news.body, length: 50) %></td>
           <td><%= news.flag %></td>
           <td><%= link_to '表示', [:admin, news] %></td>
           <td><%= link_to '修正', edit_admin_news_path(news) %></td>
