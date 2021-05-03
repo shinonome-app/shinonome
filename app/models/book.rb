@@ -41,7 +41,7 @@ class Book < ApplicationRecord
     '校正中' => '校正中',
     '校了' => '校了',
     '翻訳中' => '翻訳中',
-    '入力取り消し' => '入力取り消し',
+    '入力取り消し' => '入力取り消し'
   }
 
   has_many :book_sites

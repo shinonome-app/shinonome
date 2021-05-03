@@ -7,6 +7,5 @@ Site.connection.execute('TRUNCATE TABLE sites;')
                email: "aozora-site#{n}@example.com",
                owner_name: "運営者#{n}",
                url: "https://example.com/sites/#{n}",
-               note: "備考#{n}",
-              )
+               note: "備考#{n}")
 end
