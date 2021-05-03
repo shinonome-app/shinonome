@@ -8,14 +8,10 @@ Rails.application.routes.draw do
   get 'top/index'
   root to: 'top#index'
 
-  resources :worker_roles
-  resources :roles
   resources :sites
   resources :book_sites
   resources :original_books
   resources :book_workers
-  resources :compresstypes
-  resources :filetypes
   resources :workers, only: %i[index show]
   resources :receipts, only: %i[new create] do
     resources :previews, only: %i[create]
@@ -43,5 +39,9 @@ Rails.application.routes.draw do
     # resources :kana_types
     # resources :charsets
     # resources :file_encodings
+    # resources :filetypes
+    # resources :compresstypes
+    # resources :roles
+    # resources :worker_roles
   end
 end
