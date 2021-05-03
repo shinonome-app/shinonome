@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   resources :book_people
   resources :books
   resources :base_people
-  resources :news
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
@@ -36,6 +35,7 @@ Rails.application.routes.draw do
     }
 
     resources :people
+    resources :news
     # resources :kana_types
     # resources :charsets
     # resources :file_encodings
