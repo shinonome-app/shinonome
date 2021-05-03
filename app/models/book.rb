@@ -42,7 +42,7 @@ class Book < ApplicationRecord
     '校了' => '校了',
     '翻訳中' => '翻訳中',
     '入力取り消し' => '入力取り消し'
-  }
+  }.freeze
 
   has_many :book_sites
   has_many :sites, through: :book_sites

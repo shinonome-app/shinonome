@@ -2,6 +2,9 @@
 
 module Admin
   class RegistrationsController < ::Devise::RegistrationsController
+    prepend_before_action :require_no_authentication, only: [:cancel]
+    prepend_before_action :authenticate_scope!, only: %i[new create edit update destroy]
+
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
 
@@ -11,9 +14,9 @@ module Admin
     # end
 
     # POST /resource
-    # def create
-    #   super
-    # end
+    def create
+      redirect_to admin_path
+    end
 
     # GET /resource/edit
     # def edit
@@ -26,9 +29,9 @@ module Admin
     # end
 
     # DELETE /resource
-    # def destroy
-    #   super
-    # end
+    def destroy
+      redirect_to admin_path
+    end
 
     # GET /resource/cancel
     # Forces the session data which is usually expired after sign
@@ -42,14 +45,14 @@ module Admin
     # protected
 
     # If you have extra params to permit, append them to the sanitizer.
-    # def configure_sign_up_params
-    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    # end
+    def configure_sign_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    end
 
     # If you have extra params to permit, append them to the sanitizer.
-    # def configure_account_update_params
-    #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-    # end
+    def configure_account_update_params
+      devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+    end
 
     # The path used after sign up.
     # def after_sign_up_path_for(resource)

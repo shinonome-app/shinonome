@@ -1,11 +1,16 @@
 <h2>管理者の追加</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with(model: resource, url: registration_path(resource_name)) do |f| %>
   <%= render "admin/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
   </div>
 
   <div class="field">
@@ -22,8 +27,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "追加する" %>
   </div>
 <% end %>
-
-<%= render Admin::Devise::LinksComponent.new(resource_name: resource_name, devise_mapping: devise_mapping) %>

@@ -2,6 +2,8 @@
 
 User.connection.execute('TRUNCATE TABLE users;')
 10.times do |i|
-  User.create!(email: "aozora-user#{i}@example.com",
-               password: "aozora-pass#{i}")
+  n = i + 1
+  User.create!(username: "user#{n}",
+               email: "aozora-user#{n}@example.com",
+               password: "aozora-pass#{n}")
 end
