@@ -1,65 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<h1>People</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Last name</th>
-      <th>Last name kana</th>
-      <th>Last name en</th>
-      <th>First name</th>
-      <th>First name kana</th>
-      <th>First name en</th>
-      <th>Born on</th>
-      <th>Died on</th>
-      <th>Copyright flag</th>
-      <th>Email</th>
-      <th>Url</th>
-      <th>Description</th>
-      <th>Note user</th>
-      <th>Basename</th>
-      <th>Note</th>
-      <th>Updated by</th>
-      <th>Sortkey</th>
-      <th>Sortkey2</th>
-      <th>Input count</th>
-      <th>Publish count</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @people.each do |person| %>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl">人物一覧</h1>
+  <table>
+    <thead>
       <tr>
-        <td><%= person.last_name %></td>
-        <td><%= person.last_name_kana %></td>
-        <td><%= person.last_name_en %></td>
-        <td><%= person.first_name %></td>
-        <td><%= person.first_name_kana %></td>
-        <td><%= person.first_name_en %></td>
-        <td><%= person.born_on %></td>
-        <td><%= person.died_on %></td>
-        <td><%= person.copyright_flag %></td>
-        <td><%= person.email %></td>
-        <td><%= person.url %></td>
-        <td><%= person.description %></td>
-        <td><%= person.note_user_id %></td>
-        <td><%= person.basename %></td>
-        <td><%= person.note %></td>
-        <td><%= person.updated_by %></td>
-        <td><%= person.sortkey %></td>
-        <td><%= person.sortkey2 %></td>
-        <td><%= person.input_count %></td>
-        <td><%= person.publish_count %></td>
-        <td><%= link_to 'Show', [:admin, person] %></td>
-        <td><%= link_to 'Edit', edit_admin_person_path(person) %></td>
-        <td><%= link_to 'Destroy', [:admin, person], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>人物ID</th>
+        <th>姓名</th>
+        <th>読み</th>
+        <th>著作権</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Person', new_admin_person_path %>
+    </thead>
+    <tbody>
+      <% @people.each do |person| %>
+        <tr>
+          <td>
+            <%= person.id %>
+          </td>
+          <td>
+            <%= link_to 'Show', [:admin, person] do %>
+              <%= person.last_name %>
+              <%= person.first_name %>
+            <% end %>
+          </td>
+          <td>
+            <%= person.last_name_kana %>
+            <%= person.first_name_kana %>
+          </td>
+          <td><%= person.copyright_flag %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Person', new_admin_person_path %>
+</div>
