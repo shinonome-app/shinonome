@@ -10,22 +10,34 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label :published_on %>
+    <%= form.label :published_on, "日付" %>
     <%= form.date_select :published_on %>
   </div>
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, "見出し" %>
     <%= form.text_area :title %>
   </div>
   <div class="field">
-    <%= form.label :body %>
+    <%= form.label :body, "本文" %>
     <%= form.text_area :body %>
   </div>
   <div class="field">
-    <%= form.label :flag %>
-    <%= form.check_box :flag %>
+    <%= form.label :flag do %>
+      <%= form.check_box :flag %>
+      ニュースに指定する
+    <% end %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "更新" %>
   </div>
 <% end %>
+<p>
+  図書カードURLの書式：
+  <blockquote>
+    ../cards/xxxxxx/cardzzzz.html
+  </blockquote>
+</p>
+<p>
+  　xxxxxxは人物ID、先頭ゼロの6桁固定<br>
+  　zzzzは作品ID、先頭ゼロなし、桁数は不定
+</p>
