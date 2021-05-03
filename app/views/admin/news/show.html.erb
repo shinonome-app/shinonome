@@ -1,19 +1,22 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Published on:</strong>
-  <%= @news.published_on %>
-</p>
-<p>
-  <strong>Title:</strong>
-  <%= @news.title %>
-</p>
-<p>
-  <strong>Body:</strong>
-  <%= @news.body %>
-</p>
-<p>
-  <strong>Flag:</strong>
-  <%= @news.flag %>
-</p>
-<%= link_to '修正', edit_admin_news_path(@news) %> |
-<%= link_to '戻る', admin_news_index_path %>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1>記事の表示</h1>
+  <p>
+    <strong>日付:</strong>
+    <%= @news.published_on %>
+  </p>
+  <p>
+    <strong>見出し:</strong>
+    <%= @news.title %>
+  </p>
+  <p>
+    <strong>本文:</strong>
+    <%= @news.body %>
+  </p>
+  <p>
+    <strong>ニュースに指定する:</strong>
+    <%= @news.flag %>
+  </p>
+  <%= link_to '修正', edit_admin_news_path(@news) %> |
+  <%= link_to '戻る', admin_news_index_path %>
+</div>

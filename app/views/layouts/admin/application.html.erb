@@ -24,6 +24,14 @@
   </head>
 
   <body class="bg-gray-100">
-    <%= yield %>
+    <div class="font-sans m-0 antialiased leading-none">
+      <%= render(Admin::NaviComponent.new(title: "トップ", user: current_admin_user)) %>
+      <div class="container mx-auto">
+        <div class="flex w-full min-w-full rounded-sm mt-4">
+          <%= render "admin/shared/aside" %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
