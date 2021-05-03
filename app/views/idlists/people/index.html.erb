@@ -1,2 +1,17 @@
-<h1>Idlists::People#index</h1>
-<p>Find me in app/views/idlists/people/index.html.erb</p>
+<h1>人物一覧</h1>
+<p><%= @count %>件の人物が見つかりました</p>
+
+<table>
+  <thead>
+    <th>人物ID</th>
+    <th>姓名</th>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+    <tr>
+      <td><%= person.id %></td>
+      <td><%= person.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
