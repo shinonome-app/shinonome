@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'top/index'
+  root to: 'top#index'
+
   namespace :receipts do
     get 'thanks' => '/receipts/thanks#index'
   end
-  get 'idlist/index'
-  get 'top/index'
-  root to: 'top#index'
 
   resources :book_sites
   resources :original_books
@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   resources :bookfiles
   resources :book_people
   resources :base_people
+
+  namespace :idlists do
+    resources :workers, only: %i[index]
+    resources :people, only: %i[index]
+  end
+  resources :idlists, only: %i[index]
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 

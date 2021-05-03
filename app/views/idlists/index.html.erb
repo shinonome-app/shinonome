@@ -1,15 +1,32 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-<h1>ID一覧インデックス</h1>
 
-<table>
-  <tr>
-    <th rowspan="5">人物ID一覧</th>
-  </tr>
-  <% PERSON_ID_TABLE.each do |person_row| %>
-  <tr>
-    <% person_row.each do |person_col| %>
-    <td><%= link_to person_col, admin_idlist_path(person_col) %></td>
+  <h1>ID一覧インデックス</h1>
+
+  <table>
+    <tr>
+      <th colspan="5">人物ID一覧</th>
+    </tr>
+    <% Person::PERSON_ID_TABLE.each do |person_row| %>
+    <tr>
+      <% person_row.each do |person_col| %>
+      <td><%= person_col ? link_to(person_col, idlists_people_path(key:person_col)) : '' %></td>
+      <% end %>
+    </tr>
     <% end %>
-  </tr>
-  <% end %>
-</table>
+  </table>
+
+  <table>
+    <tr>
+      <th colspan="5">工作員ID一覧</th>
+    </tr>
+    <% Worker::PERSON_ID_TABLE.each do |worker_row| %>
+    <tr>
+      <% worker_row.each do |worker_col| %>
+      <td><%= worker_col ? link_to(worker_col, idlists_workers_path(key:worker_col)) : '' %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+
+
+</div>

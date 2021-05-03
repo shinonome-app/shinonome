@@ -1,0 +1,2 @@
+module Idlists::WorkersHelper
+end
