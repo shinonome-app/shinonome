@@ -1,4 +1,4 @@
-      <!-- ASIDE -->
+<!-- ASIDE -->
 <div class="w-1/4 md:w-2/6 font-light mb-5">
   <!-- First Aside Menu -->
   <div class="bg-white rounded">
@@ -6,25 +6,25 @@
       <div class="text-black font-light uppercase text-sm py-5 px-5">検索・登録</div>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to new_admin_book_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-paper mr-2 text-gray-600 inline-block"></i>作品新規登録
         </div>
-      </a>
+      <% end %>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to admin_book_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-person mr-2 text-gray-600 inline-block"></i>作品検索
         </div>
-      </a>
+      <% end %>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to new_admin_person_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-briefcase mr-2 text-gray-600 inline-block"></i>人物新規登録
         </div>
-      </a>
+      <% end %>
     </div>
     <div>
       <%= link_to admin_people_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
