@@ -1,2 +1,15 @@
-<h1>Idlist#index</h1>
-<p>Find me in app/views/idlist/index.html.erb</p>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+<h1>ID一覧インデックス</h1>
+
+<table>
+  <tr>
+    <th rowspan="5">人物ID一覧</th>
+  </tr>
+  <% PERSON_ID_TABLE.each do |person_row| %>
+  <tr>
+    <% person_row.each do |person_col| %>
+    <td><%= link_to person_col, admin_idlist_path(person_col) %></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
