@@ -105,11 +105,11 @@
       </a>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to admin_users_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-wallet mr-2 text-gray-600 inline-block"></i> 管理者の追加・削除
         </div>
-      </a>
+      <% end %>
     </div>
   </div>
 </div>

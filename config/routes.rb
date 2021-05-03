@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       sessions: 'admin/sessions'
     }
 
+    resources :users, only: %i[index delete]
+
     resources :news
     resources :people
     resources :sites
