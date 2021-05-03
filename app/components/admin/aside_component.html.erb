@@ -48,18 +48,18 @@
       <% end %>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to new_admin_site_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-bicycle mr-2 text-gray-600 inline-block"></i>関連サイト新規登録
         </div>
-      </a>
+      <% end %>
     </div>
     <div>
-      <a class="block py-3 px-5" href="#">
+      <%= link_to admin_sites_path, class:"block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
           <i class="icon ion-ios-images mr-2 text-gray-600 inline-block"></i>関連サイト検索
         </div>
-      </a>
+      <% end %>
     </div>
   </div>
   <!-- Second Aside Menu -->

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'top/index'
   root to: 'top#index'
 
-  resources :sites
   resources :book_sites
   resources :original_books
   resources :book_workers
@@ -34,8 +33,9 @@ Rails.application.routes.draw do
       sessions: 'admin/sessions'
     }
 
-    resources :people
     resources :news
+    resources :people
+    resources :sites
     resources :workers
     # resources :kana_types
     # resources :charsets

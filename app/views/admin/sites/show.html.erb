@@ -1,34 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @site.name %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @site.url %>
-</p>
-
-<p>
-  <strong>Owner name:</strong>
-  <%= @site.owner_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @site.email %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @site.note %>
-</p>
-
-<p>
-  <strong>Updated by:</strong>
-  <%= @site.updated_by %>
-</p>
-
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>関連サイトID:</strong>
+    <%= @site.id %>
+  </p>
+  <p>
+    <strong>関連サイト名:</strong>
+    <%= @site.name %>
+  </p>
+  <p>
+    <strong>関連サイト運営者:</strong>
+    <%= @site.owner_name %>
+  </p>
+  <p>
+    <strong>email:</strong>
+    <%= @site.email %>
+  </p>
+  <p>
+    <strong>URL:</strong>
+    <%= @site.url %>
+  </p>
+  <p>
+    <strong>備考:</strong>
+    <%= @site.note %>
+  </p>
+  <p>
+    <strong>最終更新日:</strong>
+    <%= @site.updated_at %>
+  </p>
+  <p>
+    <strong>更新者:</strong>
+    <%= @site.updated_by %>
+  </p>
+  <%= link_to '更新', edit_admin_site_path(@site) %> |
+  <%= link_to '戻る', admin_sites_path %>

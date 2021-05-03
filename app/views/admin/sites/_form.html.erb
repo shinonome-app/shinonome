@@ -1,8 +1,7 @@
-<%= form_with(model: site) do |form| %>
+<%= form_with(model: [:admin, site]) do |form| %>
   <% if site.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(site.errors.count, "error") %> prohibited this site from being saved:</h2>
-
       <ul>
         <% site.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,38 +9,27 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_area :name %>
+    <%= form.label :name, "関連サイト名" %>
+    <%= form.text_field :name %>
   </div>
-
   <div class="field">
-    <%= form.label :url %>
-    <%= form.text_area :url %>
+    <%= form.label :url, "URL" %>
+    <%= form.text_field :url %>
   </div>
-
   <div class="field">
-    <%= form.label :owner_name %>
-    <%= form.text_area :owner_name %>
+    <%= form.label :owner_name, "関連サイト名" %>
+    <%= form.text_field :owner_name %>
   </div>
-
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_area :email %>
+    <%= form.label :email, "email" %>
+    <%= form.text_field :email %>
   </div>
-
   <div class="field">
-    <%= form.label :note %>
+    <%= form.label :note, "備考" %>
     <%= form.text_area :note %>
   </div>
-
-  <div class="field">
-    <%= form.label :updated_by %>
-    <%= form.number_field :updated_by %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "更新" %>
   </div>
 <% end %>
