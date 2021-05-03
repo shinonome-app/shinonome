@@ -2,7 +2,6 @@
   <% if @person.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
-
       <ul>
         <% @person.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,108 +9,67 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_area :last_name %>
+    <%= form.label :last_name_kana, "姓読み" %>
+    <%= form.text_field :last_name_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :last_name_kana %>
-    <%= form.text_area :last_name_kana %>
+    <%= form.label :sortkey, "姓読みソート用" %>
+    <%= form.text_field :sortkey %>
   </div>
-
   <div class="field">
-    <%= form.label :last_name_en %>
-    <%= form.text_area :last_name_en %>
+    <%= form.label :last_name, "姓" %>
+    <%= form.text_field :last_name %>
   </div>
-
   <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_area :first_name %>
+    <%= form.label :last_name_en, "姓ローマ字" %>
+    <%= form.text_field :last_name_en %>
   </div>
-
   <div class="field">
-    <%= form.label :first_name_kana %>
-    <%= form.text_area :first_name_kana %>
+    <%= form.label :first_name_kana, "名読み" %>
+    <%= form.text_field :first_name_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :first_name_en %>
-    <%= form.text_area :first_name_en %>
+    <%= form.label :sortkey2, "名読みソート用" %>
+    <%= form.text_field :sortkey2 %>
   </div>
-
   <div class="field">
-    <%= form.label :born_on %>
-    <%= form.date_select :born_on %>
+    <%= form.label :first_name, "名" %>
+    <%= form.text_field :first_name %>
   </div>
-
   <div class="field">
-    <%= form.label :died_on %>
-    <%= form.date_select :died_on %>
+    <%= form.label :first_name_en, "名ローマ字" %>
+    <%= form.text_field :first_name_en %>
   </div>
-
   <div class="field">
-    <%= form.label :copyright_flag %>
-    <%= form.check_box :copyright_flag %>
+    <%= form.label :born_on, "生年月日" %>
+    <%= form.date_select :born_on, include_blank: true %>
   </div>
-
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_area :email %>
+    <%= form.label :died_on, "没年月日" %>
+    <%= form.date_select :died_on, include_blank: true %>
   </div>
-
   <div class="field">
-    <%= form.label :url %>
-    <%= form.text_area :url %>
+    <%= form.label :copyright_flag,"著作権フラグ" %>
+    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], {include_blank: false}, {class: 'text-gray-800'} %>
   </div>
-
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :email, "email" %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :url, "URL" %>
+    <%= form.text_field :url %>
+  </div>
+  <div class="field">
+    <%= form.label :description, "人物について" %>
     <%= form.text_area :description %>
   </div>
-
   <div class="field">
-    <%= form.label :note_user_id %>
-    <%= form.number_field :note_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :basename %>
-    <%= form.text_area :basename %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note %>
+    <%= form.label :note, "備考" %>
     <%= form.text_area :note %>
   </div>
-
-  <div class="field">
-    <%= form.label :updated_by %>
-    <%= form.text_area :updated_by %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sortkey %>
-    <%= form.text_area :sortkey %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sortkey2 %>
-    <%= form.text_area :sortkey2 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :input_count %>
-    <%= form.number_field :input_count %>
-  </div>
-
-  <div class="field">
-    <%= form.label :publish_count %>
-    <%= form.number_field :publish_count %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "登録" %>
   </div>
 <% end %>

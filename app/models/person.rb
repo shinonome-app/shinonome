@@ -29,5 +29,5 @@
 #  note_user_id    :bigint
 #
 class Person < ApplicationRecord
-  belongs_to :note_user
+  belongs_to :note_user, optional: true
 end

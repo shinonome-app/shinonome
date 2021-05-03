@@ -1,6 +1,5 @@
-<h1>Editing Person</h1>
-
-<%= render(Admin::PersonFormComponent.new(person: @person)) %>
-
-<%= link_to 'Show', [:admin, @person] %> |
-<%= link_to 'Back', admin_people_path %>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <h1>人物更新</h1>
+  <%= render(Admin::PersonFormComponent.new(person: @person)) %>
+  <%= link_to '人物表示', [:admin, @person] %> |
+  <%= link_to '戻る', admin_people_path %>

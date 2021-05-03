@@ -17,7 +17,7 @@
             <%= person.id %>
           </td>
           <td>
-            <%= link_to 'Show', [:admin, person] do %>
+            <%= link_to admin_person_path(person) do %>
               <%= person.last_name %>
               <%= person.first_name %>
             <% end %>

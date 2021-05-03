@@ -1,84 +1,66 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Last name:</strong>
-  <%= @person.last_name %>
-</p>
-<p>
-  <strong>Last name kana:</strong>
-  <%= @person.last_name_kana %>
-</p>
-<p>
-  <strong>Last name en:</strong>
-  <%= @person.last_name_en %>
-</p>
-<p>
-  <strong>First name:</strong>
-  <%= @person.first_name %>
-</p>
-<p>
-  <strong>First name kana:</strong>
-  <%= @person.first_name_kana %>
-</p>
-<p>
-  <strong>First name en:</strong>
-  <%= @person.first_name_en %>
-</p>
-<p>
-  <strong>Born on:</strong>
-  <%= @person.born_on %>
-</p>
-<p>
-  <strong>Died on:</strong>
-  <%= @person.died_on %>
-</p>
-<p>
-  <strong>Copyright flag:</strong>
-  <%= @person.copyright_flag %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @person.email %>
-</p>
-<p>
-  <strong>Url:</strong>
-  <%= @person.url %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @person.description %>
-</p>
-<p>
-  <strong>Note user:</strong>
-  <%= @person.note_user_id %>
-</p>
-<p>
-  <strong>Basename:</strong>
-  <%= @person.basename %>
-</p>
-<p>
-  <strong>Note:</strong>
-  <%= @person.note %>
-</p>
-<p>
-  <strong>Updated by:</strong>
-  <%= @person.updated_by %>
-</p>
-<p>
-  <strong>Sortkey:</strong>
-  <%= @person.sortkey %>
-</p>
-<p>
-  <strong>Sortkey2:</strong>
-  <%= @person.sortkey2 %>
-</p>
-<p>
-  <strong>Input count:</strong>
-  <%= @person.input_count %>
-</p>
-<p>
-  <strong>Publish count:</strong>
-  <%= @person.publish_count %>
-</p>
-<%= link_to 'Edit', edit_admin_person_path(@person) %> |
-<%= link_to 'Destroy', [:admin, person], method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', admin_people_path %>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>姓読み:</strong>
+    <%= @person.last_name_kana %>
+  </p>
+  <p>
+    <strong>姓読みソート用:</strong>
+    <%= @person.sortkey %>
+  </p>
+  <p>
+    <strong>姓:</strong>
+    <%= @person.last_name %>
+  </p>
+  <p>
+    <strong>姓ローマ字:</strong>
+    <%= @person.last_name_en %>
+  </p>
+  <p>
+    <strong>名読み:</strong>
+    <%= @person.first_name_kana %>
+  </p>
+  <p>
+    <strong>名読みソート用:</strong>
+    <%= @person.sortkey2 %>
+  </p>
+  <p>
+    <strong>名:</strong>
+    <%= @person.first_name %>
+  </p>
+  <p>
+    <strong>名ローマ字:</strong>
+    <%= @person.first_name_en %>
+  </p>
+  <p>
+    <strong>生年月日:</strong>
+    <%= @person.born_on %>
+  </p>
+  <p>
+    <strong>没年月日:</strong>
+    <%= @person.died_on %>
+  </p>
+  <p>
+    <strong>著作権フラグ:</strong>
+    <%= @person.copyright_flag %>
+  </p>
+  <p>
+    <strong>email:</strong>
+    <%= @person.email %>
+  </p>
+  <p>
+    <strong>URL:</strong>
+    <%= @person.url %>
+  </p>
+  <p>
+    <strong>人物について:</strong>
+    <%= @person.description %>
+  </p>
+  <p>
+    <strong>備考:</strong>
+    <%= @person.note %>
+  </p>
+  <%= link_to '更新', edit_admin_person_path(@person) %> |
+  <%= link_to '削除', [:admin, @person], method: :delete, data: { confirm: '本当に削除しますか?' } %> |
+  <%= link_to '戻る', admin_people_path %>
+</div>
