@@ -13,7 +13,7 @@
 #  first_appearance      :text
 #  note                  :text
 #  orig_text             :text
-#  original_title            :text
+#  original_title        :text
 #  sortkey               :text
 #  started_on            :date
 #  status                :text
