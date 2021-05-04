@@ -10,9 +10,9 @@
 #  book_print  :text
 #  email       :text
 #  memo        :text
-#  refbook     :text
-#  sts1        :text
-#  sts2        :text
+#  proof_edition     :text
+#  assign_status        :text
+#  order_status        :text
 #  url         :text
 #  worker_kana :text
 #  worker_name :text
@@ -28,7 +28,7 @@ FactoryBot.define do
     book_id { 1 }
     book_copy { 'MyText' }
     book_print { 'MyText' }
-    refbook { 'MyText' }
+    proof_edition { 'MyText' }
     bookfile_id { 1 }
     address { 'MyText' }
     memo { 'MyText' }
@@ -38,7 +38,7 @@ FactoryBot.define do
     email { 'MyText' }
     url { 'MyText' }
     person_id { 1 }
-    sts1 { 'MyText' }
-    sts2 { 'MyText' }
+    assign_status { 'MyText' }
+    order_status { 'MyText' }
   end
 end

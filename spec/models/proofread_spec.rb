@@ -10,9 +10,9 @@
 #  book_print  :text
 #  email       :text
 #  memo        :text
-#  refbook     :text
-#  sts1        :text
-#  sts2        :text
+#  proof_edition     :text
+#  assign_status        :text
+#  order_status        :text
 #  url         :text
 #  worker_kana :text
 #  worker_name :text

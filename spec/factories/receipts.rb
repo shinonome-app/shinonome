@@ -5,84 +5,84 @@
 # Table name: receipts
 #
 #  id                 :bigint           not null, primary key
-#  bikou              :text
-#  bkbikou            :text
-#  bookname           :text
-#  bookname2          :text
-#  copyright          :boolean
+#  note              :text
+#  original_book_note            :text
+#  original_book_name           :text
+#  original_book_name2          :text
+#  copyright_flag          :boolean
 #  email              :text
-#  firstversion       :text
-#  firstversion2      :text
-#  fukudai            :text
-#  fukudaiyomi        :text
-#  gendai             :text
-#  insdate            :date
-#  jbikou             :text
+#  first_pubdate       :text
+#  first_pubdate2      :text
+#  subtitle            :text
+#  subtitle_kana        :text
+#  original_title             :text
+#  created_on            :date
+#  person_note             :text
 #  kana               :text
 #  mei                :text
-#  meieiji            :text
-#  meiyomi            :text
+#  first_name_en            :text
+#  first_name_kana            :text
 #  memo               :text
-#  personid           :text
+#  person_id           :text
 #  publisher          :text
 #  publisher2         :text
-#  sakuhinmei         :text
-#  sakuhinmeiyomi     :text
-#  sakuhinshuumei     :text
-#  sakuhinshuumeiyomi :text
+#  title         :text
+#  title_kana     :text
+#  collection     :text
+#  collection_kana :text
 #  sei                :text
-#  seieiji            :text
-#  seimei             :text
-#  seimeiyomi         :text
-#  seiyomi            :text
-#  shoshutu           :text
+#  last_name_en            :text
+#  worker_name             :text
+#  worker_kana         :text
+#  last_name_kana            :text
+#  first_appearance           :text
 #  status             :text
-#  statusdate         :text
-#  sts                :integer
+#  started_on         :text
+#  register_status                :integer
 #  url                :text
-#  versioninput       :text
-#  workerid           :text
+#  input_edition       :text
+#  worker_id           :text
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
 FactoryBot.define do
   factory :receipt do
-    sakuhinmeiyomi { 'MyText' }
-    sakuhinmei { 'MyText' }
-    fukudaiyomi { 'MyText' }
-    fukudai { 'MyText' }
-    sakuhinshuumeiyomi { 'MyText' }
-    sakuhinshuumei { 'MyText' }
-    gendai { 'MyText' }
+    title_kana { 'MyText' }
+    title { 'MyText' }
+    subtitle_kana { 'MyText' }
+    subtitle { 'MyText' }
+    collection_kana { 'MyText' }
+    collection { 'MyText' }
+    original_title { 'MyText' }
     kana { 'MyText' }
-    shoshutu { 'MyText' }
+    first_appearance { 'MyText' }
     memo { 'MyText' }
-    bikou { 'MyText' }
+    note { 'MyText' }
     status { 'MyText' }
-    statusdate { 'MyText' }
-    copyright { false }
-    seiyomi { 'MyText' }
+    started_on { 'MyText' }
+    copyright_flag { false }
+    last_name_kana { 'MyText' }
     sei { 'MyText' }
-    seieiji { 'MyText' }
-    meiyomi { 'MyText' }
+    last_name_en { 'MyText' }
+    first_name_kana { 'MyText' }
     mei { 'MyText' }
-    meieiji { 'MyText' }
-    jbikou { 'MyText' }
-    seimeiyomi { 'MyText' }
-    seimei { 'MyText' }
+    first_name_en { 'MyText' }
+    person_note { 'MyText' }
+    worker_kana { 'MyText' }
+    worker_name { 'MyText' }
     email { 'MyText' }
     url { 'MyText' }
-    bookname { 'MyText' }
+    original_book_name { 'MyText' }
     publisher { 'MyText' }
-    firstversion { 'MyText' }
-    versioninput { 'MyText' }
-    bookname2 { 'MyText' }
+    first_pubdate { 'MyText' }
+    input_edition { 'MyText' }
+    original_book_name2 { 'MyText' }
     publisher2 { 'MyText' }
-    firstversion2 { 'MyText' }
-    personid { 'MyText' }
-    workerid { 'MyText' }
-    insdate { '2021-04-29' }
-    sts { 1 }
-    bkbikou { 'MyText' }
+    first_pubdate2 { 'MyText' }
+    person_id { 'MyText' }
+    worker_id { 'MyText' }
+    created_on { '2021-04-29' }
+    register_status { 1 }
+    original_book_note { 'MyText' }
   end
 end

@@ -2,7 +2,6 @@
   <% if receipt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
-
       <ul>
         <% receipt.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,192 +9,154 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :sakuhinmeiyomi %>
-    <%= form.text_area :sakuhinmeiyomi %>
+    <%= form.label :title_kana %>
+    <%= form.text_area :title_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :sakuhinmei %>
-    <%= form.text_area :sakuhinmei %>
+    <%= form.label :title %>
+    <%= form.text_area :title %>
   </div>
-
   <div class="field">
-    <%= form.label :fukudaiyomi %>
-    <%= form.text_area :fukudaiyomi %>
+    <%= form.label :subtitle_kana %>
+    <%= form.text_area :subtitle_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :fukudai %>
-    <%= form.text_area :fukudai %>
+    <%= form.label :subtitle %>
+    <%= form.text_area :subtitle %>
   </div>
-
   <div class="field">
-    <%= form.label :sakuhinshuumeiyomi %>
-    <%= form.text_area :sakuhinshuumeiyomi %>
+    <%= form.label :collection_kana %>
+    <%= form.text_area :collection_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :sakuhinshuumei %>
-    <%= form.text_area :sakuhinshuumei %>
+    <%= form.label :collection %>
+    <%= form.text_area :collection %>
   </div>
-
   <div class="field">
-    <%= form.label :gendai %>
-    <%= form.text_area :gendai %>
+    <%= form.label :original_title %>
+    <%= form.text_area :original_title %>
   </div>
-
   <div class="field">
-    <%= form.label :kana %>
-    <%= form.text_area :kana %>
+    <%= form.label :kana_type_id %>
+    <%= form.text_area :kana_type_id %>
   </div>
-
   <div class="field">
-    <%= form.label :shoshutu %>
-    <%= form.text_area :shoshutu %>
+    <%= form.label :first_appearance %>
+    <%= form.text_area :first_appearance %>
   </div>
-
   <div class="field">
     <%= form.label :memo %>
     <%= form.text_area :memo %>
   </div>
-
   <div class="field">
-    <%= form.label :bikou %>
-    <%= form.text_area :bikou %>
+    <%= form.label :note %>
+    <%= form.text_area :note %>
   </div>
-
   <div class="field">
     <%= form.label :status %>
     <%= form.text_area :status %>
   </div>
-
   <div class="field">
-    <%= form.label :statusdate %>
-    <%= form.text_area :statusdate %>
+    <%= form.label :started_on %>
+    <%= form.text_area :started_on %>
   </div>
-
   <div class="field">
-    <%= form.label :copyright %>
-    <%= form.check_box :copyright %>
+    <%= form.label :copyright_flag %>
+    <%= form.check_box :copyright_flag %>
   </div>
-
   <div class="field">
-    <%= form.label :seiyomi %>
-    <%= form.text_area :seiyomi %>
+    <%= form.label :last_name_kana %>
+    <%= form.text_area :last_name_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :sei %>
-    <%= form.text_area :sei %>
+    <%= form.label :last_name %>
+    <%= form.text_area :last_name %>
   </div>
-
   <div class="field">
-    <%= form.label :seieiji %>
-    <%= form.text_area :seieiji %>
+    <%= form.label :last_name_en %>
+    <%= form.text_area :last_name_en %>
   </div>
-
   <div class="field">
-    <%= form.label :meiyomi %>
-    <%= form.text_area :meiyomi %>
+    <%= form.label :first_name_kana %>
+    <%= form.text_area :first_name_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :mei %>
-    <%= form.text_area :mei %>
+    <%= form.label :first_name %>
+    <%= form.text_area :first_name %>
   </div>
-
   <div class="field">
-    <%= form.label :meieiji %>
-    <%= form.text_area :meieiji %>
+    <%= form.label :first_name_en %>
+    <%= form.text_area :first_name_en %>
   </div>
-
   <div class="field">
-    <%= form.label :jbikou %>
-    <%= form.text_area :jbikou %>
+    <%= form.label :person_note %>
+    <%= form.text_area :person_note %>
   </div>
-
   <div class="field">
-    <%= form.label :seimeiyomi %>
-    <%= form.text_area :seimeiyomi %>
+    <%= form.label :worker_kana %>
+    <%= form.text_area :worker_kana %>
   </div>
-
   <div class="field">
-    <%= form.label :seimei %>
-    <%= form.text_area :seimei %>
+    <%= form.label :worker_name %>
+    <%= form.text_area :worker_name %>
   </div>
-
   <div class="field">
     <%= form.label :email %>
     <%= form.text_area :email %>
   </div>
-
   <div class="field">
     <%= form.label :url %>
     <%= form.text_area :url %>
   </div>
-
   <div class="field">
-    <%= form.label :bookname %>
-    <%= form.text_area :bookname %>
+    <%= form.label :original_book_name %>
+    <%= form.text_area :original_book_name %>
   </div>
-
   <div class="field">
     <%= form.label :publisher %>
     <%= form.text_area :publisher %>
   </div>
-
   <div class="field">
-    <%= form.label :firstversion %>
-    <%= form.text_area :firstversion %>
+    <%= form.label :first_pubdate %>
+    <%= form.text_area :first_pubdate %>
   </div>
-
   <div class="field">
-    <%= form.label :versioninput %>
-    <%= form.text_area :versioninput %>
+    <%= form.label :input_edition %>
+    <%= form.text_area :input_edition %>
   </div>
-
   <div class="field">
-    <%= form.label :bookname2 %>
-    <%= form.text_area :bookname2 %>
+    <%= form.label :original_book_name2 %>
+    <%= form.text_area :original_book_name2 %>
   </div>
-
   <div class="field">
     <%= form.label :publisher2 %>
     <%= form.text_area :publisher2 %>
   </div>
-
   <div class="field">
-    <%= form.label :firstversion2 %>
-    <%= form.text_area :firstversion2 %>
+    <%= form.label :first_pubdate2 %>
+    <%= form.text_area :first_pubdate2 %>
   </div>
-
   <div class="field">
-    <%= form.label :personid %>
-    <%= form.text_area :personid %>
+    <%= form.label :person_id %>
+    <%= form.text_area :person_id %>
   </div>
-
   <div class="field">
-    <%= form.label :workerid %>
-    <%= form.text_area :workerid %>
+    <%= form.label :worker_id %>
+    <%= form.text_area :worker_id %>
   </div>
-
   <div class="field">
-    <%= form.label :insdate %>
-    <%= form.date_select :insdate %>
+    <%= form.label :created_on %>
+    <%= form.date_select :created_on %>
   </div>
-
   <div class="field">
-    <%= form.label :sts %>
-    <%= form.number_field :sts %>
+    <%= form.label :register_status %>
+    <%= form.number_field :register_status %>
   </div>
-
   <div class="field">
-    <%= form.label :bkbikou %>
-    <%= form.text_area :bkbikou %>
+    <%= form.label :original_book_note %>
+    <%= form.text_area :original_book_note %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>

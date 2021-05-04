@@ -1,93 +1,88 @@
 <p id="notice">
-    <%= notice %>
+  <%= notice %>
 </p>
-
 <h1>Proofreads</h1>
-
 <table>
-    <thead>
-        <tr>
-            <th>Book</th>
-            <th>Book copy</th>
-            <th>Book print</th>
-            <th>Refbook</th>
-            <th>Bookfile</th>
-            <th>Address</th>
-            <th>Memo</th>
-            <th>Worker</th>
-            <th>worker kana</th>
-            <th>Worker name</th>
-            <th>Email</th>
-            <th>Url</th>
-            <th>Person</th>
-            <th>Sts1</th>
-            <th>Sts2</th>
-            <th colspan="3"></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @proofreads.each do |proofread| %>
-            <tr>
-                <td>
-                    <%= proofread.book_id %>
-                </td>
-                <td>
-                    <%= proofread.book_copy %>
-                </td>
-                <td>
-                    <%= proofread.book_print %>
-                </td>
-                <td>
-                    <%= proofread.refbook %>
-                </td>
-                <td>
-                    <%= proofread.bookfile_id %>
-                </td>
-                <td>
-                    <%= proofread.address %>
-                </td>
-                <td>
-                    <%= proofread.memo %>
-                </td>
-                <td>
-                    <%= proofread.worker_id %>
-                </td>
-                <td>
-                    <%= proofread.worker_kana %>
-                </td>
-                <td>
-                    <%= proofread.worker_name %>
-                </td>
-                <td>
-                    <%= proofread.email %>
-                </td>
-                <td>
-                    <%= proofread.url %>
-                </td>
-                <td>
-                    <%= proofread.person_id %>
-                </td>
-                <td>
-                    <%= proofread.sts1 %>
-                </td>
-                <td>
-                    <%= proofread.sts2 %>
-                </td>
-                <td>
-                    <%= link_to 'Show', proofread %>
-                </td>
-                <td>
-                    <%= link_to 'Edit', edit_proofread_path(proofread) %>
-                </td>
-                <td>
-                    <%= link_to 'Destroy', proofread, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-            </tr>
-            <% end %>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Book copy</th>
+      <th>Book print</th>
+      <th>proof_edition</th>
+      <th>Bookfile</th>
+      <th>Address</th>
+      <th>Memo</th>
+      <th>Worker</th>
+      <th>worker kana</th>
+      <th>Worker name</th>
+      <th>Email</th>
+      <th>Url</th>
+      <th>Person</th>
+      <th>assign_status</th>
+      <th>order_status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proofreads.each do |proofread| %>
+      <tr>
+        <td>
+          <%= proofread.book_id %>
+        </td>
+        <td>
+          <%= proofread.book_copy %>
+        </td>
+        <td>
+          <%= proofread.book_print %>
+        </td>
+        <td>
+          <%= proofread.proof_edition %>
+        </td>
+        <td>
+          <%= proofread.bookfile_id %>
+        </td>
+        <td>
+          <%= proofread.address %>
+        </td>
+        <td>
+          <%= proofread.memo %>
+        </td>
+        <td>
+          <%= proofread.worker_id %>
+        </td>
+        <td>
+          <%= proofread.worker_kana %>
+        </td>
+        <td>
+          <%= proofread.worker_name %>
+        </td>
+        <td>
+          <%= proofread.email %>
+        </td>
+        <td>
+          <%= proofread.url %>
+        </td>
+        <td>
+          <%= proofread.person_id %>
+        </td>
+        <td>
+          <%= proofread.assign_status %>
+        </td>
+        <td>
+          <%= proofread.order_status %>
+        </td>
+        <td>
+          <%= link_to 'Show', proofread %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_proofread_path(proofread) %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', proofread, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Proofread', new_proofread_path %>

@@ -6,7 +6,7 @@ class CreateProofreads < ActiveRecord::Migration[6.1]
       t.bigint :book_id
       t.text :book_copy
       t.text :book_print
-      t.text :refbook
+      t.text :proof_edition
       t.bigint :bookfile_id
       t.text :address
       t.text :memo
@@ -16,8 +16,8 @@ class CreateProofreads < ActiveRecord::Migration[6.1]
       t.text :email
       t.text :url
       t.bigint :person_id
-      t.text :sts1
-      t.text :sts2
+      t.text :assign_status
+      t.text :order_status
 
       t.timestamps
     end
