@@ -6,7 +6,7 @@
 #
 #  id            :bigint           not null, primary key
 #  booktype_name :text
-#  first_pubyear :text
+#  first_pubdate :text
 #  input_edition :text
 #  note          :text
 #  proof_edition :text
@@ -21,7 +21,7 @@ FactoryBot.define do
     book_id { 1 }
     title { 'MyText' }
     publisher { 'MyText' }
-    first_pubyear { 'MyText' }
+    first_pubdate { 'MyText' }
     input_edition { 'MyText' }
     proof_edition { 'MyText' }
     booktype_name { 'MyText' }

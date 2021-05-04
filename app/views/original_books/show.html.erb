@@ -1,44 +1,35 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Book:</strong>
   <%= @original_book.book_id %>
 </p>
-
 <p>
   <strong>Title:</strong>
   <%= @original_book.title %>
 </p>
-
 <p>
   <strong>Publisher:</strong>
   <%= @original_book.publisher %>
 </p>
-
 <p>
   <strong>First pubyear:</strong>
-  <%= @original_book.first_pubyear %>
+  <%= @original_book.first_pubdate %>
 </p>
-
 <p>
   <strong>Input edition:</strong>
   <%= @original_book.input_edition %>
 </p>
-
 <p>
   <strong>Proof edition:</strong>
   <%= @original_book.proof_edition %>
 </p>
-
 <p>
   <strong>Booktype name:</strong>
   <%= @original_book.booktype_name %>
 </p>
-
 <p>
   <strong>Note:</strong>
   <%= @original_book.note %>
 </p>
-
 <%= link_to 'Edit', edit_original_book_path(@original_book) %> |
 <%= link_to 'Back', original_books_path %>

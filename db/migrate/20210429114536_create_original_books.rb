@@ -6,7 +6,7 @@ class CreateOriginalBooks < ActiveRecord::Migration[6.1]
       t.bigint :book_id
       t.text :title
       t.text :publisher
-      t.text :first_pubyear
+      t.text :first_pubdate
       t.text :input_edition
       t.text :proof_edition
       t.text :booktype_name

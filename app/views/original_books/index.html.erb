@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Original Books</h1>
-
 <table>
   <thead>
     <tr>
@@ -16,14 +14,13 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @original_books.each do |original_book| %>
       <tr>
         <td><%= original_book.book_id %></td>
         <td><%= original_book.title %></td>
         <td><%= original_book.publisher %></td>
-        <td><%= original_book.first_pubyear %></td>
+        <td><%= original_book.first_pubdate %></td>
         <td><%= original_book.input_edition %></td>
         <td><%= original_book.proof_edition %></td>
         <td><%= original_book.booktype_name %></td>
@@ -35,7 +32,5 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Original Book', new_original_book_path %>

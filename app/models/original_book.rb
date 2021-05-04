@@ -6,7 +6,7 @@
 #
 #  id            :bigint           not null, primary key
 #  booktype_name :text
-#  first_pubyear :text
+#  first_pubdate :text
 #  input_edition :text
 #  note          :text
 #  proof_edition :text

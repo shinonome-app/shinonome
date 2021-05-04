@@ -54,7 +54,7 @@ class OriginalBooksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def original_book_params
-    params.require(:original_book).permit(:book_id, :title, :publisher, :first_pubyear, :input_edition,
+    params.require(:original_book).permit(:book_id, :title, :publisher, :first_pubdate, :input_edition,
                                           :proof_edition, :booktype_name, :note)
   end
 end

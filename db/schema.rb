@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20_210_502_103_012) do
     t.bigint 'book_id'
     t.text 'title'
     t.text 'publisher'
-    t.text 'first_pubyear'
+    t.text 'first_pubdate'
     t.text 'input_edition'
     t.text 'proof_edition'
     t.text 'booktype_name'
