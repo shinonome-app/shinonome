@@ -9,7 +9,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.text :subtitle_kana
       t.text :collection
       t.text :collection_kana
-      t.text :orig_title
+      t.text :original_title
       t.bigint :kana_type_id
       t.text :author_display_name
       t.text :first_appearance

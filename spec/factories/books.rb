@@ -13,7 +13,7 @@
 #  first_appearance      :text
 #  note                  :text
 #  orig_text             :text
-#  orig_title            :text
+#  original_title            :text
 #  sortkey               :text
 #  started_on            :date
 #  status                :text
@@ -36,7 +36,7 @@ FactoryBot.define do
     subtitle_kana { 'MyText' }
     collection { 'MyText' }
     collection_kana { 'MyText' }
-    orig_title { 'MyText' }
+    original_title { 'MyText' }
     kana_type_id { 1 }
     author_display_name { 'MyText' }
     first_appearance { 'MyText' }

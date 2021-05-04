@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20_210_502_103_012) do
     t.text 'subtitle_kana'
     t.text 'collection'
     t.text 'collection_kana'
-    t.text 'orig_title'
+    t.text 'original_title'
     t.bigint 'kana_type_id'
     t.text 'author_display_name'
     t.text 'first_appearance'

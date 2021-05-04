@@ -57,7 +57,7 @@ module Admin
     # Only allow a list of trusted parameters through.
     def book_params
       params.require(:book).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
-                                   :orig_title, :kana_type_id, :author_display_name, :first_appearance, :description,
+                                   :original_title, :kana_type_id, :author_display_name, :first_appearance, :description,
                                    :description_person_id, :status, :started_on, :copyright_flag, :note, :orig_text,
                                    :updated_at, :user_id, :update_flag, :sortkey)
     end
