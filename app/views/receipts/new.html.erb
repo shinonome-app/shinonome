@@ -1,6 +1,5 @@
 <div class="justify-center items-center bg-blue-100 content-center w-screen">
   <div class="px-8 max-w-6xl mx-auto">
-    <a name="top">&nbsp;</a>
     <div class="flex justify-end text-base">
       ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<span class="text-red-500 font-semibold">作業着手連絡システム</span>
     </div>
@@ -18,7 +17,7 @@
           <li>中止する場合は、「確認」ボタンを押さずにブラウザを閉じてください。</li>
         </ul>
       </div>
-      <%= form_with(model: @receipt) do |form| %>
+      <%= form_with(model: @receipt, url: receipts_previews_path) do |form| %>
         <% if @receipt.errors.any? %>
           <div id="error_explanation">
             <h2>
@@ -56,8 +55,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :worker_yomi, class: "mb-2 text-lg text-grey-darkest" do %>工作員読み<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :worker_yomi, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :worker_kana, class: "mb-2 text-lg text-grey-darkest" do %>工作員読み<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :worker_kana, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base m-auto">
             あおぞらたろう
@@ -74,8 +73,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :worker_email, class: "mb-2 text-lg text-grey-darkest" do %>e-mail<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :worker_email, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :email, class: "mb-2 text-lg text-grey-darkest" do %>e-mail<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :email, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             reception@aozora.gr.jp
@@ -83,8 +82,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :worker_url, class: "mb-2 text-lg text-grey-darkest" do %>ホームページ<% end %>
-            <%= form.text_field :worker_url, class: "border py-2 px-3 text-grey-darkest w-full"  %>
+            <%= form.label :url, class: "mb-2 text-lg text-grey-darkest" do %>ホームページ<% end %>
+            <%= form.text_field :url, class: "border py-2 px-3 text-grey-darkest w-full"  %>
           </div>
           <div class="flex-1 text-base  m-auto">
             https://www.aozora.gr.jp
@@ -115,8 +114,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :person_sei_yomi, class: "mb-2 text-lg text-grey-darkest" do %>姓読み<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :person_sei_yomi, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :last_name_kana, class: "mb-2 text-lg text-grey-darkest" do %>姓読み<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :last_name_kana, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             あくたがわ
@@ -124,8 +123,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :person_sei, class: "mb-2 text-lg text-grey-darkest" do %>姓<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :person_sei, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :last_name, class: "mb-2 text-lg text-grey-darkest" do %>姓<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :last_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             芥川
@@ -133,8 +132,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :person_mei_yomi, class: "mb-2 text-lg text-grey-darkest" do %>名読み<% end %>
-            <%= form.text_field :person_mei_yomi, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :first_name_kana, class: "mb-2 text-lg text-grey-darkest" do %>名読み<% end %>
+            <%= form.text_field :first_name_kana, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             りゅうのすけ
@@ -142,8 +141,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :person_mei, class: "mb-2 text-lg text-grey-darkest" do %>名<% end %>
-            <%= form.text_field :person_mei, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :first_name, class: "mb-2 text-lg text-grey-darkest" do %>名<% end %>
+            <%= form.text_field :first_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             竜之介
@@ -173,8 +172,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :teihon_name, class: "mb-2 text-lg text-grey-darkest" do %>底本名<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :teihon_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :original_book_title, class: "mb-2 text-lg text-grey-darkest" do %>底本名<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :original_book_title, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             芥川龍之介全集２<br>
@@ -205,8 +204,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :inputversion, class: "mb-2 text-lg text-grey-darkest" do %>入力に使用する版<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :inputversion, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :input_edition, class: "mb-2 text-lg text-grey-darkest" do %>入力に使用する版<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :input_edition, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base m-auto">
             1996（平成8）年7月15日第11刷<br>
@@ -215,8 +214,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :book_note, class: "mb-2 text-lg text-grey-darkest" do %>備考<% end %>
-            <%= form.text_area :book_note, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :original_book_note, class: "mb-2 text-lg text-grey-darkest" do %>備考<% end %>
+            <%= form.text_area :original_book_note, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             ※底本および底本の親本に関し、通常の入力欄に書ききれない内容は、ここに書き込んでください。<br>
@@ -225,8 +224,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :original_book_name2, class: "mb-2 text-lg text-grey-darkest" do %>底本の親本名<% end %>
-            <%= form.text_area :original_book_name2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :original_book_title2, class: "mb-2 text-lg text-grey-darkest" do %>底本の親本名<% end %>
+            <%= form.text_area :original_book_title2, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             筑摩全集類聚版芥川龍之介全集<br>

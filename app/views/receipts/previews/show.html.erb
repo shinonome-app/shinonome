@@ -1,0 +1,163 @@
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+  <div class="px-8 max-w-6xl mx-auto">
+    <p id="notice"><%= notice %></p>
+    <div class="flex justify-end text-base">
+      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<span class="text-red-500 font-semibold">入力受付システム</span>
+    </div>
+    <div class="flex justify-center bg-yellow-100 py-3 border-t-2 border-b-2 border-gray-400">
+      <h1 class="text-3xl font-semibold">入力受付システム：記入事項の確認</h1>
+    </div>
+    <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+      <ul class="my-2 mx-8 list-disc text-base">
+        <li>以下の内容で、入力を申し込みます。内容をもういちど確認してください。</li>
+        <li>間違いなければ、「登録」ボタンを押してください。</li>
+        <li>「必要事項の記入」に戻るときは、「戻る」ボタンを押してください。</li>
+        <li>中止するときは、「登録」ボタンを押さずにブラウザを閉じてください。</li>
+        <li>「登録」ボタンを押した後に取り消す必要が生じた場合は、reception@aozora.gr.jp宛、メールでご連絡ください。</li>
+        </ul>
+      </div>
+      <%= form_with(model: @receipt) do |form| %>
+        <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+          <h2 class="font-semibold">入力者データ</h2>
+        </div>
+    <p>
+      <strong>工作員ID:</strong>
+      <%= @receipt.worker_id %>
+    </p>
+    <p>
+      <strong>工作員名読み:</strong>
+      <%= @receipt.worker_kana %>
+    </p>
+    <p>
+      <strong>工作員名:</strong>
+      <%= @receipt.worker_name %>
+    </p>
+    <p>
+      <strong>email:</strong>
+      <%= @receipt.email %>
+    </p>
+    <p>
+      <strong>ホームページ:</strong>
+      <%= @receipt.url %>
+    </p>
+
+    <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+      <h2 class="font-semibold">著者データ</h2>
+    </div>
+
+    <p>
+      <strong>人物ID:</strong>
+      <%= @receipt.person_id %>
+    </p>
+    <p>
+      <strong>姓読み:</strong>
+      <%= @receipt.last_name_kana %>
+    </p>
+    <p>
+      <strong>姓:</strong>
+      <%= @receipt.last_name %>
+    </p>
+    <p>
+      <strong>名読み:</strong>
+      <%= @receipt.first_name_kana %>
+    </p>
+    <p>
+      <strong>名:</strong>
+      <%= @receipt.first_name %>
+    </p>
+    <p>
+      <strong>備考:</strong>
+      <%= @receipt.person_note %>
+    </p>
+
+    <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+      <h2 class="font-semibold">底本データ</h2>
+    </div>
+
+    <p>
+      <strong>底本名:</strong>
+      <%= @receipt.original_book_title %>
+    </p>
+    <p>
+      <strong>出版社名:</strong>
+      <%= @receipt.publisher %>
+    </p>
+    <p>
+      <strong>初版発行年:</strong>
+      <%= @receipt.first_pubdate %>
+    </p>
+    <p>
+      <strong>入力に使用する版:</strong>
+      <%= @receipt.input_edition %>
+    </p>
+    <p>
+      <strong>備考:</strong>
+      <%= @receipt.original_book_note %>
+    </p>
+    <p>
+      <strong>底本の親本名:</strong>
+      <%= @receipt.original_book_title2 %>
+    </p>
+    <p>
+      <strong>底本の親本出版社名:</strong>
+      <%= @receipt.publisher2 %>
+    </p>
+    <p>
+      <strong>底本の親本初版発行年:</strong>
+      <%= @receipt.first_pubdate %>
+    </p>
+
+    <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+      <h2 class="font-semibold">作品データ</h2>
+    </div>
+
+    <p>
+      <strong>作品名読み:</strong>
+      <%= @receipt.title_kana %>
+    </p>
+    <p>
+      <strong>作品名:</strong>
+      <%= @receipt.title %>
+    </p>
+    <p>
+      <strong>副題読み:</strong>
+      <%= @receipt.subtitle_kana %>
+    </p>
+    <p>
+      <strong>副題:</strong>
+      <%= @receipt.subtitle %>
+    </p>
+    <p>
+      <strong>原題:</strong>
+      <%= @receipt.original_title %>
+    </p>
+    <p>
+      <strong>仮名遣い種別:</strong>
+      <%= @receipt.kana_type_id %>
+    </p>
+    <p>
+      <strong>初出:</strong>
+      <%= @receipt.first_appearance %>
+    </p>
+    <p>
+      <strong>作品について:</strong>
+      <%= @receipt.memo %>
+    </p>
+    <p>
+      <strong>備考:</strong>
+      <%= @receipt.note %>
+    </p>
+    <p>
+      <strong>著作権:</strong>
+      <%= @receipt.copyright_flag %>
+    </p>
+
+    <div class="actions">
+      <%= form.submit "登録" %>
+    </div>
+    <div class="actions">
+      <%= form.submit "修正", name: "edit" %>
+    </div>
+  </div>
+</div>
+

@@ -1,4 +1,4 @@
-<%= form_with(model: receipt) do |form| %>
+<%= form_with(model: receipt, url: receipts_previews_path) do |form| %>
   <% if receipt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
@@ -110,8 +110,8 @@
     <%= form.text_area :url %>
   </div>
   <div class="field">
-    <%= form.label :original_book_name %>
-    <%= form.text_area :original_book_name %>
+    <%= form.label :original_book_title %>
+    <%= form.text_area :original_book_title %>
   </div>
   <div class="field">
     <%= form.label :publisher %>
@@ -126,8 +126,8 @@
     <%= form.text_area :input_edition %>
   </div>
   <div class="field">
-    <%= form.label :original_book_name2 %>
-    <%= form.text_area :original_book_name2 %>
+    <%= form.label :original_book_title2 %>
+    <%= form.text_area :original_book_title2 %>
   </div>
   <div class="field">
     <%= form.label :publisher2 %>

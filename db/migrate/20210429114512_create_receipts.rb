@@ -28,11 +28,11 @@ class CreateReceipts < ActiveRecord::Migration[6.1]
       t.text :worker_name
       t.text :email
       t.text :url
-      t.text :original_book_name
+      t.text :original_book_title
       t.text :publisher
       t.text :first_pubdate
       t.text :input_edition
-      t.text :original_book_name2
+      t.text :original_book_title2
       t.text :publisher2
       t.text :first_pubdate2
       t.text :person_id
