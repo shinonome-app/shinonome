@@ -2,7 +2,7 @@
 
 ## Install
 
-### Development Environment
+### For Development Environment
 
 ```console
 $ git clone https://github.com/takahashim/shinonome
