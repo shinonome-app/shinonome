@@ -14,61 +14,117 @@
         <li>「必要事項の記入」に戻るときは、「戻る」ボタンを押してください。</li>
         <li>中止するときは、「登録」ボタンを押さずにブラウザを閉じてください。</li>
         <li>「登録」ボタンを押した後に取り消す必要が生じた場合は、reception@aozora.gr.jp宛、メールでご連絡ください。</li>
-        </ul>
-      </div>
-      <%= form_with(model: @receipt) do |form| %>
-        <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
-          <h2 class="font-semibold">入力者データ</h2>
-        </div>
-    <p>
-      <strong>工作員ID:</strong>
-      <%= @receipt.worker_id %>
-    </p>
-    <p>
-      <strong>工作員名読み:</strong>
-      <%= @receipt.worker_kana %>
-    </p>
-    <p>
-      <strong>工作員名:</strong>
-      <%= @receipt.worker_name %>
-    </p>
-    <p>
-      <strong>email:</strong>
-      <%= @receipt.email %>
-    </p>
-    <p>
-      <strong>ホームページ:</strong>
-      <%= @receipt.url %>
-    </p>
+      </ul>
+    </div>
+    <%= form_with(model: @receipt) do |form| %>
+    <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+      <h2 class="font-semibold">入力者データ</h2>
+    </div>
+
+    <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+      <table>
+        <thead>
+          <tr>
+            <th>項目名</th>
+            <th>入力データ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>工作員ID</td>
+            <td>
+              <%= @receipt.worker_id %>
+              <%= form.hidden_field :worker_id %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>工作員名読み</td>
+            <td>
+              <%= @receipt.worker_kana %>
+              <%= form.hidden_field :worker_kana %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>工作員名</td>
+            <td>
+              <%= @receipt.worker_name %>
+              <%= form.hidden_field :worker_name %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>email</td>
+            <td>
+              <%= @receipt.email %>
+              <%= form.hidden_field :email %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>ホームページ</td>
+            <td>
+              <%= @receipt.url %>
+              <%= form.hidden_field :url %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
       <h2 class="font-semibold">著者データ</h2>
     </div>
 
-    <p>
-      <strong>人物ID:</strong>
-      <%= @receipt.person_id %>
-    </p>
-    <p>
-      <strong>姓読み:</strong>
-      <%= @receipt.last_name_kana %>
-    </p>
-    <p>
-      <strong>姓:</strong>
-      <%= @receipt.last_name %>
-    </p>
-    <p>
-      <strong>名読み:</strong>
-      <%= @receipt.first_name_kana %>
-    </p>
-    <p>
-      <strong>名:</strong>
-      <%= @receipt.first_name %>
-    </p>
-    <p>
-      <strong>備考:</strong>
-      <%= @receipt.person_note %>
-    </p>
+    <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
+      <table>
+        <thead>
+          <tr>
+            <th>項目名</th>
+            <th>入力データ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render PreviewFormItemComponent.new(
+              form: form,
+              model: @receipt,
+              name: '人物ID',
+              attribute: :person_id
+              ) %>
+          <%= render PreviewFormItemComponent.new(
+              form: form,
+              model: @receipt,
+              name: '姓読み',
+              attribute: :last_name_kana
+              ) %>
+          <%= render PreviewFormItemComponent.new(
+              form: form,
+              model: @receipt,
+              name: '姓',
+              attribute: :last_name
+              ) %>
+          <%= render PreviewFormItemComponent.new(
+              form: form,
+              model: @receipt,
+              name: '名読み',
+              attribute: :first_name_kana
+              ) %>
+          <%= render PreviewFormItemComponent.new(
+              form: form,
+              model: @receipt,
+              name: '名',
+              attribute: :first_name
+              ) %>
+          <%= render PreviewFormItemComponent.new(
+              form: form,
+              model: @receipt,
+              name: '備考',
+              attribute: :person_note
+              ) %>
+        </tbody>
+      </table>
+    </div>
 
     <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
       <h2 class="font-semibold">底本データ</h2>
@@ -76,7 +132,7 @@
 
     <p>
       <strong>底本名:</strong>
-      <%= @receipt.original_book_title %>
+      <%= @receipt.original_book_note %>
     </p>
     <p>
       <strong>出版社名:</strong>
@@ -158,6 +214,6 @@
     <div class="actions">
       <%= form.submit "修正", name: "edit" %>
     </div>
+    <% end %>
   </div>
 </div>
-
