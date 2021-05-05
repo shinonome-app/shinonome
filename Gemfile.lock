@@ -96,7 +96,11 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
+    faker (2.17.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.0)
+    gimei (1.0.0)
+      romaji
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.10)
@@ -182,6 +186,8 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    romaji (0.2.4)
+      rake (>= 0.8.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -281,6 +287,8 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   factory_bot_rails (~> 6.1.0)
+  faker
+  gimei
   letter_opener_web (~> 1.0)
   listen (~> 3.3)
   pg

@@ -96,3 +96,5 @@ end
 
 require_relative 'seeds/users'
 require_relative 'seeds/workers'
+require_relative 'seeds/people'
+require_relative 'seeds/receipts'

@@ -46,6 +46,9 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.0'
 
   gem 'rubocop'
+
+  gem 'faker'
+  gem 'gimei'
 end
 
 group :development do
