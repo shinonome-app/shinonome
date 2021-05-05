@@ -94,6 +94,27 @@ worker_roles.each do |k, v|
   WorkerRole.create!(id: k, name: v)
 end
 
+book_statuses = <<~ROWS
+  1	公開	1
+  2	非公開	2
+  3	入力中	3
+  4	入力予約	4
+  5	校正待ち(点検済み)	5
+  6	校正待ち(点検前)	6
+  7	校正予約(点検済み)	7
+  8	校正予約(点検前)	8
+  9	校正中	9
+  10	校了	10
+  11	翻訳中	11
+  12	入力取り消し	12
+ROWS
+
+BookStatus.connection.execute('TRUNCATE TABLE book_statuses;')
+book_statuses.each_line do |line|
+  rows = line.chomp.split
+  BookStatus.create!(id: rows[0].to_i, name: rows[1], sort_order: rows[2].to_i)
+end
+
 require_relative 'seeds/users'
 require_relative 'seeds/workers'
 require_relative 'seeds/people'

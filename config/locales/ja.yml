@@ -1,7 +1,12 @@
 ja:
   activerecord:
     models:
+      book: 作品
+      news: そらもよう
+      person: 人物
       receipt: 入力申請
+      site: 関連サイト
+      worker: 工作員
     attributes:
       book:
         id: "作品ID"

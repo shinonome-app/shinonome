@@ -8,7 +8,7 @@ Person.connection.execute('TRUNCATE TABLE people;')
   died_year = born_date.year + 30 + rand(30)
   died_date = Faker::Date.in_date_period(year: died_year)
   desc = ''.dup
-  (3..8).to_a.sample.times{ desc << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
+  (3..8).to_a.sample.times { desc << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
   Person.create!(last_name: name.last.kanji,
                  last_name_kana: name.last.hiragana,
                  first_name: name.first.kanji,
