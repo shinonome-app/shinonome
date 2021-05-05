@@ -1,4 +1,7 @@
 ja:
+  app:
+    name: Shinonome
+    main_url: https://shinonome.example.jp
   activerecord:
     models:
       book: 作品

@@ -9,7 +9,7 @@
             <img src="/assets/top_logo.png" class="h-12" alt="Logo">&nbsp;
           <% end %>
           <%= link_to admin_path do %>
-            <span class="text-2xl">&nbsp;青空文庫DB</span>
+            <span class="text-2xl">&nbsp;<%= t("app.name")%> DB</span>
           <% end %>
           <span class="text-2xl">
             <%= @title %>
@@ -18,9 +18,9 @@
 
         <!-- Header Menu -->
         <div class="hidden w-full flex-grow lg:flex justify-end lg:items-center lg:w-auto uppercase font-light">
-          <a href="https://www.aozora.gr.jp" class="text-gray-800 text-sm hover:text-blue-600 mr-5">
+          <a href="<%= t('app.main_url') %>" class="text-gray-800 text-sm hover:text-blue-600 mr-5">
             <i class="icon ion-ios-analytics mr-2 text-gray-600 inline-block"></i>
-            青空文庫トップページ
+            <%= t("app.name") %>トップページ
           </a>
           <%= link_to root_path, class: "text-gray-800 text-sm hover:text-blue-600 mr-5" do %>
             <i class="icon ion-ios-information-circle-outline mr-2 text-gray-600 inline-block"></i>作業着手連絡システム
