@@ -4,13 +4,15 @@ Book.connection.execute('TRUNCATE TABLE books;')
 Book.connection.execute('TRUNCATE TABLE book_workers;')
 Book.connection.execute('TRUNCATE TABLE book_people;')
 selected_workers = Worker.order(:id).limit(10)
-1000.times do |i|
-  n = i + 1
+person_id_list = Person.all.pluck(:id)
+book_status_id_list = BookStatus.all.pluck(:id)
+user_id_list = User.all.pluck(:id)
+
+books = (1..5000).map do |n|
   desc = ''.dup
   (3..8).to_a.sample.times { desc << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
-  worker = selected_workers.sample
-  author = Person.all.sample
-  book = Book.create!(
+
+  {
     title_kana: "さくひん#{n}",
     title: "作品#{n}",
     subtitle_kana: "ふくだい#{n}",
@@ -21,18 +23,56 @@ selected_workers = Worker.order(:id).limit(10)
     kana_type_id: [1, 2, 3, 4].sample,
     first_appearance: "初出#{n}",
     description: desc,
-    book_status: BookStatus.all.sample,
+    book_status_id: book_status_id_list.sample,
     started_on: Time.zone.parse('2021-05-05'),
     copyright_flag: rand(100) <= 90,
-    user: User.all.sample
-  )
-  bw = book.book_workers.build(worker: worker, worker_role_id: 1)
-  bw.save!
-  bp = book.book_people.build(person: author, role_id: 1)
-  bp.save!
+    user_id: user_id_list.sample,
+    created_at: Time.current,
+    updated_at: Time.current
+  }
+end
+Book.insert_all(books)
+
+book_id_list = Book.all.pluck(:id)
+
+book_workers = book_id_list.map do |n|
+  worker = selected_workers.sample
+
+  {
+    book_id: n,
+    worker_id: worker.id,
+    worker_role_id: 1,
+    created_at: Time.current,
+    updated_at: Time.current
+  }
+end
+
+BookWorker.insert_all(book_workers)
+
+book_people = book_id_list.map do |n|
+  author_id = person_id_list.sample
+
+  {
+    book_id: n,
+    person_id: author_id,
+    role_id: 1,
+    created_at: Time.current,
+    updated_at: Time.current
+  }
+end
+
+book_id_list.each do |n|
   next unless rand(10) >= 9
 
-  translator = Person.all.sample
-  bp2 = book.book_people.build(person: translator, role_id: 2)
-  bp2.save!
+  translator_id = person_id_list.sample
+
+  book_people << {
+    book_id: n,
+    person_id: translator_id,
+    role_id: 2,
+    created_at: Time.current,
+    updated_at: Time.current
+  }
 end
+
+BookPerson.insert_all(book_people)

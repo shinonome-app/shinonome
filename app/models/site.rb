@@ -15,4 +15,6 @@
 #  updated_at :datetime         not null
 #
 class Site < ApplicationRecord
+  has_many :book_sites
+  has_many :books, through: :book_sites
 end
