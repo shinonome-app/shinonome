@@ -3,7 +3,6 @@
 Worker.connection.execute('TRUNCATE TABLE workers;')
 1200.times do |i|
   n = i + 1
-  sortkey = %w[あ か さ た な は ま や ら わ].sample
   name = Gimei.name
   Worker.create!(name: name.kanji,
                  email: "aozora-worker#{n}@example.com",

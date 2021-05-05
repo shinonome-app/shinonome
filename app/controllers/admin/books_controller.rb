@@ -3,11 +3,12 @@
 module Admin
   # 作品管理
   class BooksController < Admin::ApplicationController
+    include Pagy::Backend
     before_action :set_book, only: %i[show edit update destroy]
 
     # GET /books
     def index
-      @books = Book.all
+      @pagy, @books = pagy(Book.order(:id).all, items: 50)
     end
 
     # GET /books/1

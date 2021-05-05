@@ -68,7 +68,7 @@
       <td><%= book.title %></td>
       <td><%= book.subtitle %></td>
       <td><%= book.kana_type&.name %></td>
-      <td><%= book.status %></td>
+      <td><%= book.book_status&.name %></td>
       <td><%= book.started_on %></td>
     </tr>
     <% end %>

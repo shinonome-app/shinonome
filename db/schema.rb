@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20_210_505_095_328) do
   end
 
   create_table 'books', force: :cascade do |t|
-    t.text 'title'
+    t.text 'title', null: false
     t.text 'title_kana'
     t.text 'subtitle'
     t.text 'subtitle_kana'
@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 20_210_505_095_328) do
     t.text 'first_appearance'
     t.text 'description'
     t.bigint 'description_person_id'
-    t.text 'status'
-    t.date 'started_on'
-    t.boolean 'copyright_flag'
+    t.bigint 'book_status_id', null: false
+    t.date 'started_on', null: false
+    t.boolean 'copyright_flag', null: false
     t.text 'note'
     t.text 'orig_text'
     t.bigint 'user_id'

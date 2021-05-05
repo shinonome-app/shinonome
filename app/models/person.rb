@@ -47,4 +47,8 @@ class Person < ApplicationRecord
   def copyright_text
     copyright_flag ? '有' : '無'
   end
+
+  def name
+    "#{last_name} #{first_name}"
+  end
 end

@@ -23,12 +23,12 @@
           <td><%= book.subtitle %></td>
           <td><%= book.author_text %></td>
           <td><%= book.translator_text %></td>
-          <td><%= book.kana_type %></td>
-          <td><%= book.status %></td>
+          <td><%= book.kana_type.name %></td>
+          <td><%= book.book_status.name %></td>
           <td><%= book.started_on %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <br>
+  <%== pagy_nav(@pagy) %>
 </div>
