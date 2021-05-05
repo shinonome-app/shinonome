@@ -43,4 +43,8 @@ class Person < ApplicationRecord
   ].freeze
 
   belongs_to :note_user, optional: true
+
+  def copyright_text
+    copyright_flag ? '有' : '無'
+  end
 end
