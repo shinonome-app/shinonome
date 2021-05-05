@@ -30,6 +30,6 @@ class Worker < ApplicationRecord
   ].freeze
 
   belongs_to :user, optional: true
-  has_many :book_workers
+  has_many :book_workers, dependent: :destroy
   has_many :books, through: :book_workers
 end

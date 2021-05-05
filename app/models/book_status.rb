@@ -11,5 +11,5 @@
 #  updated_at :datetime         not null
 #
 class BookStatus < ApplicationRecord
-  has_many :books
+  has_many :books, dependent: :restrict_with_error
 end

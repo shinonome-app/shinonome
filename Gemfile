@@ -48,6 +48,7 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.0'
 
   gem 'rubocop'
+  gem 'rubocop-rails', require: false
 
   gem 'faker'
   gem 'gimei'

@@ -9,6 +9,9 @@
 #
 # See https://docs.rubocop.org/rubocop/configuration
 
+require:
+  - rubocop-rails
+
 AllCops:
   NewCops: enable
 
@@ -44,3 +47,7 @@ Style/AsciiComments:
 Lint/EmptyBlock:
   Exclude:
     - "spec/factories/*"
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - "db/seeds/*"

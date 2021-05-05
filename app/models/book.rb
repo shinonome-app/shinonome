@@ -29,19 +29,18 @@
 #  user_id               :bigint
 #
 class Book < ApplicationRecord
-  has_many :book_sites
+  has_many :book_sites, dependent: :destroy
   has_many :sites, through: :book_sites
-  has_many :book_people
+  has_many :book_people, dependent: :destroy
   has_many :people, through: :book_people
-  has_many :book_workers
+  has_many :book_workers, dependent: :destroy
   has_many :workers, through: :book_workers
 
-  has_one :bibclass
+  has_one :bibclass, dependent: :destroy
 
   belongs_to :user
   belongs_to :kana_type
   belongs_to :book_status
-  has_many :description_people
 
   def author_text
     book_people.where(role_id: 1).map { |a| a.person.name }.join(', ')

@@ -30,7 +30,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   # only allow letter, number, underscore and punctuation.
-  validates_format_of :username, with: /^[a-zA-Z0-9_.]*$/, multiline: true
+  validates :username, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }
 
   attr_writer :login
 
@@ -42,10 +42,10 @@ class User < ApplicationRecord
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     if login
-      where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value',
-                                    { value: login.downcase }]).first
+      where(conditions.to_h).find_by('lower(username) = :value OR lower(email) = :value',
+                                     { value: login.downcase })
     elsif conditions.key?(:username) || conditions.key?(:email)
-      where(conditions.to_h).first
+      find_by(conditions.to_h)
     end
   end
 end
