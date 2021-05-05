@@ -2,11 +2,12 @@
 
 module Admin
   class WorkersController < ApplicationController
+    include Pagy::Backend
     before_action :set_worker, only: %i[show edit update destroy]
 
     # GET /workers
     def index
-      @workers = Worker.all
+      @pagy, @workers = pagy(Worker.all)
     end
 
     # GET /workers/1

@@ -2,11 +2,12 @@
 
 module Admin
   class PeopleController < Admin::ApplicationController
+    include Pagy::Backend
     before_action :set_person, only: %i[show edit update destroy]
 
     # GET /people
     def index
-      @people = Person.all
+      @pagy, @people = pagy(Person.all)
     end
 
     # GET /people/1
