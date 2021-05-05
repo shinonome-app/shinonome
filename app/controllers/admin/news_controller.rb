@@ -3,11 +3,12 @@
 module Admin
   # そらもよう管理
   class NewsController < Admin::ApplicationController
+    include Pagy::Backend
     before_action :set_news, only: %i[show edit update destroy]
 
     # GET /news
     def index
-      @news = News.all
+      @pagy, @news = pagy(News.order(published_on: :desc, created_at: :desc).all, items: 50)
     end
 
     # GET /news/1

@@ -9,21 +9,20 @@
         <th>見出し</th>
         <th>本文</th>
         <th>ニュース指定</th>
-        <th colspan="3"></th>
+        <th>-</th>
       </tr>
     </thead>
     <tbody>
       <% @news.each do |news| %>
         <tr>
           <td><%= news.published_on %></td>
-          <td><%= news.title %></td>
-          <td><%= truncate(news.body, length: 50) %></td>
-          <td><%= news.flag %></td>
-          <td><%= link_to '表示', [:admin, news] %></td>
-          <td><%= link_to '修正', edit_admin_news_path(news) %></td>
+          <td><%= link_to truncate(news.title, length: 30), admin_news_path(news) %></td>
+          <td><%= truncate(news.body, length: 20) %></td>
+          <td><%= news.flag ? "有" : "無" %></td>
           <td><%= link_to '削除', [:admin, news], method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%== pagy_nav(@pagy) %>
 </div>
