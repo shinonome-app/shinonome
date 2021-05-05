@@ -7,9 +7,9 @@
 #  id             :bigint           not null, primary key
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  book_id        :bigint
-#  worker_id      :bigint
-#  worker_role_id :bigint
+#  book_id        :bigint           not null
+#  worker_id      :bigint           not null
+#  worker_role_id :bigint           not null
 #
 require 'rails_helper'
 

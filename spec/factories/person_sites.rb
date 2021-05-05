@@ -7,8 +7,8 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  person_id  :bigint
-#  site_id    :bigint
+#  person_id  :bigint           not null
+#  site_id    :bigint           not null
 #
 FactoryBot.define do
   factory :person_site do

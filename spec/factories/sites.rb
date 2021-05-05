@@ -6,11 +6,11 @@
 #
 #  id         :bigint           not null, primary key
 #  email      :text
-#  name       :text
+#  name       :text             not null
 #  note       :text
 #  owner_name :text
 #  updated_by :integer
-#  url        :text
+#  url        :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

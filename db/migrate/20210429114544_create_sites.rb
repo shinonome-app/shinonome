@@ -3,8 +3,8 @@
 class CreateSites < ActiveRecord::Migration[6.1]
   def change
     create_table :sites do |t|
-      t.text :name
-      t.text :url
+      t.text :name, null: false
+      t.text :url, null: false
       t.text :owner_name
       t.text :email
       t.text :note
