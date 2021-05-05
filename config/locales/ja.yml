@@ -3,6 +3,25 @@ ja:
     models:
       receipt: 入力申請
     attributes:
+      book:
+        id: "作品ID"
+        title: "作品名"
+        title_kana: "作品名読み"
+        subtitle: "副題"
+        subtitle_kana: "副題読み"
+        collection: "作品集名"
+        collection_kana: "作品集名読み"
+        original_title: "原題"
+        kana_type_id: "仮名遣い種別"
+        first_appearance: "初出"
+        description: "作品について"
+        status: "状態"
+        started_on: "状態の開始日"
+        copyright_flag: "著作権フラグ"
+        note: "備考"
+        orig_text: "底本管理情報"
+        user_id: "更新者"
+        sortkey: "ソートキー"
       receipt:
         worker_id: "工作員ID"
         worker_kana: "工作員読み"
@@ -33,3 +52,14 @@ ja:
         memo: "作品について"
         note: "備考"
         copyright_flag: "著作権"
+      worker:
+        id: "工作員ID"
+        name: "姓名"
+        name_kana: "姓名読み"
+        url: "URL"
+        email: "email"
+        note: "備考"
+        sortkey: "ソート用読み"
+      book_worker:
+        worker_role_id: "役割"
+
