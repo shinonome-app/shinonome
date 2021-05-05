@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'pg'
 
+gem 'rails-i18n'
 gem 'rexml'
 
 gem 'view_component', require: 'view_component/engine'
