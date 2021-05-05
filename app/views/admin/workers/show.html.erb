@@ -1,6 +1,6 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <h1>工作員データ</h1>
+  <h1 class="text-2xl">工作員データ</h1>
   <p>
     <strong>工作員ID:</strong>
     <%= @worker.id %>
@@ -37,6 +37,44 @@
     <strong>更新者:</strong>
     <%= @worker.user_id %>
   </p>
-  <%= link_to '修正', edit_admin_worker_path(@worker) %> |
+
+  <h2 class="text-xl">関連した作品</h2>
+
+  <table>
+    <tr>
+      <th>
+        <%= t(:worker_role_id, scope: "activerecord.attributes.book_worker") %>
+      </th>
+      <th>
+        <%= t(:title, scope: "activerecord.attributes.book") %>
+      </th>
+      <th>
+        <%= t(:subtitle, scope: "activerecord.attributes.book") %>
+      </th>
+      <th>
+        <%= t(:kana_type_id, scope: "activerecord.attributes.book") %>
+      </th>
+      <th>
+        <%= t(:status, scope: "activerecord.attributes.book") %>
+      </th>
+      <th>
+        <%= t(:started_on, scope: "activerecord.attributes.book") %>
+      </th>
+    </tr>
+    <% @worker.book_workers.each do |book_worker| %>
+    <%   book = book_worker.book %>
+    <tr>
+      <td><%= book_worker.worker_role.name %></td>
+      <td><%= book.title %></td>
+      <td><%= book.subtitle %></td>
+      <td><%= book.kana_type&.name %></td>
+      <td><%= book.status %></td>
+      <td><%= book.started_on %></td>
+    </tr>
+    <% end %>
+  </table>
+
+  <%= link_to '更新', edit_admin_worker_path(@worker) %> |
+  <%= link_to '削除', admin_worker_path(@worker), method: :delete, data: { confirm: '本当に削除しますか?' } %> |
   <%= link_to '戻る', admin_workers_path %>
 </div>
