@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Person.connection.execute('TRUNCATE TABLE people;')
-1000.times do |i|
+2000.times do |i|
   n = i + 1
   name = Gimei.name
   born_date = Faker::Date.between(from: '1800-01-01', to: '1900-01-01')
