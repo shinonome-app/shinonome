@@ -1,3 +1,4 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
 <p id="notice"><%= notice %></p>
 <p>
   <strong>title_kana:</strong>
@@ -147,5 +148,7 @@
   <strong>original_book_note:</strong>
   <%= @receipt.original_book_note %>
 </p>
-<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
-<%= link_to 'Back', receipts_path %>
+<%# = link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to '戻る', receipts_path %>
+</div>
+

@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     resources :sites
     resources :workers
     resources :books
+    resources :receipts
     # resources :kana_types
     # resources :charsets
     # resources :file_encodings

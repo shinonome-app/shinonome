@@ -9,10 +9,13 @@ class ReceiptsController < ApplicationController
   # POST /receipts
   def create
     @receipt = Receipt.new(receipt_params)
+    @receipt.register_status = 0
 
-    if @receipt.save
+    if params[:edit]
+      render :new
+    elsif @receipt.save
       redirect_to receipts_thanks_path
-    else
+    else # rubocop:disable Lint/DuplicateBranch
       render :new
     end
   end

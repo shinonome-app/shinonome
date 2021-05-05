@@ -1,94 +1,33 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
 <p id="notice"><%= notice %></p>
-<h1>Receipts</h1>
+<h1 class="text-2xl">Web入力受付管理</h1>
+
+<p>
+  <%= @receipts.count %>件の作品が見つかりました。　　　
+</p>
 <table>
   <thead>
     <tr>
-      <th>title_kana</th>
-      <th>title</th>
-      <th>subtitle_kana</th>
-      <th>subtitle</th>
-      <th>collection_kana</th>
-      <th>collection</th>
-      <th>original_title</th>
-      <th>Kana</th>
-      <th>first_appearance</th>
-      <th>Memo</th>
-      <th>note</th>
-      <th>Status</th>
-      <th>started_on</th>
-      <th>copyright_flag</th>
-      <th>last_name_kana</th>
-      <th>last_name</th>
-      <th>last_name_en</th>
-      <th>first_name_kana</th>
-      <th>first_name</th>
-      <th>first_name_en</th>
-      <th>person_note</th>
-      <th>worker_kana</th>
-      <th>worker_name</th>
-      <th>Email</th>
-      <th>Url</th>
-      <th>original_book_title</th>
-      <th>Publisher</th>
-      <th>first_pubdate</th>
-      <th>input_edition</th>
-      <th>original_book_title2</th>
-      <th>Publisher2</th>
-      <th>first_pubdate2</th>
-      <th>person_id</th>
-      <th>worker_id</th>
-      <th>created_on</th>
-      <th>register_status</th>
-      <th>original_book_note</th>
-      <th colspan="3"></th>
+      <th>連番</th>
+      <th>作品名</th>
+      <th>文字遣い</th>
+      <th>著者</th>
+      <th>入力者</th>
+      <th>登録</th>
     </tr>
   </thead>
   <tbody>
     <% @receipts.each do |receipt| %>
       <tr>
-        <td><%= receipt.title_kana %></td>
-        <td><%= receipt.title %></td>
-        <td><%= receipt.subtitle_kana %></td>
-        <td><%= receipt.subtitle %></td>
-        <td><%= receipt.collection_kana %></td>
-        <td><%= receipt.collection %></td>
-        <td><%= receipt.original_title %></td>
+        <td><%= link_to receipt.id, edit_admin_receipt_path(receipt) %></td>
+        <td><%= link_to receipt.title, edit_admin_receipt_path(receipt) %></td>
         <td><%= receipt.kana_type_id %></td>
-        <td><%= receipt.first_appearance %></td>
-        <td><%= receipt.memo %></td>
-        <td><%= receipt.note %></td>
-        <td><%= receipt.status %></td>
-        <td><%= receipt.started_on %></td>
-        <td><%= receipt.copyright_flag %></td>
-        <td><%= receipt.last_name_kana %></td>
-        <td><%= receipt.last_name %></td>
-        <td><%= receipt.last_name_en %></td>
-        <td><%= receipt.first_name_kana %></td>
-        <td><%= receipt.first_name %></td>
-        <td><%= receipt.first_name_en %></td>
-        <td><%= receipt.person_note %></td>
-        <td><%= receipt.worker_kana %></td>
-        <td><%= receipt.worker_name %></td>
-        <td><%= receipt.email %></td>
-        <td><%= receipt.url %></td>
-        <td><%= receipt.original_book_title %></td>
-        <td><%= receipt.publisher %></td>
-        <td><%= receipt.first_pubdate %></td>
-        <td><%= receipt.input_edition %></td>
-        <td><%= receipt.original_book_title2 %></td>
-        <td><%= receipt.publisher2 %></td>
-        <td><%= receipt.first_pubdate2 %></td>
         <td><%= receipt.person_id %></td>
-        <td><%= receipt.worker_id %></td>
-        <td><%= receipt.created_on %></td>
+        <td><%= receipt.worker_name %></td>
         <td><%= receipt.register_status %></td>
-        <td><%= receipt.original_book_note %></td>
-        <td><%= link_to 'Show', receipt %></td>
-        <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
-        <td><%= link_to 'Destroy', receipt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<br>
-<%= link_to 'New Receipt', new_receipt_path %>
+
+</div>
