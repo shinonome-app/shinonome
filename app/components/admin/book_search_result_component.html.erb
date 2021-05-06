@@ -1,0 +1,32 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <h2 class="text-2xl">作品一覧</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>作品ID</th>
+        <th>作品名</th>
+        <th>副題</th>
+        <th>著者</th>
+        <th>翻訳者</th>
+        <th>仮名遣い</th>
+        <th>状態</th>
+        <th>状態の開始日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.id %></td>
+          <td><%= link_to book.title, admin_book_path(book) %></td>
+          <td><%= book.subtitle %></td>
+          <td><%= book.author_text %></td>
+          <td><%= book.translator_text %></td>
+          <td><%= book.kana_type.name %></td>
+          <td><%= book.book_status.name %></td>
+          <td><%= book.started_on %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_nav(@pagy) %>
+</div>
