@@ -26,28 +26,42 @@ gem 'turbolinks', '~> 5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# Use PostgreSQL instead of Sqlite3
 gem 'pg'
 
+# Use I18n
 gem 'rails-i18n'
-gem 'rexml'
 
+# Component system for Rails
 gem 'view_component', require: 'view_component/engine'
 
+# Authentication based on Rack/Warden
 gem 'devise'
 
+# Pagination in views
 gem 'pagy'
+
+# Use TailswindCSS
+gem 'tailwindcss-rails', '~> 0.3.3'
+
+# Some libraries use rexml as XML processor
+gem 'rexml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
+  # Annotate models with DB
   gem 'annotate'
 
+  # Fake mail system on web
   gem 'letter_opener_web', '~> 1.0'
 
+  # Ruby static analytics and lint
   gem 'rubocop'
   gem 'rubocop-rails', require: false
 
+  # Makes dummy data for seeds
   gem 'faker'
   gem 'gimei'
 end
@@ -70,12 +84,13 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 
-  gem 'factory_bot_rails', '~> 6.1.0'
+  # Use Rspec instead of MiniTest
   gem 'rspec-rails', '~> 4.0'
+
+  # Support tools with Rspec
+  gem 'factory_bot_rails', '~> 6.1.0'
   gem 'test-prof'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'tailwindcss-rails', '~> 0.3.3'
