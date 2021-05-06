@@ -44,7 +44,6 @@ Rails.application.routes.draw do
     resources :people
     resources :sites
     resources :workers
-    resources :books
     namespace :books do
       resources :text_searches, only: %i[index]
       resources :book_index_searches, only: %i[index]
@@ -52,6 +51,7 @@ Rails.application.routes.draw do
       resources :status_searches, only: %i[index]
       resources :unknown_creator_searches, only: %i[index]
     end
+    resources :books
 
     resources :receipts
     # resources :kana_types

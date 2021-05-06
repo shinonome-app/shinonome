@@ -3,20 +3,41 @@
   <%= link_to '作品新規登録', new_admin_book_path %>
 
   <h2 class="text-2xl">作品検索</h2>
-
-  <h2 class="text-2xl">作品50音順インデックス</h2>
+  <%= form_with(url: admin_books_book_index_searches_path, method: 'get') do |form| %>
   <div class="flex">
     <%= render(Admin::SyllabaryTableComponent.new(key: "book")) %>
   </div>
+  <% end %>
+
+  <h2 class="text-2xl">作品50音順インデックス</h2>
+  <%= form_with(url: admin_books_book_index_searches_path, method: 'get') do |form| %>
+  <div class="flex">
+    <%= render(Admin::SyllabaryTableComponent.new(key: "book")) %>
+    <input type="submit" name="book" value="その他">
+  </div>
+  <% end %>
 
   <h2 class="text-2xl">作品状態検索</h2>
+  <%= form_with(url: admin_books_status_searches_path, method: 'get') do |form| %>
+  <div class="flex">
+    <%= render(Admin::BookStatusComponent.new(form: form, years: @years)) %>
+  </div>
+  <% end %>
 
   <h2 class="text-2xl">著者別インデックス</h2>
+  <%= form_with(url: admin_books_creator_index_searches_path, method: 'get') do |form| %>
   <div class="flex">
-    <%= render(Admin::SyllabaryTableComponent.new(key: "author")) %>
+    <%= render(Admin::SyllabaryTableComponent.new(key: "creator")) %>
+    <input type="submit" name="creator" value="その他">
   </div>
+  <% end %>
 
   <h2 class="text-2xl">著者不明作品検索</h2>
+  <%= form_with(url: admin_books_unknown_creator_searches_path, method: 'get') do |form| %>
+  <div class="flex">
+    <input type="submit" name="creator" value="検索">
+  </div>
+  <% end %>
 
   <h2 class="text-2xl">作品一覧</h2>
   <table>

@@ -9,6 +9,7 @@ module Admin
     # GET /books
     def index
       @pagy, @books = pagy(Book.order(:id).all, items: 50)
+      @years = (1995..Time.zone.now.year).to_a
     end
 
     # GET /books/1

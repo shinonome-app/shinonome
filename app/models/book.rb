@@ -42,7 +42,23 @@ class Book < ApplicationRecord
   belongs_to :kana_type
   belongs_to :book_status
 
-  scope :year_and_status, ->(year, status) { where('extract(year from created_at) = ? AND book_status_id = ?', year, status) }
+  scope :with_year_and_status, ->(year, status) { where('extract(year from created_at) = ? AND book_status_id = ?', year, status) }
+
+  scope :with_creator_firstchar, lambda { |char|
+    if char == 'その他'
+      joins(:people).where('people.sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
+    else
+      joins(:people).where('people.sortkey ~ ?', "^#{char}")
+    end
+  }
+
+  scope :with_title_firstchar, lambda { |char|
+    if char == 'その他'
+      where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
+    else
+      where('sortkey ~ ?', "^#{char}")
+    end
+  }
 
   def author_text
     book_people.where(role_id: 1).map { |a| a.person.name }.join(', ')

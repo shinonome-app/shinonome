@@ -43,6 +43,8 @@ class Person < ApplicationRecord
   ].freeze
 
   belongs_to :note_user, optional: true
+  has_many :book_people, dependent: :destroy
+  has_many :books, through: :book_people
 
   def copyright_text
     copyright_flag ? '有' : '無'
