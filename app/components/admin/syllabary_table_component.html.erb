@@ -1,0 +1,17 @@
+<% Admin::SyllabaryTableComponent::TABLES.each do |table| %>
+<table>
+  <% table.each do |row| %>
+  <tr>
+    <% row.each do |cell| %>
+    <td>
+      <% if cell %>
+      <input type="submit" name="<%= @key %>" value="<%= cell %>">
+      <% else %>
+      &nbsp;
+      <% end %>
+    </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<% end %>

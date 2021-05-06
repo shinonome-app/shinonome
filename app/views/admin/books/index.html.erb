@@ -1,7 +1,24 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
   <%= link_to '作品新規登録', new_admin_book_path %>
-  <h1>作品一覧</h1>
+
+  <h2 class="text-2xl">作品検索</h2>
+
+  <h2 class="text-2xl">作品50音順インデックス</h2>
+  <div class="flex">
+    <%= render(Admin::SyllabaryTableComponent.new(key: "book")) %>
+  </div>
+
+  <h2 class="text-2xl">作品状態検索</h2>
+
+  <h2 class="text-2xl">著者別インデックス</h2>
+  <div class="flex">
+    <%= render(Admin::SyllabaryTableComponent.new(key: "author")) %>
+  </div>
+
+  <h2 class="text-2xl">著者不明作品検索</h2>
+
+  <h2 class="text-2xl">作品一覧</h2>
   <table>
     <thead>
       <tr>
