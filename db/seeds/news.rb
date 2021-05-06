@@ -10,7 +10,7 @@ news = (1..200).map do
     body << Faker::Lorem.sentence(word_count: 20, random_words_to_add: 30)
   end
 
-  body.gsub(/。/) { rand(100) > 70 ? "。\n" : "。\n\n" }
+  body.gsub!('。') { rand(100) > 70 ? "。\n" : "。\n\n" }
 
   {
     body: body,
