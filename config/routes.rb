@@ -45,6 +45,14 @@ Rails.application.routes.draw do
     resources :sites
     resources :workers
     resources :books
+    namespace :books do
+      resources :text_searches, only: %i[index]
+      resources :book_index_searches, only: %i[index]
+      resources :creator_index_searches, only: %i[index]
+      resources :status_searches, only: %i[index]
+      resources :unknown_creator_searches, only: %i[index]
+    end
+
     resources :receipts
     # resources :kana_types
     # resources :charsets

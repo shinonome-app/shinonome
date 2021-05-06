@@ -42,6 +42,8 @@ class Book < ApplicationRecord
   belongs_to :kana_type
   belongs_to :book_status
 
+  scope :year_and_status, ->(year, status) { where('extract(year from created_at) = ? AND book_status_id = ?', year, status) }
+
   def author_text
     book_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
   end
