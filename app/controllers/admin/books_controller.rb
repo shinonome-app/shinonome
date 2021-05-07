@@ -6,6 +6,13 @@ module Admin
     include Pagy::Backend
     before_action :set_book, only: %i[show edit update destroy]
 
+    TEXT_SELECTOR = [
+      ['を含む', 1],
+      ['で始まる', 2],
+      ['で終わる', 3],
+      ['と等しい', 4]
+    ]
+
     # GET /books
     def index
       @pagy, @books = pagy(Book.order(:id).all, items: 50)

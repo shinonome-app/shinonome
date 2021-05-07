@@ -1,12 +1,21 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl">作品検索</h2>
   <%= link_to '作品新規登録', new_admin_book_path %>
 
   <h2 class="text-2xl">作品検索</h2>
-  <%= form_with(url: admin_books_book_index_searches_path, method: 'get') do |form| %>
-  <div class="flex">
-    <%= render(Admin::SyllabaryTableComponent.new(key: "book")) %>
-  </div>
+  <%= form_with(url: admin_books_text_searches_path, method: 'get') do |form| %>
+  <table>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名読み", name: "title_kana")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名", name: "title")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題読み", name: "subtitle_kana")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題", name: "subtitle")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名読み", name: "collection_kana")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名", name: "collection")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "原題", name: "original_title")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品について", name: "description")) %>
+  </table>
+    <input type="submit" name="text" value="検索">
   <% end %>
 
   <h2 class="text-2xl">作品50音順インデックス</h2>
