@@ -5,7 +5,6 @@
 # Table name: original_books
 #
 #  id            :bigint           not null, primary key
-#  booktype_name :text
 #  first_pubdate :text
 #  input_edition :text
 #  note          :text
@@ -15,6 +14,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  book_id       :bigint
+#  booktype_id   :bigint
 #
 require 'rails_helper'
 

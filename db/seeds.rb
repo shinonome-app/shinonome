@@ -115,6 +115,16 @@ book_statuses.each_line do |line|
   BookStatus.create!(id: rows[0].to_i, name: rows[1], sort_order: rows[2].to_i)
 end
 
+booktypes = {
+  1 => '底本',
+  2 => '底本の親本'
+}
+
+Booktype.connection.execute('TRUNCATE TABLE booktypes;')
+booktypes.each do |k, v|
+  Booktype.create!(id: k, name: v)
+end
+
 require_relative 'seeds/users'
 require_relative 'seeds/workers'
 require_relative 'seeds/people'
