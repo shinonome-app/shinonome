@@ -11,7 +11,7 @@ module Admin
       ['で始まる', 2],
       ['で終わる', 3],
       ['と等しい', 4]
-    ]
+    ].freeze
 
     # GET /books
     def index
