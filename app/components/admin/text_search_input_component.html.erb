@@ -1,0 +1,13 @@
+<tr>
+  <td>
+  <label for="<%= @name %>">
+    <%= @label %>:
+  </label>
+  </td>
+  <td>
+    <input type="text" name="<%= @name %>">
+  </td>
+  <td>
+    <%= @form.select "text_selector_#{@name}", Admin::BooksController::TEXT_SELECTOR, {include_blank: false} %>
+  </td>
+</tr>
