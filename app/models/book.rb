@@ -36,7 +36,8 @@ class Book < ApplicationRecord
   has_many :book_workers, dependent: :destroy
   has_many :workers, through: :book_workers
 
-  has_one :bibclass, dependent: :destroy
+  has_many :bibclasses, dependent: :destroy
+  has_many :original_books, dependent: :destroy
 
   belongs_to :user
   belongs_to :kana_type

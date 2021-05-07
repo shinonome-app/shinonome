@@ -3,6 +3,10 @@
 Book.connection.execute('TRUNCATE TABLE books;')
 Book.connection.execute('TRUNCATE TABLE book_workers;')
 Book.connection.execute('TRUNCATE TABLE book_people;')
+Book.connection.execute('TRUNCATE TABLE bibclasses;')
+Book.connection.execute('TRUNCATE TABLE original_books;')
+
+## Books
 selected_workers = Worker.order(:id).limit(10)
 person_id_list = Person.all.pluck(:id)
 book_status_id_list = BookStatus.all.pluck(:id)
@@ -41,6 +45,8 @@ books = (1..5000).map do |n|
 end
 Book.insert_all(books.sort_by { |b| b[:created_at] })
 
+## BookWorkers
+book_id_status_list = Book.all.pluck(:id, :book_status_id)
 book_id_list = Book.all.pluck(:id)
 
 book_workers = book_id_list.map do |n|
@@ -55,8 +61,23 @@ book_workers = book_id_list.map do |n|
   }
 end
 
+book_id_status_list.each do |n, status|
+  next unless [1, 9, 10].include?(status)
+
+  worker = selected_workers.sample
+
+  book_workers << {
+    book_id: n,
+    worker_id: worker.id,
+    worker_role_id: 2,
+    created_at: Time.current,
+    updated_at: Time.current
+  }
+end
+
 BookWorker.insert_all(book_workers)
 
+## BookPeople
 book_people = book_id_list.map do |n|
   author_id = person_id_list.sample
 
@@ -84,3 +105,53 @@ book_id_list.each do |n|
 end
 
 BookPerson.insert_all(book_people)
+
+## Bibclasses
+bibclasses = book_id_list.filter_map do |n|
+  if rand(10) >= 3
+    {
+      book_id: n,
+      name: 'NDC',
+      num: %w[913 914 911 121 289 596 K913].sample,
+      created_at: Time.current,
+      updated_at: Time.current
+    }
+  end
+end
+
+Bibclass.insert_all(bibclasses)
+
+## OriginalBooks
+original_books = book_id_list.map do |n|
+  {
+    book_id: n,
+    title: "底本名#{n}",
+    first_pubdate: "初版発行年月日#{n}",
+    input_edition: "入力使用版#{n}",
+    proof_edition: "校正使用版#{n}",
+    publisher: "出版社#{n}",
+    note: "底本備考#{n}",
+    booktype_id: 1,
+    created_at: Time.current,
+    updated_at: Time.current
+  }
+end
+
+book_id_list.each do |n|
+  next unless rand(10) >= 5
+
+  original_books << {
+    book_id: n,
+    title: "底本の親本名#{n}",
+    first_pubdate: "初版発行年月日#{n}",
+    input_edition: "入力使用版#{n}",
+    proof_edition: "校正使用版#{n}",
+    publisher: "出版社#{n}",
+    note: "底本の親本備考#{n}",
+    booktype_id: 2,
+    created_at: Time.current,
+    updated_at: Time.current
+  }
+end
+
+OriginalBook.insert_all(original_books)

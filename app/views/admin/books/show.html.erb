@@ -1,99 +1,338 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <p>
-    <strong>作品ID:</strong>
-    <%= @book.id %>
-  </p>
-  <p>
-    <strong>作品名:</strong>
-    <%= @book.title %>
-  </p>
-  <p>
-    <strong>作品名読み:</strong>
-    <%= @book.title_kana %>
-  </p>
-  <p>
-    <strong>副題:</strong>
-    <%= @book.subtitle %>
-  </p>
-  <p>
-    <strong>副題読み:</strong>
-    <%= @book.subtitle_kana %>
-  </p>
-  <p>
-    <strong>作品集名:</strong>
-    <%= @book.collection %>
-  </p>
-  <p>
-    <strong>作品集名読み:</strong>
-    <%= @book.collection_kana %>
-  </p>
-  <p>
-    <strong>原題:</strong>
-    <%= @book.original_title %>
-  </p>
-  <p>
-    <strong>仮名遣い種別:</strong>
-    <%= @book.kana_type.name %>
-  </p>
-  <!--
-<p>
-  <strong>Author display name:</strong>
-  <%= @book.author_display_name %>
-</p>
--->
-  <p>
-    <strong>初出:</strong>
-    <%= @book.first_appearance %>
-  </p>
-  <p>
-    <strong>作品について:</strong>
-    <%= @book.description %>
-  </p>
-  <!--
-<p>
-  <strong>Description person:</strong>
-  <%= @book.description_person_id %>
-</p>
--->
-  <p>
-    <strong>状態:</strong>
-    <%= @book.book_status.name %>
-  </p>
-  <p>
-    <strong>状態の開始日:</strong>
-    <%= @book.started_on %>
-  </p>
-  <p>
-    <strong>著作権フラグ:</strong>
-    <%= @book.copyright_flag %>
-  </p>
-  <p>
-    <strong>備考:</strong>
-    <%= @book.note %>
-  </p>
-  <p>
-    <strong>底本管理情報:</strong>
-    <%= @book.orig_text %>
-  </p>
-  <p>
-    <strong>最終更新日:</strong>
-    <%= @book.updated_at %>
-  </p>
-  <p>
-    <strong>更新者:</strong>
-    <%= @book.user_id %>
-  </p>
-  <!--
-<p>
-  <strong>Update flag:</strong>
-  <%= @book.update_flag %>
-</p>
--->
-  <p>
-    <strong>ソート読み:</strong>
-    <%= @book.sortkey %>
-  </p>
+
+  <h2 class="text-2xl">作品データ</h2>
+  <table class="bg-gray-100 my-2">
+    <tr>
+      <th class="w-24 text-left">作品ID</th>
+      <td>
+        <%= @book.id %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">作品名</th>
+      <td>
+        <%= @book.title %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">作品名読み</th>
+      <td>
+        <%= @book.title_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">副題</th>
+      <td>
+        <%= @book.subtitle %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">副題読み</th>
+      <td>
+        <%= @book.subtitle_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">作品集名</th>
+      <td>
+        <%= @book.collection %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">作品集名読み</th>
+      <td>
+        <%= @book.collection_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">原題</th>
+      <td>
+        <%= @book.original_title %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">仮名遣い種別</th>
+      <td>
+        <%= @book.kana_type.name %>
+      </td>
+    </tr>
+    <!--
+        <tr>
+          <th class="w-24 text-left">Author display name</th>
+          <td>
+            <%= @book.author_display_name %>
+        </tr>
+        -->
+    <tr>
+      <th class="w-24 text-left">初出</th>
+      <td>
+        <%= @book.first_appearance %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">作品について</th>
+      <td>
+        <%= @book.description %>
+      </td>
+    </tr>
+    <!--
+        <tr>
+          <th class="w-24 text-left">Description person</th>
+          <td>
+            <%= @book.description_person_id %>
+        </tr>
+        -->
+    <tr>
+      <th class="w-24 text-left">状態</th>
+      <td>
+        <%= @book.book_status.name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">状態の開始日</th>
+      <td>
+        <%= @book.started_on %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">著作権フラグ</th>
+      <td>
+        <%= @book.copyright_flag %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">備考</th>
+      <td>
+        <%= @book.note %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">底本管理情報</th>
+      <td>
+        <%= @book.orig_text %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">最終更新日</th>
+      <td>
+        <%= @book.updated_at %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">更新者</th>
+      <td>
+        <%= @book.user_id %>
+      </td>
+    </tr>
+    <!--
+        <tr>
+          <th class="w-24 text-left">Update flag</th>
+          <%= @book.update_flag %>
+        </tr>
+        -->
+    <tr>
+      <th class="w-24 text-left">ソート読み</th>
+      <td>
+        <%= @book.sortkey %>
+      </td>
+    </tr>
+  </table>
+
+  <h2 class="text-2xl">著者データ</h2>
+
+  <% @book.people.each do |person| %>
+  <table class="bg-gray-100 my-2">
+    <tr>
+      <th class="w-24 text-left">人物ID</th>
+      <td><%= person.id %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">読み</th>
+      <td>
+        <%= person.last_name_kana %>
+        <%= person.first_name_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">著者名</th>
+      <td>
+        <%= person.name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">ローマ字</th>
+      <td>
+        <%= person.name_en %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">生年月日</th>
+      <td>
+        <%= person.born_on %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">没年月日</th>
+      <td>
+        <%= person.died_on %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">著作権フラグ</th>
+      <td>
+        <%= person.copyright_flag %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">email</th>
+      <td>
+        <%= person.email %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">URL</th>
+      <td>
+        <%= person.url %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">人物について</th>
+      <td>
+        <%= person.description %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">備考</th>
+      <td>
+        <%= person.note %>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+
+  <h2 class="text-2xl">工作員データ</h2>
+
+  <% @book.book_workers.order(:worker_role_id).each do |book_worker| %>
+  <% worker = book_worker.worker %>
+  <h3 class="text-lg"><%= book_worker.worker_role.name %></h3>
+  <table class="bg-gray-100 my-2">
+    <tr>
+      <th class="w-24 text-left">工作員ID</th>
+      <td><%= worker.id %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">読み</th>
+      <td>
+        <%= worker.name_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left"><%= book_worker.worker_role.name %>名</th>
+      <td>
+        <%= worker.name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">e-mail</th>
+      <td>
+        <%= worker.email %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">URL</th>
+      <td>
+        <%= worker.url %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">備考</th>
+      <td>
+        <%= worker.note %>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+
+  <h2 class="text-2xl">底本データ</h2>
+  <% @book.original_books.order(:booktype_id).each do |book| %>
+  <h3><%= book.booktype.name %></h3>
+  <table class="bg-gray-100 my-2">
+    <tr>
+      <th class="w-24 text-left">底本名</th>
+      <td><%= book.title %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">出版社名</th>
+      <td><%= book.publisher %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">初版発行日</th>
+      <td><%= book.first_pubdate %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">入力に使用した版</th>
+      <td><%= book.input_edition %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">校正に使用した版</th>
+      <td><%= book.proof_edition %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">備考</th>
+      <td><%= book.note %></td>
+    </tr>
+  </table>
+  <% end %>
+
+  <h2 class="text-2xl">分類番号データ</h2>
+
+  <% @book.bibclasses.each do |bibclass| %>
+  <table class="bg-gray-100 my-2">
+    <tr>
+      <th class="w-24 text-left">分類名</th>
+      <td><%= bibclass.name %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">分類番号</th>
+      <td>
+        <%= bibclass.num %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">備考</th>
+      <td>
+        <%= bibclass.note %>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+
+  <h2 class="text-2xl">ファイル</h2>
+
+  <h2 class="text-2xl">関連サイトデータ</h2>
+
+  <% @book.sites.each do |site| %>
+  <table class="bg-gray-100 my-2">
+    <tr>
+      <th class="w-24 text-left">関連サイト名</th>
+      <td><%= site.name %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">URL</th>
+      <td><%= site.url %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">運営者</th>
+      <td><%= site.owner_name %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">備考</th>
+      <td><%= site.note %></td>
+    </tr>
+  </table>
+  <% end %>
+
   <%= link_to '更新', edit_admin_book_path(@book) %> |
   <%= link_to '戻る', admin_books_path %>
 </div>
