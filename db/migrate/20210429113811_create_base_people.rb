@@ -3,7 +3,7 @@
 class CreateBasePeople < ActiveRecord::Migration[6.1]
   def change
     create_table :base_people do |t|
-      t.bigint :person_id
+      t.bigint :person_id, null: false
 
       t.timestamps
     end
