@@ -11,22 +11,18 @@ module Admin
     end
 
     # GET /admin/sites/1
-    def show
-    end
+    def show; end
 
     # GET /admin/sites/new
     # GET /admin/books/:book_id/sites/new
     def new
       @site = Site.new
-      if params[:book_id]
-        @site.book_sites.build(book_id: params[:book_id])
-      end
+      @site.book_sites.build(book_id: params[:book_id]) if params[:book_id]
     end
 
     # GET /admin/sites/1/edit
     # GET /admin/books/:book_id/sites/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /admin/sites
     def create
@@ -63,7 +59,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def site_params
-      params.require(:site).permit(:name, :url, :owner_name, :email, :note, :updated_by, {book_sites_attributes: [:book_id]})
+      params.require(:site).permit(:name, :url, :owner_name, :email, :note, :updated_by, { book_sites_attributes: [:book_id] })
     end
   end
 end

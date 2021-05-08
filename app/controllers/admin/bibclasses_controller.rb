@@ -10,20 +10,16 @@ module Admin
     end
 
     # GET /admin/books/:book_id/bibclasses/1
-    def show
-    end
+    def show; end
 
     # GET /admin/books/:book_id/bibclasses/new
     def new
       @bibclass = Bibclass.new
-      if params[:book_id]
-        @bibclass.book_id = params[:book_id]
-      end
+      @bibclass.book_id = params[:book_id] if params[:book_id]
     end
 
     # GET /admin/books/:book_id/bibclasses/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /admin/books/:book_id/bibclasses
     def create
