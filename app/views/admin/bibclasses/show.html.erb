@@ -1,0 +1,16 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>分類名:</strong>
+    <%= @bibclass.name %>
+  </p>
+  <p>
+    <strong>分類番号:</strong>
+    <%= @bibclass.num %>
+  </p>
+  <p>
+    <strong>備考:</strong>
+    <%= @bibclass.note %>
+  </p>
+  <%= link_to '更新', edit_admin_book_bibclass_path(@bibclass.book, @bibclass) %> |
+  <%= link_to '戻る', admin_book_path(@bibclass.book) %>

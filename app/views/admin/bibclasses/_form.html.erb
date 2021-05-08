@@ -1,0 +1,29 @@
+<%= form_with(model: [:admin, bibclass.book, bibclass]) do |form| %>
+  <% if bibclass.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bibclass.errors.count, "error") %> prohibited this bibclass from being saved:</h2>
+      <ul>
+        <% bibclass.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :name, "分類名" %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :num, "分類番号" %>
+    <%= form.text_field :num %>
+  </div>
+  <div class="field">
+    <%= form.label :note, "備考" %>
+    <%= form.text_area :note %>
+  </div>
+
+  <%= form.hidden_field :book_id %>
+  <div class="actions">
+    <%= form.submit "更新" %>
+  </div>
+<% end %>

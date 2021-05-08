@@ -316,8 +316,8 @@
       </td>
     </tr>
   </table>
-  <%= link_to '更新', edit_admin_bibclass_path(bibclass) %>
-  <%= link_to '削除', [:admin, bibclass], method: :delete, data: { confirm: '本当に削除しますか?' } %>
+  <%= link_to '更新', edit_admin_book_bibclass_path(bibclass.book, bibclass) %>
+  <%= link_to '削除', [:admin, bibclass.book, bibclass], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
   <%= link_to '分類番号追加', new_admin_book_bibclass_path(params[:id]) %>
 
