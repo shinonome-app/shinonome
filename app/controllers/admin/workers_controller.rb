@@ -5,27 +5,27 @@ module Admin
     include Pagy::Backend
     before_action :set_worker, only: %i[show edit update destroy]
 
-    # GET /workers
+    # GET /admin/workers
     def index
       @pagy, @workers = pagy(Worker.all)
     end
 
-    # GET /workers/1
+    # GET /admin/workers/1
     def show
       @books = Book.where(worker: @worker).order(updated_at: :desc)
     end
 
-    # GET /workers/new
+    # GET /admin/workers/new
     def new
       @worker = Worker.new
     end
 
-    # GET /workers/1/edit
+    # GET /admin/workers/1/edit
     def edit
       @worker = Worker.find(params[:id])
     end
 
-    # POST /workers
+    # POST /admin/workers
     def create
       @worker = Worker.new(worker_params)
 
@@ -36,7 +36,7 @@ module Admin
       end
     end
 
-    # PATCH/PUT /workers/1
+    # PATCH/PUT /admin/workers/1
     def update
       if @worker.update(worker_params)
         redirect_to [:admin, @worker], notice: 'Worker was successfully updated.'
@@ -45,7 +45,7 @@ module Admin
       end
     end
 
-    # DELETE /workers/1
+    # DELETE /admin/workers/1
     def destroy
       @worker.destroy
       redirect_to admin_workers_url, notice: 'Worker was successfully destroyed.'

@@ -4,23 +4,23 @@ module Admin
   class BookfilesController < ApplicationController
     before_action :set_bookfile, only: %i[show edit update destroy]
 
-    # GET /bookfiles
+    # GET /admin/bookfiles
     def index
       @bookfiles = Bookfile.all
     end
 
-    # GET /bookfiles/1
+    # GET /admin/bookfiles/1
     def show; end
 
-    # GET /bookfiles/new
+    # GET /admin/bookfiles/new
     def new
       @bookfile = Bookfile.new
     end
 
-    # GET /bookfiles/1/edit
+    # GET /admin/bookfiles/1/edit
     def edit; end
 
-    # POST /bookfiles
+    # POST /admin/bookfiles
     def create
       @bookfile = Bookfile.new(bookfile_params)
 
@@ -31,7 +31,7 @@ module Admin
       end
     end
 
-    # PATCH/PUT /bookfiles/1
+    # PATCH/PUT /admin/bookfiles/1
     def update
       if @bookfile.update(bookfile_params)
         redirect_to @bookfile, notice: 'Bookfile was successfully updated.'
@@ -40,7 +40,7 @@ module Admin
       end
     end
 
-    # DELETE /bookfiles/1
+    # DELETE /admin/bookfiles/1
     def destroy
       @bookfile.destroy
       redirect_to bookfiles_url, notice: 'Bookfile was successfully destroyed.'

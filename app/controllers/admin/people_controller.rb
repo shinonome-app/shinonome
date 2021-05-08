@@ -5,23 +5,23 @@ module Admin
     include Pagy::Backend
     before_action :set_person, only: %i[show edit update destroy]
 
-    # GET /people
+    # GET /admin/people
     def index
       @pagy, @people = pagy(Person.all)
     end
 
-    # GET /people/1
+    # GET /admin/people/1
     def show; end
 
-    # GET /people/new
+    # GET /admin/people/new
     def new
       @person = Person.new
     end
 
-    # GET /people/1/edit
+    # GET /admin/people/1/edit
     def edit; end
 
-    # POST /people
+    # POST /admin/people
     def create
       @person = Person.new(person_params)
 
@@ -32,7 +32,7 @@ module Admin
       end
     end
 
-    # PATCH/PUT /people/1
+    # PATCH/PUT /admin/people/1
     def update
       if @person.update(person_params)
         redirect_to [:admin, @person], notice: 'Person was successfully updated.'
@@ -41,7 +41,7 @@ module Admin
       end
     end
 
-    # DELETE /people/1
+    # DELETE /admin/people/1
     def destroy
       @person.destroy
       redirect_to admin_people_url, notice: 'Person was successfully destroyed.'

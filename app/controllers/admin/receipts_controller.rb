@@ -5,23 +5,23 @@ module Admin
   class ReceiptsController < Admin::ApplicationController
     before_action :set_receipt, only: %i[show edit update destroy]
 
-    # GET /receipts
+    # GET /admin/receipts
     def index
       @receipts = Receipt.all
     end
 
-    # GET /receipts/1
+    # GET /admin/receipts/1
     def show; end
 
-    # GET /receipts/new
+    # GET /admin/receipts/new
     def new
       @receipt = Receipt.new
     end
 
-    # GET /receipts/1/edit
+    # GET /admin/receipts/1/edit
     def edit; end
 
-    # POST /receipts
+    # POST /admin/receipts
     def create
       @receipt = Receipt.new(receipt_params)
 
@@ -32,7 +32,7 @@ module Admin
       end
     end
 
-    # PATCH/PUT /receipts/1
+    # PATCH/PUT /admin/receipts/1
     def update
       if @receipt.update(receipt_params)
         redirect_to [:admin, @receipt], notice: 'Receipt was successfully updated.'
@@ -41,7 +41,7 @@ module Admin
       end
     end
 
-    # DELETE /receipts/1
+    # DELETE /admin/receipts/1
     def destroy
       @receipt.destroy
       redirect_to admin_receipts_url, notice: 'Receipt was successfully destroyed.'

@@ -6,23 +6,23 @@ module Admin
     include Pagy::Backend
     before_action :set_news, only: %i[show edit update destroy]
 
-    # GET /news
+    # GET /admin/news
     def index
       @pagy, @news = pagy(News.order(published_on: :desc, created_at: :desc).all, items: 50)
     end
 
-    # GET /news/1
+    # GET /admin/news/1
     def show; end
 
-    # GET /news/new
+    # GET /admin/news/new
     def new
       @news = News.new
     end
 
-    # GET /news/1/edit
+    # GET /admin/news/1/edit
     def edit; end
 
-    # POST /news
+    # POST /admin/news
     def create
       @news = News.new(news_params)
 
@@ -33,7 +33,7 @@ module Admin
       end
     end
 
-    # PATCH/PUT /news/1
+    # PATCH/PUT /admin/news/1
     def update
       if @news.update(news_params)
         redirect_to [:admin, @news], notice: 'News was successfully updated.'
@@ -42,7 +42,7 @@ module Admin
       end
     end
 
-    # DELETE /news/1
+    # DELETE /admin/news/1
     def destroy
       @news.destroy
       redirect_to admin_news_index_url, notice: 'News was successfully destroyed.'
