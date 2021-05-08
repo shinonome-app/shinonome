@@ -1,0 +1,38 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl">工作員関連付け</h2>
+
+  <h2 class="text-2xl">工作員新規登録</h2>
+  <%= link_to '入力新規登録', admin_book_new_worker_assign_path(worker_role_id: 1) %>
+  <%= link_to '校正新規登録', admin_book_new_worker_assign_path(worker_role_id: 2) %>
+
+  <h2 class="text-2xl">工作員検索</h2>
+  <%= form_with(url: admin_book_worker_assigns_path, method: 'get') do |form| %>
+  <table>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名読み", name: "name_kana", value: params[:name_kana])) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名", name: "name", value: params[:name])) %>
+  </table>
+  <input type="submit" name="text" value="検索">
+  <% end %>
+
+  <% if @pagy %>
+  <div>
+    <%= @pagy.count %>件の人物が見つかりました。
+
+    <table>
+      <tr>
+        <th></th>
+        <th>姓名</th>
+        <th>読み</th>
+      </tr>
+      <% @workers.each do |worker| %>
+      <tr>
+        <td><%= worker.id %></td>
+        <td><%= worker.name %></td>
+        <td><%= worker.name_kana %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <% end %>
+</div>

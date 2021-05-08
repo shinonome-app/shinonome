@@ -50,7 +50,12 @@ Rails.application.routes.draw do
       resources :original_books
       resources :workers
       resources :bibclasses
+
+      # resources :worker_assigns, only: %i[index new show]
+      get 'worker_assigns', to: 'books/worker_assigns#index', as: :worker_assigns
+      get 'worker_assigns/new', to: 'books/worker_assigns#new', as: :new_worker_assign
     end
+
     resources :bookfiles
     resources :sites
     resources :original_books

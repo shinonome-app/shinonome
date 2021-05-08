@@ -33,6 +33,8 @@ class Worker < ApplicationRecord
   has_many :book_workers, dependent: :destroy
   has_many :books, through: :book_workers
 
+  accepts_nested_attributes_for :book_workers
+
   scope :with_name_kana_search, lambda { |name_kana, selector|
     case selector.to_i
     when 1 # を含む

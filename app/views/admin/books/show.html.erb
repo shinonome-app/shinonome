@@ -220,6 +220,7 @@
 
   <h2 class="text-2xl">工作員データ</h2>
 
+  <div>
   <% @book.book_workers.order(:worker_role_id).each do |book_worker| %>
   <% worker = book_worker.worker %>
   <h3 class="text-lg"><%= book_worker.worker_role.name %></h3>
@@ -261,6 +262,9 @@
   </table>
   <%= link_to '削除', [:admin, worker], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
+  </div>
+
+  <%= link_to '工作員関連づけ', admin_book_worker_assigns_path(book_id: params[:id]) %>
 
   <h2 class="text-2xl">底本データ</h2>
   <% @book.original_books.order(:booktype_id).each do |book| %>

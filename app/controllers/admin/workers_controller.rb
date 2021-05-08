@@ -59,7 +59,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def worker_params
-      params.require(:worker).permit(:name, :name_kana, :url, :email, :sortkey, :note)
+      params.require(:worker).permit(:name, :name_kana, :url, :email, :sortkey, :note, { book_workers_attributes: %i[book_id worker_role_id] })
     end
   end
 end
