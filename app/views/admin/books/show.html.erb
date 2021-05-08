@@ -1,6 +1,7 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
 
+  <div>
   <h2 class="text-2xl">作品データ</h2>
   <table class="bg-gray-100 my-2">
     <tr>
@@ -138,7 +139,11 @@
       </td>
     </tr>
   </table>
+  <%= link_to '更新', edit_admin_book_path(@book) %>
+  <%= link_to '削除', [:admin, @book], method: :delete, data: { confirm: '本当に削除しますか?' } %>
+  </div>
 
+  <div>
   <h2 class="text-2xl">著者データ</h2>
 
   <% @book.people.each do |person| %>
@@ -209,7 +214,9 @@
       </td>
     </tr>
   </table>
+  <%= link_to '削除', [:admin, person], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
+  </div>
 
   <h2 class="text-2xl">工作員データ</h2>
 
@@ -252,6 +259,7 @@
       </td>
     </tr>
   </table>
+  <%= link_to '削除', [:admin, worker], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
 
   <h2 class="text-2xl">底本データ</h2>
@@ -283,6 +291,8 @@
       <td><%= book.note %></td>
     </tr>
   </table>
+  <%= link_to '更新', edit_admin_original_book_path(book) %>
+  <%= link_to '削除', [:admin, book], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
 
   <h2 class="text-2xl">分類番号データ</h2>
@@ -306,14 +316,19 @@
       </td>
     </tr>
   </table>
+  <%= link_to '更新', edit_admin_bibclass_path(bibclass) %>
+  <%= link_to '削除', [:admin, bibclass], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
+  <%= link_to '分類番号追加', new_admin_book_bibclass_path(params[:id]) %>
 
   <h2 class="text-2xl">ファイル</h2>
 
-  <%= link_to '追加', new_admin_bookfile_path %>
+  <%= link_to 'ファイル追加', new_admin_book_bookfile_path(params[:id]) %>
 
+  <div>
   <h2 class="text-2xl">関連サイトデータ</h2>
 
+  <div>
   <% @book.sites.each do |site| %>
   <table class="bg-gray-100 my-2">
     <tr>
@@ -333,7 +348,13 @@
       <td><%= site.note %></td>
     </tr>
   </table>
+  <%= link_to '更新', edit_admin_site_path(site) %>
+  <%= link_to '削除', [:admin, site], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
+  </div>
+
+  <%= link_to '関連サイト追加', new_admin_book_site_path(params[:id]) %>
+  </div>
 
   <%= link_to '更新', edit_admin_book_path(@book) %> |
   <%= link_to '戻る', admin_books_path %>

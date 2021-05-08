@@ -4,25 +4,21 @@ Rails.application.routes.draw do
   get 'top/index'
   root to: 'top#index'
 
-  resources :book_sites
-  resources :original_books
-  resources :book_workers
   resources :workers, only: %i[index show]
+
   resources :receipts, only: %i[new create]
   namespace :receipts do
     resources :previews, only: %i[create]
     resources :thanks, only: %(index)
   end
-  resources :proofreads
-  resources :person_sites
-  resources :book_people
-  resources :base_people
 
+  resources :proofreads
+
+  resources :idlists, only: %i[index]
   namespace :idlists do
     resources :workers, only: %i[index]
     resources :people, only: %i[index]
   end
-  resources :idlists, only: %i[index]
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
@@ -41,8 +37,6 @@ Rails.application.routes.draw do
 
     resources :news
     resources :people
-    resources :sites
-    resources :workers
     namespace :books do
       resources :text_searches, only: %i[index]
       resources :book_index_searches, only: %i[index]
@@ -50,10 +44,27 @@ Rails.application.routes.draw do
       resources :status_searches, only: %i[index]
       resources :unknown_creator_searches, only: %i[index]
     end
-    resources :books
+    resources :books do
+      resources :bookfiles
+      resources :sites
+      resources :original_books
+      resources :workers
+      resources :bibclasses
+    end
     resources :bookfiles
+    resources :sites
+    resources :original_books
+    resources :workers
 
     resources :receipts
+
+    resources :base_people
+
+    # resources :book_sites
+    # resources :book_workers
+    # resources :person_sites
+    # resources :book_people
+
     # resources :kana_types
     # resources :charsets
     # resources :file_encodings
