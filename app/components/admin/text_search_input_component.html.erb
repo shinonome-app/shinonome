@@ -5,7 +5,7 @@
   </label>
   </td>
   <td>
-    <input type="text" name="<%= @name %>">
+    <input type="text" name="<%= @name %>" value="<%= @value %>">
   </td>
   <td>
     <%= @form.select "text_selector_#{@name}", Admin::BooksController::TEXT_SELECTOR, {include_blank: false} %>
