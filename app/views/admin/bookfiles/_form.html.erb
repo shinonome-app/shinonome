@@ -1,4 +1,4 @@
-<%= form_with(model: bookfile) do |form| %>
+<%= form_with(model: [:admin, bookfile]) do |form| %>
   <% if bookfile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bookfile.errors.count, "error") %> prohibited this bookfile from being saved:</h2>
@@ -69,6 +69,11 @@
   <div class="field">
     <%= form.label :note %>
     <%= form.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bookdata %>
+    <%= form.file_field :bookdata %>
   </div>
 
   <div class="actions">

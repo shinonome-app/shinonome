@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   end
   resources :proofreads
   resources :person_sites
-  resources :bookfiles
   resources :book_people
   resources :base_people
 
@@ -52,6 +51,7 @@ Rails.application.routes.draw do
       resources :unknown_creator_searches, only: %i[index]
     end
     resources :books
+    resources :bookfiles
 
     resources :receipts
     # resources :kana_types
