@@ -17,4 +17,6 @@
 class Site < ApplicationRecord
   has_many :book_sites, dependent: :destroy
   has_many :books, through: :book_sites
+
+  accepts_nested_attributes_for :book_sites
 end

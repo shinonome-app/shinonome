@@ -18,7 +18,7 @@
     <%= form.text_field :url %>
   </div>
   <div class="field">
-    <%= form.label :owner_name, "関連サイト名" %>
+    <%= form.label :owner_name, "運営者名" %>
     <%= form.text_field :owner_name %>
   </div>
   <div class="field">
@@ -29,6 +29,9 @@
     <%= form.label :note, "備考" %>
     <%= form.text_area :note %>
   </div>
+    <%= form.fields_for :book_sites do |book_site| %>
+      <%= book_site.hidden_field :book_id %>
+    <% end %>
   <div class="actions">
     <%= form.submit "更新" %>
   </div>

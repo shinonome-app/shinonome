@@ -4,23 +4,31 @@ module Admin
   class SitesController < Admin::ApplicationController
     before_action :set_site, only: %i[show edit update destroy]
 
-    # GET /sites
+    # GET /admin/sites
+    # GET /admin/books/:book_id/sites
     def index
       @sites = Site.all
     end
 
-    # GET /sites/1
-    def show; end
-
-    # GET /sites/new
-    def new
-      @site = Site.new
+    # GET /admin/sites/1
+    def show
     end
 
-    # GET /sites/1/edit
-    def edit; end
+    # GET /admin/sites/new
+    # GET /admin/books/:book_id/sites/new
+    def new
+      @site = Site.new
+      if params[:book_id]
+        @site.book_sites.build(book_id: params[:book_id])
+      end
+    end
 
-    # POST /sites
+    # GET /admin/sites/1/edit
+    # GET /admin/books/:book_id/sites/1/edit
+    def edit
+    end
+
+    # POST /admin/sites
     def create
       @site = Site.new(site_params)
 
@@ -31,7 +39,7 @@ module Admin
       end
     end
 
-    # PATCH/PUT /sites/1
+    # PATCH/PUT /admin/sites/1
     def update
       if @site.update(site_params)
         redirect_to [:admin, @site], notice: 'Site was successfully updated.'
@@ -55,7 +63,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def site_params
-      params.require(:site).permit(:name, :url, :owner_name, :email, :note, :updated_by)
+      params.require(:site).permit(:name, :url, :owner_name, :email, :note, :updated_by, {book_sites_attributes: [:book_id]})
     end
   end
 end
