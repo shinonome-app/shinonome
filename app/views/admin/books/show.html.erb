@@ -331,7 +331,7 @@
   <% @book.bookfiles.each do |bookfile| %>
   <table class="bg-gray-100 my-2">
     <tr>
-      <th class="w-24 text-left">ファイル名</th>
+      <th class="w-24 text-left">ファイル</th>
       <% if bookfile.bookdata.attached? %>
       <td><%= link_to bookfile.filename, rails_blob_url(bookfile.bookdata) %></td>
       <% else %>
@@ -340,11 +340,35 @@
     </tr>
     <tr>
       <th class="w-24 text-left">ファイル形式</th>
-      <td><%= bookfile.filetype_id %></td>
+      <td><%= bookfile.filetype.name %></td>
     </tr>
     <tr>
       <th class="w-24 text-left">圧縮形式</th>
-      <td><%= bookfile.compresstype_id %></td>
+      <td><%= bookfile.compresstype.name %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">ファイルサイズ</th>
+      <td><%= bookfile.filesize %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">初登録日</th>
+      <td><%= bookfile.created_at %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">最終更新日</th>
+      <td><%= bookfile.updated_at %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">修正回数</th>
+      <td><%= bookfile.revision_count %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">ファイルエンコーディング</th>
+      <td><%= bookfile.file_encoding.name %></td>
+    </tr>
+    <tr>
+      <th class="w-24 text-left">文字集合</th>
+      <td><%= bookfile.charset.name %></td>
     </tr>
     <tr>
       <th class="w-24 text-left">備考</th>

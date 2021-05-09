@@ -64,6 +64,9 @@ group :development, :test do
   # Makes dummy data for seeds
   gem 'faker'
   gem 'gimei'
+
+  # Makes zipped bookdata for seeds
+  gem 'rubyzip'
 end
 
 group :development do

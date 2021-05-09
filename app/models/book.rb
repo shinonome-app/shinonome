@@ -69,4 +69,12 @@ class Book < ApplicationRecord
   def translator_text
     book_people.where(role_id: 2).map { |a| a.person.name }.join(', ')
   end
+
+  def inputer_text
+    book_workers.where(worker_role_id: 1).map {|bw| bw.worker.name }.join('、')
+  end
+
+  def proofreader_text
+    book_workers.where(worker_role_id: 2).map {|bw| bw.worker.name }.join('、')
+  end
 end
