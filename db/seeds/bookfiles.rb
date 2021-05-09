@@ -4,12 +4,11 @@ require 'zip'
 require 'tmpdir'
 
 Bookfile.all.each do |bookfile|
-  if bookfile.bookdata.attached?
-    bookfile.bookdata.purge
-  end
+  bookfile.bookdata.purge if bookfile.bookdata.attached?
 end
 Bookfile.connection.execute('TRUNCATE TABLE bookfiles;')
 
+# rubocop:disable Layout/HeredocIndentation
 SAMPLE_TEXT_FORMAT = <<TEXT
 <%= header %>
 
@@ -35,18 +34,22 @@ SAMPLE_TEXT_FORMAT = <<TEXT
 
 <%= footer %>
 TEXT
+# rubocop:enable Layout/HeredocIndentation
 
 ## Bookfiles
 
 def erubi_convert(template, book)
+  # rubocop:disable Lint/UselessAssignment
   header = generate_header(book)
   footer = generate_footer(book)
-  eval(Erubi::Engine.new(template).src).gsub("\n","\r\n")
+
+  eval(Erubi::Engine.new(template).src).gsub("\n", "\r\n") # rubocop:disable Security/Eval
+  # rubocop:enable Lint/UselessAssignment
 end
 
 def generate_header(book)
   buf = "#{book.title}\n"
-  buf << "#{book.original_title}\n"if book.original_title
+  buf << "#{book.original_title}\n" if book.original_title
   buf << "#{book.subtitle}\n" if book.subtitle
   book.book_people.order(:role_id).each do |book_person|
     buf << "#{book_person.person.name}\n"
@@ -56,27 +59,29 @@ def generate_header(book)
 end
 
 def generate_footer(book)
-  buf = "".dup
+  buf = ''.dup
   book.original_books.order(:booktype_id).each do |original_book|
     booktype = original_book.booktype.name
     buf << "#{booktype}：「#{original_book.title}」#{original_book.publisher}\n"
     buf << "　　　#{original_book.first_pubdate}#{original_book.input_edition}発行\n"
   end
-  if book.inputer_text.blank?
-    buf << "入力：？？？\n"
-  else
-    buf << "入力：#{book.inputer_text}\n"
-  end
-  if book.proofreader_text.blank?
-    buf << "校正：？？？\n"
-  else
-    buf << "校正：#{book.proofreader_text}\n"
-  end
-  buf << "#{book.updated_at.strftime('%Y年%m月%d日')}作成\n".gsub('年0','年').gsub('月0','月')
+  buf << if book.inputer_text.blank?
+           "入力：？？？\n"
+         else
+           "入力：#{book.inputer_text}\n"
+         end
+  buf << if book.proofreader_text.blank?
+           "校正：？？？\n"
+         else
+           "校正：#{book.proofreader_text}\n"
+         end
+  buf << "#{book.updated_at.strftime('%Y年%m月%d日')}作成\n".gsub('年0', '年').gsub('月0', '月')
+  # rubocop:disable Layout/HeredocIndentation
   buf << <<-TEXT
 青空文庫作成ファイル：
 このファイルは、インターネットの図書館、青空文庫（https://www.aozora.gr.jp/）で作られました。入力、校正、制作にあたったのは、ボランティアの皆さんです。
-TEXT
+  TEXT
+  # rubocop:enable Layout/HeredocIndentation
 
   buf
 end
@@ -86,7 +91,6 @@ def generate_sample_zip(bookfile)
   zipfile_name = nil
 
   Dir.mktmpdir do |folder|
-
     sample_filename = 'sample.txt'
     sample_path = File.join(folder, sample_filename)
     File.write(sample_path, erubi_convert(SAMPLE_TEXT_FORMAT, book), encoding: 'Shift_JIS')
