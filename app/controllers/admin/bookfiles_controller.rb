@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class BookfilesController < ApplicationController
+  class BookfilesController < Admin::ApplicationController
     before_action :set_bookfile, only: %i[show edit update destroy]
 
     # GET /admin/bookfiles
@@ -15,6 +15,7 @@ module Admin
     # GET /admin/bookfiles/new
     def new
       @bookfile = Bookfile.new
+      @bookfile.book_id = params[:book_id]
     end
 
     # GET /admin/bookfiles/1/edit
@@ -23,9 +24,11 @@ module Admin
     # POST /admin/bookfiles
     def create
       @bookfile = Bookfile.new(bookfile_params)
+      @bookfile.user = current_admin_user
+      @bookfile.filename = @bookfile.bookdata.filename
 
       if @bookfile.save
-        redirect_to @bookfile, notice: 'Bookfile was successfully created.'
+        redirect_to [:admin, @bookfile.book], notice: 'Bookfile was successfully created.'
       else
         render :new
       end
@@ -56,7 +59,7 @@ module Admin
     # Only allow a list of trusted parameters through.
     def bookfile_params
       params.require(:bookfile).permit(:book_id, :filetype_id, :compresstype_id, :filesize, :user_id, :url, :filename,
-                                       :opened_on, :fixnum, :file_encoding_id, :charset_id, :note)
+                                       :opened_on, :fixnum, :file_encoding_id, :charset_id, :note, :bookdata)
     end
   end
 end

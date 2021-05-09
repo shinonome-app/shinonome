@@ -27,4 +27,6 @@ class Bookfile < ApplicationRecord
   belongs_to :user
   belongs_to :file_encoding
   belongs_to :charset
+
+  has_one_attached :bookdata
 end

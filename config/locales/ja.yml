@@ -70,4 +70,16 @@ ja:
         sortkey: "ソート用読み"
       book_worker:
         worker_role_id: "役割"
+      bookfile:
+        filetype_id: "ファイル形式"
+        compresstype_id: "圧縮形式"
+        filesize: "ファイルサイズ"
+        url: "URL"
+        filename: "ファイル名"
+        opened_on: "状態の開始日"
+        fixnum: "修正回数"
+        file_encoding_id: "ファイルエンコーディング"
+        charset_id: "文字集合"
+        note: "備考"
+
 
