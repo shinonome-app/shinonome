@@ -5,7 +5,7 @@
 # Table name: book_statuses
 #
 #  id         :bigint           not null, primary key
-#  name       :string           not null
+#  name       :text             not null
 #  sort_order :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

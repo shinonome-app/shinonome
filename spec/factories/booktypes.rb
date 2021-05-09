@@ -5,7 +5,7 @@
 # Table name: booktypes
 #
 #  id         :bigint           not null, primary key
-#  name       :string
+#  name       :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

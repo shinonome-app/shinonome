@@ -5,7 +5,7 @@
 # Table name: bookfiles
 #
 #  id               :bigint           not null, primary key
-#  filename         :text
+#  filename         :text             not null
 #  filesize         :integer
 #  fixnum           :integer
 #  note             :text
@@ -13,7 +13,7 @@
 #  url              :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  book_id          :bigint
+#  book_id          :bigint           not null
 #  charset_id       :bigint
 #  compresstype_id  :bigint
 #  file_encoding_id :bigint

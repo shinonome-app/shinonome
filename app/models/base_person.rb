@@ -7,7 +7,7 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  person_id  :bigint
+#  person_id  :bigint           not null
 #
 class BasePerson < ApplicationRecord
   belongs_to :person
