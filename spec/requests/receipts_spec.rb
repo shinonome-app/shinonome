@@ -26,7 +26,7 @@ RSpec.describe '/receipts', type: :request do
   end
 
   describe 'GET /index' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       Receipt.create! valid_attributes
       get receipts_url
       expect(response).to be_successful
@@ -34,7 +34,7 @@ RSpec.describe '/receipts', type: :request do
   end
 
   describe 'GET /show' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       receipt = Receipt.create! valid_attributes
       get receipt_url(receipt)
       expect(response).to be_successful
@@ -42,14 +42,14 @@ RSpec.describe '/receipts', type: :request do
   end
 
   describe 'GET /new' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       get new_receipt_url
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
-    it 'render a successful response' do
+    xit 'render a successful response' do
       receipt = Receipt.create! valid_attributes
       get edit_receipt_url(receipt)
       expect(response).to be_successful
@@ -58,26 +58,26 @@ RSpec.describe '/receipts', type: :request do
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new Receipt' do
+      xit 'creates a new Receipt' do
         expect do
           post receipts_url, params: { receipt: valid_attributes }
         end.to change(Receipt, :count).by(1)
       end
 
-      it 'redirects to the created receipt' do
+      xit 'redirects to the created receipt' do
         post receipts_url, params: { receipt: valid_attributes }
         expect(response).to redirect_to(receipt_url(Receipt.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Receipt' do
+      xit 'does not create a new Receipt' do
         expect do
           post receipts_url, params: { receipt: invalid_attributes }
         end.to change(Receipt, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      xit "renders a successful response (i.e. to display the 'new' template)" do
         post receipts_url, params: { receipt: invalid_attributes }
         expect(response).to be_successful
       end
@@ -90,14 +90,14 @@ RSpec.describe '/receipts', type: :request do
         skip('Add a hash of attributes valid for your model')
       end
 
-      it 'updates the requested receipt' do
+      xit 'updates the requested receipt' do
         receipt = Receipt.create! valid_attributes
         patch receipt_url(receipt), params: { receipt: new_attributes }
         receipt.reload
         skip('Add assertions for updated state')
       end
 
-      it 'redirects to the receipt' do
+      xit 'redirects to the receipt' do
         receipt = Receipt.create! valid_attributes
         patch receipt_url(receipt), params: { receipt: new_attributes }
         receipt.reload
@@ -106,7 +106,7 @@ RSpec.describe '/receipts', type: :request do
     end
 
     context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      xit "renders a successful response (i.e. to display the 'edit' template)" do
         receipt = Receipt.create! valid_attributes
         patch receipt_url(receipt), params: { receipt: invalid_attributes }
         expect(response).to be_successful
@@ -115,14 +115,14 @@ RSpec.describe '/receipts', type: :request do
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested receipt' do
+    xit 'destroys the requested receipt' do
       receipt = Receipt.create! valid_attributes
       expect do
         delete receipt_url(receipt)
       end.to change(Receipt, :count).by(-1)
     end
 
-    it 'redirects to the receipts list' do
+    xit 'redirects to the receipts list' do
       receipt = Receipt.create! valid_attributes
       delete receipt_url(receipt)
       expect(response).to redirect_to(receipts_url)

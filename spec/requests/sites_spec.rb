@@ -26,7 +26,7 @@ RSpec.describe '/sites', type: :request do
   end
 
   describe 'GET /index' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       Site.create! valid_attributes
       get sites_url
       expect(response).to be_successful
@@ -34,7 +34,7 @@ RSpec.describe '/sites', type: :request do
   end
 
   describe 'GET /show' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       site = Site.create! valid_attributes
       get site_url(site)
       expect(response).to be_successful
@@ -42,14 +42,14 @@ RSpec.describe '/sites', type: :request do
   end
 
   describe 'GET /new' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       get new_site_url
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
-    it 'render a successful response' do
+    xit 'render a successful response' do
       site = Site.create! valid_attributes
       get edit_site_url(site)
       expect(response).to be_successful
@@ -58,26 +58,26 @@ RSpec.describe '/sites', type: :request do
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new Site' do
+      xit 'creates a new Site' do
         expect do
           post sites_url, params: { site: valid_attributes }
         end.to change(Site, :count).by(1)
       end
 
-      it 'redirects to the created site' do
+      xit 'redirects to the created site' do
         post sites_url, params: { site: valid_attributes }
         expect(response).to redirect_to(site_url(Site.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Site' do
+      xit 'does not create a new Site' do
         expect do
           post sites_url, params: { site: invalid_attributes }
         end.to change(Site, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      xit "renders a successful response (i.e. to display the 'new' template)" do
         post sites_url, params: { site: invalid_attributes }
         expect(response).to be_successful
       end
@@ -90,14 +90,14 @@ RSpec.describe '/sites', type: :request do
         skip('Add a hash of attributes valid for your model')
       end
 
-      it 'updates the requested site' do
+      xit 'updates the requested site' do
         site = Site.create! valid_attributes
         patch site_url(site), params: { site: new_attributes }
         site.reload
         skip('Add assertions for updated state')
       end
 
-      it 'redirects to the site' do
+      xit 'redirects to the site' do
         site = Site.create! valid_attributes
         patch site_url(site), params: { site: new_attributes }
         site.reload
@@ -106,7 +106,7 @@ RSpec.describe '/sites', type: :request do
     end
 
     context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      xit "renders a successful response (i.e. to display the 'edit' template)" do
         site = Site.create! valid_attributes
         patch site_url(site), params: { site: invalid_attributes }
         expect(response).to be_successful
@@ -115,14 +115,14 @@ RSpec.describe '/sites', type: :request do
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested site' do
+    xit 'destroys the requested site' do
       site = Site.create! valid_attributes
       expect do
         delete site_url(site)
       end.to change(Site, :count).by(-1)
     end
 
-    it 'redirects to the sites list' do
+    xit 'redirects to the sites list' do
       site = Site.create! valid_attributes
       delete site_url(site)
       expect(response).to redirect_to(sites_url)

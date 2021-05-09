@@ -26,7 +26,7 @@ RSpec.describe '/proofreads', type: :request do
   end
 
   describe 'GET /index' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       Proofread.create! valid_attributes
       get proofreads_url
       expect(response).to be_successful
@@ -34,7 +34,7 @@ RSpec.describe '/proofreads', type: :request do
   end
 
   describe 'GET /show' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       proofread = Proofread.create! valid_attributes
       get proofread_url(proofread)
       expect(response).to be_successful
@@ -42,14 +42,14 @@ RSpec.describe '/proofreads', type: :request do
   end
 
   describe 'GET /new' do
-    it 'renders a successful response' do
+    xit 'renders a successful response' do
       get new_proofread_url
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
-    it 'render a successful response' do
+    xit 'render a successful response' do
       proofread = Proofread.create! valid_attributes
       get edit_proofread_url(proofread)
       expect(response).to be_successful
@@ -58,26 +58,26 @@ RSpec.describe '/proofreads', type: :request do
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new Proofread' do
+      xit 'creates a new Proofread' do
         expect do
           post proofreads_url, params: { proofread: valid_attributes }
         end.to change(Proofread, :count).by(1)
       end
 
-      it 'redirects to the created proofread' do
+      xit 'redirects to the created proofread' do
         post proofreads_url, params: { proofread: valid_attributes }
         expect(response).to redirect_to(proofread_url(Proofread.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Proofread' do
+      xit 'does not create a new Proofread' do
         expect do
           post proofreads_url, params: { proofread: invalid_attributes }
         end.to change(Proofread, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      xit "renders a successful response (i.e. to display the 'new' template)" do
         post proofreads_url, params: { proofread: invalid_attributes }
         expect(response).to be_successful
       end
@@ -90,14 +90,14 @@ RSpec.describe '/proofreads', type: :request do
         skip('Add a hash of attributes valid for your model')
       end
 
-      it 'updates the requested proofread' do
+      xit 'updates the requested proofread' do
         proofread = Proofread.create! valid_attributes
         patch proofread_url(proofread), params: { proofread: new_attributes }
         proofread.reload
         skip('Add assertions for updated state')
       end
 
-      it 'redirects to the proofread' do
+      xit 'redirects to the proofread' do
         proofread = Proofread.create! valid_attributes
         patch proofread_url(proofread), params: { proofread: new_attributes }
         proofread.reload
@@ -106,7 +106,7 @@ RSpec.describe '/proofreads', type: :request do
     end
 
     context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      xit "renders a successful response (i.e. to display the 'edit' template)" do
         proofread = Proofread.create! valid_attributes
         patch proofread_url(proofread), params: { proofread: invalid_attributes }
         expect(response).to be_successful
@@ -115,14 +115,14 @@ RSpec.describe '/proofreads', type: :request do
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested proofread' do
+    xit 'destroys the requested proofread' do
       proofread = Proofread.create! valid_attributes
       expect do
         delete proofread_url(proofread)
       end.to change(Proofread, :count).by(-1)
     end
 
-    it 'redirects to the proofreads list' do
+    xit 'redirects to the proofreads list' do
       proofread = Proofread.create! valid_attributes
       delete proofread_url(proofread)
       expect(response).to redirect_to(proofreads_url)
