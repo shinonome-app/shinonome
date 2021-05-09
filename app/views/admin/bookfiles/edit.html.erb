@@ -1,6 +1,5 @@
-<h1>Editing Bookfile</h1>
+<h1>ファイル更新</h1>
 
 <%= render 'form', bookfile: @bookfile %>
 
-<%= link_to 'Show', @bookfile %> |
-<%= link_to 'Back', bookfiles_path %>
+<%= link_to '戻る', admin_book_path(@bookfile.book) %>

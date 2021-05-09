@@ -7,9 +7,9 @@
 #  id               :bigint           not null, primary key
 #  filename         :text             not null
 #  filesize         :integer
-#  fixnum           :integer
 #  note             :text
 #  opened_on        :date
+#  revision_count   :integer
 #  url              :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -30,7 +30,7 @@ FactoryBot.define do
     url { 'MyText' }
     filename { 'MyText' }
     opened_on { '2021-04-29' }
-    fixnum { 1 }
+    revision_count { 1 }
     file_encoding_id { '' }
     charset_id { 1 }
     note { 'MyText' }

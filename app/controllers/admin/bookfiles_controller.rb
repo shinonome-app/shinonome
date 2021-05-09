@@ -37,7 +37,10 @@ module Admin
     # PATCH/PUT /admin/bookfiles/1
     def update
       if @bookfile.update(bookfile_params)
-        redirect_to @bookfile, notice: 'Bookfile was successfully updated.'
+        @bookfile.user = current_admin_user
+        @bookfile.filename = @bookfile.bookdata.filename
+        @bookfile.save!
+        redirect_to [:admin, @bookfile.book], notice: 'Bookfile was successfully updated.'
       else
         render :edit
       end
@@ -59,7 +62,7 @@ module Admin
     # Only allow a list of trusted parameters through.
     def bookfile_params
       params.require(:bookfile).permit(:book_id, :filetype_id, :compresstype_id, :filesize, :user_id, :url, :filename,
-                                       :opened_on, :fixnum, :file_encoding_id, :charset_id, :note, :bookdata)
+                                       :opened_on, :revision_count, :file_encoding_id, :charset_id, :note, :bookdata)
     end
   end
 end

@@ -335,7 +335,7 @@
       <% if bookfile.bookdata.attached? %>
       <td><%= link_to bookfile.filename, rails_blob_url(bookfile.bookdata) %></td>
       <% else %>
-      <td> - </td>
+      <td><%= bookfile.filename %></td>
       <% end %>
     </tr>
     <tr>
@@ -351,8 +351,8 @@
       <td><%= bookfile.note %></td>
     </tr>
   </table>
-  <%# = link_to '更新', edit_admin_bookfile_path(bookfile) %>
-  <%# = link_to '削除', [:admin, bookfile], method: :delete, data: { confirm: '本当に削除しますか?' } %>
+  <%= link_to '更新', edit_admin_book_bookfile_path(bookfile.book, bookfile) %>
+  <%= link_to '削除', [:admin, bookfile.book, bookfile], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
   </div>
 

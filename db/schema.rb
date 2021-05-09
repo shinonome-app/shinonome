@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.text "url"
     t.text "filename", null: false
     t.date "opened_on"
-    t.integer "fixnum"
+    t.integer "revision_count"
     t.bigint "file_encoding_id"
     t.bigint "charset_id"
     t.text "note"

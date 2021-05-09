@@ -1,51 +1,46 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-<p id="notice"><%= notice %></p>
-
-<h1>Bookfiles</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Book</th>
-      <th>Filetype</th>
-      <th>Compresstype</th>
-      <th>Filesize</th>
-      <th>User</th>
-      <th>Url</th>
-      <th>Filename</th>
-      <th>Opened on</th>
-      <th>Fixnum</th>
-      <th>File encoding</th>
-      <th>Charset</th>
-      <th>Note</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookfiles.each do |bookfile| %>
+  <p id="notice"><%= notice %></p>
+  <h1>Bookfiles</h1>
+  <table>
+    <thead>
       <tr>
-        <td><%= bookfile.book_id %></td>
-        <td><%= bookfile.filetype_id %></td>
-        <td><%= bookfile.compresstype_id %></td>
-        <td><%= bookfile.filesize %></td>
-        <td><%= bookfile.user_id %></td>
-        <td><%= bookfile.url %></td>
-        <td><%= bookfile.filename %></td>
-        <td><%= bookfile.opened_on %></td>
-        <td><%= bookfile.fixnum %></td>
-        <td><%= bookfile.file_encoding_id %></td>
-        <td><%= bookfile.charset_id %></td>
-        <td><%= bookfile.note %></td>
-        <td><%= link_to 'Show', bookfile %></td>
-        <td><%= link_to 'Edit', edit_bookfile_path(bookfile) %></td>
-        <td><%= link_to 'Destroy', bookfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Book</th>
+        <th>Filetype</th>
+        <th>Compresstype</th>
+        <th>Filesize</th>
+        <th>User</th>
+        <th>Url</th>
+        <th>Filename</th>
+        <th>Opened on</th>
+        <th>revision_count</th>
+        <th>File encoding</th>
+        <th>Charset</th>
+        <th>Note</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bookfile', new_bookfile_path %>
+    </thead>
+    <tbody>
+      <% @bookfiles.each do |bookfile| %>
+        <tr>
+          <td><%= bookfile.book_id %></td>
+          <td><%= bookfile.filetype_id %></td>
+          <td><%= bookfile.compresstype_id %></td>
+          <td><%= bookfile.filesize %></td>
+          <td><%= bookfile.user_id %></td>
+          <td><%= bookfile.url %></td>
+          <td><%= bookfile.filename %></td>
+          <td><%= bookfile.opened_on %></td>
+          <td><%= bookfile.revision_count %></td>
+          <td><%= bookfile.file_encoding_id %></td>
+          <td><%= bookfile.charset_id %></td>
+          <td><%= bookfile.note %></td>
+          <td><%= link_to 'Show', bookfile %></td>
+          <td><%= link_to 'Edit', edit_bookfile_path(bookfile) %></td>
+          <td><%= link_to 'Destroy', bookfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Bookfile', new_bookfile_path %>
 </div>

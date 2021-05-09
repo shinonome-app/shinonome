@@ -1,64 +1,51 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Book:</strong>
   <%= @bookfile.book_id %>
 </p>
-
 <p>
   <strong>Filetype:</strong>
   <%= @bookfile.filetype_id %>
 </p>
-
 <p>
   <strong>Compresstype:</strong>
   <%= @bookfile.compresstype_id %>
 </p>
-
 <p>
   <strong>Filesize:</strong>
   <%= @bookfile.filesize %>
 </p>
-
 <p>
   <strong>User:</strong>
   <%= @bookfile.user_id %>
 </p>
-
 <p>
   <strong>Url:</strong>
   <%= @bookfile.url %>
 </p>
-
 <p>
   <strong>Filename:</strong>
   <%= @bookfile.filename %>
 </p>
-
 <p>
   <strong>Opened on:</strong>
   <%= @bookfile.opened_on %>
 </p>
-
 <p>
-  <strong>Fixnum:</strong>
-  <%= @bookfile.fixnum %>
+  <strong>revision_count:</strong>
+  <%= @bookfile.revision_count %>
 </p>
-
 <p>
   <strong>File encoding:</strong>
   <%= @bookfile.file_encoding_id %>
 </p>
-
 <p>
   <strong>Charset:</strong>
   <%= @bookfile.charset_id %>
 </p>
-
 <p>
   <strong>Note:</strong>
   <%= @bookfile.note %>
 </p>
-
 <%= link_to 'Edit', edit_bookfile_path(@bookfile) %> |
 <%= link_to 'Back', bookfiles_path %>

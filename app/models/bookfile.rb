@@ -7,9 +7,9 @@
 #  id               :bigint           not null, primary key
 #  filename         :text             not null
 #  filesize         :integer
-#  fixnum           :integer
 #  note             :text
 #  opened_on        :date
+#  revision_count   :integer
 #  url              :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
