@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Idlists', type: :request do
-  describe 'GET /index' do
+  describe 'GET /idlists/' do
     it 'returns http success' do
-      get '/idlists/index'
+      get '/idlists/'
       expect(response).to have_http_status(:success)
     end
   end
