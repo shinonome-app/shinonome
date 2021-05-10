@@ -13,4 +13,5 @@
 #  updated_at   :datetime         not null
 #
 class News < ApplicationRecord
+  validates :title, :body, :flag, presence: true
 end

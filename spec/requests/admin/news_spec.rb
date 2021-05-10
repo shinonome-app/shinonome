@@ -14,118 +14,147 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/news', type: :request do
+RSpec.describe '/admin/news', type: :request do
   # News. As you add validations to News, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      title: "テスト",
+      body: "テストです",
+      flag: true,
+      published_on: Time.zone.parse("2021-05-04")
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      title: nil,
+      body: "テストです",
+      flag: true,
+      published_on: Time.zone.parse("2021-05-04")
+    }
   end
 
-  describe 'GET /index' do
+  let(:user) { create(:user) }
+
+  describe 'GET /admin/news/' do
+    before { sign_in(user) }
     it 'renders a successful response' do
       News.create! valid_attributes
-      get news_index_url
+      get admin_news_index_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /show' do
+  describe 'GET /admin/admin/show' do
+    before { sign_in(user) }
     it 'renders a successful response' do
       news = News.create! valid_attributes
-      get news_url(news)
+      get admin_news_url(news)
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /new' do
+  describe 'GET /admin/news/new' do
+    before { sign_in(user) }
+
     it 'renders a successful response' do
-      get new_news_url
+      get new_admin_news_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /edit' do
+  describe 'GET /admin/news/edit' do
+    before { sign_in(user) }
+
     it 'render a successful response' do
       news = News.create! valid_attributes
-      get edit_news_url(news)
+      get edit_admin_news_url(news)
       expect(response).to be_successful
     end
   end
 
-  describe 'POST /create' do
+  describe 'POST /admin/news/create' do
+    before { sign_in user }
+
     context 'with valid parameters' do
       it 'creates a new News' do
         expect do
-          post news_index_url, params: { news: valid_attributes }
+          post admin_news_index_url, params: { news: valid_attributes }
         end.to change(News, :count).by(1)
       end
 
       it 'redirects to the created news' do
-        post news_index_url, params: { news: valid_attributes }
-        expect(response).to redirect_to(news_url(News.last))
+        post admin_news_index_url, params: { news: valid_attributes }
+        expect(response).to redirect_to(admin_news_url(News.last))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new News' do
         expect do
-          post news_index_url, params: { news: invalid_attributes }
+          post admin_news_index_url, params: { news: invalid_attributes }
         end.to change(News, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post news_index_url, params: { news: invalid_attributes }
+        post admin_news_index_url, params: { news: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe 'PATCH /update' do
+    before { sign_in user }
+
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          title: "テスト2",
+          body: "テスト2です",
+          flag: true,
+          published_on: Time.zone.parse("2021-05-04")
+        }
       end
 
       it 'updates the requested news' do
         news = News.create! valid_attributes
-        patch news_url(news), params: { news: new_attributes }
+        patch admin_news_url(news), params: { news: new_attributes }
         news.reload
-        skip('Add assertions for updated state')
+        expect(news.title).to eq "テスト2"
       end
 
       it 'redirects to the news' do
         news = News.create! valid_attributes
-        patch news_url(news), params: { news: new_attributes }
+        patch admin_news_url(news), params: { news: new_attributes }
         news.reload
-        expect(response).to redirect_to(news_url(news))
+        expect(response).to redirect_to(admin_news_url(news))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         news = News.create! valid_attributes
-        patch news_url(news), params: { news: invalid_attributes }
+        patch admin_news_url(news), params: { news: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe 'DELETE /destroy' do
+    before { sign_in user }
+
     it 'destroys the requested news' do
       news = News.create! valid_attributes
       expect do
-        delete news_url(news)
+        delete admin_news_url(news)
       end.to change(News, :count).by(-1)
     end
 
     it 'redirects to the news list' do
       news = News.create! valid_attributes
-      delete news_url(news)
-      expect(response).to redirect_to(news_index_url)
+      delete admin_news_url(news)
+      expect(response).to redirect_to(admin_news_index_url)
     end
   end
 end

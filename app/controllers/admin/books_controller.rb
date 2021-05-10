@@ -33,6 +33,7 @@ module Admin
     # POST /books
     def create
       @book = Book.new(book_params)
+      @book.user = current_admin_user
 
       if @book.save
         redirect_to [:admin, @book], notice: 'Book was successfully created.'
@@ -43,7 +44,8 @@ module Admin
 
     # PATCH/PUT /books/1
     def update
-      if @book.update(book_params)
+      params2 = book_params.merge({user_id: current_admin_user.id})
+      if @book.update(params2)
         redirect_to [:admin, @book], notice: 'Book was successfully updated.'
       else
         render :edit
@@ -67,7 +69,7 @@ module Admin
     def book_params
       params.require(:book).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
                                    :original_title, :kana_type_id, :author_display_name, :first_appearance, :description,
-                                   :description_person_id, :status, :started_on, :copyright_flag, :note, :orig_text,
+                                   :description_person_id, :book_status_id, :started_on, :copyright_flag, :note, :orig_text,
                                    :updated_at, :user_id, :update_flag, :sortkey)
     end
   end

@@ -3,9 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::Books::BookIndexSearches', type: :request do
-  describe 'GET /index' do
+  before { sign_in(user) }
+  let(:user) { create(:user) }
+
+  describe 'GET /admin/books/book_index_searchers' do
     it 'returns http success' do
-      get '/admin/books/book_index_searches/index'
+      get '/admin/books/book_index_searches'
       expect(response).to have_http_status(:success)
     end
   end

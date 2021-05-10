@@ -14,118 +14,152 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/books', type: :request do
+RSpec.describe '/admin/books', type: :request do
   # Book. As you add validations to Book, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      title: "テスト",
+      title_kana: "てすと",
+      copyright_flag: false,
+      started_on: Time.zone.parse("2021-05-06"),
+      book_status_id: book_status.id,
+      note: "備考1",
+      user_id: user.id,
+      kana_type_id: kana_type.id,
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      title: nil,
+      title_kana: "てすと",
+      copyright_flag: false,
+      started_on: Time.zone.parse("2021-05-06"),
+      book_status_id: 1,
+      note: "備考1",
+    }
   end
 
-  describe 'GET /index' do
+  let(:user) { create(:user, email: "user2@example.com", username: "user2") }
+  let(:kana_type) { create(:kana_type) }
+  let(:book_status) { create(:book_status) }
+  before { sign_in(user) }
+
+  describe 'GET /admin/books' do
+    let(:book) { create(:book) }
+
     it 'renders a successful response' do
-      Book.create! valid_attributes
-      get books_url
+      get admin_books_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /show' do
+  describe 'GET /admin/books/show' do
+    let(:book) { create(:book) }
+
     it 'renders a successful response' do
-      book = Book.create! valid_attributes
-      get book_url(book)
+      get admin_book_url(book)
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /new' do
+  describe 'GET /admin/books/new' do
     it 'renders a successful response' do
-      get new_book_url
+      get new_admin_book_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /edit' do
+  describe 'GET /admin/books/edit' do
+    let(:book) { create(:book) }
+
     it 'render a successful response' do
-      book = Book.create! valid_attributes
-      get edit_book_url(book)
+      get edit_admin_book_url(book)
       expect(response).to be_successful
     end
   end
 
-  describe 'POST /create' do
+  describe 'POST /adin/books/create' do
+    let!(:book) { create(:book) }
+
     context 'with valid parameters' do
       it 'creates a new Book' do
         expect do
-          post books_url, params: { book: valid_attributes }
+          post admin_books_url, params: { book: valid_attributes }
         end.to change(Book, :count).by(1)
       end
 
       it 'redirects to the created book' do
-        post books_url, params: { book: valid_attributes }
-        expect(response).to redirect_to(book_url(Book.last))
+        post admin_books_url, params: { book: valid_attributes }
+        expect(response).to redirect_to(admin_book_url(Book.last))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new Book' do
         expect do
-          post books_url, params: { book: invalid_attributes }
+          post admin_books_url, params: { book: invalid_attributes }
         end.to change(Book, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post books_url, params: { book: invalid_attributes }
+        post admin_books_url, params: { book: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
-  describe 'PATCH /update' do
+  describe 'PATCH /admin/books/update' do
+    let!(:book) { create(:book) }
+
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          title: "テスト2",
+          title_kana: "てすとに",
+          copyright_flag: false,
+          started_on: Time.zone.parse("2021-05-06"),
+          book_status_id: book_status.id,
+          note: "備考2",
+          user_id: user.id,
+          kana_type_id: kana_type.id,
+        }
       end
 
       it 'updates the requested book' do
-        book = Book.create! valid_attributes
-        patch book_url(book), params: { book: new_attributes }
+        patch admin_book_url(book), params: { book: new_attributes }
         book.reload
-        skip('Add assertions for updated state')
+        expect(book.title).to eq "テスト2"
       end
 
       it 'redirects to the book' do
-        book = Book.create! valid_attributes
-        patch book_url(book), params: { book: new_attributes }
+        patch admin_book_url(book), params: { book: new_attributes }
         book.reload
-        expect(response).to redirect_to(book_url(book))
+        expect(response).to redirect_to(admin_book_url(book))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        book = Book.create! valid_attributes
-        patch book_url(book), params: { book: invalid_attributes }
+        patch admin_book_url(book), params: { book: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
-  describe 'DELETE /destroy' do
+  describe 'DELETE /admin/books/destroy' do
+    let!(:book) { create(:book) }
+
     it 'destroys the requested book' do
-      book = Book.create! valid_attributes
       expect do
-        delete book_url(book)
+        delete admin_book_url(book)
       end.to change(Book, :count).by(-1)
     end
 
     it 'redirects to the books list' do
-      book = Book.create! valid_attributes
-      delete book_url(book)
-      expect(response).to redirect_to(books_url)
+      delete admin_book_url(book)
+      expect(response).to redirect_to(admin_books_url)
     end
   end
 end

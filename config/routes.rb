@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  namespace :admin do
+  namespace :admin, path: (ENV["RAILS_ADMIN_PATH"] || "admin") do
     get '/' => 'top#index'
 
     devise_for :users, controllers: {
