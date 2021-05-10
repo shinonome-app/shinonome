@@ -14,21 +14,38 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/workers', type: :request do
+RSpec.describe '/admin/workers', type: :request do
   # Worker. As you add validations to Worker, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      email: 'test-worker1@example.com',
+      name: 'test worker',
+      name_kana: 'てすとわーかー',
+      note: 'this is a test',
+      sortkey: 'てすとわーかー',
+      url: 'https://example.com/workers/1',
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      email: nil,
+      name: 'test worker',
+      name_kana: 'てすとわーかー',
+      note: 'this is a test',
+      sortkey: 'てすとわーかー',
+      url: 'https://example.com/workers/1',
+    }
   end
 
-  describe 'GET /index' do
+  let(:user) { create(:user) }
+  before { sign_in(user) }
+
+  describe 'GET /' do
     it 'renders a successful response' do
       Worker.create! valid_attributes
-      get workers_url
+      get admin_workers_url
       expect(response).to be_successful
     end
   end
@@ -36,14 +53,14 @@ RSpec.describe '/workers', type: :request do
   describe 'GET /show' do
     it 'renders a successful response' do
       worker = Worker.create! valid_attributes
-      get worker_url(worker)
+      get admin_worker_url(worker)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_worker_url
+      get new_admin_worker_url
       expect(response).to be_successful
     end
   end
@@ -51,7 +68,7 @@ RSpec.describe '/workers', type: :request do
   describe 'GET /edit' do
     it 'render a successful response' do
       worker = Worker.create! valid_attributes
-      get edit_worker_url(worker)
+      get edit_admin_worker_url(worker)
       expect(response).to be_successful
     end
   end
@@ -60,25 +77,25 @@ RSpec.describe '/workers', type: :request do
     context 'with valid parameters' do
       it 'creates a new Worker' do
         expect do
-          post workers_url, params: { worker: valid_attributes }
+          post admin_workers_url, params: { worker: valid_attributes }
         end.to change(Worker, :count).by(1)
       end
 
       it 'redirects to the created worker' do
-        post workers_url, params: { worker: valid_attributes }
-        expect(response).to redirect_to(worker_url(Worker.last))
+        post admin_workers_url, params: { worker: valid_attributes }
+        expect(response).to redirect_to(admin_worker_url(Worker.last))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new Worker' do
         expect do
-          post workers_url, params: { worker: invalid_attributes }
+          post admin_workers_url, params: { worker: invalid_attributes }
         end.to change(Worker, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post workers_url, params: { worker: invalid_attributes }
+        post admin_workers_url, params: { worker: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -87,28 +104,35 @@ RSpec.describe '/workers', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          email: 'test-worker2@example.com',
+          name: 'test worker2',
+          name_kana: 'てすとわーかー',
+          note: 'this is a test',
+          sortkey: 'てすとわーかー',
+          url: 'https://example.com/workers/1',
+        }
       end
 
       it 'updates the requested worker' do
         worker = Worker.create! valid_attributes
-        patch worker_url(worker), params: { worker: new_attributes }
+        patch admin_worker_url(worker), params: { worker: new_attributes }
         worker.reload
-        skip('Add assertions for updated state')
+        expect(worker.name).to eq 'test worker2'
       end
 
       it 'redirects to the worker' do
         worker = Worker.create! valid_attributes
-        patch worker_url(worker), params: { worker: new_attributes }
+        patch admin_worker_url(worker), params: { worker: new_attributes }
         worker.reload
-        expect(response).to redirect_to(worker_url(worker))
+        expect(response).to redirect_to(admin_worker_url(worker))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         worker = Worker.create! valid_attributes
-        patch worker_url(worker), params: { worker: invalid_attributes }
+        patch admin_worker_url(worker), params: { worker: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -118,14 +142,14 @@ RSpec.describe '/workers', type: :request do
     it 'destroys the requested worker' do
       worker = Worker.create! valid_attributes
       expect do
-        delete worker_url(worker)
+        delete admin_worker_url(worker)
       end.to change(Worker, :count).by(-1)
     end
 
     it 'redirects to the workers list' do
       worker = Worker.create! valid_attributes
-      delete worker_url(worker)
-      expect(response).to redirect_to(workers_url)
+      delete admin_worker_url(worker)
+      expect(response).to redirect_to(admin_workers_url)
     end
   end
 end

@@ -28,7 +28,7 @@ RSpec.describe '/bookfiles', type: :request do
   describe 'GET /index' do
     it 'renders a successful response' do
       Bookfile.create! valid_attributes
-      get bookfiles_url
+      get admin_bookfiles_url
       expect(response).to be_successful
     end
   end
@@ -36,14 +36,14 @@ RSpec.describe '/bookfiles', type: :request do
   describe 'GET /show' do
     it 'renders a successful response' do
       bookfile = Bookfile.create! valid_attributes
-      get bookfile_url(bookfile)
+      get admin_bookfile_url(bookfile)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_bookfile_url
+      get new_admin_bookfile_url
       expect(response).to be_successful
     end
   end
@@ -51,7 +51,7 @@ RSpec.describe '/bookfiles', type: :request do
   describe 'GET /edit' do
     it 'render a successful response' do
       bookfile = Bookfile.create! valid_attributes
-      get edit_bookfile_url(bookfile)
+      get edit_admin_bookfile_url(bookfile)
       expect(response).to be_successful
     end
   end
@@ -60,25 +60,25 @@ RSpec.describe '/bookfiles', type: :request do
     context 'with valid parameters' do
       it 'creates a new Bookfile' do
         expect do
-          post bookfiles_url, params: { bookfile: valid_attributes }
+          post admin_bookfiles_url, params: { bookfile: valid_attributes }
         end.to change(Bookfile, :count).by(1)
       end
 
       it 'redirects to the created bookfile' do
-        post bookfiles_url, params: { bookfile: valid_attributes }
-        expect(response).to redirect_to(bookfile_url(Bookfile.last))
+        post admin_bookfiles_url, params: { bookfile: valid_attributes }
+        expect(response).to redirect_to(admin_bookfile_url(Bookfile.last))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new Bookfile' do
         expect do
-          post bookfiles_url, params: { bookfile: invalid_attributes }
+          post admin_bookfiles_url, params: { bookfile: invalid_attributes }
         end.to change(Bookfile, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post bookfiles_url, params: { bookfile: invalid_attributes }
+        post admin_bookfiles_url, params: { bookfile: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -92,23 +92,23 @@ RSpec.describe '/bookfiles', type: :request do
 
       it 'updates the requested bookfile' do
         bookfile = Bookfile.create! valid_attributes
-        patch bookfile_url(bookfile), params: { bookfile: new_attributes }
+        patch admin_bookfile_url(bookfile), params: { bookfile: new_attributes }
         bookfile.reload
         skip('Add assertions for updated state')
       end
 
       it 'redirects to the bookfile' do
         bookfile = Bookfile.create! valid_attributes
-        patch bookfile_url(bookfile), params: { bookfile: new_attributes }
+        patch admin_bookfile_url(bookfile), params: { bookfile: new_attributes }
         bookfile.reload
-        expect(response).to redirect_to(bookfile_url(bookfile))
+        expect(response).to redirect_to(admin_bookfile_url(bookfile))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         bookfile = Bookfile.create! valid_attributes
-        patch bookfile_url(bookfile), params: { bookfile: invalid_attributes }
+        patch admin_bookfile_url(bookfile), params: { bookfile: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -118,14 +118,14 @@ RSpec.describe '/bookfiles', type: :request do
     it 'destroys the requested bookfile' do
       bookfile = Bookfile.create! valid_attributes
       expect do
-        delete bookfile_url(bookfile)
+        delete admin_bookfile_url(bookfile)
       end.to change(Bookfile, :count).by(-1)
     end
 
     it 'redirects to the bookfiles list' do
       bookfile = Bookfile.create! valid_attributes
-      delete bookfile_url(bookfile)
-      expect(response).to redirect_to(bookfiles_url)
+      delete admin_bookfile_url(bookfile)
+      expect(response).to redirect_to(admin_bookfiles_url)
     end
   end
 end

@@ -60,4 +60,6 @@ class Worker < ApplicationRecord
       where(name: name)
     end
   }
+
+  validates :name, :name_kana, :email, presence: true
 end
