@@ -44,7 +44,7 @@ module Admin
 
     # PATCH/PUT /books/1
     def update
-      params2 = book_params.merge({user_id: current_admin_user.id})
+      params2 = book_params.merge({ user_id: current_admin_user.id })
       if @book.update(params2)
         redirect_to [:admin, @book], notice: 'Book was successfully updated.'
       else

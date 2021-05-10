@@ -19,29 +19,29 @@ RSpec.describe '/admin/books', type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      title: "テスト",
-      title_kana: "てすと",
+      title: 'テスト',
+      title_kana: 'てすと',
       copyright_flag: false,
-      started_on: Time.zone.parse("2021-05-06"),
+      started_on: Time.zone.parse('2021-05-06'),
       book_status_id: book_status.id,
-      note: "備考1",
+      note: '備考1',
       user_id: user.id,
-      kana_type_id: kana_type.id,
+      kana_type_id: kana_type.id
     }
   end
 
   let(:invalid_attributes) do
     {
       title: nil,
-      title_kana: "てすと",
+      title_kana: 'てすと',
       copyright_flag: false,
-      started_on: Time.zone.parse("2021-05-06"),
+      started_on: Time.zone.parse('2021-05-06'),
       book_status_id: 1,
-      note: "備考1",
+      note: '備考1'
     }
   end
 
-  let(:user) { create(:user, email: "user2@example.com", username: "user2") }
+  let(:user) { create(:user, email: 'user2@example.com', username: 'user2') }
   let(:kana_type) { create(:kana_type) }
   let(:book_status) { create(:book_status) }
   before { sign_in(user) }
@@ -116,21 +116,21 @@ RSpec.describe '/admin/books', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          title: "テスト2",
-          title_kana: "てすとに",
+          title: 'テスト2',
+          title_kana: 'てすとに',
           copyright_flag: false,
-          started_on: Time.zone.parse("2021-05-06"),
+          started_on: Time.zone.parse('2021-05-06'),
           book_status_id: book_status.id,
-          note: "備考2",
+          note: '備考2',
           user_id: user.id,
-          kana_type_id: kana_type.id,
+          kana_type_id: kana_type.id
         }
       end
 
       it 'updates the requested book' do
         patch admin_book_url(book), params: { book: new_attributes }
         book.reload
-        expect(book.title).to eq "テスト2"
+        expect(book.title).to eq 'テスト2'
       end
 
       it 'redirects to the book' do

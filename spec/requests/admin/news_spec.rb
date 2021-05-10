@@ -19,19 +19,19 @@ RSpec.describe '/admin/news', type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      title: "テスト",
-      body: "テストです",
+      title: 'テスト',
+      body: 'テストです',
       flag: true,
-      published_on: Time.zone.parse("2021-05-04")
+      published_on: Time.zone.parse('2021-05-04')
     }
   end
 
   let(:invalid_attributes) do
     {
       title: nil,
-      body: "テストです",
+      body: 'テストです',
       flag: true,
-      published_on: Time.zone.parse("2021-05-04")
+      published_on: Time.zone.parse('2021-05-04')
     }
   end
 
@@ -110,10 +110,10 @@ RSpec.describe '/admin/news', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          title: "テスト2",
-          body: "テスト2です",
+          title: 'テスト2',
+          body: 'テスト2です',
           flag: true,
-          published_on: Time.zone.parse("2021-05-04")
+          published_on: Time.zone.parse('2021-05-04')
         }
       end
 
@@ -121,7 +121,7 @@ RSpec.describe '/admin/news', type: :request do
         news = News.create! valid_attributes
         patch admin_news_url(news), params: { news: new_attributes }
         news.reload
-        expect(news.title).to eq "テスト2"
+        expect(news.title).to eq 'テスト2'
       end
 
       it 'redirects to the news' do

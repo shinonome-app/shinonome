@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin::Books::WorkerAssigns', type: :request do
   before { sign_in(user) }
-  let(:user) { create(:user, email: "user2@example.jp", username: "user2") }
+  let(:user) { create(:user, email: 'user2@example.jp', username: 'user2') }
 
   describe 'GET /admin/books/:book_id/worker_assigns/nwe' do
     let!(:book) { create(:book) }
