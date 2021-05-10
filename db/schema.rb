@@ -322,9 +322,9 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
   end
 
   create_table "workers", force: :cascade do |t|
-    t.text "name"
-    t.text "name_kana"
-    t.text "email"
+    t.text "name", null: false
+    t.text "name_kana", null: false
+    t.text "email", null: false
     t.text "url"
     t.text "note"
     t.bigint "user_id"

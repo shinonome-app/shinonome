@@ -5,9 +5,9 @@
 # Table name: workers
 #
 #  id         :bigint           not null, primary key
-#  email      :text
-#  name       :text
-#  name_kana  :text
+#  email      :text             not null
+#  name       :text             not null
+#  name_kana  :text             not null
 #  note       :text
 #  sortkey    :text
 #  url        :text
