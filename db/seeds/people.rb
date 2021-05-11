@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Person.connection.execute('TRUNCATE TABLE people;')
+# Person.connection.execute('TRUNCATE TABLE people;')
 people = (1..2000).map do |n|
   name = Gimei.name
   born_date = Faker::Date.between(from: '1800-01-01', to: '1900-01-01')

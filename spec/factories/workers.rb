@@ -15,6 +15,10 @@
 #  updated_at :datetime         not null
 #  user_id    :bigint
 #
+# Indexes
+#
+#  index_workers_on_user_id  (user_id)
+#
 FactoryBot.define do
   factory :worker do
     name { 'MyText' }

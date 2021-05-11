@@ -15,6 +15,10 @@
 #  updated_at :datetime         not null
 #  user_id    :bigint
 #
+# Indexes
+#
+#  index_workers_on_user_id  (user_id)
+#
 require 'rails_helper'
 
 RSpec.describe Worker, type: :model do

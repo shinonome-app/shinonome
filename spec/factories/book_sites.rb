@@ -7,8 +7,18 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  book_id    :bigint
-#  site_id    :bigint
+#  book_id    :bigint           not null
+#  site_id    :bigint           not null
+#
+# Indexes
+#
+#  index_book_sites_on_book_id  (book_id)
+#  index_book_sites_on_site_id  (site_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (book_id => books.id)
+#  fk_rails_...  (site_id => sites.id)
 #
 FactoryBot.define do
   factory :book_site do

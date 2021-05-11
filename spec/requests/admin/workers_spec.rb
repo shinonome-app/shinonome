@@ -24,7 +24,7 @@ RSpec.describe '/admin/workers', type: :request do
       name_kana: 'てすとわーかー',
       note: 'this is a test',
       sortkey: 'てすとわーかー',
-      url: 'https://example.com/workers/1',
+      url: 'https://example.com/workers/1'
     }
   end
 
@@ -35,7 +35,7 @@ RSpec.describe '/admin/workers', type: :request do
       name_kana: 'てすとわーかー',
       note: 'this is a test',
       sortkey: 'てすとわーかー',
-      url: 'https://example.com/workers/1',
+      url: 'https://example.com/workers/1'
     }
   end
 
@@ -110,7 +110,7 @@ RSpec.describe '/admin/workers', type: :request do
           name_kana: 'てすとわーかー',
           note: 'this is a test',
           sortkey: 'てすとわーかー',
-          url: 'https://example.com/workers/1',
+          url: 'https://example.com/workers/1'
         }
       end
 

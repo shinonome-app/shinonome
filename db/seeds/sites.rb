@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-Site.connection.execute('TRUNCATE TABLE sites;')
-Site.connection.execute('TRUNCATE TABLE book_sites;')
+# Site.connection.execute('TRUNCATE TABLE sites;')
+# Site.connection.execute('TRUNCATE TABLE book_sites;')
 selected_books = Book.order(:id).limit(100)
 
 100.times do |i|

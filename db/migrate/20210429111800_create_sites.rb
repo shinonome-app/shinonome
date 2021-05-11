@@ -8,7 +8,7 @@ class CreateSites < ActiveRecord::Migration[6.1]
       t.text :owner_name
       t.text :email
       t.text :note
-      t.integer :updated_by
+      t.bigint :updated_by
 
       t.timestamps
     end

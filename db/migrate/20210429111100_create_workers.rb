@@ -8,7 +8,7 @@ class CreateWorkers < ActiveRecord::Migration[6.1]
       t.text :email, null: false
       t.text :url
       t.text :note
-      t.bigint :user_id
+      t.references :user
       t.text :sortkey
 
       t.timestamps

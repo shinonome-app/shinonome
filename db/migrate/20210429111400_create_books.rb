@@ -10,17 +10,17 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.text :collection
       t.text :collection_kana
       t.text :original_title
-      t.bigint :kana_type_id
+      t.references :kana_type, foreign_key: true, null: false
       t.text :author_display_name
       t.text :first_appearance
       t.text :description
       t.bigint :description_person_id
-      t.bigint :book_status_id, null: false
+      t.references :book_status, foreign_key: true, null: false
       t.date :started_on, null: false
       t.boolean :copyright_flag, null: false
       t.text :note
       t.text :orig_text
-      t.bigint :user_id
+      t.references :user, foreign_key: true, null: false
       t.integer :update_flag
       t.text :sortkey
 

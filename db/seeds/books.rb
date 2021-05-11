@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-Book.connection.execute('TRUNCATE TABLE books;')
-Book.connection.execute('TRUNCATE TABLE book_workers;')
-Book.connection.execute('TRUNCATE TABLE book_people;')
-Book.connection.execute('TRUNCATE TABLE bibclasses;')
-Book.connection.execute('TRUNCATE TABLE original_books;')
+# Book.connection.execute('TRUNCATE TABLE books;')
+# Book.connection.execute('TRUNCATE TABLE book_workers;')
+# Book.connection.execute('TRUNCATE TABLE book_people;')
+# Book.connection.execute('TRUNCATE TABLE bibclasses;')
+# Book.connection.execute('TRUNCATE TABLE original_books;')
 
 ## Books
 selected_workers = Worker.order(:id).limit(10)

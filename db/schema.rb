@@ -47,12 +47,13 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.bigint "person_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_base_people_on_person_id"
   end
 
   create_table "bibclasses", force: :cascade do |t|
     t.bigint "book_id", null: false
-    t.text "name"
-    t.text "num"
+    t.text "name", null: false
+    t.text "num", null: false
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -64,13 +65,18 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_people_on_book_id"
+    t.index ["person_id"], name: "index_book_people_on_person_id"
+    t.index ["role_id"], name: "index_book_people_on_role_id"
   end
 
   create_table "book_sites", force: :cascade do |t|
-    t.bigint "book_id"
-    t.bigint "site_id"
+    t.bigint "book_id", null: false
+    t.bigint "site_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_sites_on_book_id"
+    t.index ["site_id"], name: "index_book_sites_on_site_id"
   end
 
   create_table "book_statuses", force: :cascade do |t|
@@ -86,23 +92,31 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.bigint "worker_role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_workers_on_book_id"
+    t.index ["worker_id"], name: "index_book_workers_on_worker_id"
+    t.index ["worker_role_id"], name: "index_book_workers_on_worker_role_id"
   end
 
   create_table "bookfiles", force: :cascade do |t|
     t.bigint "book_id", null: false
-    t.bigint "filetype_id"
-    t.bigint "compresstype_id"
+    t.bigint "filetype_id", null: false
+    t.bigint "compresstype_id", null: false
     t.integer "filesize"
     t.bigint "user_id"
     t.text "url"
     t.text "filename", null: false
     t.date "opened_on"
     t.integer "revision_count"
-    t.bigint "file_encoding_id"
-    t.bigint "charset_id"
+    t.bigint "file_encoding_id", null: false
+    t.bigint "charset_id", null: false
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_bookfiles_on_book_id"
+    t.index ["charset_id"], name: "index_bookfiles_on_charset_id"
+    t.index ["compresstype_id"], name: "index_bookfiles_on_compresstype_id"
+    t.index ["file_encoding_id"], name: "index_bookfiles_on_file_encoding_id"
+    t.index ["filetype_id"], name: "index_bookfiles_on_filetype_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -113,7 +127,7 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.text "collection"
     t.text "collection_kana"
     t.text "original_title"
-    t.bigint "kana_type_id"
+    t.bigint "kana_type_id", null: false
     t.text "author_display_name"
     t.text "first_appearance"
     t.text "description"
@@ -123,11 +137,14 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.boolean "copyright_flag", null: false
     t.text "note"
     t.text "orig_text"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.integer "update_flag"
     t.text "sortkey"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_status_id"], name: "index_books_on_book_status_id"
+    t.index ["kana_type_id"], name: "index_books_on_kana_type_id"
+    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "booktypes", force: :cascade do |t|
@@ -179,7 +196,7 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
 
   create_table "original_books", force: :cascade do |t|
     t.bigint "book_id"
-    t.text "title"
+    t.text "title", null: false
     t.text "publisher"
     t.text "first_pubdate"
     t.text "input_edition"
@@ -188,18 +205,20 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_original_books_on_book_id"
+    t.index ["booktype_id"], name: "index_original_books_on_booktype_id"
   end
 
   create_table "people", force: :cascade do |t|
-    t.text "last_name"
-    t.text "last_name_kana"
+    t.text "last_name", null: false
+    t.text "last_name_kana", null: false
     t.text "last_name_en"
     t.text "first_name"
     t.text "first_name_kana"
     t.text "first_name_en"
     t.date "born_on"
     t.date "died_on"
-    t.boolean "copyright_flag"
+    t.boolean "copyright_flag", null: false
     t.text "email"
     t.text "url"
     t.text "description"
@@ -220,14 +239,16 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.bigint "site_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_person_sites_on_person_id"
+    t.index ["site_id"], name: "index_person_sites_on_site_id"
   end
 
   create_table "proofreads", force: :cascade do |t|
-    t.bigint "book_id"
+    t.bigint "book_id", null: false
     t.text "book_copy"
     t.text "book_print"
     t.text "proof_edition"
-    t.bigint "bookfile_id"
+    t.bigint "bookfile"
     t.text "address"
     t.text "memo"
     t.bigint "worker_id"
@@ -235,11 +256,13 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.text "worker_name"
     t.text "email"
     t.text "url"
-    t.bigint "person_id"
+    t.bigint "person_id", null: false
     t.text "assign_status"
     t.text "order_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_proofreads_on_book_id"
+    t.index ["person_id"], name: "index_proofreads_on_person_id"
   end
 
   create_table "receipts", force: :cascade do |t|
@@ -296,7 +319,7 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.text "owner_name"
     t.text "email"
     t.text "note"
-    t.integer "updated_by"
+    t.bigint "updated_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -331,8 +354,32 @@ ActiveRecord::Schema.define(version: 2021_05_09_025330) do
     t.text "sortkey"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_workers_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "base_people", "people"
+  add_foreign_key "book_people", "books"
+  add_foreign_key "book_people", "people"
+  add_foreign_key "book_people", "roles"
+  add_foreign_key "book_sites", "books"
+  add_foreign_key "book_sites", "sites"
+  add_foreign_key "book_workers", "books"
+  add_foreign_key "book_workers", "worker_roles"
+  add_foreign_key "book_workers", "workers"
+  add_foreign_key "bookfiles", "books"
+  add_foreign_key "bookfiles", "charsets"
+  add_foreign_key "bookfiles", "compresstypes"
+  add_foreign_key "bookfiles", "file_encodings"
+  add_foreign_key "bookfiles", "filetypes"
+  add_foreign_key "books", "book_statuses"
+  add_foreign_key "books", "kana_types"
+  add_foreign_key "books", "users"
+  add_foreign_key "original_books", "books"
+  add_foreign_key "original_books", "booktypes"
+  add_foreign_key "person_sites", "people"
+  add_foreign_key "person_sites", "sites"
+  add_foreign_key "proofreads", "books"
+  add_foreign_key "proofreads", "people"
 end

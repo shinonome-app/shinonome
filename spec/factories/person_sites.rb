@@ -10,6 +10,16 @@
 #  person_id  :bigint           not null
 #  site_id    :bigint           not null
 #
+# Indexes
+#
+#  index_person_sites_on_person_id  (person_id)
+#  index_person_sites_on_site_id    (site_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (person_id => people.id)
+#  fk_rails_...  (site_id => sites.id)
+#
 FactoryBot.define do
   factory :person_site do
     person_id { 1 }

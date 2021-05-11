@@ -25,8 +25,20 @@
 #  updated_at            :datetime         not null
 #  book_status_id        :bigint           not null
 #  description_person_id :bigint
-#  kana_type_id          :bigint
-#  user_id               :bigint
+#  kana_type_id          :bigint           not null
+#  user_id               :bigint           not null
+#
+# Indexes
+#
+#  index_books_on_book_status_id  (book_status_id)
+#  index_books_on_kana_type_id    (kana_type_id)
+#  index_books_on_user_id         (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (book_status_id => book_statuses.id)
+#  fk_rails_...  (kana_type_id => kana_types.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class Book < ApplicationRecord
   has_many :book_sites, dependent: :destroy

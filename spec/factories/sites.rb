@@ -9,7 +9,7 @@
 #  name       :text             not null
 #  note       :text
 #  owner_name :text
-#  updated_by :integer
+#  updated_by :bigint
 #  url        :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

@@ -3,9 +3,9 @@
 class CreateBookWorkers < ActiveRecord::Migration[6.1]
   def change
     create_table :book_workers do |t|
-      t.bigint :book_id, null: false
-      t.bigint :worker_id, null: false
-      t.bigint :worker_role_id, null: false
+      t.references :book, foreign_key: true, null: false
+      t.references :worker, foreign_key: true, null: false
+      t.references :worker_role, foreign_key: true, null: false
 
       t.timestamps
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Receipt.connection.execute('TRUNCATE TABLE receipts;')
+# Receipt.connection.execute('TRUNCATE TABLE receipts;')
 person_list = Person.all.pluck(:id, :first_name, :first_name_kana, :last_name, :last_name_kana)
 selected_workers = Worker.order(:id).limit(100)
 

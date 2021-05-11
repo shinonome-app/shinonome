@@ -5,9 +5,9 @@
 # Table name: bibclasses
 #
 #  id         :bigint           not null, primary key
-#  name       :text
+#  name       :text             not null
 #  note       :text
-#  num        :text
+#  num        :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  book_id    :bigint           not null

@@ -8,7 +8,7 @@ kana_types = {
   99 =>	'その他'
 }
 
-KanaType.connection.execute('TRUNCATE TABLE kana_types;')
+# KanaType.connection.execute('TRUNCATE TABLE kana_types;')
 kana_types.each do |k, v|
   KanaType.create!(id: k, name: v)
 end
@@ -20,7 +20,7 @@ charsets = {
   99	=> 'その他'
 }
 
-Charset.connection.execute('TRUNCATE TABLE charsets;')
+# Charset.connection.execute('TRUNCATE TABLE charsets;')
 charsets.each do |k, v|
   Charset.create!(id: k, name: v)
 end
@@ -39,7 +39,7 @@ filetypes = {
   99 => %w[その他 etc]
 }
 
-Filetype.connection.execute('TRUNCATE TABLE filetypes;')
+# Filetype.connection.execute('TRUNCATE TABLE filetypes;')
 filetypes.each do |k, v|
   Filetype.create!(id: k, name: v[0], extension: v[1])
 end
@@ -52,7 +52,7 @@ compresstypes = {
   5 => %w[SIT圧縮 sit]
 }
 
-Compresstype.connection.execute('TRUNCATE TABLE compresstypes;')
+# Compresstype.connection.execute('TRUNCATE TABLE compresstypes;')
 compresstypes.each do |k, v|
   Compresstype.create!(id: k, name: v[0], extension: v[1])
 end
@@ -65,7 +65,7 @@ file_encodings = {
   99 => 'その他'
 }
 
-FileEncoding.connection.execute('TRUNCATE TABLE file_encodings;')
+# FileEncoding.connection.execute('TRUNCATE TABLE file_encodings;')
 file_encodings.each do |k, v|
   FileEncoding.create!(id: k, name: v)
 end
@@ -78,7 +78,7 @@ roles = {
   99 => 'その他'
 }
 
-Role.connection.execute('TRUNCATE TABLE roles;')
+# Role.connection.execute('TRUNCATE TABLE roles;')
 roles.each do |k, v|
   Role.create!(id: k, name: v)
 end
@@ -89,7 +89,7 @@ worker_roles = {
   99 => 'その他'
 }
 
-WorkerRole.connection.execute('TRUNCATE TABLE worker_roles;')
+# WorkerRole.connection.execute('TRUNCATE TABLE worker_roles;')
 worker_roles.each do |k, v|
   WorkerRole.create!(id: k, name: v)
 end
@@ -109,7 +109,7 @@ book_statuses = <<~ROWS
   12	入力取り消し	12
 ROWS
 
-BookStatus.connection.execute('TRUNCATE TABLE book_statuses;')
+# BookStatus.connection.execute('TRUNCATE TABLE book_statuses;')
 book_statuses.each_line do |line|
   rows = line.chomp.split
   BookStatus.create!(id: rows[0].to_i, name: rows[1], sort_order: rows[2].to_i)
@@ -120,7 +120,7 @@ booktypes = {
   2 => '底本の親本'
 }
 
-Booktype.connection.execute('TRUNCATE TABLE booktypes;')
+# Booktype.connection.execute('TRUNCATE TABLE booktypes;')
 booktypes.each do |k, v|
   Booktype.create!(id: k, name: v)
 end

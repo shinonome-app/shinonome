@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-User.connection.execute('TRUNCATE TABLE users;')
+# User.connection.execute('TRUNCATE TABLE users;')
 User.create!(username: 'admin',
              email: 'admin@example.com',
              password: 'shinonome')

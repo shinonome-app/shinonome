@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Worker.connection.execute('TRUNCATE TABLE workers;')
+# Worker.connection.execute('TRUNCATE TABLE workers;')
 user_id_list = User.all.pluck(:id)
 
 workers = (1..1200).map do |n|

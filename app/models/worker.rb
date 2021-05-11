@@ -15,6 +15,10 @@
 #  updated_at :datetime         not null
 #  user_id    :bigint
 #
+# Indexes
+#
+#  index_workers_on_user_id  (user_id)
+#
 class Worker < ApplicationRecord
   PERSON_ID_TABLE = [
     %w[あ い う え お],

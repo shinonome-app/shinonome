@@ -3,13 +3,13 @@
 class CreateOriginalBooks < ActiveRecord::Migration[6.1]
   def change
     create_table :original_books do |t|
-      t.bigint :book_id
-      t.text :title
+      t.references :book, foreign_key: true
+      t.text :title, null: false
       t.text :publisher
       t.text :first_pubdate
       t.text :input_edition
       t.text :proof_edition
-      t.bigint :booktype_id
+      t.references :booktype, foreign_key: true
       t.text :note
 
       t.timestamps

@@ -3,17 +3,17 @@
 class CreateBookfiles < ActiveRecord::Migration[6.1]
   def change
     create_table :bookfiles do |t|
-      t.bigint :book_id, null: false
-      t.bigint :filetype_id
-      t.bigint :compresstype_id
+      t.references :book, foreign_key: true, null: false
+      t.references :filetype, foreign_key: true, null: false
+      t.references :compresstype, foreign_key: true, null: false
       t.integer :filesize
       t.bigint :user_id
       t.text :url
       t.text :filename, null: false
       t.date :opened_on
       t.integer :revision_count
-      t.bigint :file_encoding_id
-      t.bigint :charset_id
+      t.references :file_encoding, foreign_key: true, null: false
+      t.references :charset, foreign_key: true, null: false
       t.text :note
 
       t.timestamps

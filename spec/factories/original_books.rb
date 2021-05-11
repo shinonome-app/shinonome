@@ -10,11 +10,21 @@
 #  note          :text
 #  proof_edition :text
 #  publisher     :text
-#  title         :text
+#  title         :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  book_id       :bigint
 #  booktype_id   :bigint
+#
+# Indexes
+#
+#  index_original_books_on_book_id      (book_id)
+#  index_original_books_on_booktype_id  (booktype_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (book_id => books.id)
+#  fk_rails_...  (booktype_id => booktypes.id)
 #
 FactoryBot.define do
   factory :original_book do

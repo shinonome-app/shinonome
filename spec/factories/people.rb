@@ -7,7 +7,7 @@
 #  id              :bigint           not null, primary key
 #  basename        :text
 #  born_on         :date
-#  copyright_flag  :boolean
+#  copyright_flag  :boolean          not null
 #  description     :text
 #  died_on         :date
 #  email           :text
@@ -15,9 +15,9 @@
 #  first_name_en   :text
 #  first_name_kana :text
 #  input_count     :integer
-#  last_name       :text
+#  last_name       :text             not null
 #  last_name_en    :text
-#  last_name_kana  :text
+#  last_name_kana  :text             not null
 #  note            :text
 #  publish_count   :integer
 #  sortkey         :text
