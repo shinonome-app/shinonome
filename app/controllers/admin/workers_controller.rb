@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class WorkersController < ApplicationController
+  class WorkersController < Admin::ApplicationController
     include Pagy::Backend
     before_action :set_worker, only: %i[show edit update destroy]
 
