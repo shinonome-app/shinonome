@@ -4,15 +4,18 @@ Rails.application.routes.draw do
   get 'top/index'
   root to: 'top#index'
 
-  resources :workers, only: %i[index show]
-
   resources :receipts, only: %i[new create]
   namespace :receipts do
     resources :previews, only: %i[create]
-    resources :thanks, only: %(index)
+    resources :thanks, only: %i[index]
   end
 
-  resources :proofreads
+  resources :proofreads, only: %i[index new create]
+  namespace :proofreads do
+    resources :people, only: %i[index show]
+    resources :previews, only: %i[create]
+    resources :thanks, only: %i[index]
+  end
 
   resources :idlists, only: %i[index]
   namespace :idlists do
