@@ -34,13 +34,12 @@
           <td><%= bookfile.file_encoding_id %></td>
           <td><%= bookfile.charset_id %></td>
           <td><%= bookfile.note %></td>
-          <td><%= link_to 'Show', bookfile %></td>
-          <td><%= link_to 'Edit', edit_bookfile_path(bookfile) %></td>
-          <td><%= link_to 'Destroy', bookfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', [:admin, bookfile.book, bookfile] %></td>
+          <td><%= link_to 'Edit', edit_admin_book_bookfile_path(bookfile.book, bookfile) %></td>
+          <td><%= link_to 'Destroy',[:admin, bookfile.book, bookfile], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <br>
-  <%= link_to 'New Bookfile', new_bookfile_path %>
 </div>

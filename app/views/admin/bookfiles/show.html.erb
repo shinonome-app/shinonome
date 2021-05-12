@@ -47,5 +47,5 @@
   <strong>Note:</strong>
   <%= @bookfile.note %>
 </p>
-<%= link_to 'Edit', edit_bookfile_path(@bookfile) %> |
-<%= link_to 'Back', bookfiles_path %>
+<%= link_to 'Edit', edit_admin_book_bookfile_path(@bookfile.book, @bookfile) %> |
+<%= link_to 'Back', admin_book_bookfiles_path(@bookfile.book) %>

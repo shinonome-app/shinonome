@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     resources :books do
       resources :bookfiles
       resources :sites
-      resources :original_books
+      resources :original_books, only: %i[new edit create update destroy]
       resources :workers
       resources :bibclasses
 
@@ -59,17 +59,16 @@ Rails.application.routes.draw do
       get 'worker_assigns/new', to: 'books/worker_assigns#new', as: :new_worker_assign
     end
 
-    resources :bookfiles
     resources :sites
-    resources :original_books
     resources :workers
 
     resources :receipts
 
     resources :base_people
 
+    resources :book_workers, only: %i[create destroy], as: :bookworkers
+
     # resources :book_sites
-    # resources :book_workers
     # resources :person_sites
     # resources :book_people
 

@@ -1,4 +1,4 @@
-<%= form_with(model: original_book) do |form| %>
+<%= form_with(model: [:admin, @book, original_book]) do |form| %>
   <% if original_book.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(original_book.errors.count, "error") %> prohibited this original_book from being saved:</h2>
@@ -10,32 +10,28 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label :book_id %>
-    <%= form.number_field :book_id %>
-  </div>
-  <div class="field">
     <%= form.label :title %>
-    <%= form.text_area :title %>
+    <%= form.text_field :title %>
   </div>
   <div class="field">
     <%= form.label :publisher %>
-    <%= form.text_area :publisher %>
+    <%= form.text_field :publisher %>
   </div>
   <div class="field">
     <%= form.label :first_pubdate %>
-    <%= form.text_area :first_pubdate %>
+    <%= form.text_field :first_pubdate %>
   </div>
   <div class="field">
     <%= form.label :input_edition %>
-    <%= form.text_area :input_edition %>
+    <%= form.text_field :input_edition %>
   </div>
   <div class="field">
     <%= form.label :proof_edition %>
-    <%= form.text_area :proof_edition %>
+    <%= form.text_field :proof_edition %>
   </div>
   <div class="field">
     <%= form.label :booktype_id %>
-    <%= form.text_area :booktype_id %>
+    <%= form.collection_select :booktype_id, Booktype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'}  %>
   </div>
   <div class="field">
     <%= form.label :note %>

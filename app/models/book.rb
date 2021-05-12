@@ -74,7 +74,7 @@ class Book < ApplicationRecord
     end
   }
 
-  validates :title, :started_on, :book_status_id, :kana_type_id, presence: true
+  validates :title, :started_on, :book_status, :kana_type, presence: true
 
   def author_text
     book_people.where(role_id: 1).map { |a| a.person.name }.join(', ')

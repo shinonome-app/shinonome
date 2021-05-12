@@ -2,15 +2,8 @@
 
 module Admin
   class OriginalBooksController < Admin::ApplicationController
-    before_action :set_original_book, only: %i[show edit update destroy]
-
-    # GET /admin/original_books
-    def index
-      @original_books = OriginalBook.all
-    end
-
-    # GET /admin/original_books/1
-    def show; end
+    before_action :set_original_book, only: %i[edit update destroy]
+    before_action :set_book
 
     # GET /admin/original_books/new
     def new
@@ -23,9 +16,9 @@ module Admin
     # POST /admin/original_books
     def create
       @original_book = OriginalBook.new(original_book_params)
-
+      @original_book.book = @book
       if @original_book.save
-        redirect_to @original_book, notice: 'Original book was successfully created.'
+        redirect_to admin_book_url(@book), notice: 'Original book was successfully created.'
       else
         render :new
       end
@@ -34,7 +27,7 @@ module Admin
     # PATCH/PUT /admin/original_books/1
     def update
       if @original_book.update(original_book_params)
-        redirect_to @original_book, notice: 'Original book was successfully updated.'
+        redirect_to admin_book_url(@book), notice: 'Original book was successfully updated.'
       else
         render :edit
       end
@@ -43,7 +36,7 @@ module Admin
     # DELETE /admin/original_books/1
     def destroy
       @original_book.destroy
-      redirect_to admin_original_books_url, notice: 'Original book was successfully destroyed.'
+      redirect_to admin_book_url(@book), notice: 'Original book was successfully destroyed.'
     end
 
     private
@@ -51,6 +44,10 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_original_book
       @original_book = OriginalBook.find(params[:id])
+    end
+
+    def set_book
+      @book = Book.find(params[:book_id])
     end
 
     # Only allow a list of trusted parameters through.

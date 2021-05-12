@@ -57,4 +57,8 @@ class Person < ApplicationRecord
   def name_en
     "#{first_name_en}, #{last_name_en}" if last_name_en || first_name_en
   end
+
+  validates :last_name, :last_name_kana, presence: true
+  validates :copyright_flag, inclusion: { in: [true, false] }
+  validates :input_count, :publish_count, numericality: { only_integer: true }, allow_nil: true
 end

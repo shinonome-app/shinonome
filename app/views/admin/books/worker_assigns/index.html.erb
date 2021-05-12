@@ -24,12 +24,16 @@
         <th></th>
         <th>姓名</th>
         <th>読み</th>
+        <th>入力担当</th>
+        <th>校正担当</th>
       </tr>
       <% @workers.each do |worker| %>
       <tr>
         <td><%= worker.id %></td>
         <td><%= worker.name %></td>
         <td><%= worker.name_kana %></td>
+        <td><%= link_to '入力', admin_bookworkers_url(book_worker: {book_id: @book.id, worker_id: worker.id, worker_role_id: 1}), method: :post %></td>
+        <td><%= link_to '校正', admin_bookworkers_url(book_worker: {book_id: @book.id, worker_id: worker.id, worker_role_id: 2}), method: :post %></td>
       </tr>
       <% end %>
     </table>

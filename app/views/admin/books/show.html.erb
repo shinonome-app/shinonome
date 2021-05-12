@@ -260,13 +260,14 @@
       </td>
     </tr>
   </table>
-  <%= link_to '削除', [:admin, worker], method: :delete, data: { confirm: '本当に削除しますか?' } %>
+  <%= link_to '削除', admin_bookworker_url(book_worker), method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
   </div>
 
   <%= link_to '工作員関連づけ', admin_book_worker_assigns_path(book_id: params[:id]) %>
 
   <h2 class="text-2xl">底本データ</h2>
+  <div>
   <% @book.original_books.order(:booktype_id).each do |book| %>
   <h3><%= book.booktype.name %></h3>
   <table class="bg-gray-100 my-2">
@@ -295,9 +296,11 @@
       <td><%= book.note %></td>
     </tr>
   </table>
-  <%= link_to '更新', edit_admin_original_book_path(book) %>
-  <%= link_to '削除', [:admin, book], method: :delete, data: { confirm: '本当に削除しますか?' } %>
+  <%= link_to '更新', edit_admin_book_original_book_path(@book, book) %>
+  <%= link_to '削除', [:admin, @book, book], method: :delete, data: { confirm: '本当に削除しますか?' } %>
   <% end %>
+  </div>
+  <%= link_to '底本/底本の親本追加', new_admin_book_original_book_path(book_id: params[:id]) %>
 
   <h2 class="text-2xl">分類番号データ</h2>
 

@@ -3,5 +3,5 @@
 
 <%= render 'form', bookfile: @bookfile %>
 
-<%= link_to '戻る', admin_bookfiles_path %>
+<%= link_to '戻る', admin_book_bookfiles_path(@bookfile.book, @bookfile) %>
 </div>

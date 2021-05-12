@@ -45,4 +45,6 @@ class Bookfile < ApplicationRecord
   belongs_to :charset
 
   has_one_attached :bookdata
+
+  validates :filename, :book, :charset, :compresstype, :file_encoding, :filetype, presence: true
 end

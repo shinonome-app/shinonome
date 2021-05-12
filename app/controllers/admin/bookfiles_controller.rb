@@ -34,7 +34,7 @@ module Admin
       end
     end
 
-    # PATCH/PUT /admin/bookfiles/1
+    # PATCH/PUT /admin/book/bookfiles/1
     def update
       if @bookfile.update(bookfile_params)
         @bookfile.user = current_admin_user
@@ -46,10 +46,11 @@ module Admin
       end
     end
 
-    # DELETE /admin/bookfiles/1
+    # DELETE /admin/book/bookfiles/1
     def destroy
+      book = @bookfile.book
       @bookfile.destroy
-      redirect_to bookfiles_url, notice: 'Bookfile was successfully destroyed.'
+      redirect_to admin_book_url(book), notice: 'Bookfile was successfully destroyed.'
     end
 
     private

@@ -81,5 +81,12 @@ ja:
         file_encoding_id: "ファイルエンコーディング"
         charset_id: "文字集合"
         note: "備考"
-
-
+      original_book:
+        id: "底本ID"
+        title: "書籍名"
+        publisher: "出版社名"
+        first_pubdate: "初版発行年月日"
+        input_edition: "入力に使用した版"
+        proof_edition: "校正に使用した版"
+        booktype_id: "種別フラグ"
+        note: "備考"

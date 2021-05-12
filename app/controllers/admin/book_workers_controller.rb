@@ -11,13 +11,13 @@ module Admin
       if @book_worker.save
         redirect_to admin_book_url(@book_worker.book), notice: 'Book worker was successfully created.'
       else
-        render :new
+        redirect_to admin_book_url(@book_worker.book)
       end
     end
 
     # DELETE /admin/book_workers/1
     def destroy
-      book = @book_worker.boook
+      book = @book_worker.book
       @book_worker.destroy
       redirect_to admin_book_url(book), notice: 'Book worker was successfully destroyed.'
     end
