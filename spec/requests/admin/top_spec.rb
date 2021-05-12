@@ -13,7 +13,9 @@ RSpec.describe 'Admin::Tops', type: :request do
 
     context 'with sign in' do
       let(:user) { create(:user) }
+
       before { sign_in(user) }
+
       it 'returns http success' do
         get '/admin/'
         expect(response).to have_http_status(:success)

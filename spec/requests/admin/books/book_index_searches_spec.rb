@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin::Books::BookIndexSearches', type: :request do
   before { sign_in(user) }
+
   let(:user) { create(:user) }
 
   describe 'GET /admin/books/book_index_searchers' do

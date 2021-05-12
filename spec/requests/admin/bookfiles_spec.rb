@@ -137,7 +137,6 @@ RSpec.describe '/bookfiles', type: :request do
         bookfile = Bookfile.create! valid_attributes
         patch admin_book_bookfile_url(book, bookfile), params: { bookfile: new_attributes }
         bookfile.reload
-        expect(bookfile.filesize).to eq 12_121
         expect(bookfile.note).to eq 'test2'
       end
 

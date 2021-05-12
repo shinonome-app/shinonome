@@ -44,6 +44,7 @@ RSpec.describe '/admin/books', type: :request do
   let(:user) { create(:user, email: 'user2@example.com', username: 'user2') }
   let(:kana_type) { create(:kana_type) }
   let(:book_status) { create(:book_status) }
+
   before { sign_in(user) }
 
   describe 'GET /admin/books' do
@@ -81,8 +82,6 @@ RSpec.describe '/admin/books', type: :request do
   end
 
   describe 'POST /adin/books/create' do
-    let!(:book) { create(:book) }
-
     context 'with valid parameters' do
       it 'creates a new Book' do
         expect do

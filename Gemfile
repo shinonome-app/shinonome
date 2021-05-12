@@ -60,6 +60,7 @@ group :development, :test do
   # Ruby static analytics and lint
   gem 'rubocop'
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 
   # Makes dummy data for seeds
   gem 'faker'

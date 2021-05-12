@@ -39,6 +39,7 @@ RSpec.describe '/admin/news', type: :request do
 
   describe 'GET /admin/news/' do
     before { sign_in(user) }
+
     it 'renders a successful response' do
       News.create! valid_attributes
       get admin_news_index_url
@@ -48,6 +49,7 @@ RSpec.describe '/admin/news', type: :request do
 
   describe 'GET /admin/admin/show' do
     before { sign_in(user) }
+
     it 'renders a successful response' do
       news = News.create! valid_attributes
       get admin_news_url(news)

@@ -40,6 +40,7 @@ RSpec.describe '/admin/workers', type: :request do
   end
 
   let(:user) { create(:user) }
+
   before { sign_in(user) }
 
   describe 'GET /' do
