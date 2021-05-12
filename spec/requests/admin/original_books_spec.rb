@@ -18,32 +18,32 @@ RSpec.describe '/original_books', type: :request do
   # OriginalBook. As you add validations to OriginalBook, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      title: '底本名',
+      publisher: '底本社',
+      first_pubdate: '1998（平成10）年2月3日',
+      input_edition: '1998（平成10）年2月3日第1刷',
+      booktype_id: booktype.id,
+      book_id: book.id,
+      note: '備考'
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      title: nil
+    }
   end
 
-  describe 'GET /index' do
-    it 'renders a successful response' do
-      OriginalBook.create! valid_attributes
-      get original_books_url
-      expect(response).to be_successful
-    end
-  end
+  let(:book) { create(:book) }
+  let(:user) { create(:user) }
+  let(:booktype) { create(:booktype) }
 
-  describe 'GET /show' do
-    it 'renders a successful response' do
-      original_book = OriginalBook.create! valid_attributes
-      get original_book_url(original_book)
-      expect(response).to be_successful
-    end
-  end
+  before { sign_in(user) }
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_original_book_url
+      get new_admin_book_original_book_url(book)
       expect(response).to be_successful
     end
   end
@@ -51,7 +51,7 @@ RSpec.describe '/original_books', type: :request do
   describe 'GET /edit' do
     it 'render a successful response' do
       original_book = OriginalBook.create! valid_attributes
-      get edit_original_book_url(original_book)
+      get edit_admin_book_original_book_url(book, original_book)
       expect(response).to be_successful
     end
   end
@@ -60,25 +60,25 @@ RSpec.describe '/original_books', type: :request do
     context 'with valid parameters' do
       it 'creates a new OriginalBook' do
         expect do
-          post original_books_url, params: { original_book: valid_attributes }
+          post admin_book_original_books_url(book), params: { original_book: valid_attributes }
         end.to change(OriginalBook, :count).by(1)
       end
 
       it 'redirects to the created original_book' do
-        post original_books_url, params: { original_book: valid_attributes }
-        expect(response).to redirect_to(original_book_url(OriginalBook.last))
+        post admin_book_original_books_url(book), params: { original_book: valid_attributes }
+        expect(response).to redirect_to(admin_book_url(book))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new OriginalBook' do
         expect do
-          post original_books_url, params: { original_book: invalid_attributes }
+          post admin_book_original_books_url(book), params: { original_book: invalid_attributes }
         end.to change(OriginalBook, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post original_books_url, params: { original_book: invalid_attributes }
+        post admin_book_original_books_url(book), params: { original_book: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -87,28 +87,30 @@ RSpec.describe '/original_books', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          title: '底本名2'
+        }
       end
 
       it 'updates the requested original_book' do
         original_book = OriginalBook.create! valid_attributes
-        patch original_book_url(original_book), params: { original_book: new_attributes }
+        patch admin_book_original_book_url(book, original_book), params: { original_book: new_attributes }
         original_book.reload
-        skip('Add assertions for updated state')
+        expect(original_book.title).to eq '底本名2'
       end
 
       it 'redirects to the original_book' do
         original_book = OriginalBook.create! valid_attributes
-        patch original_book_url(original_book), params: { original_book: new_attributes }
+        patch admin_book_original_book_url(book, original_book), params: { original_book: new_attributes }
         original_book.reload
-        expect(response).to redirect_to(original_book_url(original_book))
+        expect(response).to redirect_to(admin_book_url(book))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         original_book = OriginalBook.create! valid_attributes
-        patch original_book_url(original_book), params: { original_book: invalid_attributes }
+        patch admin_book_original_book_url(book, original_book), params: { original_book: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -118,14 +120,14 @@ RSpec.describe '/original_books', type: :request do
     it 'destroys the requested original_book' do
       original_book = OriginalBook.create! valid_attributes
       expect do
-        delete original_book_url(original_book)
+        delete admin_book_original_book_url(book, original_book)
       end.to change(OriginalBook, :count).by(-1)
     end
 
     it 'redirects to the original_books list' do
       original_book = OriginalBook.create! valid_attributes
-      delete original_book_url(original_book)
-      expect(response).to redirect_to(original_books_url)
+      delete admin_book_original_book_url(book, original_book)
+      expect(response).to redirect_to(admin_book_url(book))
     end
   end
 end

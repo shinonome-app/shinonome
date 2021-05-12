@@ -29,4 +29,6 @@
 class OriginalBook < ApplicationRecord
   belongs_to :book
   belongs_to :booktype
+
+  validates :title, presence: true
 end
