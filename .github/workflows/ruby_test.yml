@@ -47,5 +47,11 @@ jobs:
         RAILS_ENV: test
         DATABASE_USERNAME: postgres
         DATABASE_PASSWORD: postgres
+        DATABASE_HOST: localhost
     - name: Run rspec
       run: bundle exec rake
+      env:
+        RAILS_ENV: test
+        DATABASE_USERNAME: postgres
+        DATABASE_PASSWORD: postgres
+        DATABASE_HOST: localhost
