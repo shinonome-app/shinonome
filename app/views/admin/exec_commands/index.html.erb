@@ -1,0 +1,23 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl">コマンド実行</h1>
+  <%= link_to '新規コマンド実行', new_admin_exec_command_path %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>コマンド</th>
+        <th>実行日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @exec_commands.each do |exec_command| %>
+        <tr>
+          <td><%= exec_command.id %></td>
+          <td><%= link_to exec_command.command, admin_exec_command_path(exec_command) %></td>
+          <td><%= exec_command.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

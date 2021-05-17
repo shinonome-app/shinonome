@@ -1,0 +1,23 @@
+<%= form_with(model: [:admin, exec_command]) do |form| %>
+  <% if exec_command.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exec_command.errors.count, "error") %> prohibited this exec_command from being saved:</h2>
+      <ul>
+        <% exec_command.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :command %>
+    <%= form.text_area :command %>
+  </div>
+  <div class="field">
+    <%= form.label :separator %>
+    <%= form.select :separator, [[:tab, 1], [:comma, 2]] %>
+  </div>
+  <div class="actions">
+    <%= form.submit "実行" %>
+  </div>
+<% end %>

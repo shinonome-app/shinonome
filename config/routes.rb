@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
     resources :news
     resources :people
+
     namespace :books do
       resources :text_searches, only: %i[index]
       resources :book_index_searches, only: %i[index]
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
       resources :status_searches, only: %i[index]
       resources :unknown_creator_searches, only: %i[index]
     end
+
     resources :books do
       resources :bookfiles
       resources :sites
@@ -61,6 +63,7 @@ Rails.application.routes.draw do
 
     resources :sites
     resources :workers
+    resources :exec_commands, only: %i[index new create]
 
     resources :receipts
 

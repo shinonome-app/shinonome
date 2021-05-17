@@ -90,3 +90,17 @@ ja:
         proof_edition: "校正に使用した版"
         booktype_id: "種別フラグ"
         note: "備考"
+      site:
+        id: "関連サイトID"
+        name: "関連サイト名"
+        url: "関連サイトURL"
+        owner_name: "関連サイト運営者名"
+        email: "email"
+        note: "備考"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+        updated_by: "更新者"
+      exec_command:
+        command: コマンド
+        separator: カラム区切り
+
