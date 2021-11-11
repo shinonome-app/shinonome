@@ -19,4 +19,18 @@ services:
       DATABASE_HOST: db
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: password
-
+      WEBPACKER_DEV_SERVER_HOST: webpacker
+  webpacker:
+    build: .
+    volumes:
+      - .:/myapp
+    ports:
+      - "3035:3035"
+    depends_on:
+      - web
+    command: bin/webpack-dev-server
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      WEBPACKER_DEV_SERVER_HOST: webpacker
