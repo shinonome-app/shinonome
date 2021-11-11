@@ -13,7 +13,7 @@ RUN curl https://deb.nodesource.com/setup_12.x | bash
 RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-RUN apt-get install -y nodejs yarn postgresql-client zlib1g-dev liblzma-dev patch build-essential libpq-dev git openssh-client \
+RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client zlib1g-dev liblzma-dev patch build-essential libpq-dev git openssh-client \
   && apt-get clean \
   && rm -rf /var/cache/apt/archives/* \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
@@ -22,6 +22,9 @@ RUN apt-get install -y nodejs yarn postgresql-client zlib1g-dev liblzma-dev patc
 COPY Gemfile* ./
 RUN bundle install
 COPY . .
+
+RUN yarn install
+RUN bundle exec rails webpacker:compile
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
