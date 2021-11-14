@@ -10,7 +10,7 @@ kana_types = {
 
 # exist successfully if already created
 if KanaType.count.positive?
-  Rails.logger.debug 'Seeds has already been created.'
+  warn 'Seeds have already been created.'
   exit
 end
 
