@@ -8,6 +8,12 @@ kana_types = {
   99 =>	'その他'
 }
 
+# exist successfully if already created
+if KanaType.count > 0
+  puts "Seeds has already been created."
+  exit
+end
+
 # KanaType.connection.execute('TRUNCATE TABLE kana_types;')
 kana_types.each do |k, v|
   KanaType.create!(id: k, name: v)
