@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# rubocop:disable Style/FrozenStringLiteralComment
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
@@ -69,3 +69,5 @@ RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
   config.include FactoryBot::Syntax::Methods
 end
+
+# rubocop:enable Style/FrozenStringLiteralComment

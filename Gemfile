@@ -33,7 +33,7 @@ gem 'pg'
 gem 'rails-i18n'
 
 # Component system for Rails
-gem 'view_component', require: 'view_component/engine'
+gem 'view_component'
 
 # Authentication based on Rack/Warden
 # gem 'devise'
@@ -93,7 +93,7 @@ group :test do
   gem 'rspec-rails', '~> 4.0'
 
   # Support tools with Rspec
-  gem 'factory_bot_rails', '~> 6.1.0'
+  gem 'factory_bot_rails'
   gem 'test-prof'
 end
 
