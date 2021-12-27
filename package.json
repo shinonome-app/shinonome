@@ -5,6 +5,7 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
   },
   "dependencies": {
+    "@hotwired/turbo-rails": "^7.1.0",
     "@rails/actioncable": "^7.0.0",
     "@rails/activestorage": "^7.0.0",
     "@rails/ujs": "^7.0.0",
@@ -15,6 +16,5 @@
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

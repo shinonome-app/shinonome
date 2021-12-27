@@ -9,4 +9,4 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// import "stylesheets/application"
+import "@hotwired/turbo-rails"
