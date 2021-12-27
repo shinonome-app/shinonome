@@ -1,17 +1,17 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: bibclasses
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
+#  book_id    :integer          not null
 #  name       :text             not null
-#  note       :text
 #  num        :text             not null
+#  note       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  book_id    :bigint           not null
 #
+
 FactoryBot.define do
   factory :bibclasse do
     book_id { 1 }

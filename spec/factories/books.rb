@@ -1,32 +1,31 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: books
 #
-#  id                    :bigint           not null, primary key
-#  author_display_name   :text
-#  collection            :text
-#  collection_kana       :text
-#  copyright_flag        :boolean          not null
-#  description           :text
-#  first_appearance      :text
-#  note                  :text
-#  orig_text             :text
-#  original_title        :text
-#  sortkey               :text
-#  started_on            :date             not null
-#  subtitle              :text
-#  subtitle_kana         :text
+#  id                    :integer          not null, primary key
 #  title                 :text             not null
 #  title_kana            :text
+#  subtitle              :text
+#  subtitle_kana         :text
+#  collection            :text
+#  collection_kana       :text
+#  original_title        :text
+#  kana_type_id          :integer          not null
+#  author_display_name   :text
+#  first_appearance      :text
+#  description           :text
+#  description_person_id :integer
+#  book_status_id        :integer          not null
+#  started_on            :date             not null
+#  copyright_flag        :boolean          not null
+#  note                  :text
+#  orig_text             :text
+#  user_id               :integer          not null
 #  update_flag           :integer
+#  sortkey               :text
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  book_status_id        :bigint           not null
-#  description_person_id :bigint
-#  kana_type_id          :bigint           not null
-#  user_id               :bigint           not null
 #
 # Indexes
 #
@@ -34,12 +33,7 @@
 #  index_books_on_kana_type_id    (kana_type_id)
 #  index_books_on_user_id         (user_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (book_status_id => book_statuses.id)
-#  fk_rails_...  (kana_type_id => kana_types.id)
-#  fk_rails_...  (user_id => users.id)
-#
+
 FactoryBot.define do
   factory :book do
     user
