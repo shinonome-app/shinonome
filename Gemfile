@@ -36,7 +36,8 @@ gem 'rails-i18n'
 gem 'view_component', require: 'view_component/engine'
 
 # Authentication based on Rack/Warden
-gem 'devise'
+# gem 'devise'
+gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 
 # Pagination in views
 gem 'pagy'
