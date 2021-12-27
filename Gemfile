@@ -44,7 +44,7 @@ gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'pagy'
 
 # Use TailswindCSS
-gem 'tailwindcss-rails', '~> 0.3.3'
+gem 'tailwindcss-rails'
 
 # Some libraries use rexml as XML processor
 gem 'rexml'
