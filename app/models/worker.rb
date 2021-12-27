@@ -4,21 +4,23 @@
 #
 # Table name: workers
 #
-#  id         :bigint           not null, primary key
-#  email      :text             not null
+#  id         :integer          not null, primary key
 #  name       :text             not null
 #  name_kana  :text             not null
-#  note       :text
-#  sortkey    :text
+#  email      :text             not null
 #  url        :text
+#  note       :text
+#  user_id    :integer
+#  sortkey    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint
 #
 # Indexes
 #
 #  index_workers_on_user_id  (user_id)
 #
+
+# 工作員
 class Worker < ApplicationRecord
   PERSON_ID_TABLE = [
     %w[あ い う え お],

@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.4', '>= 6.1.3.1'
+gem 'rails', '7.0.0'
 # Use Puma as the app server
 gem 'puma', '~> 5.5'
 # Use SCSS for stylesheets
@@ -33,10 +33,11 @@ gem 'pg'
 gem 'rails-i18n'
 
 # Component system for Rails
-gem 'view_component', require: 'view_component/engine'
+gem 'view_component'
 
 # Authentication based on Rack/Warden
-gem 'devise'
+# gem 'devise'
+gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 
 # Pagination in views
 gem 'pagy'
@@ -92,7 +93,7 @@ group :test do
   gem 'rspec-rails', '~> 4.0'
 
   # Support tools with Rspec
-  gem 'factory_bot_rails', '~> 6.1.0'
+  gem 'factory_bot_rails'
   gem 'test-prof'
 end
 

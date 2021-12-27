@@ -4,35 +4,31 @@
 #
 # Table name: proofreads
 #
-#  id            :bigint           not null, primary key
-#  address       :text
-#  assign_status :text
+#  id            :integer          not null, primary key
+#  book_id       :integer          not null
 #  book_copy     :text
 #  book_print    :text
-#  bookfile      :bigint
-#  email         :text
-#  memo          :text
-#  order_status  :text
 #  proof_edition :text
-#  url           :text
+#  bookfile      :integer
+#  address       :text
+#  memo          :text
+#  worker_id     :integer
 #  worker_kana   :text
 #  worker_name   :text
+#  email         :text
+#  url           :text
+#  person_id     :integer          not null
+#  assign_status :text
+#  order_status  :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  book_id       :bigint           not null
-#  person_id     :bigint           not null
-#  worker_id     :bigint
 #
 # Indexes
 #
 #  index_proofreads_on_book_id    (book_id)
 #  index_proofreads_on_person_id  (person_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (book_id => books.id)
-#  fk_rails_...  (person_id => people.id)
-#
+
 class Proofread < ApplicationRecord
   belongs_to :book
   belongs_to :bookfile

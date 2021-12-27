@@ -4,12 +4,13 @@
 #
 # Table name: filetypes
 #
-#  id         :bigint           not null, primary key
-#  extension  :text
+#  id         :integer          not null, primary key
 #  name       :text
+#  extension  :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+
 require 'rails_helper'
 
 RSpec.describe Filetype, type: :model do

@@ -4,12 +4,13 @@
 #
 # Table name: book_statuses
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  name       :text             not null
 #  sort_order :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+
 require 'rails_helper'
 
 RSpec.describe BookStatus, type: :model do

@@ -4,19 +4,16 @@
 #
 # Table name: base_people
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
+#  person_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  person_id  :bigint           not null
 #
 # Indexes
 #
 #  index_base_people_on_person_id  (person_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (person_id => people.id)
-#
+
 require 'rails_helper'
 
 RSpec.describe BasePerson, type: :model do

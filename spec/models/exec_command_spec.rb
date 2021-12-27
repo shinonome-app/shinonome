@@ -4,13 +4,14 @@
 #
 # Table name: exec_commands
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  command    :text
+#  user_id    :integer
 #  separator  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint
 #
+
 require 'rails_helper'
 
 RSpec.describe ExecCommand, type: :model do
