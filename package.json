@@ -1,12 +1,16 @@
 {
   "name": "shinonome",
   "private": true,
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
+  },
   "dependencies": {
     "@rails/actioncable": "^7.0.0",
     "@rails/activestorage": "^7.0.0",
     "@rails/ujs": "^7.0.0",
     "@rails/webpacker": "5.3.0",
     "autoprefixer": "^9",
+    "esbuild": "^0.14.8",
     "postcss": "^8",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "turbolinks": "^5.2.0",

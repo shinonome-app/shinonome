@@ -112,6 +112,8 @@ GEM
       activesupport (>= 5.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    jsbundling-rails (1.0.0)
+      railties (>= 6.0.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -305,6 +307,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   gimei
+  jsbundling-rails
   letter_opener_web (~> 1.0)
   listen (~> 3.3)
   pagy
