@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -20,6 +21,7 @@
 #  index_users_on_username              (username) UNIQUE
 #
 
+# ユーザー
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

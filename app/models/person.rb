@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: people
@@ -28,6 +29,7 @@
 #  updated_at      :datetime         not null
 #
 
+# 人物(著者等)
 class Person < ApplicationRecord
   PERSON_ID_TABLE = [
     %w[あ い う え お],

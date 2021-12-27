@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: books
@@ -34,6 +35,7 @@
 #  index_books_on_user_id         (user_id)
 #
 
+# 作品
 class Book < ApplicationRecord
   has_many :book_sites, dependent: :destroy
   has_many :sites, through: :book_sites

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: workers
@@ -19,6 +20,7 @@
 #  index_workers_on_user_id  (user_id)
 #
 
+# 工作員
 class Worker < ApplicationRecord
   PERSON_ID_TABLE = [
     %w[あ い う え お],

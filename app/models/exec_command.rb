@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: exec_commands
@@ -11,6 +12,7 @@
 #  updated_at :datetime         not null
 #
 
+# コマンド実行用
 class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
   class Error < RuntimeError
   end
