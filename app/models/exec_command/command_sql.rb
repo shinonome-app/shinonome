@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ExecCommand
-  class CommandSQL < ExecCommand::Base
+  class CommandSql < ExecCommand::Base
   end
 end
