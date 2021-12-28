@@ -234,21 +234,10 @@ GEM
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selenium-webdriver (4.1.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
-    semantic_range (3.0.0)
     spring (4.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -257,11 +246,10 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    tailwindcss-rails (0.3.3)
-      rails (>= 6.0.0)
+    tailwindcss-rails (2.0.2)
+      railties (>= 6.0.0)
     test-prof (1.0.7)
     thor (1.1.0)
-    tilt (2.0.10)
     turbo-rails (1.0.0)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -282,17 +270,12 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
-    webpacker (5.4.3)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.2)
 
 PLATFORMS
   ruby
@@ -322,10 +305,10 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubyzip
-  sass-rails (>= 6)
   selenium-webdriver
   spring
-  tailwindcss-rails (~> 0.3.3)
+  sprockets-rails
+  tailwindcss-rails
   test-prof
   turbo-rails
   tzinfo-data

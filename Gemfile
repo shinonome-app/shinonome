@@ -7,13 +7,17 @@ ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '7.0.0'
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'sprockets-rails'
+
 # Use Puma as the app server
 gem 'puma', '~> 5.5'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
 
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
 
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
 
 # Use Redis adapter to run Action Cable in production
@@ -44,7 +48,7 @@ gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'pagy'
 
 # Use TailswindCSS
-gem 'tailwindcss-rails', '~> 0.3.3'
+gem 'tailwindcss-rails'
 
 # Some libraries use rexml as XML processor
 gem 'rexml'
