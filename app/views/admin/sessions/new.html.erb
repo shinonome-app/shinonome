@@ -18,12 +18,12 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :login %>
-      <%= f.text_field :login, autofocus: true, class: "w-full" %>
+      <%= f.text_field :login, autofocus: true, class: "w-full border border-gray-800 p-1" %>
     </div>
 
     <div class="field">
       <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "w-full" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "w-full border border-gray-800 p-1" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
