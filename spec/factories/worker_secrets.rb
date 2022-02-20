@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: worker_secrets
@@ -20,9 +22,9 @@
 FactoryBot.define do
   factory :worker_secret do
     worker
-    email { "MyText" }
-    url { "MyText" }
-    note { "MyText" }
+    email { 'MyText' }
+    url { 'MyText' }
+    note { 'MyText' }
     user { nil }
   end
 end

@@ -3,7 +3,7 @@
 # Worker.connection.execute('TRUNCATE TABLE workers;')
 user_id_list = Shinonome::User.all.pluck(:id)
 
-workers = (1..1200).map do |n|
+workers = (1..1200).map do |_n|
   name = Gimei.name
 
   {
@@ -15,7 +15,7 @@ workers = (1..1200).map do |n|
   }
 end
 
-items = Worker.insert_all(workers, returning: %w[ id ] )
+items = Worker.insert_all(workers, returning: %w[id])
 
 worker_secrets = items.map do |item|
   n = item['id']
