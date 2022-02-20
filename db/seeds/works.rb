@@ -4,7 +4,7 @@
 # Work.connection.execute('TRUNCATE TABLE work_workers;')
 # Work.connection.execute('TRUNCATE TABLE work_people;')
 # Work.connection.execute('TRUNCATE TABLE bibclasses;')
-# Work.connection.execute('TRUNCATE TABLE original_works;')
+# Work.connection.execute('TRUNCATE TABLE original_books;')
 
 ## Works
 selected_workers = Worker.order(:id).limit(10)
@@ -121,8 +121,8 @@ end
 
 Bibclass.insert_all(bibclasses)
 
-## OriginalWorks
-original_works = work_id_list.map do |n|
+## OriginalBooks
+original_books = work_id_list.map do |n|
   {
     work_id: n,
     title: "底本名#{n}",
@@ -140,7 +140,7 @@ end
 work_id_list.each do |n|
   next unless rand(10) >= 5
 
-  original_works << {
+  original_books << {
     work_id: n,
     title: "底本の親本名#{n}",
     first_pubdate: "初版発行年月日#{n}",
@@ -154,4 +154,4 @@ work_id_list.each do |n|
   }
 end
 
-OriginalWork.insert_all(original_works)
+OriginalBook.insert_all(original_books)

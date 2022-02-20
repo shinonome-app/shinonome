@@ -1,49 +1,49 @@
 # frozen_string_literal: true
 
 module Admin
-  class OriginalWorksController < Admin::ApplicationController
-    before_action :set_original_work, only: %i[edit update destroy]
+  class OriginalBooksController < Admin::ApplicationController
+    before_action :set_original_book, only: %i[edit update destroy]
     before_action :set_work
 
-    # GET /admin/original_works/new
+    # GET /admin/original_books/new
     def new
-      @original_work = OriginalWork.new
+      @original_book = OriginalBook.new
     end
 
-    # GET /admin/original_works/1/edit
+    # GET /admin/original_books/1/edit
     def edit; end
 
-    # POST /admin/original_works
+    # POST /admin/original_books
     def create
-      @original_work = OriginalWork.new(original_work_params)
-      @original_work.work = @work
-      if @original_work.save
+      @original_book = OriginalBook.new(original_book_params)
+      @original_book.work = @work
+      if @original_book.save
         redirect_to admin_work_url(@work), notice: 'Original work was successfully created.'
       else
         render :new
       end
     end
 
-    # PATCH/PUT /admin/original_works/1
+    # PATCH/PUT /admin/original_books/1
     def update
-      if @original_work.update(original_work_params)
+      if @original_book.update(original_book_params)
         redirect_to admin_work_url(@work), notice: 'Original work was successfully updated.'
       else
         render :edit
       end
     end
 
-    # DELETE /admin/original_works/1
+    # DELETE /admin/original_books/1
     def destroy
-      @original_work.destroy
+      @original_book.destroy
       redirect_to admin_work_url(@work), notice: 'Original work was successfully destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_original_work
-      @original_work = OriginalWork.find(params[:id])
+    def set_original_book
+      @original_book = OriginalBook.find(params[:id])
     end
 
     def set_work
@@ -51,8 +51,8 @@ module Admin
     end
 
     # Only allow a list of trusted parameters through.
-    def original_work_params
-      params.require(:original_work).permit(:work_id, :title, :publisher, :first_pubdate, :input_edition,
+    def original_book_params
+      params.require(:original_book).permit(:work_id, :title, :publisher, :first_pubdate, :input_edition,
                                             :proof_edition, :worktype_id, :note)
     end
   end

@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: original_works
+# Table name: original_books
 #
 #  id            :integer          not null, primary key
 #  work_id       :integer
@@ -18,11 +18,11 @@
 #
 # Indexes
 #
-#  index_original_works_on_work_id      (work_id)
-#  index_original_works_on_worktype_id  (worktype_id)
+#  index_original_books_on_work_id      (work_id)
+#  index_original_books_on_worktype_id  (worktype_id)
 #
 
-class OriginalWork < ApplicationRecord
+class OriginalBook < ApplicationRecord
   belongs_to :work
   belongs_to :worktype
 
