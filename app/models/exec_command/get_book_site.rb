@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ExecCommand
-  class GetBookSite < ExecCommand::Base
+  class GetWorkSite < ExecCommand::Base
   end
 end

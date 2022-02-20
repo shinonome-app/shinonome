@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class CreateBookfiles < ActiveRecord::Migration[6.1]
+class CreateWorkfiles < ActiveRecord::Migration[6.1]
   def change
-    create_table :bookfiles do |t|
-      t.references :book, foreign_key: true, null: false
+    create_table :workfiles do |t|
+      t.references :work, foreign_key: true, null: false
       t.references :filetype, foreign_key: true, null: false
       t.references :compresstype, foreign_key: true, null: false
       t.integer :filesize

@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: booktypes
+# Table name: worktypes
 #
 #  id         :integer          not null, primary key
 #  name       :text             not null
@@ -10,5 +10,5 @@
 #  updated_at :datetime         not null
 #
 
-class Booktype < ApplicationRecord
+class Worktype < ApplicationRecord
 end

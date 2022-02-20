@@ -2,10 +2,10 @@
 
 # == Schema Information
 #
-# Table name: book_people
+# Table name: work_people
 #
 #  id         :integer          not null, primary key
-#  book_id    :integer          not null
+#  work_id    :integer          not null
 #  person_id  :integer          not null
 #  role_id    :integer          not null
 #  created_at :datetime         not null
@@ -13,14 +13,14 @@
 #
 # Indexes
 #
-#  index_book_people_on_book_id    (book_id)
-#  index_book_people_on_person_id  (person_id)
-#  index_book_people_on_role_id    (role_id)
+#  index_work_people_on_work_id    (work_id)
+#  index_work_people_on_person_id  (person_id)
+#  index_work_people_on_role_id    (role_id)
 #
 
 FactoryBot.define do
-  factory :book_person do
-    book_id { 1 }
+  factory :work_person do
+    work_id { 1 }
     person_id { 1 }
     role_id { 1 }
   end

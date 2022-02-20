@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ExecCommand
-  class GetBookWalker < ExecCommand::Base
+  class GetWorkWalker < ExecCommand::Base
   end
 end

@@ -1,69 +1,69 @@
 # frozen_string_literal: true
 
 module Admin
-  class BookfilesController < Admin::ApplicationController
-    before_action :set_bookfile, only: %i[show edit update destroy]
+  class WorkfilesController < Admin::ApplicationController
+    before_action :set_workfile, only: %i[show edit update destroy]
 
-    # GET /admin/bookfiles
+    # GET /admin/workfiles
     def index
-      @bookfiles = Bookfile.all
+      @workfiles = Workfile.all
     end
 
-    # GET /admin/bookfiles/1
+    # GET /admin/workfiles/1
     def show; end
 
-    # GET /admin/bookfiles/new
+    # GET /admin/workfiles/new
     def new
-      @bookfile = Bookfile.new
-      @bookfile.book_id = params[:book_id]
+      @workfile = Workfile.new
+      @workfile.work_id = params[:work_id]
     end
 
-    # GET /admin/bookfiles/1/edit
+    # GET /admin/workfiles/1/edit
     def edit; end
 
-    # POST /admin/bookfiles
+    # POST /admin/workfiles
     def create
-      @bookfile = Bookfile.new(bookfile_params)
-      @bookfile.user = current_admin_user
-      @bookfile.filename = @bookfile.bookdata.filename
+      @workfile = Workfile.new(workfile_params)
+      @workfile.user = current_admin_user
+      @workfile.filename = @workfile.workdata.filename
 
-      if @bookfile.save
-        redirect_to [:admin, @bookfile.book], notice: 'Bookfile was successfully created.'
+      if @workfile.save
+        redirect_to [:admin, @workfile.work], notice: 'Workfile was successfully created.'
       else
         render :new
       end
     end
 
-    # PATCH/PUT /admin/book/bookfiles/1
+    # PATCH/PUT /admin/work/workfiles/1
     def update
-      if @bookfile.update(bookfile_params)
-        @bookfile.user = current_admin_user
-        @bookfile.filename = @bookfile.bookdata.filename
-        @bookfile.save!
-        redirect_to [:admin, @bookfile.book], notice: 'Bookfile was successfully updated.'
+      if @workfile.update(workfile_params)
+        @workfile.user = current_admin_user
+        @workfile.filename = @workfile.workdata.filename
+        @workfile.save!
+        redirect_to [:admin, @workfile.work], notice: 'Workfile was successfully updated.'
       else
         render :edit
       end
     end
 
-    # DELETE /admin/book/bookfiles/1
+    # DELETE /admin/work/workfiles/1
     def destroy
-      book = @bookfile.book
-      @bookfile.destroy
-      redirect_to admin_book_url(book), notice: 'Bookfile was successfully destroyed.'
+      work = @workfile.work
+      @workfile.destroy
+      redirect_to admin_work_url(work), notice: 'Workfile was successfully destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_bookfile
-      @bookfile = Bookfile.find(params[:id])
+    def set_workfile
+      @workfile = Workfile.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def bookfile_params
-      params.require(:bookfile).permit(:book_id, :filetype_id, :compresstype_id, :filesize, :user_id, :url, :filename,
-                                       :opened_on, :revision_count, :file_encoding_id, :charset_id, :note, :bookdata)
+    def workfile_params
+      params.require(:workfile).permit(:work_id, :filetype_id, :compresstype_id, :filesize, :user_id, :url, :filename,
+                                       :opened_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata)
     end
   end
 end

@@ -4,7 +4,7 @@ class ExecCommand
   # 'site'コマンドの実装クラス
   class GetSite < ExecCommand::Base
     COLUMNS = %i[id name url owner_name email note updated_at updated_by].freeze
-    FILENAME = 'book.csv'
+    FILENAME = 'work.csv'
 
     def exec(exec_command, _params)
       csv_data = CSV.generate do |csv|

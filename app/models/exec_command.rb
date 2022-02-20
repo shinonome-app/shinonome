@@ -33,9 +33,9 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
       each_command do |cmd, args|
         case cmd
         when '作品新規'
-          ExecCommand::AddBook.execute(self, args)
+          ExecCommand::AddWork.execute(self, args)
         when '底本追加'
-          ExecCommand::AddOriginalBook.execute(self, args)
+          ExecCommand::AddOriginalWork.execute(self, args)
         when '分類追加'
           ExecCommand::AddBibclass.execute(self, args)
         when '人物追加'
@@ -47,9 +47,9 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
         when 'ファイル追加'
           ExecCommand::AddFile.execute(self, args)
         when '作品更新'
-          ExecCommand::EditBook.execute(self, args)
+          ExecCommand::EditWork.execute(self, args)
         when '底本更新'
-          ExecCommand::EditOriginalBook.execute(self, args)
+          ExecCommand::EditOriginalWork.execute(self, args)
         when '分類更新'
           ExecCommand::EditBibclass.execute(self, args)
         when 'ファイル更新'
@@ -57,7 +57,7 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
         when 'ファイル削除'
           ExecCommand::DeleteFile.execute(self, args)
         when '底本削除'
-          ExecCommand::DeleteOriginalBook.execute(self, args)
+          ExecCommand::DeleteOriginalWork.execute(self, args)
         when '分類削除'
           ExecCommand::DeleteBibclass.execute(self, args)
         when 'サイト削除'
@@ -68,20 +68,20 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
           ExecCommand::CommandSQL.execute(self, args)
         when 'ファイル取得'
           ExecCommand::GetFile.execute(self, args)
-        when 'bookselect'
-          ExecCommand::GetBookSelect.execute(self, args)
-        when 'book'
-          ExecCommand::GetBook.execute(self, args)
-        when 'book_site'
-          ExecCommand::GetBookSite.execute(self, args)
+        when 'workselect'
+          ExecCommand::GetWorkSelect.execute(self, args)
+        when 'work'
+          ExecCommand::GetWork.execute(self, args)
+        when 'work_site'
+          ExecCommand::GetWorkSite.execute(self, args)
         when 'person_site'
           ExecCommand::GetPersonSite.execute(self, args)
-        when 'book_person'
-          ExecCommand::GetBookPerson.execute(self, args)
-        when 'book_worker'
-          ExecCommand::GetBookWorker.execute(self, args)
+        when 'work_person'
+          ExecCommand::GetWorkPerson.execute(self, args)
+        when 'work_worker'
+          ExecCommand::GetWorkWorker.execute(self, args)
         when 'source'
-          ExecCommand::GetOriginalBook.execute(self, args)
+          ExecCommand::GetOriginalWork.execute(self, args)
         when 'class'
           ExecCommand::GetBibclass.execute(self, args)
         when 'person'

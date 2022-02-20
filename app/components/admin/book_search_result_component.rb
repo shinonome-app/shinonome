@@ -2,12 +2,12 @@
 
 module Admin
   # 作品検索結果一覧用コンポーネント
-  class BookSearchResultComponent < ViewComponent::Base
+  class WorkSearchResultComponent < ViewComponent::Base
     include ::Pagy::Frontend
 
-    def initialize(books:, pagy:)
+    def initialize(works:, pagy:)
       super
-      @books = books
+      @works = works
       @pagy = pagy
     end
   end

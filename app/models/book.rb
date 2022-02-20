@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: books
+# Table name: works
 #
 #  id                    :integer          not null, primary key
 #  title                 :text             not null
@@ -17,7 +17,7 @@
 #  first_appearance      :text
 #  description           :text
 #  description_person_id :integer
-#  book_status_id        :integer          not null
+#  work_status_id        :integer          not null
 #  started_on            :date             not null
 #  copyright_flag        :boolean          not null
 #  note                  :text
@@ -30,29 +30,29 @@
 #
 # Indexes
 #
-#  index_books_on_book_status_id  (book_status_id)
-#  index_books_on_kana_type_id    (kana_type_id)
-#  index_books_on_user_id         (user_id)
+#  index_works_on_work_status_id  (work_status_id)
+#  index_works_on_kana_type_id    (kana_type_id)
+#  index_works_on_user_id         (user_id)
 #
 
 # 作品
-class Book < ApplicationRecord
-  has_many :book_sites, dependent: :destroy
-  has_many :sites, through: :book_sites
-  has_many :book_people, dependent: :destroy
-  has_many :people, through: :book_people
-  has_many :book_workers, dependent: :destroy
-  has_many :workers, through: :book_workers
-  has_many :bookfiles, dependent: :destroy
+class Work < ApplicationRecord
+  has_many :work_sites, dependent: :destroy
+  has_many :sites, through: :work_sites
+  has_many :work_people, dependent: :destroy
+  has_many :people, through: :work_people
+  has_many :work_workers, dependent: :destroy
+  has_many :workers, through: :work_workers
+  has_many :workfiles, dependent: :destroy
 
   has_many :bibclasses, dependent: :destroy
-  has_many :original_books, dependent: :destroy
+  has_many :original_works, dependent: :destroy
 
   belongs_to :user
   belongs_to :kana_type
-  belongs_to :book_status
+  belongs_to :work_status
 
-  scope :with_year_and_status, ->(year, status) { where('extract(year from created_at) = ? AND book_status_id = ?', year, status) }
+  scope :with_year_and_status, ->(year, status) { where('extract(year from created_at) = ? AND work_status_id = ?', year, status) }
 
   scope :with_creator_firstchar, lambda { |char|
     if char == 'その他'
@@ -70,21 +70,21 @@ class Book < ApplicationRecord
     end
   }
 
-  validates :title, :started_on, :book_status, :kana_type, presence: true
+  validates :title, :started_on, :work_status, :kana_type, presence: true
 
   def author_text
-    book_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
+    work_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
   end
 
   def translator_text
-    book_people.where(role_id: 2).map { |a| a.person.name }.join(', ')
+    work_people.where(role_id: 2).map { |a| a.person.name }.join(', ')
   end
 
   def inputer_text
-    book_workers.where(worker_role_id: 1).map { |bw| bw.worker.name }.join('、')
+    work_workers.where(worker_role_id: 1).map { |bw| bw.worker.name }.join('、')
   end
 
   def proofreader_text
-    book_workers.where(worker_role_id: 2).map { |bw| bw.worker.name }.join('、')
+    work_workers.where(worker_role_id: 2).map { |bw| bw.worker.name }.join('、')
   end
 end

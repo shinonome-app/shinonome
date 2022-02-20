@@ -23,8 +23,8 @@ module Proofreads
                                       :kana_type_id, :first_appearance, :memo, :note, :status, :started_on, :copyright_flag,
                                       :last_name_kana, :last_name, :last_name_en, :first_name_kana, :first_name, :first_name_en, :person_note,
                                       :worker_kana, :worker_name, :email, :url,
-                                      :original_book_title, :publisher, :first_pubdate, :input_edition, :original_book_title2, :publisher2, :first_pubdate2,
-                                      :person_id, :worker_id, :created_on, :register_status, :original_book_note)
+                                      :original_work_title, :publisher, :first_pubdate, :input_edition, :original_work_title2, :publisher2, :first_pubdate2,
+                                      :person_id, :worker_id, :created_on, :register_status, :original_work_note)
     end
   end
 end

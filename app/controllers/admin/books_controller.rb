@@ -2,9 +2,9 @@
 
 module Admin
   # 作品管理
-  class BooksController < Admin::ApplicationController
+  class WorksController < Admin::ApplicationController
     include Pagy::Backend
-    before_action :set_book, only: %i[show edit update destroy]
+    before_action :set_work, only: %i[show edit update destroy]
 
     TEXT_SELECTOR = [
       ['を含む', 1],
@@ -13,63 +13,63 @@ module Admin
       ['と等しい', 4]
     ].freeze
 
-    # GET /books
+    # GET /works
     def index
-      @pagy, @books = pagy(Book.order(:id).all, items: 50)
+      @pagy, @works = pagy(Work.order(:id).all, items: 50)
       @years = (1995..Time.zone.now.year).to_a
     end
 
-    # GET /books/1
+    # GET /works/1
     def show; end
 
-    # GET /books/new
+    # GET /works/new
     def new
-      @book = Book.new
+      @work = Work.new
     end
 
-    # GET /books/1/edit
+    # GET /works/1/edit
     def edit; end
 
-    # POST /books
+    # POST /works
     def create
-      @book = Book.new(book_params)
-      @book.user = current_admin_user
+      @work = Work.new(work_params)
+      @work.user = current_admin_user
 
-      if @book.save
-        redirect_to [:admin, @book], notice: 'Book was successfully created.'
+      if @work.save
+        redirect_to [:admin, @work], notice: 'Work was successfully created.'
       else
         render :new
       end
     end
 
-    # PATCH/PUT /books/1
+    # PATCH/PUT /works/1
     def update
-      params2 = book_params.merge({ user_id: current_admin_user.id })
-      if @book.update(params2)
-        redirect_to [:admin, @book], notice: 'Book was successfully updated.'
+      params2 = work_params.merge({ user_id: current_admin_user.id })
+      if @work.update(params2)
+        redirect_to [:admin, @work], notice: 'Work was successfully updated.'
       else
         render :edit
       end
     end
 
-    # DELETE /books/1
+    # DELETE /works/1
     def destroy
-      @book.destroy
-      redirect_to admin_books_url, notice: 'Book was successfully destroyed.'
+      @work.destroy
+      redirect_to admin_works_url, notice: 'Work was successfully destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
+    def set_work
+      @work = Work.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def book_params
-      params.require(:book).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
+    def work_params
+      params.require(:work).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
                                    :original_title, :kana_type_id, :author_display_name, :first_appearance, :description,
-                                   :description_person_id, :book_status_id, :started_on, :copyright_flag, :note, :orig_text,
+                                   :description_person_id, :work_status_id, :started_on, :copyright_flag, :note, :orig_text,
                                    :updated_at, :user_id, :update_flag, :sortkey)
     end
   end

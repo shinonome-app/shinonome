@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ExecCommand
-  class GetBookPerson < ExecCommand::Base
+  class GetWorkPerson < ExecCommand::Base
   end
 end

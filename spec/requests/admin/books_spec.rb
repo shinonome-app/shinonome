@@ -14,8 +14,8 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/admin/books', type: :request do
-  # Book. As you add validations to Book, be sure to
+RSpec.describe '/admin/works', type: :request do
+  # Work. As you add validations to Work, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
@@ -23,7 +23,7 @@ RSpec.describe '/admin/books', type: :request do
       title_kana: 'てすと',
       copyright_flag: false,
       started_on: Time.zone.parse('2021-05-06'),
-      book_status_id: book_status.id,
+      work_status_id: work_status.id,
       note: '備考1',
       user_id: user.id,
       kana_type_id: kana_type.id
@@ -36,81 +36,81 @@ RSpec.describe '/admin/books', type: :request do
       title_kana: 'てすと',
       copyright_flag: false,
       started_on: Time.zone.parse('2021-05-06'),
-      book_status_id: 1,
+      work_status_id: 1,
       note: '備考1'
     }
   end
 
   let(:user) { create(:user, email: 'user2@example.com', username: 'user2') }
   let(:kana_type) { create(:kana_type) }
-  let(:book_status) { create(:book_status) }
+  let(:work_status) { create(:work_status) }
 
   before { sign_in(user) }
 
-  describe 'GET /admin/books' do
-    let(:book) { create(:book) }
+  describe 'GET /admin/works' do
+    let(:work) { create(:work) }
 
     it 'renders a successful response' do
-      get admin_books_url
+      get admin_works_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /admin/books/show' do
-    let(:book) { create(:book) }
+  describe 'GET /admin/works/show' do
+    let(:work) { create(:work) }
 
     it 'renders a successful response' do
-      get admin_book_url(book)
+      get admin_work_url(work)
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /admin/books/new' do
+  describe 'GET /admin/works/new' do
     it 'renders a successful response' do
-      get new_admin_book_url
+      get new_admin_work_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /admin/books/edit' do
-    let(:book) { create(:book) }
+  describe 'GET /admin/works/edit' do
+    let(:work) { create(:work) }
 
     it 'render a successful response' do
-      get edit_admin_book_url(book)
+      get edit_admin_work_url(work)
       expect(response).to be_successful
     end
   end
 
-  describe 'POST /adin/books/create' do
+  describe 'POST /adin/works/create' do
     context 'with valid parameters' do
-      it 'creates a new Book' do
+      it 'creates a new Work' do
         expect do
-          post admin_books_url, params: { book: valid_attributes }
-        end.to change(Book, :count).by(1)
+          post admin_works_url, params: { work: valid_attributes }
+        end.to change(Work, :count).by(1)
       end
 
-      it 'redirects to the created book' do
-        post admin_books_url, params: { book: valid_attributes }
-        expect(response).to redirect_to(admin_book_url(Book.last))
+      it 'redirects to the created work' do
+        post admin_works_url, params: { work: valid_attributes }
+        expect(response).to redirect_to(admin_work_url(Work.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Book' do
+      it 'does not create a new Work' do
         expect do
-          post admin_books_url, params: { book: invalid_attributes }
-        end.to change(Book, :count).by(0)
+          post admin_works_url, params: { work: invalid_attributes }
+        end.to change(Work, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_books_url, params: { book: invalid_attributes }
+        post admin_works_url, params: { work: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
-  describe 'PATCH /admin/books/update' do
-    let!(:book) { create(:book) }
+  describe 'PATCH /admin/works/update' do
+    let!(:work) { create(:work) }
 
     context 'with valid parameters' do
       let(:new_attributes) do
@@ -119,46 +119,46 @@ RSpec.describe '/admin/books', type: :request do
           title_kana: 'てすとに',
           copyright_flag: false,
           started_on: Time.zone.parse('2021-05-06'),
-          book_status_id: book_status.id,
+          work_status_id: work_status.id,
           note: '備考2',
           user_id: user.id,
           kana_type_id: kana_type.id
         }
       end
 
-      it 'updates the requested book' do
-        patch admin_book_url(book), params: { book: new_attributes }
-        book.reload
-        expect(book.title).to eq 'テスト2'
+      it 'updates the requested work' do
+        patch admin_work_url(work), params: { work: new_attributes }
+        work.reload
+        expect(work.title).to eq 'テスト2'
       end
 
-      it 'redirects to the book' do
-        patch admin_book_url(book), params: { book: new_attributes }
-        book.reload
-        expect(response).to redirect_to(admin_book_url(book))
+      it 'redirects to the work' do
+        patch admin_work_url(work), params: { work: new_attributes }
+        work.reload
+        expect(response).to redirect_to(admin_work_url(work))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch admin_book_url(book), params: { book: invalid_attributes }
+        patch admin_work_url(work), params: { work: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
-  describe 'DELETE /admin/books/destroy' do
-    let!(:book) { create(:book) }
+  describe 'DELETE /admin/works/destroy' do
+    let!(:work) { create(:work) }
 
-    it 'destroys the requested book' do
+    it 'destroys the requested work' do
       expect do
-        delete admin_book_url(book)
-      end.to change(Book, :count).by(-1)
+        delete admin_work_url(work)
+      end.to change(Work, :count).by(-1)
     end
 
-    it 'redirects to the books list' do
-      delete admin_book_url(book)
-      expect(response).to redirect_to(admin_books_url)
+    it 'redirects to the works list' do
+      delete admin_work_url(work)
+      expect(response).to redirect_to(admin_works_url)
     end
   end
 end

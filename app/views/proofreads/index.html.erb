@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Book</th>
-      <th>Book copy</th>
-      <th>Book print</th>
+      <th>Work</th>
+      <th>Work copy</th>
+      <th>Work print</th>
       <th>proof_edition</th>
-      <th>Bookfile</th>
+      <th>Workfile</th>
       <th>Address</th>
       <th>Memo</th>
       <th>Worker</th>
@@ -27,19 +27,19 @@
     <% @proofreads.each do |proofread| %>
       <tr>
         <td>
-          <%= proofread.book_id %>
+          <%= proofread.work_id %>
         </td>
         <td>
-          <%= proofread.book_copy %>
+          <%= proofread.work_copy %>
         </td>
         <td>
-          <%= proofread.book_print %>
+          <%= proofread.work_print %>
         </td>
         <td>
           <%= proofread.proof_edition %>
         </td>
         <td>
-          <%= proofread.bookfile_id %>
+          <%= proofread.workfile_id %>
         </td>
         <td>
           <%= proofread.address %>

@@ -14,8 +14,8 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/original_books', type: :request do
-  # OriginalBook. As you add validations to OriginalBook, be sure to
+RSpec.describe '/original_works', type: :request do
+  # OriginalWork. As you add validations to OriginalWork, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
@@ -23,8 +23,8 @@ RSpec.describe '/original_books', type: :request do
       publisher: '底本社',
       first_pubdate: '1998（平成10）年2月3日',
       input_edition: '1998（平成10）年2月3日第1刷',
-      booktype_id: booktype.id,
-      book_id: book.id,
+      worktype_id: worktype.id,
+      work_id: work.id,
       note: '備考'
     }
   end
@@ -35,50 +35,50 @@ RSpec.describe '/original_books', type: :request do
     }
   end
 
-  let(:book) { create(:book) }
+  let(:work) { create(:work) }
   let(:user) { create(:user) }
-  let(:booktype) { create(:booktype) }
+  let(:worktype) { create(:worktype) }
 
   before { sign_in(user) }
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_admin_book_original_book_url(book)
+      get new_admin_work_original_work_url(work)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
     it 'render a successful response' do
-      original_book = OriginalBook.create! valid_attributes
-      get edit_admin_book_original_book_url(book, original_book)
+      original_work = OriginalWork.create! valid_attributes
+      get edit_admin_work_original_work_url(work, original_work)
       expect(response).to be_successful
     end
   end
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new OriginalBook' do
+      it 'creates a new OriginalWork' do
         expect do
-          post admin_book_original_books_url(book), params: { original_book: valid_attributes }
-        end.to change(OriginalBook, :count).by(1)
+          post admin_work_original_works_url(work), params: { original_work: valid_attributes }
+        end.to change(OriginalWork, :count).by(1)
       end
 
-      it 'redirects to the created original_book' do
-        post admin_book_original_books_url(book), params: { original_book: valid_attributes }
-        expect(response).to redirect_to(admin_book_url(book))
+      it 'redirects to the created original_work' do
+        post admin_work_original_works_url(work), params: { original_work: valid_attributes }
+        expect(response).to redirect_to(admin_work_url(work))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new OriginalBook' do
+      it 'does not create a new OriginalWork' do
         expect do
-          post admin_book_original_books_url(book), params: { original_book: invalid_attributes }
-        end.to change(OriginalBook, :count).by(0)
+          post admin_work_original_works_url(work), params: { original_work: invalid_attributes }
+        end.to change(OriginalWork, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_book_original_books_url(book), params: { original_book: invalid_attributes }
+        post admin_work_original_works_url(work), params: { original_work: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -92,42 +92,42 @@ RSpec.describe '/original_books', type: :request do
         }
       end
 
-      it 'updates the requested original_book' do
-        original_book = OriginalBook.create! valid_attributes
-        patch admin_book_original_book_url(book, original_book), params: { original_book: new_attributes }
-        original_book.reload
-        expect(original_book.title).to eq '底本名2'
+      it 'updates the requested original_work' do
+        original_work = OriginalWork.create! valid_attributes
+        patch admin_work_original_work_url(work, original_work), params: { original_work: new_attributes }
+        original_work.reload
+        expect(original_work.title).to eq '底本名2'
       end
 
-      it 'redirects to the original_book' do
-        original_book = OriginalBook.create! valid_attributes
-        patch admin_book_original_book_url(book, original_book), params: { original_book: new_attributes }
-        original_book.reload
-        expect(response).to redirect_to(admin_book_url(book))
+      it 'redirects to the original_work' do
+        original_work = OriginalWork.create! valid_attributes
+        patch admin_work_original_work_url(work, original_work), params: { original_work: new_attributes }
+        original_work.reload
+        expect(response).to redirect_to(admin_work_url(work))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        original_book = OriginalBook.create! valid_attributes
-        patch admin_book_original_book_url(book, original_book), params: { original_book: invalid_attributes }
+        original_work = OriginalWork.create! valid_attributes
+        patch admin_work_original_work_url(work, original_work), params: { original_work: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested original_book' do
-      original_book = OriginalBook.create! valid_attributes
+    it 'destroys the requested original_work' do
+      original_work = OriginalWork.create! valid_attributes
       expect do
-        delete admin_book_original_book_url(book, original_book)
-      end.to change(OriginalBook, :count).by(-1)
+        delete admin_work_original_work_url(work, original_work)
+      end.to change(OriginalWork, :count).by(-1)
     end
 
-    it 'redirects to the original_books list' do
-      original_book = OriginalBook.create! valid_attributes
-      delete admin_book_original_book_url(book, original_book)
-      expect(response).to redirect_to(admin_book_url(book))
+    it 'redirects to the original_works list' do
+      original_work = OriginalWork.create! valid_attributes
+      delete admin_work_original_work_url(work, original_work)
+      expect(response).to redirect_to(admin_work_url(work))
     end
   end
 end

@@ -14,16 +14,16 @@
       </tr>
     </thead>
     <tbody>
-      <% @books.each do |book| %>
+      <% @works.each do |work| %>
         <tr>
-          <td><%= book.id %></td>
-          <td><%= link_to book.title, admin_book_path(book) %></td>
-          <td><%= book.subtitle %></td>
-          <td><%= book.author_text %></td>
-          <td><%= book.translator_text %></td>
-          <td><%= book.kana_type.name %></td>
-          <td><%= book.book_status.name %></td>
-          <td><%= book.started_on %></td>
+          <td><%= work.id %></td>
+          <td><%= link_to work.title, admin_work_path(work) %></td>
+          <td><%= work.subtitle %></td>
+          <td><%= work.author_text %></td>
+          <td><%= work.translator_text %></td>
+          <td><%= work.kana_type.name %></td>
+          <td><%= work.work_status.name %></td>
+          <td><%= work.started_on %></td>
         </tr>
       <% end %>
     </tbody>

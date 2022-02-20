@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, bibclass.book, bibclass]) do |form| %>
+<%= form_with(model: [:admin, bibclass.work, bibclass]) do |form| %>
   <% if bibclass.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bibclass.errors.count, "error") %> prohibited this bibclass from being saved:</h2>
@@ -22,7 +22,7 @@
     <%= form.text_area :note %>
   </div>
 
-  <%= form.hidden_field :book_id %>
+  <%= form.hidden_field :work_id %>
   <div class="actions">
     <%= form.submit "更新" %>
   </div>

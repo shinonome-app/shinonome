@@ -1,10 +1,10 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
   <h1 class="text-2xl">作品検索</h2>
-  <%= link_to '作品新規登録', new_admin_book_path %>
+  <%= link_to '作品新規登録', new_admin_work_path %>
 
   <h2 class="text-2xl">作品検索</h2>
-  <%= form_with(url: admin_books_text_searches_path, method: 'get') do |form| %>
+  <%= form_with(url: admin_works_text_searches_path, method: 'get') do |form| %>
   <table>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名読み", name: "title_kana")) %>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名", name: "title")) %>
@@ -19,22 +19,22 @@
   <% end %>
 
   <h2 class="text-2xl">作品50音順インデックス</h2>
-  <%= form_with(url: admin_books_book_index_searches_path, method: 'get') do |form| %>
+  <%= form_with(url: admin_works_work_index_searches_path, method: 'get') do |form| %>
   <div class="flex">
-    <%= render(Admin::SyllabaryTableComponent.new(key: "book")) %>
-    <input type="submit" name="book" value="その他">
+    <%= render(Admin::SyllabaryTableComponent.new(key: "work")) %>
+    <input type="submit" name="work" value="その他">
   </div>
   <% end %>
 
   <h2 class="text-2xl">作品状態検索</h2>
-  <%= form_with(url: admin_books_status_searches_path, method: 'get') do |form| %>
+  <%= form_with(url: admin_works_status_searches_path, method: 'get') do |form| %>
   <div class="flex">
-    <%= render(Admin::BookStatusComponent.new(form: form, years: @years)) %>
+    <%= render(Admin::WorkStatusComponent.new(form: form, years: @years)) %>
   </div>
   <% end %>
 
   <h2 class="text-2xl">著者別インデックス</h2>
-  <%= form_with(url: admin_books_creator_index_searches_path, method: 'get') do |form| %>
+  <%= form_with(url: admin_works_creator_index_searches_path, method: 'get') do |form| %>
   <div class="flex">
     <%= render(Admin::SyllabaryTableComponent.new(key: "creator")) %>
     <input type="submit" name="creator" value="その他">
@@ -42,7 +42,7 @@
   <% end %>
 
   <h2 class="text-2xl">著者不明作品検索</h2>
-  <%= form_with(url: admin_books_unknown_creator_searches_path, method: 'get') do |form| %>
+  <%= form_with(url: admin_works_unknown_creator_searches_path, method: 'get') do |form| %>
   <div class="flex">
     <input type="submit" name="creator" value="検索">
   </div>
@@ -63,16 +63,16 @@
       </tr>
     </thead>
     <tbody>
-      <% @books.each do |book| %>
+      <% @works.each do |work| %>
         <tr>
-          <td><%= book.id %></td>
-          <td><%= link_to book.title, admin_book_path(book) %></td>
-          <td><%= book.subtitle %></td>
-          <td><%= book.author_text %></td>
-          <td><%= book.translator_text %></td>
-          <td><%= book.kana_type.name %></td>
-          <td><%= book.book_status.name %></td>
-          <td><%= book.started_on %></td>
+          <td><%= work.id %></td>
+          <td><%= link_to work.title, admin_work_path(work) %></td>
+          <td><%= work.subtitle %></td>
+          <td><%= work.author_text %></td>
+          <td><%= work.translator_text %></td>
+          <td><%= work.kana_type.name %></td>
+          <td><%= work.work_status.name %></td>
+          <td><%= work.started_on %></td>
         </tr>
       <% end %>
     </tbody>

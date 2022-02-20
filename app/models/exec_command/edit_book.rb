@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ExecCommand
-  class EditBook < ExecCommand::Base
+  class EditWork < ExecCommand::Base
   end
 end

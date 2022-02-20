@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  module Books
+  module Works
     module CreatorIndexSearchesHelper
     end
   end

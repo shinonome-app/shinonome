@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: books
+# Table name: works
 #
 #  id                    :integer          not null, primary key
 #  title                 :text             not null
@@ -17,7 +17,7 @@
 #  first_appearance      :text
 #  description           :text
 #  description_person_id :integer
-#  book_status_id        :integer          not null
+#  work_status_id        :integer          not null
 #  started_on            :date             not null
 #  copyright_flag        :boolean          not null
 #  note                  :text
@@ -30,13 +30,13 @@
 #
 # Indexes
 #
-#  index_books_on_book_status_id  (book_status_id)
-#  index_books_on_kana_type_id    (kana_type_id)
-#  index_books_on_user_id         (user_id)
+#  index_works_on_work_status_id  (work_status_id)
+#  index_works_on_kana_type_id    (kana_type_id)
+#  index_works_on_user_id         (user_id)
 #
 
 require 'rails_helper'
 
-RSpec.describe Book, type: :model do
+RSpec.describe Work, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

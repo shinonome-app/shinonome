@@ -1,61 +1,61 @@
 # frozen_string_literal: true
 
 module Admin
-  class BookPeopleController < ApplicationController
-    before_action :set_book_person, only: %i[show edit update destroy]
+  class WorkPeopleController < ApplicationController
+    before_action :set_work_person, only: %i[show edit update destroy]
 
-    # GET /book_people
+    # GET /work_people
     def index
-      @book_people = BookPerson.all
+      @work_people = WorkPerson.all
     end
 
-    # GET /book_people/1
+    # GET /work_people/1
     def show; end
 
-    # GET /book_people/new
+    # GET /work_people/new
     def new
-      @book_person = BookPerson.new
+      @work_person = WorkPerson.new
     end
 
-    # GET /book_people/1/edit
+    # GET /work_people/1/edit
     def edit; end
 
-    # POST /book_people
+    # POST /work_people
     def create
-      @book_person = BookPerson.new(book_person_params)
+      @work_person = WorkPerson.new(work_person_params)
 
-      if @book_person.save
-        redirect_to @book_person, notice: 'Book person was successfully created.'
+      if @work_person.save
+        redirect_to @work_person, notice: 'Work person was successfully created.'
       else
         render :new
       end
     end
 
-    # PATCH/PUT /book_people/1
+    # PATCH/PUT /work_people/1
     def update
-      if @book_person.update(book_person_params)
-        redirect_to @book_person, notice: 'Book person was successfully updated.'
+      if @work_person.update(work_person_params)
+        redirect_to @work_person, notice: 'Work person was successfully updated.'
       else
         render :edit
       end
     end
 
-    # DELETE /book_people/1
+    # DELETE /work_people/1
     def destroy
-      @book_person.destroy
-      redirect_to book_people_url, notice: 'Book person was successfully destroyed.'
+      @work_person.destroy
+      redirect_to work_people_url, notice: 'Work person was successfully destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_book_person
-      @book_person = BookPerson.find(params[:id])
+    def set_work_person
+      @work_person = WorkPerson.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def book_person_params
-      params.require(:book_person).permit(:book_id, :person_id, :role_id)
+    def work_person_params
+      params.require(:work_person).permit(:work_id, :person_id, :role_id)
     end
   end
 end

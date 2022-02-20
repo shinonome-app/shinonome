@@ -2,10 +2,10 @@
 
 # == Schema Information
 #
-# Table name: bookfiles
+# Table name: workfiles
 #
 #  id               :integer          not null, primary key
-#  book_id          :integer          not null
+#  work_id          :integer          not null
 #  filetype_id      :integer          not null
 #  compresstype_id  :integer          not null
 #  filesize         :integer
@@ -22,16 +22,16 @@
 #
 # Indexes
 #
-#  index_bookfiles_on_book_id           (book_id)
-#  index_bookfiles_on_charset_id        (charset_id)
-#  index_bookfiles_on_compresstype_id   (compresstype_id)
-#  index_bookfiles_on_file_encoding_id  (file_encoding_id)
-#  index_bookfiles_on_filetype_id       (filetype_id)
+#  index_workfiles_on_work_id           (work_id)
+#  index_workfiles_on_charset_id        (charset_id)
+#  index_workfiles_on_compresstype_id   (compresstype_id)
+#  index_workfiles_on_file_encoding_id  (file_encoding_id)
+#  index_workfiles_on_filetype_id       (filetype_id)
 #
 
 FactoryBot.define do
-  factory :bookfile do
-    book
+  factory :workfile do
+    work
     filetype
     user
     compresstype

@@ -41,24 +41,24 @@ Rails.application.routes.draw do
     resources :news
     resources :people
 
-    namespace :books do
+    namespace :works do
       resources :text_searches, only: %i[index]
-      resources :book_index_searches, only: %i[index]
+      resources :work_index_searches, only: %i[index]
       resources :creator_index_searches, only: %i[index]
       resources :status_searches, only: %i[index]
       resources :unknown_creator_searches, only: %i[index]
     end
 
-    resources :books do
-      resources :bookfiles
+    resources :works do
+      resources :workfiles
       resources :sites
-      resources :original_books, only: %i[new edit create update destroy]
+      resources :original_works, only: %i[new edit create update destroy]
       resources :workers
       resources :bibclasses
 
       # resources :worker_assigns, only: %i[index new show]
-      get 'worker_assigns', to: 'books/worker_assigns#index', as: :worker_assigns
-      get 'worker_assigns/new', to: 'books/worker_assigns#new', as: :new_worker_assign
+      get 'worker_assigns', to: 'works/worker_assigns#index', as: :worker_assigns
+      get 'worker_assigns/new', to: 'works/worker_assigns#new', as: :new_worker_assign
     end
 
     resources :sites
@@ -69,11 +69,11 @@ Rails.application.routes.draw do
 
     resources :base_people
 
-    resources :book_workers, only: %i[create destroy], as: :bookworkers
+    resources :work_workers, only: %i[create destroy], as: :workworkers
 
-    # resources :book_sites
+    # resources :work_sites
     # resources :person_sites
-    # resources :book_people
+    # resources :work_people
 
     # resources :kana_types
     # resources :charsets

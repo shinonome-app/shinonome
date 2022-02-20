@@ -1,4 +1,4 @@
 <%= @form.select :year, @years %>
-<%= @form.collection_select :status, BookStatus.all, :id, :name  %>
-<input type="submit" name="book_status" value="検索">
+<%= @form.collection_select :status, WorkStatus.all, :id, :name  %>
+<input type="submit" name="work_status" value="検索">
 

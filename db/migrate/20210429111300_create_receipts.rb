@@ -28,18 +28,18 @@ class CreateReceipts < ActiveRecord::Migration[6.1]
       t.text :worker_name, null: false
       t.text :email, null: false
       t.text :url
-      t.text :original_book_title, null: false
+      t.text :original_work_title, null: false
       t.text :publisher, null: false
       t.text :first_pubdate, null: false
       t.text :input_edition, null: false
-      t.text :original_book_title2
+      t.text :original_work_title2
       t.text :publisher2
       t.text :first_pubdate2
       t.text :person_id
       t.text :worker_id
       t.date :created_on
       t.integer :register_status, default: 0
-      t.text :original_book_note
+      t.text :original_work_note
 
       t.timestamps
     end

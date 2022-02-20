@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: book_statuses
+# Table name: work_statuses
 #
 #  id         :integer          not null, primary key
 #  name       :text             not null
@@ -11,6 +11,6 @@
 #  updated_at :datetime         not null
 #
 
-class BookStatus < ApplicationRecord
-  has_many :books, dependent: :restrict_with_error
+class WorkStatus < ApplicationRecord
+  has_many :works, dependent: :restrict_with_error
 end

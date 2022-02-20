@@ -5,11 +5,11 @@
 # Table name: proofreads
 #
 #  id            :integer          not null, primary key
-#  book_id       :integer          not null
-#  book_copy     :text
-#  book_print    :text
+#  work_id       :integer          not null
+#  work_copy     :text
+#  work_print    :text
 #  proof_edition :text
-#  bookfile      :integer
+#  workfile      :integer
 #  address       :text
 #  memo          :text
 #  worker_id     :integer
@@ -25,7 +25,7 @@
 #
 # Indexes
 #
-#  index_proofreads_on_book_id    (book_id)
+#  index_proofreads_on_work_id    (work_id)
 #  index_proofreads_on_person_id  (person_id)
 #
 

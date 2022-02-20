@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateBooks < ActiveRecord::Migration[6.1]
+class CreateWorks < ActiveRecord::Migration[6.1]
   def change
-    create_table :books do |t|
+    create_table :works do |t|
       t.text :title, null: false
       t.text :title_kana
       t.text :subtitle
@@ -15,7 +15,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.text :first_appearance
       t.text :description
       t.bigint :description_person_id
-      t.references :book_status, foreign_key: true, null: false
+      t.references :work_status, foreign_key: true, null: false
       t.date :started_on, null: false
       t.boolean :copyright_flag, null: false
       t.text :note

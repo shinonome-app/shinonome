@@ -5,11 +5,11 @@
 # Table name: proofreads
 #
 #  id            :integer          not null, primary key
-#  book_id       :integer          not null
-#  book_copy     :text
-#  book_print    :text
+#  work_id       :integer          not null
+#  work_copy     :text
+#  work_print    :text
 #  proof_edition :text
-#  bookfile      :integer
+#  workfile      :integer
 #  address       :text
 #  memo          :text
 #  worker_id     :integer
@@ -25,17 +25,17 @@
 #
 # Indexes
 #
-#  index_proofreads_on_book_id    (book_id)
+#  index_proofreads_on_work_id    (work_id)
 #  index_proofreads_on_person_id  (person_id)
 #
 
 FactoryBot.define do
   factory :proofread do
-    book_id { 1 }
-    book_copy { 'MyText' }
-    book_print { 'MyText' }
+    work_id { 1 }
+    work_copy { 'MyText' }
+    work_print { 'MyText' }
     proof_edition { 'MyText' }
-    bookfile_id { 1 }
+    workfile_id { 1 }
     address { 'MyText' }
     memo { 'MyText' }
     worker_id { 1 }

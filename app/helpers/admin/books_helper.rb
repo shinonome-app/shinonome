@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  module BooksHelper
+  module WorksHelper
     include ::Pagy::Frontend
   end
 end

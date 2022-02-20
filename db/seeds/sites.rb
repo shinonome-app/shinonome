@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Site.connection.execute('TRUNCATE TABLE sites;')
-# Site.connection.execute('TRUNCATE TABLE book_sites;')
-selected_books = Book.order(:id).limit(100)
+# Site.connection.execute('TRUNCATE TABLE work_sites;')
+selected_works = Work.order(:id).limit(100)
 
 100.times do |i|
   n = i + 1
@@ -11,7 +11,7 @@ selected_books = Book.order(:id).limit(100)
                       owner_name: "運営者#{n}",
                       url: "https://shinonome.example.com/sites/#{n}",
                       note: "備考#{n}")
-  book = selected_books.sample
-  sb = site.book_sites.build(book: book)
+  work = selected_works.sample
+  sb = site.work_sites.build(work: work)
   sb.save!
 end

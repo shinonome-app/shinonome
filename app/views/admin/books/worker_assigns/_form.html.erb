@@ -33,9 +33,9 @@
     <%= form.label :note, "備考" %>
     <%= form.text_field :note %>
   </div>
-    <%= form.fields_for :book_workers do |book_worker| %>
-      <%= book_worker.hidden_field :book_id %>
-      <%= book_worker.hidden_field :worker_role_id %>
+    <%= form.fields_for :work_workers do |work_worker| %>
+      <%= work_worker.hidden_field :work_id %>
+      <%= work_worker.hidden_field :worker_role_id %>
     <% end %>
   <div class="actions">
     <%= form.submit "更新" %>

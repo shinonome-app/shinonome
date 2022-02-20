@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Books::StatusSearches', type: :request do
+RSpec.describe 'Admin::Works::StatusSearches', type: :request do
   before { sign_in(user) }
 
   let(:user) { create(:user) }
 
-  describe 'GET /admin/books/status_searches' do
+  describe 'GET /admin/works/status_searches' do
     it 'returns http success' do
-      get '/admin/books/status_searches'
+      get '/admin/works/status_searches'
       expect(response).to have_http_status(:success)
     end
   end
