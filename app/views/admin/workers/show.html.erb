@@ -61,7 +61,7 @@
         <%= t(:started_on, scope: "activerecord.attributes.work") %>
       </th>
     </tr>
-    <% @worker.work_workers.each do |work_worker| %>
+    <% @work_workers.each do |work_worker| %>
     <%   work = work_worker.work %>
     <tr>
       <td><%= work_worker.worker_role.name %></td>

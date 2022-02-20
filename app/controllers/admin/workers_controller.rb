@@ -12,7 +12,7 @@ module Admin
 
     # GET /admin/workers/1
     def show
-      @works = Work.where(worker: @worker).order(updated_at: :desc)
+      @work_workers = WorkWorker.preload(:worker_role, work: [:kana_type, :work_status] ).where(worker_id: @worker.id).order(updated_at: :desc)
     end
 
     # GET /admin/workers/new
