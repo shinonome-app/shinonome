@@ -12,7 +12,7 @@ module Admin
 
     # GET /admin/workers/1
     def show
-      @works = Work.where(worker: @worker).order(updated_at: :desc)
+      @work_workers = WorkWorker.preload(:worker_role, work: %i[kana_type work_status]).where(worker_id: @worker.id).order(updated_at: :desc)
     end
 
     # GET /admin/workers/new
@@ -27,8 +27,9 @@ module Admin
 
     # POST /admin/workers
     def create
-      @worker = Worker.new(worker_params)
+      worker_params[:worker_secret_attributes].merge!({ user_id: current_admin_user.id })
 
+      @worker = Worker.new(worker_params)
       if @worker.save
         redirect_to [:admin, @worker], notice: '工作員を追加しました'
       else
@@ -38,6 +39,7 @@ module Admin
 
     # PATCH/PUT /admin/workers/1
     def update
+      worker_params[:worker_secret_attributes].merge!({ user_id: current_admin_user.id })
       if @worker.update(worker_params)
         redirect_to [:admin, @worker], notice: 'Worker was successfully updated.'
       else
@@ -59,7 +61,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def worker_params
-      params.require(:worker).permit(:name, :name_kana, :url, :email, :sortkey, :note, { work_workers_attributes: %i[work_id worker_role_id] })
+      params.require(:worker).permit(:name, :name_kana, :sortkey, { worker_secret_attributes: %i[url email note id], work_workers_attributes: %i[work_id worker_role_id] })
     end
   end
 end

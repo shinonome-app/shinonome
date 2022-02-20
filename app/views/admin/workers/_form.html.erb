@@ -21,18 +21,20 @@
     <%= form.label :name, "姓名" %>
     <%= form.text_field :name %>
   </div>
+  <%= form.fields_for :worker_secret do |secret_form| %>
   <div class="field">
-    <%= form.label :email, "email" %>
-    <%= form.text_field :email %>
+    <%= secret_form.label :email, "email" %>
+    <%= secret_form.text_field :email %>
   </div>
   <div class="field">
-    <%= form.label :url, "URL" %>
-    <%= form.text_field :url %>
+    <%= secret_form.label :url, "URL" %>
+    <%= secret_form.text_field :url %>
   </div>
   <div class="field">
-    <%= form.label :note, "備考" %>
-    <%= form.text_field :note %>
+    <%= secret_form.label :note, "備考" %>
+    <%= secret_form.text_field :note %>
   </div>
+  <% end %>
   <div class="actions">
     <%= form.submit "更新" %>
   </div>
