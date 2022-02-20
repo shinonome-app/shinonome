@@ -12,9 +12,8 @@
 #  updated_at :datetime         not null
 #
 
-FactoryBot.define do
-  factory :exec_command, class: 'Shinonome::ExecCommand' do
-    command { 'MyText' }
-    user_id { '' }
-  end
+require 'rails_helper'
+
+RSpec.describe Shinonome::ExecCommand, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -48,7 +48,7 @@ class Work < ApplicationRecord
   has_many :bibclasses, dependent: :destroy
   has_many :original_books, dependent: :destroy
 
-  belongs_to :user
+  belongs_to :user, class_name: 'Shinonome::User'
   belongs_to :kana_type
   belongs_to :work_status
 

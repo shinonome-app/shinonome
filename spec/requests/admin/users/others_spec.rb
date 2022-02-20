@@ -35,14 +35,14 @@ RSpec.describe 'Admin::Users::Others', type: :request do
     before { sign_in user }
 
     it 'destroys the requested user' do
-      user = User.create! valid_attributes
+      user = Shinonome::User.create! valid_attributes
       expect do
         delete admin_users_other_url(user)
-      end.to change(User, :count).by(-1)
+      end.to change(Shinonome::User, :count).by(-1)
     end
 
     it 'redirects to the user list' do
-      user = User.create! valid_attributes
+      user = Shinonome::User.create! valid_attributes
       delete admin_users_other_url(user)
       expect(response).to redirect_to(admin_users_others_url)
     end

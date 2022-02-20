@@ -21,6 +21,6 @@ module RequestSpecHelper
   private
 
   def warden_scope(resource)
-    "admin_#{resource.class.name.underscore}".to_sym
+    "admin_#{resource.class.name.underscore}".gsub('shinonome/', '').to_sym
   end
 end

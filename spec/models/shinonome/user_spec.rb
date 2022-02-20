@@ -21,10 +21,8 @@
 #  index_users_on_username              (username) UNIQUE
 #
 
-FactoryBot.define do
-  factory :user, class: 'Shinonome::User' do
-    sequence(:email) { |n| "user#{n}@example.com" }
-    sequence(:username) { |n| "user#{n}" }
-    password { 'pass123#' }
-  end
+require 'rails_helper'
+
+RSpec.describe Shinonome::User, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

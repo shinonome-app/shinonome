@@ -35,7 +35,7 @@ class Worker < ApplicationRecord
     ['わ', nil, 'を', nil, 'ん']
   ].freeze
 
-  belongs_to :user, optional: true
+  belongs_to :user, class_name: 'Shinonome::User', optional: true
   has_many :work_workers, dependent: :destroy
   has_many :works, through: :work_workers
 

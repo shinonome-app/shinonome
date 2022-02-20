@@ -115,7 +115,7 @@ def generate_sample_zip(workfile)
 end
 
 work_id_status_list = Work.all.pluck(:id, :work_status_id)
-user_id_list = User.all.pluck(:id)
+user_id_list = Shinonome::User.all.pluck(:id)
 
 workfiles = work_id_status_list.map do |n, status|
   # 校了と公開のみ
