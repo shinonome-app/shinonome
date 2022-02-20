@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: workers
@@ -7,17 +6,9 @@
 #  id         :integer          not null, primary key
 #  name       :text             not null
 #  name_kana  :text             not null
-#  email      :text             not null
-#  url        :text
-#  note       :text
-#  user_id    :integer
 #  sortkey    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
-# Indexes
-#
-#  index_workers_on_user_id  (user_id)
 #
 
 # 工作員
@@ -35,11 +26,13 @@ class Worker < ApplicationRecord
     ['わ', nil, 'を', nil, 'ん']
   ].freeze
 
-  belongs_to :user, class_name: 'Shinonome::User', optional: true
   has_many :work_workers, dependent: :destroy
   has_many :works, through: :work_workers
 
+  has_one :worker_secret, dependent: :destroy
+
   accepts_nested_attributes_for :work_workers
+  accepts_nested_attributes_for :worker_secret
 
   scope :with_name_kana_search, lambda { |name_kana, selector|
     case selector.to_i
@@ -67,5 +60,5 @@ class Worker < ApplicationRecord
     end
   }
 
-  validates :name, :name_kana, :email, presence: true
+  validates :name, :name_kana, presence: true
 end

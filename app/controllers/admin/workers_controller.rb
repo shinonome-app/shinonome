@@ -28,7 +28,7 @@ module Admin
     # POST /admin/workers
     def create
       @worker = Worker.new(worker_params)
-
+      @worker.user_id = current_admin_user.id
       if @worker.save
         redirect_to [:admin, @worker], notice: '工作員を追加しました'
       else
@@ -38,6 +38,7 @@ module Admin
 
     # PATCH/PUT /admin/workers/1
     def update
+      worker_params[:worker_secret_attributes].merge!({user_id: current_admin_user.id})
       if @worker.update(worker_params)
         redirect_to [:admin, @worker], notice: 'Worker was successfully updated.'
       else
@@ -59,7 +60,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def worker_params
-      params.require(:worker).permit(:name, :name_kana, :url, :email, :sortkey, :note, { work_workers_attributes: %i[work_id worker_role_id] })
+      params.require(:worker).permit(:name, :name_kana, :sortkey, { worker_secret_attributes: [:url, :email, :note, :id], work_workers_attributes: %i[work_id worker_role_id] })
     end
   end
 end
