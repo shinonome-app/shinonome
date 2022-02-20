@@ -3,10 +3,10 @@
 require 'zip'
 require 'tmpdir'
 
-Bookfile.all.each do |bookfile|
-  bookfile.bookdata.purge if bookfile.bookdata.attached?
+Workfile.all.each do |workfile|
+  workfile.workdata.purge if workfile.workdata.attached?
 end
-Bookfile.connection.execute('TRUNCATE TABLE bookfiles;')
+Workfile.connection.execute('TRUNCATE TABLE workfiles;')
 
 # rubocop:disable Layout/HeredocIndentation
 SAMPLE_TEXT_FORMAT = <<TEXT
@@ -36,46 +36,46 @@ SAMPLE_TEXT_FORMAT = <<TEXT
 TEXT
 # rubocop:enable Layout/HeredocIndentation
 
-## Bookfiles
+## Workfiles
 
-def erubi_convert(template, book)
+def erubi_convert(template, work)
   # rubocop:disable Lint/UselessAssignment
-  header = generate_header(book)
-  footer = generate_footer(book)
+  header = generate_header(work)
+  footer = generate_footer(work)
 
   eval(Erubi::Engine.new(template).src).gsub("\n", "\r\n") # rubocop:disable Security/Eval
   # rubocop:enable Lint/UselessAssignment
 end
 
-def generate_header(book)
-  buf = "#{book.title}\n"
-  buf << "#{book.original_title}\n" if book.original_title
-  buf << "#{book.subtitle}\n" if book.subtitle
-  book.book_people.order(:role_id).each do |book_person|
-    buf << "#{book_person.person.name}\n"
+def generate_header(work)
+  buf = "#{work.title}\n"
+  buf << "#{work.original_title}\n" if work.original_title
+  buf << "#{work.subtitle}\n" if work.subtitle
+  work.work_people.order(:role_id).each do |work_person|
+    buf << "#{work_person.person.name}\n"
   end
 
   buf
 end
 
-def generate_footer(book)
+def generate_footer(work)
   buf = ''.dup
-  book.original_books.order(:booktype_id).each do |original_book|
-    booktype = original_book.booktype.name
-    buf << "#{booktype}：「#{original_book.title}」#{original_book.publisher}\n"
-    buf << "　　　#{original_book.first_pubdate}#{original_book.input_edition}発行\n"
+  work.original_works.order(:worktype_id).each do |original_work|
+    worktype = original_work.worktype.name
+    buf << "#{worktype}：「#{original_work.title}」#{original_work.publisher}\n"
+    buf << "　　　#{original_work.first_pubdate}#{original_work.input_edition}発行\n"
   end
-  buf << if book.inputer_text.blank?
+  buf << if work.inputer_text.blank?
            "入力：？？？\n"
          else
-           "入力：#{book.inputer_text}\n"
+           "入力：#{work.inputer_text}\n"
          end
-  buf << if book.proofreader_text.blank?
+  buf << if work.proofreader_text.blank?
            "校正：？？？\n"
          else
-           "校正：#{book.proofreader_text}\n"
+           "校正：#{work.proofreader_text}\n"
          end
-  buf << "#{book.updated_at.strftime('%Y年%m月%d日')}作成\n".gsub('年0', '年').gsub('月0', '月')
+  buf << "#{work.updated_at.strftime('%Y年%m月%d日')}作成\n".gsub('年0', '年').gsub('月0', '月')
   # rubocop:disable Layout/HeredocIndentation
   buf << <<-TEXT
 青空文庫作成ファイル：
@@ -86,17 +86,17 @@ def generate_footer(book)
   buf
 end
 
-def generate_sample_zip(bookfile)
-  book = bookfile.book
+def generate_sample_zip(workfile)
+  work = workfile.work
   zipfile_name = nil
 
   Dir.mktmpdir do |folder|
     sample_filename = 'sample.txt'
     sample_path = File.join(folder, sample_filename)
-    File.write(sample_path, erubi_convert(SAMPLE_TEXT_FORMAT, book), encoding: 'Shift_JIS')
+    File.write(sample_path, erubi_convert(SAMPLE_TEXT_FORMAT, work), encoding: 'Shift_JIS')
 
     input_filenames = [sample_filename]
-    zip_file = "#{book.id}_ruby_#{bookfile.id}.zip"
+    zip_file = "#{work.id}_ruby_#{workfile.id}.zip"
     zipfile_name = File.join(folder, zip_file)
 
     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
@@ -105,24 +105,24 @@ def generate_sample_zip(bookfile)
       end
     end
 
-    bookfile.bookdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip')
+    workfile.workdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip')
 
-    bookfile.filename = zip_file
-    bookfile.filesize = File.size(zipfile_name)
+    workfile.filename = zip_file
+    workfile.filesize = File.size(zipfile_name)
   end
 
   zipfile_name
 end
 
-book_id_status_list = Book.all.pluck(:id, :book_status_id)
+work_id_status_list = Work.all.pluck(:id, :work_status_id)
 user_id_list = User.all.pluck(:id)
 
-bookfiles = book_id_status_list.map do |n, status|
+workfiles = work_id_status_list.map do |n, status|
   # 校了と公開のみ
   next unless [1, 10].include?(status)
 
   {
-    book_id: n,
+    work_id: n,
     filename: "#{n}_ruby_NNN.zip",
     charset_id: 1, # JIS X 0208
     compresstype_id: 2, # zip
@@ -137,11 +137,11 @@ bookfiles = book_id_status_list.map do |n, status|
   }
 end.compact
 
-Bookfile.insert_all(bookfiles)
+Workfile.insert_all(workfiles)
 
-Bookfile.transaction do
-  Bookfile.includes(:book).all.each do |bookfile|
-    generate_sample_zip(bookfile)
-    bookfile.save
+Workfile.transaction do
+  Workfile.includes(:work).all.each do |workfile|
+    generate_sample_zip(workfile)
+    workfile.save
   end
 end

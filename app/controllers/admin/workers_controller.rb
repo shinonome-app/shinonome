@@ -12,7 +12,7 @@ module Admin
 
     # GET /admin/workers/1
     def show
-      @books = Book.where(worker: @worker).order(updated_at: :desc)
+      @works = Work.where(worker: @worker).order(updated_at: :desc)
     end
 
     # GET /admin/workers/new
@@ -59,7 +59,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def worker_params
-      params.require(:worker).permit(:name, :name_kana, :url, :email, :sortkey, :note, { book_workers_attributes: %i[book_id worker_role_id] })
+      params.require(:worker).permit(:name, :name_kana, :url, :email, :sortkey, :note, { work_workers_attributes: %i[work_id worker_role_id] })
     end
   end
 end

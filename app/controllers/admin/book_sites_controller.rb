@@ -1,61 +1,61 @@
 # frozen_string_literal: true
 
 module Admin
-  class BookSitesController < ApplicationController
-    before_action :set_book_site, only: %i[show edit update destroy]
+  class WorkSitesController < ApplicationController
+    before_action :set_work_site, only: %i[show edit update destroy]
 
-    # GET /book_sites
+    # GET /work_sites
     def index
-      @book_sites = BookSite.all
+      @work_sites = WorkSite.all
     end
 
-    # GET /book_sites/1
+    # GET /work_sites/1
     def show; end
 
-    # GET /book_sites/new
+    # GET /work_sites/new
     def new
-      @book_site = BookSite.new
+      @work_site = WorkSite.new
     end
 
-    # GET /book_sites/1/edit
+    # GET /work_sites/1/edit
     def edit; end
 
-    # POST /book_sites
+    # POST /work_sites
     def create
-      @book_site = BookSite.new(book_site_params)
+      @work_site = WorkSite.new(work_site_params)
 
-      if @book_site.save
-        redirect_to @book_site, notice: 'Book site was successfully created.'
+      if @work_site.save
+        redirect_to @work_site, notice: 'Work site was successfully created.'
       else
         render :new
       end
     end
 
-    # PATCH/PUT /book_sites/1
+    # PATCH/PUT /work_sites/1
     def update
-      if @book_site.update(book_site_params)
-        redirect_to @book_site, notice: 'Book site was successfully updated.'
+      if @work_site.update(work_site_params)
+        redirect_to @work_site, notice: 'Work site was successfully updated.'
       else
         render :edit
       end
     end
 
-    # DELETE /book_sites/1
+    # DELETE /work_sites/1
     def destroy
-      @book_site.destroy
-      redirect_to book_sites_url, notice: 'Book site was successfully destroyed.'
+      @work_site.destroy
+      redirect_to work_sites_url, notice: 'Work site was successfully destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_book_site
-      @book_site = BookSite.find(params[:id])
+    def set_work_site
+      @work_site = WorkSite.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def book_site_params
-      params.require(:book_site).permit(:book_id, :site_id)
+    def work_site_params
+      params.require(:work_site).permit(:work_id, :site_id)
     end
   end
 end

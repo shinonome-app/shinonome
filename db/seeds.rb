@@ -37,7 +37,7 @@ filetypes = {
   2 => %w[テキストファイル(ルビなし) txt],
   3 => %w[HTMLファイル html],
   4 => %w[エキスパンドブックファイル ebk],
-  5 => %w[.bookファイル book],
+  5 => %w[.workファイル work],
   6 => %w[TTZファイル ttz],
   7 => %w[PDFファイル pdf],
   8 => %w[PalmDocファイル doc],
@@ -100,7 +100,7 @@ worker_roles.each do |k, v|
   WorkerRole.create!(id: k, name: v)
 end
 
-book_statuses = <<~ROWS
+work_statuses = <<~ROWS
   1	公開	1
   2	非公開	2
   3	入力中	3
@@ -115,25 +115,25 @@ book_statuses = <<~ROWS
   12	入力取り消し	12
 ROWS
 
-# BookStatus.connection.execute('TRUNCATE TABLE book_statuses;')
-book_statuses.each_line do |line|
+# WorkStatus.connection.execute('TRUNCATE TABLE work_statuses;')
+work_statuses.each_line do |line|
   rows = line.chomp.split
-  BookStatus.create!(id: rows[0].to_i, name: rows[1], sort_order: rows[2].to_i)
+  WorkStatus.create!(id: rows[0].to_i, name: rows[1], sort_order: rows[2].to_i)
 end
 
-booktypes = {
+worktypes = {
   1 => '底本',
   2 => '底本の親本'
 }
 
-# Booktype.connection.execute('TRUNCATE TABLE booktypes;')
-booktypes.each do |k, v|
-  Booktype.create!(id: k, name: v)
+# Worktype.connection.execute('TRUNCATE TABLE worktypes;')
+worktypes.each do |k, v|
+  Worktype.create!(id: k, name: v)
 end
 
 require_relative 'seeds/users'
 require_relative 'seeds/workers'
 require_relative 'seeds/people'
 require_relative 'seeds/receipts'
-require_relative 'seeds/books'
+require_relative 'seeds/works'
 require_relative 'seeds/sites'

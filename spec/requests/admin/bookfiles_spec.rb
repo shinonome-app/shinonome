@@ -14,14 +14,14 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/bookfiles', type: :request do
+RSpec.describe '/workfiles', type: :request do
   include ActionDispatch::TestProcess::FixtureFile
 
-  # Bookfile. As you add validations to Bookfile, be sure to
+  # Workfile. As you add validations to Workfile, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      book_id: book.id,
+      work_id: work.id,
       filetype_id: filetype.id,
       user_id: admin.id,
       compresstype_id: compresstype.id,
@@ -29,7 +29,7 @@ RSpec.describe '/bookfiles', type: :request do
       charset_id: charset.id,
       filesize: 12_345,
       filename: 'sample.zip',
-      bookdata: bookdata,
+      workdata: workdata,
       revision_count: 1,
       note: 'test'
     }
@@ -37,7 +37,7 @@ RSpec.describe '/bookfiles', type: :request do
 
   let(:invalid_attributes) do
     {
-      book_id: book.id,
+      work_id: work.id,
       filetype_id: 'test',
       user_id: admin.id,
       compresstype_id: compresstype.id,
@@ -46,71 +46,71 @@ RSpec.describe '/bookfiles', type: :request do
     }
   end
 
-  let(:book) { create(:book) }
+  let(:work) { create(:work) }
   let(:filetype) { create(:filetype) }
   let(:admin) { create(:user, email: 'admin1@example.com', username: 'admin1') }
   let(:user) { create(:user) }
   let(:charset) { create(:charset) }
   let(:compresstype) { create(:compresstype) }
   let(:file_encoding) { create(:file_encoding) }
-  let(:bookdata) { fixture_file_upload 'zip/sample.zip' }
+  let(:workdata) { fixture_file_upload 'zip/sample.zip' }
 
   before { sign_in(admin) }
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Bookfile.create! valid_attributes
-      get admin_book_bookfiles_url(book)
+      Workfile.create! valid_attributes
+      get admin_work_workfiles_url(work)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      bookfile = Bookfile.create! valid_attributes
-      get admin_book_bookfile_url(book, bookfile)
+      workfile = Workfile.create! valid_attributes
+      get admin_work_workfile_url(work, workfile)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_admin_book_bookfile_url(book)
+      get new_admin_work_workfile_url(work)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
     it 'render a successful response' do
-      bookfile = Bookfile.create! valid_attributes
-      get edit_admin_book_bookfile_url(bookfile.book, bookfile)
+      workfile = Workfile.create! valid_attributes
+      get edit_admin_work_workfile_url(workfile.work, workfile)
       expect(response).to be_successful
     end
   end
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new Bookfile' do
+      it 'creates a new Workfile' do
         expect do
-          post admin_book_bookfiles_url(book), params: { bookfile: valid_attributes }
-        end.to change(Bookfile, :count).by(1)
+          post admin_work_workfiles_url(work), params: { workfile: valid_attributes }
+        end.to change(Workfile, :count).by(1)
       end
 
-      it 'redirects to the created bookfile' do
-        post admin_book_bookfiles_url(book), params: { bookfile: valid_attributes }
-        expect(response).to redirect_to(admin_book_url(book))
+      it 'redirects to the created workfile' do
+        post admin_work_workfiles_url(work), params: { workfile: valid_attributes }
+        expect(response).to redirect_to(admin_work_url(work))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Bookfile' do
+      it 'does not create a new Workfile' do
         expect do
-          post admin_book_bookfiles_url(book), params: { bookfile: invalid_attributes }
-        end.to change(Bookfile, :count).by(0)
+          post admin_work_workfiles_url(work), params: { workfile: invalid_attributes }
+        end.to change(Workfile, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_book_bookfiles_url(book), params: { bookfile: invalid_attributes }
+        post admin_work_workfiles_url(work), params: { workfile: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -120,7 +120,7 @@ RSpec.describe '/bookfiles', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          book_id: book.id,
+          work_id: work.id,
           filetype_id: filetype.id,
           user_id: user.id,
           compresstype_id: compresstype.id,
@@ -133,42 +133,42 @@ RSpec.describe '/bookfiles', type: :request do
         }
       end
 
-      it 'updates the requested bookfile' do
-        bookfile = Bookfile.create! valid_attributes
-        patch admin_book_bookfile_url(book, bookfile), params: { bookfile: new_attributes }
-        bookfile.reload
-        expect(bookfile.note).to eq 'test2'
+      it 'updates the requested workfile' do
+        workfile = Workfile.create! valid_attributes
+        patch admin_work_workfile_url(work, workfile), params: { workfile: new_attributes }
+        workfile.reload
+        expect(workfile.note).to eq 'test2'
       end
 
-      it 'redirects to the bookfile' do
-        bookfile = Bookfile.create! valid_attributes
-        patch admin_book_bookfile_url(book, bookfile), params: { bookfile: new_attributes }
-        bookfile.reload
-        expect(response).to redirect_to(admin_book_url(book))
+      it 'redirects to the workfile' do
+        workfile = Workfile.create! valid_attributes
+        patch admin_work_workfile_url(work, workfile), params: { workfile: new_attributes }
+        workfile.reload
+        expect(response).to redirect_to(admin_work_url(work))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        bookfile = Bookfile.create! valid_attributes
-        patch admin_book_bookfile_url(book, bookfile), params: { bookfile: invalid_attributes }
+        workfile = Workfile.create! valid_attributes
+        patch admin_work_workfile_url(work, workfile), params: { workfile: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested bookfile' do
-      bookfile = Bookfile.create! valid_attributes
+    it 'destroys the requested workfile' do
+      workfile = Workfile.create! valid_attributes
       expect do
-        delete admin_book_bookfile_url(book, bookfile)
-      end.to change(Bookfile, :count).by(-1)
+        delete admin_work_workfile_url(work, workfile)
+      end.to change(Workfile, :count).by(-1)
     end
 
-    it 'redirects to the bookfiles list' do
-      bookfile = Bookfile.create! valid_attributes
-      delete admin_book_bookfile_url(book, bookfile)
-      expect(response).to redirect_to(admin_book_url(book))
+    it 'redirects to the workfiles list' do
+      workfile = Workfile.create! valid_attributes
+      delete admin_work_workfile_url(work, workfile)
+      expect(response).to redirect_to(admin_work_url(work))
     end
   end
 end

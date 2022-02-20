@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Books::CreatorIndexSearches', type: :request do
+RSpec.describe 'Admin::Works::CreatorIndexSearches', type: :request do
   before { sign_in(user) }
 
   let(:user) { create(:user) }
 
-  describe 'GET /admin/books/creator_index_searches' do
+  describe 'GET /admin/works/creator_index_searches' do
     it 'returns http success' do
-      get '/admin/books/creator_index_searches'
+      get '/admin/works/creator_index_searches'
       expect(response).to have_http_status(:success)
     end
   end

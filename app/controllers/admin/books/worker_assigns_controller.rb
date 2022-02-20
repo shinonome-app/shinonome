@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Admin
-  module Books
+  module Works
     class WorkerAssignsController < ::Admin::ApplicationController
       include Pagy::Backend
-      before_action :set_book
+      before_action :set_work
 
-      # GET /admin/books/:book_id/worker_assigns
+      # GET /admin/works/:work_id/worker_assigns
       def index
         return unless params[:text]
 
@@ -20,17 +20,17 @@ module Admin
                items: 50)
       end
 
-      # GET /admin/books/:book_id/worker_assigns/new
+      # GET /admin/works/:work_id/worker_assigns/new
       def new
         @worker = Worker.new
-        @worker.book_workers.build(book_id: params[:book_id], worker_role_id: params[:worker_role_id])
+        @worker.work_workers.build(work_id: params[:work_id], worker_role_id: params[:worker_role_id])
       end
 
       private
 
       # Use callbacks to share common setup or constraints between actions.
-      def set_book
-        @book = Book.find(params[:book_id])
+      def set_work
+        @work = Work.find(params[:work_id])
       end
 
       def set_worker

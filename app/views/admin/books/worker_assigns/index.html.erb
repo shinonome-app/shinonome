@@ -3,11 +3,11 @@
   <h1 class="text-2xl">工作員関連付け</h2>
 
   <h2 class="text-2xl">工作員新規登録</h2>
-  <%= link_to '入力新規登録', admin_book_new_worker_assign_path(worker_role_id: 1) %>
-  <%= link_to '校正新規登録', admin_book_new_worker_assign_path(worker_role_id: 2) %>
+  <%= link_to '入力新規登録', admin_work_new_worker_assign_path(worker_role_id: 1) %>
+  <%= link_to '校正新規登録', admin_work_new_worker_assign_path(worker_role_id: 2) %>
 
   <h2 class="text-2xl">工作員検索</h2>
-  <%= form_with(url: admin_book_worker_assigns_path, method: 'get') do |form| %>
+  <%= form_with(url: admin_work_worker_assigns_path, method: 'get') do |form| %>
   <table>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名読み", name: "name_kana", value: params[:name_kana])) %>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名", name: "name", value: params[:name])) %>
@@ -32,8 +32,8 @@
         <td><%= worker.id %></td>
         <td><%= worker.name %></td>
         <td><%= worker.name_kana %></td>
-        <td><%= link_to '入力', admin_bookworkers_url(book_worker: {book_id: @book.id, worker_id: worker.id, worker_role_id: 1}), method: :post %></td>
-        <td><%= link_to '校正', admin_bookworkers_url(book_worker: {book_id: @book.id, worker_id: worker.id, worker_role_id: 2}), method: :post %></td>
+        <td><%= link_to '入力', admin_workworkers_url(work_worker: {work_id: @work.id, worker_id: worker.id, worker_role_id: 1}), method: :post %></td>
+        <td><%= link_to '校正', admin_workworkers_url(work_worker: {work_id: @work.id, worker_id: worker.id, worker_role_id: 2}), method: :post %></td>
       </tr>
       <% end %>
     </table>

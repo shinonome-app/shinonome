@@ -1,51 +1,51 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <strong>Book:</strong>
-  <%= @bookfile.book_id %>
+  <strong>Work:</strong>
+  <%= @workfile.work_id %>
 </p>
 <p>
   <strong>Filetype:</strong>
-  <%= @bookfile.filetype_id %>
+  <%= @workfile.filetype_id %>
 </p>
 <p>
   <strong>Compresstype:</strong>
-  <%= @bookfile.compresstype_id %>
+  <%= @workfile.compresstype_id %>
 </p>
 <p>
   <strong>Filesize:</strong>
-  <%= @bookfile.filesize %>
+  <%= @workfile.filesize %>
 </p>
 <p>
   <strong>User:</strong>
-  <%= @bookfile.user_id %>
+  <%= @workfile.user_id %>
 </p>
 <p>
   <strong>Url:</strong>
-  <%= @bookfile.url %>
+  <%= @workfile.url %>
 </p>
 <p>
   <strong>Filename:</strong>
-  <%= @bookfile.filename %>
+  <%= @workfile.filename %>
 </p>
 <p>
   <strong>Opened on:</strong>
-  <%= @bookfile.opened_on %>
+  <%= @workfile.opened_on %>
 </p>
 <p>
   <strong>revision_count:</strong>
-  <%= @bookfile.revision_count %>
+  <%= @workfile.revision_count %>
 </p>
 <p>
   <strong>File encoding:</strong>
-  <%= @bookfile.file_encoding_id %>
+  <%= @workfile.file_encoding_id %>
 </p>
 <p>
   <strong>Charset:</strong>
-  <%= @bookfile.charset_id %>
+  <%= @workfile.charset_id %>
 </p>
 <p>
   <strong>Note:</strong>
-  <%= @bookfile.note %>
+  <%= @workfile.note %>
 </p>
-<%= link_to 'Edit', edit_admin_book_bookfile_path(@bookfile.book, @bookfile) %> |
-<%= link_to 'Back', admin_book_bookfiles_path(@bookfile.book) %>
+<%= link_to 'Edit', edit_admin_work_workfile_path(@workfile.work, @workfile) %> |
+<%= link_to 'Back', admin_work_workfiles_path(@workfile.work) %>

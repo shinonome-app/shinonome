@@ -1,9 +1,9 @@
-<%= form_with(model: [:admin, @book, original_book]) do |form| %>
-  <% if original_book.errors.any? %>
+<%= form_with(model: [:admin, @work, original_work]) do |form| %>
+  <% if original_work.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(original_book.errors.count, "error") %> prohibited this original_book from being saved:</h2>
+      <h2><%= pluralize(original_work.errors.count, "error") %> prohibited this original_work from being saved:</h2>
       <ul>
-        <% original_book.errors.each do |error| %>
+        <% original_work.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -30,8 +30,8 @@
     <%= form.text_field :proof_edition %>
   </div>
   <div class="field">
-    <%= form.label :booktype_id %>
-    <%= form.collection_select :booktype_id, Booktype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'}  %>
+    <%= form.label :worktype_id %>
+    <%= form.collection_select :worktype_id, Worktype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'}  %>
   </div>
   <div class="field">
     <%= form.label :note %>

@@ -1,10 +1,10 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <h1>Bookfiles</h1>
+  <h1>Workfiles</h1>
   <table>
     <thead>
       <tr>
-        <th>Book</th>
+        <th>Work</th>
         <th>Filetype</th>
         <th>Compresstype</th>
         <th>Filesize</th>
@@ -20,23 +20,23 @@
       </tr>
     </thead>
     <tbody>
-      <% @bookfiles.each do |bookfile| %>
+      <% @workfiles.each do |workfile| %>
         <tr>
-          <td><%= bookfile.book_id %></td>
-          <td><%= bookfile.filetype_id %></td>
-          <td><%= bookfile.compresstype_id %></td>
-          <td><%= bookfile.filesize %></td>
-          <td><%= bookfile.user_id %></td>
-          <td><%= bookfile.url %></td>
-          <td><%= bookfile.filename %></td>
-          <td><%= bookfile.opened_on %></td>
-          <td><%= bookfile.revision_count %></td>
-          <td><%= bookfile.file_encoding_id %></td>
-          <td><%= bookfile.charset_id %></td>
-          <td><%= bookfile.note %></td>
-          <td><%= link_to 'Show', [:admin, bookfile.book, bookfile] %></td>
-          <td><%= link_to 'Edit', edit_admin_book_bookfile_path(bookfile.book, bookfile) %></td>
-          <td><%= link_to 'Destroy',[:admin, bookfile.book, bookfile], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= workfile.work_id %></td>
+          <td><%= workfile.filetype_id %></td>
+          <td><%= workfile.compresstype_id %></td>
+          <td><%= workfile.filesize %></td>
+          <td><%= workfile.user_id %></td>
+          <td><%= workfile.url %></td>
+          <td><%= workfile.filename %></td>
+          <td><%= workfile.opened_on %></td>
+          <td><%= workfile.revision_count %></td>
+          <td><%= workfile.file_encoding_id %></td>
+          <td><%= workfile.charset_id %></td>
+          <td><%= workfile.note %></td>
+          <td><%= link_to 'Show', [:admin, workfile.work, workfile] %></td>
+          <td><%= link_to 'Edit', edit_admin_work_workfile_path(workfile.work, workfile) %></td>
+          <td><%= link_to 'Destroy',[:admin, workfile.work, workfile], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

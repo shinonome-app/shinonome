@@ -43,33 +43,33 @@
   <table>
     <tr>
       <th>
-        <%= t(:worker_role_id, scope: "activerecord.attributes.book_worker") %>
+        <%= t(:worker_role_id, scope: "activerecord.attributes.work_worker") %>
       </th>
       <th>
-        <%= t(:title, scope: "activerecord.attributes.book") %>
+        <%= t(:title, scope: "activerecord.attributes.work") %>
       </th>
       <th>
-        <%= t(:subtitle, scope: "activerecord.attributes.book") %>
+        <%= t(:subtitle, scope: "activerecord.attributes.work") %>
       </th>
       <th>
-        <%= t(:kana_type_id, scope: "activerecord.attributes.book") %>
+        <%= t(:kana_type_id, scope: "activerecord.attributes.work") %>
       </th>
       <th>
-        <%= t(:status, scope: "activerecord.attributes.book") %>
+        <%= t(:status, scope: "activerecord.attributes.work") %>
       </th>
       <th>
-        <%= t(:started_on, scope: "activerecord.attributes.book") %>
+        <%= t(:started_on, scope: "activerecord.attributes.work") %>
       </th>
     </tr>
-    <% @worker.book_workers.each do |book_worker| %>
-    <%   book = book_worker.book %>
+    <% @worker.work_workers.each do |work_worker| %>
+    <%   work = work_worker.work %>
     <tr>
-      <td><%= book_worker.worker_role.name %></td>
-      <td><%= book.title %></td>
-      <td><%= book.subtitle %></td>
-      <td><%= book.kana_type&.name %></td>
-      <td><%= book.book_status&.name %></td>
-      <td><%= book.started_on %></td>
+      <td><%= work_worker.worker_role.name %></td>
+      <td><%= work.title %></td>
+      <td><%= work.subtitle %></td>
+      <td><%= work.kana_type&.name %></td>
+      <td><%= work.work_status&.name %></td>
+      <td><%= work.started_on %></td>
     </tr>
     <% end %>
   </table>

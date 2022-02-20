@@ -3,11 +3,11 @@
 class CreateProofreads < ActiveRecord::Migration[6.1]
   def change
     create_table :proofreads do |t|
-      t.references :book, foreign_key: true, null: false
-      t.text :book_copy
-      t.text :book_print
+      t.references :work, foreign_key: true, null: false
+      t.text :work_copy
+      t.text :work_print
       t.text :proof_edition
-      t.bigint :bookfile
+      t.bigint :workfile
       t.text :address
       t.text :memo
       t.bigint :worker_id

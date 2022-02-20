@@ -5,7 +5,7 @@ module Admin
     before_action :set_site, only: %i[show edit update destroy]
 
     # GET /admin/sites
-    # GET /admin/books/:book_id/sites
+    # GET /admin/works/:work_id/sites
     def index
       @sites = Site.all
     end
@@ -14,14 +14,14 @@ module Admin
     def show; end
 
     # GET /admin/sites/new
-    # GET /admin/books/:book_id/sites/new
+    # GET /admin/works/:work_id/sites/new
     def new
       @site = Site.new
-      @site.book_sites.build(book_id: params[:book_id]) if params[:book_id]
+      @site.work_sites.build(work_id: params[:work_id]) if params[:work_id]
     end
 
     # GET /admin/sites/1/edit
-    # GET /admin/books/:book_id/sites/1/edit
+    # GET /admin/works/:work_id/sites/1/edit
     def edit; end
 
     # POST /admin/sites
@@ -59,7 +59,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def site_params
-      params.require(:site).permit(:name, :url, :owner_name, :email, :note, :updated_by, { book_sites_attributes: [:book_id] })
+      params.require(:site).permit(:name, :url, :owner_name, :email, :note, :updated_by, { work_sites_attributes: [:work_id] })
     end
   end
 end

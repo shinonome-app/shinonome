@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 module Admin
-  module Books
-    class BookIndexSearchesController < ::Admin::ApplicationController
+  module Works
+    class WorkIndexSearchesController < ::Admin::ApplicationController
       include Pagy::Backend
 
-      # GET /admin/books/book_index_searches
+      # GET /admin/works/work_index_searches
       def index
-        char = params[:book]
+        char = params[:work]
 
-        @pagy, @books = pagy(Book.with_title_firstchar(char).order(created_at: :desc), items: 50)
+        @pagy, @works = pagy(Work.with_title_firstchar(char).order(created_at: :desc), items: 50)
       end
     end
   end

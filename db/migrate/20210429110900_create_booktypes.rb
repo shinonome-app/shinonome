@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateBooktypes < ActiveRecord::Migration[6.1]
+class CreateWorktypes < ActiveRecord::Migration[6.1]
   def change
-    create_table :booktypes do |t|
+    create_table :worktypes do |t|
       t.text :name, null: false
 
       t.timestamps

@@ -1,9 +1,9 @@
-<%= form_with(model: [:admin, book]) do |form| %>
-  <% if book.errors.any? %>
+<%= form_with(model: [:admin, work]) do |form| %>
+  <% if work.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <h2><%= pluralize(work.errors.count, "error") %> prohibited this work from being saved:</h2>
       <ul>
-        <% book.errors.each do |error| %>
+        <% work.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -63,7 +63,7 @@
   </div>
   <div class="field">
     <%= form.label :status, "状態" %>
-    <%= form.collection_select :book_status_id, BookStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+    <%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
   </div>
   <div class="field">
     <%= form.label :started_on, "状態の開始日" %>

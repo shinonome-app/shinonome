@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::BookSearchResultComponent, type: :component do
+RSpec.describe Admin::WorkSearchResultComponent, type: :component do
   pending "add some examples to (or delete) #{__FILE__}"
 
   # it "renders something useful" do

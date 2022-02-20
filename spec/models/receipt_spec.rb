@@ -30,18 +30,18 @@
 #  worker_name          :text             not null
 #  email                :text             not null
 #  url                  :text
-#  original_book_title  :text             not null
+#  original_work_title  :text             not null
 #  publisher            :text             not null
 #  first_pubdate        :text             not null
 #  input_edition        :text             not null
-#  original_book_title2 :text
+#  original_work_title2 :text
 #  publisher2           :text
 #  first_pubdate2       :text
 #  person_id            :text
 #  worker_id            :text
 #  created_on           :date
 #  register_status      :integer          default("0")
-#  original_book_note   :text
+#  original_work_note   :text
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #

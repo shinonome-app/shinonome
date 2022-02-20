@@ -36,10 +36,10 @@ class Worker < ApplicationRecord
   ].freeze
 
   belongs_to :user, optional: true
-  has_many :book_workers, dependent: :destroy
-  has_many :books, through: :book_workers
+  has_many :work_workers, dependent: :destroy
+  has_many :works, through: :work_workers
 
-  accepts_nested_attributes_for :book_workers
+  accepts_nested_attributes_for :work_workers
 
   scope :with_name_kana_search, lambda { |name_kana, selector|
     case selector.to_i

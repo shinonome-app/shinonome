@@ -4,14 +4,14 @@ ja:
     main_url: https://shinonome.example.jp
   activerecord:
     models:
-      book: 作品
+      work: 作品
       news: そらもよう
       person: 人物
       receipt: 入力申請
       site: 関連サイト
       worker: 工作員
     attributes:
-      book:
+      work:
         id: "作品ID"
         title: "作品名"
         title_kana: "作品名読み"
@@ -42,12 +42,12 @@ ja:
         first_name_kana: "名読み"
         first_name: "名"
         person_note: "備考"
-        original_book_note: "底本名"
+        original_work_note: "底本名"
         publisher: "出版社名"
         first_pubdate: "初版発行年"
         input_edition: "入力に使用する版"
-        original_book_note: "備考"
-        original_book_title2: "底本の親本名"
+        original_work_note: "備考"
+        original_work_title2: "底本の親本名"
         publisher2: "底本の親本出版社名"
         first_pubdate2: "底本の親本初版発行年"
         title_kana: "作品名読み"
@@ -68,9 +68,9 @@ ja:
         email: "email"
         note: "備考"
         sortkey: "ソート用読み"
-      book_worker:
+      work_worker:
         worker_role_id: "役割"
-      bookfile:
+      workfile:
         filetype_id: "ファイル形式"
         compresstype_id: "圧縮形式"
         filesize: "ファイルサイズ"
@@ -81,14 +81,14 @@ ja:
         file_encoding_id: "ファイルエンコーディング"
         charset_id: "文字集合"
         note: "備考"
-      original_book:
+      original_work:
         id: "底本ID"
         title: "書籍名"
         publisher: "出版社名"
         first_pubdate: "初版発行年月日"
         input_edition: "入力に使用した版"
         proof_edition: "校正に使用した版"
-        booktype_id: "種別フラグ"
+        worktype_id: "種別フラグ"
         note: "備考"
       site:
         id: "関連サイトID"

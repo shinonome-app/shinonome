@@ -1,37 +1,37 @@
 # frozen_string_literal: true
 
 module Admin
-  class BookWorkersController < Admin::ApplicationController
-    before_action :set_book_worker, only: %i[destroy]
+  class WorkWorkersController < Admin::ApplicationController
+    before_action :set_work_worker, only: %i[destroy]
 
-    # POST /admin/book_workers
+    # POST /admin/work_workers
     def create
-      @book_worker = BookWorker.new(book_worker_params)
+      @work_worker = WorkWorker.new(work_worker_params)
 
-      if @book_worker.save
-        redirect_to admin_book_url(@book_worker.book), notice: 'Book worker was successfully created.'
+      if @work_worker.save
+        redirect_to admin_work_url(@work_worker.work), notice: 'Work worker was successfully created.'
       else
-        redirect_to admin_book_url(@book_worker.book)
+        redirect_to admin_work_url(@work_worker.work)
       end
     end
 
-    # DELETE /admin/book_workers/1
+    # DELETE /admin/work_workers/1
     def destroy
-      book = @book_worker.book
-      @book_worker.destroy
-      redirect_to admin_book_url(book), notice: 'Book worker was successfully destroyed.'
+      work = @work_worker.work
+      @work_worker.destroy
+      redirect_to admin_work_url(work), notice: 'Work worker was successfully destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_book_worker
-      @book_worker = BookWorker.find(params[:id])
+    def set_work_worker
+      @work_worker = WorkWorker.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def book_worker_params
-      params.require(:book_worker).permit(:book_id, :worker_id, :worker_role_id)
+    def work_worker_params
+      params.require(:work_worker).permit(:work_id, :worker_id, :worker_role_id)
     end
   end
 end

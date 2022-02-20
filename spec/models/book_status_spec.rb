@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: book_statuses
+# Table name: work_statuses
 #
 #  id         :integer          not null, primary key
 #  name       :text             not null
@@ -13,6 +13,6 @@
 
 require 'rails_helper'
 
-RSpec.describe BookStatus, type: :model do
+RSpec.describe WorkStatus, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

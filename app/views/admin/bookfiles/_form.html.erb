@@ -1,15 +1,15 @@
-<%= form_with(model: [:admin, bookfile.book, bookfile]) do |form| %>
-  <% if bookfile.errors.any? %>
+<%= form_with(model: [:admin, workfile.work, workfile]) do |form| %>
+  <% if workfile.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(bookfile.errors.count, "error") %> prohibited this bookfile from being saved:</h2>
+      <h2><%= pluralize(workfile.errors.count, "error") %> prohibited this workfile from being saved:</h2>
       <ul>
-        <% bookfile.errors.each do |error| %>
+        <% workfile.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :book_id %>
+  <%= form.hidden_field :work_id %>
   <div class="field">
     <%= form.label :filetype_id %>
     <%= form.collection_select :filetype_id, Filetype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
@@ -47,8 +47,8 @@
     <%= form.text_area :note %>
   </div>
   <div class="field">
-    <%= form.label :bookdata %>
-    <%= form.file_field :bookdata %>
+    <%= form.label :workdata %>
+    <%= form.file_field :workdata %>
   </div>
   <div class="actions">
     <%= form.submit %>

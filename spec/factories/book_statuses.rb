@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: book_statuses
+# Table name: work_statuses
 #
 #  id         :integer          not null, primary key
 #  name       :text             not null
@@ -12,7 +12,7 @@
 #
 
 FactoryBot.define do
-  factory :book_status do
+  factory :work_status do
     name { 'MyString' }
     sort_order { 1 }
   end

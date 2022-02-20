@@ -4,48 +4,48 @@ module Admin
   class BibclassesController < Admin::ApplicationController
     before_action :set_bibclass, only: %i[show edit update destroy]
 
-    # GET /admin/books/:book_id/bibclasses
+    # GET /admin/works/:work_id/bibclasses
     def index
       @bibclasses = Bibclass.all
     end
 
-    # GET /admin/books/:book_id/bibclasses/1
+    # GET /admin/works/:work_id/bibclasses/1
     def show; end
 
-    # GET /admin/books/:book_id/bibclasses/new
+    # GET /admin/works/:work_id/bibclasses/new
     def new
       @bibclass = Bibclass.new
-      @bibclass.book_id = params[:book_id] if params[:book_id]
+      @bibclass.work_id = params[:work_id] if params[:work_id]
     end
 
-    # GET /admin/books/:book_id/bibclasses/1/edit
+    # GET /admin/works/:work_id/bibclasses/1/edit
     def edit; end
 
-    # POST /admin/books/:book_id/bibclasses
+    # POST /admin/works/:work_id/bibclasses
     def create
       @bibclass = Bibclass.new(bibclass_params)
 
       if @bibclass.save
-        redirect_to [:admin, @bibclass.book], notice: 'Bibclass was successfully created.'
+        redirect_to [:admin, @bibclass.work], notice: 'Bibclass was successfully created.'
       else
         render :new
       end
     end
 
-    # PATCH/PUT /admin/books/:book_id/bibclasses/1
+    # PATCH/PUT /admin/works/:work_id/bibclasses/1
     def update
       if @bibclass.update(bibclass_params)
-        redirect_to [:admin, @bibclass.book], notice: 'Bibclass was successfully updated.'
+        redirect_to [:admin, @bibclass.work], notice: 'Bibclass was successfully updated.'
       else
         render :edit
       end
     end
 
-    # DELETE /admin/books/:book_id/bibclasses/1
+    # DELETE /admin/works/:work_id/bibclasses/1
     def destroy
-      book = @bibclass.book
+      work = @bibclass.work
       @bibclass.destroy
-      redirect_to [:admin, book], notice: 'Bibclass was successfully destroyed.'
+      redirect_to [:admin, work], notice: 'Bibclass was successfully destroyed.'
     end
 
     private
@@ -57,7 +57,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def bibclass_params
-      params.require(:bibclass).permit(:name, :note, :num, :book_id)
+      params.require(:bibclass).permit(:name, :note, :num, :work_id)
     end
   end
 end
