@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -54,100 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.text "name", null: false
     t.text "num", null: false
     t.text "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "work_people", force: :cascade do |t|
-    t.bigint "work_id", null: false
-    t.bigint "person_id", null: false
-    t.bigint "role_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["work_id"], name: "index_work_people_on_work_id"
-    t.index ["person_id"], name: "index_work_people_on_person_id"
-    t.index ["role_id"], name: "index_work_people_on_role_id"
-  end
-
-  create_table "work_sites", force: :cascade do |t|
-    t.bigint "work_id", null: false
-    t.bigint "site_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["work_id"], name: "index_work_sites_on_work_id"
-    t.index ["site_id"], name: "index_work_sites_on_site_id"
-  end
-
-  create_table "work_statuses", force: :cascade do |t|
-    t.text "name", null: false
-    t.integer "sort_order", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "work_workers", force: :cascade do |t|
-    t.bigint "work_id", null: false
-    t.bigint "worker_id", null: false
-    t.bigint "worker_role_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["work_id"], name: "index_work_workers_on_work_id"
-    t.index ["worker_id"], name: "index_work_workers_on_worker_id"
-    t.index ["worker_role_id"], name: "index_work_workers_on_worker_role_id"
-  end
-
-  create_table "workfiles", force: :cascade do |t|
-    t.bigint "work_id", null: false
-    t.bigint "filetype_id", null: false
-    t.bigint "compresstype_id", null: false
-    t.integer "filesize"
-    t.bigint "user_id"
-    t.text "url"
-    t.text "filename", null: false
-    t.date "opened_on"
-    t.integer "revision_count"
-    t.bigint "file_encoding_id", null: false
-    t.bigint "charset_id", null: false
-    t.text "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["work_id"], name: "index_workfiles_on_work_id"
-    t.index ["charset_id"], name: "index_workfiles_on_charset_id"
-    t.index ["compresstype_id"], name: "index_workfiles_on_compresstype_id"
-    t.index ["file_encoding_id"], name: "index_workfiles_on_file_encoding_id"
-    t.index ["filetype_id"], name: "index_workfiles_on_filetype_id"
-  end
-
-  create_table "works", force: :cascade do |t|
-    t.text "title", null: false
-    t.text "title_kana"
-    t.text "subtitle"
-    t.text "subtitle_kana"
-    t.text "collection"
-    t.text "collection_kana"
-    t.text "original_title"
-    t.bigint "kana_type_id", null: false
-    t.text "author_display_name"
-    t.text "first_appearance"
-    t.text "description"
-    t.bigint "description_person_id"
-    t.bigint "work_status_id", null: false
-    t.date "started_on", null: false
-    t.boolean "copyright_flag", null: false
-    t.text "note"
-    t.text "orig_text"
-    t.bigint "user_id", null: false
-    t.integer "update_flag"
-    t.text "sortkey"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["work_status_id"], name: "index_works_on_work_status_id"
-    t.index ["kana_type_id"], name: "index_works_on_kana_type_id"
-    t.index ["user_id"], name: "index_works_on_user_id"
-  end
-
-  create_table "worktypes", force: :cascade do |t|
-    t.text "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -268,8 +174,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.text "order_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["work_id"], name: "index_proofreads_on_work_id"
     t.index ["person_id"], name: "index_proofreads_on_person_id"
+    t.index ["work_id"], name: "index_proofreads_on_work_id"
   end
 
   create_table "receipts", force: :cascade do |t|
@@ -335,14 +241,52 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "username", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "work_people", force: :cascade do |t|
+    t.bigint "work_id", null: false
+    t.bigint "person_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_work_people_on_person_id"
+    t.index ["role_id"], name: "index_work_people_on_role_id"
+    t.index ["work_id"], name: "index_work_people_on_work_id"
+  end
+
+  create_table "work_sites", force: :cascade do |t|
+    t.bigint "work_id", null: false
+    t.bigint "site_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_work_sites_on_site_id"
+    t.index ["work_id"], name: "index_work_sites_on_work_id"
+  end
+
+  create_table "work_statuses", force: :cascade do |t|
+    t.text "name", null: false
+    t.integer "sort_order", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "work_workers", force: :cascade do |t|
+    t.bigint "work_id", null: false
+    t.bigint "worker_id", null: false
+    t.bigint "worker_role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id"], name: "index_work_workers_on_work_id"
+    t.index ["worker_id"], name: "index_work_workers_on_worker_id"
+    t.index ["worker_role_id"], name: "index_work_workers_on_worker_role_id"
   end
 
   create_table "worker_roles", force: :cascade do |t|
@@ -364,29 +308,85 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.index ["user_id"], name: "index_workers_on_user_id"
   end
 
+  create_table "workfiles", force: :cascade do |t|
+    t.bigint "work_id", null: false
+    t.bigint "filetype_id", null: false
+    t.bigint "compresstype_id", null: false
+    t.integer "filesize"
+    t.bigint "user_id"
+    t.text "url"
+    t.text "filename", null: false
+    t.date "opened_on"
+    t.integer "revision_count"
+    t.bigint "file_encoding_id", null: false
+    t.bigint "charset_id", null: false
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charset_id"], name: "index_workfiles_on_charset_id"
+    t.index ["compresstype_id"], name: "index_workfiles_on_compresstype_id"
+    t.index ["file_encoding_id"], name: "index_workfiles_on_file_encoding_id"
+    t.index ["filetype_id"], name: "index_workfiles_on_filetype_id"
+    t.index ["work_id"], name: "index_workfiles_on_work_id"
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.text "title", null: false
+    t.text "title_kana"
+    t.text "subtitle"
+    t.text "subtitle_kana"
+    t.text "collection"
+    t.text "collection_kana"
+    t.text "original_title"
+    t.bigint "kana_type_id", null: false
+    t.text "author_display_name"
+    t.text "first_appearance"
+    t.text "description"
+    t.bigint "description_person_id"
+    t.bigint "work_status_id", null: false
+    t.date "started_on", null: false
+    t.boolean "copyright_flag", null: false
+    t.text "note"
+    t.text "orig_text"
+    t.bigint "user_id", null: false
+    t.integer "update_flag"
+    t.text "sortkey"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kana_type_id"], name: "index_works_on_kana_type_id"
+    t.index ["user_id"], name: "index_works_on_user_id"
+    t.index ["work_status_id"], name: "index_works_on_work_status_id"
+  end
+
+  create_table "worktypes", force: :cascade do |t|
+    t.text "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "base_people", "people"
-  add_foreign_key "work_people", "works"
-  add_foreign_key "work_people", "people"
-  add_foreign_key "work_people", "roles"
-  add_foreign_key "work_sites", "works"
-  add_foreign_key "work_sites", "sites"
-  add_foreign_key "work_workers", "works"
-  add_foreign_key "work_workers", "worker_roles"
-  add_foreign_key "work_workers", "workers"
-  add_foreign_key "workfiles", "works"
-  add_foreign_key "workfiles", "charsets"
-  add_foreign_key "workfiles", "compresstypes"
-  add_foreign_key "workfiles", "file_encodings"
-  add_foreign_key "workfiles", "filetypes"
-  add_foreign_key "works", "work_statuses"
-  add_foreign_key "works", "kana_types"
-  add_foreign_key "works", "users"
   add_foreign_key "original_books", "works"
   add_foreign_key "original_books", "worktypes"
   add_foreign_key "person_sites", "people"
   add_foreign_key "person_sites", "sites"
-  add_foreign_key "proofreads", "works"
   add_foreign_key "proofreads", "people"
+  add_foreign_key "proofreads", "works"
+  add_foreign_key "work_people", "people"
+  add_foreign_key "work_people", "roles"
+  add_foreign_key "work_people", "works"
+  add_foreign_key "work_sites", "sites"
+  add_foreign_key "work_sites", "works"
+  add_foreign_key "work_workers", "worker_roles"
+  add_foreign_key "work_workers", "workers"
+  add_foreign_key "work_workers", "works"
+  add_foreign_key "workfiles", "charsets"
+  add_foreign_key "workfiles", "compresstypes"
+  add_foreign_key "workfiles", "file_encodings"
+  add_foreign_key "workfiles", "filetypes"
+  add_foreign_key "workfiles", "works"
+  add_foreign_key "works", "kana_types"
+  add_foreign_key "works", "users"
+  add_foreign_key "works", "work_statuses"
 end
