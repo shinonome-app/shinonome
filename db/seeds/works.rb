@@ -10,7 +10,7 @@
 selected_workers = Worker.order(:id).limit(10)
 person_id_list = Person.all.pluck(:id)
 work_status_id_list = WorkStatus.all.pluck(:id)
-user_id_list = User.all.pluck(:id)
+user_id_list = Shinonome::User.all.pluck(:id)
 
 FIRST_CHAR = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん★'
 

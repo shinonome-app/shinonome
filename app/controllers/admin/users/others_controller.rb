@@ -8,8 +8,8 @@ module Admin
 
       # GET /users
       def index
-        @users = User.order(:id).all
-        @user = User.new
+        @users = Shinonome::User.order(:id).all
+        @user = Shinonome::User.new
       end
 
       # GET /users/1/edit
@@ -17,12 +17,12 @@ module Admin
 
       # POST /users
       def create
-        @user = User.new(user_params)
+        @user = Shinonome::User.new(user_params)
 
         if @user.save
           redirect_to admin_users_others_path, notice: '管理者を追加しました.'
         else
-          @users = User.order(:id).all
+          @users = Shinonome::User.order(:id).all
           render :index
         end
       end
@@ -45,7 +45,7 @@ module Admin
       protected
 
       def set_user
-        @user = User.find(params[:id])
+        @user = Shinonome::User.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.
