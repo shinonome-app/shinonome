@@ -22,7 +22,7 @@ module Shinonome
 
     enum separator: { tab: 0, comma: 1 }
 
-    belongs_to :user
+    belongs_to :user, class_name: 'Shinonome::User'
 
     validates :command, presence: true
 

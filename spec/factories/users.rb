@@ -22,7 +22,7 @@
 #
 
 FactoryBot.define do
-  factory :user do
+  factory :user, class: 'Shinonome::User' do
     sequence(:email) { |n| "user#{n}@example.com" }
     sequence(:username) { |n| "user#{n}" }
     password { 'pass123#' }

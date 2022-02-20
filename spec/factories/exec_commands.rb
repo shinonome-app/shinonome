@@ -13,7 +13,7 @@
 #
 
 FactoryBot.define do
-  factory :exec_command do
+  factory :exec_command, class: 'Shinonome::ExecCommand' do
     command { 'MyText' }
     user_id { '' }
   end

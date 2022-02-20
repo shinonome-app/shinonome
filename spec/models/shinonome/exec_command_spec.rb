@@ -14,6 +14,6 @@
 
 require 'rails_helper'
 
-RSpec.describe ExecCommand, type: :model do
+RSpec.describe Shinonome::ExecCommand, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

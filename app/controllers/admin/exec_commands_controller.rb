@@ -6,17 +6,17 @@ module Admin
 
     # GET /admin/exec_commands
     def index
-      @exec_commands = ExecCommand.all
+      @exec_commands = Shinonome::ExecCommand.all
     end
 
     # GET /admin/exec_commands/new
     def new
-      @exec_command = ExecCommand.new
+      @exec_command = Shinonome::ExecCommand.new
     end
 
     # POST /admin/exec_commands
     def create
-      @exec_command = ExecCommand.new(exec_command_params)
+      @exec_command = Shinonome::ExecCommand.new(exec_command_params)
       @exec_command.user = current_admin_user
       unless @exec_command.save
         render :new
