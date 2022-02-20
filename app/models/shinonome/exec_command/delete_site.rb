@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ExecCommand
-  class DeleteSite < ExecCommand::Base
+module Shinonome
+  class ExecCommand
+    class DeleteSite < ExecCommand::Base
+    end
   end
 end

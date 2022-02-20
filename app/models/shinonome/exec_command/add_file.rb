@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ExecCommand
-  class AddFile < ExecCommand::Base
+module Shinonome
+  class ExecCommand
+    class AddFile < ExecCommand::Base
+    end
   end
 end

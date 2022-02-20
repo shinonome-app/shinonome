@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ExecCommand
-  class AddWorker < ExecCommand::Base
+module Shinonome
+  class ExecCommand
+    class AddWorker < ExecCommand::Base
+    end
   end
 end

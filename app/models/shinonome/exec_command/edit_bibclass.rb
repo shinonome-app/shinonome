@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ExecCommand
-  class EditBibclass < ExecCommand::Base
+module Shinonome
+  class ExecCommand
+    class EditBibclass < ExecCommand::Base
+    end
   end
 end
