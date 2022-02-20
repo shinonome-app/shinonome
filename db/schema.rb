@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_075329) do
-
+ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,8 +44,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
 
   create_table "base_people", force: :cascade do |t|
     t.bigint "person_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_base_people_on_person_id"
   end
 
@@ -55,16 +54,16 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.text "name", null: false
     t.text "num", null: false
     t.text "note"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "book_people", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "person_id", null: false
     t.bigint "role_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_book_people_on_book_id"
     t.index ["person_id"], name: "index_book_people_on_person_id"
     t.index ["role_id"], name: "index_book_people_on_role_id"
@@ -73,8 +72,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
   create_table "book_sites", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "site_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_book_sites_on_book_id"
     t.index ["site_id"], name: "index_book_sites_on_site_id"
   end
@@ -82,16 +81,16 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
   create_table "book_statuses", force: :cascade do |t|
     t.text "name", null: false
     t.integer "sort_order", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "book_workers", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "worker_id", null: false
     t.bigint "worker_role_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_book_workers_on_book_id"
     t.index ["worker_id"], name: "index_book_workers_on_worker_id"
     t.index ["worker_role_id"], name: "index_book_workers_on_worker_role_id"
@@ -110,8 +109,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.bigint "file_encoding_id", null: false
     t.bigint "charset_id", null: false
     t.text "note"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_bookfiles_on_book_id"
     t.index ["charset_id"], name: "index_bookfiles_on_charset_id"
     t.index ["compresstype_id"], name: "index_bookfiles_on_compresstype_id"
@@ -140,8 +139,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.bigint "user_id", null: false
     t.integer "update_flag"
     t.text "sortkey"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_status_id"], name: "index_books_on_book_status_id"
     t.index ["kana_type_id"], name: "index_books_on_kana_type_id"
     t.index ["user_id"], name: "index_books_on_user_id"
@@ -149,48 +148,48 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
 
   create_table "booktypes", force: :cascade do |t|
     t.text "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "charsets", force: :cascade do |t|
     t.text "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "compresstypes", force: :cascade do |t|
     t.text "name"
     t.text "extension"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "exec_commands", force: :cascade do |t|
     t.text "command"
     t.bigint "user_id"
     t.integer "separator"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "file_encodings", force: :cascade do |t|
     t.text "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "filetypes", force: :cascade do |t|
     t.text "name"
     t.text "extension"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "kana_types", force: :cascade do |t|
     t.text "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "news", force: :cascade do |t|
@@ -198,8 +197,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.text "title", null: false
     t.text "body", null: false
     t.boolean "flag", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "original_books", force: :cascade do |t|
@@ -211,8 +210,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.text "proof_edition"
     t.bigint "booktype_id"
     t.text "note"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_original_books_on_book_id"
     t.index ["booktype_id"], name: "index_original_books_on_booktype_id"
   end
@@ -238,15 +237,15 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.text "sortkey2"
     t.integer "input_count"
     t.integer "publish_count"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "person_sites", force: :cascade do |t|
     t.bigint "person_id", null: false
     t.bigint "site_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_person_sites_on_person_id"
     t.index ["site_id"], name: "index_person_sites_on_site_id"
   end
@@ -267,8 +266,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.bigint "person_id", null: false
     t.text "assign_status"
     t.text "order_status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_proofreads_on_book_id"
     t.index ["person_id"], name: "index_proofreads_on_person_id"
   end
@@ -311,14 +310,14 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.date "created_on"
     t.integer "register_status", default: 0
     t.text "original_book_note"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
     t.text "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sites", force: :cascade do |t|
@@ -328,8 +327,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.text "email"
     t.text "note"
     t.bigint "updated_by"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -339,8 +338,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username", default: "", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
@@ -348,8 +347,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
 
   create_table "worker_roles", force: :cascade do |t|
     t.text "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "workers", force: :cascade do |t|
@@ -360,8 +359,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_075329) do
     t.text "note"
     t.bigint "user_id"
     t.text "sortkey"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_workers_on_user_id"
   end
 
