@@ -201,7 +201,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "original_works", force: :cascade do |t|
+  create_table "original_books", force: :cascade do |t|
     t.bigint "work_id"
     t.text "title", null: false
     t.text "publisher"
@@ -212,8 +212,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["work_id"], name: "index_original_works_on_work_id"
-    t.index ["worktype_id"], name: "index_original_works_on_worktype_id"
+    t.index ["work_id"], name: "index_original_books_on_work_id"
+    t.index ["worktype_id"], name: "index_original_books_on_worktype_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -298,18 +298,18 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
     t.text "worker_name", null: false
     t.text "email", null: false
     t.text "url"
-    t.text "original_work_title", null: false
+    t.text "original_book_title", null: false
     t.text "publisher", null: false
     t.text "first_pubdate", null: false
     t.text "input_edition", null: false
-    t.text "original_work_title2"
+    t.text "original_book_title2"
     t.text "publisher2"
     t.text "first_pubdate2"
     t.text "person_id"
     t.text "worker_id"
     t.date "created_on"
     t.integer "register_status", default: 0
-    t.text "original_work_note"
+    t.text "original_book_note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -383,8 +383,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_27_075329) do
   add_foreign_key "works", "work_statuses"
   add_foreign_key "works", "kana_types"
   add_foreign_key "works", "users"
-  add_foreign_key "original_works", "works"
-  add_foreign_key "original_works", "worktypes"
+  add_foreign_key "original_books", "works"
+  add_foreign_key "original_books", "worktypes"
   add_foreign_key "person_sites", "people"
   add_foreign_key "person_sites", "sites"
   add_foreign_key "proofreads", "works"

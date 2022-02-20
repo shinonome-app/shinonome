@@ -35,7 +35,7 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
         when '作品新規'
           ExecCommand::AddWork.execute(self, args)
         when '底本追加'
-          ExecCommand::AddOriginalWork.execute(self, args)
+          ExecCommand::AddOriginalBook.execute(self, args)
         when '分類追加'
           ExecCommand::AddBibclass.execute(self, args)
         when '人物追加'
@@ -49,7 +49,7 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
         when '作品更新'
           ExecCommand::EditWork.execute(self, args)
         when '底本更新'
-          ExecCommand::EditOriginalWork.execute(self, args)
+          ExecCommand::EditOriginalBook.execute(self, args)
         when '分類更新'
           ExecCommand::EditBibclass.execute(self, args)
         when 'ファイル更新'
@@ -57,7 +57,7 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
         when 'ファイル削除'
           ExecCommand::DeleteFile.execute(self, args)
         when '底本削除'
-          ExecCommand::DeleteOriginalWork.execute(self, args)
+          ExecCommand::DeleteOriginalBook.execute(self, args)
         when '分類削除'
           ExecCommand::DeleteBibclass.execute(self, args)
         when 'サイト削除'
@@ -81,7 +81,7 @@ class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
         when 'work_worker'
           ExecCommand::GetWorkWorker.execute(self, args)
         when 'source'
-          ExecCommand::GetOriginalWork.execute(self, args)
+          ExecCommand::GetOriginalBook.execute(self, args)
         when 'class'
           ExecCommand::GetBibclass.execute(self, args)
         when 'person'

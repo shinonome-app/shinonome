@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ExecCommand
-  class DeleteOriginalWork < ExecCommand::Base
+  class DeleteOriginalBook < ExecCommand::Base
   end
 end

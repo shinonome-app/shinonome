@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: original_works
+# Table name: original_books
 #
 #  id            :integer          not null, primary key
 #  work_id       :integer
@@ -18,12 +18,12 @@
 #
 # Indexes
 #
-#  index_original_works_on_work_id      (work_id)
-#  index_original_works_on_worktype_id  (worktype_id)
+#  index_original_books_on_work_id      (work_id)
+#  index_original_books_on_worktype_id  (worktype_id)
 #
 
 require 'rails_helper'
 
-RSpec.describe OriginalWork, type: :model do
+RSpec.describe OriginalBook, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
