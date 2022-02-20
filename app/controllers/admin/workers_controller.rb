@@ -27,8 +27,9 @@ module Admin
 
     # POST /admin/workers
     def create
+      worker_params[:worker_secret_attributes].merge!({user_id: current_admin_user.id})
+
       @worker = Worker.new(worker_params)
-      @worker.user_id = current_admin_user.id
       if @worker.save
         redirect_to [:admin, @worker], notice: '工作員を追加しました'
       else

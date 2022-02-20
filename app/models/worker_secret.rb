@@ -20,7 +20,7 @@
 #
 
 class WorkerSecret < ApplicationRecord
-  belongs_to :user, class_name: 'Shinonome::User'
+  belongs_to :user, class_name: 'Shinonome::User', optional: true
   belongs_to :worker
 
   validates :email, presence: true

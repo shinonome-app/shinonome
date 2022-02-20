@@ -19,23 +19,41 @@ RSpec.describe '/admin/workers', type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      email: 'test-worker1@example.com',
       name: 'test worker',
       name_kana: 'てすとわーかー',
-      note: 'this is a test',
       sortkey: 'てすとわーかー',
-      url: 'https://example.com/workers/1'
+      worker_secret_attributes: {
+        email: 'test-worker1@example.com',
+        note: 'this is a test',
+        url: 'https://example.com/workers/1',
+        user_id: user.id
+      }
+    }
+  end
+
+  let(:valid_attributes_without_user) do
+    {
+      name: 'test worker',
+      name_kana: 'てすとわーかー',
+      sortkey: 'てすとわーかー',
+      worker_secret_attributes: {
+        email: 'test-worker1@example.com',
+        note: 'this is a test',
+        url: 'https://example.com/workers/1',
+      }
     }
   end
 
   let(:invalid_attributes) do
     {
-      email: nil,
       name: 'test worker',
       name_kana: 'てすとわーかー',
-      note: 'this is a test',
       sortkey: 'てすとわーかー',
-      url: 'https://example.com/workers/1'
+      worker_secret_attributes: {
+        email: nil,
+        note: 'this is a test',
+        url: 'https://example.com/workers/1',
+      }
     }
   end
 
@@ -78,12 +96,12 @@ RSpec.describe '/admin/workers', type: :request do
     context 'with valid parameters' do
       it 'creates a new Worker' do
         expect do
-          post admin_workers_url, params: { worker: valid_attributes }
+          post admin_workers_url, params: { worker: valid_attributes_without_user }
         end.to change(Worker, :count).by(1)
       end
 
       it 'redirects to the created worker' do
-        post admin_workers_url, params: { worker: valid_attributes }
+        post admin_workers_url, params: { worker: valid_attributes_without_user }
         expect(response).to redirect_to(admin_worker_url(Worker.last))
       end
     end
@@ -106,12 +124,14 @@ RSpec.describe '/admin/workers', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          email: 'test-worker2@example.com',
           name: 'test worker2',
           name_kana: 'てすとわーかー',
-          note: 'this is a test',
           sortkey: 'てすとわーかー',
-          url: 'https://example.com/workers/1'
+          worker_secret_attributes: {
+            email: 'test-worker2@example.com',
+            note: 'this is a test',
+            url: 'https://example.com/workers/1'
+          }
         }
       end
 
