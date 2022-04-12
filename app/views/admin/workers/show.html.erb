@@ -19,15 +19,15 @@
   </p>
   <p>
     <strong>email:</strong>
-    <%= @worker.email %>
+    <%= @worker.worker_secret&.email %>
   </p>
   <p>
     <strong>URL:</strong>
-    <%= @worker.url %>
+    <%= @worker.worker_secret&.url %>
   </p>
   <p>
     <strong>備考:</strong>
-    <%= @worker.note %>
+    <%= @worker.worker_secret&.note %>
   </p>
   <p>
     <strong>最終更新日:</strong>
@@ -35,7 +35,7 @@
   </p>
   <p>
     <strong>更新者:</strong>
-    <%= @worker.user_id %>
+    <%= @worker.worker_secret&.user_id %>
   </p>
 
   <h2 class="text-xl">関連した作品</h2>
@@ -61,7 +61,7 @@
         <%= t(:started_on, scope: "activerecord.attributes.work") %>
       </th>
     </tr>
-    <% @worker.work_workers.each do |work_worker| %>
+    <% @work_workers.each do |work_worker| %>
     <%   work = work_worker.work %>
     <tr>
       <td><%= work_worker.worker_role.name %></td>
