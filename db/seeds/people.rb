@@ -31,3 +31,21 @@ people = (1..2000).map do |n|
 end
 
 Person.insert_all(people)
+
+base_people = (1..100).map do |i|
+  x = rand(2000) + 1
+  y = rand(2000) + 1
+
+  if x == y
+    redo
+  elsif x > y
+    x, y = y, x
+  end
+
+  {
+    person_id: y,
+    original_person_id: x
+  }
+end
+
+BasePerson.insert_all(base_people)

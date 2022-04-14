@@ -8,6 +8,7 @@
         <th>姓名</th>
         <th>読み</th>
         <th>著作権</th>
+        <th>他の名前</th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,11 @@
             <%= person.first_name_kana %>
           </td>
           <td><%= person.copyright_text %></td>
+          <td>
+            <% person.other_people.each do |other_person| %>
+              →<%= link_to other_person.name, admin_person_path(other_person) %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

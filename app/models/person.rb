@@ -48,6 +48,7 @@ class Person < ApplicationRecord
   has_many :work_people, dependent: :destroy
   has_many :works, through: :work_people
   has_one :base_person
+  has_one :original_person, through: :base_person
 
   def copyright_text
     copyright_flag ? '有' : '無'
