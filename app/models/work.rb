@@ -70,7 +70,7 @@ class Work < ApplicationRecord
     end
   }
 
-  validates :title, :started_on, :work_status, :kana_type, presence: true
+  validates :title, :started_on, presence: true
 
   def author_text
     work_people.where(role_id: 1).map { |a| a.person.name }.join(', ')

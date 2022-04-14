@@ -39,5 +39,5 @@ class Workfile < ApplicationRecord
 
   has_one_attached :workdata
 
-  validates :filename, :work, :charset, :compresstype, :file_encoding, :filetype, presence: true
+  validates :filename, presence: true
 end
