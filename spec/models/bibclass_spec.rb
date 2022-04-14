@@ -4,13 +4,13 @@
 #
 # Table name: bibclasses
 #
-#  id         :integer          not null, primary key
-#  work_id    :integer          not null
+#  id         :bigint           not null, primary key
 #  name       :text             not null
-#  num        :text             not null
 #  note       :text
+#  num        :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  work_id    :bigint           not null
 #
 
 require 'rails_helper'

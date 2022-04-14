@@ -4,7 +4,7 @@
 #
 # Table name: workers
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  name       :text             not null
 #  name_kana  :text             not null
 #  sortkey    :text

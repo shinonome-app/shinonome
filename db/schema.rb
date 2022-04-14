@@ -44,9 +44,11 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
 
   create_table "base_people", force: :cascade do |t|
     t.bigint "person_id", null: false
+    t.bigint "original_person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_base_people_on_person_id"
+    t.index ["original_person_id"], name: "index_base_people_on_original_person_id"
+    t.index ["person_id"], name: "index_base_people_on_person_id", unique: true
   end
 
   create_table "bibclasses", force: :cascade do |t|
@@ -374,6 +376,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "base_people", "people"
+  add_foreign_key "base_people", "people", column: "original_person_id"
   add_foreign_key "original_books", "works"
   add_foreign_key "original_books", "worktypes"
   add_foreign_key "person_sites", "people"

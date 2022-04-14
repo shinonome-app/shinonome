@@ -4,16 +4,21 @@
 #
 # Table name: person_sites
 #
-#  id         :integer          not null, primary key
-#  person_id  :integer          not null
-#  site_id    :integer          not null
+#  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  person_id  :bigint           not null
+#  site_id    :bigint           not null
 #
 # Indexes
 #
 #  index_person_sites_on_person_id  (person_id)
 #  index_person_sites_on_site_id    (site_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (person_id => people.id)
+#  fk_rails_...  (site_id => sites.id)
 #
 
 class PersonSite < ApplicationRecord

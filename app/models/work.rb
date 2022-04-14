@@ -4,35 +4,41 @@
 #
 # Table name: works
 #
-#  id                    :integer          not null, primary key
-#  title                 :text             not null
-#  title_kana            :text
-#  subtitle              :text
-#  subtitle_kana         :text
+#  id                    :bigint           not null, primary key
+#  author_display_name   :text
 #  collection            :text
 #  collection_kana       :text
-#  original_title        :text
-#  kana_type_id          :integer          not null
-#  author_display_name   :text
-#  first_appearance      :text
-#  description           :text
-#  description_person_id :integer
-#  work_status_id        :integer          not null
-#  started_on            :date             not null
 #  copyright_flag        :boolean          not null
+#  description           :text
+#  first_appearance      :text
 #  note                  :text
 #  orig_text             :text
-#  user_id               :integer          not null
-#  update_flag           :integer
+#  original_title        :text
 #  sortkey               :text
+#  started_on            :date             not null
+#  subtitle              :text
+#  subtitle_kana         :text
+#  title                 :text             not null
+#  title_kana            :text
+#  update_flag           :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  description_person_id :bigint
+#  kana_type_id          :bigint           not null
+#  user_id               :bigint           not null
+#  work_status_id        :bigint           not null
 #
 # Indexes
 #
-#  index_works_on_work_status_id  (work_status_id)
 #  index_works_on_kana_type_id    (kana_type_id)
 #  index_works_on_user_id         (user_id)
+#  index_works_on_work_status_id  (work_status_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (kana_type_id => kana_types.id)
+#  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (work_status_id => work_statuses.id)
 #
 
 # 作品

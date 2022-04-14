@@ -4,14 +4,21 @@
 #
 # Table name: base_people
 #
-#  id         :integer          not null, primary key
-#  person_id  :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                 :bigint           not null, primary key
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  original_person_id :bigint           not null
+#  person_id          :bigint           not null
 #
 # Indexes
 #
-#  index_base_people_on_person_id  (person_id)
+#  index_base_people_on_original_person_id  (original_person_id)
+#  index_base_people_on_person_id           (person_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (original_person_id => people.id)
+#  fk_rails_...  (person_id => people.id)
 #
 
 require 'rails_helper'

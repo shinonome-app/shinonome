@@ -4,14 +4,14 @@
 #
 # Table name: worker_secrets
 #
-#  id         :integer          not null, primary key
-#  worker_id  :integer          not null
+#  id         :bigint           not null, primary key
 #  email      :text             not null
-#  url        :text
 #  note       :text
-#  user_id    :integer
+#  url        :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint
+#  worker_id  :bigint           not null
 #
 # Indexes
 #
