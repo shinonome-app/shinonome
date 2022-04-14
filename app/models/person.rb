@@ -56,6 +56,10 @@ class Person < ApplicationRecord
     "#{last_name} #{first_name}"
   end
 
+  def name_kana
+    "#{last_name_kana} #{first_name_kana}"
+  end
+
   def name_en
     "#{first_name_en}, #{last_name_en}" if last_name_en || first_name_en
   end
