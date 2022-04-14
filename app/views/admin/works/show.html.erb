@@ -244,19 +244,19 @@
     <tr>
       <th class="w-24 text-left">e-mail</th>
       <td>
-        <%= worker.email %>
+        <%= worker.worker_secret&.email %>
       </td>
     </tr>
     <tr>
       <th class="w-24 text-left">URL</th>
       <td>
-        <%= worker.url %>
+        <%= worker.worker_secret&.url %>
       </td>
     </tr>
     <tr>
       <th class="w-24 text-left">備考</th>
       <td>
-        <%= worker.note %>
+        <%= worker.worker_secret&.note %>
       </td>
     </tr>
   </table>
