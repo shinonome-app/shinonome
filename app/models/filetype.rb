@@ -12,4 +12,8 @@
 #
 
 class Filetype < ApplicationRecord
+  def html?
+    # TODO: do not use num literal
+    id == 3 || id == 9
+  end
 end

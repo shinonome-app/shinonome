@@ -48,4 +48,8 @@ class Workfile < ApplicationRecord
   has_one_attached :workdata
 
   validates :filename, presence: true
+
+  def filename
+    "#{work.id}_ruby_#{id}.#{filetype.extension}"
+  end
 end

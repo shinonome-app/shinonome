@@ -50,6 +50,12 @@ class Person < ApplicationRecord
   has_one :base_person
   has_one :original_person, through: :base_person
 
+  def other_people
+    other_person_ids = BasePerson.where(person_id: id).pluck(:original_person_id) +
+                       BasePerson.where(original_person_id: id).pluck(:person_id)
+    Person.where(id: other_person_ids)
+  end
+
   def copyright_text
     copyright_flag ? '有' : '無'
   end
