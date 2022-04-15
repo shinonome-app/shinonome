@@ -51,6 +51,6 @@ class Workfile < ApplicationRecord
   validates :filename, presence: true
 
   def filename
-    "#{work.id}_ruby_#{id}.#{filetype.extension}"
+    "#{work.id}_ruby_#{id}.#{filetype&.extension}"
   end
 end
