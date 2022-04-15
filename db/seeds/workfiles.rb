@@ -142,6 +142,6 @@ Workfile.insert_all(workfiles)
 Workfile.transaction do
   Workfile.includes(:work).all.each do |workfile|
     generate_sample_zip(workfile)
-    workfile.save
+    workfile.save!
   end
 end
