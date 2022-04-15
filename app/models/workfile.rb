@@ -37,6 +37,7 @@
 #  fk_rails_...  (work_id => works.id)
 #
 
+# 作品ファイル
 class Workfile < ApplicationRecord
   belongs_to :work
   belongs_to :filetype

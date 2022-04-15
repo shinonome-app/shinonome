@@ -32,9 +32,9 @@ end
 
 Person.insert_all(people)
 
-base_people = (1..100).map do |i|
-  x = rand(2000) + 1
-  y = rand(2000) + 1
+base_people = (1..100).map do
+  x = rand(1..2000)
+  y = rand(1..2000)
 
   if x == y
     redo

@@ -47,7 +47,7 @@ class Person < ApplicationRecord
   belongs_to :note_user, optional: true
   has_many :work_people, dependent: :destroy
   has_many :works, through: :work_people
-  has_one :base_person
+  has_one :base_person, dependent: :destroy
   has_one :original_person, through: :base_person
 
   def other_people
