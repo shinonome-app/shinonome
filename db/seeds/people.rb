@@ -14,8 +14,10 @@ people = (1..2000).map do |n|
   {
     last_name: name.last.kanji,
     last_name_kana: name.last.hiragana,
+    last_name_en: name.last.romaji,
     first_name: name.first.kanji,
     first_name_kana: name.first.hiragana,
+    first_name_en: name.first.romaji,
     born_on: born_date,
     died_on: died_date,
     copyright_flag: rand(100) >= 90,

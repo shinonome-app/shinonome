@@ -16,7 +16,9 @@ FIRST_CHAR = 'あいうえおかきくけこさしすせそたちつてとなに
 
 works = (1..5000).map do |n|
   desc = ''.dup
-  (3..8).to_a.sample.times { desc << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
+  (2..8).to_a.sample.times { desc << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
+  note = ''.dup
+  (0..4).to_a.sample.times { note << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
 
   ch = FIRST_CHAR.chars.sample
   created = Faker::Time.between(from: Time.zone.parse('1997-01-01'), to: Time.zone.parse('2021-05-05'))
@@ -36,6 +38,7 @@ works = (1..5000).map do |n|
     description: desc,
     work_status_id: work_status_id_list.sample,
     started_on: started,
+    note: note,
     copyright_flag: rand(100) <= 90,
     sortkey: "#{ch}さくひん#{n}",
     user_id: user_id_list.sample,
