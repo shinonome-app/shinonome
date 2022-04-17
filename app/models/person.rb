@@ -56,6 +56,10 @@ class Person < ApplicationRecord
     Person.where(id: other_person_ids)
   end
 
+  def copyright?
+    copyright_flag
+  end
+
   def copyright_text
     copyright_flag ? '有' : '無'
   end
@@ -70,6 +74,14 @@ class Person < ApplicationRecord
 
   def name_en
     "#{first_name_en}, #{last_name_en}" if last_name_en || first_name_en
+  end
+
+  def published_works
+    Work.joins(:work_people).published.where('work_people.person_id = ?', id)
+  end
+
+  def unpublished_works
+    Work.joins(:work_people).unpublished.where('work_people.person_id = ?', id)
   end
 
   validates :last_name, :last_name_kana, presence: true

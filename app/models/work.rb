@@ -76,7 +76,22 @@ class Work < ApplicationRecord
     end
   }
 
+  scope :published, ->{ where(work_status_id: 1) }
+  scope :unpublished, ->{ where(work_status_id: [3, 4, 5, 6, 7, 8, 9, 10, 11]) }
+
   validates :title, :started_on, presence: true
+
+  def copyright?
+    people.any?{|person| person.copyright?}
+  end
+
+  def first_author
+    work_people.where(role_id: 1).first.person
+  end
+
+  def first_teihon
+    original_books.where(worktype: 1).first
+  end
 
   def author_text
     work_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
