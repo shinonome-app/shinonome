@@ -50,7 +50,16 @@ class Workfile < ApplicationRecord
 
   validates :filename, presence: true
 
+  def html?
+    filetype&.html?
+  end
+
   def filename
-    "#{work.id}_ruby_#{id}.#{filetype&.extension}"
+    ext = if compresstype.compressed?
+            compresstype.extension
+          else
+            filetype&.extension
+          end
+    "#{work.id}_ruby_#{id}.#{ext}"
   end
 end

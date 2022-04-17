@@ -12,4 +12,7 @@
 #
 
 class Compresstype < ApplicationRecord
+  def compressed?
+    id != 1
+  end
 end
