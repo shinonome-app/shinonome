@@ -21,9 +21,9 @@ end
 
 charsets = {
   1	=> 'JIS X 0208',
-  2	=>	'JIS X 0213',
-  3	=>	'Unicode',
-  99	=> 'その他'
+  2	=> 'JIS X 0213',
+  3	=> 'Unicode',
+  99 => 'その他'
 }
 
 # Charset.connection.execute('TRUNCATE TABLE charsets;')
@@ -35,7 +35,7 @@ filetypes = {
   0 => %w[入力完了ファイル txt],
   1 => %w[テキストファイル(ルビあり) rtxt],
   2 => %w[テキストファイル(ルビなし) txt],
-  3 => %w[HTMLファイル html],
+  3 => %w[XHTMLファイル html],
   4 => %w[エキスパンドブックファイル ebk],
   5 => %w[.workファイル work],
   6 => %w[TTZファイル ttz],
@@ -51,7 +51,7 @@ filetypes.each do |k, v|
 end
 
 compresstypes = {
-  1 => %w[圧縮なし none],
+  1 => %w[なし none],
   2 => %w[ZIP圧縮 zip],
   3 => %w[GZIP圧縮 gz],
   4 => %w[LHA圧縮 lzh],

@@ -108,7 +108,7 @@ def generate_sample_zip(workfile)
     workfile.workdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip')
 
     workfile.filename = zip_file
-    workfile.filesize = File.size(zipfile_name)
+    # workfile.filesize = File.size(zipfile_name)
   end
 
   zipfile_name
@@ -121,27 +121,47 @@ workfiles = work_id_status_list.map do |n, status|
   # 校了と公開のみ
   next unless [1, 10].include?(status)
 
-  {
-    work_id: n,
-    filename: "#{n}_ruby_NNN.zip",
-    charset_id: 1, # JIS X 0208
-    compresstype_id: 2, # zip
-    file_encoding_id: 1, # Shift_JIS
-    filetype_id: 1, # テキストファイル(ルビあり) rtxt
-    user_id: user_id_list.sample,
-    revision_count: 1,
-    opened_on: Time.current,
-    note: "備考#{n}",
-    created_at: Time.current,
-    updated_at: Time.current
-  }
-end.compact
+  [
+    {
+      work_id: n,
+      filename: "#{n}_ruby_NNN.zip",
+      charset_id: 1, # JIS X 0208
+      compresstype_id: 2, # zip
+      file_encoding_id: 1, # Shift_JIS
+      filetype_id: 1, # テキストファイル(ルビあり) rtxt
+      user_id: user_id_list.sample,
+      revision_count: 1,
+      opened_on: Time.current,
+      note: "備考#{n}",
+      filesize: 10000+rand(2000)*17,
+      created_at: Time.current,
+      updated_at: Time.current
+    },
+    {
+      work_id: n,
+      filename: "#{n}_NNN.html",
+      charset_id: 1, # JIS X 0208
+      compresstype_id: 1, # 圧縮なし
+      file_encoding_id: 1, # Shift_JIS
+      filetype_id: 3, # htmlファイル
+      user_id: user_id_list.sample,
+      revision_count: 1,
+      opened_on: Time.current,
+      note: "備考#{n}",
+      filesize: 10000+rand(2000)*17,
+      created_at: Time.current,
+      updated_at: Time.current
+    }
+  ]
+end.flatten.compact
 
 Workfile.insert_all(workfiles)
 
 Workfile.transaction do
   Workfile.includes(:work).all.each do |workfile|
-    generate_sample_zip(workfile)
+    if workfile.compresstype_id == 2
+      generate_sample_zip(workfile)
+    end
     workfile.save!
   end
 end

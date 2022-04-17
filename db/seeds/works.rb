@@ -9,6 +9,7 @@
 ## Works
 selected_workers = Worker.order(:id).limit(10)
 person_id_list = Person.all.pluck(:id)
+person_a_id_list = Person.where('sortkey ~ ?', '^あ').all.pluck(:id)
 work_status_id_list = WorkStatus.all.pluck(:id)
 user_id_list = Shinonome::User.all.pluck(:id)
 
@@ -36,7 +37,7 @@ works = (1..5000).map do |n|
     kana_type_id: [1, 2, 3, 4].sample,
     first_appearance: "初出#{n}",
     description: desc,
-    work_status_id: work_status_id_list.sample,
+    work_status_id: rand(100) < 80 ? 1 : work_status_id_list.sample,
     started_on: started,
     note: note,
     copyright_flag: rand(100) <= 90,
@@ -82,7 +83,11 @@ WorkWorker.insert_all(work_workers)
 
 ## WorkPeople
 work_people = work_id_list.map do |n|
-  author_id = person_id_list.sample
+  author_id = if n % 10 == 0
+                person_a_id_list[0,2].sample
+              else
+                person_id_list.sample
+              end
 
   {
     work_id: n,
