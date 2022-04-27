@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 
-class Compresstype < ApplicationRecord
+class Compresstype < ApplicationRecord # rubocop:disable Style/Documentation
   def compressed?
     id != 1
   end

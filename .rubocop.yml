@@ -53,6 +53,10 @@ RSpec/MultipleMemoizedHelpers:
 Style/AsciiComments:
   Enabled: false
 
+Style/BlockComments:
+  Exclude:
+  - "db/seeds/users.rb"
+
 Style/Documentation:
   Exclude:
     - "db/migrate/*.rb"
@@ -62,3 +66,11 @@ Style/Documentation:
 Style/HashSyntax:
   Enabled: false
 
+Style/NumericLiterals:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/SymbolProc:
+  Enabled: false

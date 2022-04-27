@@ -77,11 +77,11 @@ class Person < ApplicationRecord
   end
 
   def published_works
-    Work.joins(:work_people).published.where('work_people.person_id = ?', id)
+    Work.joins(:work_people).published.where(work_people: { person_id: id })
   end
 
   def unpublished_works
-    Work.joins(:work_people).unpublished.where('work_people.person_id = ?', id)
+    Work.joins(:work_people).unpublished.where(work_people: { person_id: id })
   end
 
   validates :last_name, :last_name_kana, presence: true

@@ -76,13 +76,13 @@ class Work < ApplicationRecord
     end
   }
 
-  scope :published, ->{ where(work_status_id: 1) }
-  scope :unpublished, ->{ where(work_status_id: [3, 4, 5, 6, 7, 8, 9, 10, 11]) }
+  scope :published, -> { where(work_status_id: 1) }
+  scope :unpublished, -> { where(work_status_id: [3, 4, 5, 6, 7, 8, 9, 10, 11]) }
 
   validates :title, :started_on, presence: true
 
   def copyright?
-    people.any?{|person| person.copyright?}
+    people.any? { |person| person.copyright? }
   end
 
   def first_author
