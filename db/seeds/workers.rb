@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # Worker.connection.execute('TRUNCATE TABLE workers;')
-user_id_list = Shinonome::User.all.pluck(:id)
+# user_id_list = Shinonome::User.all.pluck(:id)
+user_id_list = (1..10).to_a
 
 workers = (1..1200).map do |_n|
   name = Gimei.name

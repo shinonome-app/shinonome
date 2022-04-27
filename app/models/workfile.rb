@@ -42,7 +42,7 @@ class Workfile < ApplicationRecord
   belongs_to :work
   belongs_to :filetype
   belongs_to :compresstype
-  belongs_to :user, class_name: 'Shinonome::User'
+  belongs_to :user, class_name: 'Shinonome::User', optional: true
   belongs_to :file_encoding
   belongs_to :charset
 

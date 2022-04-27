@@ -20,7 +20,7 @@ class CreateWorks < ActiveRecord::Migration[6.1]
       t.boolean :copyright_flag, null: false
       t.text :note
       t.text :orig_text
-      t.references :user, foreign_key: true, null: false
+      t.references :user, null: false
       t.integer :update_flag
       t.text :sortkey
 

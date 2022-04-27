@@ -115,7 +115,8 @@ def generate_sample_zip(workfile)
 end
 
 work_id_status_list = Work.all.pluck(:id, :work_status_id)
-user_id_list = Shinonome::User.all.pluck(:id)
+# user_id_list = Shinonome::User.all.pluck(:id)
+user_id_list = (1..10).to_a
 
 workfiles = work_id_status_list.map do |n, status|
   # 校了と公開のみ
@@ -133,7 +134,7 @@ workfiles = work_id_status_list.map do |n, status|
       revision_count: 1,
       opened_on: Time.current,
       note: "備考#{n}",
-      filesize: 10000+rand(2000)*17,
+      filesize: 10000 + (rand(2000) * 17),
       created_at: Time.current,
       updated_at: Time.current
     },
@@ -148,7 +149,7 @@ workfiles = work_id_status_list.map do |n, status|
       revision_count: 1,
       opened_on: Time.current,
       note: "備考#{n}",
-      filesize: 10000+rand(2000)*17,
+      filesize: 10000 + (rand(2000) * 17),
       created_at: Time.current,
       updated_at: Time.current
     }
@@ -159,9 +160,7 @@ Workfile.insert_all(workfiles)
 
 Workfile.transaction do
   Workfile.includes(:work).all.each do |workfile|
-    if workfile.compresstype_id == 2
-      generate_sample_zip(workfile)
-    end
+    generate_sample_zip(workfile) if workfile.compresstype_id == 2
     workfile.save!
   end
 end

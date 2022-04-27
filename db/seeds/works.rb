@@ -11,7 +11,8 @@ selected_workers = Worker.order(:id).limit(10)
 person_id_list = Person.all.pluck(:id)
 person_a_id_list = Person.where('sortkey ~ ?', '^あ').all.pluck(:id)
 work_status_id_list = WorkStatus.all.pluck(:id)
-user_id_list = Shinonome::User.all.pluck(:id)
+# user_id_list = Shinonome::User.all.pluck(:id)
+user_id_list = (1..10).to_a
 
 FIRST_CHAR = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん★'
 
@@ -84,7 +85,7 @@ WorkWorker.insert_all(work_workers)
 ## WorkPeople
 work_people = work_id_list.map do |n|
   author_id = if n % 10 == 0
-                person_a_id_list[0,2].sample
+                person_a_id_list[0, 2].sample
               else
                 person_id_list.sample
               end
