@@ -14,8 +14,8 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/admin/news', type: :request do
-  # News. As you add validations to News, be sure to
+RSpec.describe '/admin/news_entries', type: :request do
+  # NewsEntry. As you add validations to NewsEntry, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
@@ -37,70 +37,70 @@ RSpec.describe '/admin/news', type: :request do
 
   let(:user) { create(:user) }
 
-  describe 'GET /admin/news/' do
+  describe 'GET /admin/news_entries/' do
     before { sign_in(user) }
 
     it 'renders a successful response' do
-      News.create! valid_attributes
-      get admin_news_index_url
+      NewsEntry.create! valid_attributes
+      get admin_news_entries_index_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /admin/admin/show' do
+  describe 'GET /admin/news_entries/show' do
     before { sign_in(user) }
 
     it 'renders a successful response' do
-      news = News.create! valid_attributes
-      get admin_news_url(news)
+      news_entry = NewsEntry.create! valid_attributes
+      get admin_news_entries_url(news_entry)
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /admin/news/new' do
+  describe 'GET /admin/news_entries/new' do
     before { sign_in(user) }
 
     it 'renders a successful response' do
-      get new_admin_news_url
+      get new_admin_news_entries_url
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /admin/news/edit' do
+  describe 'GET /admin/news_entries/edit' do
     before { sign_in(user) }
 
     it 'render a successful response' do
-      news = News.create! valid_attributes
-      get edit_admin_news_url(news)
+      news_entry = NewsEntry.create! valid_attributes
+      get edit_admin_news_entries_url(news_entry)
       expect(response).to be_successful
     end
   end
 
-  describe 'POST /admin/news/create' do
+  describe 'POST /admin/news_entries/create' do
     before { sign_in user }
 
     context 'with valid parameters' do
-      it 'creates a new News' do
+      it 'creates a new NewsEntry' do
         expect do
-          post admin_news_index_url, params: { news: valid_attributes }
-        end.to change(News, :count).by(1)
+          post admin_news_entries_index_url, params: { news_entry: valid_attributes }
+        end.to change(NewsEntry, :count).by(1)
       end
 
-      it 'redirects to the created news' do
-        post admin_news_index_url, params: { news: valid_attributes }
-        expect(response).to redirect_to(admin_news_url(News.last))
+      it 'redirects to the created news entry' do
+        post admin_news_entries_index_url, params: { news_entry: valid_attributes }
+        expect(response).to redirect_to(admin_news_entries_url(NewsEntry.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new News' do
+      it 'does not create a new NewsEntry' do
         expect do
-          post admin_news_index_url, params: { news: invalid_attributes }
-        end.to change(News, :count).by(0)
+          post admin_news_entries_index_url, params: { news_entry: invalid_attributes }
+        end.to change(NewsEntry, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_news_index_url, params: { news: invalid_attributes }
+        post admin_news_entries_index_url, params: { news_entry: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -119,25 +119,25 @@ RSpec.describe '/admin/news', type: :request do
         }
       end
 
-      it 'updates the requested news' do
-        news = News.create! valid_attributes
-        patch admin_news_url(news), params: { news: new_attributes }
-        news.reload
-        expect(news.title).to eq 'テスト2'
+      it 'updates the requested news entry' do
+        news_entry = NewsEntry.create! valid_attributes
+        patch admin_news_entries_url(news_entry), params: { news_entry: new_attributes }
+        news_entry.reload
+        expect(news_entry.title).to eq 'テスト2'
       end
 
-      it 'redirects to the news' do
-        news = News.create! valid_attributes
-        patch admin_news_url(news), params: { news: new_attributes }
-        news.reload
-        expect(response).to redirect_to(admin_news_url(news))
+      it 'redirects to the news entry' do
+        news_entry = NewsEntry.create! valid_attributes
+        patch admin_news_entries_url(news_entry), params: { news_entry: new_attributes }
+        news_entry.reload
+        expect(response).to redirect_to(admin_news_entries_url(news_entry))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        news = News.create! valid_attributes
-        patch admin_news_url(news), params: { news: invalid_attributes }
+        news_entry = NewsEntry.create! valid_attributes
+        patch admin_news_entries_url(news_entry), params: { news_entry: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -146,17 +146,17 @@ RSpec.describe '/admin/news', type: :request do
   describe 'DELETE /destroy' do
     before { sign_in user }
 
-    it 'destroys the requested news' do
-      news = News.create! valid_attributes
+    it 'destroys the requested news entry' do
+      news_entry = NewsEntry.create! valid_attributes
       expect do
-        delete admin_news_url(news)
-      end.to change(News, :count).by(-1)
+        delete admin_news_entries_url(news_entry)
+      end.to change(NewsEntry, :count).by(-1)
     end
 
-    it 'redirects to the news list' do
-      news = News.create! valid_attributes
-      delete admin_news_url(news)
-      expect(response).to redirect_to(admin_news_index_url)
+    it 'redirects to the news entry list' do
+      news_entry = NewsEntry.create! valid_attributes
+      delete admin_news_entries_url(news_entry)
+      expect(response).to redirect_to(admin_news_entries_index_url)
     end
   end
 end

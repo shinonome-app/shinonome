@@ -1,9 +1,9 @@
-<%= form_with(model: [:admin, news]) do |form| %>
-  <% if news.errors.any? %>
+<%= form_with(model: [:admin, news_entry]) do |form| %>
+  <% if news_entry.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(news.errors.count, "error") %> prohibited this news from being saved:</h2>
+      <h2><%= pluralize(news_entry.errors.count, "error") %> prohibited this news_entry from being saved:</h2>
       <ul>
-        <% news.errors.each do |error| %>
+        <% news_entry.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

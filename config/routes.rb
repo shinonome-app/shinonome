@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       resources :others, only: %i[index create edit update destroy]
     end
 
-    resources :news
+    resources :news_entries
     resources :people
 
     namespace :works do

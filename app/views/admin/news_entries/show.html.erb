@@ -3,20 +3,20 @@
   <h1>記事の表示</h1>
   <p>
     <strong>日付:</strong>
-    <%= @news.published_on %>
+    <%= @news_entry.published_on %>
   </p>
   <p>
     <strong>見出し:</strong>
-    <%= @news.title %>
+    <%= @news_entry.title %>
   </p>
   <p>
     <strong>本文:</strong>
-    <%= @news.body %>
+    <%= @news_entry.body %>
   </p>
   <p>
     <strong>ニュースに指定する:</strong>
-    <%= @news.flag %>
+    <%= @news_entry.flag %>
   </p>
-  <%= link_to '修正', edit_admin_news_path(@news) %> |
-  <%= link_to '戻る', admin_news_index_path %>
+  <%= link_to '修正', edit_admin_news_entry_path(@news_entry) %> |
+  <%= link_to '戻る', admin_news_entries_index_path %>
 </div>

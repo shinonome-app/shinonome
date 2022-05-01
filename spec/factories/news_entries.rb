@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: news
+# Table name: news_entries
 #
 #  id           :bigint           not null, primary key
 #  body         :text             not null
@@ -14,7 +14,7 @@
 #
 
 FactoryBot.define do
-  factory :news do
+  factory :news_entry do
     published_on { '2021-04-29' }
     title { 'MyText' }
     body { 'MyText' }
