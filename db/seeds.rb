@@ -132,6 +132,7 @@ worktypes.each do |k, v|
 end
 
 require_relative 'seeds/users'
+require_relative 'seeds/news_entries'
 require_relative 'seeds/workers'
 require_relative 'seeds/people'
 require_relative 'seeds/receipts'

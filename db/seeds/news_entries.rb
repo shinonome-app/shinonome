@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-News.connection.execute('TRUNCATE TABLE news;')
+NewsEntry.connection.execute('TRUNCATE TABLE news_entries;')
 
-news = (1..200).map do
+news_entries = (1..200).map do
   publish_date = Faker::Date.between(from: '1998-01-01', to: '2021-05-01')
   title = Faker::Lorem.sentence(word_count: 5, random_words_to_add: 10).chop
   body = ''.dup
@@ -22,6 +22,6 @@ news = (1..200).map do
   }
 end
 
-sorted_news = news.sort_by { |x| x[:published_on] }
+sorted_news_entries = news_entries.sort_by { |x| x[:published_on] }
 
-News.insert_all(sorted_news)
+NewsEntry.insert_all(sorted_news_entries)

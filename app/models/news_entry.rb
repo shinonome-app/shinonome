@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: news
+# Table name: news_items
 #
 #  id           :bigint           not null, primary key
 #  body         :text             not null
@@ -13,6 +13,6 @@
 #  updated_at   :datetime         not null
 #
 
-class News < ApplicationRecord
+class NewsEntry < ApplicationRecord
   validates :title, :body, :flag, presence: true
 end
