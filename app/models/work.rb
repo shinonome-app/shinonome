@@ -37,7 +37,6 @@
 # Foreign Keys
 #
 #  fk_rails_...  (kana_type_id => kana_types.id)
-#  fk_rails_...  (user_id => users.id)
 #  fk_rails_...  (work_status_id => work_statuses.id)
 #
 

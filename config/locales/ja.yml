@@ -5,7 +5,7 @@ ja:
   activerecord:
     models:
       work: 作品
-      news: そらもよう
+      news_entry: そらもよう
       person: 人物
       receipt: 入力申請
       site: 関連サイト

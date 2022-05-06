@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: news
+# Table name: news_entries
 #
 #  id           :bigint           not null, primary key
 #  body         :text             not null
@@ -13,11 +13,8 @@
 #  updated_at   :datetime         not null
 #
 
-FactoryBot.define do
-  factory :news do
-    published_on { '2021-04-29' }
-    title { 'MyText' }
-    body { 'MyText' }
-    flag { false }
-  end
+require 'rails_helper'
+
+RSpec.describe NewsEntry, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
