@@ -16,8 +16,10 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-  - 'storage/**/*'
-  - 'tmp/cache/**/*'
+    - 'storage/**/*'
+    - 'tmp/cache/**/*'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
 
 Layout/LineLength:
   Max: 300
