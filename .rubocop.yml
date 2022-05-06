@@ -19,6 +19,7 @@ AllCops:
     - 'storage/**/*'
     - 'tmp/cache/**/*'
     - 'vendor/**/*'
+    - 'db/schema.rb'
 
 Layout/LineLength:
   Max: 300
