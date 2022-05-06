@@ -68,6 +68,10 @@ Style/Documentation:
     - "app/controllers/**/*.rb"
     - "app/helpers/**/*.rb"
 
+Style/FetchEnvVar:
+  Exclude:
+    - 'bin/*'
+
 Style/HashSyntax:
   Enabled: false
 
