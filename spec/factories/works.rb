@@ -14,13 +14,13 @@
 #  note                  :text
 #  orig_text             :text
 #  original_title        :text
+#  published_on          :date
 #  sortkey               :text
 #  started_on            :date             not null
 #  subtitle              :text
 #  subtitle_kana         :text
 #  title                 :text             not null
 #  title_kana            :text
-#  update_flag           :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  description_person_id :bigint
@@ -61,7 +61,6 @@ FactoryBot.define do
     note { 'MyText' }
     orig_text { 'MyText' }
     updated_at { '2021-04-29 20:43:01' }
-    update_flag { 1 }
     sortkey { 'MyText' }
   end
 end
