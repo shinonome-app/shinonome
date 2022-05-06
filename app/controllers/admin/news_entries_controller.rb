@@ -45,7 +45,7 @@ module Admin
     # DELETE /admin/news_entries/1
     def destroy
       @news_entry.destroy
-      redirect_to admin_news_entries_index_url, notice: 'NewsEntry was successfully destroyed.'
+      redirect_to admin_news_entries_url, notice: 'NewsEntry was successfully destroyed.'
     end
 
     private

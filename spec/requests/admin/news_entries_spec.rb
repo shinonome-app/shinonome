@@ -42,7 +42,7 @@ RSpec.describe '/admin/news_entries', type: :request do
 
     it 'renders a successful response' do
       NewsEntry.create! valid_attributes
-      get admin_news_entries_index_url
+      get admin_news_entries_url
       expect(response).to be_successful
     end
   end
@@ -52,7 +52,7 @@ RSpec.describe '/admin/news_entries', type: :request do
 
     it 'renders a successful response' do
       news_entry = NewsEntry.create! valid_attributes
-      get admin_news_entries_url(news_entry)
+      get admin_news_entry_url(news_entry)
       expect(response).to be_successful
     end
   end
@@ -61,7 +61,7 @@ RSpec.describe '/admin/news_entries', type: :request do
     before { sign_in(user) }
 
     it 'renders a successful response' do
-      get new_admin_news_entries_url
+      get new_admin_news_entry_url
       expect(response).to be_successful
     end
   end
@@ -71,7 +71,7 @@ RSpec.describe '/admin/news_entries', type: :request do
 
     it 'render a successful response' do
       news_entry = NewsEntry.create! valid_attributes
-      get edit_admin_news_entries_url(news_entry)
+      get edit_admin_news_entry_url(news_entry)
       expect(response).to be_successful
     end
   end
@@ -82,25 +82,25 @@ RSpec.describe '/admin/news_entries', type: :request do
     context 'with valid parameters' do
       it 'creates a new NewsEntry' do
         expect do
-          post admin_news_entries_index_url, params: { news_entry: valid_attributes }
+          post admin_news_entries_url, params: { news_entry: valid_attributes }
         end.to change(NewsEntry, :count).by(1)
       end
 
       it 'redirects to the created news entry' do
-        post admin_news_entries_index_url, params: { news_entry: valid_attributes }
-        expect(response).to redirect_to(admin_news_entries_url(NewsEntry.last))
+        post admin_news_entries_url, params: { news_entry: valid_attributes }
+        expect(response).to redirect_to(admin_news_entry_url(NewsEntry.last))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new NewsEntry' do
         expect do
-          post admin_news_entries_index_url, params: { news_entry: invalid_attributes }
+          post admin_news_entries_url, params: { news_entry: invalid_attributes }
         end.to change(NewsEntry, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_news_entries_index_url, params: { news_entry: invalid_attributes }
+        post admin_news_entries_url, params: { news_entry: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -121,23 +121,23 @@ RSpec.describe '/admin/news_entries', type: :request do
 
       it 'updates the requested news entry' do
         news_entry = NewsEntry.create! valid_attributes
-        patch admin_news_entries_url(news_entry), params: { news_entry: new_attributes }
+        patch admin_news_entry_url(news_entry), params: { news_entry: new_attributes }
         news_entry.reload
         expect(news_entry.title).to eq 'テスト2'
       end
 
       it 'redirects to the news entry' do
         news_entry = NewsEntry.create! valid_attributes
-        patch admin_news_entries_url(news_entry), params: { news_entry: new_attributes }
+        patch admin_news_entry_url(news_entry), params: { news_entry: new_attributes }
         news_entry.reload
-        expect(response).to redirect_to(admin_news_entries_url(news_entry))
+        expect(response).to redirect_to(admin_news_entry_url(news_entry))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         news_entry = NewsEntry.create! valid_attributes
-        patch admin_news_entries_url(news_entry), params: { news_entry: invalid_attributes }
+        patch admin_news_entry_url(news_entry), params: { news_entry: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -149,14 +149,14 @@ RSpec.describe '/admin/news_entries', type: :request do
     it 'destroys the requested news entry' do
       news_entry = NewsEntry.create! valid_attributes
       expect do
-        delete admin_news_entries_url(news_entry)
+        delete admin_news_entry_url(news_entry)
       end.to change(NewsEntry, :count).by(-1)
     end
 
     it 'redirects to the news entry list' do
       news_entry = NewsEntry.create! valid_attributes
-      delete admin_news_entries_url(news_entry)
-      expect(response).to redirect_to(admin_news_entries_index_url)
+      delete admin_news_entry_url(news_entry)
+      expect(response).to redirect_to(admin_news_entries_url)
     end
   end
 end
