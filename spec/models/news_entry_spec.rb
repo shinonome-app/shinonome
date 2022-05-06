@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: news
+# Table name: news_entries
 #
 #  id           :bigint           not null, primary key
 #  body         :text             not null

@@ -15,6 +15,9 @@ require:
 
 AllCops:
   NewCops: enable
+  Exclude:
+  - 'storage/**/*'
+  - 'tmp/cache/**/*'
 
 Layout/LineLength:
   Max: 300
