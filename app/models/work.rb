@@ -60,7 +60,7 @@ class Work < ApplicationRecord
   scope :with_year_and_status, ->(year, status) { where('extract(year from created_at) = ? AND work_status_id = ?', year, status) }
 
   scope :with_creator_firstchar, lambda { |char|
-    if char.empty? || char == 'その他'
+    if char.blank? || char == 'その他'
       joins(:people).where('people.sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
     else
       joins(:people).where('people.sortkey ~ ?', "^#{char}")
@@ -68,7 +68,7 @@ class Work < ApplicationRecord
   }
 
   scope :with_title_firstchar, lambda { |char|
-    if char.empty? || char == 'その他'
+    if char.blank? || char == 'その他'
       where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
     else
       where('sortkey ~ ?', "^#{char}")
