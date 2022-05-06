@@ -21,7 +21,7 @@ class CreateWorks < ActiveRecord::Migration[6.1]
       t.text :note
       t.text :orig_text
       t.references :user, null: false
-      t.integer :update_flag
+      t.date :published_on
       t.text :sortkey
 
       t.timestamps

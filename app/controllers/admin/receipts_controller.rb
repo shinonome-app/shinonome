@@ -59,7 +59,7 @@ module Admin
       params.require(:receipt).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
                                       :original_title, :kana_type_id, :author_display_name, :first_appearance, :description,
                                       :description_person_id, :status, :started_on, :copyright_flag, :note, :orig_text,
-                                      :updated_at, :user_id, :update_flag, :sortkey)
+                                      :updated_at, :user_id, :sortkey)
     end
   end
 end

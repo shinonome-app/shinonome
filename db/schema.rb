@@ -358,7 +358,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
     t.text "note"
     t.text "orig_text"
     t.bigint "user_id", null: false
-    t.integer "update_flag"
+    t.date "published_on"
     t.text "sortkey"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
