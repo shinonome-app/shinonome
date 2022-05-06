@@ -4,7 +4,7 @@ require 'zip'
 require 'tmpdir'
 
 Workfile.all.each do |workfile|
-  workfile.workdata.purge if workfile.workdata.attached?
+  workfile.workdata.purge if workfile&.workdata&.attached?
 end
 Workfile.connection.execute('TRUNCATE TABLE workfiles;')
 
@@ -105,7 +105,7 @@ def generate_sample_zip(workfile)
       end
     end
 
-    workfile.workdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip')
+    workfile.workdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip') if workfile[:workdata]
 
     workfile.filename = zip_file
     # workfile.filesize = File.size(zipfile_name)
