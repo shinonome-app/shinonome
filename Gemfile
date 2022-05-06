@@ -55,8 +55,8 @@ gem 'tailwindcss-rails'
 gem 'rexml'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   # Annotate models with DB
   gem 'annotate'
