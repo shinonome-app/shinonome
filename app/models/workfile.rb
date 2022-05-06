@@ -46,7 +46,7 @@ class Workfile < ApplicationRecord
   belongs_to :file_encoding
   belongs_to :charset
 
-  has_one_attached :workdata
+  has_one_attached :workdata if defined?(ActiveStorage)
 
   validates :filename, presence: true
 

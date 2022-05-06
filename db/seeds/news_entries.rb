@@ -3,7 +3,7 @@
 NewsEntry.connection.execute('TRUNCATE TABLE news_entries;')
 
 news_entries = (1..200).map do
-  publish_date = Faker::Date.between(from: '1998-01-01', to: '2021-05-01')
+  publish_date = Faker::Date.between(from: '1997-08-01', to: '2022-05-01')
   title = Faker::Lorem.sentence(word_count: 5, random_words_to_add: 10).chop
   body = ''.dup
   (3..30).to_a.sample.times do
