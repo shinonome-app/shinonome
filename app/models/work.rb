@@ -80,6 +80,12 @@ class Work < ApplicationRecord
 
   validates :title, :started_on, presence: true
 
+  def self.latest_published(year: nil, until_date: Time.zone.today)
+    year ||= until_date.year
+
+    Work.where('work_status_id = 1 AND published_on IS NOT NULL AND extract(year from published_on) = ? AND published_on <= ?', year, until_date)
+  end
+
   def copyright?
     people.any? { |person| person.copyright? }
   end
