@@ -16,8 +16,9 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-  - 'storage/**/*'
-  - 'tmp/cache/**/*'
+    - 'storage/**/*'
+    - 'tmp/cache/**/*'
+    - 'vendor/**/*'
 
 Layout/LineLength:
   Max: 300
