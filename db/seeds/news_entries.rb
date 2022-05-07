@@ -14,7 +14,7 @@ news_entries = (1..200).map do
 
   {
     body: body,
-    flag: rand(100) > 80,
+    flag: rand(100) > 90,
     published_on: publish_date,
     title: title,
     created_at: Time.current,
