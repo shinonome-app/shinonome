@@ -23,11 +23,11 @@ works = (1..5000).map do |n|
   (0..4).to_a.sample.times { note << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
 
   ch = FIRST_CHAR.chars.sample
-  created = Faker::Time.between(from: Time.zone.parse('1997-01-01'), to: Time.zone.parse('2021-05-05'))
-  started = Faker::Time.between(from: Time.zone.parse('1998-01-01'), to: Time.zone.parse('2021-05-05'))
+  created = Faker::Time.between(from: Time.zone.parse('1997-01-01'), to: Time.zone.parse('2022-05-05'))
+  started = Faker::Time.between(from: Time.zone.parse('1998-01-01'), to: Time.zone.parse('2022-10-05'))
   started = created if created > started
 
-  {
+  work = {
     title_kana: "#{ch}さくひん#{n}",
     title: "#{ch}作品#{n}",
     subtitle_kana: "ふくだい#{n}",
@@ -42,12 +42,18 @@ works = (1..5000).map do |n|
     started_on: started,
     note: note,
     copyright_flag: rand(100) <= 90,
+    published_on: nil,
     sortkey: "#{ch}さくひん#{n}",
     user_id: user_id_list.sample,
     created_at: created,
     updated_at: Time.current
   }
+
+  work[:published_on] = started if work[:work_status_id] == 1
+
+  work
 end
+
 Work.insert_all(works.sort_by { |b| b[:created_at] })
 
 ## WorkWorkers
