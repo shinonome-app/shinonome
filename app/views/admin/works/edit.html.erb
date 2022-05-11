@@ -1,4 +1,5 @@
-<h1>Editing Work</h1>
-<%= render 'form', work: @work %>
-<%= link_to '表示', admin_work_path(@work) %> |
-<%= link_to '戻る', admin_works_path %>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <h1 class="text-2xl">作品更新</h1>
+  <%= render 'form', work: @work %>
+  <%= link_to '戻る', admin_work_path(@work) %>
+</div>

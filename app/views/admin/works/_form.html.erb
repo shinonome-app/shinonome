@@ -9,71 +9,71 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :title_kana, "作品名読み" %>
-    <%= form.text_field :title_kana %>
+    <%= form.text_field :title_kana, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :sortkey, "ソート用読み" %>
-    <%= form.text_field :sortkey %>
+    <%= form.text_field :sortkey, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :title, "作品名" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :subtitle_kana, "副題読み" %>
-    <%= form.text_field :subtitle_kana %>
+    <%= form.text_field :subtitle_kana, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :subtitle, "副題" %>
-    <%= form.text_field :subtitle %>
+    <%= form.text_field :subtitle, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :collection_kana, "作品集名読み" %>
-    <%= form.text_field :collection_kana %>
+    <%= form.text_field :collection_kana, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :collection, "作品集名" %>
-    <%= form.text_field :collection %>
+    <%= form.text_field :collection, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :original_title, "原題" %>
-    <%= form.text_field :original_title %>
+    <%= form.text_field :original_title, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :kana_type_id, "仮名遣い種別" %>
-    <%= form.number_field :kana_type_id %>
+    <%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :first_appearance, "初出" %>
-    <%= form.text_field :first_appearance %>
+    <%= form.text_field :first_appearance, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :description, "作品について" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :note, "備考" %>
-    <%= form.text_area :note %>
+    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :orig_text, "底本管理情報" %>
-    <%= form.text_area :orig_text %>
+    <%= form.text_area :orig_text, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :status, "状態" %>
     <%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :started_on, "状態の開始日" %>
-    <%= form.date_select :started_on %>
+    <%= form.date_select :started_on, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :copyright_flag, "著作権フラグ" %>
     <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], {include_blank: false}, {class: 'text-gray-800'} %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "登録する", class: "w-full border border-gray-800 p-1" %>
   </div>
 <% end %>

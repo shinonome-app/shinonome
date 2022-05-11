@@ -2,136 +2,136 @@
   <p id="notice"><%= notice %></p>
 
   <div>
-  <h2 class="text-2xl">作品データ</h2>
-  <table class="bg-gray-100 my-2">
+  <h2 class="text-2xl py-4">作品データ</h2>
+  <table class="bg-gray-100 my-2 w-full">
     <tr>
-      <th class="w-24 text-left">作品ID</th>
+      <th class="w-36 text-left">作品ID</th>
       <td>
         <%= @work.id %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">作品名</th>
+      <th class="w-36 text-left">作品名</th>
       <td>
         <%= @work.title %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">作品名読み</th>
+      <th class="w-36 text-left">作品名読み</th>
       <td>
         <%= @work.title_kana %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">副題</th>
+      <th class="w-36 text-left">副題</th>
       <td>
         <%= @work.subtitle %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">副題読み</th>
+      <th class="w-36 text-left">副題読み</th>
       <td>
         <%= @work.subtitle_kana %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">作品集名</th>
+      <th class="w-36 text-left">作品集名</th>
       <td>
         <%= @work.collection %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">作品集名読み</th>
+      <th class="w-36 text-left">作品集名読み</th>
       <td>
         <%= @work.collection_kana %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">原題</th>
+      <th class="w-36 text-left">原題</th>
       <td>
         <%= @work.original_title %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">仮名遣い種別</th>
+      <th class="w-36 text-left">仮名遣い種別</th>
       <td>
         <%= @work.kana_type.name %>
       </td>
     </tr>
     <!--
         <tr>
-          <th class="w-24 text-left">Author display name</th>
+          <th class="w-36 text-left">Author display name</th>
           <td>
             <%= @work.author_display_name %>
         </tr>
         -->
     <tr>
-      <th class="w-24 text-left">初出</th>
+      <th class="w-36 text-left">初出</th>
       <td>
         <%= @work.first_appearance %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">作品について</th>
+      <th class="w-36 text-left">作品について</th>
       <td>
         <%= @work.description %>
       </td>
     </tr>
     <!--
         <tr>
-          <th class="w-24 text-left">Description person</th>
+          <th class="w-36 text-left">Description person</th>
           <td>
             <%= @work.description_person_id %>
         </tr>
         -->
     <tr>
-      <th class="w-24 text-left">状態</th>
+      <th class="w-36 text-left">状態</th>
       <td>
         <%= @work.work_status.name %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">状態の開始日</th>
+      <th class="w-36 text-left">状態の開始日</th>
       <td>
         <%= @work.started_on %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">著作権フラグ</th>
+      <th class="w-36 text-left">著作権フラグ</th>
       <td>
         <%= @work.copyright_flag %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">備考</th>
+      <th class="w-36 text-left">備考</th>
       <td>
         <%= @work.note %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">底本管理情報</th>
+      <th class="w-36 text-left">底本管理情報</th>
       <td>
         <%= @work.orig_text %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">最終更新日</th>
+      <th class="w-36 text-left">最終更新日</th>
       <td>
         <%= @work.updated_at %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">更新者</th>
+      <th class="w-36 text-left">更新者</th>
       <td>
         <%= @work.user_id %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">公開日</th>
+      <th class="w-36 text-left">公開日</th>
       <%= @work.published_on %>
     </tr>
     <tr>
-      <th class="w-24 text-left">ソート読み</th>
+      <th class="w-36 text-left">ソート読み</th>
       <td>
         <%= @work.sortkey %>
       </td>
@@ -142,71 +142,71 @@
   </div>
 
   <div>
-  <h2 class="text-2xl">著者データ</h2>
+  <h2 class="text-2xl py-4">著者データ</h2>
 
   <% @work.people.each do |person| %>
-  <table class="bg-gray-100 my-2">
+  <table class="bg-gray-100 my-2 w-full">
     <tr>
-      <th class="w-24 text-left">人物ID</th>
+      <th class="w-36 text-left">人物ID</th>
       <td><%= person.id %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">読み</th>
+      <th class="w-36 text-left">読み</th>
       <td>
         <%= person.last_name_kana %>
         <%= person.first_name_kana %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">著者名</th>
+      <th class="w-36 text-left">著者名</th>
       <td>
         <%= person.name %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">ローマ字</th>
+      <th class="w-36 text-left">ローマ字</th>
       <td>
         <%= person.name_en %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">生年月日</th>
+      <th class="w-36 text-left">生年月日</th>
       <td>
         <%= person.born_on %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">没年月日</th>
+      <th class="w-36 text-left">没年月日</th>
       <td>
         <%= person.died_on %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">著作権フラグ</th>
+      <th class="w-36 text-left">著作権フラグ</th>
       <td>
         <%= person.copyright_flag %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">email</th>
+      <th class="w-36 text-left">email</th>
       <td>
         <%= person.email %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">URL</th>
+      <th class="w-36 text-left">URL</th>
       <td>
         <%= person.url %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">人物について</th>
+      <th class="w-36 text-left">人物について</th>
       <td>
         <%= person.description %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">備考</th>
+      <th class="w-36 text-left">備考</th>
       <td>
         <%= person.note %>
       </td>
@@ -216,43 +216,43 @@
   <% end %>
   </div>
 
-  <h2 class="text-2xl">工作員データ</h2>
+  <h2 class="text-2xl py-4">工作員データ</h2>
 
   <div>
   <% @work.work_workers.order(:worker_role_id).each do |work_worker| %>
   <% worker = work_worker.worker %>
   <h3 class="text-lg"><%= work_worker.worker_role.name %></h3>
-  <table class="bg-gray-100 my-2">
+  <table class="bg-gray-100 my-2 w-full">
     <tr>
-      <th class="w-24 text-left">工作員ID</th>
+      <th class="w-36 text-left">工作員ID</th>
       <td><%= worker.id %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">読み</th>
+      <th class="w-36 text-left">読み</th>
       <td>
         <%= worker.name_kana %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left"><%= work_worker.worker_role.name %>名</th>
+      <th class="w-36 text-left"><%= work_worker.worker_role.name %>名</th>
       <td>
         <%= worker.name %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">e-mail</th>
+      <th class="w-36 text-left">e-mail</th>
       <td>
         <%= worker.worker_secret&.email %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">URL</th>
+      <th class="text-left">URL</th>
       <td>
         <%= worker.worker_secret&.url %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">備考</th>
+      <th class="text-left">備考</th>
       <td>
         <%= worker.worker_secret&.note %>
       </td>
@@ -264,33 +264,33 @@
 
   <%= link_to '工作員関連づけ', admin_work_worker_assigns_path(work_id: params[:id]) %>
 
-  <h2 class="text-2xl">底本データ</h2>
+  <h2 class="text-2xl py-4">底本データ</h2>
   <div>
   <% @work.original_books.order(:worktype_id).each do |work| %>
   <h3><%= work.worktype.name %></h3>
-  <table class="bg-gray-100 my-2">
+  <table class="bg-gray-100 my-2 w-full">
     <tr>
-      <th class="w-24 text-left">底本名</th>
+      <th class="w-36 text-left">底本名</th>
       <td><%= work.title %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">出版社名</th>
+      <th class="w-36 text-left">出版社名</th>
       <td><%= work.publisher %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">初版発行日</th>
+      <th class="w-36 text-left">初版発行日</th>
       <td><%= work.first_pubdate %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">入力に使用した版</th>
+      <th class="w-36 text-left">入力に使用した版</th>
       <td><%= work.input_edition %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">校正に使用した版</th>
+      <th class="w-36 text-left">校正に使用した版</th>
       <td><%= work.proof_edition %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">備考</th>
+      <th class="w-36 text-left">備考</th>
       <td><%= work.note %></td>
     </tr>
   </table>
@@ -300,22 +300,22 @@
   </div>
   <%= link_to '底本/底本の親本追加', new_admin_work_original_book_path(work_id: params[:id]) %>
 
-  <h2 class="text-2xl">分類番号データ</h2>
+  <h2 class="text-2xl py-4">分類番号データ</h2>
 
   <% @work.bibclasses.each do |bibclass| %>
-  <table class="bg-gray-100 my-2">
+  <table class="bg-gray-100 my-2 w-full">
     <tr>
-      <th class="w-24 text-left">分類名</th>
+      <th class="w-36 text-left">分類名</th>
       <td><%= bibclass.name %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">分類番号</th>
+      <th class="w-36 text-left">分類番号</th>
       <td>
         <%= bibclass.num %>
       </td>
     </tr>
     <tr>
-      <th class="w-24 text-left">備考</th>
+      <th class="w-36 text-left">備考</th>
       <td>
         <%= bibclass.note %>
       </td>
@@ -326,13 +326,13 @@
   <% end %>
   <%= link_to '分類番号追加', new_admin_work_bibclass_path(params[:id]) %>
 
-  <h2 class="text-2xl">ファイル</h2>
+  <h2 class="text-2xl py-4">ファイル</h2>
 
   <div>
   <% @work.workfiles.each do |workfile| %>
-  <table class="bg-gray-100 my-2">
+  <table class="bg-gray-100 my-2 w-full">
     <tr>
-      <th class="w-24 text-left">ファイル</th>
+      <th class="w-36 text-left">ファイル</th>
       <% if workfile.workdata.attached? %>
       <td><%= link_to workfile.filename, rails_blob_url(workfile.workdata) %></td>
       <% else %>
@@ -340,39 +340,39 @@
       <% end %>
     </tr>
     <tr>
-      <th class="w-24 text-left">ファイル形式</th>
+      <th class="w-36 text-left">ファイル形式</th>
       <td><%= workfile.filetype.name %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">圧縮形式</th>
+      <th class="w-36 text-left">圧縮形式</th>
       <td><%= workfile.compresstype.name %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">ファイルサイズ</th>
+      <th class="w-36 text-left">ファイルサイズ</th>
       <td><%= workfile.filesize %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">初登録日</th>
+      <th class="w-36 text-left">初登録日</th>
       <td><%= workfile.created_at %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">最終更新日</th>
+      <th class="w-36 text-left">最終更新日</th>
       <td><%= workfile.updated_at %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">修正回数</th>
+      <th class="w-36 text-left">修正回数</th>
       <td><%= workfile.revision_count %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">ファイルエンコーディング</th>
+      <th class="w-36 text-left">ファイルエンコーディング</th>
       <td><%= workfile.file_encoding.name %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">文字集合</th>
+      <th class="w-36 text-left">文字集合</th>
       <td><%= workfile.charset.name %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">備考</th>
+      <th class="w-36 text-left">備考</th>
       <td><%= workfile.note %></td>
     </tr>
   </table>
@@ -384,25 +384,25 @@
   <%= link_to 'ファイル追加', new_admin_work_workfile_path(params[:id]) %>
 
   <div>
-  <h2 class="text-2xl">関連サイトデータ</h2>
+  <h2 class="text-2xl py-4">関連サイトデータ</h2>
 
   <div>
   <% @work.sites.each do |site| %>
-  <table class="bg-gray-100 my-2">
+  <table class="bg-gray-100 my-2 w-full">
     <tr>
-      <th class="w-24 text-left">関連サイト名</th>
+      <th class="w-36 text-left">関連サイト名</th>
       <td><%= site.name %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">URL</th>
+      <th class="w-36 text-left">URL</th>
       <td><%= site.url %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">運営者</th>
+      <th class="w-36 text-left">運営者</th>
       <td><%= site.owner_name %></td>
     </tr>
     <tr>
-      <th class="w-24 text-left">備考</th>
+      <th class="w-36 text-left">備考</th>
       <td><%= site.note %></td>
     </tr>
   </table>
