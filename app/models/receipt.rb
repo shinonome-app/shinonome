@@ -47,4 +47,16 @@
 #
 
 class Receipt < ApplicationRecord
+  validates :title_kana, presence: true
+  validates :title, presence: true
+  validates :copyright_flag, presence: true
+  validates :last_name_kana, presence: true
+  validates :last_name, presence: true
+  validates :worker_kana, presence: true
+  validates :worker_name, presence: true
+  validates :email, presence: true
+  validates :original_book_title, presence: true
+  validates :publisher, presence: true
+  validates :first_pubdate, presence: true
+  validates :input_edition, presence: true
 end

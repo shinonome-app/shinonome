@@ -10,7 +10,7 @@ module Receipts
       if @receipt.valid?
         render :show
       else
-        render :new
+        render 'receipts/new'
       end
     end
 

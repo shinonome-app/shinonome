@@ -16,9 +16,9 @@
           <li>入力が終わったら、一番下の「確認」ボタンを押してください。「記入事項の確認」画面が現れます。誤りが無いことを確認してから、「登録」ボタンを押してください。</li>
           <li>中止する場合は、「確認」ボタンを押さずにブラウザを閉じてください。</li>
         </ul>
-      </div>
-      <%= form_with(model: @receipt, url: receipts_previews_path) do |form| %>
-        <% if @receipt.errors.any? %>
+    </div>
+      <%= form_with(model: @receipt, url: receipts_previews_path, data: { turbo: false }) do |form| %>
+      <% if @receipt.errors.any? %>
           <div id="error_explanation">
             <h2>
               <%= pluralize(@receipt.errors.count, "error") %> prohibited this receipt from being saved:
@@ -275,8 +275,8 @@
         <h3 class="text-lg mt-3 mb-4">作品データ1</h3>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :teihon_name, class: "mb-2 text-lg text-grey-darkest" do %>作品名読み<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :teihon_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :title_kana, class: "mb-2 text-lg text-grey-darkest" do %>作品名読み<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :title_kana, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             くものいと<br>
@@ -286,8 +286,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :teihon_name, class: "mb-2 text-lg text-grey-darkest" do %>作品名<span class="text-red-500">（必須）</span><% end %>
-            <%= form.text_field :teihon_name, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :title, class: "mb-2 text-lg text-grey-darkest" do %>作品名<span class="text-red-500">（必須）</span><% end %>
+            <%= form.text_field :title, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             蜘蛛の糸<br>
@@ -297,8 +297,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :first_pubdate2, class: "mb-2 text-lg text-grey-darkest" do %>副題読み<% end %>
-            <%= form.text_field :first_pubdate2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :subtitle_kana, class: "mb-2 text-lg text-grey-darkest" do %>副題読み<% end %>
+            <%= form.text_field :subtitle_kana, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             ※副題がある場合のみ。<br>
@@ -308,8 +308,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :first_pubdate2, class: "mb-2 text-lg text-grey-darkest" do %>副題<% end %>
-            <%= form.text_field :first_pubdate2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :subtitle, class: "mb-2 text-lg text-grey-darkest" do %>副題<% end %>
+            <%= form.text_field :subtitle, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             ※副題がある場合のみ。<br>
@@ -319,8 +319,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :first_pubdate2, class: "mb-2 text-lg text-grey-darkest" do %>原題<% end %>
-            <%= form.text_field :first_pubdate2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :original_title, class: "mb-2 text-lg text-grey-darkest" do %>原題<% end %>
+            <%= form.text_field :original_title, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             ※翻訳物などの場合。
@@ -337,8 +337,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :first_pubdate2, class: "mb-2 text-lg text-grey-darkest" do %>初出<% end %>
-            <%= form.text_field :first_pubdate2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :first_appearance, class: "mb-2 text-lg text-grey-darkest" do %>初出<% end %>
+            <%= form.text_field :first_appearance, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             「赤い鳥」1918（大正7）年7月<br>
@@ -348,8 +348,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :first_pubdate2, class: "mb-2 text-lg text-grey-darkest" do %>作品について<% end %>
-            <%= form.text_area :first_pubdate2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :memo, class: "mb-2 text-lg text-grey-darkest" do %>作品について<% end %>
+            <%= form.text_area :memo, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             ※文学事典などの内容をそのまま記入することは、著作権を侵害する行為です。<font color="red">絶対に避けてください</font>。<br>
@@ -358,8 +358,8 @@
         </div>
         <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
           <div class="flex-1 mr-2">
-            <%= form.label :first_pubdate2, class: "mb-2 text-lg text-grey-darkest" do %>備考<% end %>
-            <%= form.text_area :first_pubdate2, class: "border py-2 px-3 text-grey-darkest w-full" %>
+            <%= form.label :note, class: "mb-2 text-lg text-grey-darkest" do %>備考<% end %>
+            <%= form.text_area :note, class: "border py-2 px-3 text-grey-darkest w-full" %>
           </div>
           <div class="flex-1 text-base  m-auto">
             ※他に伝えることがある場合、記入してください。<br>
