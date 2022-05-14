@@ -23,8 +23,6 @@ Rails.application.routes.draw do
     resources :people, only: %i[index]
   end
 
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-
   namespace :admin, path: (ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin') do
     get '/' => 'top#index'
 
@@ -39,7 +37,10 @@ Rails.application.routes.draw do
     end
 
     resources :news_entries
-    resources :people
+
+    resources :people do
+      resources :base_people
+    end
 
     namespace :works do
       resources :text_searches, only: %i[index]
@@ -62,12 +63,11 @@ Rails.application.routes.draw do
     end
 
     resources :sites
+
     resources :workers
     resources :exec_commands, only: %i[index new create]
 
     resources :receipts
-
-    resources :base_people
 
     resources :work_workers, only: %i[create destroy], as: :workworkers
 
@@ -83,4 +83,6 @@ Rails.application.routes.draw do
     # resources :roles
     # resources :worker_roles
   end
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
