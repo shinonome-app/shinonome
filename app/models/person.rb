@@ -56,6 +56,14 @@ class Person < ApplicationRecord
     Person.where(id: other_person_ids)
   end
 
+  def born_year
+    born_on&.year
+  end
+
+  def died_year
+    died_on&.year
+  end
+
   def copyright?
     copyright_flag
   end

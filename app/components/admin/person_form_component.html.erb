@@ -43,11 +43,13 @@
   </div>
   <div class="field">
     <%= form.label :born_on, "生年月日" %>
-    <%= form.date_select :born_on, include_blank: true %>
+    <%= form.text_field :born_year, maxlength: 4 %>年
+    <%= form.date_select :born_on, include_blank: true, order: [:month, :day], date_separator: "月", month_format_string: "%<number>d" %>日
   </div>
   <div class="field">
     <%= form.label :died_on, "没年月日" %>
-    <%= form.date_select :died_on, include_blank: true %>
+    <%= form.text_field :died_year, maxlength: 4 %>年
+    <%= form.date_select :died_on, include_blank: true, order: [:month, :day], date_separator: "月", month_format_string: "%<number>d" %>日
   </div>
   <div class="field">
     <%= form.label :copyright_flag,"著作権フラグ" %>

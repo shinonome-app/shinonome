@@ -11,7 +11,9 @@ module Admin
     end
 
     # GET /admin/people/1
-    def show; end
+    def show
+      @work_people = @person.work_people
+    end
 
     # GET /admin/people/new
     def new
@@ -56,10 +58,19 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def person_params
+      update_year_param("born")
+      update_year_param("died")
       params.require(:person).permit(:last_name, :last_name_kana, :last_name_en, :first_name, :first_name_kana,
                                      :first_name_en, :born_on, :died_on, :copyright_flag, :email, :url,
                                      :description, :note_user_id, :basename, :note, :updated_by,
                                      :sortkey, :sortkey2, :input_count, :publish_count)
+    end
+
+    def update_year_param(key)
+      if params[:person]["#{key}_year"].present?
+        params[:person]["#{key}_on(1i)"] = params[:person]["#{key}_year"]
+        params[:person].delete("#{key}_year")
+      end
     end
   end
 end
