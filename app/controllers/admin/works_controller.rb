@@ -38,7 +38,7 @@ module Admin
       if @work.save
         redirect_to [:admin, @work], notice: 'Work was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -48,7 +48,7 @@ module Admin
       if @work.update(params2)
         redirect_to [:admin, @work], notice: 'Work was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

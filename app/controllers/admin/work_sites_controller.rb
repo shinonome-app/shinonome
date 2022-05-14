@@ -27,7 +27,7 @@ module Admin
       if @work_site.save
         redirect_to @work_site, notice: 'Work site was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -36,7 +36,7 @@ module Admin
       if @work_site.update(work_site_params)
         redirect_to @work_site, notice: 'Work site was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

@@ -33,7 +33,7 @@ module Admin
       if @worker.save
         redirect_to [:admin, @worker], notice: '工作員を追加しました'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -43,7 +43,7 @@ module Admin
       if @worker.update(worker_params)
         redirect_to [:admin, @worker], notice: 'Worker was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

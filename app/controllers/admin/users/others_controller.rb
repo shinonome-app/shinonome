@@ -23,7 +23,7 @@ module Admin
           redirect_to admin_users_others_path, notice: '管理者を追加しました.'
         else
           @users = Shinonome::User.order(:id).all
-          render :index
+          render :index, status: :unprocessable_entity
         end
       end
 
@@ -32,7 +32,7 @@ module Admin
         if @user.update(user_params)
           redirect_to admin_users_others_path, notice: '管理者を更新しました.'
         else
-          render :edit
+          render :edit, status: :unprocessable_entity
         end
       end
 

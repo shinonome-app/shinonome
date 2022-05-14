@@ -2,6 +2,7 @@
 
 module Admin
   class BasePeopleController < ApplicationController
+    before_action :set_person
     before_action :set_base_person, only: %i[show edit update destroy]
 
     # GET /base_people
@@ -20,14 +21,14 @@ module Admin
     # GET /base_people/1/edit
     def edit; end
 
-    # POST /base_people
+    # POST /people/1/base_people
     def create
       @base_person = BasePerson.new(base_person_params)
 
       if @base_person.save
         redirect_to @base_person, notice: 'Base person was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -36,7 +37,7 @@ module Admin
       if @base_person.update(base_person_params)
         redirect_to @base_person, notice: 'Base person was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
@@ -51,6 +52,10 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_base_person
       @base_person = BasePerson.find(params[:id])
+    end
+
+    def set_person
+      @person = Person.find(params[:person_id])
     end
 
     # Only allow a list of trusted parameters through.

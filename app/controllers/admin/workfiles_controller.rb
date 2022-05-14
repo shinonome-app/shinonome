@@ -30,7 +30,7 @@ module Admin
       if @workfile.save
         redirect_to [:admin, @workfile.work], notice: 'Workfile was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -42,7 +42,7 @@ module Admin
         @workfile.save!
         redirect_to [:admin, @workfile.work], notice: 'Workfile was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

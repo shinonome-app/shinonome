@@ -31,7 +31,7 @@ module Admin
       if @site.save
         redirect_to [:admin, @site], notice: 'Site was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -40,7 +40,7 @@ module Admin
       if @site.update(site_params)
         redirect_to [:admin, @site], notice: 'Site was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

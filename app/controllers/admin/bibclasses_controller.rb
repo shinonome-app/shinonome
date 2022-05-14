@@ -28,7 +28,7 @@ module Admin
       if @bibclass.save
         redirect_to [:admin, @bibclass.work], notice: 'Bibclass was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -37,7 +37,7 @@ module Admin
       if @bibclass.update(bibclass_params)
         redirect_to [:admin, @bibclass.work], notice: 'Bibclass was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

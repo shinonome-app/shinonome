@@ -28,7 +28,7 @@ module Admin
       if @receipt.save
         redirect_to [:admin, @receipt], notice: 'Receipt was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -37,7 +37,7 @@ module Admin
       if @receipt.update(receipt_params)
         redirect_to [:admin, @receipt], notice: 'Receipt was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
