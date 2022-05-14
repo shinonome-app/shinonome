@@ -59,6 +59,8 @@ ja:
         first_appearance: "初出"
         memo: "作品について"
         note: "備考"
+        status: "状態"
+        started_on: "状態の開始日"
         copyright_flag: "著作権"
       worker:
         id: "工作員ID"
@@ -102,5 +104,5 @@ ja:
         updated_by: "更新者"
       exec_command:
         command: コマンド
-        separator: カラム区切り
+        separator: 区切り文字
 
