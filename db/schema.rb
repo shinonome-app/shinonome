@@ -192,8 +192,6 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
     t.text "first_appearance"
     t.text "memo"
     t.text "note"
-    t.text "status"
-    t.text "started_on"
     t.boolean "copyright_flag", null: false
     t.text "last_name_kana", null: false
     t.text "last_name", null: false
@@ -215,11 +213,13 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
     t.text "first_pubdate2"
     t.text "person_id"
     t.text "worker_id"
-    t.date "created_on"
     t.integer "register_status", default: 0
     t.text "original_book_note"
+    t.bigint "work_status_id", null: false
+    t.date "started_on", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["work_status_id"], name: "index_receipts_on_work_status_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -383,6 +383,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
   add_foreign_key "person_sites", "sites"
   add_foreign_key "proofreads", "people"
   add_foreign_key "proofreads", "works"
+  add_foreign_key "receipts", "work_statuses"
   add_foreign_key "work_people", "people"
   add_foreign_key "work_people", "roles"
   add_foreign_key "work_people", "works"

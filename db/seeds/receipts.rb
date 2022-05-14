@@ -26,8 +26,8 @@ receipts = (1..100).map do |n|
     first_appearance: "初出#{n}",
     memo: desc,
     note: "備考#{n}",
-    work_status: [0, 1].sample,
-    started_on: started
+    work_status_id: [3, 4].sample,
+    started_on: started,
     copyright_flag: [0, 1].sample,
     first_name: person[1],
     first_name_kana: person[2],
@@ -49,7 +49,6 @@ receipts = (1..100).map do |n|
     first_pubdate2: Time.zone.parse('1950-02-03'),
     person_id: person[0],
     worker_id: worker.id,
-    created_on: Time.zone.parse('2021-05-01'),
     register_status: [0, 1].sample,
     original_book_note: "底本に関する備考#{n}",
     created_at: created,

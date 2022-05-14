@@ -8,7 +8,6 @@
 #  collection           :text
 #  collection_kana      :text
 #  copyright_flag       :boolean          not null
-#  created_on           :date
 #  email                :text             not null
 #  first_appearance     :text
 #  first_name           :text
@@ -30,8 +29,7 @@
 #  publisher            :text             not null
 #  publisher2           :text
 #  register_status      :integer          default(0)
-#  started_on           :text
-#  status               :text
+#  started_on           :date             not null
 #  subtitle             :text
 #  subtitle_kana        :text
 #  title                :text             not null
@@ -43,7 +41,16 @@
 #  updated_at           :datetime         not null
 #  kana_type_id         :text
 #  person_id            :text
+#  work_status_id       :bigint           not null
 #  worker_id            :text
+#
+# Indexes
+#
+#  index_receipts_on_work_status_id  (work_status_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (work_status_id => work_statuses.id)
 #
 
 require 'rails_helper'
