@@ -15,7 +15,7 @@
 
   <div class="border-2 border-gray-500 my-4 w-3/4 max-w-xl mx-auto px-6 py-4 bg-yellow-100 text-base">
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
     <div class="field">
       <%= f.label :login %>
       <%= f.text_field :login, autofocus: true, class: "w-full border border-gray-800 p-1" %>
