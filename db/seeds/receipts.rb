@@ -10,6 +10,10 @@ receipts = (1..100).map do |n|
   worker = selected_workers.sample
   person = person_list.sample
 
+  created = Faker::Time.between(from: Time.zone.parse('2020-01-01'), to: Time.zone.parse('2022-05-05'))
+  started = Faker::Time.between(from: Time.zone.parse('2020-01-01'), to: Time.zone.parse('2022-05-05'))
+  started = created if created > started
+
   {
     title_kana: "さくひん#{n}",
     title: "作品#{n}",
@@ -22,8 +26,8 @@ receipts = (1..100).map do |n|
     first_appearance: "初出#{n}",
     memo: desc,
     note: "備考#{n}",
-    status: [0, 1].sample,
-    started_on: Time.zone.parse('2021-05-01'),
+    work_status: [0, 1].sample,
+    started_on: started
     copyright_flag: [0, 1].sample,
     first_name: person[1],
     first_name_kana: person[2],
@@ -48,8 +52,8 @@ receipts = (1..100).map do |n|
     created_on: Time.zone.parse('2021-05-01'),
     register_status: [0, 1].sample,
     original_book_note: "底本に関する備考#{n}",
-    created_at: Time.current,
-    updated_at: Time.current
+    created_at: created,
+    updated_at: created
   }
 end
 
