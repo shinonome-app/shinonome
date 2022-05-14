@@ -16,7 +16,7 @@
         <th>File encoding</th>
         <th>Charset</th>
         <th>Note</th>
-        <th colspan="3"></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -28,15 +28,13 @@
           <td><%= workfile.filesize %></td>
           <td><%= workfile.user_id %></td>
           <td><%= workfile.url %></td>
-          <td><%= workfile.filename %></td>
+          <td><%= link_to workfile.filename, admin_work_workfile_path(workfile.work, workfile) %></td>
           <td><%= workfile.opened_on %></td>
           <td><%= workfile.revision_count %></td>
           <td><%= workfile.file_encoding_id %></td>
           <td><%= workfile.charset_id %></td>
           <td><%= workfile.note %></td>
-          <td><%= link_to 'Show', [:admin, workfile.work, workfile] %></td>
           <td><%= link_to 'Edit', edit_admin_work_workfile_path(workfile.work, workfile) %></td>
-          <td><%= link_to 'Destroy',[:admin, workfile.work, workfile], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

@@ -8,63 +8,71 @@
         <% end %>
       </ul>
     </div>
-  <% end %>
-  <div class="field">
-    <%= form.label :title_kana %>
-    <%= form.text_area :title_kana %>
-  </div>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_area :title %>
-  </div>
-  <div class="field">
-    <%= form.label :subtitle_kana %>
-    <%= form.text_area :subtitle_kana %>
-  </div>
-  <div class="field">
-    <%= form.label :subtitle %>
-    <%= form.text_area :subtitle %>
-  </div>
-  <div class="field">
-    <%= form.label :collection_kana %>
-    <%= form.text_area :collection_kana %>
-  </div>
-  <div class="field">
-    <%= form.label :collection %>
-    <%= form.text_area :collection %>
-  </div>
-  <div class="field">
-    <%= form.label :original_title %>
-    <%= form.text_area :original_title %>
-  </div>
-  <div class="field">
-    <%= form.label :kana_type_id %>
-    <%= form.text_area :kana_type_id %>
-  </div>
-  <div class="field">
-    <%= form.label :first_appearance %>
-    <%= form.text_area :first_appearance %>
-  </div>
-  <div class="field">
-    <%= form.label :memo %>
-    <%= form.text_area :memo %>
-  </div>
-  <div class="field">
-    <%= form.label :note %>
-    <%= form.text_area :note %>
-  </div>
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_area :status %>
-  </div>
-  <div class="field">
-    <%= form.label :started_on %>
-    <%= form.text_area :started_on %>
-  </div>
-  <div class="field">
-    <%= form.label :copyright_flag %>
-    <%= form.check_box :copyright_flag %>
-  </div>
+    <% end %>
+    <h2 class="text-xl">【作品データ】</h2>
+    <table class="w-full">
+      <tr>
+        <th>項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th><%= form.label :title_kana %></th>
+        <td><%= form.text_field :title_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :title %></th>
+        <td><%= form.text_field :title, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :subtitle_kana %></th>
+        <td><%= form.text_field :subtitle_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :subtitle %></th>
+        <td><%= form.text_field :subtitle, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :collection_kana %></th>
+        <td><%= form.text_field :collection_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+      <th><%= form.label :collection %></th>
+      <td><%= form.text_field :collection, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :original_title %></th>
+        <td><%= form.text_field :original_title, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :kana_type_id %></th>
+        <td><%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'py-1 pr-8'} %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_appearance %></th>
+        <td><%= form.text_field :first_appearance, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :memo %></th>
+        <td><%= form.text_area :memo, class: "w-full border border-gray-800 p-1", rows: "15" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :note %></th>
+        <td><%= form.text_area :note, class: "w-full border border-gray-800 p-1", rows: "15" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :status %></th>
+        <td><%= form.collection_select :status, WorkStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'py-1 pr-8'} %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :started_on %></th>
+        <td><%= form.date_select :started_on %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :copyright_flag %></th>
+        <td><%= form.check_box :copyright_flag %></td>
+      </tr>
+    </table>
+
   <div class="field">
     <%= form.label :last_name_kana %>
     <%= form.text_area :last_name_kana %>

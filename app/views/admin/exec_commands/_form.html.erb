@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, exec_command]) do |form| %>
+<%= form_with(model: [:admin, exec_command], url: admin_exec_commands_path) do |form| %>
   <% if exec_command.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(exec_command.errors.count, "error") %> prohibited this exec_command from being saved:</h2>
@@ -9,15 +9,19 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :command %>
-    <%= form.text_area :command %>
+  <div class="flex flex-col md:flex-row mb-3 p-2">
+    <div class="flex-1 mr-2">
+      <%= form.label :command, 'コマンド本文', class: "mb-2 text-lg text-grey-darkest" %>
+      <%= form.text_area :command, class: "border h-32 px-3 text-grey-darkest w-full" %>
+    </div>
+  </div>
+  <div class="flex flex-col md:flex-row mb-3 p-2">
+    <div class="flex-1 mr-2">
+      <%= form.label :separator, '区切り文字', class: "mb-2 text-lg text-grey-darkest" %>
+    <%= form.select :separator, [['タブ区切り', 1], ['カンマ区切り', 2]] %>
+    </div>
   </div>
   <div class="field">
-    <%= form.label :separator %>
-    <%= form.select :separator, [[:tab, 1], [:comma, 2]] %>
-  </div>
-  <div class="actions">
-    <%= form.submit "実行" %>
+    <%= form.submit "実行", class: "w-full inline-flex justify-center rounded-md px-12 py-2 bg-blue-500 text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm" %>
   </div>
 <% end %>

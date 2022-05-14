@@ -1,8 +1,12 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
   <h1 class="text-2xl">コマンド実行</h1>
-  <%= link_to '新規コマンド実行', new_admin_exec_command_path %>
-  <table>
+  <div class="py-2">
+  <%= link_to '新規コマンド実行', new_admin_exec_command_path, class: "w-full inline-flex justify-center rounded-md px-12 py-2 bg-blue-500 text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm" %>
+
+  </div>
+
+  <table class="w-full">
     <thead>
       <tr>
         <th>ID</th>

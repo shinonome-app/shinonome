@@ -38,16 +38,14 @@
         <th>ID</th>
         <th>username</th>
         <th>email</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.id %></td>
+          <td><%= link_to user.id, edit_admin_users_other_path(user) %></td>
           <td><%= link_to user.username, edit_admin_users_other_path(user) %></td>
           <td><%= user.email %></td>
-          <td><%= link_to '削除', admin_users_other_path(user), method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
         </tr>
       <% end %>
     </tbody>

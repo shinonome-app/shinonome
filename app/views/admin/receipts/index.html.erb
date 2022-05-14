@@ -2,13 +2,15 @@
 <p id="notice"><%= notice %></p>
 <h1 class="text-2xl">Web入力受付管理</h1>
 
+<h2 class="text-xl">Web受付作品一覧</h2>
 <p>
   <%= @receipts.count %>件の作品が見つかりました。　　　
 </p>
-<table>
+<table class="w-full my-4">
   <thead>
     <tr>
       <th>連番</th>
+      <th>日付</th>
       <th>作品名</th>
       <th>文字遣い</th>
       <th>著者</th>
@@ -17,14 +19,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @receipts.each do |receipt| %>
+    <% @receipts.order(register_status: :desc, created_at: :desc).each_with_index do |receipt, index| %>
       <tr>
-        <td><%= link_to receipt.id, edit_admin_receipt_path(receipt) %></td>
+        <td><%= index + 1 %></td>
+        <td><%= receipt.created_at.strftime("%Y-%m-%d") %></td>
         <td><%= link_to receipt.title, edit_admin_receipt_path(receipt) %></td>
-        <td><%= receipt.kana_type_id %></td>
-        <td><%= receipt.person_id %></td>
+        <td><%= receipt.kana_type.name %></td>
+        <td><%= receipt.name %> (<%= link_to receipt.person_id, admin_person_path(id: receipt.person_id) %>)</td>
         <td><%= receipt.worker_name %></td>
-        <td><%= receipt.register_status %></td>
+        <td><span class="text-red-500"><%= receipt.status_name %></span></td>
       </tr>
     <% end %>
   </tbody>

@@ -75,6 +75,6 @@
   </table>
 
   <%= link_to '更新', edit_admin_worker_path(@worker) %> |
-  <%= link_to '削除', admin_worker_path(@worker), method: :delete, data: { confirm: '本当に削除しますか?' } %> |
+  <%= link_to '削除', admin_worker_path(@worker), method: :delete, data: { form: { turbo_confirm: '本当に削除しますか?' }} %> |
   <%= link_to '戻る', admin_workers_path %>
 </div>

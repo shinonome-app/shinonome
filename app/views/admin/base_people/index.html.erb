@@ -1,22 +1,23 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
 <p id="notice"><%= notice %></p>
 
-<h1>Base People</h1>
+<h1 class="text-2xl">別名人物一覧</h1>
 
-<table>
+<table class="w-full">
   <thead>
     <tr>
-      <th>Person</th>
-      <th colspan="3"></th>
+      <th class="text-left">名前</th>
+      <th class="text-left">他の名前</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
 
   <tbody>
     <% @base_people.each do |base_person| %>
       <tr>
-        <td><%= base_person.person_id %></td>
-        <td><%= link_to 'Show', base_person %></td>
-        <td><%= link_to 'Edit', edit_base_person_path(base_person) %></td>
-        <td><%= link_to 'Destroy', base_person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= base_person.person.name %></td>
+        <td><%= base_person.original_person.name %></td>
+        <td><%= link_to '変更', edit_admin_base_person_path(base_person) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Base Person', new_base_person_path %>
+<%= link_to '新規追加', new_admin_base_person_path %>
