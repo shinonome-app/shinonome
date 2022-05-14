@@ -47,6 +47,9 @@
 #
 
 class Receipt < ApplicationRecord
+
+  belongs_to :kana_type, optional: true
+
   validates :title_kana, presence: true
   validates :title, presence: true
   validates :copyright_flag, presence: true
@@ -59,4 +62,20 @@ class Receipt < ApplicationRecord
   validates :publisher, presence: true
   validates :first_pubdate, presence: true
   validates :input_edition, presence: true
+
+  def name
+    "#{last_name} #{first_name}"
+  end
+
+  def name_kana
+    "#{last_name_kana} #{first_name_kana}"
+  end
+
+  def name_en
+    "#{first_name_en}, #{last_name_en}" if last_name_en || first_name_en
+  end
+
+  def status_name
+    register_status == 0 ? '未' : '済'
+  end
 end
