@@ -24,7 +24,7 @@ module Receipts
                                       :last_name_kana, :last_name, :last_name_en, :first_name_kana, :first_name, :first_name_en, :person_note,
                                       :worker_kana, :worker_name, :email, :url,
                                       :original_book_title, :publisher, :first_pubdate, :input_edition, :original_book_title2, :publisher2, :first_pubdate2,
-                                      :person_id, :worker_id, :created_on, :register_status, :original_book_note)
+                                      :person_id, :worker_id, :register_status, :original_book_note)
     end
   end
 end
