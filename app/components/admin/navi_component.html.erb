@@ -46,7 +46,7 @@
               <%= link_to "パスワード変更",
                   edit_admin_user_registration_path, class: "px-4 py-2 block text-gray-800" %>
               <hr class="border-t mx-2 border-gray-100">
-              <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, class: "px-4 py-2 block text-gray-800" %>
+              <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, data: { turbo: false }, class: "px-4 py-2 block text-gray-800" %>
             </div>
           </div>
         </div>
