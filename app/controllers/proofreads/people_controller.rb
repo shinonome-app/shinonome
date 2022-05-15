@@ -15,6 +15,13 @@ module Proofreads
     end
 
     # GET /proofreads/people/1
-    def show; end
+    def show
+      @author = Person.find(params[:id])
+
+      sub_works = @author.works.not_proofread.map do |work|
+        ProofreadForm::SubWork.new(work_id: work.id)
+      end
+      @proofread_form = ProofreadForm.new(sub_works: sub_works, person_id: @author.id)
+    end
   end
 end

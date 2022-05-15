@@ -1,18 +1,14 @@
-<%= form_with(model: proofread_form, url: proofreads_previews_path, data: { turbo: false }) do |form| %>
-<% if proofread_form.errors.any? %>
-<div id="error_explanation">
-  <h2>
-    <%= pluralize(proofread_form.errors.count, "error") %> prohibited this proofread from being saved:</h2>
-  <ul>
-    <% proofread_form.errors.each do |error| %>
-    <li>
-      <%= error.full_message %>
-    </li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+<h1>校正受付システム：記入事項の確認</h1>
 
+<div>
+<p>・以下の内容で、校正を申し込みます。内容をもういちど確認してください。</p>
+<p>・間違いなければ、「登録」ボタンを押してください。</p>
+<p>・「必要事項の記入」に戻るときは、「戻る」ボタンを押してください。</p>
+<p>・中止するときは、「登録」ボタンを押さずにブラウザを閉じてください。</p>
+<p>・「登録」ボタンを押した後に取り消す必要が生じた場合は、reception@aozora.gr.jp宛、メールでご連絡ください。</p>
+</div>
+
+<%= form_with(model: @proofread_form, url: proofreads_path) do |form| %>
 <h2>作品データ</h2>
 <table>
   <thead>
@@ -40,11 +36,9 @@
     </tr>
   </thead>
   <tbody>
-    <% proofread_form.sub_works.each do |sub_work|%>
+    <% @proofread_form.sub_works.each do |sub_work|%>
     <tr>
-      <%= form.fields_for :sub_works, sub_work do |fields| %>
       <td>
-        <%= fields.hidden_field :work_id  %>
         <%= sub_work.title %><br>
         <%= sub_work.subtitle %>
       </td>
@@ -52,14 +46,18 @@
         <%= sub_work.first_teihon.title %><br>
         <%= sub_work.first_teihon.publisher %>
       </td>
+      <%= form.fields_for :sub_works, sub_work do |fields| %>
       <td>
-        <%= fields.check_box :work_copy, {}, 1 %>
+        <%= sub_work.work_copy.to_i > 0 ? '要' : '不要' %>
+        <%= fields.hidden_field :work_copy %>
       </td>
       <td>
-        <%= fields.check_box :work_print, {}, 1 %>
+        <%= sub_work.work_print.to_i > 0 ? '要' : '不要' %>
+        <%= fields.hidden_field :work_print %>
       </td>
       <td>
-        <%= fields.text_area :proof_edition  %>
+        <%= fields.hidden_field :proof_edition  %>
+        <%= sub_work.proof_edition  %>
       </td>
       <% end %>
     </tr>
@@ -89,7 +87,8 @@
         送付先
       </td>
       <td>
-        <%= form.text_area :address %>
+        <%= form.hidden_field :address %>
+        <%= @proofread_form.address %>
       </td>
       <td>
         〒100-0001<br>
@@ -123,7 +122,8 @@
         連絡事項
       </td>
       <td>
-        <%= form.text_area :memo %>
+        <%= form.hidden_field :memo %>
+        <%= @proofread_form.memo %>
       </td>
       <td>
         ※底本や作品に関して伝えたいことがある場合、ここに記入してください。<br>
@@ -155,7 +155,8 @@
         工作員ID
       </td>
       <td>
-        <%= form.text_field :worker_id %>
+        <%= form.hidden_field :worker_id %>
+        <%= @proofread_form.worker_id %>
       </td>
       <td>
         1<br>
@@ -168,7 +169,8 @@
         工作員名読み（必須）
       </td>
       <td>
-        <%= form.text_field :worker_kana %>
+        <%= form.hidden_field :worker_kana %>
+        <%= @proofread_form.worker_kana %>
       </td>
       <td>
         あおぞらたろう
@@ -179,7 +181,8 @@
         工作員名（必須）
       </td>
       <td>
-        <%= form.text_field :worker_name %>
+        <%= form.hidden_field :worker_name %>
+        <%= @proofread_form.worker_name %>
       </td>
       <td>
         青空太郎
@@ -190,7 +193,8 @@
         e-mail（必須）
       </td>
       <td>
-        <%= form.text_field :email %>
+        <%= form.hidden_field :email %>
+        <%= @proofread_form.email %>
       </td>
       <td>
         reception@aozora.gr.jp
@@ -201,7 +205,8 @@
         ホームページ
       </td>
       <td>
-        <%= form.text_field :url %>
+        <%= form.hidden_field :url %>
+        <%= @proofread_form.url %>
       </td>
       <td>
         https://www.aozora.gr.jp
@@ -217,9 +222,8 @@
 </p>
 
 <%= form.hidden_field :person_id %>
-<%= form.submit '確認' %>
+<%= form.submit '登録' %>
 <%= form.submit '戻る', formmethod: 'get', formaction: proofreads_person_path(@author) %>
 
 <% end %>
-
 

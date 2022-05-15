@@ -1,0 +1,65 @@
+<h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">校正受付システム:<%= @author.name %> No.<%= @author.id %>作品選択</h1>
+
+件数: <%= @author.works.not_proofread.count %>件
+
+<%= form_with(model: @proofread_form, url: new_proofread_path, method: :get, data: { turbo: false }) do |form| %>
+<div class="px-12 py-5">
+  <table class="w-full">
+    <tr>
+      <th>&nbsp;</th>
+      <th>No.</th>
+      <th>作品名<br>副題</th>
+	  <th>文字遣い種別</th>
+	  <th>翻訳者名等</th>
+	  <th>入力者名</th>
+ 	  <th>状態<br>状態の開始日</th>
+	  <th>サイズ<br>(バイト)</th>
+	  <th>底本名<br>出版社名</th>
+	  <th>入力に使用した版</th>
+    </tr>
+    <%= form.fields_for :sub_works do |field| %>
+    <tr>
+      <td>
+        <%= field.check_box :work_id, {}, field.object.work_id %>
+      </td>
+      <td>
+        <%= field.object.work_id %>
+      </td>
+      <td>
+        <%= field.object.title %><br>
+        <%= field.object.subtitle %>
+      </td>
+      <td>
+        <%= field.object.kana_type.name %>
+      </td>
+      <td>
+        <%= field.object.translator_text %>
+      </td>
+      <td>
+        <%= field.object.inputer_text %>
+      </td>
+      <td>
+        <%= field.object.work_status.name %><br>
+        <%= field.object.started_on %>
+      </td>
+      <td>
+        <%= field.object.workfile&.filesize %>
+      </td>
+      <td>
+        <%= field.object.first_teihon.title %><br>
+        <%= field.object.first_teihon.publisher %>
+      </td>
+      <td>
+        <%= field.object.first_teihon.input_edition %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+  <hr class="border-gray-400">
+
+  <%= form.hidden_field :person_id %>
+  <input type="submit" name="submit" value="確認">
+  <input type="submit" name="submit" value="中止"  formaction="/" formmethod="get">
+<% end %>

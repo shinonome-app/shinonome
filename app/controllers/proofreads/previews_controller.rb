@@ -5,26 +5,36 @@ module Proofreads
   class PreviewsController < ApplicationController
     # POST /proofreads/previews
     def create
-      @receipt = Receipt.new(receipt_params)
+      @proofread_form = ProofreadForm.new(proofread_form_params)
+      @author = Person.find(params[:proofread_form][:person_id])
 
-      if @receipt.valid?
-        render :show
-      else
+      if @proofread_form.valid?
         render :new
+      else
+        render "proofreads/new"
       end
     end
 
     private
 
     # Only allow a list of trusted parameters through.
-    def receipt_params
-      params.require(:receipt).permit(:title_kana, :title, :subtitle_kana, :subtitle, :collection_kana,
-                                      :collection, :original_title,
-                                      :kana_type_id, :first_appearance, :memo, :note, :status, :started_on, :copyright_flag,
-                                      :last_name_kana, :last_name, :last_name_en, :first_name_kana, :first_name, :first_name_en, :person_note,
-                                      :worker_kana, :worker_name, :email, :url,
-                                      :original_book_title, :publisher, :first_pubdate, :input_edition, :original_book_title2, :publisher2, :first_pubdate2,
-                                      :person_id, :worker_id, :register_status, :original_book_note)
+    def proofread_form_params
+      params.require(:proofread_form).permit(
+        :address,
+        :memo,
+        :worker_id,
+        :worker_kana,
+        :worker_name,
+        :email,
+        :url,
+        :person_id,
+        sub_works_attributes: [
+          :work_id,
+          :work_copy,
+          :work_print,
+          :proof_edition,
+        ],
+      )
     end
   end
 end

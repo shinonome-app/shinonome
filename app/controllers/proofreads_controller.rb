@@ -8,7 +8,8 @@ class ProofreadsController < ApplicationController
 
   # GET /proofreads/new
   def new
-    @proofread = Proofread.new
+    @proofread_form = ProofreadForm.new(proofread_form_params)
+    @author = Person.find(params[:proofread_form][:person_id])
   end
 
   # POST /proofreads
@@ -25,8 +26,22 @@ class ProofreadsController < ApplicationController
   private
 
   # Only allow a list of trusted parameters through.
-  def proofread_params
-    params.require(:proofread).permit(:work_id, :work_copy, :work_print, :proof_edition, :workfile_id, :address, :memo,
-                                      :worker_id, :worker_kana, :worker_name, :email, :url, :person_id, :assign_status, :order_status)
+  def proofread_form_params
+    params.require(:proofread_form).permit(
+      :address,
+      :memo,
+      :worker_id,
+      :worker_kana,
+      :worker_name,
+      :email,
+      :url,
+      :person_id,
+      sub_works_attributes: [
+        :work_id,
+        :work_copy,
+        :work_print,
+        :proof_edition,
+      ],
+    )
   end
 end

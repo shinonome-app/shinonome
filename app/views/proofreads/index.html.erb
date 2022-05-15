@@ -1,88 +1,18 @@
-<p id="notice">
-  <%= notice %>
-</p>
-<h1>Proofreads</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Work</th>
-      <th>Work copy</th>
-      <th>Work print</th>
-      <th>proof_edition</th>
-      <th>Workfile</th>
-      <th>Address</th>
-      <th>Memo</th>
-      <th>Worker</th>
-      <th>worker kana</th>
-      <th>Worker name</th>
-      <th>Email</th>
-      <th>Url</th>
-      <th>Person</th>
-      <th>assign_status</th>
-      <th>order_status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @proofreads.each do |proofread| %>
-      <tr>
-        <td>
-          <%= proofread.work_id %>
-        </td>
-        <td>
-          <%= proofread.work_copy %>
-        </td>
-        <td>
-          <%= proofread.work_print %>
-        </td>
-        <td>
-          <%= proofread.proof_edition %>
-        </td>
-        <td>
-          <%= proofread.workfile_id %>
-        </td>
-        <td>
-          <%= proofread.address %>
-        </td>
-        <td>
-          <%= proofread.memo %>
-        </td>
-        <td>
-          <%= proofread.worker_id %>
-        </td>
-        <td>
-          <%= proofread.worker_kana %>
-        </td>
-        <td>
-          <%= proofread.worker_name %>
-        </td>
-        <td>
-          <%= proofread.email %>
-        </td>
-        <td>
-          <%= proofread.url %>
-        </td>
-        <td>
-          <%= proofread.person_id %>
-        </td>
-        <td>
-          <%= proofread.assign_status %>
-        </td>
-        <td>
-          <%= proofread.order_status %>
-        </td>
-        <td>
-          <%= link_to 'Show', proofread %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_proofread_path(proofread) %>
-        </td>
-        <td>
-          <%= link_to 'Destroy', proofread, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New Proofread', new_proofread_path %>
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+<div class="px-8 max-w-6xl mx-auto">
+  <a name="top">&nbsp;</a>
+
+  <div class="flex justify-end text-base">
+    ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<span class="text-red-500 font-semibold">作業着手連絡システム</span>
+  </div>
+
+  <div class="flex justify-center bg-yellow-100 py-3 border-t-2 border-b-2 border-gray-400">
+    <h1 class="text-3xl font-semibold">校正受付システム：作業中作家インデックス</h1>
+  </div>
+
+  <hr>
+  <form method="GET" action="/proofreads/people" data-turbo="false">
+    <%= render(::SyllabaryTableComponent.new(key: "people")) %>
+    <input type="submit" name="people" value="その他">
+  </form>
+</div>  
