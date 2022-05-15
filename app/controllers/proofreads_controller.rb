@@ -41,6 +41,7 @@ class ProofreadsController < ApplicationController
         work_copy
         work_print
         proof_edition
+        enabled
       ]
     )
   end

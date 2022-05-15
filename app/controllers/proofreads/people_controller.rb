@@ -19,7 +19,7 @@ module Proofreads
       @author = Person.find(params[:id])
 
       sub_works = @author.works.not_proofread.map do |work|
-        ProofreadForm::SubWork.new(work_id: work.id)
+        ProofreadForm::SubWork.new(work_id: work.id, enabled: false)
       end
       @proofread_form = ProofreadForm.new(sub_works: sub_works, person_id: @author.id)
     end

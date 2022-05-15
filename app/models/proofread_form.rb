@@ -14,6 +14,7 @@ class ProofreadForm
     attribute :work_copy, :integer
     attribute :work_print, :integer
     attribute :proof_edition, :string
+    attribute :enabled, :boolean, default: true # checkboxで選択する際に使う
 
     validates :work_id, presence: true
 
@@ -46,7 +47,8 @@ class ProofreadForm
   def sub_works_attributes=(attributes)
     @sub_works ||= []
     attributes.each do |_i, sub_work_params|
-      @sub_works.push(SubWork.new(sub_work_params)) if sub_work_params[:work_id].to_i > 0
+      sub_work = SubWork.new(sub_work_params)
+      @sub_works.push(sub_work) if sub_work.enabled
     end
   end
 end

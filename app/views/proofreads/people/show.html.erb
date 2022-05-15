@@ -20,7 +20,8 @@
     <%= form.fields_for :sub_works do |field| %>
     <tr>
       <td>
-        <%= field.check_box :work_id, {}, field.object.work_id %>
+        <%= field.hidden_field :work_id %>
+        <%= field.check_box :enabled %>
       </td>
       <td>
         <%= field.object.work_id %>
