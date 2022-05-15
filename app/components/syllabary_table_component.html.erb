@@ -1,0 +1,17 @@
+<% SyllabaryTableComponent::TABLES.each do |table| %>
+<table>
+  <% table.each do |row| %>
+  <tr>
+    <% row.each do |cell| %>
+    <td>
+      <% if cell %>
+      <%= link_to Kana.new(cell).to_char, proofreads_people_path("#{key}": cell) %>
+      <% else %>
+      &nbsp;
+      <% end %>
+    </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<% end %>
