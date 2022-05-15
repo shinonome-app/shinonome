@@ -8,10 +8,10 @@ module Proofreads
     def index
       @kana = Kana.new(params[:people].to_sym).to_char
       @authors = if @kana
-                  Person.where('sortkey like ?', "#{@kana}%").order(sortkey: :asc)
-                else
-                  Person.where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]').order(sortkey: :asc)
-                end
+                   Person.where('sortkey like ?', "#{@kana}%").order(sortkey: :asc)
+                 else
+                   Person.where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]').order(sortkey: :asc)
+                 end
     end
 
     # GET /proofreads/people/1

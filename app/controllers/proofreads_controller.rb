@@ -36,12 +36,12 @@ class ProofreadsController < ApplicationController
       :email,
       :url,
       :person_id,
-      sub_works_attributes: [
-        :work_id,
-        :work_copy,
-        :work_print,
-        :proof_edition,
-      ],
+      sub_works_attributes: %i[
+        work_id
+        work_copy
+        work_print
+        proof_edition
+      ]
     )
   end
 end

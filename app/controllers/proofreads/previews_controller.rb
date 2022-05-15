@@ -11,7 +11,7 @@ module Proofreads
       if @proofread_form.valid?
         render :new
       else
-        render "proofreads/new"
+        render 'proofreads/new'
       end
     end
 
@@ -28,12 +28,12 @@ module Proofreads
         :email,
         :url,
         :person_id,
-        sub_works_attributes: [
-          :work_id,
-          :work_copy,
-          :work_print,
-          :proof_edition,
-        ],
+        sub_works_attributes: %i[
+          work_id
+          work_copy
+          work_print
+          proof_edition
+        ]
       )
     end
   end

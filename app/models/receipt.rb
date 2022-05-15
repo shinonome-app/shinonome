@@ -53,8 +53,8 @@
 #  fk_rails_...  (work_status_id => work_statuses.id)
 #
 
+# 入力受付
 class Receipt < ApplicationRecord
-
   belongs_to :kana_type, optional: true
 
   validates :title_kana, presence: true

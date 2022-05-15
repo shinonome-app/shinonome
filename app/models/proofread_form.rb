@@ -45,10 +45,8 @@ class ProofreadForm
 
   def sub_works_attributes=(attributes)
     @sub_works ||= []
-    attributes.each do |i, sub_work_params|
-      if sub_work_params[:work_id].to_i > 0
-        @sub_works.push(SubWork.new(sub_work_params))
-      end
+    attributes.each do |_i, sub_work_params|
+      @sub_works.push(SubWork.new(sub_work_params)) if sub_work_params[:work_id].to_i > 0
     end
   end
 end

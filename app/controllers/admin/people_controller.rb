@@ -58,8 +58,8 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def person_params
-      update_year_param("born")
-      update_year_param("died")
+      update_year_param('born')
+      update_year_param('died')
       params.require(:person).permit(:last_name, :last_name_kana, :last_name_en, :first_name, :first_name_kana,
                                      :first_name_en, :born_on, :died_on, :copyright_flag, :email, :url,
                                      :description, :note_user_id, :basename, :note, :updated_by,
@@ -67,7 +67,7 @@ module Admin
     end
 
     def update_year_param(key)
-      if params[:person]["#{key}_year"].present?
+      if params[:person]["#{key}_year"].present? # rubocop:disable Style/GuardClause
         params[:person]["#{key}_on(1i)"] = params[:person]["#{key}_year"]
         params[:person].delete("#{key}_year")
       end
