@@ -4,12 +4,14 @@ module Proofreads
   class PeopleController < ApplicationController
     include Pagy::Backend
 
-    # GET /proofreads/people
+    # GET /proofreads/people?people=a
     def index
-      key = "#{params[:key]&.slice(0, 1)}%"
-      people = Person.where('last_name_kana like ?', key)
-                     .order(:sortkey, :last_name_kana, :sortkey2, :first_name_kana, :id)
-      @pagy, @people = pagy(people.all)
+      @kana = Kana.new(params[:people].to_sym).to_char
+      @authors = if @kana
+                  Person.where('sortkey like ?', "#{@kana}%").order(sortkey: :asc)
+                else
+                  Person.where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]').order(sortkey: :asc)
+                end
     end
 
     # GET /proofreads/people/1
