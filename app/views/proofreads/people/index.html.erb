@@ -1,0 +1,20 @@
+  <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">校正受付システム　作家リスト：<%= @kana %></h1>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><%= @kana %></h2>
+
+  <div class="px-12 py-5">
+    <ol class="list-decimal">
+      <% @authors.each do |person| %>
+      <li>
+        <%= link_to person.name, proofreads_person_path(person), class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" %>
+        (校正待ち：<%= person.works.not_proofread.count %>)　　<% if person.copyright_flag? %><strong>＊著作権存続＊</strong>　<% end %>
+      </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div class="text-right py-4">
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#top">▲</a>
+  </div>
+
+  <hr class="border-gray-400">
