@@ -5,6 +5,7 @@
   <div class="px-12 py-5">
     <ol class="list-decimal">
       <% @authors.each do |person| %>
+      <% next if person.works.not_proofread.count <= 0 %>
       <li>
         <%= link_to person.name, proofreads_person_path(person), class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" %>
         (校正待ち：<%= person.works.not_proofread.count %>)　　<% if person.copyright_flag? %><strong>＊著作権存続＊</strong>　<% end %>
