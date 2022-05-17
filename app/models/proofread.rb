@@ -36,6 +36,6 @@
 
 class Proofread < ApplicationRecord
   belongs_to :work
-  belongs_to :workfile
-  belongs_to :worker
+  belongs_to :workfile, optional: true
+  belongs_to :worker, optional: true
 end
