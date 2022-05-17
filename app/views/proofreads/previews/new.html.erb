@@ -48,6 +48,7 @@
       </td>
       <%= form.fields_for :sub_works, sub_work do |fields| %>
       <td>
+        <%= fields.hidden_field :work_id %>
         <%= sub_work.work_copy.to_i > 0 ? '要' : '不要' %>
         <%= fields.hidden_field :work_copy %>
       </td>

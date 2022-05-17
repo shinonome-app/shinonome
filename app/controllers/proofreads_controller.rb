@@ -10,16 +10,18 @@ class ProofreadsController < ApplicationController
   def new
     @proofread_form = ProofreadForm.new(proofread_form_params)
     @author = Person.find(params[:proofread_form][:person_id])
+    redirect_to proofreads_person_path(@author), alert: '選択してください' if @proofread_form.sub_works.count < 1
   end
 
   # POST /proofreads
   def create
-    @proofread = Proofread.new(proofread_params)
+    @proofread_form = ProofreadForm.new(proofread_form_params)
+    results = @proofread_form.save
 
-    if @proofread.save
-      redirect_to @proofread, notice: 'Proofread was successfully created.'
+    if results
+      redirect_to proofreads_thanks_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
