@@ -16,7 +16,7 @@
         <li>「登録」ボタンを押した後に取り消す必要が生じた場合は、reception@aozora.gr.jp宛、メールでご連絡ください。</li>
       </ul>
     </div>
-    <%= form_with(model: @receipt) do |form| %>
+    <%= form_with(model: @receipt, data: { turbo: false }) do |form| %>
     <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
       <h2 class="font-semibold">入力者データ</h2>
     </div>
@@ -118,6 +118,11 @@
           </tr>
         </thead>
         <tbody>
+          <%= render PreviewFormItemComponent.new(
+              form: form,
+              model: @receipt,
+              attribute: :original_book_title
+              ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
               model: @receipt,
