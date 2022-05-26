@@ -16,7 +16,7 @@ class ReceiptsController < ApplicationController
     end
     if result.created?
       redirect_to receipts_thanks_path
-    else # rubocop:disable Lint/DuplicateBranch
+    else
       render :new
     end
   end

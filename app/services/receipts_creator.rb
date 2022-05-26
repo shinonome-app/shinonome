@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# 入力情報作成
 class ReceiptsCreator
   def create_receipt(receipt_params)
     receipt = Receipt.new(receipt_params)
@@ -5,11 +8,9 @@ class ReceiptsCreator
     receipt.register_status = 0
     receipt.started_on = Time.zone.now
 
-    booklist = ""
+    booklist = ''
     booklist << "作品名　　　　　：#{receipt.title}"
-    if receipt.subtitle.present?
-      booklist << "　#{receipt.subtitle}"
-    end
+    booklist << "　#{receipt.subtitle}" if receipt.subtitle.present?
     booklist << "\n"
     booklist << "文字遣い種別　　：#{receipt.kana_type&.name}"
     booklist << "\n"
@@ -22,6 +23,7 @@ class ReceiptsCreator
     end
   end
 
+  # 結果返却用
   class Result
     attr_reader :receipt
 

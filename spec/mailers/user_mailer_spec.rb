@@ -1,18 +1,19 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe UsrMailer, type: :mailer do
-  describe "register_receipt" do
-    let(:mail) { UsrMailer.register_receipt }
+require 'rails_helper'
 
-    it "renders the headers" do
-      expect(mail.subject).to eq("Register receipt")
-      expect(mail.to).to eq(["to@example.org"])
-      expect(mail.from).to eq(["from@example.com"])
+RSpec.describe UserMailer, type: :mailer do
+  describe 'register_receipt' do
+    let(:mail) { described_class.register_receipt }
+
+    it 'renders the headers' do # rubocop:disable RSpec/MultipleExpectations
+      expect(mail.subject).to eq('Register receipt')
+      expect(mail.to).to eq(['to@example.org'])
+      expect(mail.from).to eq(['from@example.com'])
     end
 
-    it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+    it 'renders the body' do
+      expect(mail.body.encoded).to match('Hi')
     end
   end
-
 end
