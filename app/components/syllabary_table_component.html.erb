@@ -1,17 +1,28 @@
 <% SyllabaryTableComponent::TABLES.each do |table| %>
-<table>
+<table class="border-double border-2 border-gray-800 table-fixed w-1/2 items-center">
+  <tr class="w-770 border-double border-2 border-gray-800">
+    <th colspan="5" class="font-normal border-double border-2 border-gray-800 text-white bg-black">作家別</th>
+  </tr>
   <% table.each do |row| %>
-  <tr>
+  <tr class="border-double border-2 border-gray-800 text-center">
     <% row.each do |cell| %>
-    <td>
+    <td class="border-double border-2 border-gray-800 bg-yellow-100">
       <% if cell %>
       <%= link_to Kana.new(cell).to_char, proofreads_people_path("#{key}": cell) %>
       <% else %>
-      &nbsp;
+      <span>&nbsp;</span>
       <% end %>
     </td>
     <% end %>
   </tr>
   <% end %>
+  <tr class="w-770 border-double border-2 border-gray-800">
+    <td class="border-double border-2 border-gray-800 bg-yellow-100">
+      <%= link_to 'その他', proofreads_people_path("#{key}": :zz) %>
+    </td>
+    <td colspan="4" class="border-double border-2 border-gray-800 bg-yellow-100">
+      <%= link_to '全てを表示', proofreads_people_path("#{key}": nil) %>
+    </td>
+  </tr>
 </table>
 <% end %>

@@ -1,18 +1,55 @@
 <div class="justify-center items-center bg-blue-100 content-center w-screen">
-<div class="px-8 max-w-6xl mx-auto">
-  <a name="top">&nbsp;</a>
+  <div class="px-8 max-w-6xl mx-auto">
+    <a name="top">&nbsp;</a>
 
-  <div class="flex justify-end text-base">
-    ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<span class="text-red-500 font-semibold">作業着手連絡システム</span>
-  </div>
+    <div class="flex justify-end text-base">
+      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<a href="/" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">作業着手連絡システム</a>　●<span class="text-red-500 font-semibold">校正受付システム</span>
+    </div>
 
-  <div class="flex justify-center bg-yellow-100 py-3 border-t-2 border-b-2 border-gray-400">
-    <h1 class="text-3xl font-semibold">校正受付システム：作業中作家インデックス</h1>
-  </div>
+    <div class="flex justify-center bg-yellow-100 py-3 border-t-2 border-b-2 border-gray-400">
+      <h1 class="text-3xl font-semibold">校正受付システム：作業中作家インデックス</h1>
+    </div>
 
-  <hr>
-  <form method="GET" action="/proofreads/people" data-turbo="false">
-    <%= render(::SyllabaryTableComponent.new(key: "people")) %>
-    <input type="submit" name="people" value="その他">
-  </form>
-</div>  
+    <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
+      <h2>公共図書館利用制限等に伴う留意点</h2>
+    </div>
+
+    <p>
+      ただいま作業着手連絡システムおよび受付・点検チームは、公共図書館の利用制限等に伴い、一部活動の負担が大きくなっております。詳しくは、
+      <a href="https://www.aozora.gr.jp/soramoyou/soramoyouindex.html"
+         class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">「そらもよう」</a>
+      の7月7日付お知らせにありますが、作業着手連絡システムを用いるにあたって、以下の点にご留意ください。
+    </p>
+
+    <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+      <p>
+        制限期間: 2020年7月7日 00:00 ～ 図書館利用が全面再開されるまでしばらくのあいだ
+      </p>
+      <p>
+        影響範囲: 作業着手連絡システム（reception.aozora.gr.jp）からの受付を、制限付きで再開します。受付メールアドレス（reception@aozora.gr.jp）からの対応も、同様に制限付きで再開します。
+      </p>
+
+      <h3>【制限に伴うお願い】</h3>
+
+      <ul class="my-2 mx-8 list-disc text-base">
+        <li>複数の底本にわたる大量の入力・校正申請を控える</li>
+        <li>入力申請の際、合わせて「底本の奥付・目次、および初出・親本・表題・原題・原綴りなどの書誌記載箇所を含む画像データ（PDFやスマホ写真等）」を reception@aozora.gr.jp に送付する</li>
+        <li>入力ファイルを送付する際、上記データおよび「底本の本文を含む画像データ（PDF等）」も添付する</li>
+        <li>校正の際も、底本画像のないものや点検前のものについては、申請・校了時に上記底本画像データ添付のご協力をお願いすることがある（自主的にご送付いただくのもOKです）</li>
+        <li>底本画像がなく、底本の確保に時間のかかる場合や、申請が（作業中の累積も含んで）大量となる場合は、申請・送付順にかかわらず、確認までに数ヶ月ほどの時間を有することがある</li>
+      </ul>
+
+    </div>
+      <p>
+        たいへん恐縮ですが、安定的な運営の維持のため、何卒よろしくご協力ください。
+      </p>
+
+      <hr class="w-full">
+
+      <div class="w-full">
+        <div class="flex justify-center p-4 w-full">
+        <%= render(::SyllabaryTableComponent.new(key: "people")) %>
+        </div>
+      </div>
+
+</div>

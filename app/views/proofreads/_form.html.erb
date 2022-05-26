@@ -1,6 +1,6 @@
 <%= form_with(model: proofread_form, url: proofreads_previews_path, data: { turbo: false }) do |form| %>
 <% if proofread_form.errors.any? %>
-<div id="error_explanation">
+<div id="error_explanation" class="text-red-500">
   <h2>
     <%= pluralize(proofread_form.errors.count, "error") %> prohibited this proofread from being saved:</h2>
   <ul>
@@ -13,53 +13,64 @@
 </div>
 <% end %>
 
-<h2>作品データ</h2>
-<table>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">
+  作品データ
+</h2>
+
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         作品名<br>
         副題
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         底本名<br>
         出版社
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         底本コピー
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         プリントアウト
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         校正に使用する版
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力例
       </th>
     </tr>
   </thead>
   <tbody>
-    <% proofread_form.sub_works.each do |sub_work|%>
+    <% proofread_form.sub_works.each do |sub_work| %>
     <tr>
       <%= form.fields_for :sub_works, sub_work do |fields| %>
-      <td>
-        <%= fields.hidden_field :work_id  %>
+      <td class="border border-gray-400 bg-gray-300">
+        <%= fields.hidden_field :work_id %>
         <%= sub_work.title %><br>
         <%= sub_work.subtitle %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= sub_work.first_teihon.title %><br>
         <%= sub_work.first_teihon.publisher %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-white">
         <%= fields.check_box :work_copy, {}, 1 %>
+        要
       </td>
-      <td>
+      <td class="border border-gray-400 bg-white">
         <%= fields.check_box :work_print, {}, 1 %>
+        要
       </td>
-      <td>
-        <%= fields.text_area :proof_edition  %>
+      <td class="border border-gray-400 bg-white">
+        <%= fields.text_area :proof_edition, size: "24x3" %>
+      </td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
+        1986（昭和61）年10月28日第5刷<br>
+        ※数字はすべて、1バイト（半角）のアラビア数字で入れてください。<br>
+        西暦と元号の相関は、「西暦（和暦）年の記述」を参照してください。<br>
+        「第○刷」「初版」等の表記は、底本に従ってください。<br>
       </td>
       <% end %>
     </tr>
@@ -67,31 +78,31 @@
   </tbody>
 </table>
 
-<h2>送付先</h2>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">送付先</h2>
 
-<table>
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         項目名
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力データ
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力例
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         送付先
       </td>
-      <td>
-        <%= form.text_area :address %>
+      <td class="border border-gray-400 bg-yellow-100">
+        <%= form.text_area :address, size: "50x15" %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         〒100-0001<br>
         東京都千代田区千代田1-1-1-111<br>
         青空太郎<br>
@@ -101,31 +112,31 @@
   </tbody>
 </table>
 
-<h2>連絡事項</h2>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">連絡事項</h2>
 
-<table>
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         項目名
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力データ
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力例
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         連絡事項
       </td>
-      <td>
-        <%= form.text_area :memo %>
+      <td class="border border-gray-400 bg-yellow-100">
+        <%= form.text_area :memo, size: "50x15" %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         ※底本や作品に関して伝えたいことがある場合、ここに記入してください。<br>
         2000文字（原稿用紙5枚分）以内で記入してください。全角／半角とも、１文字として計算します。「記入事項の確認」画面で末尾が切れている場合は、全角2000文字以内に書き直すか、reception@aozora.gr.jpにメールで送ってください。
       </td>
@@ -133,93 +144,91 @@
   </tbody>
 </table>
 
-<h2>校正者データ</h2>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">校正者データ</h2>
 
-<table>
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         項目名
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力データ
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力例
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         工作員ID
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.text_field :worker_id %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         1<br>
         ※工作員IDは、「工作員ID一覧」を参照してください。<br>
         IDを入力できれば、その他の項目を記入する必要はありません。
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         工作員名読み（必須）
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.text_field :worker_kana %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         あおぞらたろう
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         工作員名（必須）
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.text_field :worker_name %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         青空太郎
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         e-mail（必須）
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.text_field :email %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         reception@aozora.gr.jp
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         ホームページ
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.text_field :url %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         https://www.aozora.gr.jp
       </td>
     </tr>
   </tbody>
 </table>
 
-<hr>
+<hr class="my-2 border border-gray-400">
 
 <p>
   データの入力が終わったら、「確認」ボタンを押して確認画面に進んでください。
 </p>
 
 <%= form.hidden_field :person_id %>
-<%= form.submit '確認' %>
-<%= form.submit '戻る', formmethod: 'get', formaction: proofreads_person_path(@author) %>
+<%= form.submit '確認', class: "btn-normal" %>
+<%= form.submit '戻る', formmethod: 'get', formaction: proofreads_person_path(@author), class: "btn-normal" %>
 
 <% end %>
-
-

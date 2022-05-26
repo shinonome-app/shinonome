@@ -1,3 +1,26 @@
-<h1>校正受付システム：必要事項の記入</h1>
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+  <div class="px-8 max-w-6xl mx-auto">
+    <div class="flex justify-end text-base">
+      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<a href="/" class="text-red-500 font-semibold">作業着手連絡システム</a>　●<span class="text-red-500 font-semibold">校正受付システム</span>
+    </div>
+    <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border-t border-b border-gray-500">
+      校正受付システム：必要事項の記入
+    </h1>
 
-<%= render 'proofreads/form', proofread_form: @proofread_form %>
+    <div class="border-2 border-gray-500 my-4 mx-8 p-4 bg-yellow-100 text-base">
+      <ul class="my-2 mx-8 list-disc text-base">
+        <li>底本、底本のコピーは、できるだけご自身で確保してください。確保できないときのみ、「底本コピー」欄で「要」にチェックしてください。</li>
+        <li>入力ファイルのプリントアウトは、できるだけご自身で作成してください。作成できないときのみ、「プリントアウト」欄で「要」にチェックしてください。</li>
+        <li>校正用底本がすでに確定している場合は、「校正に使用する版」を記入してください。</li>
+        <li>「校正者データ」では、まず<a href="/idlists" target="_blank" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">「工作員ID一覧」</a>を参照して、工作員IDを入力してください。IDが記入できれば、<span class="text-red-500">（必須）</span>を含む、その他の項目の記入は必要ありません。</li>
+        <li>工作員IDのない人は、「校正者データ」に、お名前とメールアドレスを書き込んでください。仮名、ハンドルネームでもかまいません。</li>
+        <li>底本コピー、またはプリントアウト欄で「要」にチェックした場合は、「送付先」欄に記入してください。個人情報保護のため、この欄に入力された内容は、保存されません。申し込みの都度、必要に応じて記入してください。</li>
+        <li>底本や作品に関して伝えたいことがある場合は、「連絡事項」欄に記入してください。</li>
+        <li>入力が終わったら、一番下の「確認」ボタンを押してください。「確認」画面が現れます。誤りが無いことを確認してから、「登録」ボタンを押してください。</li>
+        <li>「作品選択」に戻るときは、「戻る」ボタンを押してください。</li>
+        <li>中止するときは、「確認」ボタンを押さずにブラウザを閉じてください。</li>
+      </ul>
+    </div>
+    <%= render 'proofreads/form', proofread_form: @proofread_form %>
+  </div>
+</div>

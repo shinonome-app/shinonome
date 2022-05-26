@@ -1,64 +1,74 @@
-<h1>校正受付システム：記入事項の確認</h1>
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+  <div class="px-8 max-w-7xl mx-auto">
+    <a name="top">&nbsp;</a>
 
-<div>
-<p>・以下の内容で、校正を申し込みます。内容をもういちど確認してください。</p>
-<p>・間違いなければ、「登録」ボタンを押してください。</p>
-<p>・「必要事項の記入」に戻るときは、「戻る」ボタンを押してください。</p>
-<p>・中止するときは、「登録」ボタンを押さずにブラウザを閉じてください。</p>
-<p>・「登録」ボタンを押した後に取り消す必要が生じた場合は、reception@aozora.gr.jp宛、メールでご連絡ください。</p>
-</div>
+    <div class="flex justify-end text-base">
+      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<a href="/" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">作業着手連絡システム</a>　●<span class="text-red-500 font-semibold">校正受付システム</span>
+    </div>
+
+    <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border-t border-b border-gray-500">
+      校正受付システム：記入事項の確認
+    </h1>
+
+    <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+      <p>・以下の内容で、校正を申し込みます。内容をもういちど確認してください。</p>
+      <p>・間違いなければ、「登録」ボタンを押してください。</p>
+      <p>・「必要事項の記入」に戻るときは、「戻る」ボタンを押してください。</p>
+      <p>・中止するときは、「登録」ボタンを押さずにブラウザを閉じてください。</p>
+      <p>・「登録」ボタンを押した後に取り消す必要が生じた場合は、reception@aozora.gr.jp宛、メールでご連絡ください。</p>
+    </div>
 
 <%= form_with(model: @proofread_form, url: proofreads_path) do |form| %>
-<h2>作品データ</h2>
-<table>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">
+  著者: <%= @author.name %>
+</h2>
+
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         作品名<br>
         副題
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         底本名<br>
         出版社
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         底本コピー
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         プリントアウト
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         校正に使用する版
-      </th>
-      <th>
-        入力例
       </th>
     </tr>
   </thead>
   <tbody>
-    <% @proofread_form.sub_works.each do |sub_work|%>
+    <% @proofread_form.sub_works.each do |sub_work| %>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         <%= sub_work.title %><br>
         <%= sub_work.subtitle %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= sub_work.first_teihon.title %><br>
         <%= sub_work.first_teihon.publisher %>
       </td>
       <%= form.fields_for :sub_works, sub_work do |fields| %>
-      <td>
+      <td class="border border-gray-400 bg-white">
         <%= fields.hidden_field :work_id %>
         <%= sub_work.work_copy.to_i > 0 ? '要' : '不要' %>
         <%= fields.hidden_field :work_copy %>
       </td>
-      <td>
+      <td class="border border-gray-400 bg-white">
         <%= sub_work.work_print.to_i > 0 ? '要' : '不要' %>
         <%= fields.hidden_field :work_print %>
       </td>
-      <td>
-        <%= fields.hidden_field :proof_edition  %>
-        <%= sub_work.proof_edition  %>
+      <td class="border border-gray-400 bg-white">
+        <%= fields.hidden_field :proof_edition %>
+        <%= sub_work.proof_edition %>
       </td>
       <% end %>
     </tr>
@@ -66,151 +76,121 @@
   </tbody>
 </table>
 
-<h2>送付先</h2>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">
+  送付先
+</h2>
 
-<table>
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400 w-48">
         項目名
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力データ
-      </th>
-      <th>
-        入力例
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         送付先
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.hidden_field :address %>
         <%= @proofread_form.address %>
       </td>
-      <td>
-        〒100-0001<br>
-        東京都千代田区千代田1-1-1-111<br>
-        青空太郎<br>
-        ※底本コピー、またはプリントアウトの送付を希望する場合のみ記入してください。
-      </td>
     </tr>
   </tbody>
 </table>
 
-<h2>連絡事項</h2>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">
+  連絡事項
+</h2>
 
-<table>
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400 w-48">
         項目名
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力データ
-      </th>
-      <th>
-        入力例
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         連絡事項
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.hidden_field :memo %>
         <%= @proofread_form.memo %>
       </td>
-      <td>
-        ※底本や作品に関して伝えたいことがある場合、ここに記入してください。<br>
-        2000文字（原稿用紙5枚分）以内で記入してください。全角／半角とも、１文字として計算します。「記入事項の確認」画面で末尾が切れている場合は、全角2000文字以内に書き直すか、reception@aozora.gr.jpにメールで送ってください。
-      </td>
     </tr>
   </tbody>
 </table>
 
-<h2>校正者データ</h2>
+<h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">
+  校正者データ
+</h2>
 
-<table>
+<table class="border border-gray-500 w-full">
   <thead>
     <tr>
-      <th>
+      <th class="bg-green-200 border border-gray-400 w-48">
         項目名
       </th>
-      <th>
+      <th class="bg-green-200 border border-gray-400">
         入力データ
-      </th>
-      <th>
-        入力例
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         工作員ID
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.hidden_field :worker_id %>
         <%= @proofread_form.worker_id %>
       </td>
-      <td>
-        1<br>
-        ※工作員IDは、「工作員ID一覧」を参照してください。<br>
-        IDを入力できれば、その他の項目を記入する必要はありません。
-      </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         工作員名読み（必須）
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.hidden_field :worker_kana %>
         <%= @proofread_form.worker_kana %>
       </td>
-      <td>
-        あおぞらたろう
-      </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         工作員名（必須）
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.hidden_field :worker_name %>
         <%= @proofread_form.worker_name %>
       </td>
-      <td>
-        青空太郎
-      </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         e-mail（必須）
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.hidden_field :email %>
         <%= @proofread_form.email %>
       </td>
-      <td>
-        reception@aozora.gr.jp
-      </td>
     </tr>
     <tr>
-      <td>
+      <td class="border border-gray-400 bg-gray-300">
         ホームページ
       </td>
-      <td>
+      <td class="border border-gray-400 bg-yellow-100">
         <%= form.hidden_field :url %>
         <%= @proofread_form.url %>
-      </td>
-      <td>
-        https://www.aozora.gr.jp
       </td>
     </tr>
   </tbody>
@@ -223,8 +203,7 @@
 </p>
 
 <%= form.hidden_field :person_id %>
-<%= form.submit '登録' %>
-<%= form.submit '戻る', formmethod: 'get', formaction: proofreads_person_path(@author) %>
+<%= form.submit '登録', class: "btn-normal" %>
+<%= form.submit '戻る', formmethod: 'get', formaction: proofreads_person_path(@author), class: "btn-normal" %>
 
 <% end %>
-

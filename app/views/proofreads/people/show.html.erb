@@ -1,56 +1,77 @@
-<h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">校正受付システム:<%= @author.name %> No.<%= @author.id %>作品選択</h1>
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+  <div class="px-8 max-w-7xl mx-auto">
+    <a name="top">&nbsp;</a>
 
-件数: <%= @author.works.not_proofread.count %>件
+    <div class="flex justify-end text-base">
+      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<a href="/" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">作業着手連絡システム</a>　●<span class="text-red-500 font-semibold">校正受付システム</span>
+    </div>
+
+    <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border-t border-b border-gray-500">校正受付システム:<%= @author.name %> No.<%= @author.id %>作品選択</h1>
+
+    <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
+      <ul class="my-2 mx-8 list-disc text-base">
+        <li>行頭のボタンをクリックして、申し込む作品を選んでください。複数の作品を選択できます。</li>
+        <li>「<span class="text-red-500">校正待ち</span>(<span class="text-blue-700">点検済み</span>)」は、ファイルをお送りする準備がすでに整っています。「<span class="text-red-500">校正待ち(点検前)</span>」にくらべて、より早く作業にとりかかっていただけます。</li>
+        <li>サイズは、zip圧縮をかけたテキスト版のもので、単位はバイト(byte)です。この値を1000で割ると、キロバイト(KB)に換算できます。解凍後はおよそ、倍の大きさになります。</li>
+        <li>底本名が青で表示されているものは、青空文庫で底本を保管しています。ご自身で底本を用意することが困難な場合、比較的早くコピーをお送りできます。</li>
+        <li>作品を選び終わったら、一番下の「確認」ボタンを押してください。「必要事項の記入」画面が現れます。</li>
+        <li>中止するときは、「中止」ボタンを押してください。作業着手連絡システムのトップページに戻ります。</li>
+      </ul>
+    </div>
+
+    <p>
+    件数: <%= @author.works.not_proofread.count %>件
+    </p>
 
 <%= form_with(model: @proofread_form, url: new_proofread_path, method: :get, data: { turbo: false }) do |form| %>
 <div class="px-12 py-5">
-  <table class="w-full">
-    <tr>
-      <th>&nbsp;</th>
-      <th>No.</th>
-      <th>作品名<br>副題</th>
-	  <th>文字遣い種別</th>
-	  <th>翻訳者名等</th>
-	  <th>入力者名</th>
- 	  <th>状態<br>状態の開始日</th>
-	  <th>サイズ<br>(バイト)</th>
-	  <th>底本名<br>出版社名</th>
-	  <th>入力に使用した版</th>
+  <table class="border border-gray-500 w-full">
+    <tr class="border border-gray-500">
+      <th class="bg-yellow-100 border border-gray-500">&nbsp;</th>
+      <th class="bg-yellow-100 border border-gray-500">No.</th>
+      <th class="bg-yellow-100 border border-gray-500">作品名<br>副題</th>
+    <th class="bg-yellow-100 border border-gray-500">文字遣い種別</th>
+    <th class="bg-yellow-100 border border-gray-500">翻訳者名等</th>
+    <th class="bg-yellow-100 border border-gray-500">入力者名</th>
+     <th class="bg-yellow-100 border border-gray-500">状態<br>状態の開始日</th>
+    <th class="bg-yellow-100 border border-gray-500">サイズ<br>(バイト)</th>
+    <th class="bg-yellow-100 border border-gray-500">底本名<br>出版社名</th>
+    <th class="bg-yellow-100 border border-gray-500">入力に使用した版</th>
     </tr>
     <%= form.fields_for :sub_works do |field| %>
-    <tr>
-      <td>
+    <tr class="bg-white border border-gray-500">
+      <td class="border border-gray-500">
         <%= field.hidden_field :work_id %>
         <%= field.check_box :enabled %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.work_id %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.title %><br>
         <%= field.object.subtitle %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.kana_type.name %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.translator_text %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.inputer_text %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.work_status.name %><br>
         <%= field.object.started_on %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.workfile&.filesize %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.first_teihon.title %><br>
         <%= field.object.first_teihon.publisher %>
       </td>
-      <td>
+      <td class="border border-gray-500">
         <%= field.object.first_teihon.input_edition %>
       </td>
     </tr>
@@ -61,6 +82,6 @@
   <hr class="border-gray-400">
 
   <%= form.hidden_field :person_id %>
-  <input type="submit" name="submit" value="確認">
-  <input type="submit" name="submit" value="中止"  formaction="/" formmethod="get">
+  <input type="submit" name="submit" value="確認" class="btn-normal">
+  <input type="submit" name="submit" value="中止" formaction="/" formmethod="get" class="btn-normal">
 <% end %>
