@@ -55,31 +55,25 @@
 
 FactoryBot.define do
   factory :receipt do
-    title_kana { 'MyText' }
-    title { 'MyText' }
-    subtitle_kana { 'MyText' }
-    subtitle { 'MyText' }
-    collection_kana { 'MyText' }
-    collection { 'MyText' }
-    original_title { 'MyText' }
-    kana { 'MyText' }
+    title_kana { 'さくひんそのいち' }
+    title { '作品その一' }
+    subtitle_kana { 'ふくだいそのに' }
+    subtitle { '副題その二' }
+    original_title { '原題その３' }
+    kana_type_id { 1 }
     first_appearance { 'MyText' }
-    memo { 'MyText' }
-    note { 'MyText' }
-    status { 'MyText' }
-    started_on { 'MyText' }
+    started_on { '2022-05-10' }
     copyright_flag { false }
     last_name_kana { 'MyText' }
-    sei { 'MyText' }
     last_name_en { 'MyText' }
+    last_name { 'MyText' }
     first_name_kana { 'MyText' }
-    mei { 'MyText' }
     first_name_en { 'MyText' }
+    first_name { 'MyText' }
     person_note { 'MyText' }
     worker_kana { 'MyText' }
     worker_name { 'MyText' }
-    email { 'MyText' }
-    url { 'MyText' }
+    email { 'sample@example.com' }
     original_book_title { 'MyText' }
     publisher { 'MyText' }
     first_pubdate { 'MyText' }
@@ -87,9 +81,10 @@ FactoryBot.define do
     original_book_title2 { 'MyText' }
     publisher2 { 'MyText' }
     first_pubdate2 { 'MyText' }
-    person_id { 'MyText' }
-    worker_id { 'MyText' }
+    person_id { 10 }
+    worker_id { 11 }
     register_status { 1 }
     original_book_note { 'MyText' }
+    work_status
   end
 end

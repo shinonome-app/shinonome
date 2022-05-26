@@ -56,10 +56,11 @@
 # 入力受付
 class Receipt < ApplicationRecord
   belongs_to :kana_type, optional: true
+  belongs_to :work_status
 
   validates :title_kana, presence: true
   validates :title, presence: true
-  validates :copyright_flag, presence: true
+  validates :copyright_flag, inclusion: {in: [true, false]}
   validates :last_name_kana, presence: true
   validates :last_name, presence: true
   validates :worker_kana, presence: true

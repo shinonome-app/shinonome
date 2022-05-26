@@ -111,7 +111,7 @@ RSpec.describe '/workfiles', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post admin_work_workfiles_url(work), params: { workfile: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.successful?).to be_falsey
       end
     end
   end
@@ -152,7 +152,7 @@ RSpec.describe '/workfiles', type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         workfile = Workfile.create! valid_attributes
         patch admin_work_workfile_url(work, workfile), params: { workfile: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.successful?).to be_falsey
       end
     end
   end
