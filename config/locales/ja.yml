@@ -92,6 +92,12 @@ ja:
         proof_edition: "校正に使用した版"
         worktype_id: "種別フラグ"
         note: "備考"
+      proofread:
+        worker_id: "工作員ID"
+        worker_kana: "工作員読み"
+        worker_name: "工作員名"
+        email: "e-mail"
+        url: "ホームページ"
       site:
         id: "関連サイトID"
         name: "関連サイト名"
@@ -105,4 +111,10 @@ ja:
       exec_command:
         command: コマンド
         separator: 区切り文字
-
+  user_mailer:
+    register_receipt:
+      subject_1: "「%{title}」入力受付完了のお知らせ"
+      subject_n: "「%{title}」他の入力受付完了のお知らせ"
+    register_proofread:
+      subject_1: "「%{title}」校正受付完了のお知らせ"
+      subject_n: "「%{title}」他の校正受付完了のお知らせ"

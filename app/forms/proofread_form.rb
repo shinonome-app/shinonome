@@ -46,6 +46,14 @@ class ProofreadForm
 
   attr_accessor :sub_works
 
+  def self.new_by_author(person)
+    sub_works = person.works.not_proofread.map do |work|
+      ProofreadForm::SubWork.new(work_id: work.id, enabled: false)
+    end
+
+    ProofreadForm.new(sub_works: sub_works, person_id: person.id)
+  end
+
   def save
     results = []
     Proofread.transaction do
