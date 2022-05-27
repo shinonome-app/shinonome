@@ -2,6 +2,12 @@
 
 class ReceiptsController < ApplicationController
   skip_forgery_protection only: [:new_add_work, :new_remove_work]
+
+  # GET /receipts
+  def index
+    redirect_to new_receipt_path
+  end
+
   # GET /receipts/new
   def new
     @receipt_form = ReceiptForm.new

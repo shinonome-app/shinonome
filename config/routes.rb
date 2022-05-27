@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'top/index'
   root to: 'top#index'
 
-  resources :receipts, only: %i[new create] do
+  resources :receipts, only: %i[new create index] do
     collection do
       post 'new_add_work', to: 'receipts#new_add_work'
       post 'new_remove_work', to: 'receipts#new_remove_work'
