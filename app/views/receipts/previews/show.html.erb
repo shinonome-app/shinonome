@@ -16,7 +16,7 @@
         <li>「登録」ボタンを押した後に取り消す必要が生じた場合は、reception@aozora.gr.jp宛、メールでご連絡ください。</li>
       </ul>
     </div>
-    <%= form_with(model: @receipt, data: { turbo: false }) do |form| %>
+    <%= form_with(model: @receipt_form, url: receipts_path, data: { turbo: false }) do |form| %>
     <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
       <h2 class="font-semibold">入力者データ</h2>
     </div>
@@ -32,27 +32,27 @@
         <tbody>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :worker_id
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :worker_kana
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :worker_name
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :email
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :url
               ) %>
         </tbody>
@@ -74,32 +74,32 @@
         <tbody>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :person_id
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :last_name_kana
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :last_name
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :first_name_kana
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :first_name
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :person_note
               ) %>
         </tbody>
@@ -120,56 +120,57 @@
         <tbody>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :original_book_title
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :original_book_note
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :publisher
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :first_pubdate
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :input_edition
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :original_book_note
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :original_book_title2
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :publisher2
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: form,
-              model: @receipt,
+              model: @receipt_form,
               attribute: :first_pubdate2
               ) %>
         </tbody>
       </table>
     </div>
 
-    <div class="my-8 text-2xl font-medium py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">
-      <h2 class="font-semibold">作品データ</h2>
-    </div>
+    <% @receipt_form.sub_works.each_with_index do |sub_work, idx| %>
+    <%= form.fields_for :sub_works, sub_work do |sub_form| %>
+
+    <h2 class="my-8 text-2xl font-semibold py-3 bg-gray-200 border-t-2 border-b-2 border-gray-400">作品データ</h2>
 
     <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
       <table>
@@ -181,58 +182,61 @@
         </thead>
         <tbody>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :title_kana
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :title
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :subtitle_kana
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :subtitle
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :original_title
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :kana_type_id
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :first_appearance
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :memo
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :note
               ) %>
           <%= render PreviewFormItemComponent.new(
-              form: form,
-              model: @receipt,
+              form: sub_form,
+              model: sub_work,
               attribute: :copyright_flag
               ) %>
         </tbody>
       </table>
     </div>
+
+    <% end %>
+    <% end %>
 
     <div>
       <p>入力内容に間違いがないことを確認して、「登録」ボタンを押してください。</p>
@@ -240,10 +244,8 @@
     </div>
 
     <div class="actions">
-      <%= form.submit "登録" %>
-    </div>
-    <div class="actions">
-      <%= form.submit "修正", name: "edit" %>
+      <%= form.submit "登録", class: "btn-normal" %>
+      <%= form.submit "戻る", name: "edit", class: "btn-normal" %>
     </div>
     <% end %>
   </div>

@@ -71,6 +71,13 @@ class Receipt < ApplicationRecord
   validates :first_pubdate, presence: true
   validates :input_edition, presence: true
 
+  validates :work_status_id, presence: true
+  validates :register_status, presence: true
+  validates :started_on, presence: true
+
+
+  before_validation :set_statuses
+
   def name
     "#{last_name} #{first_name}"
   end
@@ -85,5 +92,13 @@ class Receipt < ApplicationRecord
 
   def status_name
     register_status == 0 ? '未' : '済'
+  end
+
+  private
+
+  def set_statuses
+    self.work_status_id ||= 4 # 入力予約
+    self.register_status ||= 0
+    self.started_on ||= Time.zone.now
   end
 end

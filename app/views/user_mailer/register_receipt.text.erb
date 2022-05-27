@@ -14,7 +14,10 @@
 入力者名：<%= @receipt.worker_name %>
 工作員ID：<%= @receipt.worker_id%>
 ――――――――――
-<%= @book_list %>
+<% @sub_works.each do |sub_work| %>
+作品名　　　　　：<%= sub_work.title_and_subtitle %>
+文字遣い種別　　：<%= sub_work.kana_type_name %>
+<% end %>
 著者名　　　　　：<%= @receipt.name %>
 底本　　　　　　：「<%= @receipt.title %>」<%= @receipt.publisher %>
 入力に使用する版：<%= @receipt.input_edition %>

@@ -79,7 +79,12 @@ class Work < ApplicationRecord
   scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) or published_on is null or published_on > ?', date) }
   scope :not_proofread, -> { where('work_status_id in (5, 6)') }
 
-  validates :title, :started_on, presence: true
+  validates :title_kana, presence: true
+  validates :title, presence: true
+  validates :copyright_flag, inclusion: {in: [true, false]}
+  validates :kana_type_id, presence: true
+  validates :kana_type_id, numericality: { in: [1, 2, 3, 4, 99] }
+  validates :started_on, presence: true
 
   def self.latest_published(year: nil, until_date: Time.zone.today)
     year ||= until_date.year

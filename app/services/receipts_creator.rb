@@ -3,33 +3,26 @@
 # 入力情報作成
 class ReceiptsCreator
   def create_receipt(receipt_params)
-    receipt = Receipt.new(receipt_params)
-    receipt.work_status_id = 4
-    receipt.register_status = 0
-    receipt.started_on = Time.zone.now
+    receipt_form = ReceiptForm.new(receipt_params)
 
-    booklist = ''
-    booklist << "作品名　　　　　：#{receipt.title}"
-    booklist << "　#{receipt.subtitle}" if receipt.subtitle.present?
-    booklist << "\n"
-    booklist << "文字遣い種別　　：#{receipt.kana_type&.name}"
-    booklist << "\n"
+    if receipt_form.valid?
+      receipts = receipt_form.save
 
-    if receipt.save
-      UserMailer.register_receipt(receipt, booklist).deliver_now
-      Result.new(created: true, receipt: receipt)
+      UserMailer.register_receipt(receipts.first, receipt_form.sub_works).deliver_now
+      Result.new(created: true, receipts: receipts, receipt_form: receipt_form)
     else
-      Result.new(created: false, receipt: receipt)
+      Result.new(created: false, receipts: receipts, receipt_form: receipt_form)
     end
   end
 
   # 結果返却用
   class Result
-    attr_reader :receipt
+    attr_reader :receipts, :receipt_form
 
-    def initialize(created:, receipt: nil)
+    def initialize(created:, receipts:, receipt_form:)
       @created = created
-      @receipt = receipt
+      @receipts = receipts
+      @receipt_form = receipt_form
     end
 
     def created?

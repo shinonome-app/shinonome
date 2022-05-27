@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   get 'top/index'
   root to: 'top#index'
 
-  resources :receipts, only: %i[new create]
+  resources :receipts, only: %i[new create] do
+    collection do
+      post 'new_add_work', to: 'receipts#new_add_work'
+      post 'new_remove_work', to: 'receipts#new_remove_work'
+    end
+  end
+
   namespace :receipts do
     resources :previews, only: %i[create]
     resources :thanks, only: %i[index]
