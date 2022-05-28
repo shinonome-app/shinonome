@@ -25,17 +25,17 @@ module Receipts
         :original_book_title2, :publisher2, :first_pubdate2,
         :person_id, :worker_id, :register_status, :original_book_note,
         sub_works_attributes: %i[
-        title_kana
-        title
-        subtitle_kana
-        subtitle
-        original_title
-        kana_type_id
-        first_appearance
-        memo
-        note
-        copyright_flag
-      ]
+          title_kana
+          title
+          subtitle_kana
+          subtitle
+          original_title
+          kana_type_id
+          first_appearance
+          memo
+          note
+          copyright_flag
+        ]
       )
     end
   end

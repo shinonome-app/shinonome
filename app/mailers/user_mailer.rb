@@ -9,29 +9,18 @@ class UserMailer < ApplicationMailer # rubocop:disable Style/Documentation
   def register_receipt(receipt, sub_works)
     @receipt = receipt
     @sub_works = sub_works
-    first_title = receipt.title
+    @subject = I18n.t('user_mailer.register_receipt.subject', title: receipt.title, count: sub_works.count)
 
-    @subject = if sub_works.count > 1
-                I18n.t("user_mailer.register_receipt.subject_1", title: first_title)
-              else
-                I18n.t("user_mailer.register_receipt.subject_n", title: first_title)
-              end
-
-    mail to: admin_email, subject: @subject
+    mail to: receipt.email, subject: @subject
   end
 
-  def register_proofread(proofread, booklist)
-    @proofread = proofread
-    @booklist = booklist
-    first_title = booklist[0].title
+  def register_proofread(_proofread_form, proofreads)
+    @proofreads = proofreads
+    first_title = proofreads.first.work.title
 
-    @subject = if booklist.count > 1
-                I18n.t("user_mailer.register_proofread.subject_1", title: first_title)
-              else
-                I18n.t("user_mailer.register_proofread.subject_n", title: first_title)
-              end
+    @subject = I18n.t('user_mailer.register_proofread.subject', title: first_title, count: proofreads.count)
 
-    mail to: admin_email, subject: @subject
+    mail to: proofreads.first.email, subject: @subject
   end
 
   private

@@ -104,7 +104,7 @@ RSpec.describe '/admin/works', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post admin_works_url, params: { work: invalid_attributes }
-        expect(response.successful?).to be_falsey
+        expect(response).not_to be_successful
       end
     end
   end
@@ -142,7 +142,7 @@ RSpec.describe '/admin/works', type: :request do
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         patch admin_work_url(work), params: { work: invalid_attributes }
-        expect(response.successful?).to be_falsey
+        expect(response).not_to be_successful
       end
     end
   end

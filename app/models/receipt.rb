@@ -60,7 +60,7 @@ class Receipt < ApplicationRecord
 
   validates :title_kana, presence: true
   validates :title, presence: true
-  validates :copyright_flag, inclusion: {in: [true, false]}
+  validates :copyright_flag, inclusion: { in: [true, false] }
   validates :last_name_kana, presence: true
   validates :last_name, presence: true
   validates :worker_kana, presence: true
@@ -74,7 +74,6 @@ class Receipt < ApplicationRecord
   validates :work_status_id, presence: true
   validates :register_status, presence: true
   validates :started_on, presence: true
-
 
   before_validation :set_statuses
 
@@ -97,7 +96,7 @@ class Receipt < ApplicationRecord
   private
 
   def set_statuses
-    self.work_status_id ||= 4 # 入力予約
+    self.work_status_id ||= 3 # 入力中
     self.register_status ||= 0
     self.started_on ||= Time.zone.now
   end

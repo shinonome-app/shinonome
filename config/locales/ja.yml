@@ -26,6 +26,7 @@ ja:
         first_pubdate2: "底本の親本初版発行年"
         status: "状態"
         started_on: "状態の開始日"
+        sub_works: "作品データ"
       receipt_form/sub_work:
         title_kana: "作品名読み"
         title: "作品名"
@@ -37,7 +38,14 @@ ja:
         memo: "作品について"
         note: "備考"
         copyright_flag: "著作権"
-
+      proofread_form:
+        worker_id: "工作員ID"
+        worker_kana: "工作員読み"
+        worker_name: "工作員名"
+        email: "e-mail"
+        url: "ホームページ"
+        address: "送付先"
+        memo: "連絡事項"
 
   activerecord:
     models:
@@ -148,10 +156,16 @@ ja:
       exec_command:
         command: コマンド
         separator: 区切り文字
+  errors:
+    header_message:
+      one: "%{count}件のエラーが見つかりました"
+      other: "%{count}件のエラーが見つかりました"
   user_mailer:
     register_receipt:
-      subject_1: "「%{title}」入力受付完了のお知らせ"
-      subject_n: "「%{title}」他の入力受付完了のお知らせ"
+      subject:
+        one: "「%{title}」入力受付完了のお知らせ"
+        other: "「%{title}」他の入力受付完了のお知らせ"
     register_proofread:
-      subject_1: "「%{title}」校正受付完了のお知らせ"
-      subject_n: "「%{title}」他の校正受付完了のお知らせ"
+      subject:
+        one: "「%{title}」校正受付完了のお知らせ"
+        other: "「%{title}」他の校正受付完了のお知らせ"

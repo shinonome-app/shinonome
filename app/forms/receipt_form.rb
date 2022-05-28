@@ -19,24 +19,28 @@ class ReceiptForm
     attribute :first_appearance, :string
     attribute :memo, :string
     attribute :note, :string
-    attribute :copyright_flag, :boolean
+    attribute :copyright_flag, :integer
 
     validates :title_kana, presence: true
     validates :title, presence: true
-    validates :copyright_flag, inclusion: {in: [true, false]}
+    validates :copyright_flag, inclusion: { in: [0, 1] }
     validates :kana_type_id, presence: true
     validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }
 
     def title_and_subtitle
-      if self.subtitle.present?
-        "#{self.title}　#{self.subtitle}"
+      if subtitle.present?
+        "#{title}　#{subtitle}"
       else
-        self.title
+        title
       end
     end
 
     def kana_type_name
-      KanaType.find(self.kana_type_id).name
+      KanaType.find(kana_type_id).name
+    end
+
+    def copyright_flag_name
+      copyright_flag.to_i > 0 ? 'あり' : 'なし'
     end
   end
 
@@ -74,6 +78,8 @@ class ReceiptForm
   validates :first_pubdate, presence: true
   validates :input_edition, presence: true
 
+  validate :sub_works_are_valid
+
   attr_accessor :sub_works
 
   def add_work
@@ -88,8 +94,12 @@ class ReceiptForm
     self.sub_works.delete_at(pos)
   end
 
+  def sub_works_are_valid
+    errors.add(:sub_works, I18n.t('errors.messages.invalid')) if sub_works.any?(&:invalid?)
+  end
+
   def save
-    return unless valid?
+    return false if invalid?
 
     receipts = []
 
@@ -148,9 +158,7 @@ class ReceiptForm
       first_appearance: sub_work.first_appearance,
       memo: sub_work.memo,
       note: sub_work.note,
-      copyright_flag: sub_work.copyright_flag,
-
+      copyright_flag: sub_work.copyright_flag.to_i > 0
     )
   end
 end
-

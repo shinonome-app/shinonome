@@ -38,4 +38,10 @@ class Proofread < ApplicationRecord
   belongs_to :work
   belongs_to :workfile, optional: true
   belongs_to :worker, optional: true
+
+  validates :worker_id, numericality: { only_integer: true }, allow_nil: true
+  validates :worker_name, presence: true
+  validates :worker_kana, presence: true
+  validates :email, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 end

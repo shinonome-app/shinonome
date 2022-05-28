@@ -1,17 +1,5 @@
 <%= form_with(model: proofread_form, url: proofreads_previews_path, data: { turbo: false }) do |form| %>
-<% if proofread_form.errors.any? %>
-<div id="error_explanation" class="text-red-500">
-  <h2>
-    <%= pluralize(proofread_form.errors.count, "error") %> prohibited this proofread from being saved:</h2>
-  <ul>
-    <% proofread_form.errors.each do |error| %>
-    <li>
-      <%= error.full_message %>
-    </li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+  <%= render ::FormsErrorHeaderComponent.new(form: proofread_form) %>
 
 <h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">
   作品データ
@@ -43,7 +31,7 @@
     </tr>
   </thead>
   <tbody>
-    <% proofread_form.sub_works.each do |sub_work| %>
+    <% proofread_form.sub_works.each_with_index do |sub_work, idx| %>
     <tr>
       <%= form.fields_for :sub_works, sub_work do |fields| %>
       <td class="border border-gray-400 bg-gray-300">
@@ -67,10 +55,12 @@
         <%= fields.text_area :proof_edition, size: "24x3" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
+        <% if idx == 0 %>
         1986（昭和61）年10月28日第5刷<br>
         ※数字はすべて、1バイト（半角）のアラビア数字で入れてください。<br>
         西暦と元号の相関は、「西暦（和暦）年の記述」を参照してください。<br>
         「第○刷」「初版」等の表記は、底本に従ってください。<br>
+        <% end %>
       </td>
       <% end %>
     </tr>
@@ -97,10 +87,10 @@
   <tbody>
     <tr>
       <td class="border border-gray-400 bg-gray-300">
-        送付先
+        <%= form.label :address do %>送付先<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_area :address, size: "50x15" %>
+        <%= form.text_area :address, size: "50x15", class: "m-1" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         〒100-0001<br>
@@ -131,10 +121,10 @@
   <tbody>
     <tr>
       <td class="border border-gray-400 bg-gray-300">
-        連絡事項
+        <%= form.label :memo do %>連絡事項<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_area :memo, size: "50x15" %>
+        <%= form.text_area :memo, size: "50x15", class: "m-1" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         ※底本や作品に関して伝えたいことがある場合、ここに記入してください。<br>
@@ -163,10 +153,10 @@
   <tbody>
     <tr>
       <td class="border border-gray-400 bg-gray-300">
-        工作員ID
+        <%= form.label :worker_id do %>工作員ID<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :worker_id %>
+        <%= form.text_field :worker_id, class: "m-1" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         1<br>
@@ -176,10 +166,10 @@
     </tr>
     <tr>
       <td class="border border-gray-400 bg-gray-300">
-        工作員名読み（必須）
+        <%= form.label :worker_kana do %>工作員読み<span class="text-red-500">（必須）</span><% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :worker_kana %>
+        <%= form.text_field :worker_kana, class: "m-1" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         あおぞらたろう
@@ -187,10 +177,10 @@
     </tr>
     <tr>
       <td class="border border-gray-400 bg-gray-300">
-        工作員名（必須）
+        <%= form.label :worker_name do %>工作員名<span class="text-red-500">（必須）</span><% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :worker_name %>
+        <%= form.text_field :worker_name, class: "m-1" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         青空太郎
@@ -198,10 +188,10 @@
     </tr>
     <tr>
       <td class="border border-gray-400 bg-gray-300">
-        e-mail（必須）
+        <%= form.label :email do %>e-mail<span class="text-red-500">（必須）</span><% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :email %>
+        <%= form.text_field :email, class: "m-1" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         reception@aozora.gr.jp
@@ -209,7 +199,7 @@
     </tr>
     <tr>
       <td class="border border-gray-400 bg-gray-300">
-        ホームページ
+        <%= form.label :url do %>ホームページ<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
         <%= form.text_field :url %>

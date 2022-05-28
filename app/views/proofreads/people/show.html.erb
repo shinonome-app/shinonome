@@ -3,7 +3,7 @@
     <a name="top">&nbsp;</a>
 
     <div class="flex justify-end text-base">
-      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<a href="/" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">作業着手連絡システム</a>　●<span class="text-red-500 font-semibold">校正受付システム</span>
+      ●<a href="https://www.aozora.gr.jp/" class="link-normal">トップ</a>　●<a href="/" class="link-normal">作業着手連絡システム</a>　●<span class="text-red-500 font-semibold">校正受付システム</span>
     </div>
 
     <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border-t border-b border-gray-500">校正受付システム:<%= @author.name %> No.<%= @author.id %>作品選択</h1>
@@ -22,6 +22,7 @@
     <p>
     件数: <%= @author.works.not_proofread.count %>件
     </p>
+    <p id="notice" class="text-red-500"><%= alert %></p>
 
 <%= form_with(model: @proofread_form, url: new_proofread_path, method: :get, data: { turbo: false }) do |form| %>
 <div class="px-12 py-5">

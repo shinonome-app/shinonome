@@ -6,7 +6,7 @@ RSpec.describe UserMailer, type: :mailer do
   describe 'register_receipt' do
     let(:receipt) { create(:receipt) }
     let(:booklist) do
-      "作品名　　　　　：#{receipt.title}\n" +
+      "作品名　　　　　：#{receipt.title}\n" \
         "文字遣い種別　　：#{receipt.kana_type&.name}\n"
     end
     let(:mail) { described_class.register_receipt(receipt, booklist) }

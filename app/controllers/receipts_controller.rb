@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ReceiptsController < ApplicationController
-  skip_forgery_protection only: [:new_add_work, :new_remove_work]
+  skip_forgery_protection only: %i[new_add_work new_remove_work]
 
   # GET /receipts
   def index
@@ -30,12 +30,14 @@ class ReceiptsController < ApplicationController
 
   # POST /receipts
   def create
-    result = ReceiptsCreator.new.create_receipt(receipt_params)
-    @receipt_form = result.receipt_form
     if params[:edit]
+      @receipt_form = ReceiptForm.new(receipt_params)
       render :new
       return
     end
+
+    result = ReceiptsCreator.new.create_receipt(receipt_params)
+    @receipt_form = result.receipt_form
     if result.created?
       redirect_to receipts_thanks_path
     else

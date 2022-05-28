@@ -5,10 +5,14 @@
   </tr>
   <% table.each do |row| %>
   <tr class="border-double border-2 border-gray-800 text-center">
-    <% row.each do |cell| %>
-    <td class="border-double border-2 border-gray-800 bg-yellow-100">
+    <% row.each_with_index do |cell, idx| %>
+    <% if idx == 0 %>
+      <td class="border-double border-2 border-gray-800 bg-yellow-100 text-center">
+    <% else %>
+      <td class="border-double border-2 border-gray-800 bg-yellow-50 text-center">
+    <% end %>
       <% if cell %>
-      <%= link_to Kana.new(cell).to_char, proofreads_people_path("#{key}": cell) %>
+      <%= link_to Kana.new(cell).to_char, proofreads_people_path("#{key}": cell), class: "link-normal" %>
       <% else %>
       <span>&nbsp;</span>
       <% end %>
@@ -17,11 +21,11 @@
   </tr>
   <% end %>
   <tr class="w-770 border-double border-2 border-gray-800">
-    <td class="border-double border-2 border-gray-800 bg-yellow-100">
-      <%= link_to 'その他', proofreads_people_path("#{key}": :zz) %>
+    <td class="border-double border-2 border-gray-800 bg-yellow-100 text-center">
+      <%= link_to '他', proofreads_people_path("#{key}": :zz), class: "link-normal" %>
     </td>
-    <td colspan="4" class="border-double border-2 border-gray-800 bg-yellow-100">
-      <%= link_to '全てを表示', proofreads_people_path("#{key}": nil) %>
+    <td colspan="4" class="border-double border-2 border-gray-800 bg-yellow-100 text-center">
+      <%= link_to '全てを表示', proofreads_people_path("#{key}": nil), class: "link-normal" %>
     </td>
   </tr>
 </table>

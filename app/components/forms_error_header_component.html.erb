@@ -1,0 +1,14 @@
+<% if form.errors.any? %>
+<div id="error_explanation" class="text-red-500">
+  <h2>
+    <%= I18n.t("errors.header_message", count: form.errors.count) %>
+  </h2>
+  <ul>
+    <% form.errors.each do |error| %>
+    <li>
+      <%= error.full_message %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

@@ -23,6 +23,14 @@ class ProofreadForm
              :work_status, :started_on, :workfile,
              to: :work
 
+    def work_copy?
+      work_copy.to_i == 1
+    end
+
+    def work_print?
+      work_print.to_i == 1
+    end
+
     def work
       @work ||= Work.find(work_id)
     end
@@ -36,13 +44,16 @@ class ProofreadForm
   attribute :worker_name, :string
   attribute :person_id, :integer
   attribute :work_id, :integer
-  attribute :worker_id, :integer
+  attribute :worker_id, :string
 
+  validates :worker_id, numericality: { only_integer: true }, allow_blank: true
   validates :worker_name, presence: true
   validates :worker_kana, presence: true
   validates :email, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validate :presence_of_sub_works
+  validate :need_address
 
   attr_accessor :sub_works
 
@@ -55,14 +66,14 @@ class ProofreadForm
   end
 
   def save
-    results = []
+    proofreads = []
     Proofread.transaction do
       sub_works.each do |sub_work|
-        results << save_as_proofread!(sub_work)
+        proofreads << save_as_proofread!(sub_work)
       end
     end
 
-    results
+    proofreads
   rescue StandardError => e
     Rails.logger.error(e)
     nil
@@ -80,6 +91,12 @@ class ProofreadForm
 
   def presence_of_sub_works
     errors.add(:sub_works, :blank, message: '1つ以上選択してください') if sub_works.count < 1
+  end
+
+  def need_address
+    if address.blank? && sub_works.any? { |sub_work| sub_work.work_copy? || sub_work.work_print? }
+      errors.add(:address, :blank, message: 'を入力してくだい（底本コピー、プリントアウトが必要な場合は「送付先」が必要となります）')
+    end
   end
 
   def save_as_proofread!(sub_work)

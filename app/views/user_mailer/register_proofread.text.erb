@@ -1,0 +1,35 @@
+<%= @proofreads.first.worker_name %> 様
+
+このメールは、「<%= @proofreads.first.worker_name %>」さん名義で書き込まれた、校正申し入れの内容を確認するた
+めに、「青空文庫校正受付システム」から自動的にお送りします。
+
+――――――――――――――――――――――――――――――――――――
+
+本日、「青空文庫校正受付システム」に、以下の内容で、作品の校正申し入れがありました。
+これに誤りはないでしょうか？
+
+■申し入れの内容
+
+――――――――――
+校正者名：<%= @proofreads.first.worker_name %>
+工作員ID：<%= @proofreads.first.worker_id%>
+――――――――――
+<%- @proofreads.each do |proofread| -%>
+<%- work = proofread.work   -%>
+作品名　　　　　：<%= work.title %>
+文字遣い種別　　：<%= work.kana_type&.name %>
+著者名　　　　　：<%= work.first_author.name %>
+底本　　　　　　：「<%= work.first_teihon.title %>」<%= work.first_teihon.publisher %>
+入力に使用する版：<%= work.first_teihon.input_edition %>
+校正に使用する版：<%= proofread.proof_edition %>
+<%- end -%>
+――――――――――
+
+・青空文庫はこれから、この作品を校正していただくための準備作業を行います。
+・準備できしだい、校正用ファイルを添えて、「校正のお願い」のメールをお送りします。
+・「校正のお願い」のメールが到着してから、作業に着手してください。
+
+・申し入れ内容に誤りがあった場合、申し入れていないにもかかわらず、このメールが送られ
+てきた場合には、reception@aozora.gr.jp にご連絡をお願いします。
+・このメールの到着から4週間を過ぎて、「校正のお願い」のメールが届かなかった場合に
+も、reception@aozora.gr.jp にお問い合わせください。

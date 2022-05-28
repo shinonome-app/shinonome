@@ -2,7 +2,7 @@
   <div class="px-8 max-w-6xl mx-auto">
     <p id="notice"><%= notice %></p>
     <div class="flex justify-end text-base">
-      ●<a href="https://www.aozora.gr.jp/">トップ</a>　●<span class="text-red-500 font-semibold">入力受付システム</span>
+      ●<a href="https://www.aozora.gr.jp/" class="link-normal">トップ</a>　●<a href="/" class="link-normal">作業着手連絡システム</a>　●<span class="text-red-500 font-semibold">入力受付システム</span>
     </div>
     <div class="flex justify-center bg-yellow-100 py-3 border-t-2 border-b-2 border-gray-400">
       <h1 class="text-3xl font-semibold">入力受付システム：記入事項の確認</h1>
@@ -209,7 +209,8 @@
           <%= render PreviewFormItemComponent.new(
               form: sub_form,
               model: sub_work,
-              attribute: :kana_type_id
+              attribute: :kana_type_id,
+              value: sub_work.kana_type_name
               ) %>
           <%= render PreviewFormItemComponent.new(
               form: sub_form,
@@ -229,7 +230,8 @@
           <%= render PreviewFormItemComponent.new(
               form: sub_form,
               model: sub_work,
-              attribute: :copyright_flag
+              attribute: :copyright_flag,
+              value: sub_work.copyright_flag_name
               ) %>
         </tbody>
       </table>

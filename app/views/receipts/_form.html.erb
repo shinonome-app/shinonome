@@ -1,19 +1,5 @@
 <%= form_with(model: receipt_form, url: receipts_previews_path, data: { turbo: false }) do |form| %>
-  <% if receipt_form.errors.any? %>
-  <div id="error_explanation" class="text-red-500">
-    <h2>
-      <%= pluralize(receipt_form.errors.count, "error") %> prohibited this receipt from being saved:
-    </h2>
-    <ul>
-      <% receipt_form.errors.each do |error| %>
-      <li>
-        <%= error.full_message %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-
+  <%= render ::FormsErrorHeaderComponent.new(form: receipt_form) %>
   <h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">入力者データ</h2>
 
   <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
