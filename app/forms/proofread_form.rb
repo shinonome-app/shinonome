@@ -94,7 +94,7 @@ class ProofreadForm
   end
 
   def need_address
-    if address.blank? && sub_works.any? { |sub_work| sub_work.work_copy? || sub_work.work_print? }
+    if address.blank? && sub_works.any? { |sub_work| sub_work.work_copy? || sub_work.work_print? } # rubocop:disable Style/GuardClause, Style/IfUnlessModifier
       errors.add(:address, :blank, message: 'を入力してくだい（底本コピー、プリントアウトが必要な場合は「送付先」が必要となります）')
     end
   end

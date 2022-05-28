@@ -71,7 +71,6 @@ class Receipt < ApplicationRecord
   validates :first_pubdate, presence: true
   validates :input_edition, presence: true
 
-  validates :work_status_id, presence: true
   validates :register_status, presence: true
   validates :started_on, presence: true
 
