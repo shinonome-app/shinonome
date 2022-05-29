@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     resources :workers
     resources :exec_commands, only: %i[index new create]
 
-    resources :receipts
+    resources :receipts, only: %i[index edit update delete]
 
     resources :work_workers, only: %i[create destroy], as: :workworkers
 

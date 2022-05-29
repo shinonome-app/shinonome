@@ -66,7 +66,7 @@
       <th class="w-32 py-1 text-left">別名義</th>
       <td>
         <% if @person.original_person %>
-        <%= link_to @person.original_person.name, admin_person_path(@person.original_person) %>
+        <%= link_to @person.original_person.name, admin_person_path(@person.original_person), class: "link-normal" %>
         <% end %>
       </td>
     </tr>
@@ -76,13 +76,16 @@
     </tr>
 </table>
 
-<%= link_to '更新', edit_admin_person_path(@person) %>
-
-<%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "bg-red-300" %>
+  <div class="flex py-2">
+    <%= link_to '更新', edit_admin_person_path(@person), class: "btn-normal" %>
+    <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-normal bg-red-300" %>
+  </div>
 
 <h3 class="text-xl">人物基本名</h3>
 
-<%= link_to '関連づけ', new_admin_person_base_person_path(@person) %>
+<div class="py-4">
+  <%= link_to '関連づけ', new_admin_person_base_person_path(@person), class: "btn-normal" %>
+</div>
 
 
 <h3 class="text-xl">関連サイトデータ</h3>
@@ -112,6 +115,7 @@
   
 </table>
 
-
-<%= link_to '戻る', admin_people_path %>
+<div class="py-4">
+  <%= link_to '戻る', admin_people_path, class: "btn-normal" %>
+</div>
 </div>

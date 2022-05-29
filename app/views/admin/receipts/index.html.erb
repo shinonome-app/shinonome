@@ -23,9 +23,13 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= receipt.created_at.strftime("%Y-%m-%d") %></td>
-        <td><%= link_to receipt.title, edit_admin_receipt_path(receipt) %></td>
-        <td><%= receipt.kana_type.name %></td>
-        <td><%= receipt.name %> (<%= link_to receipt.person_id, admin_person_path(id: receipt.person_id) %>)</td>
+        <td><%= link_to receipt.title, edit_admin_receipt_path(receipt), class: "link-normal" %></td>
+        <td><%= receipt.kana_type&.name %></td>
+        <% if receipt.person_id.present? %>
+        <td><%= receipt.name %> (<%= link_to receipt.person_id, admin_person_path(id: receipt.person_id), class: "link-normal" %>)</td>
+        <% else %>
+        <td><%= receipt.name %> (<%= receipt.person_id %>)</td>
+        <% end %>
         <td><%= receipt.worker_name %></td>
         <td><span class="text-red-500"><%= receipt.status_name %></span></td>
       </tr>

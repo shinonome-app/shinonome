@@ -9,10 +9,12 @@
       </ul>
     </div>
     <% end %>
+
     <h2 class="text-xl">【作品データ】</h2>
+
     <table class="w-full">
       <tr>
-        <th>項目名</th>
+        <th class="w-48">項目名</th>
         <th>入力データ</th>
       </tr>
       <tr>
@@ -30,14 +32,6 @@
       <tr>
         <th><%= form.label :subtitle %></th>
         <td><%= form.text_field :subtitle, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :collection_kana %></th>
-        <td><%= form.text_field :collection_kana, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-      <th><%= form.label :collection %></th>
-      <td><%= form.text_field :collection, class: "w-full p-1" %></td>
       </tr>
       <tr>
         <th><%= form.label :original_title %></th>
@@ -69,99 +63,138 @@
       </tr>
       <tr>
         <th><%= form.label :copyright_flag %></th>
-        <td><%= form.check_box :copyright_flag %></td>
+        <td><%= form.select :copyright_flag, [["なし", "0"], ["あり", "1"]] %></td>
       </tr>
     </table>
 
-  <div class="field">
-    <%= form.label :last_name_kana %>
-    <%= form.text_area :last_name_kana %>
-  </div>
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_area :last_name %>
-  </div>
-  <div class="field">
-    <%= form.label :last_name_en %>
-    <%= form.text_area :last_name_en %>
-  </div>
-  <div class="field">
-    <%= form.label :first_name_kana %>
-    <%= form.text_area :first_name_kana %>
-  </div>
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_area :first_name %>
-  </div>
-  <div class="field">
-    <%= form.label :first_name_en %>
-    <%= form.text_area :first_name_en %>
-  </div>
-  <div class="field">
-    <%= form.label :person_note %>
-    <%= form.text_area :person_note %>
-  </div>
-  <div class="field">
-    <%= form.label :worker_kana %>
-    <%= form.text_area :worker_kana %>
-  </div>
-  <div class="field">
-    <%= form.label :worker_name %>
-    <%= form.text_area :worker_name %>
-  </div>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_area :email %>
-  </div>
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_area :url %>
-  </div>
-  <div class="field">
-    <%= form.label :original_book_title %>
-    <%= form.text_area :original_book_title %>
-  </div>
-  <div class="field">
-    <%= form.label :publisher %>
-    <%= form.text_area :publisher %>
-  </div>
-  <div class="field">
-    <%= form.label :first_pubdate %>
-    <%= form.text_area :first_pubdate %>
-  </div>
-  <div class="field">
-    <%= form.label :input_edition %>
-    <%= form.text_area :input_edition %>
-  </div>
-  <div class="field">
-    <%= form.label :original_book_title2 %>
-    <%= form.text_area :original_book_title2 %>
-  </div>
-  <div class="field">
-    <%= form.label :publisher2 %>
-    <%= form.text_area :publisher2 %>
-  </div>
-  <div class="field">
-    <%= form.label :first_pubdate2 %>
-    <%= form.text_area :first_pubdate2 %>
-  </div>
-  <div class="field">
-    <%= form.label :person_id %>
-    <%= form.text_area :person_id %>
-  </div>
-  <div class="field">
-    <%= form.label :worker_id %>
-    <%= form.text_area :worker_id %>
-  </div>
-  <div class="field">
-    <%= form.label :register_status %>
-    <%= form.number_field :register_status %>
-  </div>
-  <div class="field">
-    <%= form.label :original_book_note %>
-    <%= form.text_area :original_book_note %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <hr class="border-1 my-4">
+
+    <h2 class="text-xl">【著者データ】</h2>
+
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th><%= form.label :person_id %></th>
+        <td><%= form.text_field :person_id, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name_kana %></th>
+        <td><%= form.text_field :last_name_kana, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name %></th>
+        <td><%= form.text_field :last_name, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name_en %></th>
+        <td><%= form.text_field :last_name_en, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name_kana %></th>
+        <td><%= form.text_field :first_name_kana, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name %></th>
+        <td><%= form.text_field :first_name, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name_en %></th>
+        <td><%= form.text_field :first_name_en, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :person_note %></th>
+        <td><%= form.text_area :person_note, class: "w-full p-1"  %></td>
+      </tr>
+    </table>
+
+    <hr class="border-1 my-4">
+
+    <h2 class="text-xl">【入力者データ】</h2>
+
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th><%= form.label :worker_kana %></th>
+        <td><%= form.text_field :worker_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :worker_name %></th>
+        <td><%= form.text_field :worker_name, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :email %></th>
+        <td><%= form.text_field :email, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :url %></th>
+        <td><%= form.text_field :url, class: "w-full p-1" %></td>
+      </tr>
+    </table>
+
+    <ul>
+      <li>上記の内容で工作員を新規登録する</li>
+      <li> 一時的に予備工作員に関連付ける</li>
+    </ul>
+
+    <hr class="border-1 my-4">
+
+    <h2 class="text-xl">【底本データ】</h2>
+
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th><%= form.label :original_book_title %></th>
+        <td><%= form.text_field :original_book_title, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :publisher %></th>
+        <td><%= form.text_field :publisher, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_pubdate %></th>
+        <td><%= form.text_field :first_pubdate, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :input_edition %></th>
+        <td><%= form.text_field :input_edition, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :original_book_note %></th>
+        <td><%= form.text_area :original_book_note, class: "w-full p-1", rows: "15" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :original_book_title2 %></th>
+        <td><%= form.text_field :original_book_title2, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :publisher2 %></th>
+        <td><%= form.text_field :publisher2, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_pubdate2 %></th>
+        <td><%= form.text_field :first_pubdate2, class: "w-full p-1" %></td>
+      </tr>
+    </table>
+
+    <hr class="border-1 my-4">
+
+    <ul>
+      <li>「入力のお願い」メールを送信しない。</li>
+      <li>青空文庫にCCする。</li>
+    </ul>
+
+    <hr class="border-1 my-4">
+
+    <%= form.submit '登録', class: "btn-normal" %>
+    <%= form.submit '戻る', class: "btn-normal" %>
+    <%= form.submit '削除', class: "btn-normal" %>
 <% end %>
