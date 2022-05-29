@@ -82,14 +82,14 @@ class ReceiptForm
 
   attr_accessor :sub_works
 
-  def add_work
+  def add_work(work)
     self.sub_works ||= []
-    self.sub_works << SubWork.new
+    self.sub_works << work
 
     self.sub_works
   end
 
-  def remove_work(work_num)
+  def remove_work_at(work_num)
     pos = work_num.to_i
     self.sub_works.delete_at(pos)
   end

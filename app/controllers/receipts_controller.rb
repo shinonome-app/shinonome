@@ -11,19 +11,19 @@ class ReceiptsController < ApplicationController
   # GET /receipts/new
   def new
     @receipt_form = ReceiptForm.new
-    @receipt_form.add_work
+    @receipt_form.add_work(ReceiptForm::SubWork.new)
   end
 
   def new_add_work
     @receipt_form = ReceiptForm.new(receipt_params)
-    @receipt_form.add_work
+    @receipt_form.add_work(ReceiptForm::SubWork.new)
 
     render :new
   end
 
   def new_remove_work
     @receipt_form = ReceiptForm.new(receipt_params)
-    @receipt_form.remove_work(params[:work_num])
+    @receipt_form.remove_work_at(params[:work_num])
 
     render :new
   end
