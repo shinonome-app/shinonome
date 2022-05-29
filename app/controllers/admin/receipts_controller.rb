@@ -7,7 +7,7 @@ module Admin
 
     # GET /admin/receipts
     def index
-      @receipts = Receipt.all
+      @receipts = Receipt.all.order(id: :desc)
     end
 
     # GET /admin/receipts/1
