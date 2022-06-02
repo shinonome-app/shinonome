@@ -27,7 +27,8 @@ module Admin
       @workfile.user = current_admin_user
       @workfile.filename = @workfile.workdata.filename
 
-      if @workfile.save
+      if @workfile.valid?
+        @workfile.save!
         redirect_to [:admin, @workfile.work], notice: 'Workfile was successfully created.'
       else
         render :new, status: :unprocessable_entity

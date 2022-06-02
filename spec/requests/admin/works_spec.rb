@@ -42,8 +42,8 @@ RSpec.describe '/admin/works', type: :request do
   end
 
   let(:user) { create(:user, email: 'user2@example.com', username: 'user2') }
-  let(:kana_type) { create(:kana_type) }
-  let(:work_status) { create(:work_status) }
+  let(:kana_type) { KanaType.find(1) }
+  let(:work_status) { WorkStatus.find(1) }
 
   before { sign_in(user) }
 
@@ -73,7 +73,7 @@ RSpec.describe '/admin/works', type: :request do
   end
 
   describe 'GET /admin/works/edit' do
-    let(:work) { create(:work) }
+    let(:work) { create(:work, user: user) }
 
     it 'render a successful response' do
       get edit_admin_work_url(work)
@@ -110,7 +110,7 @@ RSpec.describe '/admin/works', type: :request do
   end
 
   describe 'PATCH /admin/works/update' do
-    let!(:work) { create(:work) }
+    let!(:work) { create(:work, user: user) }
 
     context 'with valid parameters' do
       let(:new_attributes) do
@@ -148,7 +148,7 @@ RSpec.describe '/admin/works', type: :request do
   end
 
   describe 'DELETE /admin/works/destroy' do
-    let!(:work) { create(:work) }
+    let!(:work) { create(:work, user: user) }
 
     it 'destroys the requested work' do
       expect do

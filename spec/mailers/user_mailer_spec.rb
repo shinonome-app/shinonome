@@ -5,15 +5,14 @@ require 'rails_helper'
 RSpec.describe UserMailer, type: :mailer do
   describe 'register_receipt' do
     let(:receipt) { create(:receipt) }
-    let(:booklist) do
-      "作品名　　　　　：#{receipt.title}\n" \
-        "文字遣い種別　　：#{receipt.kana_type&.name}\n"
+    let(:sub_works) do
+      [build(:receipt_form_sub_work)]
     end
-    let(:mail) { described_class.register_receipt(receipt, booklist) }
+    let(:mail) { described_class.register_receipt(receipt, sub_works) }
 
     it 'renders the headers' do # rubocop:disable RSpec/MultipleExpectations
-      expect(mail.subject).to eq('Register receipt')
-      expect(mail.to).to eq(['takahashimm+admin@gmail.com'])
+      expect(mail.subject).to eq('「作品その一」他の入力受付完了のお知らせ')
+      expect(mail.to).to eq(['sample@example.com'])
       expect(mail.from).to eq(['from@example.com'])
     end
 

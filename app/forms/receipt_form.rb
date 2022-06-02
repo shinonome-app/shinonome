@@ -4,6 +4,7 @@
 class ReceiptForm
   include ActiveModel::Model
   include ActiveModel::Attributes
+  include ActiveModel::Validations::Callbacks
 
   # 入力受付作品情報
   class SubWork
@@ -66,9 +67,10 @@ class ReceiptForm
   attribute :first_name, :string
   attribute :person_note, :string
 
+  before_validation :set_worker_info
+
   validates :worker_kana, presence: true
   validates :worker_name, presence: true
-  validates :email, presence: true
 
   validates :last_name_kana, presence: true
   validates :last_name, presence: true
@@ -79,6 +81,13 @@ class ReceiptForm
   validates :input_edition, presence: true
 
   validate :sub_works_are_valid
+  validate :email_is_valid
+
+  def already_registered_works
+    sub_works.find_all do |sub_work|
+      Work.where(kana_type_id: sub_work.kana_type_id, title: sub_work.title).count > 0
+    end
+  end
 
   attr_accessor :sub_works
 
@@ -98,8 +107,14 @@ class ReceiptForm
     errors.add(:sub_works, I18n.t('errors.messages.invalid')) if sub_works.any?(&:invalid?)
   end
 
+  def email_is_valid
+    errors.add(:email, :blank) if worker_id.blank? && email.blank?
+  end
+
   def save
     return false if invalid?
+
+    set_email
 
     receipts = []
 
@@ -124,6 +139,22 @@ class ReceiptForm
   end
 
   private
+
+  def set_worker_info
+    if worker_id.present? # rubocop:disable Style/GuardClause
+      worker = Worker.find(worker_id)
+      self.worker_name = worker.name
+      self.worker_kana = worker.name_kana
+      self.email = ''
+    end
+  end
+
+  def set_email
+    if worker_id.present? # rubocop:disable Style/GuardClause
+      worker_secret = WorkerSecret.find_by(worker_id: worker_id)
+      self.email = worker_secret.email
+    end
+  end
 
   def create_receipt!(sub_work)
     Receipt.create!(

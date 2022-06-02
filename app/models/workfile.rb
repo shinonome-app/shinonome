@@ -48,7 +48,12 @@ class Workfile < ApplicationRecord
 
   has_one_attached :workdata if defined?(ActiveStorage)
 
+  before_validation :set_filename
   validates :filename, presence: true
+  validates :filetype_id, numericality: { only_integer: true }
+  validates :charset_id, numericality: { only_integer: true }
+  validates :compresstype_id, numericality: { only_integer: true }
+  validates :file_encoding_id, numericality: { only_integer: true }
 
   def html?
     filetype&.html?
@@ -61,5 +66,11 @@ class Workfile < ApplicationRecord
             filetype&.extension
           end
     "#{work.id}_ruby_#{id}.#{ext}"
+  end
+
+  private
+
+  def set_filename
+    self.filename = filename
   end
 end

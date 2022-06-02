@@ -240,6 +240,14 @@
     <% end %>
     <% end %>
 
+    <%- if @receipt_form.already_registered_works.present? -%>
+    <%-   registered_works_title = @receipt_form.already_registered_works.map(&:title).join('」「') -%>
+    <div class="bg-red-300 w-full">
+      <p>作品「<%= registered_works_title %>」は同じ作家による、同一タイトル、同一仮名遣いの作品が、すでに登録されています。</p>
+      <p>「<a href="http://aozora.gr.jp/index_pages/index_top.html" target="_blank">総合インデックス」</a>の「公開中の作品」と「入力中の作品」をチェックして、あなたが申し込もうとしている作品が、すでにあるものと同じではないことを確認してください。</p>
+    </div>
+    <% end %>
+
     <div>
       <p>入力内容に間違いがないことを確認して、「登録」ボタンを押してください。</p>
       <p>入力内容を修正したいときは、「戻る」ボタンを押して前画面に戻ってください。</p>

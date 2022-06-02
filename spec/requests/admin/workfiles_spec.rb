@@ -47,12 +47,12 @@ RSpec.describe '/workfiles', type: :request do
   end
 
   let(:work) { create(:work) }
-  let(:filetype) { create(:filetype) }
+  let(:filetype) { Filetype.find(2) }
   let(:admin) { create(:user, email: 'admin1@example.com', username: 'admin1') }
   let(:user) { create(:user) }
-  let(:charset) { create(:charset) }
-  let(:compresstype) { create(:compresstype) }
-  let(:file_encoding) { create(:file_encoding) }
+  let(:charset) { Charset.find(1) }
+  let(:compresstype) { Compresstype.find(1) }
+  let(:file_encoding) { FileEncoding.find(1) }
   let(:workdata) { fixture_file_upload 'zip/sample.zip' }
 
   before { sign_in(admin) }
