@@ -35,7 +35,7 @@ FactoryBot.define do
     first_pubdate { 'MyText' }
     input_edition { 'MyText' }
     proof_edition { 'MyText' }
-    worktype_id { 'MyText' }
+    worktype_id { 1 }
     note { 'MyText' }
   end
 end

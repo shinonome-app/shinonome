@@ -33,8 +33,9 @@ class CreateReceipts < ActiveRecord::Migration[6.1]
       t.text :original_book_title2
       t.text :publisher2
       t.text :first_pubdate2
-      t.text :person_id
-      t.text :worker_id
+      t.bigint :person_id
+      t.bigint :worker_id
+      t.bigint :work_id
       t.integer :register_status, default: 0
       t.text :original_book_note
       t.references :work_status, foreign_key: true, null: false

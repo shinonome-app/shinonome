@@ -11,7 +11,7 @@ kana_types = {
 # exist successfully if already created
 if KanaType.count.positive?
   warn 'Seeds have already been created.'
-  exit
+  return
 end
 
 # KanaType.connection.execute('TRUNCATE TABLE kana_types;')
@@ -131,11 +131,14 @@ worktypes.each do |k, v|
   Worktype.create!(id: k, name: v)
 end
 
-require_relative 'seeds/users'
-require_relative 'seeds/news_entries'
-require_relative 'seeds/workers'
-require_relative 'seeds/people'
-require_relative 'seeds/receipts'
-require_relative 'seeds/works'
-require_relative 'seeds/sites'
-require_relative 'seeds/workfiles'
+if Rails.env.development?
+  require_relative 'seeds/users'
+  require_relative 'seeds/news_entries'
+  require_relative 'seeds/workers'
+  require_relative 'seeds/people'
+  require_relative 'seeds/receipts'
+  require_relative 'seeds/works'
+  require_relative 'seeds/sites'
+  require_relative 'seeds/workfiles'
+end
+

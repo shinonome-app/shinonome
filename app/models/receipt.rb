@@ -40,9 +40,10 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  kana_type_id         :text
-#  person_id            :text
+#  person_id            :bigint
+#  work_id              :bigint
 #  work_status_id       :bigint           not null
-#  worker_id            :text
+#  worker_id            :bigint
 #
 # Indexes
 #
@@ -57,6 +58,9 @@
 class Receipt < ApplicationRecord
   belongs_to :kana_type, optional: true
   belongs_to :work_status
+  belongs_to :worker, optional: true
+  belongs_to :work, optional: true
+  belongs_to :person, optional: true
 
   validates :title_kana, presence: true
   validates :title, presence: true

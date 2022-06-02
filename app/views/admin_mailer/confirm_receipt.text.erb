@@ -1,0 +1,38 @@
+<%= @worker.name %> 様
+
+青空文庫は、以下の内容で入力申し入れのあった作品を、入力していただけることを確認しました。
+
+■申し入れの内容
+
+――――――――――
+入力者名：<%= @worker.name %>
+工作員ID：<%= @worker.id %>
+――――――――――
+作品名　　　　　：<%= @work.title %>
+仮名遣い種別　　：<%= @work.kana_type_name %>
+著者名　　　　　：<%= @work.author_text %>
+底本　　　　　　：「<%= @work.first_teihon.title %>」<%= @work.first_teihon.publisher %>
+入力に使用する版：<%= @work.first_teihon.input_edition %>
+――――――――――
+
+・入力作業に、着手してください。
+
+・「<%= @worker.name %>」さんがこの作品の入力に着手したことは、「総合インデックス」の「作業
+中の作品」（「作家別」「作品別」の双方）に、明日以降、記載されます。
+https://www.aozora.gr.jp/index_pages/index_top.html
+
+・申し入れの内容や「総合インデックス」の記載内容に誤りがあった場合、入力の申し入れを
+していないにもかかわらず、このメールが送られてきた場合には、reception@aozora.gr.jp にご連
+絡をお願いいたします。
+
+・数日を経ても「総合インデックス」に記載されなかった場合にも、reception@aozora.gr.jp にお
+問い合わせください。
+
+・作業途中で「やりとげられない」と思ったときには、遠慮なく reception@aozora.gr.jp に、入
+力取消を申し入れてください。
+
+・入力作業が完了したら、圧縮したファイルをメールに添付して、reception@aozora.gr.jp 宛に送
+ってください。
+
+・「<%= @worker.name %>」さんの工作員IDは、<%= @worker.id %>です。IDを記入すると、入力、校正の申し入
+れ作業を簡単に進めることができます。

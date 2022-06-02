@@ -43,8 +43,8 @@
 FactoryBot.define do
   factory :work do
     user
-    kana_type
-    work_status
+    kana_type_id { 1 }
+    work_status_id { 1 }
     title { 'MyText' }
     title_kana { 'MyText' }
     subtitle { 'MyText' }
@@ -62,5 +62,9 @@ FactoryBot.define do
     orig_text { 'MyText' }
     updated_at { '2021-04-29 20:43:01' }
     sortkey { 'MyText' }
+
+    trait :teihon do
+      original_book
+    end
   end
 end

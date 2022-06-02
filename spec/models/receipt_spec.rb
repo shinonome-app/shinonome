@@ -40,9 +40,10 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  kana_type_id         :text
-#  person_id            :text
+#  person_id            :bigint
+#  work_id              :bigint
 #  work_status_id       :bigint           not null
-#  worker_id            :text
+#  worker_id            :bigint
 #
 # Indexes
 #

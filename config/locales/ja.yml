@@ -162,6 +162,9 @@ ja:
     header_message:
       one: "%{count}件のエラーが見つかりました"
       other: "%{count}件のエラーが見つかりました"
+  admin_mailer:
+    confirm_receipt:
+      subject: "「%{title}」入力のお願い"
   user_mailer:
     register_receipt:
       subject:

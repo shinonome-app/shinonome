@@ -40,9 +40,10 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  kana_type_id         :text
-#  person_id            :text
+#  person_id            :bigint
+#  work_id              :bigint
 #  work_status_id       :bigint           not null
-#  worker_id            :text
+#  worker_id            :bigint
 #
 # Indexes
 #
@@ -55,6 +56,8 @@
 
 FactoryBot.define do
   factory :receipt do
+    person
+    worker
     title_kana { 'さくひんそのいち' }
     title { '作品その一' }
     subtitle_kana { 'ふくだいそのに' }
@@ -81,10 +84,11 @@ FactoryBot.define do
     original_book_title2 { 'MyText' }
     publisher2 { 'MyText' }
     first_pubdate2 { 'MyText' }
-    person_id { 10 }
-    worker_id { 11 }
     register_status { 1 }
     original_book_note { 'MyText' }
-    work_status
+
+    trait :work do
+      work
+    end
   end
 end

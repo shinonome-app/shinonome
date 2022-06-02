@@ -211,8 +211,9 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
     t.text "original_book_title2"
     t.text "publisher2"
     t.text "first_pubdate2"
-    t.text "person_id"
-    t.text "worker_id"
+    t.bigint "person_id"
+    t.bigint "worker_id"
+    t.bigint "work_id"
     t.integer "register_status", default: 0
     t.text "original_book_note"
     t.bigint "work_status_id", null: false

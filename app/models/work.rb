@@ -103,6 +103,10 @@ class Work < ApplicationRecord
     work_people.where(role_id: 1).first.person
   end
 
+  def kana_type_name
+    kana_type&.name
+  end
+
   def card_person_id
     format('%06d', first_author.id)
   end

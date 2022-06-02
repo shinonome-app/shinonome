@@ -68,6 +68,10 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include RequestSpecHelper, type: :request
   config.include FactoryBot::Syntax::Methods
+
+  config.before(:suite) do
+    Rails.application.load_seed # loading seeds
+  end
 end
 
 # rubocop:enable Style/FrozenStringLiteralComment
