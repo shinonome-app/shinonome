@@ -1,19 +1,36 @@
-<h1>工作員一覧</h1>
-<p><%= @pagy.count %>件の工作員が見つかりました</p>
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+  <div class="px-8 max-w-6xl mx-auto">
+    <a name="top">&nbsp;</a>
 
-<table>
-  <thead>
-    <th>工作員ID</th>
-    <th>姓名</th>
-  </thead>
-  <tbody>
-    <% @workers.each do |worker| %>
-    <tr>
-      <td><%= worker.id %></td>
-      <td><%= worker.name %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <h1 class="flex justify-center py-3 text-3xl font-semibold bg-yellow-100 border-t-2 border-b-2 border-gray-400">工作員一覧</h1>
 
-<%== pagy_nav(@pagy) %>
+    <div class="py-4">
+      <p><%= @pagy.count %>件の工作員が見つかりました</p>
+    </div>
+
+    <div class="w-3/5 items-center">
+      <div class="w-full">
+        <p class="w-full text-right"><%== pagy_nav(@pagy) %></p>
+      </div>
+
+      <table class="border-double border-2 border-gray-800 table-fixed mx-12 py-4 w-full">
+        <thead>
+          <th class="w-24 border-double border-2 border-gray-800 bg-violet-200 text-left">工作員ID</th>
+          <th class="border-double border-2 border-gray-800 bg-violet-200 text-left">姓名</th>
+        </thead>
+        <tbody>
+          <% @workers.each do |worker| %>
+          <tr class="border-double border-2 border-gray-800">
+            <td class="border-double border-2 border-gray-800 bg-white"><%= worker.id %></td>
+            <td class="border-double border-2 border-gray-800 bg-white"><%= worker.name %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="w-full">
+        <p class="w-full text-right"><%== pagy_nav(@pagy) %></p>
+      </div>
+    </div>
+  </div>
+</div>

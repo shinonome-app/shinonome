@@ -1,34 +1,48 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+<div class="justify-center items-center bg-blue-50 content-center w-screen">
+  <div class="px-8 max-w-6xl mx-auto">
+    <a name="top">&nbsp;</a>
 
-  <h1>ID一覧インデックス</h1>
+    <h1 class="flex justify-center py-3 text-3xl font-semibold bg-yellow-100 border-t-2 border-b-2 border-gray-400">ID一覧インデックス</h1>
 
-  <div class="flex">
+    <div class="flex py-4">
+      <div class="flex w-1/2">
+      <table class="border-double border-2 border-gray-800 table-fixed w-full items-center mx-12" summary="作家別インデックス" >
+        <tr class="w-770 border-double border-2 border-gray-800">
+          <th colspan="5" class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white text-xl">人物ID一覧</th>
+        </tr>
+        <% Person::PERSON_ID_TABLE.each do |person_row| %>
+        <tr class="border-double border-2 border-gray-800 text-center">
+          <% person_row.each do |person_col| %>
+          <td class="border-double border-2 border-gray-800 bg-yellow-50">
+            <%= person_col ? link_to(person_col, idlists_people_path(key:person_col), class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline") : '' %>
+          </td>
+          <% end %>
+        </tr>
+        <% end %>
+      </table>
+      </div>
 
-  <table>
-    <tr>
-      <th colspan="5">人物ID一覧</th>
-    </tr>
-    <% Person::PERSON_ID_TABLE.each do |person_row| %>
-    <tr>
-      <% person_row.each do |person_col| %>
-      <td><%= person_col ? link_to(person_col, idlists_people_path(key:person_col)) : '' %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </table>
+      <div class="flex w-1/2">
+        <table class="border-double border-2 border-gray-800 table-fixed w-full items-center mx-12" summary="作家別インデックス" >
+          <tr class="w-770 border-double border-2 border-gray-800">
+            <th colspan="5" class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white text-xl">工作員ID一覧</th>
+          </tr>
+          <% Worker::PERSON_ID_TABLE.each do |worker_row| %>
+          <tr class="border-double border-2 border-gray-800 text-center">
+            <% worker_row.each do |worker_col| %>
+            <td class="border-double border-2 border-gray-800 bg-yellow-50">
+              <%= worker_col ? link_to(worker_col, idlists_workers_path(key:worker_col), class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline") : '' %>
+            </td>
+            <% end %>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
 
-  <table>
-    <tr>
-      <th colspan="5">工作員ID一覧</th>
-    </tr>
-    <% Worker::PERSON_ID_TABLE.each do |worker_row| %>
-    <tr>
-      <% worker_row.each do |worker_col| %>
-      <td><%= worker_col ? link_to(worker_col, idlists_workers_path(key:worker_col)) : '' %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </table>
-
+    <div class="bg-yellow-100 border-2 border-double border-gray-800 p-2 my-8">
+      <p>工作員名の読みがなが不明の場合、五十音別の一覧に掲載されていないことがあります。</p>
+      <p>これまでに作業をしていただいているにもかかわらず、IDが掲載されていない場合は、「全て」を選んで探してみてください。</p>
+    </div>
   </div>
 </div>

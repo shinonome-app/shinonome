@@ -1,19 +1,42 @@
-<h1>人物一覧</h1>
-<p><%= @pagy.count %>件の人物が見つかりました</p>
+<div class="justify-center items-center bg-blue-100 content-center w-screen">
+  <div class="px-8 max-w-6xl mx-auto">
+    <a name="top">&nbsp;</a>
 
-<table>
-  <thead>
-    <th>人物ID</th>
-    <th>姓名</th>
-  </thead>
-  <tbody>
-    <% @people.each do |person| %>
-    <tr>
-      <td><%= person.id %></td>
-      <td><%= person.name %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <h1 class="flex justify-center py-3 text-3xl font-semibold bg-yellow-100 border-t-2 border-b-2 border-gray-400">人物一覧</h1>
 
-<%== pagy_nav(@pagy) %>
+    <div class="py-4">
+      <p><%= @pagy.count %>件の人物が見つかりました。</p>
+    </div>
+
+    <div class="py-4">
+      <p>
+        新字／旧字表記の同一人物名に異なったIDが割り振られている場合は、新字のIDを選んでください。<br />
+        芥川竜之介(879)／芥川龍之介(15)では、879を選びます。<br />
+        与謝野晶子(885)／與謝野晶子(132)では、885を選びます。
+      </p>
+    </div>
+
+    <div class="w-3/5 items-center">
+      <div class="inset-x-0 top-0 w-full">
+        <p class="w-full text-right"><%== pagy_nav(@pagy) %></p>
+      </div>
+
+      <table class="border-double border-2 border-gray-800 table-fixed mx-12 py-4 w-full">
+        <thead>
+          <th class="w-24 border-double border-2 border-gray-800 bg-violet-200 text-left">人物ID</th>
+          <th class="border-double border-2 border-gray-800 bg-violet-200 text-left">姓名</th>
+        </thead>
+        <tbody>
+          <% @people.each do |person| %>
+          <tr class="border-double border-2 border-gray-800">
+            <td class="border-double border-2 border-gray-800 bg-white"><%= person.id %></td>
+            <td class="border-double border-2 border-gray-800 bg-white"><%= person.name %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p class="text-left w-full"><%== pagy_nav(@pagy) %></p>
+    </div>
+  </div>
+</div>
