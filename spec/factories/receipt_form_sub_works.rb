@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :receipt_form_sub_work, class: 'ReceiptForm::SubWork' do
     title_kana { 'くものいと' }

@@ -14,7 +14,7 @@
 
 module Shinonome
   # コマンド実行用
-  class ExecCommand < ApplicationRecord # rubocop:disable Metrics/ClassLength
+  class ExecCommand < ApplicationRecord
     self.table_name = :exec_commands
 
     class Error < RuntimeError

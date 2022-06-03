@@ -141,4 +141,3 @@ if Rails.env.development?
   require_relative 'seeds/sites'
   require_relative 'seeds/workfiles'
 end
-
