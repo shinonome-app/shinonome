@@ -4,6 +4,7 @@
 class ProofreadForm
   include ActiveModel::Model
   include ActiveModel::Attributes
+  include ActiveModel::Validations::Callbacks
 
   # 底本コピー、プリントアウト等入力用
   class SubWork
@@ -46,11 +47,13 @@ class ProofreadForm
   attribute :work_id, :integer
   attribute :worker_id, :string
 
+  before_validation :set_worker_info
+
   validates :worker_id, numericality: { only_integer: true }, allow_blank: true
   validates :worker_name, presence: true
   validates :worker_kana, presence: true
-  validates :email, presence: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, presence: true, if: ->(proofread) { proofread.worker_id.blank? }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, if: ->(proofread) { proofread.email.present? }
 
   validate :presence_of_sub_works
   validate :need_address
@@ -66,6 +69,10 @@ class ProofreadForm
   end
 
   def save
+    return false if invalid?
+
+    set_email
+
     proofreads = []
     Proofread.transaction do
       sub_works.each do |sub_work|
@@ -88,6 +95,22 @@ class ProofreadForm
   end
 
   private
+
+  def set_worker_info
+    if worker_id.present? # rubocop:disable Style/GuardClause
+      worker = Worker.find(worker_id)
+      self.worker_name = worker.name
+      self.worker_kana = worker.name_kana
+      self.email = ''
+    end
+  end
+
+  def set_email
+    if worker_id.present? # rubocop:disable Style/GuardClause
+      worker_secret = WorkerSecret.find_by(worker_id: worker_id)
+      self.email = worker_secret.email
+    end
+  end
 
   def presence_of_sub_works
     errors.add(:sub_works, :blank, message: '1つ以上選択してください') if sub_works.count < 1
