@@ -12,6 +12,9 @@
     .field_with_errors {
         /* @apply p-1 bg-red-300 table; */
     }
+    .btn-admin-normal {
+        @apply w-full inline-flex justify-center rounded-md px-12 py-2 bg-blue-500 text-white hover:text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm;
+    }
 }
 
 @import "./pagy.css"
