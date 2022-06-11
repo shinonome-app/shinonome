@@ -162,6 +162,10 @@ ja:
     header_message:
       one: "%{count}件のエラーが見つかりました"
       other: "%{count}件のエラーが見つかりました"
+    command_parser:
+      invalid_format: "サポートされていないフォーマットです。カンマ区切りかタブ区切りにしてください。"
+      invalid_work_id: "作品ID'%{work_id}'は正しいIDではありません。作品IDは数値にしてください。"
+      invalid_command: "コマンド名'%{name}'は正しいコマンドではありません。"
   admin_mailer:
     confirm_receipt:
       subject: "「%{title}」入力のお願い"
