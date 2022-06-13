@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class AddBibclass < ExecCommand::Base
+    class AddBibclass
     end
   end
 end

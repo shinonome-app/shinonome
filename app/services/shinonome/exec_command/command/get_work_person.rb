@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class GetWorkPerson < ExecCommand::Base
+    class GetWorkPerson
     end
   end
 end

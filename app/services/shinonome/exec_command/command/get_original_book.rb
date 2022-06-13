@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class GetOriginalBook < ExecCommand::Base
+    class GetOriginalBook
     end
   end
 end

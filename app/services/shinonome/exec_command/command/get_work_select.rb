@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class GetWorkSelect < ExecCommand::Base
+    class GetWorkSelect
     end
   end
 end

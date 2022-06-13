@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class AddSite < ExecCommand::Base
+    class AddSite
     end
   end
 end

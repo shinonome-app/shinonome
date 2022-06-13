@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class AddPerson < ExecCommand::Base
+    class AddPerson
     end
   end
 end

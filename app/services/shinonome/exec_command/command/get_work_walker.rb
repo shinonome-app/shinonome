@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class GetWorkWalker < ExecCommand::Base
+    class GetWorkWalker
     end
   end
 end

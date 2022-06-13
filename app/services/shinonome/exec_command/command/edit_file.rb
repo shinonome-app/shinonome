@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class EditFile < ExecCommand::Base
+    class EditFile
     end
   end
 end

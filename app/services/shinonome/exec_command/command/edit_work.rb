@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class EditWork < ExecCommand::Base
+    class EditWork
     end
   end
 end

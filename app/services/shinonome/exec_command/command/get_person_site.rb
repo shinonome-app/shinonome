@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class GetPersonSite < ExecCommand::Base
+    class GetPersonSite
     end
   end
 end

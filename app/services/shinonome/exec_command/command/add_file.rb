@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class AddFile < ExecCommand::Base
+    class AddFile
     end
   end
 end

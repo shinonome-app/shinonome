@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class DeleteBibclass < ExecCommand::Base
+    class DeleteBibclass
     end
   end
 end

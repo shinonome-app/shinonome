@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class GetFile < ExecCommand::Base
+    class GetFile
     end
   end
 end
