@@ -52,8 +52,10 @@ jobs:
         DATABASE_USERNAME: postgres
         DATABASE_PASSWORD: postgres
         DATABASE_HOST: localhost
-    - name: yarn build
-      run:  yarn build
+    - name: build JS, CSS
+      run:  |
+        yarn build
+        bundle exec rails tailwindcss:build
     - name: Run rspec
       run: |
         bundle exec rspec
