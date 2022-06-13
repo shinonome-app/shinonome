@@ -55,7 +55,9 @@ jobs:
     - name: yarn build
       run:  yarn build
     - name: Run rspec
-      run: bundle exec rake
+      run: |
+        bundle exec rspec
+        bundle exec rspec --only-failures
       env:
         RAILS_ENV: test
         DATABASE_USERNAME: postgres
