@@ -2,14 +2,14 @@
 
 module Shinonome
   class ExecCommand
-    class CommandParser
+    class CommandParser # rubocop:disable Style/Documentation
       class FormatError < StandardError
       end
 
       FORMATS = %i[tsv csv].freeze
 
       def parse(command_text, format: :tsv)
-        commands = parse_text(command_text)
+        parse_text(command_text, format: format)
       end
 
       def parse_text(command_text, format:)

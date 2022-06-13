@@ -2,7 +2,7 @@
 
 module Shinonome
   class ExecCommand
-    class Command
+    class Command # rubocop:disable Style/Documentation
       COMMAND_NAMES = {
         add_work: '作品新規',
         add_original_book: '底本追加',
