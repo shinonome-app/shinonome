@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class GetPerson
+    class Command
+      class GetPerson
+      end
     end
   end
 end

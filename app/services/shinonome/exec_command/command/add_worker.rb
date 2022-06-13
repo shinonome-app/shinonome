@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class AddWorker
+    class Command
+      class AddWorker
+      end
     end
   end
 end

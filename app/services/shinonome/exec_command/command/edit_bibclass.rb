@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class EditBibclass
+    class Command
+      class EditBibclass
+      end
     end
   end
 end

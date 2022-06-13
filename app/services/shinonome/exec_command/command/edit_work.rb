@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class EditWork
+    class Command
+      class EditWork
+      end
     end
   end
 end

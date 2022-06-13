@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class DeleteSite
+    class Command
+      class DeleteSite
+      end
     end
   end
 end

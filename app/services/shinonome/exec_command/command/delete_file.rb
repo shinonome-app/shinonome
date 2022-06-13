@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class DeleteFile
+    class Command
+      class DeleteFile
+      end
     end
   end
 end

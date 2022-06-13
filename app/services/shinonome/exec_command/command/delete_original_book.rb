@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class DeleteOriginalBook
+    class Command
+      class DeleteOriginalBook
+      end
     end
   end
 end

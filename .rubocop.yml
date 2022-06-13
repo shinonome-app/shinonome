@@ -28,6 +28,10 @@ Lint/EmptyBlock:
   Exclude:
     - "spec/factories/*"
 
+Lint/EmptyClass:
+  Exclude:
+    - "app/services/shinonome/exec_command/**/*"
+
 Metrics/AbcSize:
   Max: 200
 

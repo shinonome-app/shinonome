@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class DeleteWorker
+    class Command
+      class DeleteWorker
+      end
     end
   end
 end

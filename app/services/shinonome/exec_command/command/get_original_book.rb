@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class GetOriginalBook
+    class Command
+      class GetOriginalBook
+      end
     end
   end
 end

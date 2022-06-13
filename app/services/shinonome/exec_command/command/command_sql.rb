@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class CommandSql
+    class Command
+      class CommandSql
+      end
     end
   end
 end

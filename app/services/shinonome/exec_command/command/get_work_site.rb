@@ -2,7 +2,9 @@
 
 module Shinonome
   class ExecCommand
-    class GetWorkSite
+    class Command
+      class GetWorkSite
+      end
     end
   end
 end
