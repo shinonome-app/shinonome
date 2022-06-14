@@ -37,7 +37,7 @@ RSpec.describe '/original_books', type: :request do
 
   let(:work) { create(:work) }
   let(:user) { create(:user) }
-  let(:worktype) { create(:worktype) }
+  let(:worktype) { Worktype.first }
 
   before { sign_in(user) }
 
