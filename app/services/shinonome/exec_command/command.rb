@@ -37,13 +37,15 @@ module Shinonome
 
       COMMAND_NAMES_INVERTED = COMMAND_NAMES.invert.freeze
 
-      attr_reader :name, :work_id, :body
+      attr_reader :name, :work_id, :body, :row
 
       def initialize(row)
+        @row = row
         @name = row[0]
         @work_id = row[1].to_i
         @body = row[2..]
         @is_comment = false
+        @use_prev_work_id = false
 
         if @name.start_with('#')
           @is_comment = true
@@ -56,6 +58,7 @@ module Shinonome
           end
 
           @work_id = nil
+          @use_prev_work_id = true
         elsif @work_id <= 0
           raise FormatError, I18n.t('errors.command_parser.invalid_work_id', work_id: @work_id)
         end
@@ -65,6 +68,10 @@ module Shinonome
 
       def comment?
         @is_comment
+      end
+
+      def use_prev_work_id?
+        @use_prev_work_id
       end
 
       def command_class

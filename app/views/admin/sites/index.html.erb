@@ -1,7 +1,19 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <h1>関連サイト</h1>
-  <%= link_to '関連サイト新規登録', new_admin_site_path %>
+  <h1 class="text-2xl">関連サイト</h1>
+
+  <h2 class="text-2xl">関連サイト検索</h2>
+
+  <%= form_with(url: admin_sites_text_searches_path, method: 'get') do |form| %>
+  <table>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "関連サイト名", name: "name")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "関連サイトURL", name: "url")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "関連サイト運営者名", name: "owner_name")) %>
+  </table>
+    <input type="submit" name="text" value="検索" class="btn-normal">
+  <% end %>
+
+  <h2 class="text-2xl">関連サイト一覧</h2>
   <table>
     <thead>
       <tr>
@@ -21,4 +33,5 @@
     </tbody>
   </table>
   <br>
+  <%= link_to '関連サイト新規登録', new_admin_site_path, class: 'btn-normal' %>
 </div>

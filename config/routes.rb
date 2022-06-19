@@ -44,6 +44,9 @@ Rails.application.routes.draw do
 
     resources :news_entries
 
+    namespace :people do
+      resources :text_searches, only: %i[index]
+    end
     resources :people do
       resources :base_people
     end
@@ -68,9 +71,16 @@ Rails.application.routes.draw do
       get 'worker_assigns/new', to: 'works/worker_assigns#new', as: :new_worker_assign
     end
 
+    namespace :sites do
+      resources :text_searches, only: %i[index]
+    end
     resources :sites
 
+    namespace :workers do
+      resources :text_searches, only: %i[index]
+    end
     resources :workers
+
     resources :exec_commands, only: %i[index new create]
 
     resources :receipts, only: %i[index edit update delete]

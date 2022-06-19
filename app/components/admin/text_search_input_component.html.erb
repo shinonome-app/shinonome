@@ -8,6 +8,6 @@
     <input type="text" name="<%= @name %>" value="<%= @value %>">
   </td>
   <td>
-    <%= @form.select "text_selector_#{@name}", Admin::WorksController::TEXT_SELECTOR, {include_blank: false} %>
+    <%= @form.select "text_selector_#{@name}", TextSearcher::TEXT_SELECTOR, {include_blank: false} %>
   </td>
 </tr>

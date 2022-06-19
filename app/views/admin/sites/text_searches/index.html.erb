@@ -1,0 +1,24 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl">関連サイト検索結果一覧</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>サイト名</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sites.each do |site| %>
+        <tr>
+          <td><%= site.id %></td>
+          <td><%= link_to site.name, admin_site_path(site) %></td>
+          <td><%= site.url %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to '関連サイト新規登録', new_admin_site_path, class: 'btn-normal' %>
+</div>

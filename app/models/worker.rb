@@ -27,6 +27,13 @@ class Worker < ApplicationRecord
     ['わ', nil, 'を', nil, 'ん']
   ].freeze
 
+  TEXT_SELECTOR = [
+    ['を含む', 1],
+    ['で始まる', 2],
+    ['で終わる', 3],
+    ['と等しい', 4]
+  ].freeze
+
   has_many :work_workers, dependent: :destroy
   has_many :works, through: :work_workers
 

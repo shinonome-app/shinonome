@@ -6,13 +6,6 @@ module Admin
     include Pagy::Backend
     before_action :set_work, only: %i[show edit update destroy]
 
-    TEXT_SELECTOR = [
-      ['を含む', 1],
-      ['で始まる', 2],
-      ['で終わる', 3],
-      ['と等しい', 4]
-    ].freeze
-
     # GET /works
     def index
       @pagy, @works = pagy(Work.order(:id).all, items: 50)

@@ -10,47 +10,47 @@
     </div>
   <% end %>
   <%= form.hidden_field :work_id %>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :filetype_id %>
     <%= form.collection_select :filetype_id, Filetype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :compresstype_id %>
     <%= form.collection_select :compresstype_id, Compresstype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :filesize %>
     <%= form.text_field :filesize %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :url %>
     <%= form.text_field :url %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :opened_on %>
     <%= form.date_select :opened_on %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :revision_count %>
     <%= form.text_field :revision_count %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :file_encoding_id %>
     <%= form.collection_select :file_encoding_id, FileEncoding.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :charset_id %>
     <%= form.collection_select :charset_id, Charset.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :note %>
-    <%= form.text_area :note %>
+    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-2">
     <%= form.label :workdata %>
-    <%= form.file_field :workdata %>
+    <%= form.file_field :workdata, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field py-2">
+    <%= form.submit "登録する", class: "btn-normal" %>
   </div>
 <% end %>

@@ -105,13 +105,35 @@ def generate_sample_zip(workfile)
       end
     end
 
-    workfile.workdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip') if workfile[:workdata]
+    if workfile.respond_to?(:workdata)
+      workfile.workdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip')
 
-    workfile.filename = zip_file
+      workfile.filename = zip_file
+    end
     # workfile.filesize = File.size(zipfile_name)
   end
 
   zipfile_name
+end
+
+def generate_sample_html(workfile)
+  work = workfile.work
+  html_file = "#{work.id}_ruby_#{workfile.id}.html"
+
+  Dir.mktmpdir do |folder|
+    htmlfile_path = File.join(folder, html_file)
+
+    content = erubi_convert(SAMPLE_TEXT_FORMAT, work)
+    html_data = "<html>\n<head>\n<title>#{work.title}</title>\n</head>\n<body>\n<pre>\n#{content}</pre>\n</body>\n</html>\n"
+    File.write(htmlfile_path, html_data)
+
+    if workfile.respond_to?(:workdata)
+      File.open(htmlfile_path) do |f|
+        workfile.workdata.attach(io: f, filename: html_file, content_type: 'text/html')
+      end
+      workfile.filename = html_file
+    end
+  end
 end
 
 work_id_status_list = Work.all.pluck(:id, :work_status_id)
@@ -158,9 +180,13 @@ end.flatten.compact
 
 Workfile.insert_all(workfiles)
 
-Workfile.transaction do
-  Workfile.includes(:work).all.each do |workfile|
-    generate_sample_zip(workfile) if workfile.compresstype_id == 2
+Workfile.includes(:work).all.each do |workfile|
+  case workfile.compresstype_id
+  when 2
+    generate_sample_zip(workfile)
+    workfile.save!
+  when 1
+    generate_sample_html(workfile)
     workfile.save!
   end
 end
