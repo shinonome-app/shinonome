@@ -123,7 +123,7 @@ def generate_sample_html(workfile)
   Dir.mktmpdir do |folder|
     htmlfile_path = File.join(folder, html_file)
 
-    content = erubi_convert(SAMPLE_TEXT_FORMAT, work)
+    content = erubi_convert(SAMPLE_TEXT_FORMAT, work).gsub(/\r\n/, "\n")
     html_data = "<html>\n<head>\n<title>#{work.title}</title>\n</head>\n<body>\n<pre>\n#{content}</pre>\n</body>\n</html>\n"
     File.write(htmlfile_path, html_data)
 

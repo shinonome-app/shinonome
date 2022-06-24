@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, bibclass.work, bibclass]) do |form| %>
   <% if bibclass.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(bibclass.errors.count, "error") %> prohibited this bibclass from being saved:</h2>
+      <h2><%= pluralize(bibclass.errors.count, "error") %>件のエラーがあります:</h2>
       <ul>
         <% bibclass.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -23,7 +23,7 @@
   </div>
 
   <%= form.hidden_field :work_id %>
-  <div class="actions">
-    <%= form.submit "更新" %>
+  <div class="actions py-4">
+    <%= form.submit "更新", class: 'btn-normal' %>
   </div>
 <% end %>

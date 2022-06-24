@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, receipt]) do |form| %>
   <% if receipt.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+      <h2><%= pluralize(receipt.errors.count, "件") %>の入力エラーがあります:</h2>
       <ul>
         <% receipt.errors.each do |error| %>
           <li><%= error.full_message %></li>

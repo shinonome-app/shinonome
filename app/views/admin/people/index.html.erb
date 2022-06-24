@@ -1,8 +1,8 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <h1 class="text-2xl">人物一覧</h1>
+  <h1 class="text-2xl py-4">人物一覧</h1>
 
-  <h2 class="text-2xl">人物検索</h1>
+  <h2 class="text-2xl py-2">人物検索</h1>
 
   <%= form_with(url: admin_people_text_searches_path, method: 'get') do |form| %>
   <table>
@@ -11,10 +11,12 @@
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名読み", name: "first_name_kana")) %>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名", name: "first_name")) %>
   </table>
+  <div class="py-2">
     <input type="submit" name="text" value="検索" class="btn-normal">
+  </div>
   <% end %>
 
-  <h2 class="text-2xl">人物一覧</h1>
+  <h2 class="text-2xl py-4">人物一覧</h1>
   <table>
     <thead>
       <tr>
@@ -53,5 +55,5 @@
   </table>
   <%== pagy_nav(@pagy) %>
   <br>
-  <%= link_to 'New Person', new_admin_person_path %>
+  <%= link_to '新規人物登録', new_admin_person_path, class: 'btn-normal py-2' %>
 </div>

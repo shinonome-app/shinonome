@@ -20,7 +20,7 @@ module Admin
       if @original_book.save
         redirect_to admin_work_url(@work), notice: 'Original work was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -29,7 +29,7 @@ module Admin
       if @original_book.update(original_book_params)
         redirect_to admin_work_url(@work), notice: 'Original work was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

@@ -29,7 +29,7 @@ module Admin
       if @news_entry.save
         redirect_to [:admin, @news_entry], notice: 'NewsEntry was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -38,7 +38,7 @@ module Admin
       if @news_entry.update(news_entry_params)
         redirect_to [:admin, @news_entry], notice: 'NewsEntry was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

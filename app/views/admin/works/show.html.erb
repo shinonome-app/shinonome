@@ -128,7 +128,7 @@
     </tr>
     <tr>
       <th class="w-36 text-left">公開日</th>
-      <%= @work.published_on %>
+      <td><%= @work.published_on %></td>
     </tr>
     <tr>
       <th class="w-36 text-left">ソート読み</th>
@@ -137,8 +137,11 @@
       </td>
     </tr>
   </table>
-  <%= link_to '更新', edit_admin_work_path(@work) %>
-  <%= link_to '削除', [:admin, @work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }} %>
+
+  <div class="py-2">
+  <%= link_to '更新', edit_admin_work_path(@work), class: 'btn-normal' %>
+  <%= link_to '削除', [:admin, @work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-normal' %>
+  </div>
   </div>
 
   <div>
@@ -212,7 +215,11 @@
       </td>
     </tr>
   </table>
-  <%= link_to '削除', [:admin, person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }} %>
+
+  <div class="py-2">
+    <%= link_to '削除', [:admin, person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-normal' %>
+  </div>
+
   <% end %>
   </div>
 
@@ -221,7 +228,9 @@
   <div>
   <% @work.work_workers.order(:worker_role_id).each do |work_worker| %>
   <% worker = work_worker.worker %>
-  <h3 class="text-lg"><%= work_worker.worker_role.name %></h3>
+
+  <h3 class="text-xl py-2"><%= work_worker.worker_role.name %></h3>
+
   <table class="bg-gray-100 my-2 w-full">
     <tr>
       <th class="w-36 text-left">工作員ID</th>
@@ -258,16 +267,24 @@
       </td>
     </tr>
   </table>
-  <%= link_to '削除', admin_workworker_url(work_worker), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }} %>
+
+  <div class="py-2">
+    <%= link_to '削除', admin_workworker_url(work_worker), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-normal' %>
+  </div>
   <% end %>
   </div>
 
-  <%= link_to '工作員関連づけ', admin_work_worker_assigns_path(work_id: params[:id]) %>
+  <div class="py-4">
+    <%= link_to '工作員関連づけ', admin_work_worker_assigns_path(work_id: params[:id]), class: 'btn-normal' %>
+  </div>
 
   <h2 class="text-2xl py-4">底本データ</h2>
+
   <div>
   <% @work.original_books.order(:worktype_id).each do |work| %>
-  <h3><%= work.worktype.name %></h3>
+
+  <h3 class="text-xl py-2"><%= work.worktype.name %></h3>
+
   <table class="bg-gray-100 my-2 w-full">
     <tr>
       <th class="w-36 text-left">底本名</th>
@@ -294,11 +311,17 @@
       <td><%= work.note %></td>
     </tr>
   </table>
-  <%= link_to '更新', edit_admin_work_original_book_path(@work, work) %>
-  <%= link_to '削除', [:admin, @work, work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }} %>
+
+  <div class="py-4">
+  <%= link_to '更新', edit_admin_work_original_book_path(@work, work), class: 'btn-normal' %>
+  <%= link_to '削除', [:admin, @work, work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-normal' %>
+  </div>
   <% end %>
   </div>
-  <%= link_to '底本/底本の親本追加', new_admin_work_original_book_path(work_id: params[:id]) %>
+
+  <div class="py-4">
+    <%= link_to '底本/底本の親本追加', new_admin_work_original_book_path(work_id: params[:id]), class: 'btn-normal' %>
+  </div>
 
   <h2 class="text-2xl py-4">分類番号データ</h2>
 
@@ -321,10 +344,17 @@
       </td>
     </tr>
   </table>
-  <%= link_to '更新', edit_admin_work_bibclass_path(bibclass.work, bibclass) %>
-  <%= link_to '削除', [:admin, bibclass.work, bibclass], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }} %>
+
+  <div class="py-4">
+    <%= link_to '更新', edit_admin_work_bibclass_path(bibclass.work, bibclass), class: 'btn-normal' %>
+    <%= link_to '削除', [:admin, bibclass.work, bibclass], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-normal' %>
+  </div>
+
   <% end %>
-  <%= link_to '分類番号追加', new_admin_work_bibclass_path(params[:id]) %>
+
+  <div class="py-4">
+    <%= link_to '分類番号追加', new_admin_work_bibclass_path(params[:id]), class: 'btn-normal' %>
+  </div>
 
   <h2 class="text-2xl py-4">ファイル</h2>
 
@@ -376,12 +406,17 @@
       <td><%= workfile.note %></td>
     </tr>
   </table>
-  <%= link_to '更新', edit_admin_work_workfile_path(workfile.work, workfile) %>
-  <%= link_to '削除', [:admin, workfile.work, workfile], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }} %>
+
+  <div class="py-4">
+    <%= link_to '更新', edit_admin_work_workfile_path(workfile.work, workfile), class: 'btn-normal' %>
+    <%= link_to '削除', [:admin, workfile.work, workfile], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-normal' %>
+  </div>
   <% end %>
   </div>
 
-  <%= link_to 'ファイル追加', new_admin_work_workfile_path(params[:id]) %>
+  <div class="py-4">
+    <%= link_to 'ファイル追加', new_admin_work_workfile_path(params[:id]), class: 'btn-normal' %>
+  </div>
 
   <div>
   <h2 class="text-2xl py-4">関連サイトデータ</h2>
@@ -406,14 +441,23 @@
       <td><%= site.note %></td>
     </tr>
   </table>
-  <%= link_to '更新', edit_admin_site_path(site) %>
-  <%= link_to '削除', [:admin, site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }} %>
+
+  <div class="py-4">
+    <%= link_to '更新', edit_admin_site_path(site), class: 'btn-normal' %>
+    <%= link_to '削除', [:admin, site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-normal' %>
+  </div>
+
   <% end %>
   </div>
 
-  <%= link_to '関連サイト追加', new_admin_work_site_path(params[:id]) %>
+  <div class="py-4">
+    <%= link_to '関連サイト追加', new_admin_work_site_path(params[:id]), class: 'btn-normal' %>
+  </div>
   </div>
 
-  <%= link_to '更新', edit_admin_work_path(@work) %> |
-  <%= link_to '戻る', admin_works_path %>
+  <hr />
+
+  <div class="py-4">
+    <%= link_to '戻る', admin_works_path, class: 'btn-normal' %>
+  </div>
 </div>

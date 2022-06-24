@@ -1,6 +1,9 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1>分類番号更新</h1>
+  <h1 class="text-2xl">分類番号更新</h1>
+
   <%= render 'form', bibclass: @bibclass %>
-  <%= link_to '表示', [:admin, @bibclass.work, @bibclass] %> |
-  <%= link_to '戻る', admin_work_path(@bibclass.work) %>
+
+  <div class="py-4">
+    <%= link_to '戻る', [:admin, @bibclass.work], class: 'btn-normal' %>
+  </div>
 </div>

@@ -158,6 +158,11 @@ ja:
       exec_command:
         command: コマンド
         separator: 区切り文字
+      admin_mail_secret:
+        subject: 件名
+        body: 本文
+        worker_id: 工作員ID
+        cc_flag: 青空文庫にCCする
   errors:
     header_message:
       one: "%{count}件のエラーが見つかりました"

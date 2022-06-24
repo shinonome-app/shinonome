@@ -19,7 +19,7 @@ module Admin
       @exec_command = Shinonome::ExecCommand.new(exec_command_params)
       @exec_command.user = current_admin_user
       unless @exec_command.save
-        render :new
+        render :new, status: :unprocessable_entity
         return
       end
 
@@ -27,7 +27,7 @@ module Admin
       download_path = generate_donwload_path
 
       unless @exec_command.execute(download_path)
-        render :new
+        render :new, status: :unprocessable_entity
         return
       end
 

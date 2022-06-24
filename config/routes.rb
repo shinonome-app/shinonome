@@ -81,6 +81,11 @@ Rails.application.routes.draw do
     end
     resources :workers
 
+    resources :admin_mail_secrets, only: %i[new create]
+    namespace :admin_mail_secrets do
+      resources :previews, only: %i[create]
+    end
+
     resources :exec_commands, only: %i[index new create]
 
     resources :receipts, only: %i[index edit update delete]

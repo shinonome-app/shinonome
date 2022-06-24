@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
+ActiveRecord::Schema[7.0].define(version: 2021_12_29_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,17 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_28_000000) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "admin_mail_secrets", force: :cascade do |t|
+    t.bigint "worker_id", null: false
+    t.text "email", null: false
+    t.text "subject", null: false
+    t.text "body", null: false
+    t.integer "cc_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worker_id"], name: "index_admin_mail_secrets_on_worker_id"
   end
 
   create_table "base_people", force: :cascade do |t|

@@ -15,6 +15,14 @@
     .btn-admin-normal {
         @apply w-full inline-flex justify-center rounded-md px-12 py-2 bg-blue-500 text-white hover:text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm;
     }
+
+    /** rails form **/
+    div#error_explanation h2 {
+        @apply text-red-700 font-bold;
+    }
+    div#error_explanation ul li {
+        @apply text-red-500 list-disc ml-4;
+    }
 }
 
 @import "./pagy.css"

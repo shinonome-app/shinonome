@@ -18,21 +18,21 @@ class ReceiptsController < ApplicationController
     @receipt_form = ReceiptForm.new(receipt_params)
     @receipt_form.add_work(ReceiptForm::SubWork.new)
 
-    render :new
+    render :new, status: :unprocessable_entity
   end
 
   def new_remove_work
     @receipt_form = ReceiptForm.new(receipt_params)
     @receipt_form.remove_work_at(params[:work_num])
 
-    render :new
+    render :new, status: :unprocessable_entity
   end
 
   # POST /receipts
   def create
     if params[:edit]
       @receipt_form = ReceiptForm.new(receipt_params)
-      render :new
+      render :new, status: :unprocessable_entity
       return
     end
 
@@ -41,7 +41,7 @@ class ReceiptsController < ApplicationController
     if result.created?
       redirect_to receipts_thanks_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

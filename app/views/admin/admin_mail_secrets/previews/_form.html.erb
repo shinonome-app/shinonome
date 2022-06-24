@@ -1,0 +1,54 @@
+<%= form_with(model: admin_mail_secret, url: admin_admin_mail_secrets_path, data: {turbo: false} ) do |form| %>
+  <% if admin_mail_secret.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_mail_secret.errors.count, "件") %>の入力エラーがあります:</h2>
+      <ul>
+        <% admin_mail_secret.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  <table>
+    <tr>
+      <td>
+        <%= form.label :worker_id, "工作員ID" %>
+      </td>
+      <td>
+        <%= admin_mail_secret.worker_id %>
+        <%= form.hidden_field :worker_id %>
+        <% if admin_mail_secret.email %>
+        <span>email: <%= admin_mail_secret.email %></span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.label :subject, "件名" %>
+      </td>
+      <td>
+        <%= admin_mail_secret.subject %>
+        <%= form.hidden_field :subject %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.label :body, "本文" %>
+      </td>
+      <td>
+        <pre><%= admin_mail_secret.body %></pre>
+        <%= form.hidden_field :body %>
+        <div class="field">
+          <%= form.label :cc_flag, "青空文庫にCCする" %>:
+          <%= admin_mail_secret.cc_reception? ? "する" : "しない" %>
+          <%= form.hidden_field :cc_flag %>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <%= form.submit "送信", class: "btn-normal" %>
+    <%= form.submit '戻る', name: 'edit', formaction: admin_admin_mail_secrets_path, class: "btn-normal" %>
+  </div>
+<% end %>

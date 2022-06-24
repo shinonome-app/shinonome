@@ -18,7 +18,7 @@ class ProofreadsController < ApplicationController
     if params[:edit]
       @proofread_form = ProofreadForm.new(proofread_form_params)
       @author = Person.find(params[:proofread_form][:person_id])
-      render :new
+      render :new, status: :unprocessable_entity
       return
     end
 

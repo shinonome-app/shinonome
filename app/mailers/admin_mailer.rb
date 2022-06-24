@@ -15,4 +15,17 @@ class AdminMailer < ApplicationMailer
 
     mail to: @worker.worker_secret&.email, subject: @subject
   end
+
+  def send_to_worker(admin_mail_secret)
+    pp [:am, admin_mail_secret]
+    @subject = admin_mail_secret.subject
+    @body = admin_mail_secret.body
+
+    if admin_mail_secret.cc_reception?
+      cc = Rails.application.config.x.reception_email
+      mail to: admin_mail_secret.email, cc: cc, subject: @subject
+    else
+      mail to: admin_mail_secret.email, subject: @subject
+    end
+  end
 end

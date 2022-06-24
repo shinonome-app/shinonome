@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, @person]) do |form| %>
   <% if @person.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+      <h2><%= pluralize(@person.errors.count, "件") %>の入力エラーがあります:</h2>
       <ul>
         <% @person.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -71,7 +71,7 @@
     <%= form.label :note, "備考" %>
     <%= form.text_area :note %>
   </div>
-  <div class="actions">
-    <%= form.submit "登録" %>
+  <div class="actions py-4">
+    <%= form.submit "登録", class: 'btn-normal' %>
   </div>
 <% end %>

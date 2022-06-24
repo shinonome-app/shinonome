@@ -11,7 +11,7 @@ module Proofreads
       if @proofread_form.valid?
         render :new
       else
-        render 'proofreads/new'
+        render 'proofreads/new', status: :unprocessable_entity
       end
     end
 

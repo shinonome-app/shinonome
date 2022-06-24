@@ -30,7 +30,7 @@ module Admin
       if @person.save
         redirect_to [:admin, @person], notice: 'Person was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -39,7 +39,7 @@ module Admin
       if @person.update(person_params)
         redirect_to [:admin, @person], notice: 'Person was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

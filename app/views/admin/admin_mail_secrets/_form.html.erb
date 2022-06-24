@@ -1,0 +1,48 @@
+<%= form_with(model: admin_mail_secret, url: admin_admin_mail_secrets_previews_path, data: {turbo: false} ) do |form| %>
+  <% if admin_mail_secret.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_mail_secret.errors.count, "件") %>の入力エラーがあります:</h2>
+      <ul>
+        <% admin_mail_secret.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+      <td>
+        <%= form.label :worker_id, "工作員ID" %>
+      </td>
+      <td>
+        <%= form.text_field :worker_id %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.label :subject, "件名" %>
+      </td>
+      <td>
+        <%= form.text_field :subject %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.label :body, "本文" %>
+      </td>
+      <td>
+        <%= form.text_area :body, rows: 15, cols: 60 %>
+        <div class="field">
+          <%= form.label :cc_flag, "青空文庫にCCする" %>
+          <%= form.check_box :cc_flag, {}, "cc_reception", "not_cc" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <%= form.submit "確認", class: "btn-normal" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
