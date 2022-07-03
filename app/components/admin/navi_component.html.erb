@@ -6,7 +6,7 @@
         <!-- LOGO -->
         <div class="flex items-center font-extrabold text-gray-700">
           <%= link_to admin_path do %>
-            <img src="/assets/top_logo.png" class="h-12" alt="Logo">&nbsp;
+            <%= image_tag 'top_logo.png', class: 'h-12', alt: '' %>&nbsp;
           <% end %>
           <%= link_to admin_path do %>
             <span class="text-2xl">&nbsp;<%= t("app.name")%> DB</span>
