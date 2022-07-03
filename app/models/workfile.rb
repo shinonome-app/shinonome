@@ -59,18 +59,83 @@ class Workfile < ApplicationRecord
     filetype&.html?
   end
 
-  def filename
+  def text?
+    filetype&.text?
+  end
+
+  def zip?
+    compresstype&.zip?
+  end
+
+  def using_ruby?
+    content = uncompressed_workdata
+    return false if content.nil?
+
+    content.force_encoding('Shift_JIS')
+    utf8_content = content.encode('UTF-8')
+    utf8_content.match?(/《.*》/)
+  end
+
+  def compressed?
+    compresstype&.compressed?
+  end
+
+  def uncompressed_workdata
+    return nil if workdata.blank? || compresstype.blank?
+
+    content = workdata.open { |file| file&.read }
+    return content unless compressed?
+
+    raise 'サポートしていない圧縮形式です' if compresstype.lha? || compresstype.sit?
+
+    if compresstype.zip?
+      unzip_workdata
+    elsif compresstype.gzip?
+      gunzip_workdata
+    else
+      raise 'サポートしていない圧縮形式です'
+    end
+  end
+
+  def unzip_workdata
+    workdata.open do |file|
+      Zip::File.open(file) do |zip|
+        zip.each do |entry|
+          return entry.get_input_stream.read if entry.name =~ /\.txt\z/
+        end
+      end
+    end
+  end
+
+  def gunzip_workdata
+    workdata.open do |file|
+      Zlib::GzipReader.open(file) do |gz|
+        return gz.read
+      end
+    end
+  end
+
+  def generate_filename
     ext = if compresstype.compressed?
             compresstype.extension
+          elsif filetype&.rtxt?
+            'txt'
           else
             filetype&.extension
           end
-    "#{work.id}_ruby_#{id}.#{ext}"
+
+    if filetype&.rtxt?
+      "#{work.id}_ruby_#{id}.#{ext}"
+    elsif compresstype.compressed?
+      "#{work.id}_#{filetype&.extension}_#{id}.#{ext}"
+    else
+      "#{work.id}_#{id}.#{ext}"
+    end
   end
 
   private
 
   def set_filename
-    self.filename = filename
+    self.filename ||= generate_filename
   end
 end

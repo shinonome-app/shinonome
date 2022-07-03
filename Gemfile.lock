@@ -71,6 +71,8 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    aozora2html (3.0.0)
+      rubyzip
     ast (2.4.2)
     bcrypt (3.1.17)
     better_html (1.0.16)
@@ -335,6 +337,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  aozora2html (~> 3.0)
   bootsnap (>= 1.4.4)
   capybara (>= 3.26)
   debug

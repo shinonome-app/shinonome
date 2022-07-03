@@ -6,6 +6,9 @@
     .btn-normal {
         @apply bg-gray-200 hover:bg-gray-500 text-gray-900 hover:text-white px-8 py-2 text-center border border-gray-500 hover:border-transparent rounded;
     }
+    .btn-danger {
+        @apply bg-red-400 hover:bg-red-700 text-gray-900 hover:text-white px-8 py-2 text-center border border-red-800 hover:border-transparent rounded;
+    }
     .link-normal {
         @apply text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline;
     }

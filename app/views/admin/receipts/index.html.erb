@@ -1,8 +1,8 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
 <p id="notice"><%= notice %></p>
-<h1 class="text-2xl">Web入力受付管理</h1>
+<h1 class="text-2xl py-4">Web入力受付管理</h1>
 
-<h2 class="text-xl">Web受付作品一覧</h2>
+<h2 class="text-xl py-2">Web受付作品一覧</h2>
 <p>
   <%= @receipts.count %>件の作品が見つかりました。　　　
 </p>
@@ -36,5 +36,11 @@
     <% end %>
   </tbody>
 </table>
+
+<h2 class="text-xl py-2">一括削除</h2>
+
+<%= form_with(model: [:admin, @receipts], url: admin_receipts_bulk_removes_path, data: { turbo: false }) do |form| %>
+<%= form.submit '一括削除する', class: "btn-normal" %>
+<% end %>
 
 </div>

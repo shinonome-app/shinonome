@@ -11,14 +11,14 @@
     <% end %>
   <table>
     <tr>
-      <td>
+      <td class="align-top text-top">
         <%= form.label :worker_id, "工作員ID" %>
       </td>
-      <td>
+      <td class="bg-gray-200">
         <%= admin_mail_secret.worker_id %>
         <%= form.hidden_field :worker_id %>
         <% if admin_mail_secret.email %>
-        <span>email: <%= admin_mail_secret.email %></span>
+        <div>email: <%= admin_mail_secret.email %></div>
         <% end %>
       </td>
     </tr>
@@ -26,23 +26,27 @@
       <td>
         <%= form.label :subject, "件名" %>
       </td>
-      <td>
+      <td class="bg-gray-200">
         <%= admin_mail_secret.subject %>
         <%= form.hidden_field :subject %>
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="align-top text-top">
         <%= form.label :body, "本文" %>
       </td>
-      <td>
+      <td class="bg-gray-200">
         <pre><%= admin_mail_secret.body %></pre>
         <%= form.hidden_field :body %>
-        <div class="field">
-          <%= form.label :cc_flag, "青空文庫にCCする" %>:
-          <%= admin_mail_secret.cc_reception? ? "する" : "しない" %>
-          <%= form.hidden_field :cc_flag %>
-        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-top text-top">
+        <%= form.label :cc_flag, "青空文庫にCCする" %>
+      </td>
+      <td class="bg-gray-200">
+        <%= admin_mail_secret.cc_reception? ? "する" : "しない" %>
+        <%= form.hidden_field :cc_flag %>
       </td>
     </tr>
   </table>

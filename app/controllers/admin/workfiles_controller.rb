@@ -28,8 +28,12 @@ module Admin
       @workfile.filename = @workfile.workdata.filename
 
       if @workfile.valid?
-        @workfile.save!
-        redirect_to [:admin, @workfile.work], notice: 'Workfile was successfully created.'
+        if File.extname(@workfile.filename) == '.txt'
+          WorkfileConverter.new.convert_format(@workfile)
+        else
+          @workfile.save!
+        end
+        redirect_to [:admin, @workfile.work], notice: '作品ファイルを更新しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -40,7 +44,11 @@ module Admin
       if @workfile.update(workfile_params)
         @workfile.user = current_admin_user
         @workfile.filename = @workfile.workdata.filename
-        @workfile.save!
+        if File.extname(@workfile.filename) == '.txt'
+          WorkfileConverter.new.convert_format(@workfile)
+        else
+          @workfile.save!
+        end
         redirect_to [:admin, @workfile.work], notice: 'Workfile was successfully updated.'
       else
         render :edit, status: :unprocessable_entity

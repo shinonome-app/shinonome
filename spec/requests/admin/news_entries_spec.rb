@@ -88,7 +88,7 @@ RSpec.describe '/admin/news_entries', type: :request do
 
       it 'redirects to the created news entry' do
         post admin_news_entries_url, params: { news_entry: valid_attributes }
-        expect(response).to redirect_to(admin_news_entry_url(NewsEntry.last))
+        expect(response).to redirect_to(admin_news_entries_url)
       end
     end
 
@@ -101,7 +101,7 @@ RSpec.describe '/admin/news_entries', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post admin_news_entries_url, params: { news_entry: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq 422
       end
     end
   end
@@ -138,7 +138,7 @@ RSpec.describe '/admin/news_entries', type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         news_entry = NewsEntry.create! valid_attributes
         patch admin_news_entry_url(news_entry), params: { news_entry: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq 422
       end
     end
   end

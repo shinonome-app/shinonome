@@ -40,16 +40,24 @@
 FactoryBot.define do
   factory :workfile do
     work
-    filetype
     user
-    compresstype
-    file_encoding
-    charset
     filesize { 1000 }
-    url { 'MyText' }
-    filename { 'MyText' }
+    filename { 'foo.txt' }
     opened_on { '2021-04-29' }
     revision_count { 1 }
-    note { 'MyText' }
+    note { '備考のテスト' }
+
+    charset_id { 1 }
+    file_encoding_id { 1 }
+
+    trait :zip do
+      compresstype { Compresstype.find(2) }
+      filetype { Filetype.find(1) }
+    end
+
+    trait :html do
+      compresstype { Compresstype.find(1) }
+      filetype { Filetype.find(3) }
+    end
   end
 end

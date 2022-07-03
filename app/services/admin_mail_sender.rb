@@ -2,14 +2,9 @@
 
 # 工作員メール送信
 class AdminMailSender
-  def initialize
-  end
-
   def send(admin_mail_params)
     @admin_mail_secret = AdminMailSecret.new(admin_mail_params)
-    if @admin_mail_secret.email.blank?
-      fill_email(@admin_mail_secret)
-    end
+    fill_email(@admin_mail_secret) if @admin_mail_secret.email.blank?
 
     if @admin_mail_secret.save
       AdminMailer.send_to_worker(@admin_mail_secret).deliver_later
@@ -20,13 +15,13 @@ class AdminMailSender
   end
 
   def fill_email(admin_mail_secret)
-    if admin_mail_secret.worker_id.present?
+    if admin_mail_secret.worker_id.present? # rubocop:disable Style/GuardClause
       worker_secret = WorkerSecret.find_by(worker_id: admin_mail_secret.worker_id)
       admin_mail_secret.email = worker_secret.email
     end
   end
 
-    # 結果返却用
+  # 結果返却用
   class Result
     attr_reader :admin_mail_secret
 

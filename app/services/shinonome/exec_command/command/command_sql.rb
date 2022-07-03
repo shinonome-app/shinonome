@@ -3,9 +3,9 @@
 module Shinonome
   class ExecCommand
     class Command
+      # SQL実行
       class CommandSql
-        def execute(command)
-        end
+        def execute(command); end
       end
     end
   end

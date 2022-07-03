@@ -17,4 +17,12 @@ class Filetype < ApplicationRecord
     # TODO: do not use num literal
     id == 3 || id == 9
   end
+
+  def text?
+    id == 0 || id == 1 || id == 2
+  end
+
+  def rtxt?
+    id == 1
+  end
 end

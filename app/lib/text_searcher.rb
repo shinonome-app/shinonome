@@ -35,11 +35,11 @@ class TextSearcher
 
   def where_params
     # 何もないときは全件検索にする
-    if @param_keys.blank?
-      where_key = 'true'
-    else
-      where_key = @param_keys.join(' AND ')
-    end
+    where_key = if @param_keys.blank?
+                  'true'
+                else
+                  @param_keys.join(' AND ')
+                end
 
     [where_key, *@param_values]
   end

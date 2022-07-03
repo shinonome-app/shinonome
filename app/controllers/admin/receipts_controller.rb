@@ -13,30 +13,15 @@ module Admin
     # GET /admin/receipts/1
     def show; end
 
-    # GET /admin/receipts/new
-    def new
-      @receipt = Receipt.new
-    end
-
     # GET /admin/receipts/1/edit
     def edit; end
-
-    # POST /admin/receipts
-    def create
-      @receipt = Receipt.new(receipt_params)
-
-      if @receipt.save
-        redirect_to [:admin, @receipt], notice: 'Receipt was successfully created.'
-      else
-        render :new, status: :unprocessable_entity
-      end
-    end
 
     # PATCH/PUT /admin/receipts/1
     def update
       if @receipt.update(receipt_params)
-        redirect_to [:admin, @receipt], notice: 'Receipt was successfully updated.'
+        redirect_to [:admin, @receipt], notice: '更新しました.'
       else
+        render 'admin/receipts/edit', status: :unprocessable_entity
         render :edit, status: :unprocessable_entity
       end
     end
@@ -44,7 +29,7 @@ module Admin
     # DELETE /admin/receipts/1
     def destroy
       @receipt.destroy
-      redirect_to admin_receipts_url, notice: 'Receipt was successfully destroyed.'
+      redirect_to admin_receipts_url, notice: '削除しました.'
     end
 
     private

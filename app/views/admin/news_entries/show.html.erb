@@ -1,22 +1,33 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <p id="notice"><%= notice %></p>
-  <h1>記事の表示</h1>
-  <p>
-    <strong>日付:</strong>
-    <%= @news_entry.published_on %>
-  </p>
-  <p>
-    <strong>見出し:</strong>
+  <p id="notice" class="text-green-800"><%= notice %></p>
+  <h1 class="text-2xl py-4">記事の表示</h1>
+
+  <h3 class="text-xl py-2">日付</h3>
+
+  <div>
+      <%= @news_entry.published_on %>
+  </div>
+
+  <h3 class="text-xl py-2">見出し</h3>
+
+  <div>
     <%= @news_entry.title %>
-  </p>
-  <p>
-    <strong>本文:</strong>
+  </div>
+
+  <h3 class="text-xl py-2">本文</h3>
+
+  <div>
     <%= @news_entry.body %>
-  </p>
-  <p>
-    <strong>ニュースに指定する:</strong>
-    <%= @news_entry.flag %>
-  </p>
-  <%= link_to '修正', edit_admin_news_entry_path(@news_entry) %> |
-  <%= link_to '戻る', admin_news_entries_path %>
+  </div>
+
+  <h3 class="text-xl py-2">ニュースに指定する</h3>
+
+  <div>
+    <%= @news_entry.flag ? '指定する' : '指定しない' %>
+  </div>
+
+  <div class="py-4">
+  <%= link_to '修正', edit_admin_news_entry_path(@news_entry), class: 'btn-normal' %>
+  <%= link_to '戻る', admin_news_entries_path, class: 'btn-normal' %>
+  </div>
 </div>

@@ -15,4 +15,24 @@ class Compresstype < ApplicationRecord # rubocop:disable Style/Documentation
   def compressed?
     id != 1
   end
+
+  def none?
+    id == 1
+  end
+
+  def zip?
+    id == 2
+  end
+
+  def gzip?
+    id == 3
+  end
+
+  def lha?
+    id == 4
+  end
+
+  def sit?
+    id == 5
+  end
 end

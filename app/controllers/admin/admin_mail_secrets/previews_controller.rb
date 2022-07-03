@@ -23,7 +23,7 @@ module Admin
           :subject,
           :body,
           :cc_flag,
-          :worker_id,
+          :worker_id
         )
       end
     end

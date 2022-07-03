@@ -2,14 +2,9 @@
 
 # 工作員メール送信validation
 class AdminMailValidator
-  def initialize
-  end
-
   def validate(admin_mail_params)
     @admin_mail_secret = AdminMailSecret.new(admin_mail_params)
-    if @admin_mail_secret.email.blank?
-      fill_email(@admin_mail_secret)
-    end
+    fill_email(@admin_mail_secret) if @admin_mail_secret.email.blank?
 
     if @admin_mail_secret.valid?
       Result.new(valid: true, admin_mail_secret: @admin_mail_secret)
@@ -19,7 +14,7 @@ class AdminMailValidator
   end
 
   def fill_email(admin_mail_secret)
-    if admin_mail_secret.worker_id.present?
+    if admin_mail_secret.worker_id.present? # rubocop:disable Style/GuardClause
       worker_secret = WorkerSecret.find_by(worker_id: admin_mail_secret.worker_id)
       admin_mail_secret.email = worker_secret&.email
     end

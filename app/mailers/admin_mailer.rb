@@ -17,7 +17,6 @@ class AdminMailer < ApplicationMailer
   end
 
   def send_to_worker(admin_mail_secret)
-    pp [:am, admin_mail_secret]
     @subject = admin_mail_secret.subject
     @body = admin_mail_secret.body
 

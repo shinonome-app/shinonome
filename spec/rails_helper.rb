@@ -68,6 +68,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include RequestSpecHelper, type: :request
   config.include FactoryBot::Syntax::Methods
+  config.include ActionDispatch::TestProcess::FixtureFile
 
   config.before(:suite) do
     Rails.application.load_seed # loading seeds

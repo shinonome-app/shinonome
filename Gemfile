@@ -107,3 +107,5 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'erb_lint', '~> 0.1.1', require: false
+
+gem 'aozora2html', '~> 3.0'

@@ -1,3 +1,4 @@
+<div class="py-4">
 <%= form_with(model: [:admin, news_entry]) do |form| %>
   <% if news_entry.errors.any? %>
     <div id="error_explanation">
@@ -9,35 +10,57 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :published_on, "日付" %>
-    <%= form.date_select :published_on %>
-  </div>
-  <div class="field">
-    <%= form.label :title, "見出し" %>
-    <%= form.text_area :title %>
-  </div>
-  <div class="field">
-    <%= form.label :body, "本文" %>
-    <%= form.text_area :body %>
-  </div>
-  <div class="field">
-    <%= form.label :flag do %>
-      <%= form.check_box :flag %>
-      ニュースに指定する
-    <% end %>
-  </div>
-  <div class="actions">
-    <%= form.submit "更新" %>
-  </div>
+  <table class="w-full">
+    <tr>
+      <td class="w-24"><%= form.label :published_on, "日付" %></td>
+      <td><%= form.date_select :published_on %></td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.label :title, "見出し" %>
+      </td>
+      <td>
+        <%= form.text_field :title, class: 'w-full' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.label :body, "本文" %>
+      </td>
+      <td>
+        <%= form.text_area :body, rows: 15, class: 'w-full' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        &nbsp;
+      </td>
+      <td>
+        <%= form.label :flag do %>
+          <%= form.check_box :flag %>
+          ニュースに指定する
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+<div class="py-4">
+  <p>
+    図書カードURLの書式：
+    <blockquote>
+      ../cards/xxxxxx/cardzzzz.html
+    </blockquote>
+  </p>
+  <p>
+    　xxxxxxは人物ID、先頭ゼロの6桁固定<br>
+    　zzzzは作品ID、先頭ゼロなし、桁数は不定
+  </p>
+</div>
+
+<div class="actions">
+  <%= form.submit "更新", class: 'btn-normal' %>
+  <%= link_to '戻る', admin_news_entries_path, class: 'btn-normal' %>
+</div>
 <% end %>
-<p>
-  図書カードURLの書式：
-  <blockquote>
-    ../cards/xxxxxx/cardzzzz.html
-  </blockquote>
-</p>
-<p>
-  　xxxxxxは人物ID、先頭ゼロの6桁固定<br>
-  　zzzzは作品ID、先頭ゼロなし、桁数は不定
-</p>
+
+</div>

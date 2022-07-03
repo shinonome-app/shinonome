@@ -89,6 +89,10 @@ Rails.application.routes.draw do
     resources :exec_commands, only: %i[index new create]
 
     resources :receipts, only: %i[index edit update delete]
+    namespace :receipts do
+      resources :previews, only: %i[update]
+      resources :bulk_removes, only: %i[create delete]
+    end
 
     resources :work_workers, only: %i[create destroy], as: :workworkers
 
