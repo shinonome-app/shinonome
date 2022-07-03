@@ -54,6 +54,10 @@ gem 'tailwindcss-rails'
 # Some libraries use rexml as XML processor
 gem 'rexml'
 
+# Makes dummy data for seeds
+gem 'faker'
+gem 'gimei'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -68,10 +72,6 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-
-  # Makes dummy data for seeds
-  gem 'faker'
-  gem 'gimei'
 
   # Makes zipped bookdata for seeds
   gem 'rubyzip'
