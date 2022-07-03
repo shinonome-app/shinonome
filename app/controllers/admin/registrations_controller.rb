@@ -2,6 +2,7 @@
 
 module Admin
   class RegistrationsController < ::Devise::RegistrationsController
+    layout 'admin/application'
     # prepend_before_action :require_no_authentication, only: [:cancel]
     # prepend_before_action :authenticate_scope!, only: %i[new create edit update destroy]
 

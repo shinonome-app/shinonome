@@ -1,6 +1,8 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+<p id="notice"><%= notice %></p>
+<h1 class="text-2xl py-4">ユーザー情報更新</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { turbo: false } ) do |f| %>
   <%= render "admin/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -33,12 +35,16 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "更新" %>
+    <%= f.submit "更新", class: 'btn-normal' %>
   </div>
 <% end %>
 
-<h3>アカウントの削除</h3>
+<h3 class="text-xl py-4">アカウントの削除</h3>
 
-<p><%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" }} %></p>
+<div class="py-2">
+  <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" }}, class: 'btn-danger' %>
+</div>
 
-<%= link_to "戻る", :back %>
+<div class="py-2">
+  <%= link_to "戻る", :back, class: 'btn-normal' %>
+</div>

@@ -55,6 +55,8 @@ ja:
       receipt: 入力申請
       site: 関連サイト
       worker: 工作員
+      user: ユーザー
+      shinonome/user: ユーザー
     attributes:
       work:
         id: "作品ID"
@@ -163,6 +165,12 @@ ja:
         body: 本文
         worker_id: 工作員ID
         cc_flag: 青空文庫にCCする
+      shinonome/user:
+        email: e-mail
+        username: ユーザ名
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        current_password: 現在のパスワード
   errors:
     header_message:
       one: "%{count}件のエラーが見つかりました"

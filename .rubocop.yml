@@ -55,6 +55,10 @@ Metrics/PerceivedComplexity:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+Rails/Present:
+  Exclude:
+    - "bin/*"
+
 Rails/SkipsModelValidations:
   Exclude:
     - "db/seeds/*"
