@@ -18,6 +18,7 @@ module Admin
     # GET /admin/workers/new
     def new
       @worker = Worker.new
+      @worker.worker_secret = WorkerSecret.new
     end
 
     # GET /admin/workers/1/edit
@@ -41,7 +42,7 @@ module Admin
     def update
       worker_params[:worker_secret_attributes].merge!({ user_id: current_admin_user.id })
       if @worker.update(worker_params)
-        redirect_to [:admin, @worker], notice: 'Worker was successfully updated.'
+        redirect_to [:admin, @worker], notice: '工作員を更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -50,7 +51,7 @@ module Admin
     # DELETE /admin/workers/1
     def destroy
       @worker.destroy
-      redirect_to admin_workers_url, notice: 'Worker was successfully destroyed.'
+      redirect_to admin_workers_url, notice: '工作員を削除しました.'
     end
 
     private

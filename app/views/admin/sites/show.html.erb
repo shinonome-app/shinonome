@@ -1,36 +1,53 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <p>
-    <strong>関連サイトID:</strong>
-    <%= @site.id %>
-  </p>
-  <p>
-    <strong>関連サイト名:</strong>
-    <%= @site.name %>
-  </p>
-  <p>
-    <strong>関連サイト運営者:</strong>
-    <%= @site.owner_name %>
-  </p>
-  <p>
-    <strong>email:</strong>
-    <%= @site.email %>
-  </p>
-  <p>
-    <strong>URL:</strong>
-    <%= @site.url %>
-  </p>
-  <p>
-    <strong>備考:</strong>
-    <%= @site.note %>
-  </p>
-  <p>
-    <strong>最終更新日:</strong>
-    <%= @site.updated_at %>
-  </p>
-  <p>
-    <strong>更新者:</strong>
-    <%= @site.updated_by %>
-  </p>
-  <%= link_to '更新', edit_admin_site_path(@site) %> |
-  <%= link_to '戻る', admin_sites_path %>
+
+  <h1 class="text-2xl py-4">関連サイト</h1>
+
+  <table class="bg-gray-100 my-2 w-full">
+    <tr>
+      <th class="w-36 text-left">関連サイト名</th>
+      <td>
+        <%= @site.name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">関連サイト運営者</th>
+      <td>
+        <%= @site.owner_name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">email</th>
+      <td>
+        <%= @site.email %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">URL</th>
+      <td>
+        <%= @site.url %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">備考</th>
+      <td>
+        <%= @site.note %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">最終更新日</th>
+      <td>
+        <%= @site.updated_at %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">更新者</th>
+      <td>
+        <%= @site.updated_by %>
+      </td>
+    </tr>
+  </table>
+
+  <div class="py-4">
+    <%= link_to '更新', edit_admin_site_path(@site), class: 'btn-normal' %>  <%= link_to '戻る', admin_sites_path, class: 'btn-normal' %>
+  </div>

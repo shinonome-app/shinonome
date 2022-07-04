@@ -15,7 +15,7 @@
         <%= form.label :worker_id, "工作員ID" %>
       </td>
       <td>
-        <%= form.text_field :worker_id %>
+        <%= form.text_field :worker_id, class: 'w-full' %>
       </td>
     </tr>
     <tr>
@@ -23,7 +23,7 @@
         <%= form.label :subject, "件名" %>
       </td>
       <td>
-        <%= form.text_field :subject %>
+        <%= form.text_field :subject, class: 'w-full' %>
       </td>
     </tr>
     <tr>
@@ -33,8 +33,8 @@
       <td>
         <%= form.text_area :body, rows: 15, cols: 60 %>
         <div class="field">
-          <%= form.label :cc_flag, "青空文庫にCCする" %>
           <%= form.check_box :cc_flag, {}, "cc_reception", "not_cc" %>
+          <%= form.label :cc_flag, "青空文庫にCCする" %>
         </div>
       </td>
     </tr>

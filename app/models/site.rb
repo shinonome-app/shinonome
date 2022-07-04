@@ -20,4 +20,6 @@ class Site < ApplicationRecord
   has_many :works, through: :work_sites
 
   accepts_nested_attributes_for :work_sites
+
+  validates :name, :url, presence: true
 end

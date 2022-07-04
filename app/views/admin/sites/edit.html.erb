@@ -1,6 +1,8 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1>関連サイト更新</h1>
+  <h1 class="text-2xl py-4">関連サイト更新</h1>
   <%= render 'form', site: @site %>
-  <%= link_to '表示', [:admin, @site] %> |
-  <%= link_to '戻る', admin_sites_path %>
+
+  <div class="py-4">
+    <%= link_to '戻る', [:admin, @site], class: 'btn-normal' %>
+  </div>
 </div>

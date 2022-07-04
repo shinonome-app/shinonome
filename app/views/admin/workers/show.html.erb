@@ -1,44 +1,66 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <h1 class="text-2xl">工作員データ</h1>
-  <p>
-    <strong>工作員ID:</strong>
-    <%= @worker.id %>
-  </p>
-  <p>
-    <strong>姓名読み:</strong>
-    <%= @worker.name_kana %>
-  </p>
-  <p>
-    <strong>ソート用読み:</strong>
-    <%= @worker.sortkey %>
-  </p>
-  <p>
-    <strong>姓名:</strong>
-    <%= @worker.name %>
-  </p>
-  <p>
-    <strong>email:</strong>
-    <%= @worker.worker_secret&.email %>
-  </p>
-  <p>
-    <strong>URL:</strong>
-    <%= @worker.worker_secret&.url %>
-  </p>
-  <p>
-    <strong>備考:</strong>
-    <%= @worker.worker_secret&.note %>
-  </p>
-  <p>
-    <strong>最終更新日:</strong>
-    <%= @worker.updated_at %>
-  </p>
-  <p>
-    <strong>更新者:</strong>
-    <%= @worker.worker_secret&.user_id %>
-  </p>
 
-  <h2 class="text-xl">関連した作品</h2>
+  <h1 class="text-2xl py-4">工作員データ</h1>
+
+  <table class="bg-gray-100 my-2 w-full">
+    <tr>
+      <th class="w-36 text-left">工作員ID</th>
+      <td>
+        <%= @worker.id %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">姓名読み</th>
+      <td>
+        <%= @worker.name_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">ソート用読み</th>
+      <td>
+        <%= @worker.sortkey %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">姓名</th>
+      <td>
+        <%= @worker.name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">email</th>
+      <td>
+        <%= @worker.worker_secret&.email %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">URL</th>
+      <td>
+        <%= @worker.worker_secret&.url %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">備考</th>
+      <td>
+        <%= @worker.worker_secret&.note %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">最終更新日時</th>
+      <td>
+        <%= @worker.updated_at %>
+      </td>
+    </tr>
+    <tr>
+      <th class="w-36 text-left">更新者</th>
+      <td>
+        <%= @worker.worker_secret&.user_id %>
+      </td>
+    </tr>
+  </table>
+
+  <h2 class="text-xl py-2">関連した作品</h2>
 
   <table>
     <tr>
@@ -74,7 +96,9 @@
     <% end %>
   </table>
 
-  <%= link_to '更新', edit_admin_worker_path(@worker) %> |
-  <%= link_to '削除', admin_worker_path(@worker), method: :delete, data: { form: { turbo_confirm: '本当に削除しますか?' }} %> |
-  <%= link_to '戻る', admin_workers_path %>
+  <div class="py-4">
+  <%= link_to '更新', edit_admin_worker_path(@worker), class: 'btn-normal' %>
+  <%= link_to '削除', admin_worker_path(@worker), method: :delete, data: { form: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-danger' %>
+  <%= link_to '戻る', admin_workers_path, class: 'btn-normal' %>
+  </div>
 </div>
