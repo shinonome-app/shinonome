@@ -2,15 +2,8 @@
 
 module Admin
   class PersonSitesController < ApplicationController
-    before_action :set_person_site, only: %i[show edit update destroy]
-
-    # GET /person_sites
-    def index
-      @person_sites = PersonSite.all
-    end
-
-    # GET /person_sites/1
-    def show; end
+    before_action :set_person, only: %i[new destroy]
+    before_action :set_person_site, only: %i[edit update destroy]
 
     # GET /person_sites/new
     def new
@@ -43,10 +36,14 @@ module Admin
     # DELETE /person_sites/1
     def destroy
       @person_site.destroy
-      redirect_to person_sites_url, notice: 'Person site was successfully destroyed.'
+      redirect_to admin_person_path(@person), notice: '関連サイトの関連づけを削除しました.'
     end
 
     private
+
+    def set_person
+      @person = Person.find(params[:person_id])
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_person_site

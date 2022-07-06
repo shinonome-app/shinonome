@@ -1,0 +1,53 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl py-4">人物検索結果一覧</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>人物ID</th>
+        <th>姓名</th>
+        <th>読み</th>
+        <th>著作権</th>
+        <th>他の名前</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @people.each do |base_person| %>
+        <tr>
+          <td>
+            <%= base_person.id %>
+          </td>
+          <td>
+            <%= link_to admin_person_path(base_person) do %>
+              <%= base_person.last_name %>
+              <%= base_person.first_name %>
+            <% end %>
+          </td>
+          <td>
+            <%= base_person.last_name_kana %>
+            <%= base_person.first_name_kana %>
+          </td>
+          <td><%= base_person.copyright_text %></td>
+          <td>
+            <% base_person.other_people.each do |other_person| %>
+              →<%= link_to other_person.name, admin_person_path(other_person) %>
+            <% end %>
+          </td>
+          <td class="px-2">
+            <%= form_with(url: admin_person_base_people_binds_path, method: 'post', data: {turbo: false}) do |form| %>
+            <%= form.hidden_field :original_person_id, value: base_person.id %>
+            <%= form.submit '関連づける', class: 'btn-normal' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_nav(@pagy) %>
+
+  <div class="py-4">
+    <%= link_to '戻る', new_admin_person_base_person_path, class: 'btn-normal py-2' %>
+  </div>
+</div>

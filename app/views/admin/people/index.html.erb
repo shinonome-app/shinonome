@@ -4,17 +4,7 @@
 
   <h2 class="text-2xl py-2">人物検索</h1>
 
-  <%= form_with(url: admin_people_text_searches_path, method: 'get') do |form| %>
-  <table>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓読み", name: "last_name_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓", name: "last_name")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名読み", name: "first_name_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名", name: "first_name")) %>
-  </table>
-  <div class="py-2">
-    <input type="submit" name="text" value="検索" class="btn-normal">
-  </div>
-  <% end %>
+  <%= render(Admin::PersonSearchComponent.new(form_url: admin_people_text_searches_path)) %>
 
   <h2 class="text-2xl py-4">人物一覧</h1>
   <table>

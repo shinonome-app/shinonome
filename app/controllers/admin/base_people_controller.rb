@@ -44,7 +44,7 @@ module Admin
     # DELETE /base_people/1
     def destroy
       @base_person.destroy
-      redirect_to base_people_url, notice: 'Base person was successfully destroyed.'
+      redirect_to admin_person_path(@person), notice: '基本人物の関連づけを削除しました.'
     end
 
     private

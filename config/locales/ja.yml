@@ -136,6 +136,10 @@ ja:
         id: "ID"
         person_id: "人物ID"
         original_person_id: "基本人物ID"
+      person_site:
+        id: "ID"
+        person_id: "人物ID"
+        site_id: "関連サイトID"
       original_book:
         id: "底本ID"
         title: "書籍名"

@@ -49,6 +49,8 @@ class Person < ApplicationRecord
   has_many :works, through: :work_people
   has_one :base_person, dependent: :destroy
   has_one :original_person, through: :base_person
+  has_many :person_sites, dependent: :destroy
+  has_many :sites, through: :person_sites
 
   def other_people
     other_person_ids = BasePerson.where(person_id: id).pluck(:original_person_id) +

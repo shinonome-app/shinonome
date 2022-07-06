@@ -83,12 +83,46 @@
 
 <h3 class="text-xl">人物基本名</h3>
 
-<div class="py-4">
-  <%= link_to '関連づけ', new_admin_person_base_person_path(@person), class: "btn-normal" %>
-</div>
-
+  <% if @person.original_person %>
+  <div class="py-4">
+    <%= @person.original_person.name %>
+    <%= button_to '削除', [:admin, @person, @person.base_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }, class: 'inline-block' }, class: "btn-normal bg-red-300" %>
+  </div>
+  <% else %>
+  <div class="py-4">
+    <%= link_to '関連づけ', new_admin_person_base_person_path(@person), class: "btn-normal" %>
+  </div>
+  <% end %>
 
 <h3 class="text-xl">関連サイトデータ</h3>
+
+  <% if @person.sites.present? %>
+  <div class="py-4">
+    <% @person.person_sites.each do |person_site| %>
+    <div class="p-2">
+      <table>
+        <tr>
+          <th>関連サイト名</th>
+          <td><%= person_site.site.name %></td>
+        </tr>
+        <tr>
+          <th>URL</th>
+          <td><%= person_site.site.url %></td>
+        </tr>
+        <tr>
+          <th>関連サイト運営者</th>
+          <td><%= person_site.site.owner_name %></td>
+        </tr>
+      </table>
+      <%= button_to '削除', [:admin, @person, person_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-normal bg-red-300" %>
+    </div>  
+  <% end %>
+  </div>
+  <% else %>
+  <div class="py-4">
+    <%= link_to '関連づけ', new_admin_person_person_site_path(@person), class: "btn-normal" %>
+  </div>
+  <% end %>
 
 <h3 class="text-xl">関連した作品</h3>
 

@@ -1,18 +1,13 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
-  <h1 class="text-2xl">関連サイト</h1>
-
-  <h2 class="text-2xl">関連サイト検索</h2>
-
-  <%= render(Admin::SiteSearchComponent.new(form_url: admin_sites_text_searches_path)) %>
-
-  <h2 class="text-2xl">関連サイト一覧</h2>
+  <h1 class="text-2xl">関連サイト検索結果一覧</h1>
   <table>
     <thead>
       <tr>
         <th>ID</th>
         <th>サイト名</th>
         <th>URL</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -21,10 +16,15 @@
           <td><%= site.id %></td>
           <td><%= link_to site.name, admin_site_path(site) %></td>
           <td><%= site.url %></td>
+          <td class="px-2">
+            <%= form_with(url: admin_person_person_sites_binds_path, method: 'post', data: {turbo: false}) do |form| %>
+            <%= form.hidden_field :site_id, value: site.id %>
+            <%= form.submit '関連づける', class: 'btn-normal' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <br>
-  <%= link_to '関連サイト新規登録', new_admin_site_path, class: 'btn-normal' %>
 </div>
