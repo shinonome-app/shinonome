@@ -1,0 +1,44 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-2xl py-4">工作員検索結果一覧</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>工作員ID</th>
+        <th>姓名</th>
+        <th>読み</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @workers.each do |worker| %>
+        <tr>
+          <td>
+            <%= worker.id %>
+          </td>
+          <td>
+            <%= link_to admin_worker_path(worker) do %>
+              <%= worker.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= worker.name_kana %>
+          </td>
+          <td class="px-2">
+            <%= form_with(url: admin_work_work_workers_binds_path(@work), method: 'post', data: {turbo: false}) do |form| %>
+            <%= form.hidden_field :worker_id, value: worker.id %>
+            <%= form.collection_select :worker_role_id, WorkerRole.order(:id).all, :id, :name %>として
+            <%= form.submit '関連づける', class: 'btn-normal' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_nav(@pagy) %>
+
+  <div class="py-4">
+    <%= link_to '戻る', admin_work_path(@work), class: 'btn-normal py-2' %>
+  </div>
+</div>

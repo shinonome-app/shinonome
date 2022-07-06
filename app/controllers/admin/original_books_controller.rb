@@ -18,7 +18,7 @@ module Admin
       @original_book = OriginalBook.new(original_book_params)
       @original_book.work = @work
       if @original_book.save
-        redirect_to admin_work_url(@work), notice: 'Original work was successfully created.'
+        redirect_to admin_work_url(@work), notice: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -27,7 +27,7 @@ module Admin
     # PATCH/PUT /admin/original_books/1
     def update
       if @original_book.update(original_book_params)
-        redirect_to admin_work_url(@work), notice: 'Original work was successfully updated.'
+        redirect_to admin_work_url(@work), notice: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -36,7 +36,7 @@ module Admin
     # DELETE /admin/original_books/1
     def destroy
       @original_book.destroy
-      redirect_to admin_work_url(@work), notice: 'Original work was successfully destroyed.'
+      redirect_to admin_work_url(@work), notice: '削除しました.'
     end
 
     private

@@ -1,0 +1,13 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+  <h1 class="text-2xl py-4">人物関連づけ登録</h1>
+
+  <div class="py-2">
+    <p>対象作品: <%= @work.title %></p>
+  </div>
+
+  <%= render(Admin::PersonSearchComponent.new(form_url: admin_work_work_people_text_searches_path(work_id: @work.id))) %>
+
+  <div class="py-4">
+    <%= link_to '戻る', admin_work_path(id: @work.id), class: 'btn-normal' %>
+  </div>
+</div>

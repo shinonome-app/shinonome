@@ -13,9 +13,10 @@
 #
 # Indexes
 #
-#  index_work_people_on_person_id  (person_id)
-#  index_work_people_on_role_id    (role_id)
-#  index_work_people_on_work_id    (work_id)
+#  index_work_people_on_person_id              (person_id)
+#  index_work_people_on_role_id                (role_id)
+#  index_work_people_on_work_id                (work_id)
+#  index_work_people_on_work_id_and_person_id  (work_id,person_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -28,4 +29,6 @@ class WorkPerson < ApplicationRecord
   belongs_to :work
   belongs_to :person
   belongs_to :role
+
+  validates :person_id, uniqueness: { scope: :work_id, message: 'がすでに関連付けられています' }
 end

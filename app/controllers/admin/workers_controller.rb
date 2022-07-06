@@ -32,7 +32,7 @@ module Admin
 
       @worker = Worker.new(worker_params)
       if @worker.save
-        redirect_to [:admin, @worker], notice: '工作員を追加しました'
+        redirect_to [:admin, @worker], notice: '追加しました'
       else
         render :new, status: :unprocessable_entity
       end
@@ -42,7 +42,7 @@ module Admin
     def update
       worker_params[:worker_secret_attributes].merge!({ user_id: current_admin_user.id })
       if @worker.update(worker_params)
-        redirect_to [:admin, @worker], notice: '工作員を更新しました.'
+        redirect_to [:admin, @worker], notice: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -51,7 +51,7 @@ module Admin
     # DELETE /admin/workers/1
     def destroy
       @worker.destroy
-      redirect_to admin_workers_url, notice: '工作員を削除しました.'
+      redirect_to admin_workers_url, notice: '削除しました.'
     end
 
     private

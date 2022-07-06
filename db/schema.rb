@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2021_12_29_010000) do
+ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -274,6 +274,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_010000) do
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_work_people_on_person_id"
     t.index ["role_id"], name: "index_work_people_on_role_id"
+    t.index ["work_id", "person_id"], name: "index_work_people_on_work_id_and_person_id", unique: true
     t.index ["work_id"], name: "index_work_people_on_work_id"
   end
 
@@ -283,6 +284,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_010000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_work_sites_on_site_id"
+    t.index ["work_id", "site_id"], name: "index_work_sites_on_work_id_and_site_id", unique: true
     t.index ["work_id"], name: "index_work_sites_on_work_id"
   end
 
@@ -299,6 +301,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_010000) do
     t.bigint "worker_role_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["work_id", "worker_id", "worker_role_id"], name: "index_work_workers_on_work_id_and_worker_id_and_worker_role_id", unique: true
     t.index ["work_id"], name: "index_work_workers_on_work_id"
     t.index ["worker_id"], name: "index_work_workers_on_worker_id"
     t.index ["worker_role_id"], name: "index_work_workers_on_worker_role_id"

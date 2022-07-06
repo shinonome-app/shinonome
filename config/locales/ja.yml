@@ -57,6 +57,8 @@ ja:
       worker: 工作員
       user: ユーザー
       shinonome/user: ユーザー
+      worker: 工作員
+      work_worker: 工作員関連づけ
     attributes:
       work:
         id: "作品ID"
@@ -120,6 +122,8 @@ ja:
         note: "備考"
         sortkey: "ソート用読み"
       work_worker:
+        work_id: "作品ID"
+        worker_id: "工作員ID"
         worker_role_id: "役割"
       workfile:
         filetype_id: "ファイル形式"
@@ -140,6 +144,10 @@ ja:
         id: "ID"
         person_id: "人物ID"
         site_id: "関連サイトID"
+      work_person:
+        work_id: "作品ID"
+        person_id: "人物ID"
+        role_id: "役割ID"
       original_book:
         id: "底本ID"
         title: "書籍名"
@@ -148,6 +156,7 @@ ja:
         input_edition: "入力に使用した版"
         proof_edition: "校正に使用した版"
         worktype_id: "種別フラグ"
+        worktype: "種別フラグ"
         note: "備考"
       proofread:
         worker_id: "工作員ID"

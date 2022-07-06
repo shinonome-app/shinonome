@@ -12,8 +12,9 @@
 #
 # Indexes
 #
-#  index_work_sites_on_site_id  (site_id)
-#  index_work_sites_on_work_id  (work_id)
+#  index_work_sites_on_site_id              (site_id)
+#  index_work_sites_on_work_id              (work_id)
+#  index_work_sites_on_work_id_and_site_id  (work_id,site_id) UNIQUE
 #
 # Foreign Keys
 #

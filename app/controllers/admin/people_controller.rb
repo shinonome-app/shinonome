@@ -28,7 +28,7 @@ module Admin
       @person = Person.new(person_params)
 
       if @person.save
-        redirect_to [:admin, @person], notice: 'Person was successfully created.'
+        redirect_to [:admin, @person], notice: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -37,7 +37,7 @@ module Admin
     # PATCH/PUT /admin/people/1
     def update
       if @person.update(person_params)
-        redirect_to [:admin, @person], notice: 'Person was successfully updated.'
+        redirect_to [:admin, @person], notice: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -46,7 +46,7 @@ module Admin
     # DELETE /admin/people/1
     def destroy
       @person.destroy
-      redirect_to admin_people_url, notice: 'Person was successfully destroyed.'
+      redirect_to admin_people_url, notice: '削除しました.'
     end
 
     private

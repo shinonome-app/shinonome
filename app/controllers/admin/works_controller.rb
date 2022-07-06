@@ -29,7 +29,7 @@ module Admin
       @work.user = current_admin_user
 
       if @work.save
-        redirect_to [:admin, @work], notice: 'Work was successfully created.'
+        redirect_to [:admin, @work], notice: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -39,7 +39,7 @@ module Admin
     def update
       params2 = work_params.merge({ user_id: current_admin_user.id })
       if @work.update(params2)
-        redirect_to [:admin, @work], notice: 'Work was successfully updated.'
+        redirect_to [:admin, @work], notice: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -48,7 +48,7 @@ module Admin
     # DELETE /works/1
     def destroy
       @work.destroy
-      redirect_to admin_works_url, notice: 'Work was successfully destroyed.'
+      redirect_to admin_works_url, notice: '削除しました.'
     end
 
     private

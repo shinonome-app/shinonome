@@ -13,9 +13,10 @@
 #
 # Indexes
 #
-#  index_work_workers_on_work_id         (work_id)
-#  index_work_workers_on_worker_id       (worker_id)
-#  index_work_workers_on_worker_role_id  (worker_role_id)
+#  index_work_workers_on_work_id                                   (work_id)
+#  index_work_workers_on_work_id_and_worker_id_and_worker_role_id  (work_id,worker_id,worker_role_id) UNIQUE
+#  index_work_workers_on_worker_id                                 (worker_id)
+#  index_work_workers_on_worker_role_id                            (worker_role_id)
 #
 # Foreign Keys
 #

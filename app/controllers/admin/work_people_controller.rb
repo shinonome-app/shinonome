@@ -3,6 +3,7 @@
 module Admin
   class WorkPeopleController < ApplicationController
     before_action :set_work_person, only: %i[show edit update destroy]
+    before_action :set_work, only: %i[new destroy]
 
     # GET /work_people
     def index
@@ -25,7 +26,7 @@ module Admin
       @work_person = WorkPerson.new(work_person_params)
 
       if @work_person.save
-        redirect_to @work_person, notice: 'Work person was successfully created.'
+        redirect_to @work_person, notice: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -34,7 +35,7 @@ module Admin
     # PATCH/PUT /work_people/1
     def update
       if @work_person.update(work_person_params)
-        redirect_to @work_person, notice: 'Work person was successfully updated.'
+        redirect_to @work_person, notice: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -43,7 +44,7 @@ module Admin
     # DELETE /work_people/1
     def destroy
       @work_person.destroy
-      redirect_to work_people_url, notice: 'Work person was successfully destroyed.'
+      redirect_to admin_work_path(@work), notice: '削除しました.'
     end
 
     private
@@ -51,6 +52,10 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_work_person
       @work_person = WorkPerson.find(params[:id])
+    end
+
+    def set_work
+      @work = Work.find(params[:work_id])
     end
 
     # Only allow a list of trusted parameters through.

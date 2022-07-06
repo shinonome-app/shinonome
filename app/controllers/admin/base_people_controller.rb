@@ -3,42 +3,16 @@
 module Admin
   class BasePeopleController < ApplicationController
     before_action :set_person
-    before_action :set_base_person, only: %i[show edit update destroy]
+    before_action :set_base_person, only: %i[destroy]
 
     # GET /base_people
     def index
       @base_people = BasePerson.all
     end
 
-    # GET /base_people/1
-    def show; end
-
     # GET /base_people/new
     def new
       @base_person = BasePerson.new
-    end
-
-    # GET /base_people/1/edit
-    def edit; end
-
-    # POST /people/1/base_people
-    def create
-      @base_person = BasePerson.new(base_person_params)
-
-      if @base_person.save
-        redirect_to @base_person, notice: 'Base person was successfully created.'
-      else
-        render :new, status: :unprocessable_entity
-      end
-    end
-
-    # PATCH/PUT /base_people/1
-    def update
-      if @base_person.update(base_person_params)
-        redirect_to @base_person, notice: 'Base person was successfully updated.'
-      else
-        render :edit, status: :unprocessable_entity
-      end
     end
 
     # DELETE /base_people/1
