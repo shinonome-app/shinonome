@@ -132,6 +132,10 @@ ja:
         file_encoding_id: "ファイルエンコーディング"
         charset_id: "文字集合"
         note: "備考"
+      base_person:
+        id: "ID"
+        person_id: "人物ID"
+        original_person_id: "基本人物ID"
       original_book:
         id: "底本ID"
         title: "書籍名"

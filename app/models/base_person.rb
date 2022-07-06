@@ -24,4 +24,6 @@
 class BasePerson < ApplicationRecord
   belongs_to :person
   belongs_to :original_person, class_name: 'Person'
+
+  validates :person_id, uniqueness: { message: 'がすでに関連付けられています' }
 end
