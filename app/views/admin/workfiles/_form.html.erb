@@ -12,35 +12,35 @@
   <%= form.hidden_field :work_id %>
   <div class="field py-2">
     <%= form.label :filetype_id %>
-    <%= form.collection_select :filetype_id, Filetype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+    <%= form.collection_select :filetype_id, Filetype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: "w-full border border-gray-800 p-1"} %>
   </div>
   <div class="field py-2">
     <%= form.label :compresstype_id %>
-    <%= form.collection_select :compresstype_id, Compresstype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+    <%= form.collection_select :compresstype_id, Compresstype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: "w-full border border-gray-800 p-1"} %>
   </div>
   <div class="field py-2">
     <%= form.label :filesize %>
-    <%= form.text_field :filesize %>
+    <%= form.text_field :filesize, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
     <%= form.label :url %>
-    <%= form.text_field :url %>
+    <%= form.text_field :url, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
     <%= form.label :opened_on %>
-    <%= form.date_select :opened_on %>
+    <%= form.date_select :opened_on, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
     <%= form.label :revision_count %>
-    <%= form.text_field :revision_count %>
+    <%= form.text_field :revision_count, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
     <%= form.label :file_encoding_id %>
-    <%= form.collection_select :file_encoding_id, FileEncoding.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+    <%= form.collection_select :file_encoding_id, FileEncoding.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: "w-full border border-gray-800 p-1"} %>
   </div>
   <div class="field py-2">
     <%= form.label :charset_id %>
-    <%= form.collection_select :charset_id, Charset.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+    <%= form.collection_select :charset_id, Charset.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: "w-full border border-gray-800 p-1"} %>
   </div>
   <div class="field py-2">
     <%= form.label :note %>

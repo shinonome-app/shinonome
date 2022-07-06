@@ -9,35 +9,35 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field py-1">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-1">
     <%= form.label :publisher %>
-    <%= form.text_field :publisher %>
+    <%= form.text_field :publisher, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-1">
     <%= form.label :first_pubdate %>
-    <%= form.text_field :first_pubdate %>
+    <%= form.text_field :first_pubdate, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-1">
     <%= form.label :input_edition %>
-    <%= form.text_field :input_edition %>
+    <%= form.text_field :input_edition, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-1">
     <%= form.label :proof_edition %>
-    <%= form.text_field :proof_edition %>
+    <%= form.text_field :proof_edition, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="field">
+  <div class="field py-1">
     <%= form.label :worktype_id %>
-    <%= form.collection_select :worktype_id, Worktype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'}  %>
+    <%= form.collection_select :worktype_id, Worktype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'w-full border border-gray-800 p-1'} %>
   </div>
-  <div class="field">
+  <div class="field py-1">
     <%= form.label :note %>
-    <%= form.text_area :note %>
+    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
   </div>
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions py-4">
+    <%= form.submit '更新', class: 'btn-normal' %>
   </div>
 <% end %>

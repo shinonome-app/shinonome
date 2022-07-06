@@ -11,15 +11,15 @@
   <% end %>
   <div class="field">
     <%= form.label :name, "分類名" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field">
     <%= form.label :num, "分類番号" %>
-    <%= form.text_field :num %>
+    <%= form.text_field :num, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field">
     <%= form.label :note, "備考" %>
-    <%= form.text_area :note %>
+    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
   </div>
 
   <%= form.hidden_field :work_id %>

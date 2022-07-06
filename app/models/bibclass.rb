@@ -15,4 +15,7 @@
 
 class Bibclass < ApplicationRecord
   belongs_to :work
+
+  validates :name, presence: true
+  validates :num, presence: true
 end
