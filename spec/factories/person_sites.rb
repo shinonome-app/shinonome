@@ -12,8 +12,9 @@
 #
 # Indexes
 #
-#  index_person_sites_on_person_id  (person_id)
-#  index_person_sites_on_site_id    (site_id)
+#  index_person_sites_on_person_id              (person_id)
+#  index_person_sites_on_person_id_and_site_id  (person_id,site_id) UNIQUE
+#  index_person_sites_on_site_id                (site_id)
 #
 # Foreign Keys
 #
