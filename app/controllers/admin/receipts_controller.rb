@@ -7,7 +7,7 @@ module Admin
 
     # GET /admin/receipts
     def index
-      @receipts = Receipt.all.order(id: :desc)
+      @receipts = Receipt.active.order(id: :desc)
     end
 
     # GET /admin/receipts/1
@@ -24,12 +24,6 @@ module Admin
         render 'admin/receipts/edit', status: :unprocessable_entity
         render :edit, status: :unprocessable_entity
       end
-    end
-
-    # DELETE /admin/receipts/1
-    def destroy
-      @receipt.destroy
-      redirect_to admin_receipts_url, notice: '削除しました.'
     end
 
     private

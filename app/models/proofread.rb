@@ -40,6 +40,9 @@ class Proofread < ApplicationRecord
   belongs_to :workfile, optional: true
   belongs_to :worker, optional: true
 
+  enum assign_status: { not_assigned: 0, assigned: 1 }
+  enum order_status: { not_ordered: 0, ordered: 1 }
+
   scope :active, -> { where(deleted_at: nil) }
 
   validates :worker_id, numericality: { only_integer: true }, allow_nil: true

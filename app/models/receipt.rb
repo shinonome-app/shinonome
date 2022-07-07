@@ -97,10 +97,6 @@ class Receipt < ApplicationRecord
     "#{first_name_en}, #{last_name_en}" if last_name_en || first_name_en
   end
 
-  def status_name
-    register_status == 0 ? '未' : '済'
-  end
-
   private
 
   def set_statuses

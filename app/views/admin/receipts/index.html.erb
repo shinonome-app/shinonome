@@ -31,15 +31,21 @@
         <td><%= receipt.name %> (<%= receipt.person_id %>)</td>
         <% end %>
         <td><%= receipt.worker_name %></td>
-        <td><span class="text-red-500"><%= receipt.status_name %></span></td>
+        <td>
+          <% if receipt.ordered? %>
+          <span class="text-red-500">済</span>
+          <% else %>
+          <span>未</span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<h2 class="text-xl py-2">一括削除</h2>
+<h2 class="text-xl py-2">発注済みの一括削除</h2>
 
-<%= form_with(model: [:admin, @receipts], url: admin_receipts_bulk_removes_path, data: { turbo: false }) do |form| %>
+<%= form_with(url: admin_receipts_bulk_removes_path, method: :post, data: { turbo_confirm: '本当に一括削除しますか？' }) do |form| %>
 <%= form.submit '一括削除する', class: "btn-normal" %>
 <% end %>
 
