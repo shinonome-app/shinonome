@@ -1,9 +1,17 @@
 ja:
   app:
-    name: Shinonome
     main_url: https://shinonome.example.jp
+    name: Shinonome
   activemodel:
     attributes:
+      proofread_form:
+        worker_id: "工作員ID"
+        worker_kana: "工作員読み"
+        worker_name: "工作員名"
+        email: "e-mail"
+        url: "ホームページ"
+        address: "送付先"
+        memo: "連絡事項"
       receipt_form:
         worker_id: "工作員ID"
         worker_kana: "工作員読み"
@@ -38,14 +46,6 @@ ja:
         memo: "作品について"
         note: "備考"
         copyright_flag: "著作権"
-      proofread_form:
-        worker_id: "工作員ID"
-        worker_kana: "工作員読み"
-        worker_name: "工作員名"
-        email: "e-mail"
-        url: "ホームページ"
-        address: "送付先"
-        memo: "連絡事項"
 
   activerecord:
     models:
@@ -60,25 +60,56 @@ ja:
       worker: 工作員
       work_worker: 工作員関連づけ
     attributes:
-      work:
-        id: "作品ID"
-        title: "作品名"
-        title_kana: "作品名読み"
-        subtitle: "副題"
-        subtitle_kana: "副題読み"
-        collection: "作品集名"
-        collection_kana: "作品集名読み"
-        original_title: "原題"
-        kana_type_id: "仮名遣い種別"
-        first_appearance: "初出"
-        description: "作品について"
-        status: "状態"
-        started_on: "状態の開始日"
-        copyright_flag: "著作権フラグ"
+      admin_mail_secret:
+        subject: 件名
+        body: 本文
+        worker_id: 工作員ID
+        cc_flag: 青空文庫にCCする
+      base_person:
+        id: "ID"
+        person_id: "人物ID"
+        original_person_id: "基本人物ID"
+      exec_command:
+        command: コマンド
+        separator: 区切り文字
+      original_book:
+        id: "底本ID"
+        title: "書籍名"
+        publisher: "出版社名"
+        first_pubdate: "初版発行年月日"
+        input_edition: "入力に使用した版"
+        proof_edition: "校正に使用した版"
+        worktype_id: "種別フラグ"
+        worktype: "種別フラグ"
         note: "備考"
-        orig_text: "底本管理情報"
-        user_id: "更新者"
-        sortkey: "ソートキー"
+      person:
+        id: "人物ID"
+        site_id: "関連サイトID"
+        first_name: "名"
+        last_name: "姓"
+        first_name_en: "名ローマ字"
+        last_name_en: "姓ローマ字"
+        first_name_kana: "名読み"
+        last_name_kana: "姓読み"
+        sortkey: "名ソート用"
+        sortkey2: "姓ソート用"
+        born_on: "生年月日"
+        died_on: "没年月日"
+        copyright_flag: "著作権フラグ"
+        email: "email"
+        url: "URL"
+        description: "人物について"
+        note: "備考"
+      person_site:
+        id: "ID"
+        person_id: "人物ID"
+        site_id: "関連サイトID"
+      proofread:
+        worker_id: "工作員ID"
+        worker_kana: "工作員読み"
+        worker_name: "工作員名"
+        email: "e-mail"
+        url: "ホームページ"
       receipt:
         worker_id: "工作員ID"
         worker_kana: "工作員読み"
@@ -113,6 +144,51 @@ ja:
         status: "状態"
         started_on: "状態の開始日"
         copyright_flag: "著作権"
+      shinonome/user:
+        email: e-mail
+        username: ユーザ名
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        current_password: 現在のパスワード
+      site:
+        id: "関連サイトID"
+        name: "関連サイト名"
+        url: "関連サイトURL"
+        owner_name: "関連サイト運営者名"
+        email: "email"
+        note: "備考"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+        updated_by: "更新者"
+      work:
+        id: "作品ID"
+        title: "作品名"
+        title_kana: "作品名読み"
+        subtitle: "副題"
+        subtitle_kana: "副題読み"
+        collection: "作品集名"
+        collection_kana: "作品集名読み"
+        original_title: "原題"
+        kana_type: "仮名遣い種別"
+        kana_type_id: "仮名遣い種別"
+        first_appearance: "初出"
+        description: "作品について"
+        work_status: "状態"
+        work_status_id: "状態"
+        started_on: "状態の開始日"
+        copyright_flag: "著作権フラグ"
+        note: "備考"
+        orig_text: "底本管理情報"
+        user_id: "更新者"
+        sortkey: "ソートキー"
+      work_person:
+        work_id: "作品ID"
+        person_id: "人物ID"
+        role_id: "役割ID"
+      work_worker:
+        work_id: "作品ID"
+        worker_id: "工作員ID"
+        worker_role_id: "役割"
       worker:
         id: "工作員ID"
         name: "姓名"
@@ -121,10 +197,6 @@ ja:
         email: "email"
         note: "備考"
         sortkey: "ソート用読み"
-      work_worker:
-        work_id: "作品ID"
-        worker_id: "工作員ID"
-        worker_role_id: "役割"
       workfile:
         filetype_id: "ファイル形式"
         compresstype_id: "圧縮形式"
@@ -136,75 +208,23 @@ ja:
         file_encoding_id: "ファイルエンコーディング"
         charset_id: "文字集合"
         note: "備考"
-      base_person:
-        id: "ID"
-        person_id: "人物ID"
-        original_person_id: "基本人物ID"
-      person_site:
-        id: "ID"
-        person_id: "人物ID"
-        site_id: "関連サイトID"
-      work_person:
-        work_id: "作品ID"
-        person_id: "人物ID"
-        role_id: "役割ID"
-      original_book:
-        id: "底本ID"
-        title: "書籍名"
-        publisher: "出版社名"
-        first_pubdate: "初版発行年月日"
-        input_edition: "入力に使用した版"
-        proof_edition: "校正に使用した版"
-        worktype_id: "種別フラグ"
-        worktype: "種別フラグ"
-        note: "備考"
-      proofread:
-        worker_id: "工作員ID"
-        worker_kana: "工作員読み"
-        worker_name: "工作員名"
-        email: "e-mail"
-        url: "ホームページ"
-      site:
-        id: "関連サイトID"
-        name: "関連サイト名"
-        url: "関連サイトURL"
-        owner_name: "関連サイト運営者名"
-        email: "email"
-        note: "備考"
-        created_at: "作成日時"
-        updated_at: "更新日時"
-        updated_by: "更新者"
-      exec_command:
-        command: コマンド
-        separator: 区切り文字
-      admin_mail_secret:
-        subject: 件名
-        body: 本文
-        worker_id: 工作員ID
-        cc_flag: 青空文庫にCCする
-      shinonome/user:
-        email: e-mail
-        username: ユーザ名
-        password: パスワード
-        password_confirmation: パスワード（確認用）
-        current_password: 現在のパスワード
   errors:
-    header_message:
-      one: "%{count}件のエラーが見つかりました"
-      other: "%{count}件のエラーが見つかりました"
     command_parser:
       invalid_format: "サポートされていないフォーマットです。カンマ区切りかタブ区切りにしてください。"
       invalid_work_id: "作品ID'%{work_id}'は正しいIDではありません。作品IDは数値にしてください。"
       invalid_command: "コマンド名'%{name}'は正しいコマンドではありません。"
+    header_message:
+      one: "%{count}件のエラーが見つかりました"
+      other: "%{count}件のエラーが見つかりました"
   admin_mailer:
     confirm_receipt:
       subject: "「%{title}」入力のお願い"
   user_mailer:
-    register_receipt:
-      subject:
-        one: "「%{title}」入力受付完了のお知らせ"
-        other: "「%{title}」他の入力受付完了のお知らせ"
     register_proofread:
       subject:
         one: "「%{title}」校正受付完了のお知らせ"
         other: "「%{title}」他の校正受付完了のお知らせ"
+    register_receipt:
+      subject:
+        one: "「%{title}」入力受付完了のお知らせ"
+        other: "「%{title}」他の入力受付完了のお知らせ"

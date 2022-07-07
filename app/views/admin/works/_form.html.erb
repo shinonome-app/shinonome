@@ -73,7 +73,7 @@
     <%= form.label :copyright_flag, "著作権フラグ" %>
     <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], {include_blank: false}, {class: 'text-gray-800'} %>
   </div>
-  <div class="actions">
-    <%= form.submit "登録する", class: "w-full border border-gray-800 p-1" %>
+  <div class="actions py-4">
+    <%= form.submit "登録する", class: 'btn-normal' %>
   </div>
 <% end %>

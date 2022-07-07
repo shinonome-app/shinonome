@@ -5,7 +5,7 @@
     <% row.each do |cell| %>
     <td>
       <% if cell %>
-      <input type="submit" name="<%= @key %>" value="<%= cell %>">
+      <input type="submit" name="<%= @key %>" value="<%= cell %>" class="border border-1 border-gray-600 hover:bg-gray-200 p-2">
       <% else %>
       &nbsp;
       <% end %>

@@ -84,6 +84,7 @@ class Work < ApplicationRecord
   validates :copyright_flag, inclusion: { in: [true, false] }
   validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }
   validates :started_on, presence: true
+  validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
 
   def self.latest_published(year: nil, until_date: Time.zone.today)
     year ||= until_date.year
