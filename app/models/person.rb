@@ -52,6 +52,12 @@ class Person < ApplicationRecord
   has_many :person_sites, dependent: :destroy
   has_many :sites, through: :person_sites
 
+  validates :last_name, :last_name_kana, presence: true
+  validates :copyright_flag, inclusion: { in: [true, false] }
+  validates :input_count, :publish_count, numericality: { only_integer: true }, allow_nil: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
+  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }, allow_blank: true
+
   def other_people
     other_person_ids = BasePerson.where(person_id: id).pluck(:original_person_id) +
                        BasePerson.where(original_person_id: id).pluck(:person_id)
@@ -93,8 +99,4 @@ class Person < ApplicationRecord
   def unpublished_works
     Work.joins(:work_people).unpublished.where(work_people: { person_id: id })
   end
-
-  validates :last_name, :last_name_kana, presence: true
-  validates :copyright_flag, inclusion: { in: [true, false] }
-  validates :input_count, :publish_count, numericality: { only_integer: true }, allow_nil: true
 end
