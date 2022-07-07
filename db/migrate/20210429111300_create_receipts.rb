@@ -36,10 +36,11 @@ class CreateReceipts < ActiveRecord::Migration[6.1]
       t.bigint :person_id
       t.bigint :worker_id
       t.bigint :work_id
-      t.integer :register_status, default: 0
+      t.integer :register_status, default: 0, null: false
       t.text :original_book_note
       t.references :work_status, foreign_key: true, null: false
       t.date :started_on, null: false
+      t.datetime :deleted_at
 
       t.timestamps
     end

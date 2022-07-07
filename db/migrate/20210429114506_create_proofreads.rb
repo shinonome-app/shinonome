@@ -16,8 +16,9 @@ class CreateProofreads < ActiveRecord::Migration[6.1]
       t.text :email
       t.text :url
       t.references :person, foreign_key: true, null: false
-      t.text :assign_status
-      t.text :order_status
+      t.integer :assign_status, null: false
+      t.integer :order_status, null: false
+      t.datetime :deleted_at
 
       t.timestamps
     end

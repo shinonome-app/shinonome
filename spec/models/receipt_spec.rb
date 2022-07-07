@@ -8,6 +8,7 @@
 #  collection           :text
 #  collection_kana      :text
 #  copyright_flag       :boolean          not null
+#  deleted_at           :datetime
 #  email                :text             not null
 #  first_appearance     :text
 #  first_name           :text
@@ -28,7 +29,7 @@
 #  person_note          :text
 #  publisher            :text             not null
 #  publisher2           :text
-#  register_status      :integer          default(0)
+#  register_status      :integer          default("not_ordered"), not null
 #  started_on           :date             not null
 #  subtitle             :text
 #  subtitle_kana        :text

@@ -6,10 +6,11 @@
 #
 #  id            :bigint           not null, primary key
 #  address       :text
-#  assign_status :text
+#  assign_status :integer          not null
+#  deleted_at    :datetime
 #  email         :text
 #  memo          :text
-#  order_status  :text
+#  order_status  :integer          not null
 #  proof_edition :text
 #  url           :text
 #  work_copy     :text

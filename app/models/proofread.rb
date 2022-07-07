@@ -6,10 +6,11 @@
 #
 #  id            :bigint           not null, primary key
 #  address       :text
-#  assign_status :text
+#  assign_status :integer          not null
+#  deleted_at    :datetime
 #  email         :text
 #  memo          :text
-#  order_status  :text
+#  order_status  :integer          not null
 #  proof_edition :text
 #  url           :text
 #  work_copy     :text
@@ -38,6 +39,8 @@ class Proofread < ApplicationRecord
   belongs_to :work
   belongs_to :workfile, optional: true
   belongs_to :worker, optional: true
+
+  scope :active, -> { where(deleted_at: nil) }
 
   validates :worker_id, numericality: { only_integer: true }, allow_nil: true
   validates :worker_name, presence: true

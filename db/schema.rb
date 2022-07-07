@@ -184,8 +184,9 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "email"
     t.text "url"
     t.bigint "person_id", null: false
-    t.text "assign_status"
-    t.text "order_status"
+    t.integer "assign_status", null: false
+    t.integer "order_status", null: false
+    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_proofreads_on_person_id"
@@ -226,10 +227,11 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.bigint "person_id"
     t.bigint "worker_id"
     t.bigint "work_id"
-    t.integer "register_status", default: 0
+    t.integer "register_status", default: 0, null: false
     t.text "original_book_note"
     t.bigint "work_status_id", null: false
     t.date "started_on", null: false
+    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["work_status_id"], name: "index_receipts_on_work_status_id"
