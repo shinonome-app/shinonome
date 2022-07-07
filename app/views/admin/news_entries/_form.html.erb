@@ -13,7 +13,7 @@
   <table class="w-full">
     <tr>
       <td class="w-24"><%= form.label :published_on, "日付" %></td>
-      <td><%= form.date_select :published_on %></td>
+      <td><%= form.date_select :published_on, start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true %></td>
     </tr>
     <tr>
       <td>
@@ -59,7 +59,7 @@
 
 <div class="actions">
   <%= form.submit "更新", class: 'btn-normal' %>
-  <%= link_to '戻る', admin_news_entries_path, class: 'btn-normal' %>
+  <%= link_to '戻る', admin_news_entry_path(news_entry), class: 'btn-normal' %>
 </div>
 <% end %>
 

@@ -59,7 +59,7 @@
       </tr>
       <tr>
         <th><%= form.label :started_on %></th>
-        <td><%= form.date_select :started_on %></td>
+        <td><%= form.date_select :started_on, start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true %></td>
       </tr>
       <tr>
         <th><%= form.label :copyright_flag %></th>
