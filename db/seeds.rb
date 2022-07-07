@@ -131,7 +131,7 @@ worktypes.each do |k, v|
   Worktype.create!(id: k, name: v)
 end
 
-if Rails.env.development?
+if Rails.env.development? || ENV.fetch('USE_ALL_SEED', nil)
   require_relative 'seeds/users'
   require_relative 'seeds/news_entries'
   require_relative 'seeds/workers'
