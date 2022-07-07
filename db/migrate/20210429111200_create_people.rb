@@ -9,8 +9,8 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.text :first_name
       t.text :first_name_kana
       t.text :first_name_en
-      t.date :born_on
-      t.date :died_on
+      t.text :born_on
+      t.text :died_on
       t.boolean :copyright_flag, null: false
       t.text :email
       t.text :url

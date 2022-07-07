@@ -142,8 +142,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "first_name"
     t.text "first_name_kana"
     t.text "first_name_en"
-    t.date "born_on"
-    t.date "died_on"
+    t.text "born_on"
+    t.text "died_on"
     t.boolean "copyright_flag", null: false
     t.text "email"
     t.text "url"

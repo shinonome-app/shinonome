@@ -6,10 +6,10 @@
 #
 #  id              :bigint           not null, primary key
 #  basename        :text
-#  born_on         :date
+#  born_on         :text
 #  copyright_flag  :boolean          not null
 #  description     :text
-#  died_on         :date
+#  died_on         :text
 #  email           :text
 #  first_name      :text
 #  first_name_en   :text

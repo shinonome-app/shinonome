@@ -6,10 +6,10 @@
 #
 #  id              :bigint           not null, primary key
 #  basename        :text
-#  born_on         :date
+#  born_on         :text
 #  copyright_flag  :boolean          not null
 #  description     :text
-#  died_on         :date
+#  died_on         :text
 #  email           :text
 #  first_name      :text
 #  first_name_en   :text
@@ -62,14 +62,6 @@ class Person < ApplicationRecord
     other_person_ids = BasePerson.where(person_id: id).pluck(:original_person_id) +
                        BasePerson.where(original_person_id: id).pluck(:person_id)
     Person.where(id: other_person_ids)
-  end
-
-  def born_year
-    born_on&.year
-  end
-
-  def died_year
-    died_on&.year
   end
 
   def copyright?
