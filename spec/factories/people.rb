@@ -40,8 +40,8 @@ FactoryBot.define do
     born_on { '2021-04-29' }
     died_on { '2021-04-29' }
     copyright_flag { false }
-    email { 'MyText' }
-    url { 'MyText' }
+    email { 'sample-person@example.com' }
+    url { 'https://sample.example.com' }
     description { 'MyText' }
     note_user_id { 1 }
     basename { 'MyText' }

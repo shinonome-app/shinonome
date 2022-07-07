@@ -67,7 +67,7 @@
   </div>
   <div class="field py-2">
     <%= form.label :started_on, "状態の開始日" %>
-    <%= form.date_select :started_on, class: "w-full border border-gray-800 p-1" %>
+    <%= form.date_select :started_on, start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
     <%= form.label :copyright_flag, "著作権フラグ" %>
