@@ -1,0 +1,46 @@
+<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
+<p id="notice"><%= notice %></p>
+<h1 class="text-2xl py-4">Web校正受付管理</h1>
+
+<h2 class="text-xl py-2">Web受付作品一覧</h2>
+<p>
+  <%= @proofreads.count %>件の作品が見つかりました。　　　
+</p>
+<table class="w-full my-4">
+  <thead>
+    <tr>
+      <th>連番</th>
+      <th>日付</th>
+      <th>作品名</th>
+      <th>文字遣い</th>
+      <th>著者</th>
+      <th>入力者</th>
+      <th>登録</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proofreads.order(created_at: :desc).each_with_index do |proofread, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= proofread.created_at.strftime("%Y-%m-%d") %></td>
+        <td><%= link_to proofread.title, edit_admin_proofread_path(proofread), class: "link-normal" %></td>
+        <td><%= proofread.kana_type&.name %></td>
+        <% if proofread.person_id.present? %>
+        <td><%= proofread.name %> (<%= link_to proofread.person_id, admin_person_path(id: proofread.person_id), class: "link-normal" %>)</td>
+        <% else %>
+        <td><%= proofread.name %> (<%= proofread.person_id %>)</td>
+        <% end %>
+        <td><%= proofread.worker_name %></td>
+        <td><span class="text-red-500"><%= proofread.status_name %></span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2 class="text-xl py-2">一括削除</h2>
+
+<%= form_with(url: admin_proofreads_bulk_removes_path, method: :post, data: { turbo_confirm: '本当に一括削除しますか？' }) do |form| %>
+<%= form.submit '一括削除する', class: "btn-normal" %>
+<% end %>
+
+</div>

@@ -3,7 +3,7 @@
 module Admin
   # Web入力受付管理
   class ReceiptsController < Admin::ApplicationController
-    before_action :set_receipt, only: %i[show edit update destroy]
+    before_action :set_receipt, only: %i[show edit update]
 
     # GET /admin/receipts
     def index
