@@ -5,7 +5,10 @@
       </tr>
       <tr>
         <th>工作員ID</th>
-        <td><%= @worker.id %></td>
+        <td>
+          <%= @worker.id %>
+          <%= form.hidden_field :worker_id %>
+        </td>
       </tr>
       <tr>
         <th>姓名読み</th>
@@ -24,3 +27,4 @@
         <td><%= @worker_secret.url %></td>
       </tr>
     </table>
+

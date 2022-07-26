@@ -121,7 +121,7 @@ Rails.application.routes.draw do
       resources :bulk_removes, only: %i[create]
     end
 
-    resources :proofreads, only: %i[index edit update]
+    resources :proofreads, only: %i[index edit update destroy]
     namespace :proofreads do
       resources :previews, only: %i[update]
       resources :bulk_removes, only: %i[create]
