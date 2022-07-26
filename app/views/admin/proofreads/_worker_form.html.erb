@@ -1,0 +1,28 @@
+  <%= form_with(model: [:admin, worker], url: admin_proofreads_worker_path, data: { turbo: false } ) do |form| %>
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>データ</th>
+      </tr>
+      <tr>
+        <th>工作員ID</th>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th>姓名読み</th>
+        <td><%= form.text_field :name_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th>姓名</th>
+        <td><%= form.text_field :name, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th>e-mail</th>
+        <td><%= form.text_field :email, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th>ホームページ</th>
+        <td><%= form.text_field :url, class: "w-full p-1" %></td>
+      </tr>
+    </table>
+  <% end %>
