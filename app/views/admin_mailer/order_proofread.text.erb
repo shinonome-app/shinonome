@@ -1,0 +1,42 @@
+<%= @worker.name %> 様
+
+青空文庫は、以下の内容で校正申し入れのあった作品を、校正していただくための準備を終え
+ました。
+
+■申し入れの内容
+
+――――――――――
+校正者名：<%= @worker.name %>
+工作員ID：<%= @worker.id %>
+――――――――――
+作品名　　　　　：<%= @work.title %>
+仮名遣い種別　　：<%= @work.kana_type_name %>
+著者名　　　　　：<%= @work.author_text %>
+底本　　　　　　：「<%= @work.first_teihon.title %>」<%= @work.first_teihon.publisher %>
+入力に使用した版：<%= @work.first_teihon.input_edition %>
+校正に使用する版：<%= @work.first_teihon.proof_edition %>
+――――――――――
+
+・このメールに、校正用ファイルを添付してお送りします。
+・校正作業に、着手してください。
+
+・「<%= @worker.name %>」さんがこの作品の校正に着手したことは、「総合インデックス」の「作業
+中の作品」（「作家別」「作品別」の双方）に、明日以降、記載されます。
+https://www.aozora.gr.jp/index_pages/index_top.html
+
+・申し入れの内容や「総合インデックス」の記載内容に誤りがあった場合、申し入れをしてい
+ないにもかかわらず、このメールが送られてきた場合には、reception@aozora.gr.jp にご連絡をお
+願いいたします。
+・数日を経ても「総合インデックス」に記載されなかった場合にも、reception@aozora.gr.jp にお
+問い合わせください。
+
+・作業途中で「やりとげられない」と思ったときには、遠慮なく reception@aozora.gr.jp に、校
+正取消を申し入れてください。
+
+・校正作業が完了したら、修正済みのファイルと、作業履歴ファイルを圧縮し、メールに添付
+して、reception@aozora.gr.jp 宛に送ってください。
+
+・「<%= @worker.name %>」さんの工作員IDは、<%= @worker.id %> です。IDを記入すると、入力、校正の申し入
+れ作業を簡単に進めることができます。
+
+<%= @mail_memo %>

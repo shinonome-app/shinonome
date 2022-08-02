@@ -1,0 +1,124 @@
+    <h2 class="text-xl py-2">【工作者データ】</h2>
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>データ</th>
+      </tr>
+      <tr>
+        <th>工作員ID</th>
+        <td>
+          <%= worker.id %>
+        </td>
+      </tr>
+      <tr>
+        <th>姓名読み</th>
+        <td><%= worker.name_kana %></td>
+      </tr>
+      <tr>
+        <th>姓名</th>
+        <td><%= worker.name %></td>
+      </tr>
+      <tr>
+        <th>e-mail</th>
+        <td><%= worker_secret.email %></td>
+      </tr>
+      <tr>
+        <th>ホームページ</th>
+        <td><%= worker_secret.url %></td>
+      </tr>
+    </table>
+
+    <h2 class="text-xl py-2">【校正者からの連絡事項】</h2>
+
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>データ</th>
+      </tr>
+      <tr>
+        <th>連絡事項</th>
+        <td><%= proofread.memo %></td>
+      </tr>
+    </table>
+
+    <h2 class="text-xl py-2">【選択された作品】</h2>
+
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>データ</th>
+      </tr>
+      <tr>
+        <th>著者</th>
+        <td><%= work.author_text %></td>
+      </tr>
+      <tr>
+        <th>
+          作品ID
+        </th>
+        <td>
+          <%= work.id %>
+        </td>
+      </tr>
+      <tr>
+        <th>作品名<br />副題</th>
+        <td>
+          <%= work.title %><br />
+          <%= work.subtitle %>
+        </td>
+      </tr>
+      <tr>
+        <th>状態</th>
+        <td><%= work.work_status.name %></td>
+      </tr>
+      <tr>
+        <th>底本（コピー）</th>
+        <td>
+          <% if proofread.need_copy? %>
+          要
+          <% else %>
+          不要
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>プリントアウト</th>
+        <td>
+          <% if proofread.need_print? %>
+          要
+          <% else %>
+          不要
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
+    <hr class="border-1 my-4">
+
+    <h2 class="text-xl">【校正者へのメールにそえるメッセージ】</h2>
+
+<%= form_with(url: orders_admin_proofread_path, scope: :proofread, method: :post, data: { turbo: false } ) do |form| %>
+    <% if order_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order_form.errors.count, "件") %>の入力エラーがあります:</h2>
+      <ul>
+        <% order_form.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <%= form.hidden_field :work_id %>
+    <table class="w-full">
+      <tr>
+        <th>校正者へのメッセージ</th>
+        <td><%= form.text_area :mail_memo, class: "w-full p-1"  %></td>
+      </tr>
+    </table>
+
+    <%= form.submit '送付', class: "btn-normal" %>
+    <%= form.submit '戻る', formaction: admin_proofreads_path, formmethod: :get, class: "btn-normal" %>
+<% end %>
+
+<%= button_to '削除', admin_proofread_path(proofread), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか？'}}, class: "btn-normal bg-red-300" %>

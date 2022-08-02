@@ -100,6 +100,20 @@ class Work < ApplicationRecord
     people.all? { |person| !person.copyright? }
   end
 
+  def proofread_waiting_inspected?
+    work_status_id == 5
+  end
+
+  def proofread_reserved_inspected!
+    self.work_status_id = 7
+    save!
+  end
+
+  def proofread_reserved!
+    self.work_status_id = 8
+    save!
+  end
+
   def first_author
     work_people.where(role_id: 1).first.person
   end

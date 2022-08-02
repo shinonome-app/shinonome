@@ -1,4 +1,3 @@
-  <%= form_with(model: [:admin, worker], url: admin_proofreads_worker_path, data: { turbo: false } ) do |form| %>
     <table class="w-full">
       <tr>
         <th class="w-48">項目名</th>
@@ -6,15 +5,15 @@
       </tr>
       <tr>
         <th>工作員ID</th>
-        <td>&nbsp;</td>
+        <td><%= text_field_tag :worker_id_disabled, nil, disabled: true, class: "w-full p-1 bg-gray-100" %></td>
       </tr>
       <tr>
         <th>姓名読み</th>
-        <td><%= form.text_field :name_kana, class: "w-full p-1" %></td>
+        <td><%= form.text_field :worker_kana, class: "w-full p-1" %></td>
       </tr>
       <tr>
         <th>姓名</th>
-        <td><%= form.text_field :name, class: "w-full p-1" %></td>
+        <td><%= form.text_field :worker_name, class: "w-full p-1" %></td>
       </tr>
       <tr>
         <th>e-mail</th>
@@ -25,4 +24,24 @@
         <td><%= form.text_field :url, class: "w-full p-1" %></td>
       </tr>
     </table>
-  <% end %>
+
+    <div class="py-4">
+    <h3 class="text-lg py-2 ml-24">工作員選択オプション</h3>
+    <ul class="w-full py-4 ml-24">
+      <li>
+        <%= form.radio_button :worker_id, -1 %>上記の内容で工作員を新規登録する
+      </li>
+      <li>
+        <%= form.radio_button :worker_id, 0 %>一時的に予備工作員に関連付ける
+      </li>
+      <li>
+      </li>
+      <% proofread_form.search_similar_workers.each do |searched_worker| %>
+      <li>
+        <%= form.radio_button :worker_id, searched_worker.id %>
+        <%= searched_worker.name %>
+      </li>
+      <% end %>
+    </ul>
+    <%= form.submit '再検索', formaction: edit_admin_proofread_path(proofread_form.proofread), formmethod: :get, class: "btn-normal" %>
+    </div>

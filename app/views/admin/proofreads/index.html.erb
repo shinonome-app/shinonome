@@ -11,27 +11,42 @@
     <tr>
       <th>連番</th>
       <th>日付</th>
+      <th>ID</th>
       <th>作品名</th>
       <th>文字遣い</th>
       <th>著者</th>
-      <th>入力者</th>
-      <th>登録</th>
+      <th>校正者</th>
+      <th>状態</th>
+      <th>関連づけ</th>
+      <th>発注</th>
     </tr>
   </thead>
   <tbody>
     <% @proofreads.order(created_at: :desc).each_with_index do |proofread, index| %>
+      <% work = proofread.work %>
       <tr>
         <td><%= index + 1 %></td>
         <td><%= proofread.created_at.strftime("%Y-%m-%d") %></td>
-        <td><%= link_to proofread.title, edit_admin_proofread_path(proofread), class: "link-normal" %></td>
-        <td><%= proofread.kana_type&.name %></td>
-        <% if proofread.person_id.present? %>
-        <td><%= proofread.name %> (<%= link_to proofread.person_id, admin_person_path(id: proofread.person_id), class: "link-normal" %>)</td>
-        <% else %>
-        <td><%= proofread.name %> (<%= proofread.person_id %>)</td>
-        <% end %>
+        <td><%= work.id %></td>
+        <td><%= link_to work.title, edit_admin_proofread_path(proofread), class: "link-normal" %></td>
+        <td><%= work.kana_type&.name %></td>
+        <td><%= work.author_text %></td>
         <td><%= proofread.worker_name %></td>
-        <td><span class="text-red-500"><%= proofread.status_name %></span></td>
+        <td><%= work.work_status.name %></td>
+        <td>
+          <% if proofread.assigned? %>
+          <span>済</span>
+          <% else %>
+          <span class="text-red-500">未</span>
+          <% end %>
+        </td>
+        <td>
+          <% if proofread.ordered? %>
+          <span>済</span>
+          <% else %>
+          <span class="text-red-500">未</span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

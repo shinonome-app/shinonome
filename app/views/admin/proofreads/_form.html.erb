@@ -1,9 +1,10 @@
-    <% work = proofread.work %>
-    <% if proofread.errors.any? %>
+<%= form_with(model: [:admin, proofread_form], method: :patch, data: { turbo: false } ) do |form| %>
+    <% work = proofread_form.work %>
+    <% if proofread_form.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(proofread.errors.count, "件") %>の入力エラーがあります:</h2>
+      <h2><%= pluralize(proofread_form.errors.count, "件") %>の入力エラーがあります:</h2>
       <ul>
-        <% proofread.errors.each do |error| %>
+        <% proofread_form.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -27,6 +28,7 @@
         </th>
         <td>
           <%= work.id %>
+          <%= form.hidden_field :work_id %>
         </td>
       </tr>
       <tr>
@@ -43,7 +45,7 @@
       <tr>
         <th>底本（コピー）</th>
         <td>
-          <% if proofread.need_copy? %>
+          <% if proofread_form.need_copy? %>
           要
           <% else %>
           不要
@@ -53,7 +55,7 @@
       <tr>
         <th>プリントアウト</th>
         <td>
-          <% if proofread.need_print? %>
+          <% if proofread_form.need_print? %>
           要
           <% else %>
           不要
@@ -71,7 +73,7 @@
       </tr>
       <tr>
         <th>送付先</th>
-        <td><%= proofread.address %></td>
+        <td><%= proofread_form.address %></td>
       </tr>
     </table>
 
@@ -84,20 +86,21 @@
       </tr>
       <tr>
         <th>連絡事項</th>
-        <td><%= proofread.memo %></td>
+        <td><%= proofread_form.memo %></td>
       </tr>
     </table>
 
     <h2 class="text-xl py-2">【校正者データ】</h2>
     <% if @worker.id.present? %>
-    <%= render 'worker_show', proofread: @proofread %>
+    <%= render 'worker_show', proofread_form: proofread_form, form: form %>
     <% else %>
-    <%= render 'worker_form', proofread: @proofread %>
+    <%= render 'worker_form', proofread_form: proofread_form, form: form %>
     <% end %>
 
     <h2 class="text-xl">【底本データ】</h2>
 
-<%= form_with(model: [:admin, proofread], url: admin_proofreads_preview_path, data: { turbo: false } ) do |form| %>
+    <h3 class="text-xl">底本</h3>
+
     <table class="w-full">
       <tr>
         <th class="w-48">項目名</th>
@@ -105,42 +108,47 @@
       </tr>
       <tr>
         <th>底本名</th>
-        <td><%= form.text_field :person_id, class: "w-full p-1" %></td>
+        <td><%= form.text_field :original_book_title, class: "w-full p-1" %></td>
       </tr>
       <tr>
         <th>出版社名</th>
-        <td><%= form.text_field :last_name_kana, class: "w-full p-1"  %></td>
+        <td><%= form.text_field :publisher, class: "w-full p-1"  %></td>
       </tr>
       <tr>
         <th>初版発行年</th>
-        <td><%= form.text_field :last_name, class: "w-full p-1"  %></td>
+        <td><%= form.text_field :first_pubdate, class: "w-full p-1"  %></td>
       </tr>
       <tr>
         <th>入力に使用した版</th>
-        <td><%= form.text_field :last_name_en, class: "w-full p-1"  %></td>
+        <td><%= form.text_field :input_edition, class: "w-full p-1"  %></td>
       </tr>
       <tr>
         <th>校正に使用する版</th>
-        <td><%= form.text_field :first_name_kana, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th>底本の親本名</th>
-        <td><%= form.text_field :first_name, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th>底本の親本出版社名</th>
-        <td><%= form.text_field :first_name_en, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th>底本の親本出版発行年</th>
-        <td><%= form.text_area :person_note, class: "w-full p-1"  %></td>
+        <td><%= form.text_field :proof_edition, class: "w-full p-1"  %></td>
       </tr>
     </table>
 
+    <h3 class="text-xl">底本の親本</h3>
+
+    <table class="w-full">
+      <tr>
+        <th>底本の親本名</th>
+        <td><%= form.text_field :original_book_title2, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th>底本の親本出版社名</th>
+        <td><%= form.text_field :publisher2, class: "w-full p-1"  %></td>
+      </tr>
+      <tr>
+        <th>底本の親本出版発行年</th>
+        <td><%= form.text_area :first_pubdate2, class: "w-full p-1"  %></td>
+      </tr>
+    </table>
 
     <hr class="border-1 my-4">
 
     <%= form.submit '関連付ける', class: "btn-normal" %>
     <%= form.submit '戻る', formaction: admin_proofreads_path, formmethod: :get, class: "btn-normal" %>
-    <%= form.submit '削除', class: "btn-normal", formaction: admin_proofread_path, formmethod: :delete %>
 <% end %>
+
+<%= button_to '削除', admin_proofread_path(proofread_form.proofread), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか？'}}, class: "btn-normal bg-red-300" %>
