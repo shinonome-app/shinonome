@@ -16,6 +16,15 @@ class AdminMailer < ApplicationMailer
     mail to: @worker.worker_secret&.email, subject: @subject
   end
 
+  def order_proofread(proofread, mail_memo)
+    @worker = proofread.worker
+    @work = proofread.work
+    @worker_secret = @worker.worker_secret
+    @mail_memo = mail_memo
+
+    mail to: @worker.worker_secret&.email, subject: @subject
+  end
+
   def send_to_worker(admin_mail_secret)
     @subject = admin_mail_secret.subject
     @body = admin_mail_secret.body

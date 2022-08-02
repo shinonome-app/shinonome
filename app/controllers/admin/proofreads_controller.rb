@@ -8,9 +8,28 @@ module Admin
       @proofreads = Proofread.active.order(id: :desc)
     end
 
+    # 送付内容確認
+    def show
+      @proofread = Proofread.find(params[:id])
+      @worker = @proofread.worker
+      @worker_secret = @worker.worker_secret
+      @work = @proofread.work
+    end
+
     # GET /admin/proofreads/1/edit
     def edit
       proofread = Proofread.find(params[:id])
+
+      if proofread.ordered?
+        redirect_to admin_proofread_path(proofread)
+        return
+      end
+
+      if proofread.assigned? ## && proofread.non_ordered?
+        redirect_to orders_new_admin_proofread_path(proofread)
+        return
+      end
+
       @proofread_form = Admin::ProofreadForm.new(proofread: proofread)
       if params[:proofread]
         @proofread_form.worker_name = params[:proofread][:worker_name]
@@ -27,6 +46,7 @@ module Admin
     # PATCH/PUT /admin/proofreads/1
     def update
       proofread = Proofread.find(params[:id])
+
       @proofread_form = Admin::ProofreadForm.new(proofread_form_params, proofread: proofread)
       if @proofread_form.save
         redirect_to admin_proofreads_path, notice: '更新しました.'

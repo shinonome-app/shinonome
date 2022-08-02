@@ -121,7 +121,12 @@ Rails.application.routes.draw do
       resources :bulk_removes, only: %i[create]
     end
 
-    resources :proofreads, only: %i[index edit update destroy]
+    resources :proofreads, only: %i[index show edit update destroy] do
+      member do
+        get '/orders/new', to: 'proofreads/orders#new'
+        post '/orders', to: 'proofreads/orders#create'
+      end
+    end
     namespace :proofreads do
       resources :previews, only: %i[update]
       resources :bulk_removes, only: %i[create]
