@@ -131,6 +131,25 @@ worktypes.each do |k, v|
   Worktype.create!(id: k, name: v)
 end
 
+## 人物（著者なし）を追加
+Person.create(id: 0,
+              last_name: '著者なし',
+              last_name_kana: 'ちょしゃなし',
+              last_name_en: 'Choshanashi',
+              copyright_flag: false,
+              sortkey: 'ちょしゃなし')
+## 予備工作員を追加
+worker_dummy = Worker.create(id: 0,
+                             name: '予備工作員',
+                             name_kana: 'よびこうさくいん',
+                             sortkey: 'よびこうさくいん')
+WorkerSecret.create(
+  worker_id: worker_dummy.id,
+  email: "shinonome-worker0@example.com",
+  note: "予備工作員用",
+  url: "https://shinonome.example.com/dummy/workers/0",
+)
+
 if Rails.env.development? || ENV.fetch('USE_ALL_SEEDS', nil)
   require_relative 'seeds/users'
   require_relative 'seeds/news_entries'

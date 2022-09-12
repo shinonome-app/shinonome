@@ -74,6 +74,7 @@ FactoryBot.define do
     first_name_kana { 'MyText' }
     first_name_en { 'MyText' }
     first_name { 'MyText' }
+    note { 'MyText' }
     person_note { 'MyText' }
     worker_kana { 'MyText' }
     worker_name { 'MyText' }
@@ -89,7 +90,17 @@ FactoryBot.define do
     original_book_note { 'MyText' }
 
     trait :work do
-      work
+      work do
+        association :work,
+                    title: title,
+                    title_kana: title_kana,
+                    subtitle: subtitle,
+                    subtitle_kana: subtitle_kana,
+                    original_title: original_title,
+                    kana_type_id: kana_type_id,
+                    description: memo,
+                    note: note
+      end
     end
   end
 end

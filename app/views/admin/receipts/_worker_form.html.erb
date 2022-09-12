@@ -1,0 +1,49 @@
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th>工作員ID</th>
+        <td><%= text_field_tag :worker_id_disabled, nil, disabled: true, class: "w-full p-1 bg-gray-100" %></td>
+      </tr>
+      <tr>
+        <th>工作員名読み</th>
+        <td><%= form.text_field :worker_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th>工作員名</th>
+        <td><%= form.text_field :worker_name, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th>e-mail</th>
+        <td><%= form.text_field :email, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th>ホームページ</th>
+        <td><%= form.text_field :url, class: "w-full p-1" %></td>
+      </tr>
+    </table>
+
+    <div class="py-4">
+    <h3 class="text-lg py-2 ml-24">工作員選択オプション</h3>
+    <ul class="w-full py-4 ml-24">
+      <li>
+        <%= form.radio_button :worker_id, -1 %>
+        <%= form.label :worker_id, '上記の内容で工作員を新規登録する', value: -1 %>
+      </li>
+      <li>
+        <%= form.radio_button :worker_id, 0 %>
+        <%= form.label :worker_id, '一時的に予備工作員に関連付ける', value: 0 %>
+      </li>
+      <li>
+      </li>
+      <% receipt_form.search_similar_workers.each do |searched_worker| %>
+      <li>
+        <%= form.radio_button :worker_id, searched_worker.id %>
+        <%= form.label :worker_id, searched_worker.name, value: searched_worker.id %>
+      </li>
+      <% end %>
+    </ul>
+    <%= form.submit '再検索', formaction: edit_admin_receipt_path(receipt_form.receipt), formmethod: :get, class: "btn-normal" %>
+    </div>

@@ -97,6 +97,14 @@ class Receipt < ApplicationRecord
     "#{first_name_en}, #{last_name_en}" if last_name_en || first_name_en
   end
 
+  def kana_type_name
+    kana_type&.name
+  end
+
+  def copyright_flag_name
+    copyright_flag.to_i > 0 ? 'あり' : 'なし'
+  end
+
   private
 
   def set_statuses

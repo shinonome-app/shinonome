@@ -1,0 +1,38 @@
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th>工作員ID</th>
+        <td>
+          <%= form.hidden_field :worker_id %>
+          <%= receipt_form.worker_id %>
+        </td>
+      </tr>
+      <tr>
+        <th>工作員名読み</th>
+        <td>
+          <%= receipt_form.worker_kana %>
+        </td>
+      </tr>
+      <tr>
+        <th>工作員名</th>
+        <td>
+          <%= receipt_form.worker_name %>
+        </td>
+      </tr>
+      <tr>
+        <th>e-mail</th>
+        <td>
+          <%= receipt_form.email %>
+        </td>
+      </tr>
+      <tr>
+        <th>ホームページ</th>
+        <td>
+          <%= receipt_form.url %>
+        </td>
+      </tr>
+    </table>
+

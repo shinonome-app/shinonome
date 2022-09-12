@@ -1,6 +1,75 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-<h1 class="text-2xl py-4">送付内容確認</h1>
-    <h2 class="text-xl py-2">【工作者データ】</h2>
+  <h1 class="text-2xl py-4">登録内容確認</h1>
+
+  <h2 class="text-xl py-2">【作品データ】</h2>
+
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th>作品名読み（必須）</th>
+        <td><%= @receipt.title_kana %></td>
+      </tr>
+      <tr>
+        <th>作品名（必須）</th>
+        <td><%= @receipt.title %></td>
+      </tr>
+      <tr>
+        <th>副題読み（必須）</th>
+        <td><%= @receipt.subtitle_kana %></td>
+      </tr>
+      <tr>
+        <th>副題（必須）</th>
+        <td><%= @receipt.subtitle %></td>
+      </tr>
+      <tr>
+        <th>著者</th>
+        <td><%= @work.author_text %></td>
+      </tr>
+      <tr>
+        <th>
+          作品ID
+        </th>
+        <td>
+          <%= @work.id %>
+        </td>
+      </tr>
+      <tr>
+        <th>作品名<br />副題</th>
+        <td>
+          <%= @work.title %><br />
+          <%= @work.subtitle %>
+        </td>
+      </tr>
+      <tr>
+        <th>状態</th>
+        <td><%= @work.work_status.name %></td>
+      </tr>
+      <tr>
+        <th>底本（コピー）</th>
+        <td>
+          <% if @proofread.need_copy? %>
+          要
+          <% else %>
+          不要
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>プリントアウト</th>
+        <td>
+          <% if @proofread.need_print? %>
+          要
+          <% else %>
+          不要
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
+    <h2 class="text-xl py-2">【校正者データ】</h2>
     <table class="w-full">
       <tr>
         <th class="w-48">項目名</th>
@@ -43,7 +112,7 @@
       </tr>
     </table>
 
-    <h2 class="text-xl py-2">【選択された作品】</h2>
+    <h2 class="text-xl py-2">【作品データ】</h2>
 
     <table class="w-full">
       <tr>

@@ -117,6 +117,11 @@
       </tr>
     </table>
 
+    <div class="w-full">
+      <%= form.check_box :cc_flag, {}, "cc_reception", "not_cc" %>
+      <%= form.label :cc_flag, "青空文庫にCCする" %>
+    </div>
+
     <%= form.submit '送付', class: "btn-normal" %>
     <%= form.submit '戻る', formaction: admin_proofreads_path, formmethod: :get, class: "btn-normal" %>
 <% end %>

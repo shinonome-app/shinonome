@@ -1,0 +1,55 @@
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th><%= form.label :person_id %></th>
+        <td class="p-1">
+          <%= form.hidden_field :person_id %>
+          <%= receipt_form.person_id %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name_kana %></th>
+        <td class="p-1">
+          <%= receipt_form.last_name_kana %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name %></th>
+        <td class="p-1">
+          <%= receipt_form.last_name %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name_en %></th>
+        <td class="p-1">
+          <%= receipt_form.last_name_en %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name_kana %></th>
+        <td class="p-1">
+          <%= receipt_form.first_name_kana %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name %></th>
+        <td class="p-1">
+          <%= receipt_form.first_name %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name_en %></th>
+        <td class="p-1">
+          <%= receipt_form.first_name_en %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= form.label :person_note %></th>
+        <td class="p-1">
+          <%= receipt_form.person_note %>
+        </td>
+      </tr>
+    </table>

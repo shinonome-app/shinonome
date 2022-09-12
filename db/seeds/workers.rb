@@ -33,9 +33,3 @@ worker_secrets = items.map do |item|
 end
 
 WorkerSecret.insert_all(worker_secrets)
-
-## 予備工作員を追加
-Worker.create(id: 0,
-              name: '予備工作員',
-              name_kana: 'よびこうさくいん',
-              sortkey: 'よびこうさくいん')

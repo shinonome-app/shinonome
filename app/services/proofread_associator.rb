@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# 校正情報作成
+# 校正情報関連付け
 class ProofreadAssociator
   def associate_proofread(work:, worker:, proofread_form:)
     WorkWorker.transaction do

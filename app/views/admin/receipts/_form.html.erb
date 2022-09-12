@@ -1,9 +1,9 @@
-<%= form_with(model: [:admin, receipt], url: admin_receipts_preview_path, data: { turbo: false } ) do |form| %>
-  <% if receipt.errors.any? %>
+<%= form_with(model: [:admin, receipt_form], method: :patch, data: { turbo: false } ) do |form| %>
+  <% if receipt_form.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(receipt.errors.count, "件") %>の入力エラーがあります:</h2>
+      <h2><%= pluralize(receipt_form.errors.count, "件") %>の入力エラーがあります:</h2>
       <ul>
-        <% receipt.errors.each do |error| %>
+        <% receipt_form.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -54,8 +54,8 @@
         <td><%= form.text_area :note, class: "w-full border border-gray-800 p-1", rows: "15" %></td>
       </tr>
       <tr>
-        <th><%= form.label :status %></th>
-        <td><%= form.collection_select :status, WorkStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'py-1 pr-8'} %></td>
+        <th><%= form.label :work_status %></th>
+        <td><%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'py-1 pr-8'} %></td>
       </tr>
       <tr>
         <th><%= form.label :started_on %></th>
@@ -71,78 +71,21 @@
 
     <h2 class="text-xl">【著者データ】</h2>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th><%= form.label :person_id %></th>
-        <td><%= form.text_field :person_id, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :last_name_kana %></th>
-        <td><%= form.text_field :last_name_kana, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :last_name %></th>
-        <td><%= form.text_field :last_name, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :last_name_en %></th>
-        <td><%= form.text_field :last_name_en, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_name_kana %></th>
-        <td><%= form.text_field :first_name_kana, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_name %></th>
-        <td><%= form.text_field :first_name, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_name_en %></th>
-        <td><%= form.text_field :first_name_en, class: "w-full p-1"  %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :person_note %></th>
-        <td><%= form.text_area :person_note, class: "w-full p-1"  %></td>
-      </tr>
-    </table>
+    <% if receipt_form.person_id.present? %>
+    <%= render 'person_show', receipt_form: receipt_form, form: form %>
+    <% else %>
+    <%= render 'person_form', receipt_form: receipt_form, form: form %>
+    <% end %>
 
     <hr class="border-1 my-4">
 
     <h2 class="text-xl">【入力者データ】</h2>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th><%= form.label :worker_kana %></th>
-        <td><%= form.text_field :worker_kana, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :worker_name %></th>
-        <td><%= form.text_field :worker_name, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :email %></th>
-        <td><%= form.text_field :email, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :url %></th>
-        <td><%= form.text_field :url, class: "w-full p-1" %></td>
-      </tr>
-    </table>
-
-    <ul>
-      <li>上記の内容で工作員を新規登録する</li>
-      <li> 一時的に予備工作員に関連付ける</li>
-    </ul>
-
-    <hr class="border-1 my-4">
+    <% if receipt_form.worker_id.present? %>
+    <%= render 'worker_show', receipt_form: receipt_form, form: form %>
+    <% else %>
+    <%= render 'worker_form', receipt_form: receipt_form, form: form %>
+    <% end %>
 
     <h2 class="text-xl">【底本データ】</h2>
 
@@ -188,8 +131,14 @@
     <hr class="border-1 my-4">
 
     <ul>
-      <li>「入力のお願い」メールを送信しない。</li>
-      <li>青空文庫にCCする。</li>
+      <li>
+        <%= form.check_box :no_send_mail, {}, 1, 0 %>
+        <%= form.label :no_send_mail, "「入力のお願い」メールを送信しない。" %>
+      </li>
+      <li>
+        <%= form.check_box :cc_flag, {}, 1, 0 %>
+        <%= form.label :cc_flag, "青空文庫にCCする" %>
+      </li>
     </ul>
 
     <hr class="border-1 my-4">

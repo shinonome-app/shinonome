@@ -5,13 +5,13 @@ class AdminMailer < ApplicationMailer
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
-  #   en.admin_mailer.confirm_receipt.subject
+  #   en.admin_mailer.order_receipt.subject
   #
-  def confirm_receipt(receipt)
-    @greeting = 'Hi'
+  def order_receipt(receipt)
     @worker = receipt.worker
     @work = receipt.work
-    @subject = I18n.t('admin_mailer.confirm_receipt.subject', title: receipt.title)
+    title = work_full_title(@work)
+    @subject = I18n.t('admin_mailer.order_receipt.subject', title: title)
 
     mail to: @worker.worker_secret&.email, subject: @subject
   end
@@ -21,6 +21,8 @@ class AdminMailer < ApplicationMailer
     @work = proofread.work
     @worker_secret = @worker.worker_secret
     @mail_memo = mail_memo
+    title = work_full_title(@work)
+    @subject = I18n.t('admin_mailer.order_proofread.subject', title: title)
 
     mail to: @worker.worker_secret&.email, subject: @subject
   end
@@ -34,6 +36,16 @@ class AdminMailer < ApplicationMailer
       mail to: admin_mail_secret.email, cc: cc, subject: @subject
     else
       mail to: admin_mail_secret.email, subject: @subject
+    end
+  end
+
+  private
+
+  def work_full_title(work)
+    if work.subtitle.present?
+      "#{work.title} #{work.subtitle}"
+    else
+      work.title
     end
   end
 end

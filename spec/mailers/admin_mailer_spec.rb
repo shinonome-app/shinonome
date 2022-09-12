@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe AdminMailer, type: :mailer do
-  describe 'confirm_receipt' do
+  describe 'order_receipt' do
     let(:worker_secret) { create(:worker_secret, email: 'to@example.com') }
     let(:worker) { worker_secret.worker }
     let(:receipt) do
@@ -11,10 +11,10 @@ RSpec.describe AdminMailer, type: :mailer do
         create(:original_book, work: receipt.work, worktype_id: 1)
       end
     end
-    let(:mail) { described_class.confirm_receipt(receipt) }
+    let(:mail) { described_class.order_receipt(receipt) }
 
     it 'renders the headers' do # rubocop:disable RSpec/MultipleExpectations
-      expect(mail.subject).to eq("「#{receipt.title}」入力のお願い")
+      expect(mail.subject).to eq("「#{receipt.title} #{receipt.subtitle}」入力のお願い")
       expect(mail.to).to eq(['to@example.com'])
       expect(mail.from).to eq(['from@example.com'])
     end

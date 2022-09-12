@@ -76,7 +76,7 @@ module Admin
 
       set_email
 
-      worker = WorkerFinder.new.find_by(proofread_form: self)
+      worker = WorkerFinder.new.find_by_form(self)
 
       work = @proofread.work
       result = ProofreadAssociator.new.associate_proofread(work: work, worker: worker, proofread_form: self)

@@ -1,0 +1,61 @@
+    <table class="w-full">
+      <tr>
+        <th class="w-48">項目名</th>
+        <th>入力データ</th>
+      </tr>
+      <tr>
+        <th><%= form.label :person_id %></th>
+        <td class="p-1"><%= text_field_tag :person_id_disabled, nil, disabled: true, class: "w-full p-1 bg-gray-100" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name_kana %></th>
+        <td class="p-1"><%= form.text_field :last_name_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name %></th>
+        <td class="p-1"><%= form.text_field :last_name, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :last_name_en %></th>
+        <td class="p-1"><%= form.text_field :last_name_en, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name_kana %></th>
+        <td class="p-1"><%= form.text_field :first_name_kana, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name %></th>
+        <td class="p-1"><%= form.text_field :first_name, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :first_name_en %></th>
+        <td class="p-1"><%= form.text_field :first_name_en, class: "w-full p-1" %></td>
+      </tr>
+      <tr>
+        <th><%= form.label :person_note %></th>
+        <td class="p-1"><%= form.text_field :person_note, class: "w-full p-1" %></td>
+      </tr>
+    </table>
+
+    <div class="py-4">
+    <h3 class="text-lg py-2 ml-24">著者選択オプション</h3>
+    <ul class="w-full py-4 ml-24">
+      <li>
+        <%= form.radio_button :person_id, -1 %>
+        <%= form.label :person_id, '上記の内容で人物を新規登録する', value: -1 %>
+      </li>
+      <li>
+        <%= form.radio_button :person_id, 0 %>
+        <%= form.label :person_id, '一時的に人物（著者なし）に関連付ける', value: 0 %>
+      </li>
+      <li>
+      </li>
+      <% receipt_form.search_similar_people.each do |searched_person| %>
+      <li>
+        <%= form.radio_button :person_id, searched_person.id %>
+        <%= form.label :person_id, searched_person.name, value: searched_person.id %>
+      </li>
+      <% end %>
+    </ul>
+    <%= form.submit '再検索', formaction: edit_admin_receipt_path(receipt_form.receipt), formmethod: :get, class: "btn-normal" %>
+    </div>
