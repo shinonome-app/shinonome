@@ -46,7 +46,7 @@ module Admin
       @receipt_form = ReceiptForm.new(
         receipt_params,
         receipt: receipt,
-        current_admin_user: current_admin_user,
+        current_admin_user: current_admin_user
       )
       if @receipt_form.save
         ReceiptOrderSender.new.send(receipt: @receipt_form.receipt)
@@ -76,8 +76,7 @@ module Admin
                                       :worker_id, :worker_kana, :worker_name, :email, :url,
                                       :original_book_title, :publisher, :first_pubdate, :input_edition, :original_book_note,
                                       :original_book_title2, :publisher2, :first_pubdate2,
-                                      :no_send_mail, :cc_flag,
-                                     )
+                                      :no_send_mail, :cc_flag)
     end
   end
 end

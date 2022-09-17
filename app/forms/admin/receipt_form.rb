@@ -8,8 +8,7 @@ module Admin
     include ActiveModel::Validations::Callbacks
     include ActiveRecord::AttributeAssignment
 
-    attr_reader :receipt
-    attr_reader :current_admin_user
+    attr_reader :receipt, :current_admin_user
 
     attribute :worker_id, :integer
     attribute :worker_kana, :string
@@ -103,7 +102,7 @@ module Admin
         worker: worker,
         person: person,
         current_admin_user: current_admin_user,
-        receipt_form: self,
+        receipt_form: self
       )
 
       result.associated?
@@ -172,24 +171,20 @@ module Admin
 
     def find_or_create_person
       person = Person.find(person_id) if person_id
-      if person.present?
-        person
-      else
-        Person.new(
-          id: person_id,
-          first_name: first_name,
-          first_name_kana: first_name_kana,
-          first_name_en: first_name_en,
-          last_name: last_name,
-          last_name_kana: last_name_kana,
-          last_name_en: last_name_en,
-          born_on: born_on,
-          died_on: died_on,
-          copyright_flag: copyright_flag,
-          note: person_note,
-          note_user_id: current_admin_user.id,
-        )
-      end
+      person.presence || Person.new(
+        id: person_id,
+        first_name: first_name,
+        first_name_kana: first_name_kana,
+        first_name_en: first_name_en,
+        last_name: last_name,
+        last_name_kana: last_name_kana,
+        last_name_en: last_name_en,
+        born_on: born_on,
+        died_on: died_on,
+        copyright_flag: copyright_flag,
+        note: person_note,
+        note_user_id: current_admin_user.id
+      )
     end
 
     def copyright_flag_name
@@ -232,7 +227,7 @@ module Admin
         person_id: @receipt.person_id,
         work_id: @receipt.work_id,
         work_status_id: @receipt.work_status_id,
-        worker_id: @receipt.worker_id,
+        worker_id: @receipt.worker_id
       }
     end
 
@@ -259,9 +254,7 @@ module Admin
     end
 
     def set_sortkey
-      if sortkey.blank?
-        sortkey = convert_sortkey(title_kana)
-      end
+      sortkey = convert_sortkey(title_kana) if sortkey.blank?
 
       if person_sortkey.blank?
         person_sortkey = convert_sortkey(last_name_kana)
@@ -270,16 +263,16 @@ module Admin
     end
 
     def convert_sortkey(kana)
-      str = NKF.nkf("--hiragana -w", kana.to_s).dup
+      str = NKF.nkf('--hiragana -w', kana.to_s).dup
       str.tr!(
         'ヴがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽぁぃぅぇぉっゃゅょゎ',
         'うかきくけこさしすせそたちつてとはひふへほはひふへほあいうえおつやゆよわ'
       )
-      str.gsub!(/([あかさたなはまやらわ])ー/){ "#{$1}あ" }
-      str.gsub!(/([いきしちにひみりゐ])ー/){ "#{$1}い" }
-      str.gsub!(/([うくすつぬふむゆる])ー/){ "#{$1}う" }
-      str.gsub!(/([えけせてねへめれゑ])ー/){ "#{$1}え" }
-      str.gsub!(/([おこそとのほもよろを])ー/){ "#{$1}お" }
+      str.gsub!(/([あかさたなはまやらわ])ー/) { "#{Regexp.last_match(1)}あ" }
+      str.gsub!(/([いきしちにひみりゐ])ー/) { "#{Regexp.last_match(1)}い" }
+      str.gsub!(/([うくすつぬふむゆる])ー/) { "#{Regexp.last_match(1)}う" }
+      str.gsub!(/([えけせてねへめれゑ])ー/) { "#{Regexp.last_match(1)}え" }
+      str.gsub!(/([おこそとのほもよろを])ー/) { "#{Regexp.last_match(1)}お" }
       str.gsub!(/[^あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん]/, '')
 
       str

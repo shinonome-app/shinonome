@@ -145,9 +145,9 @@ worker_dummy = Worker.create(id: 0,
                              sortkey: 'よびこうさくいん')
 WorkerSecret.create(
   worker_id: worker_dummy.id,
-  email: "shinonome-worker0@example.com",
-  note: "予備工作員用",
-  url: "https://shinonome.example.com/dummy/workers/0",
+  email: 'shinonome-worker0@example.com',
+  note: '予備工作員用',
+  url: 'https://shinonome.example.com/dummy/workers/0'
 )
 
 if Rails.env.development? || ENV.fetch('USE_ALL_SEEDS', nil)

@@ -26,18 +26,14 @@ class ReceiptAssociator
         work_status_id: receipt_form.work_status_id,
         started_on: receipt_form.started_on,
         user_id: current_admin_user.id,
-        description: receipt_form.memo,
+        description: receipt_form.memo
       )
       WorkPerson.create!(work: work, person: person, role_id: 1)
       WorkWorker.create!(work: work, worker: worker, worker_role_id: 1)
 
-      if receipt_form.original_book_title&.strip.present?
-        add_original_book!(receipt_form, work, 1)
-      end
+      add_original_book!(receipt_form, work, 1) if receipt_form.original_book_title&.strip.present?
 
-      if receipt_form.original_book_title2&.strip.present?
-        add_original_book!(receipt_form, work, 2)
-      end
+      add_original_book!(receipt_form, work, 2) if receipt_form.original_book_title2&.strip.present?
 
       receipt = receipt_form.receipt
       receipt.update!(
@@ -64,7 +60,7 @@ class ReceiptAssociator
         original_book_title2: receipt_form.original_book_title2,
         publisher2: receipt_form.publisher2,
         first_pubdate2: receipt_form.first_pubdate2,
-        register_status: :ordered,
+        register_status: :ordered
       )
     end
 
@@ -83,7 +79,7 @@ class ReceiptAssociator
         title: receipt_form.original_book_title,
         publisher: receipt_form.publisher,
         first_pubdate: receipt_form.first_pubdate,
-        input_edition: receipt_form.input_edition,
+        input_edition: receipt_form.input_edition
       )
     when 2
       OriginalBook.create!(
@@ -92,7 +88,7 @@ class ReceiptAssociator
         title: receipt_form.original_book_title2,
         publisher: receipt_form.publisher2,
         first_pubdate: receipt_form.first_pubdate2,
-        input_edition: receipt_form.input_edition,
+        input_edition: receipt_form.input_edition
       )
     else
       raise ArgumentError

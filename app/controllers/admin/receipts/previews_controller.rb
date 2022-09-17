@@ -27,7 +27,7 @@ module Admin
           :original_book_title, :publisher, :first_pubdate, :input_edition,
           :original_book_title2, :publisher2, :first_pubdate2,
           :person_id, :worker_id, :register_status, :original_book_note,
-          :work_status_id,
+          :work_status_id
         )
       end
     end
