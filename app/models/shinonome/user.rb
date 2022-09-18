@@ -35,7 +35,7 @@ module Shinonome
     validates :username, presence: true, uniqueness: { case_sensitive: false }
 
     # only allow letter, number, underscore and punctuation.
-    validates :username, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }
+    validates :username, format: { with: /\A[a-zA-Z0-9_.]*\z/, multiline: true }
 
     attr_writer :login
 
