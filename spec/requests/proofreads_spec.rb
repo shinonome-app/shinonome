@@ -74,7 +74,7 @@ RSpec.describe '/proofreads', type: :request do
       xit 'does not create a new Proofread' do
         expect do
           post proofreads_url, params: { proofread: invalid_attributes }
-        end.to change(Proofread, :count).by(0)
+        end.not_to change(Proofread, :count)
       end
 
       xit "renders a successful response (i.e. to display the 'new' template)" do

@@ -89,7 +89,7 @@ RSpec.describe '/people', type: :request do
       it 'does not create a new Person' do
         expect do
           post admin_people_url, params: { person: invalid_attributes }
-        end.to change(Person, :count).by(0)
+        end.not_to change(Person, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

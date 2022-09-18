@@ -106,7 +106,7 @@ RSpec.describe '/workfiles', type: :request do
       it 'does not create a new Workfile' do
         expect do
           post admin_work_workfiles_url(work), params: { workfile: invalid_attributes }
-        end.to change(Workfile, :count).by(0)
+        end.not_to change(Workfile, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

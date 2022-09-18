@@ -110,7 +110,7 @@ RSpec.describe '/admin/workers', type: :request do
       it 'does not create a new Worker' do
         expect do
           post admin_workers_url, params: { worker: invalid_attributes }
-        end.to change(Worker, :count).by(0)
+        end.not_to change(Worker, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

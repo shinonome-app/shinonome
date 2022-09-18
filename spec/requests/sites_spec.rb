@@ -74,7 +74,7 @@ RSpec.describe '/sites', type: :request do
       xit 'does not create a new Site' do
         expect do
           post sites_url, params: { site: invalid_attributes }
-        end.to change(Site, :count).by(0)
+        end.not_to change(Site, :count)
       end
 
       xit "renders a successful response (i.e. to display the 'new' template)" do

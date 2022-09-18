@@ -74,7 +74,7 @@ RSpec.describe '/original_books', type: :request do
       it 'does not create a new OriginalBook' do
         expect do
           post admin_work_original_books_url(work), params: { original_book: invalid_attributes }
-        end.to change(OriginalBook, :count).by(0)
+        end.not_to change(OriginalBook, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

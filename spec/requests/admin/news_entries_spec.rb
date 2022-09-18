@@ -96,7 +96,7 @@ RSpec.describe '/admin/news_entries', type: :request do
       it 'does not create a new NewsEntry' do
         expect do
           post admin_news_entries_url, params: { news_entry: invalid_attributes }
-        end.to change(NewsEntry, :count).by(0)
+        end.not_to change(NewsEntry, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

@@ -74,7 +74,7 @@ RSpec.describe '/receipts', type: :request do
       xit 'does not create a new Receipt' do
         expect do
           post receipts_url, params: { receipt: invalid_attributes }
-        end.to change(Receipt, :count).by(0)
+        end.not_to change(Receipt, :count)
       end
 
       xit "renders a successful response (i.e. to display the 'new' template)" do

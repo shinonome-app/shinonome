@@ -74,7 +74,7 @@ RSpec.describe '/base_people', type: :request do
       xit 'does not create a new BasePerson' do
         expect do
           post base_people_url, params: { base_person: invalid_attributes }
-        end.to change(BasePerson, :count).by(0)
+        end.not_to change(BasePerson, :count)
       end
 
       xit "renders a successful response (i.e. to display the 'new' template)" do
