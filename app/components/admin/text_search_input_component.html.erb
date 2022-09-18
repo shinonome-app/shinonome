@@ -1,11 +1,9 @@
 <tr>
   <td>
-  <label for="<%= @name %>">
-    <%= @label %>:
-  </label>
+    <%= @form.label @name, "#{@label}:" %>
   </td>
   <td>
-    <input type="text" name="<%= @name %>" value="<%= @value %>" autocomplete="on">
+    <%= text_field_tag @name, @value, autocomplete: :on %>
   </td>
   <td>
     <%= @form.select "text_selector_#{@name}", TextSearcher::TEXT_SELECTOR, { include_blank: false } %>

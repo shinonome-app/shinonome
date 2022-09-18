@@ -8,7 +8,7 @@ module Admin
       # GET /admin/work/:work_id/work_workers/text_searches
       def index
         name = params[:name]
-        text_selector_name = params[:text_selector_last_name].to_i
+        text_selector_name = params[:text_selector_name].to_i
 
         name_kana = params[:name_kana]
         text_selector_name_kana = params[:text_selector_name_kana].to_i
