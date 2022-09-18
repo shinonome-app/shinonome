@@ -2,35 +2,35 @@
 <p id="notice"><%= notice %></p>
 <h1 class="text-2xl py-4">ユーザー情報更新</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { turbo: false } ) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { turbo: false }) do |f| %>
   <%= render "admin/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %><br>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username %><br>
     <%= f.text_field :username %>
   </div>
 
   <div class="field">
-    <%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br />
+    <%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br>
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
-      <br />
+      <br>
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(確認のため現在のパスワードを入力してください)</i><br />
+    <%= f.label :current_password %> <i>(確認のため現在のパスワードを入力してください)</i><br>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
@@ -42,7 +42,7 @@
 <h3 class="text-xl py-4">アカウントの削除</h3>
 
 <div class="py-2">
-  <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" }}, class: 'btn-danger' %>
+  <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" } }, class: 'btn-danger' %>
 </div>
 
 <div class="py-2">

@@ -1,4 +1,4 @@
-  <%= form_with(url: form_url, method: 'get', data: { turbo: false } ) do |form| %>
+  <%= form_with(url: form_url, method: 'get', data: { turbo: false }) do |form| %>
   <table>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓読み", name: "last_name_kana")) %>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓", name: "last_name")) %>

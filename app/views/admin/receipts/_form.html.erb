@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, receipt_form], method: :patch, data: { turbo: false } ) do |form| %>
+<%= form_with(model: [:admin, receipt_form], method: :patch, data: { turbo: false }) do |form| %>
   <% if receipt_form.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(receipt_form.errors.count, "件") %>の入力エラーがあります:</h2>
@@ -39,7 +39,7 @@
       </tr>
       <tr>
         <th><%= form.label :kana_type_id %></th>
-        <td><%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'py-1 pr-8'} %></td>
+        <td><%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'py-1 pr-8' } %></td>
       </tr>
       <tr>
         <th><%= form.label :first_appearance %></th>
@@ -55,7 +55,7 @@
       </tr>
       <tr>
         <th><%= form.label :work_status %></th>
-        <td><%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'py-1 pr-8'} %></td>
+        <td><%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, { prompt: '選択してください' }, { class: 'py-1 pr-8' } %></td>
       </tr>
       <tr>
         <th><%= form.label :started_on %></th>
@@ -63,7 +63,7 @@
       </tr>
       <tr>
         <th><%= form.label :copyright_flag %></th>
-        <td><%= form.select :copyright_flag, [["なし", "0"], ["あり", "1"]] %></td>
+        <td><%= form.select :copyright_flag, [%w[なし 0], %w[あり 1]] %></td>
       </tr>
     </table>
 

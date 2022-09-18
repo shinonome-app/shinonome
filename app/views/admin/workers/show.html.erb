@@ -84,7 +84,7 @@
       </th>
     </tr>
     <% @work_workers.each do |work_worker| %>
-    <%   work = work_worker.work %>
+    <% work = work_worker.work %>
     <tr>
       <td><%= work_worker.worker_role.name %></td>
       <td><%= work.title %></td>
@@ -98,7 +98,7 @@
 
   <div class="py-4">
   <%= link_to '更新', edit_admin_worker_path(@worker), class: 'btn-normal' %>
-  <%= link_to '削除', admin_worker_path(@worker), method: :delete, data: { form: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-danger' %>
+  <%= link_to '削除', admin_worker_path(@worker), method: :delete, data: { form: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-danger' %>
   <%= link_to '戻る', admin_workers_path, class: 'btn-normal' %>
   </div>
 </div>

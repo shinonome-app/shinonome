@@ -6,7 +6,7 @@
 
     <div class="flex py-4">
       <div class="flex w-1/2">
-      <table class="border-double border-2 border-gray-800 table-fixed w-full items-center mx-12" summary="作家別インデックス" >
+      <table class="border-double border-2 border-gray-800 table-fixed w-full items-center mx-12" summary="作家別インデックス">
         <tr class="w-770 border-double border-2 border-gray-800">
           <th colspan="5" class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white text-xl">人物ID一覧</th>
         </tr>
@@ -14,7 +14,7 @@
         <tr class="border-double border-2 border-gray-800 text-center">
           <% person_row.each do |person_col| %>
           <td class="border-double border-2 border-gray-800 bg-yellow-50">
-            <%= person_col ? link_to(person_col, idlists_people_path(key:person_col), class: "link-normal") : '' %>
+            <%= person_col ? link_to(person_col, idlists_people_path(key: person_col), class: "link-normal") : '' %>
           </td>
           <% end %>
         </tr>
@@ -23,7 +23,7 @@
       </div>
 
       <div class="flex w-1/2">
-        <table class="border-double border-2 border-gray-800 table-fixed w-full items-center mx-12" summary="作家別インデックス" >
+        <table class="border-double border-2 border-gray-800 table-fixed w-full items-center mx-12" summary="作家別インデックス">
           <tr class="w-770 border-double border-2 border-gray-800">
             <th colspan="5" class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white text-xl">工作員ID一覧</th>
           </tr>
@@ -31,7 +31,7 @@
           <tr class="border-double border-2 border-gray-800 text-center">
             <% worker_row.each do |worker_col| %>
             <td class="border-double border-2 border-gray-800 bg-yellow-50">
-              <%= worker_col ? link_to(worker_col, idlists_workers_path(key:worker_col), class: "link-normal") : '' %>
+              <%= worker_col ? link_to(worker_col, idlists_workers_path(key: worker_col), class: "link-normal") : '' %>
             </td>
             <% end %>
           </tr>

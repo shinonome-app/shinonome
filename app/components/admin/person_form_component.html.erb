@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, @person], data: { turbo: false } ) do |form| %>
+<%= form_with(model: [:admin, @person], data: { turbo: false }) do |form| %>
   <% if @person.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@person.errors.count, "件") %>の入力エラーがあります:</h2>
@@ -50,8 +50,8 @@
     <%= form.text_field :died_on %> (YYYY-MM-DD)
   </div>
   <div class="field py-2">
-    <%= form.label :copyright_flag,"著作権フラグ" %>
-    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], {include_blank: false}, {class: 'text-gray-800'} %>
+    <%= form.label :copyright_flag, "著作権フラグ" %>
+    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], { include_blank: false }, { class: 'text-gray-800' } %>
   </div>
   <div class="field py-2">
     <%= form.label :email, "email" %>

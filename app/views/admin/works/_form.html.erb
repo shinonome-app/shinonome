@@ -43,7 +43,7 @@
   </div>
   <div class="field py-2">
     <%= form.label :kana_type_id, "仮名遣い種別" %>
-    <%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+    <%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'text-gray-800' } %>
   </div>
   <div class="field py-2">
     <%= form.label :first_appearance, "初出" %>
@@ -63,7 +63,7 @@
   </div>
   <div class="field py-2">
     <%= form.label :status, "状態" %>
-    <%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+    <%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, { prompt: '選択してください' }, { class: 'text-gray-800' } %>
   </div>
   <div class="field py-2">
     <%= form.label :started_on, "状態の開始日" %>
@@ -71,7 +71,7 @@
   </div>
   <div class="field py-2">
     <%= form.label :copyright_flag, "著作権フラグ" %>
-    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], {include_blank: false}, {class: 'text-gray-800'} %>
+    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], { include_blank: false }, { class: 'text-gray-800' } %>
   </div>
   <div class="actions py-4">
     <%= form.submit "登録する", class: 'btn-normal' %>

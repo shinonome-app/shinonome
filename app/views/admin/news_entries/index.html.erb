@@ -25,7 +25,7 @@
             <%= truncate(news_entry.body, length: 40) %>
           </td class="my-2">
           <td class="text-center"><%= news_entry.flag ? "○" : "-" %></td>
-          <td><%= button_to '削除', [:admin, news_entry], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: 'btn-danger text-sm' %></td>
+          <td><%= button_to '削除', [:admin, news_entry], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-danger text-sm' %></td>
         </tr>
       <% end %>
     </tbody>

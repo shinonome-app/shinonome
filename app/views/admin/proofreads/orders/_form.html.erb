@@ -61,9 +61,9 @@
         </td>
       </tr>
       <tr>
-        <th>作品名<br />副題</th>
+        <th>作品名<br>副題</th>
         <td>
-          <%= work.title %><br />
+          <%= work.title %><br>
           <%= work.subtitle %>
         </td>
       </tr>
@@ -97,7 +97,7 @@
 
     <h2 class="text-xl">【校正者へのメールにそえるメッセージ】</h2>
 
-<%= form_with(url: orders_admin_proofread_path, scope: :proofread, method: :post, data: { turbo: false } ) do |form| %>
+<%= form_with(url: orders_admin_proofread_path, scope: :proofread, method: :post, data: { turbo: false }) do |form| %>
     <% if order_form.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order_form.errors.count, "件") %>の入力エラーがあります:</h2>
@@ -113,7 +113,7 @@
     <table class="w-full">
       <tr>
         <th>校正者へのメッセージ</th>
-        <td><%= form.text_area :mail_memo, class: "w-full p-1"  %></td>
+        <td><%= form.text_area :mail_memo, class: "w-full p-1" %></td>
       </tr>
     </table>
 
@@ -126,4 +126,4 @@
     <%= form.submit '戻る', formaction: admin_proofreads_path, formmethod: :get, class: "btn-normal" %>
 <% end %>
 
-<%= button_to '削除', admin_proofread_path(proofread), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか？'}}, class: "btn-normal bg-red-300" %>
+<%= button_to '削除', admin_proofread_path(proofread), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか？' } }, class: "btn-normal bg-red-300" %>

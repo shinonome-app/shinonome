@@ -78,7 +78,7 @@
 
   <div class="flex py-2">
     <%= link_to '更新', edit_admin_person_path(@person), class: "btn-normal" %>
-    <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-normal bg-red-300" %>
+    <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-normal bg-red-300" %>
   </div>
 
 <h3 class="text-xl">人物基本名</h3>
@@ -114,8 +114,8 @@
           <td><%= person_site.site.owner_name %></td>
         </tr>
       </table>
-      <%= button_to '削除', [:admin, @person, person_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-normal bg-red-300" %>
-    </div>  
+      <%= button_to '削除', [:admin, @person, person_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-normal bg-red-300" %>
+    </div>
   <% end %>
   </div>
   <% else %>
@@ -146,7 +146,7 @@
     <td><%= work.started_on %></td>
   </tr>
   <% end %>
-  
+
 </table>
 
 <div class="py-4">

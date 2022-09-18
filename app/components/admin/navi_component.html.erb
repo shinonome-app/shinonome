@@ -9,7 +9,7 @@
             <%= image_tag 'top_logo.png', class: 'h-12', alt: '' %>&nbsp;
           <% end %>
           <%= link_to admin_path do %>
-            <span class="text-2xl">&nbsp;<%= t("app.name")%> DB</span>
+            <span class="text-2xl">&nbsp;<%= t("app.name") %> DB</span>
           <% end %>
           <span class="text-2xl">
             <%= @title %>
@@ -38,15 +38,15 @@
             <div class="flex items-center cursor-pointer text-sm border border-white border-b-0 text-gray-700 rounded-t-lg py-1 px-2">
               <%= @user.email %>
               <svg class="fill-current text-gray-600 h-4 w-4 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
             </div>
             <!-- Avatar Sub-Menu -->
             <div class="absolute border border-t-0 border-gray-100 invisible rounded-b-lg bg-white p-2 w-48">
               <%= link_to "パスワード変更",
-                  edit_admin_user_registration_path, class: "px-4 py-2 block text-gray-800" %>
+                          edit_admin_user_registration_path, class: "px-4 py-2 block text-gray-800" %>
               <hr class="border-t mx-2 border-gray-100">
-              <%= link_to "ログアウト", destroy_admin_user_session_path, data: { "turbo-method": :delete }, class: "px-4 py-2 block text-gray-800" %>
+              <%= link_to "ログアウト", destroy_admin_user_session_path, data: { 'turbo-method': :delete }, class: "px-4 py-2 block text-gray-800" %>
             </div>
           </div>
         </div>
@@ -61,5 +61,5 @@
 
       </div>
     </div>
-  </nav> 
+  </nav>
   <!-- END NAV -->

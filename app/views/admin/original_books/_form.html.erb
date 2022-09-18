@@ -31,7 +31,7 @@
   </div>
   <div class="field py-1">
     <%= form.label :worktype_id %>
-    <%= form.collection_select :worktype_id, Worktype.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'w-full border border-gray-800 p-1'} %>
+    <%= form.collection_select :worktype_id, Worktype.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'w-full border border-gray-800 p-1' } %>
   </div>
   <div class="field py-1">
     <%= form.label :note %>

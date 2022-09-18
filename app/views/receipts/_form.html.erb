@@ -50,7 +50,7 @@
   <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
     <div class="flex-1 mr-2">
       <%= form.label :url, class: "mb-2 text-lg text-grey-darkest" do %>ホームページ<% end %>
-      <%= form.text_field :url, class: "border py-2 px-3 text-grey-darkest w-full"  %>
+      <%= form.text_field :url, class: "border py-2 px-3 text-grey-darkest w-full" %>
     </div>
     <div class="flex-1 text-base  m-auto">
       https://www.aozora.gr.jp
@@ -301,7 +301,7 @@
       <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
         <div class="flex-1 mr-2">
           <%= sub_form.label :kana_type_id, class: "mb-2 text-lg text-grey-darkest" do %>文字遣い種別<% end %>
-          <%= sub_form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, {prompt: '選択してください'}, {class: 'text-gray-800'} %>
+          <%= sub_form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'text-gray-800' } %>
         </div>
         <div class="flex-1 text-base  m-auto">
           ※←ポップアップにて選択、わからない場合は「新字新仮名」にしてください。
@@ -341,11 +341,11 @@
       <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
         <div class="flex-1 mr-2">
           <p class="mb-2 text-lg text-grey-darkest">著作権<span class="text-red-500">（必須）</span></p>
-          <%= sub_form.label :copyright_flag_1 do %>
-          <%= sub_form.radio_button :copyright_flag, "1", {class: "mr-1"} %><span class="text-base">あり（保護期間内）</span>
+          <%= sub_form.label :copyright_flag1 do %>
+          <%= sub_form.radio_button :copyright_flag, "1", { class: "mr-1" } %><span class="text-base">あり（保護期間内）</span>
           <% end %>
-          <%= sub_form.label :copyright_flag_0 do %>
-          <%= sub_form.radio_button :copyright_flag, "0", {class: "mr-1"} %><span class="text-base">なし（期限切れ）</span>
+          <%= sub_form.label :copyright_flag0 do %>
+          <%= sub_form.radio_button :copyright_flag, "0", { class: "mr-1" } %><span class="text-base">なし（期限切れ）</span>
           <% end %>
         </div>
         <div class="flex-1 text-base  m-auto">
@@ -368,7 +368,7 @@
     <%= form.submit "作品データを追加する", name: "add_work", class: "btn-normal", formaction: new_add_work_receipts_path(anchor: "book#{receipt_form.sub_works.count + 1}") %>
   </div>
 
-  <hr class="border-1 border-gray-500 my-4" />
+  <hr class="border-1 border-gray-500 my-4">
 
   <div>
     データの入力が終わったら、「確認」ボタンを押して確認画面に進んでください。
@@ -377,4 +377,3 @@
     <%= form.submit "確認", class: "btn-normal" %>
   </div>
 <% end %>
-

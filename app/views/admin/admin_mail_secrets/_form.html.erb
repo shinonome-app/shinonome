@@ -1,4 +1,4 @@
-<%= form_with(model: admin_mail_secret, url: admin_admin_mail_secrets_previews_path, data: {turbo: false} ) do |form| %>
+<%= form_with(model: admin_mail_secret, url: admin_admin_mail_secrets_previews_path, data: { turbo: false }) do |form| %>
   <% if admin_mail_secret.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(admin_mail_secret.errors.count, "件") %>の入力エラーがあります:</h2>

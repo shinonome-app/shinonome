@@ -5,9 +5,9 @@
   </label>
   </td>
   <td>
-    <input type="text" name="<%= @name %>" value="<%= @value %>">
+    <input type="text" name="<%= @name %>" value="<%= @value %>" autocomplete="on">
   </td>
   <td>
-    <%= @form.select "text_selector_#{@name}", TextSearcher::TEXT_SELECTOR, {include_blank: false} %>
+    <%= @form.select "text_selector_#{@name}", TextSearcher::TEXT_SELECTOR, { include_blank: false } %>
   </td>
 </tr>
