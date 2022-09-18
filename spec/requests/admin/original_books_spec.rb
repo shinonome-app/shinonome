@@ -79,7 +79,7 @@ RSpec.describe '/original_books', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post admin_work_original_books_url(work), params: { original_book: invalid_attributes }
-        expect(response.status).to eq 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end
@@ -111,7 +111,7 @@ RSpec.describe '/original_books', type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         original_book = OriginalBook.create! valid_attributes
         patch admin_work_original_book_url(work, original_book), params: { original_book: invalid_attributes }
-        expect(response.status).to eq 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end

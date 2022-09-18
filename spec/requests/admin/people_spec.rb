@@ -94,7 +94,7 @@ RSpec.describe '/people', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post admin_people_url, params: { person: invalid_attributes }
-        expect(response.status).to eq 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end
@@ -126,7 +126,7 @@ RSpec.describe '/people', type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         person = Person.create! valid_attributes
         patch admin_person_url(person), params: { person: invalid_attributes }
-        expect(response.status).to eq 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end

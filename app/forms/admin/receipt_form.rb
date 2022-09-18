@@ -256,7 +256,7 @@ module Admin
     def set_sortkey
       sortkey = convert_sortkey(title_kana) if sortkey.blank? # rubocop:disable Lint/UselessAssignment
 
-      if person_sortkey.blank?
+      if person_sortkey.blank? # rubocop:disable Style/GuardClause
         person_sortkey = convert_sortkey(last_name_kana) # rubocop:disable Lint/UselessAssignment
         person_sortkey2 = convert_sortkey(first_name_kana) # rubocop:disable Lint/UselessAssignment
       end
