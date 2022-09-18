@@ -12,10 +12,10 @@
 
 ――――――――――
 校正者名：<%= @proofreads.first.worker_name %>
-工作員ID：<%= @proofreads.first.worker_id%>
+工作員ID：<%= @proofreads.first.worker_id %>
 ――――――――――
 <%- @proofreads.each do |proofread| -%>
-<%- work = proofread.work   -%>
+<%- work = proofread.work -%>
 作品名　　　　　：<%= work.title %>
 文字遣い種別　　：<%= work.kana_type&.name %>
 著者名　　　　　：<%= work.first_author.name %>

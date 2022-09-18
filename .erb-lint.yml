@@ -1,5 +1,9 @@
 ---
 EnableDefaultLinters: true
+glob: "**/*.{html,text,js}{+*,}.erb"
+exclude:
+  - '**/vendor/**/*'
+  - '**/node_modules/**/*'
 linters:
   ErbSafety:
     enabled: true
