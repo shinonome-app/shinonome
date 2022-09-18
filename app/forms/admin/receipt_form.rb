@@ -95,7 +95,7 @@ module Admin
 
       set_email
 
-      worker = WorkerFinder.new.find_by_form(self)
+      worker = WorkerFinder.new.find_with_form(self)
       person = find_or_create_person
 
       result = ReceiptAssociator.new.associate_receipt(

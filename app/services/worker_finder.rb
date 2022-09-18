@@ -2,7 +2,7 @@
 
 # Admin::ProofreadFormからWorkerを取得する
 class WorkerFinder
-  def find_by_form(form)
+  def find_with_form(form)
     worker_id = form.worker_id
     if worker_id == -1
       Worker.create(
