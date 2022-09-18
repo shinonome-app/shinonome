@@ -1,4 +1,4 @@
-name: rubocop
+name: erblint
 
 on:
   pull_request:
@@ -17,6 +17,5 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: 3.1.2
-      - uses: r7kamura/rubocop-problem-matchers-action@v1
-      - name: rubocop
-        run: bundle exec rubocop --parallel
+      - name: ERB Lint
+        run: bundle exec erblint --lint-all
