@@ -39,27 +39,40 @@ module Shinonome
 
       attr_reader :name, :work_id, :body, :row
 
-      def initialize(row)
+      def initialize(row, prev_command: nil)
         @row = row
         @name = row[0]
         @work_id = row[1].to_i
-        @body = row[2..]
+        @body = row[1..]
         @is_comment = false
-        @use_prev_work_id = false
+        @prev_command = prev_command
 
-        if @name.start_with('#')
+        if @prev_command&.pass_work_id?
+          @prev_work_id = @prev_command.work_id
+        else
+          @prev_work_id = nil
+        end
+
+        if @name == '作品新規'
+          @pass_work_id = true
+        else
+          @pass_work_id = false
+        end
+
+        if @name.start_with?('#')
           @is_comment = true
           return
         elsif @name.blank?
           @name = row[1]
-          if @name.start_with('#')
+          if @name.start_with?('#')
             @is_comment = true
             return
           end
 
-          @work_id = nil
-          @use_prev_work_id = true
-        elsif @work_id <= 0
+          @body = row[2..]
+          @work_id = @prev_work_id
+          @pass_work_id = true
+        elsif @work_id < 0
           raise FormatError, I18n.t('errors.command_parser.invalid_work_id', work_id: @work_id)
         end
 
@@ -70,8 +83,8 @@ module Shinonome
         @is_comment
       end
 
-      def use_prev_work_id?
-        @use_prev_work_id
+      def pass_work_id?
+        @pass_work_id
       end
 
       def command_class
@@ -81,7 +94,7 @@ module Shinonome
       private
 
       def valid_command_name?(name)
-        COMMAND_NAMES_INVERTED.values.include?(name)
+        COMMAND_NAMES_INVERTED.keys.include?(name)
       end
     end
   end
