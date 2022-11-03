@@ -10,7 +10,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
     let(:mail) { described_class.register_receipt(receipt, sub_works) }
 
-    it 'renders the headers' do # rubocop:disable RSpec/MultipleExpectations
+    it 'renders the headers' do
       expect(mail.subject).to eq('「作品その一」他の入力受付完了のお知らせ')
       expect(mail.to).to eq(['sample@example.com'])
       expect(mail.from).to eq(['from@example.com'])

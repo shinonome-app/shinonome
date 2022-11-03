@@ -63,11 +63,17 @@ Rails/SkipsModelValidations:
   Exclude:
     - "db/seeds/*"
 
-RSpec/MultipleMemoizedHelpers:
-  Max: 12
-
 RSpec/ContextWording:
   Enabled: false
+
+RSpec/ExampleLength:
+  Max: 20
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 12
 
 Style/AsciiComments:
   Enabled: false

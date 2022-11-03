@@ -13,7 +13,7 @@ RSpec.describe AdminMailer, type: :mailer do
     end
     let(:mail) { described_class.order_receipt(receipt) }
 
-    it 'renders the headers' do # rubocop:disable RSpec/MultipleExpectations
+    it 'renders the headers' do
       expect(mail.subject).to eq("「#{receipt.title} #{receipt.subtitle}」入力のお願い")
       expect(mail.to).to eq(['to@example.com'])
       expect(mail.from).to eq(['from@example.com'])

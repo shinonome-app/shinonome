@@ -22,19 +22,21 @@ module Shinonome
         parsed_commands = []
         errors = []
         line_num = 0
+        prev_command = nil
 
         command_text.each_line do |line|
-          row = parse_tsv_line(line)
+          row = parse_tsv_line(line.strip)
           line_num += 1
 
           next if row.empty?
 
           begin
-            command = Command.new(row)
-            next if command.comment?
+            command = Command.new(row, prev_command: prev_command)
           rescue FormatError => e
             errors << "line #{line_num}: #{e.message}"
           end
+
+          next if command.blank? || command.comment?
 
           parsed_commands << command if command
         end
@@ -64,7 +66,7 @@ module Shinonome
             errors << "line #{line_num}: #{e.message}"
           end
 
-          next if command.blank? or command.comment?
+          next if command.blank? || command.comment?
 
           parsed_commands << command
           prev_command = command

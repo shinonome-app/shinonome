@@ -61,6 +61,10 @@ RSpec.configure do |config|
   #   config.example_status_persistence_file_path = "spec/examples.txt"
   config.example_status_persistence_file_path = 'tmp/examples.txt'
 
+  config.define_derived_metadata do |meta|
+    meta[:aggregate_failures] = true
+  end
+
   #
   #   # Limits the available syntax to the non-monkey patched syntax that is
   #   # recommended. For more details, see:
