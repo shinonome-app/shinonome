@@ -11,7 +11,7 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
         parsed = command_parser.parse_csv("person\n")
         expect(parsed.count).to eq(1)
         expect(parsed[0]).not_to be_comment
-        expect(parsed[0].command_class).to eq('person')
+        expect(parsed[0].command_class).to eq(Shinonome::ExecCommand::Command::GetPerson)
         expect(parsed[0].name).to eq('person')
         expect(parsed[0].body).to eq([])
       end
@@ -25,9 +25,11 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
         expect(parsed.count).to eq(2)
         expect(parsed[0].name).to eq('book_site')
         expect(parsed[0].body).to eq([])
+        expect(parsed[0].command_class).to eq(Shinonome::ExecCommand::Command::GetWorkSite)
 
         expect(parsed[1].name).to eq('person_site')
         expect(parsed[1].body).to eq([])
+        expect(parsed[1].command_class).to eq(Shinonome::ExecCommand::Command::GetPersonSite)
       end
     end
 
@@ -45,6 +47,7 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
            '<div id="link"></div><script type="text/javascript" src="../link.js"></script>',
            '', '入力中', '2020-01-03', 'あり', 'よつかはくま']
         )
+        expect(parsed[0].command_class).to eq(Shinonome::ExecCommand::Command::AddWork)
       end
     end
 
@@ -62,18 +65,23 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
            '<div id="link"></div><script type="text/javascript" src="../link.js"></script>',
            '', '入力中', '2020-01-03', 'あり', 'よつかはくま']
         )
+        expect(parsed[0].command_class).to eq(Shinonome::ExecCommand::Command::AddWork)
 
         expect(parsed[1].name).to eq('底本追加')
         expect(parsed[1].body).to eq(['The Complete Doom of London Series (Illustrated Edition)', 'Musaicum Books', '2017（平成29）年10月16日', '', '', '底本', 'NDL国立国会図書館デジタルコレクション'])
+        expect(parsed[1].command_class).to eq(Shinonome::ExecCommand::Command::AddOriginalBook)
 
         expect(parsed[2].name).to eq('人物追加')
         expect(parsed[2].body).to eq(%w[5678 著者])
+        expect(parsed[2].command_class).to eq(Shinonome::ExecCommand::Command::AddPerson)
 
         expect(parsed[3].name).to eq('人物追加')
         expect(parsed[3].body).to eq(%w[5699 翻訳者])
+        expect(parsed[3].command_class).to eq(Shinonome::ExecCommand::Command::AddPerson)
 
         expect(parsed[4].name).to eq('工作員追加')
         expect(parsed[4].body).to eq(%w[12345 入力者])
+        expect(parsed[4].command_class).to eq(Shinonome::ExecCommand::Command::AddWorker)
       end
     end
 
@@ -91,6 +99,7 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
            '<div id="link"></div><script type="text/javascript" src="../link.js"></script>',
            '', '入力中', '2020-01-03', 'あり', 'よつかはくま']
         )
+        expect(parsed[0].command_class).to eq(Shinonome::ExecCommand::Command::AddWork)
       end
     end
 
@@ -108,18 +117,23 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
            '<div id="link"></div><script type="text/javascript" src="../link.js"></script>',
            '', '入力中', '2020-01-03', 'あり', 'よつかはくま']
         )
+        expect(parsed[0].command_class).to eq(Shinonome::ExecCommand::Command::AddWork)
 
         expect(parsed[1].name).to eq('底本追加')
         expect(parsed[1].body).to eq(['The Complete Doom of London Series (Illustrated Edition)', 'Musaicum Books', '2017（平成29）年10月16日', '', '', '底本', 'NDL国立国会図書館デジタルコレクション'])
+        expect(parsed[1].command_class).to eq(Shinonome::ExecCommand::Command::AddOriginalBook)
 
         expect(parsed[2].name).to eq('人物追加')
         expect(parsed[2].body).to eq(%w[5678 著者])
+        expect(parsed[2].command_class).to eq(Shinonome::ExecCommand::Command::AddPerson)
 
         expect(parsed[3].name).to eq('人物追加')
         expect(parsed[3].body).to eq(%w[5699 翻訳者])
+        expect(parsed[3].command_class).to eq(Shinonome::ExecCommand::Command::AddPerson)
 
         expect(parsed[4].name).to eq('工作員追加')
         expect(parsed[4].body).to eq(%w[12345 入力者])
+        expect(parsed[4].command_class).to eq(Shinonome::ExecCommand::Command::AddWorker)
       end
     end
   end

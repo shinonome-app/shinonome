@@ -97,10 +97,12 @@ module Shinonome
       end
 
       def command_class
-        @name
+        COMMAND_NAMES[@name]
       end
 
-      def execute; end
+      def execute
+        command_class.new(self).execute
+      end
 
       private
 
