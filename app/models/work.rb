@@ -97,7 +97,7 @@ class Work < ApplicationRecord
   end
 
   def to_csv
-    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, description, work_status.name, started_on, copyright_flag ? 't' : 'f', note, orig_text, updated_at, user.username, sortkey]
+    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, description, work_status.name, started_on, copyright_char, note, orig_text, updated_at, user.username, sortkey]
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end
@@ -117,7 +117,7 @@ class Work < ApplicationRecord
                     ['', '', '', '', '', '']
                   end
 
-    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, work_status.name, started_on, copyright_flag ? 't' : 'f', note, orig_text, updated_at, user.username] + people_array + sites_array
+    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, work_status.name, started_on, copyright_char, note, orig_text, updated_at, user.username] + people_array + sites_array
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end
@@ -130,6 +130,10 @@ class Work < ApplicationRecord
 
   def copyright?
     people.any? { |person| person.copyright? }
+  end
+
+  def copyright_char
+    copyright_flag ? 't' : 'f'
   end
 
   def noncopyright?

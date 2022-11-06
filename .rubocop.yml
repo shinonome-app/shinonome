@@ -66,8 +66,13 @@ Rails/SkipsModelValidations:
 RSpec/ContextWording:
   Enabled: false
 
+RSpec/DescribedClass:
+  Enabled: false
+
 RSpec/ExampleLength:
   Max: 40
+  Exclude:
+  - "spec/services/**/*.rb"
 
 RSpec/MultipleExpectations:
   Enabled: false

@@ -14,8 +14,8 @@
 #
 
 FactoryBot.define do
-  factory :bibclasse do
-    work_id { 1 }
+  factory :bibclass do
+    work
     name { 'MyText' }
     num { 'MyText' }
     note { 'MyText' }

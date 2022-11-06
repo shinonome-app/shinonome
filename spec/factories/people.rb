@@ -31,24 +31,29 @@
 
 FactoryBot.define do
   factory :person do
-    last_name { 'MyText' }
-    last_name_kana { 'MyText' }
-    last_name_en { 'MyText' }
-    first_name { 'MyText' }
-    first_name_kana { 'MyText' }
-    first_name_en { 'MyText' }
-    born_on { '2021-04-29' }
-    died_on { '2021-04-29' }
-    copyright_flag { false }
-    email { 'sample-person@example.com' }
-    url { 'https://sample.example.com' }
-    description { 'MyText' }
-    note_user_id { 1 }
-    basename { 'MyText' }
-    note { 'MyText' }
-    updated_by { 'MyText' }
-    sortkey { 'MyText' }
-    sortkey2 { 'MyText' }
+    transient do
+      name { Gimei.name }
+      day_death { Faker::Date.birthday(min_age: 70, max_age: 200) }
+    end
+
+    last_name { name.last.kanji }
+    last_name_kana { name.last.hiragana }
+    last_name_en { name.last.romaji }
+    first_name { name.first.kanji }
+    first_name_kana { name.first.hiragana }
+    first_name_en { name.first.romaji }
+    died_on { day_death }
+    born_on { day_death + (365 * 20) + rand(365 * 60) }
+    copyright_flag { [true, false].sample }
+    sequence(:email) { |_i| 'sample-person@example.com' }
+    sequence(:url) { |i| "https://sample#{i}.example.com" }
+    description { Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
+    note_user_id { nil }
+    basename { nil }
+    note { "備考#{rand(100)}" }
+    updated_by { "user#{rand(10)}" }
+    sortkey { name.last.hiragana }
+    sortkey2 { name.first.hiragana }
     input_count { 1 }
     publish_count { 1 }
   end
