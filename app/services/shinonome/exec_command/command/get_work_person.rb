@@ -18,7 +18,7 @@ module Shinonome
           io.write(Shinonome::ExecCommand::BOM)
           io.write(WorkPerson.csv_header)
 
-          WorkPerson.includes(:role).order(:work_id).each do |work_person|
+          WorkPerson.includes(:role).order(:work_id, :role_id, :id).each do |work_person|
             io.write(work_person.to_csv)
           end
         end
