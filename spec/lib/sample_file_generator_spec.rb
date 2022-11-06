@@ -120,7 +120,7 @@ TEXT
 
       it '正しいHTMLが生成される' do
         SampleFileGenerator.new.generate_sample_html(workfile)
-        expect(workfile.filename).to eq "#{workfile.work.id}_ruby_#{workfile.id}.html"
+        expect(workfile.filename).to eq "#{workfile.work.id}_#{workfile.id}.html"
 
         text = workfile.workdata.download.force_encoding('utf-8')
 

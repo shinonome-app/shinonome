@@ -103,7 +103,7 @@ class SampleFileGenerator
 
   def generate_sample_html(workfile)
     work = workfile.work
-    html_file = "#{work.id}_ruby_#{workfile.id}.html"
+    html_file = "#{work.id}_#{workfile.id}.html"
 
     Dir.mktmpdir do |folder|
       htmlfile_path = File.join(folder, html_file)
