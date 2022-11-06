@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-# 入力情報作成
+# Workfileのファイルのファイルタイプを変換する
+#
+# 主にテキストでアップロードされたファイルをzipやHTMLに変換するために使う想定
 class WorkfileConverter
   def convert_format(workfile)
     filename = workfile.filename

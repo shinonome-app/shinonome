@@ -39,13 +39,17 @@
 
 FactoryBot.define do
   factory :workfile do
+    transient do
+      n { rand(1000) }
+    end
+
     work
     user
     filesize { 1000 }
-    filename { 'foo.txt' }
+    filename { nil }
     opened_on { '2021-04-29' }
     revision_count { 1 }
-    note { '備考のテスト' }
+    note { "備考のテスト#{n}" }
 
     charset_id { 1 }
     file_encoding_id { 1 }
@@ -55,9 +59,9 @@ FactoryBot.define do
       filetype { Filetype.find(1) }
     end
 
-    trait :html do
+    trait :xhtml do
       compresstype { Compresstype.find(1) }
-      filetype { Filetype.find(3) }
+      filetype { Filetype.find(9) }
     end
   end
 end

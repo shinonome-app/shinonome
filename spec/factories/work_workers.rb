@@ -27,8 +27,8 @@
 
 FactoryBot.define do
   factory :work_worker do
-    work_id { 1 }
-    worker_id { 1 }
+    work
+    worker
     worker_role_id { 1 }
   end
 end

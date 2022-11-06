@@ -189,4 +189,8 @@ class Work < ApplicationRecord
   def workfile
     workfiles.order(id: :desc).last
   end
+
+  def updated_at_text
+    updated_at.strftime('%Y年%m月%d日').gsub('年0', '年').gsub('月0', '月')
+  end
 end

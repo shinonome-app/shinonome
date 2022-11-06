@@ -14,8 +14,12 @@
 
 FactoryBot.define do
   factory :worker do
-    name { 'MyText' }
-    name_kana { 'MyText' }
-    sortkey { 'MyText' }
+    transient do
+      name_full { Gimei.name }
+    end
+
+    name { name_full.kanji }
+    name_kana { name_full.hiragana }
+    sortkey { name_full.hiragana }
   end
 end

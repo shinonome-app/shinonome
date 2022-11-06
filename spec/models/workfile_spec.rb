@@ -41,7 +41,7 @@ require 'rails_helper'
 
 RSpec.describe Workfile, type: :model do
   describe '#using_ruby?' do
-    let(:workfile) { create(:workfile, :html) }
+    let(:workfile) { create(:workfile, :xhtml) }
 
     it 'ルビがあればtrue' do
       workfile.workdata.attach(Rack::Test::UploadedFile.new('spec/fixtures/text/01jo.txt', 'text/plain'))
@@ -59,9 +59,9 @@ RSpec.describe Workfile, type: :model do
   end
 
   describe '#generate_filename' do
-    context 'htmlの場合' do
+    context 'xhtmlの場合' do
       it '正しいファイル名を返す' do
-        workfile = create(:workfile, :html) do |tmp_workfile|
+        workfile = create(:workfile, :xhtml) do |tmp_workfile|
           tmp_workfile.workdata.attach(Rack::Test::UploadedFile.new('spec/fixtures/html/01jo.html', 'text/html'))
         end
         expect(workfile.generate_filename).to eq "#{workfile.work_id}_#{workfile.id}.html"
