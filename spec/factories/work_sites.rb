@@ -24,7 +24,7 @@
 
 FactoryBot.define do
   factory :work_site do
-    work_id { 1 }
-    site_id { 1 }
+    work
+    site
   end
 end

@@ -42,26 +42,29 @@
 
 FactoryBot.define do
   factory :work do
+    transient do
+      n { rand(10000) }
+    end
+
     user
-    kana_type_id { 1 }
+    kana_type_id { (1..4).to_a.sample }
     work_status_id { 1 }
-    title { 'MyText' }
-    title_kana { 'MyText' }
-    subtitle { 'MyText' }
-    subtitle_kana { 'MyText' }
-    collection { 'MyText' }
-    collection_kana { 'MyText' }
-    original_title { 'MyText' }
-    author_display_name { 'MyText' }
-    first_appearance { 'MyText' }
-    description { 'MyText' }
+    title { "作品#{n}" }
+    title_kana { "さくひん#{n}" }
+    subtitle { "副題#{n}" }
+    subtitle_kana { "ふくだい#{n}" }
+    collection { nil }
+    collection_kana { nil }
+    original_title { rand(100) > 90 ? "Awesome Piece No. #{n}" : nil }
+    author_display_name { 'DummyAuthorDisplayName' }
+    first_appearance { "初出#{n}" }
+    description { Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
     description_person_id { 1 }
-    started_on { '2021-04-29' }
+    started_on { Faker::Date.birthday(min_age: 0, max_age: 3) }
     copyright_flag { false }
-    note { 'MyText' }
-    orig_text { 'MyText' }
-    updated_at { '2021-04-29 20:43:01' }
-    sortkey { 'MyText' }
+    note { Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
+    orig_text { nil }
+    sortkey { "さくひん#{n}" }
 
     trait :teihon do
       original_book

@@ -73,17 +73,17 @@ module Shinonome
             ExecCommand::CommandSQL.execute(self, args)
           when 'ファイル取得'
             ExecCommand::GetFile.execute(self, args)
-          when 'workselect'
+          when 'bookselect'
             ExecCommand::GetWorkSelect.execute(self, args)
-          when 'work'
+          when 'book'
             ExecCommand::GetWork.execute(self, args)
-          when 'work_site'
+          when 'book_site'
             ExecCommand::GetWorkSite.execute(self, args)
           when 'person_site'
             ExecCommand::GetPersonSite.execute(self, args)
-          when 'work_person'
+          when 'book_person'
             ExecCommand::GetWorkPerson.execute(self, args)
-          when 'work_worker'
+          when 'book_worker'
             ExecCommand::GetWorkWorker.execute(self, args)
           when 'source'
             ExecCommand::GetOriginalBook.execute(self, args)
