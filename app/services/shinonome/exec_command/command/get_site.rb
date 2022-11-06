@@ -8,18 +8,22 @@ module Shinonome
         COLUMNS = %i[id name url owner_name email note updated_at updated_by].freeze
         FILENAME = 'work.csv'
 
-        def exec(exec_command, _params)
-          csv_data = CSV.generate do |csv|
-            csv << COLUMNS.map { |col| I18n.t(col, scope: 'activerecord.attributes.site') }
-            Site.order(:id).find_in_batches do |batch|
-              batch.each do |site|
-                csv << site.attributes.values_at(*COLUMNS)
-              end
-            end
-          end
+        def execute(output_dir:)
+          filename = 'site.csv'
+          output_file = File.join(output_dir, filename)
 
-          csv_path = File.join(exec_command.csv_path, FILENAME)
-          File.write(csv_path, csv_data)
+          File.open(output_file, 'wb') do |f|
+            write_get_site(f)
+          end
+        end
+
+        def write_get_site(io)
+          io.write(Shinonome::ExecCommand::BOM)
+          io.write(Site.csv_header)
+
+          Site.find_each do |site|
+            io.write(site.to_csv)
+          end
         end
       end
     end
