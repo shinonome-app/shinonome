@@ -41,10 +41,10 @@ RSpec.describe WorkfileConverter do
 
       it '変換後のzip内のテキストは正しい結果になる' do
         content = result.workfile.unzip_workdata
-        content.force_encoding('Shift_JIS').encode('utf-8')
+        content2 = content.force_encoding('Shift_JIS').encode('utf-8')
         text_content = file_fixture('text/01jo.txt').read
-        text_content.force_encoding('Shift_JIS').encode('utf-8')
-        expect(content).to eq text_content
+        text_content2 = text_content.force_encoding('Shift_JIS').encode('utf-8')
+        expect(content2).to eq text_content2
       end
     end
   end
