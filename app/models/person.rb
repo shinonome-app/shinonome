@@ -29,6 +29,8 @@
 #  note_user_id    :bigint
 #
 
+require 'csv'
+
 # 人物(著者等)
 class Person < ApplicationRecord
   PERSON_ID_TABLE = [
@@ -57,6 +59,16 @@ class Person < ApplicationRecord
   validates :input_count, :publish_count, numericality: { only_integer: true }, allow_nil: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }, allow_blank: true
+
+  def self.csv_header
+    "人物id,姓,姓読み,姓英字,名,名読み,名英字,生年月日,没年月日,著作権フラグ,email,url,人物について,人物基本名,備考,最終更新日,更新者,姓ソート用読み,名ソート用読み\r\n"
+  end
+
+  def to_csv
+    array = [id, last_name, last_name_kana, last_name_en, first_name_kana, first_name, first_name_en, born_on, died_on, copyright_flag ? 't' : 'f', email, url, description, basename, note, updated_at, updated_by, sortkey, sortkey2]
+
+    CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
+  end
 
   def other_people
     other_person_ids = BasePerson.where(person_id: id).pluck(:original_person_id) +

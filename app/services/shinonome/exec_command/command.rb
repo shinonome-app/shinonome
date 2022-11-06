@@ -100,8 +100,8 @@ module Shinonome
         COMMAND_NAMES[@name]
       end
 
-      def execute
-        command_class.new(self).execute
+      def execute(output_dir:)
+        command_class.new(self).execute(output_dir: output_dir)
       end
 
       private

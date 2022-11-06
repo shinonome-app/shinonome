@@ -25,10 +25,23 @@
 #  fk_rails_...  (work_id => works.id)
 #
 
+require 'csv'
+
+# 作品-人物関連付け
 class WorkPerson < ApplicationRecord
   belongs_to :work
   belongs_to :person
   belongs_to :role
 
   validates :person_id, uniqueness: { scope: :work_id, message: 'がすでに関連付けられています' }
+
+  def self.csv_header
+    "bookid,人物id,役割フラグ\r\n"
+  end
+
+  def to_csv
+    array = [work_id, person_id, role.name]
+
+    CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
+  end
 end

@@ -17,6 +17,8 @@ module Shinonome
   class ExecCommand < ApplicationRecord
     self.table_name = :exec_commands
 
+    BOM = "\uFEFF"
+
     class Error < RuntimeError
     end
 

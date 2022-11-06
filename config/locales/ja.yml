@@ -250,6 +250,15 @@ ja:
     header_message:
       one: "%{count}件のエラーが見つかりました"
       other: "%{count}件のエラーが見つかりました"
+    get_file:
+      book_id_blank: "BookIDを指定してください。"
+      book_id_numeric: "BookIDが数値ではありません。"
+      filetype_compresstype_file_id_blank: "ファイル形式と圧縮形式かファイルIDを指定してください。"
+      filetype_invalid: "ファイル形式には%{valid_filetypes}を指定してください。"
+      compresstype_invalid: "圧縮形式には${valid_compresstypes}を指定してください。"
+      file_by_id_not_found: "指定されたIDのファイルが見つかりません。"
+      file_not_found: "指定された作品ID、ファイル形式、圧縮形式のファイルが見つかりません。"
+      url_defineda: "指定されたファイルはURLです。"
   admin_mailer:
     order_receipt:
       subject: "「%{title}」入力のお願い"

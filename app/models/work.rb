@@ -40,6 +40,8 @@
 #  fk_rails_...  (work_status_id => work_statuses.id)
 #
 
+require 'csv'
+
 # 作品
 class Work < ApplicationRecord
   has_many :work_sites, dependent: :destroy
@@ -85,6 +87,40 @@ class Work < ApplicationRecord
   validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }
   validates :started_on, presence: true
   validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
+
+  def self.csv_header
+    "bookid,作品名,作品名読み,副題,副題読み,作品集名,作品集名読み,原題,仮名遣い種別,初出,作品について,状態,状態の開始日,著作権フラグ,備考,底本管理情報,最終更新日,更新者,ソート用読み\r\n"
+  end
+
+  def self.csv_header_with_site
+    "bookid,作品名,作品名読み,副題,副題読み,作品集名,作品集名読み,原題,仮名遣い種別,初出,状態,状態の開始日,著作権フラグ,備考,底本管理情報,最終更新日,更新者,人物1 ID,人物1 姓名,人物1 役割,人物2 ID,人物2 姓名,人物2 役割,人物3 ID,人物3 姓名,人物2 役割,人物4 ID,人物4 姓名,人物4 役割,関連サイトid,関連サイト名,関連サイトurl,関連サイト運営者名,email,備考\r\n"
+  end
+
+  def to_csv
+    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, description, work_status.name, started_on, copyright_flag ? 't' : 'f', note, orig_text, updated_at, user.username, sortkey]
+
+    CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
+  end
+
+  def to_csv_with_site
+    people_array = work_people.map { |work_person| [work_person.person_id, work_person.person.name, work_person.role.name] }
+
+    rest_people_count = 4 - people_array.count
+    rest_people_count = 0 if rest_people_count < 0
+    people_array.flatten!
+    people_array += ['', '', ''] * rest_people_count
+
+    work_site = work_sites.first
+    sites_array = if work_site
+                    [sites[0].id, sites[0].name, sites[0].url, sites[0].owner_name, sites[0].email, sites[0].note]
+                  else
+                    ['', '', '', '', '', '']
+                  end
+
+    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, work_status.name, started_on, copyright_flag ? 't' : 'f', note, orig_text, updated_at, user.username] + people_array + sites_array
+
+    CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
+  end
 
   def self.latest_published(year: nil, until_date: Time.zone.today)
     year ||= until_date.year

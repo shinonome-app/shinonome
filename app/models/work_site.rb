@@ -22,6 +22,8 @@
 #  fk_rails_...  (work_id => works.id)
 #
 
+require 'csv'
+
 class WorkSite < ApplicationRecord
   belongs_to :work
   belongs_to :site
