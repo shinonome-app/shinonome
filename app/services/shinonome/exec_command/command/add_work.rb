@@ -31,16 +31,16 @@ module Shinonome
           copyright_flag = copyrighttypes[copyright_name]
           if copyright_flag.nil?
             raise Shinonome::ExecCommand::FormatError,
-                  I18n.t('errors.exec_command.copyrighttype_not_found', %("#{copyrighttypes.keys.join('"か"')}"))
+                  I18n.t('errors.exec_command.copyrighttype_invalid', copyrighttypes: %("#{copyrighttypes.keys.join('"か"')}"))
           end
 
-          kana_types = KanaType.order(:id).plusk(:name)
+          kana_types = KanaType.order(:id).pluck(:name)
           kana_type  = KanaType.where(name: kana_type_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.kana_type_not_found', %("#{kana_types.join('"か"')}")) unless kana_type
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.kana_type_invalid', kana_types: %("#{kana_types.join('"か"')}")) unless kana_type
 
           work_statuses = WorkStatus.order(:id).pluck(:name)
           work_status = WorkStatus.where(id: work_status_name).first || WorkStatus.where(name: work_status_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_status_not_found', %("#{work_statuses.join('"か"')}")) unless work_status
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_status_invalid', work_statuses: %("#{work_statuses.join('"か"')}")) unless work_status
 
           sortkey = Kana.convert_sortkey(title_kana) if sortkey.blank?
 

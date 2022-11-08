@@ -16,8 +16,8 @@
 FactoryBot.define do
   factory :bibclass do
     work
-    name { 'MyText' }
-    num { 'MyText' }
-    note { 'MyText' }
+    name { 'NDC' }
+    num { '913' }
+    note { '備考123' }
   end
 end

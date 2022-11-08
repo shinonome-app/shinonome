@@ -14,12 +14,12 @@ module Shinonome
 
           worktypes = Worktype.order(:id).pluck(:name)
           worktype = Worktype.where(name: worktype_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worktype_not_found', %("#{worktypes.join('"か"')}")) unless worktype
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worktype_invalid', worktypes: %("#{worktypes.join('"か"')}")) unless worktype
 
           begin
             _work = Work.find(work_id)
           rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found')
+            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
           end
 
           original_book = OriginalBook.create!(work_id: work_id,

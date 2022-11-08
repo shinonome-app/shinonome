@@ -27,9 +27,20 @@
 #  fk_rails_...  (worktype_id => worktypes.id)
 #
 
+# 底本
 class OriginalBook < ApplicationRecord
   belongs_to :work
   belongs_to :worktype
 
   validates :title, presence: true
+
+  def self.csv_header
+    "bookid,書籍名,出版社名,初版発行年,入力に使用した版,校正に使用した版,種別フラグ,備考\r\n"
+  end
+
+  def to_csv
+    array = [work_id, title, publisher, first_pubdate, input_edition, proof_edition, worktype.name, note]
+
+    CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
+  end
 end

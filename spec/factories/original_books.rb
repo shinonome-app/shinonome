@@ -29,13 +29,13 @@
 
 FactoryBot.define do
   factory :original_book do
-    work_id { 1 }
-    title { 'MyText' }
-    publisher { 'MyText' }
-    first_pubdate { 'MyText' }
-    input_edition { 'MyText' }
-    proof_edition { 'MyText' }
+    work
+    title { "底本タイトル#{work.id}" }
+    publisher { "底本出版社#{work.id}" }
+    first_pubdate { "初出年月日#{work.id}" }
+    input_edition { "入力使用版#{work.id}" }
+    proof_edition { "校正使用版#{work.id}" }
     worktype_id { 1 }
-    note { 'MyText' }
+    note { "備考#{work.id}" }
   end
 end
