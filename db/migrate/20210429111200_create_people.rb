@@ -18,7 +18,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.bigint :note_user_id
       t.text :basename
       t.text :note
-      t.text :updated_by
+      t.bigint :updated_by
       t.text :sortkey
       t.text :sortkey2
       t.integer :input_count

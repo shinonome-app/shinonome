@@ -8,6 +8,7 @@
 #  name       :text             not null
 #  name_kana  :text             not null
 #  sortkey    :text
+#  updated_by :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

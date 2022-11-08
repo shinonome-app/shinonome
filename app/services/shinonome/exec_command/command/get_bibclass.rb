@@ -4,7 +4,7 @@ module Shinonome
   class ExecCommand
     class Command
       # 書誌情報取得
-      class GetBibclass
+      class GetBibclass < Base
         def execute(output_dir:)
           filename = 'bibclass.csv'
           output_file = File.join(output_dir, filename)
@@ -12,6 +12,8 @@ module Shinonome
           File.open(output_file, 'wb') do |f|
             write_get_bibclass(f)
           end
+
+          Result.new(executed: true, command_result: output_file)
         end
 
         def write_get_bibclass(io)

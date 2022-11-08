@@ -19,21 +19,21 @@ module Shinonome
 
         Result.new(executed: true)
       end
-    end
-  end
 
-  # 結果返却用
-  class Result
-    attr_reader :error, :command_result
+      # 結果返却用
+      class Result
+        attr_reader :error, :command_result
 
-    def initialize(executed:, command_result: nil, error: nil)
-      @executed = executed
-      @error = error
-      @command_result = command_result
-    end
+        def initialize(executed:, command_result: nil, error: nil)
+          @executed = executed
+          @error = error
+          @command_result = command_result
+        end
 
-    def executed?
-      @executed
+        def executed?
+          @executed
+        end
+      end
     end
   end
 end

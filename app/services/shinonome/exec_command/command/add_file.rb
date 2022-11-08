@@ -3,7 +3,7 @@
 module Shinonome
   class ExecCommand
     class Command
-      class AddFile
+      class AddFile < Base
       end
     end
   end

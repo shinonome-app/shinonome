@@ -6,6 +6,7 @@ class CreateWorkers < ActiveRecord::Migration[6.1]
       t.text :name, null: false
       t.text :name_kana, null: false
       t.text :sortkey
+      t.bigint :updated_by
 
       t.timestamps
     end

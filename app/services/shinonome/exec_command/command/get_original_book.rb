@@ -3,7 +3,7 @@
 module Shinonome
   class ExecCommand
     class Command
-      class GetOriginalBook
+      class GetOriginalBook < Base
       end
     end
   end

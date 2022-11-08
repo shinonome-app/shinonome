@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'nkf'
+
 # Handling Kana characters and Kana columns
 class Kana
   class Error < StandardError
@@ -46,6 +48,22 @@ class Kana
     ROMA2KANA_CHARS.each_value do |value|
       yield value.chars
     end
+  end
+
+  def self.convert_sortkey(kana)
+    str = NKF.nkf('--hiragana -w', kana.to_s).dup
+    str.tr!(
+      'ヴがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽぁぃぅぇぉっゃゅょゎ',
+      'うかきくけこさしすせそたちつてとはひふへほはひふへほあいうえおつやゆよわ'
+    )
+    str.gsub!(/([あかさたなはまやらわ])ー/) { "#{Regexp.last_match(1)}あ" }
+    str.gsub!(/([いきしちにひみりゐ])ー/) { "#{Regexp.last_match(1)}い" }
+    str.gsub!(/([うくすつぬふむゆる])ー/) { "#{Regexp.last_match(1)}う" }
+    str.gsub!(/([えけせてねへめれゑ])ー/) { "#{Regexp.last_match(1)}え" }
+    str.gsub!(/([おこそとのほもよろを])ー/) { "#{Regexp.last_match(1)}お" }
+    str.gsub!(/[^あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん]/, '')
+
+    str
   end
 
   def initialize(roma_sym)

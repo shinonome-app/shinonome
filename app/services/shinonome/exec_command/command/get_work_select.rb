@@ -3,7 +3,7 @@
 module Shinonome
   class ExecCommand
     class Command
-      class GetWorkSelect
+      class GetWorkSelect < Base
       end
     end
   end

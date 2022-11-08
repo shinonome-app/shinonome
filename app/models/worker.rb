@@ -8,6 +8,7 @@
 #  name       :text             not null
 #  name_kana  :text             not null
 #  sortkey    :text
+#  updated_by :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -69,4 +70,14 @@ class Worker < ApplicationRecord
   }
 
   validates :name, :name_kana, presence: true
+
+  def self.csv_header
+    "工作員id,姓名,姓名読み,email,url,備考,最終更新日,更新者,姓名ソート用読み\r\n"
+  end
+
+  def to_csv
+    array = [id, name, name_kana, worker_secret.email, worker_secret.url, worker_secret.note, updated_at, updated_by, sortkey]
+
+    CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
+  end
 end

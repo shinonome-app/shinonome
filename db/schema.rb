@@ -151,7 +151,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.bigint "note_user_id"
     t.text "basename"
     t.text "note"
-    t.text "updated_by"
+    t.bigint "updated_by"
     t.text "sortkey"
     t.text "sortkey2"
     t.integer "input_count"
@@ -331,6 +331,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "name", null: false
     t.text "name_kana", null: false
     t.text "sortkey"
+    t.bigint "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

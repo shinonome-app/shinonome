@@ -4,7 +4,7 @@ module Shinonome
   class ExecCommand
     class Command
       # 作品情報取得コマンド
-      class GetWork
+      class GetWork < Base
         def execute(output_dir:)
           filename = 'book.csv'
           output_file = File.join(output_dir, filename)
@@ -12,6 +12,8 @@ module Shinonome
           File.open(output_file, 'wb') do |f|
             write_get_work(f)
           end
+
+          Result.new(executed: true, command_result: output_file)
         end
 
         def write_get_work(io)

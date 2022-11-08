@@ -22,7 +22,7 @@
 #  publish_count   :integer
 #  sortkey         :text
 #  sortkey2        :text
-#  updated_by      :text
+#  updated_by      :bigint
 #  url             :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

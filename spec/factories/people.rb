@@ -22,7 +22,7 @@
 #  publish_count   :integer
 #  sortkey         :text
 #  sortkey2        :text
-#  updated_by      :text
+#  updated_by      :bigint
 #  url             :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -51,7 +51,7 @@ FactoryBot.define do
     note_user_id { nil }
     basename { nil }
     note { "備考#{rand(100)}" }
-    updated_by { "user#{rand(10)}" }
+    updated_by { rand(1..10) }
     sortkey { name.last.hiragana }
     sortkey2 { name.first.hiragana }
     input_count { 1 }

@@ -26,7 +26,7 @@ module Shinonome
         'book_site' => GetWorkSite,
         'person_site' => GetPersonSite,
         'book_person' => GetWorkPerson,
-        'book_worker' => GetWorkWalker,
+        'book_worker' => GetWorkWorker,
         'source' => GetOriginalBook,
         'class' => GetBibclass,
         'person' => GetPerson,

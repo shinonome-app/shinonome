@@ -22,9 +22,9 @@
 FactoryBot.define do
   factory :worker_secret do
     worker
-    email { 'foo@example.com' }
-    url { 'MyText' }
-    note { 'MyText' }
-    user { nil }
+    email { "worker#{worker.id}@example.com" }
+    url { "https://example.com/workers/#{worker.id}" }
+    note { "備考worker#{worker.id}" }
+    user_id { rand(1..10) }
   end
 end

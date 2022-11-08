@@ -3,28 +3,25 @@
 module Shinonome
   class ExecCommand
     class Command
-      # 著者情報取得
-      class GetPerson < Base
+      # 工作員関連づけ取得
+      class GetWorkWorker < Base
         def execute(output_dir:)
-          filename = 'person.csv'
+          filename = 'book_worker.csv'
           output_file = File.join(output_dir, filename)
 
           File.open(output_file, 'wb') do |f|
-            write_get_person(f)
+            write_get_work_worker(f)
           end
 
           Result.new(executed: true, command_result: output_file)
         end
 
-        def write_get_person(io)
+        def write_get_work_worker(io)
           io.write(Shinonome::ExecCommand::BOM)
-          io.write(Person.csv_header)
+          io.write(WorkWorker.csv_header)
 
-          Person.find_each do |person|
-            # skip '著者なし' data
-            next if person.id == 0
-
-            io.write(person.to_csv)
+          WorkWorker.order(:work_id, :id).each do |work_worker|
+            io.write(work_worker.to_csv)
           end
         end
       end

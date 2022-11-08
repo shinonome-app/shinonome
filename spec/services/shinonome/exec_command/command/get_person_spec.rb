@@ -35,7 +35,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetPerson do
           expect(row2[12]).to eq person2.description
           expect(row2[13]).to eq person2.basename.to_s
           expect(row2[14]).to eq person2.note
-          expect(row2[16]).to eq person2.updated_by
+          expect(row2[16]).to eq person2.updated_by.to_s
           expect(row2[17]).to eq person2.sortkey
           expect(row2[18]).to eq person2.sortkey2
 
@@ -57,7 +57,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetPerson do
           expect(row3[12]).to eq person3.description
           expect(row3[13]).to eq person3.basename.to_s
           expect(row3[14]).to eq person3.note
-          expect(row3[16]).to eq person3.updated_by
+          expect(row3[16]).to eq person3.updated_by.to_s
           expect(row3[17]).to eq person3.sortkey
           expect(row3[18]).to eq person3.sortkey2
         end

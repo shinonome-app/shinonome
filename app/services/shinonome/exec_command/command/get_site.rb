@@ -4,7 +4,7 @@ module Shinonome
   class ExecCommand
     class Command
       # 'site'コマンドの実装クラス
-      class GetSite
+      class GetSite < Base
         COLUMNS = %i[id name url owner_name email note updated_at updated_by].freeze
         FILENAME = 'work.csv'
 
@@ -15,6 +15,8 @@ module Shinonome
           File.open(output_file, 'wb') do |f|
             write_get_site(f)
           end
+
+          Result.new(executed: true, command_result: output_file)
         end
 
         def write_get_site(io)
