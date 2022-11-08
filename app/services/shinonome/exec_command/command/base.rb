@@ -17,8 +17,12 @@ module Shinonome
             @command_result = command_result
           end
 
-          def success?
+          def successful?
             @executed
+          end
+
+          def failed?
+            !@executed
           end
         end
       end

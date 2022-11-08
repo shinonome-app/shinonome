@@ -12,7 +12,7 @@ module Shinonome
           begin
             _work = Work.find(work_id)
           rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found')
+            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
           end
 
           WorkSite.where(work_id: work_id, site_id: site_id).destroy_all!

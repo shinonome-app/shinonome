@@ -12,13 +12,13 @@ module Shinonome
           raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worker_id_numeric') unless worker_id.to_s.match?(/\A[1-9]\d*\z/)
 
           worker_roles = WorkerRole.order(:id).pluck(:name)
-          worker_role = WorkerRoles.where(name: role_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.role_not_found', %("#{worker_roles.join('"か"')}")) unless worker_role
+          worker_role = WorkerRole.where(name: role_name).first
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worker_role_invalid', worker_roles: %("#{worker_roles.join('"か"')}")) unless worker_role
 
           begin
             _work = Work.find(work_id)
           rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found')
+            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
           end
 
           work_worker = WorkWorker.create!(work_id: work_id,

@@ -11,7 +11,7 @@ module Shinonome
           begin
             _work = Work.find(work_id)
           rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found')
+            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
           end
 
           bibclass = Bibclass.create!(work_id: work_id,
@@ -19,7 +19,7 @@ module Shinonome
                                       num: num,
                                       note: note)
 
-          Result(executed: true, command_result: bibclass)
+          Result.new(executed: true, command_result: bibclass)
         end
       end
     end

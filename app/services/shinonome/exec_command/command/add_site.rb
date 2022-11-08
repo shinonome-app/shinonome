@@ -14,7 +14,13 @@ module Shinonome
           begin
             _work = Work.find(work_id)
           rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found')
+            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
+          end
+
+          begin
+            _site = Site.find(site_id)
+          rescue ActiveRecord::RecordNotFound
+            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.site_not_found', site_id: site_id)
           end
 
           work_site = WorkSite.create!(work_id: work_id,
