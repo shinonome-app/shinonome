@@ -5,7 +5,7 @@
 # Table name: workfiles
 #
 #  id               :bigint           not null, primary key
-#  filename         :text             not null
+#  filename         :text
 #  filesize         :integer
 #  note             :text
 #  opened_on        :date
@@ -48,8 +48,7 @@ class Workfile < ApplicationRecord
 
   has_one_attached :workdata if defined?(ActiveStorage)
 
-  before_validation :set_filename
-  validates :filename, presence: true
+  after_save :set_filename
   validates :filetype_id, numericality: { only_integer: true }
   validates :charset_id, numericality: { only_integer: true }
   validates :compresstype_id, numericality: { only_integer: true }
@@ -116,7 +115,10 @@ class Workfile < ApplicationRecord
   end
 
   def generate_filename
-    ext = if compresstype.compressed?
+    # URLがある場合はfilenameは空、filesizeは0
+    return if url.present?
+
+    ext = if compresstype&.compressed?
             compresstype.extension
           elsif filetype&.rtxt?
             'txt'
@@ -126,7 +128,7 @@ class Workfile < ApplicationRecord
 
     if filetype&.rtxt?
       "#{work.id}_ruby_#{id}.#{ext}"
-    elsif compresstype.compressed?
+    elsif compresstype&.compressed?
       "#{work.id}_#{filetype&.extension}_#{id}.#{ext}"
     else
       "#{work.id}_#{id}.#{ext}"
@@ -136,6 +138,6 @@ class Workfile < ApplicationRecord
   private
 
   def set_filename
-    self.filename ||= generate_filename
+    update_columns(filename: generate_filename) if filename.blank? # rubocop:disable Rails/SkipsModelValidations
   end
 end

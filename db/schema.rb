@@ -343,7 +343,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.integer "filesize"
     t.bigint "user_id"
     t.text "url"
-    t.text "filename", null: false
+    t.text "filename"
     t.date "opened_on"
     t.integer "revision_count"
     t.bigint "file_encoding_id", null: false

@@ -252,9 +252,11 @@ ja:
       other: "%{count}件のエラーが見つかりました"
     exec_command:
       book_id_blank: "BookIDを指定してください。"
+      book_id_column: "BookIDは必須です。"
       book_id_numeric: "BookIDが数値ではありません。"
       charset_invalid: "文字集合には%{charsets}を指定してください。"
       compresstype_invalid: "圧縮形式には%{compresstypes}を指定してください。"
+      columns_invalid: "正しいカラム名を指定してください。"
       copyrighttype_invalid: "著作権フラグには%{copyrighttypes}を指定してください。"
       file_by_id_not_found: "指定されたIDのファイルが見つかりません。"
       file_encoding_invalid: "ファイルエンコーディングには%{file_encodings}を指定してください。"
