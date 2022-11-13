@@ -14,7 +14,7 @@ module Shinonome
 
           worktypes = Worktype.order(:id).pluck(:name)
           worktype = Worktype.where(name: worktype_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worktype_not_found', %("#{worktypes.join('"か"')}")) unless worktype
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worktype_invalid', worktypes: %("#{worktypes.join('"か"')}")) unless worktype
 
           begin
             _work = Work.find(work_id)
@@ -35,11 +35,17 @@ module Shinonome
             update_values[key] = '' if val == 'null'
           end
 
+          OriginalBook.where(
+            work_id: work_id,
+            publisher: publisher,
+            title: title
+          ).each { |original_book| original_book.update!(update_values) }
+
           original_books = OriginalBook.where(
             work_id: work_id,
             publisher: publisher,
             title: title
-          ).update_all!(update_data)
+          )
 
           Result.new(executed: true, command_result: original_books)
         end

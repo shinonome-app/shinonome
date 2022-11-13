@@ -16,7 +16,7 @@ module Shinonome
             raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
           end
 
-          Bibclass.where(work_id: work_id, name: name, num: num).update_all(note: note, updated_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
+          Bibclass.where(work_id: work_id, name: name, num: num).each { |bibclass| bibclass.update!(note: note, updated_at: Time.zone.now) }
 
           bibclasses = Bibclass.where(work_id: work_id, name: name, num: num)
 

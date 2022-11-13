@@ -80,11 +80,6 @@ module Shinonome
 
           Result.new(executed: true, command_result: workfile)
         end
-
-        def move_file(file_path, new_file_path)
-          File.rename(file_path, new_file_path)
-          File.chmod(0o666, new_file_path)
-        end
       end
     end
   end

@@ -44,7 +44,7 @@ module Shinonome
 
           sortkey = Kana.convert_sortkey(title_kana) if sortkey.blank?
 
-          book = Work.create!(
+          work = Work.create!(
             title: title,
             title_kana: title_kana,
             subtitle: subtitle,
@@ -64,7 +64,7 @@ module Shinonome
             user_id: user_id
           )
 
-          Result.new(executed: true, command_result: book)
+          Result.new(executed: true, command_result: work)
         end
       end
     end
