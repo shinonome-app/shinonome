@@ -4,12 +4,14 @@
 #
 # Table name: exec_commands
 #
-#  id         :bigint           not null, primary key
-#  command    :text
-#  separator  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint
+#  id          :bigint           not null, primary key
+#  command     :text
+#  executed_at :datetime
+#  result      :json
+#  separator   :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
 #
 
 module Shinonome
@@ -24,6 +26,8 @@ module Shinonome
 
     enum separator: { tab: 0, comma: 1 }
 
+    has_one_attached :result_data if defined?(ActiveStorage)
+
     belongs_to :user, class_name: 'Shinonome::User'
 
     validates :command, presence: true
@@ -31,105 +35,29 @@ module Shinonome
     attr_reader :csv_path
 
     # 失敗したらerrorを保存してfalseを返す
-    def execute(path) # rubocop:disable Metrics/CyclomaticComplexity
-      Dir.mktmpdir do |dir|
-        @csv_path = dir
+    def execute # rubocop:disable Metrics/CyclomaticComplexity
+      Dir.mktmpdir do |tmpdir|
+        path = File.join(tmpdir, 'result.zip')
 
-        each_command do |cmd, args|
-          case cmd
-          when '作品新規'
-            ExecCommand::AddWork.execute(self, args)
-          when '底本追加'
-            ExecCommand::AddOriginalBook.execute(self, args)
-          when '分類追加'
-            ExecCommand::AddBibclass.execute(self, args)
-          when '人物追加'
-            ExecCommand::AddPerson.execute(self, args)
-          when '工作員追加'
-            ExecCommand::AddWorker.execute(self, args)
-          when 'サイト追加'
-            ExecCommand::AddSite.execute(self, args)
-          when 'ファイル追加'
-            ExecCommand::AddFile.execute(self, args)
-          when '作品更新'
-            ExecCommand::EditWork.execute(self, args)
-          when '底本更新'
-            ExecCommand::EditOriginalBook.execute(self, args)
-          when '分類更新'
-            ExecCommand::EditBibclass.execute(self, args)
-          when 'ファイル更新'
-            ExecCommand::EditFile.execute(self, args)
-          when 'ファイル削除'
-            ExecCommand::DeleteFile.execute(self, args)
-          when '底本削除'
-            ExecCommand::DeleteOriginalBook.execute(self, args)
-          when '分類削除'
-            ExecCommand::DeleteBibclass.execute(self, args)
-          when 'サイト削除'
-            ExecCommand::DeleteSite.execute(self, args)
-          when '工作員削除'
-            ExecCommand::DeleteWorker.execute(self, args)
-          when 'SQL'
-            ExecCommand::CommandSQL.execute(self, args)
-          when 'ファイル取得'
-            ExecCommand::GetFile.execute(self, args)
-          when 'bookselect'
-            ExecCommand::GetWorkSelect.execute(self, args)
-          when 'book'
-            ExecCommand::GetWork.execute(self, args)
-          when 'book_site'
-            ExecCommand::GetWorkSite.execute(self, args)
-          when 'person_site'
-            ExecCommand::GetPersonSite.execute(self, args)
-          when 'book_person'
-            ExecCommand::GetWorkPerson.execute(self, args)
-          when 'book_worker'
-            ExecCommand::GetWorkWorker.execute(self, args)
-          when 'source'
-            ExecCommand::GetOriginalBook.execute(self, args)
-          when 'class'
-            ExecCommand::GetBibclass.execute(self, args)
-          when 'person'
-            ExecCommand::GetPerson.execute(self, args)
-          when 'worker'
-            ExecCommand::GetWorker.execute(self, args)
-          when 'site'
-            ExecCommand::GetSite.execute(self, args)
-          when nil
-            # skip
-          else
-            raise ExecCommand::Error, "コマンド'#{cmd}'は存在しません"
+        result = Shinonome::ExecCommand::CommandExecutor.new.execute(self)
+        if result.successful?
+          make_zip(results, zip_dir: dir, path: path)
+          self.result_data.attach(io: File.open(path), filename: "result.zip", content_type: 'application/zip')
+
+          true
+        else
+          results.erros.each do |error|
+            errors.add(:command, error.message)
           end
-        rescue ExecCommand::Error => e
-          errors.add(:command, e.message)
+
+          false
         end
-
-        make_zip(dir, path: path)
       end
-
-      errors.empty?
     end
 
     private
 
-    def each_command
-      command.each_line do |line|
-        cmd, args = parse_command(line)
-        yield cmd, args
-      end
-    end
-
-    def parse_command(line)
-      if line.blank?
-        [nil, nil]
-      elsif comma?
-        CSV.parse(line.chomp)
-      else # tab
-        line.chomp.split(/\t/)
-      end
-    end
-
-    def make_zip(zip_dir, path:)
+    def make_zip(result, zip_dir:, path:)
       Zip::ZipOutputStream.open(path) do |f|
         Dir.chdir(zip_dir) do
           Dir.glob('**/*') do |file|

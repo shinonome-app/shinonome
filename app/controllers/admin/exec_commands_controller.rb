@@ -12,6 +12,7 @@ module Admin
     # GET /admin/exec_commands/new
     def new
       @exec_command = Shinonome::ExecCommand.new
+      @last_exec_command = Shinonome::ExecCommand.last
     end
 
     # POST /admin/exec_commands

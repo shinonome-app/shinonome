@@ -2,4 +2,8 @@
   <p id="notice"><%= notice %></p>
   <h1 class="text-2xl">コマンド実行</h1>
   <%= render 'form', exec_command: @exec_command %>
+
+  <% if @last_exec_command&.result_data&.attached? %>
+    <% link_to 'download', @last_exec_command.result_data %>
+  <% end %>
 </div>

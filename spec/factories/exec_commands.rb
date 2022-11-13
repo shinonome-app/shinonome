@@ -4,12 +4,14 @@
 #
 # Table name: exec_commands
 #
-#  id         :bigint           not null, primary key
-#  command    :text
-#  separator  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint
+#  id          :bigint           not null, primary key
+#  command     :text
+#  executed_at :datetime
+#  result      :json
+#  separator   :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
 #
 
 FactoryBot.define do
