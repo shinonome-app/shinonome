@@ -2,8 +2,6 @@
 
 module Admin
   class ExecCommandsController < Admin::ApplicationController
-    DOWNLOAD_DIR = 'tmp/exec_command'
-
     # GET /admin/exec_commands
     def index
       @exec_commands = Shinonome::ExecCommand.all
@@ -24,26 +22,18 @@ module Admin
         return
       end
 
-      Dir.mkdir_p(Rails.root.join(DOWNLOAD_DIR))
-      download_path = generate_donwload_path
-
-      unless @exec_command.execute(download_path)
+      unless @exec_command.execute
+        @error_messages = @exec_command.error_messages
         render :new, status: :unprocessable_entity
         return
       end
-
-      send_file download_path, type: 'application/zip'
     end
 
     private
 
     # Only allow a list of trusted parameters through.
     def exec_command_params
-      params.require(:exec_command).permit(:command)
-    end
-
-    def generate_donwload_path
-      Rails.root.join(DOWNLOAD_DIR, Time.zone.now.strftime('%Y%m%d-%H%m%S-%L'))
+      params.require(:shinonome_exec_command).permit(:command, :separator)
     end
   end
 end

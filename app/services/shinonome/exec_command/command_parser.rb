@@ -33,7 +33,7 @@ module Shinonome
           begin
             command = Command.new(row, prev_command: prev_command)
           rescue FormatError => e
-            errors << "line #{line_num}: #{e.message}"
+            errors << "#{line_num}行目: Syntax Error: #{e.message}"
           end
 
           next if command.blank? || command.comment?

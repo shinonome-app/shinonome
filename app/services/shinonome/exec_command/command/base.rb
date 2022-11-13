@@ -10,10 +10,11 @@ module Shinonome
       class Base
         # コマンド実行結果結果返却用
         class Result
-          attr_reader :command_result
+          attr_reader :command_result, :error
 
-          def initialize(executed:, command_result:)
+          def initialize(executed:, command_result: nil, error: nil)
             @executed = executed
+            @errors = error
             @command_result = command_result
           end
 

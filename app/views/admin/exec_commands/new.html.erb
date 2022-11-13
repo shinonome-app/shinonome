@@ -3,6 +3,14 @@
   <h1 class="text-2xl">コマンド実行</h1>
   <%= render 'form', exec_command: @exec_command %>
 
+  <% if @last_exec_command&.failed? %>
+  <div class="error-messages">
+    <%= @last_exec_command.inspect %>
+    <% @last_exec_command.error_messages.each do |message| %>
+    <%= message %>
+    <% end %>
+  </div>
+  <% end %>
   <% if @last_exec_command&.result_data&.attached? %>
     <% link_to 'download', @last_exec_command.result_data %>
   <% end %>
