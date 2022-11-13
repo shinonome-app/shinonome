@@ -5,7 +5,7 @@
 # Table name: workfiles
 #
 #  id               :bigint           not null, primary key
-#  filename         :text             not null
+#  filename         :text
 #  filesize         :integer
 #  note             :text
 #  opened_on        :date

@@ -10,19 +10,10 @@ module Shinonome
 
           work_id, title, publisher, first_pubdate, input_edition, proof_edition, worktype_name, note = args
 
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.book_id_numeric') unless work_id.to_s.match?(/\A[1-9]\d*\z/)
+          work = find_work!(work_id)
+          worktype = find_worktype_by_name!(worktype_name)
 
-          worktypes = Worktype.order(:id).pluck(:name)
-          worktype = Worktype.where(name: worktype_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worktype_invalid', worktypes: %("#{worktypes.join('"か"')}")) unless worktype
-
-          begin
-            _work = Work.find(work_id)
-          rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
-          end
-
-          original_book = OriginalBook.create!(work_id: work_id,
+          original_book = OriginalBook.create!(work_id: work.id,
                                                first_pubdate: first_pubdate,
                                                input_edition: input_edition,
                                                note: note,

@@ -27,24 +27,13 @@ module Shinonome
         )
           # rubocop:enable Metrics/ParameterLists
 
-          copyrighttypes = { 'あり' => true, 'なし' => false }
-          copyright_flag = copyrighttypes[copyright_name]
-          if copyright_flag.nil?
-            raise Shinonome::ExecCommand::FormatError,
-                  I18n.t('errors.exec_command.copyrighttype_invalid', copyrighttypes: %("#{copyrighttypes.keys.join('"か"')}"))
-          end
-
-          kana_types = KanaType.order(:id).pluck(:name)
-          kana_type  = KanaType.where(name: kana_type_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.kana_type_invalid', kana_types: %("#{kana_types.join('"か"')}")) unless kana_type
-
-          work_statuses = WorkStatus.order(:id).pluck(:name)
-          work_status = WorkStatus.where(id: work_status_name).first || WorkStatus.where(name: work_status_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_status_invalid', work_statuses: %("#{work_statuses.join('"か"')}")) unless work_status
+          copyright_flag = find_copyright_by_name!(copyright_name.presence || 'あり')
+          kana_type = find_kana_type_by_name!(kana_type_name)
+          work_status = find_work_status_by_name!(work_status_name)
 
           sortkey = Kana.convert_sortkey(title_kana) if sortkey.blank?
 
-          book = Work.create!(
+          work = Work.create!(
             title: title,
             title_kana: title_kana,
             subtitle: subtitle,
@@ -64,7 +53,7 @@ module Shinonome
             user_id: user_id
           )
 
-          Result.new(executed: true, command_result: book)
+          Result.new(executed: true, command_result: work)
         end
       end
     end

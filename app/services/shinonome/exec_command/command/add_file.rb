@@ -21,29 +21,12 @@ module Shinonome
           upload_dir:
         )
           # rubocop:enable Metrics/ParameterLists
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.book_id_numeric') unless work_id.to_s.match?(/\A[1-9]\d*\z/)
+          work = find_work!(work_id)
 
-          filetypes = Filetype.order(:id).pluck(:name)
-          filetype = Filetype.where(id: filetype_name).first || Filetype.where(name: filetype_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.filetype_invalid', filetypes: %("#{filetypes.join('"か"')}")) unless filetype
-
-          compresstypes = Compresstype.order(:id).pluck(:name)
-          compresstype = Compresstype.where(id: compresstype_name).first || Compresstype.where(name: compresstype_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.compresstype_invalid', compresstypes: %("#{compresstypes.join('"か"')}")) unless compresstype
-
-          file_encodings = FileEncoding.order(:id).pluck(:name)
-          file_encoding = FileEncoding.where(id: file_encoding_name).first || FileEncoding.where(name: file_encoding_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.file_encoding_invalid', file_encodings: %("#{file_encodings.join('"か"')}")) unless file_encoding
-
-          charsets = Charset.order(:id).pluck(:name)
-          charset = Charset.where(id: charset_name).first || Charset.where(name: charset_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.charset_invalid', charsets: %("#{charsets.join('"か"')}")) unless charset
-
-          begin
-            work = Work.find(work_id)
-          rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
-          end
+          filetype = find_filetype_by_name!(filetype_name)
+          compresstype = find_compresstype_by_name!(compresstype_name)
+          file_encoding = find_file_encoding_by_name!(file_encoding_name)
+          charset = find_charset_by_name!(charset_name)
 
           if url.blank?
             if filename.blank? # rubocop:disable Style/GuardClause
@@ -79,11 +62,6 @@ module Shinonome
           end
 
           Result.new(executed: true, command_result: workfile)
-        end
-
-        def move_file(file_path, new_file_path)
-          File.rename(file_path, new_file_path)
-          File.chmod(0o666, new_file_path)
         end
       end
     end

@@ -6,13 +6,7 @@ module Shinonome
       # 書誌情報登録
       class AddBibclass < Base
         def execute(work_id, name, num, note)
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.book_id_numeric') unless work_id.to_s.match?(/\A[1-9]\d*\z/)
-
-          begin
-            _work = Work.find(work_id)
-          rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
-          end
+          _work = find_work!(work_id)
 
           bibclass = Bibclass.create!(work_id: work_id,
                                       name: name,

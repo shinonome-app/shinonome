@@ -9,7 +9,7 @@ class CreateWorkfiles < ActiveRecord::Migration[6.1]
       t.integer :filesize
       t.bigint :user_id
       t.text :url
-      t.text :filename, null: false
+      t.text :filename
       t.date :opened_on
       t.integer :revision_count
       t.references :file_encoding, foreign_key: true, null: false

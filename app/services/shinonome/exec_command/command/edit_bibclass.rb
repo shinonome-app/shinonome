@@ -6,17 +6,13 @@ module Shinonome
       # 書誌情報更新
       class EditBibclass < Base
         def execute(work_id, name, num, note)
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.book_id_numeric') unless work_id.to_s.match?(/\A[1-9]\d*\z/)
+          work = find_work!(work_id)
 
           note = '' if note == 'null'
 
-          begin
-            _work = Work.find(work_id)
-          rescue ActiveRecord::RecordNotFound
-            raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
-          end
+          Bibclass.where(work_id: work.id, name: name, num: num).each { |bibclass| bibclass.update!(note: note, updated_at: Time.zone.now) }
 
-          bibclasses = Bibclass.where(work_id: work_id, name: name, num: num).update_all!(note: note, updated_at: Time.zone.now)
+          bibclasses = Bibclass.where(work_id: work.id, name: name, num: num)
 
           Result.new(executed: true, command_result: bibclasses)
         end

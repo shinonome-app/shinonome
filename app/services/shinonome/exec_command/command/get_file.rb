@@ -5,37 +5,18 @@ module Shinonome
     class Command
       # ファイル取得コマンド
       class GetFile < Base
-        def execute(work_id, filetype_id, compresstype_id, workfile_id, output_dir:)
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.book_id_blank') if work_id.blank?
+        def execute(work_id, filetype_name, compresstype_name, workfile_id, output_dir:)
+          work = find_work!(work_id)
 
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.book_id_numeric') unless work_id.to_s.match?(/\A[1-9]\d*\z/)
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.filetype_compresstype_file_id_blank') if (filetype_name.blank? || compresstype_name.blank?) && workfile_id.blank?
 
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.filetype_compresstype_file_id_blank') if (filetype_id.blank? || compresstype_id.blank?) && workfile_id.blank?
-
-          if filetype_id.present?
-            filetype = Filetype.where(id: filetype_id).first || Filetype.where(name: filetype_id).first
-            if filetype.blank?
-              valid_filetypes = %("#{Filetype.pluck(:name).all.join('", "')}")
-              raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.filetype_invalid', valid_filetypes: valid_filetypes)
-            end
-          end
-
-          if compresstype_id.present?
-            compresstype = Compresstype.where(id: compresstype_id).first || Compresstype.where(name: compresstype_id).first
-            if compresstype.blank?
-              valid_compresstypes = %("#{Compresstype.pluck(:name).all.join('", "')}")
-              raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.compresstype_invalid', valid_compresstypes: valid_compresstypes)
-            end
-          end
+          filetype = find_filetype_by_name!(filetype_name) if filetype_name.present?
+          compresstype = find_compresstype_by_name!(compresstype_name) if compresstype_name.present?
 
           workfile = if workfile_id.present?
-                       begin
-                         Workfile.find(workfile_id)
-                       rescue StandardError
-                         raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.file_by_id_not_found')
-                       end
+                       find_workfile!(workfile_id)
                      else
-                       Workfile.where('work_id = ? AND filetype_id = ? AND compresstype_id = ?', work_id, filetype_id, compresstype_id).order(updated_at: :desc).first or raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.file_not_found')
+                       Workfile.where('work_id = ? AND filetype_id = ? AND compresstype_id = ?', work.id, filetype.id, compresstype.id).order(updated_at: :desc).first or raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.file_not_found')
                      end
 
           output_file = File.join(output_dir, workfile.filename)
