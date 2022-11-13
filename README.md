@@ -24,3 +24,11 @@ $ docker-compose run web rails db:migrate
 $ docker-compose run web rails db:seed
 $ docker-compose up
 ```
+
+
+### Env Var
+
+You must define these environment variables.
+
+* `SITE_NAME`: the site name
+* `MAIN_SITE_URL`: the url for main site

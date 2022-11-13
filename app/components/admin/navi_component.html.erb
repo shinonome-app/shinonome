@@ -9,7 +9,7 @@
             <%= image_tag 'top_logo.png', class: 'h-12', alt: '' %>&nbsp;
           <% end %>
           <%= link_to admin_path do %>
-            <span class="text-2xl">&nbsp;<%= t("app.name") %> DB</span>
+            <span class="text-2xl">&nbsp;<%= Rails.configuration.x.site_name %> DB</span>
           <% end %>
           <span class="text-2xl">
             <%= @title %>
@@ -20,7 +20,7 @@
         <div class="hidden w-full flex-grow lg:flex justify-end lg:items-center lg:w-auto uppercase font-light">
           <a href="<%= Rails.configuration.x.main_site_url %>" class="text-gray-800 text-sm hover:text-blue-600 mr-5">
             <i class="icon ion-ios-analytics mr-2 text-gray-600 inline-block"></i>
-            <%= t("app.name") %>トップページ
+            <%= Rails.configuration.x.site_name %>トップページ
           </a>
           <%= link_to root_path, class: "text-gray-800 text-sm hover:text-blue-600 mr-5" do %>
             <i class="icon ion-ios-information-circle-outline mr-2 text-gray-600 inline-block"></i>作業着手連絡システム

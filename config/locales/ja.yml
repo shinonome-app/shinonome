@@ -1,7 +1,4 @@
 ja:
-  app:
-    main_url: https://shinonome.example.jp
-    name: Shinonome
   activemodel:
     attributes:
       admin/receipt_form:
