@@ -24,7 +24,7 @@ module Shinonome
         )
           # rubocop:enable Metrics/ParameterLists
 
-          _work = find_work!(work_id)
+          work = find_work!(work_id)
 
           filetype = find_filetype_by_name!(filetype_name)
           compresstype = find_compresstype_by_name!(compresstype_name)
@@ -32,7 +32,7 @@ module Shinonome
           charset = find_charset_by_name!(charset_name)
           workfile = find_workfile!(workfile_id) if workfile_id.present?
 
-          workfile ||= Workfile.where(work_id: work_id, filetype_id: filetype.id, compresstype_id: compresstype.id).first
+          workfile ||= Workfile.where(work_id: work.id, filetype_id: filetype.id, compresstype_id: compresstype.id).first
 
           # ファイルの削除
           remove_filename = File.join(upload_dir, workfile.filename) if workfile.url.blank? && (filename.present? || (url.present? && url != 'null'))

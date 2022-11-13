@@ -266,6 +266,7 @@ ja:
       filetype_compresstype_file_id_blank: "ファイル形式と圧縮形式かファイルIDを指定してください。"
       filetype_invalid: "ファイル形式には%{filetypes}を指定してください。"
       kana_type_invalid: "文字遣い種別には%{kana_types}を指定してください。"
+      person_not_found: "対象の人物ID%{work_id}がいません。"
       role_not_found: "役割フラグには%{roles}を指定してください。"
       site_id_numeric: "関連サイトIDが数値ではありません。"
       site_not_found: "対象の関連サイトID%{site_id}がありません。"
@@ -274,6 +275,7 @@ ja:
       work_status_invalid: "状態には%{work_statuses}を指定してください。"
       workfile_not_found: "指定されたIDのファイルが見つかりません。"
       worker_id_numeric: "工作員IDが数値ではありません。"
+      worker_not_found: "対象の工作員ID%{work_id}が見つかりません。"
       worker_role_invalid: "役割フラグには%{worker_roles}を指定してください。"
       worktype_invalid: "種別フラグには%{worktypes}を指定してください。"
   admin_mailer:
