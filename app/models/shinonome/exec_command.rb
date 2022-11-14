@@ -14,6 +14,8 @@
 #  user_id     :bigint
 #
 
+require 'zip'
+
 module Shinonome
   # コマンド実行用
   class ExecCommand < ApplicationRecord
@@ -38,14 +40,17 @@ module Shinonome
     def execute # rubocop:disable Metrics/CyclomaticComplexity
       Dir.mktmpdir do |tmpdir|
         path = File.join(tmpdir, 'result.zip')
+        outputdir = File.join(tmpdir, 'output')
+        Dir.mkdir(outputdir)
 
-        commands_result = Shinonome::ExecCommand::CommandExecutor.new.execute(self, output_dir: tmpdir)
+        commands_result = Shinonome::ExecCommand::CommandExecutor.new.execute(self, output_dir: outputdir)
 
         self.executed_at = Time.zone.now
 
         if commands_result.successful?
-          make_zip(results, zip_dir: dir, path: path)
+          make_zip(zip_dir: outputdir, path: path)
           self.result_data.attach(io: File.open(path), filename: "result.zip", content_type: 'application/zip')
+          self.result = {success: true}
           self.save!
 
           true
@@ -78,8 +83,8 @@ module Shinonome
 
     private
 
-    def make_zip(result, zip_dir:, path:)
-      Zip::ZipOutputStream.open(path) do |f|
+    def make_zip(zip_dir:, path:)
+      ::Zip::OutputStream.open(path) do |f|
         Dir.chdir(zip_dir) do
           Dir.glob('**/*') do |file|
             next unless File.file? file
