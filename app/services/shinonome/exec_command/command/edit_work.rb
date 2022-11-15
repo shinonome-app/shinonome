@@ -7,12 +7,27 @@ module Shinonome
       class EditWork < Base
         COLUMN_NAMES = %i[title title_kana subtitle subtitle_kana collection collection_kana original_title first_appearance description note orig_text started_on sortkey].freeze
         OPTS_KEYS = COLUMN_NAMES + %i[work_id kana_type_name work_status_name copyright_name user_id]
+        ARGS_NAMES = %i[work_id
+                        title
+                        title_kana
+                        subtitle
+                        subtitle_kana
+                        collection
+                        collection_kana
+                        original_title
+                        kana_type_name
+                        first_appearance
+                        description
+                        note
+                        orig_text
+                        work_status_name
+                        started_on
+                        copyright_name
+                        sortkey
+                        user_id].freeze
 
-        def execute(**opts)
-          opts.each do |key, _val|
-            raise ArgumentError, "invalid argument: '#{key}'" unless OPTS_KEYS.include?(key)
-          end
-
+        def execute(command)
+          opts = ARGS_NAMES.zip(command.body).to_h
           update_values = {}
 
           work = find_work!(opts[:work_id])

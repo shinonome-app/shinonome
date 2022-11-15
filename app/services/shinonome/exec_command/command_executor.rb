@@ -11,8 +11,8 @@ module Shinonome
 
         begin
           commands = command_parser.parse(command_text, format: format)
-        rescue StandardError => error
-          errors << {error: error, index: 0, command: nil}
+        rescue StandardError => e
+          errors << { error: e, index: 0, command: nil }
           return Result.new(executed: false, errors: errors)
         end
 
@@ -21,14 +21,12 @@ module Shinonome
           begin
             command_result = command.execute(output_dir: output_dir)
             command_results << command_result
-          rescue StandardError => error
-            errors << {error: error, index: idx, command: command}
+          rescue StandardError => e
+            errors << { error: e, index: idx, command: command }
           end
 
           # TODO: should be ignore some errors in the loop
-          if errors.present?
-            return Result.new(executed: false, command_results: command_results, errors: errors)
-          end
+          return Result.new(executed: false, command_results: command_results, errors: errors) if errors.present?
         end
 
         if errors.empty?

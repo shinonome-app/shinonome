@@ -5,7 +5,9 @@ module Shinonome
     class Command
       # 工作員削除
       class DeleteWorker < Base
-        def execute(work_id, worker_id)
+        def execute(command)
+          work_id, worker_id = command.body
+
           work = find_work!(work_id)
           worker = find_worker!(worker_id)
 

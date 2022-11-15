@@ -29,9 +29,33 @@ RSpec.describe Shinonome::ExecCommand::Command::EditWork do
       }
     end
 
+    let(:values_keys) do
+      %i[work_id
+         title
+         title_kana
+         subtitle
+         subtitle_kana
+         collection
+         collection_kana
+         original_title
+         kana_type_name
+         first_appearance
+         description
+         note
+         orig_text
+         work_status_name
+         started_on
+         copyright_name
+         sortkey
+         user_id].freeze
+    end
+
     context '正しい引数を与えた場合' do
       it 'workを含むResultを返す' do
-        result = Shinonome::ExecCommand::Command::EditWork.new.execute(**args)
+        row = args.values_at(*values_keys)
+        command = Shinonome::ExecCommand::Command.new(['作品更新', *row])
+
+        result = Shinonome::ExecCommand::Command::EditWork.new.execute(command)
         expect(result).to be_successful
         command = result.command_result
         expect(command.title).to eq 'タイトル1'
@@ -56,7 +80,10 @@ RSpec.describe Shinonome::ExecCommand::Command::EditWork do
     context 'sortkeyがない場合' do
       it 'sortkeyを生成したworkを含むResultを返す' do
         args1 = args.merge(sortkey: '')
-        result = Shinonome::ExecCommand::Command::EditWork.new.execute(**args1)
+        row = args1.values_at(*values_keys)
+        command = Shinonome::ExecCommand::Command.new(['作品更新', *row])
+
+        result = Shinonome::ExecCommand::Command::EditWork.new.execute(command)
         expect(result).to be_successful
         command = result.command_result
         expect(command.title).to eq 'タイトル1'
@@ -81,8 +108,10 @@ RSpec.describe Shinonome::ExecCommand::Command::EditWork do
     context '著作権フラグの値が正しくない場合' do
       it '例外をあげる' do
         args2 = args.merge(copyright_name: '保護期間終了')
+        row = args2.values_at(*values_keys)
+        command = Shinonome::ExecCommand::Command.new(['作品更新', *row])
         expect do
-          Shinonome::ExecCommand::Command::EditWork.new.execute(**args2)
+          Shinonome::ExecCommand::Command::EditWork.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           '著作権フラグには"あり"か"なし"を指定してください。'
@@ -93,8 +122,10 @@ RSpec.describe Shinonome::ExecCommand::Command::EditWork do
     context '文字遣い種別の値が正しくない場合' do
       it '例外をあげる' do
         args3 = args.merge(kana_type_name: '新字')
+        row = args3.values_at(*values_keys)
+        command = Shinonome::ExecCommand::Command.new(['作品更新', *row])
         expect do
-          Shinonome::ExecCommand::Command::EditWork.new.execute(**args3)
+          Shinonome::ExecCommand::Command::EditWork.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           '文字遣い種別には"旧字旧仮名"か"旧字新仮名"か"新字旧仮名"か"新字新仮名"か"その他"を指定してください。'
@@ -105,8 +136,10 @@ RSpec.describe Shinonome::ExecCommand::Command::EditWork do
     context '状態の値が正しくない場合' do
       it '例外をあげる' do
         args4 = args.merge(work_status_name: '未入力')
+        row = args4.values_at(*values_keys)
+        command = Shinonome::ExecCommand::Command.new(['作品更新', *row])
         expect do
-          Shinonome::ExecCommand::Command::EditWork.new.execute(**args4)
+          Shinonome::ExecCommand::Command::EditWork.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           '状態には"公開"か"非公開"か"入力中"か"入力予約"か"校正待ち(点検済み)"か"校正待ち(点検前)"か"校正予約(点検済み)"か"校正予約(点検前)"か"校正中"か"校了"か"翻訳中"か"入力取り消し"を指定してください。'

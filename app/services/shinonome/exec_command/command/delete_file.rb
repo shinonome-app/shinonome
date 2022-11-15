@@ -5,7 +5,9 @@ module Shinonome
     class Command
       # 作品ファイル削除
       class DeleteFile < Base
-        def execute(work_id, filetype_name, compresstype_name, workfile_id, upload_dir:)
+        def execute(command, upload_dir:)
+          work_id, filetype_name, compresstype_name, workfile_id = command.body
+
           work = find_work!(work_id)
 
           raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.filetype_compresstype_file_id_blank') if (filetype_name.blank? || compresstype_name.blank?) && workfile_id.blank?

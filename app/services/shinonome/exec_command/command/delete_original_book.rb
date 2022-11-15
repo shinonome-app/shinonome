@@ -5,7 +5,9 @@ module Shinonome
     class Command
       # 底本削除
       class DeleteOriginalBook < Base
-        def execute(work_id, name, publisher)
+        def execute(command)
+          work_id, name, publisher = command.body
+
           work = find_work!(work_id)
 
           OriginalBook.where(work_id: work.id, name: name, publisher: publisher).destroy_all!

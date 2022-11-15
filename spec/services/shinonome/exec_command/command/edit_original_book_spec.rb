@@ -24,7 +24,8 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
 
     context '正しい引数を与えた場合' do
       it 'original_bookを含むResultを返す' do
-        result = Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(*args)
+        command = Shinonome::ExecCommand::Command.new(['底本更新', *args])
+        result = Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(command)
         expect(result).to be_successful
         original_books = result.command_result
         expect(original_books.count).to eq 1
@@ -40,8 +41,9 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
       it '例外をあげる' do
         args2 = args.dup
         args2[0] = 'abc'
+        command = Shinonome::ExecCommand::Command.new(['底本更新', *args2])
         expect do
-          Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(*args2)
+          Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           'BookIDが数値ではありません。'
@@ -53,8 +55,9 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
       it '例外をあげる' do
         args2 = args.dup
         args2[6] = '底本2'
+        command = Shinonome::ExecCommand::Command.new(['底本更新', *args2])
         expect do
-          Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(*args2)
+          Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           '種別フラグには"底本"か"底本の親本"を指定してください。'
@@ -66,7 +69,8 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
       it '種別フラグも含めて更新される(?)' do
         args2 = args.dup
         args2[6] = '底本の親本'
-        result = Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(*args2)
+        command = Shinonome::ExecCommand::Command.new(['底本更新', *args2])
+        result = Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(command)
 
         expect(result.successful?).to be true
         expect(OriginalBook.count).to eq 1
@@ -82,8 +86,9 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
       it '更新されない' do
         args2 = args.dup
         args2[2] = '底本出版社2'
+        command = Shinonome::ExecCommand::Command.new(['底本更新', *args2])
         expect do
-          Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(*args2)
+          Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(command)
         end.not_to raise_error
 
         expect(OriginalBook.count).to eq 1

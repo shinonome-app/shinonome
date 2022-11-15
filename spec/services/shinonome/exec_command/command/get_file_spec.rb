@@ -20,8 +20,10 @@ RSpec.describe Shinonome::ExecCommand::Command::GetFile do
       end
 
       it '正しいファイルが生成される' do
+        command = Shinonome::ExecCommand::Command.new(['ファイル取得', work.id, workfile.filetype_id, workfile.compresstype_id, nil])
+
         Dir.mktmpdir do |dir|
-          Shinonome::ExecCommand::Command::GetFile.new.execute(work.id, workfile.filetype_id, workfile.compresstype_id, nil, output_dir: dir)
+          Shinonome::ExecCommand::Command::GetFile.new.execute(command, output_dir: dir)
 
           output_file = File.join(dir, workfile.filename)
           File.open(output_file) do |f|
@@ -47,8 +49,10 @@ RSpec.describe Shinonome::ExecCommand::Command::GetFile do
       end
 
       it '正しいファイルが生成される' do
+        command = Shinonome::ExecCommand::Command.new(['ファイル取得', work.id, workfile.filetype_id, workfile.compresstype_id, nil])
+
         Dir.mktmpdir do |dir|
-          Shinonome::ExecCommand::Command::GetFile.new.execute(work.id, workfile.filetype_id, workfile.compresstype_id, nil, output_dir: dir)
+          Shinonome::ExecCommand::Command::GetFile.new.execute(command, output_dir: dir)
 
           output_file = File.join(dir, workfile.filename)
           content = nil

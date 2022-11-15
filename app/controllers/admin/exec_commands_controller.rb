@@ -10,7 +10,13 @@ module Admin
     # GET /admin/exec_commands/new
     def new
       @exec_command = Shinonome::ExecCommand.new
-      @last_exec_command = Shinonome::ExecCommand.last
+
+      case params[:prev]
+      when 'failed'
+        @error_exec_command = Shinonome::ExecCommand.last
+      when 'ok'
+        @last_exec_command = Shinonome::ExecCommand.last
+      end
     end
 
     # POST /admin/exec_commands
@@ -23,10 +29,11 @@ module Admin
       end
 
       unless @exec_command.execute
-        @error_messages = @exec_command.error_messages
-        render :new, status: :unprocessable_entity
+        redirect_to new_admin_exec_command_path(prev: :failed)
         return
       end
+
+      redirect_to new_admin_exec_command_path(prev: :ok)
     end
 
     private

@@ -5,7 +5,9 @@ module Shinonome
     class Command
       # ファイル取得コマンド
       class GetFile < Base
-        def execute(work_id, filetype_name, compresstype_name, workfile_id, output_dir:)
+        def execute(command, output_dir:)
+          work_id, filetype_name, compresstype_name, workfile_id = command.body
+
           work = find_work!(work_id)
 
           raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.filetype_compresstype_file_id_blank') if (filetype_name.blank? || compresstype_name.blank?) && workfile_id.blank?

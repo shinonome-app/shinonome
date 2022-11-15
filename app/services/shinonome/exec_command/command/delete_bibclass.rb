@@ -5,7 +5,9 @@ module Shinonome
     class Command
       # 書誌情報削除
       class DeleteBibclass < Base
-        def execute(work_id, name, num)
+        def execute(command)
+          work_id, name, num = command.body
+
           work = find_work!(work_id)
 
           Bibclass.where(work_id: work.id, name: name, num: num).destroy_all

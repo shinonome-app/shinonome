@@ -13,8 +13,10 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSelect do
       let(:columns) { 'bookid,作品名,副題,状態,備考' }
 
       it '正しいCSVが生成される' do
+        command = Shinonome::ExecCommand::Command.new(['bookselect', columns])
+
         Dir.mktmpdir do |dir|
-          Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(columns, output_dir: dir)
+          Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(command, output_dir: dir)
           output_file = File.join(dir, 'bookselect.csv')
           File.open(output_file) do |f|
             line1 = f.gets
@@ -50,8 +52,10 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSelect do
       let(:columns) { '作品名,副題,状態,備考' }
 
       it 'エラーになる' do
+        command = Shinonome::ExecCommand::Command.new(['bookselect', columns])
+
         Dir.mktmpdir do |dir|
-          expect { Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(columns, output_dir: dir) }.to raise_error(Shinonome::ExecCommand::FormatError, 'BookIDは必須です。')
+          expect { Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(command, output_dir: dir) }.to raise_error(Shinonome::ExecCommand::FormatError, 'BookIDは必須です。')
         end
       end
     end
@@ -60,8 +64,10 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSelect do
       let(:columns) { 'bookid,作品名,count(*)' }
 
       it 'エラーになる' do
+        command = Shinonome::ExecCommand::Command.new(['bookselect', columns])
+
         Dir.mktmpdir do |dir|
-          expect { Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(columns, output_dir: dir) }.to raise_error(Shinonome::ExecCommand::FormatError, '正しいカラム名を指定してください。')
+          expect { Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(command, output_dir: dir) }.to raise_error(Shinonome::ExecCommand::FormatError, '正しいカラム名を指定してください。')
         end
       end
     end
@@ -70,8 +76,10 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSelect do
       let(:columns) { 'bookid,作品名,偽カラム' }
 
       it 'エラーになる' do
+        command = Shinonome::ExecCommand::Command.new(['bookselect', columns])
+
         Dir.mktmpdir do |dir|
-          expect { Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(columns, output_dir: dir) }.to raise_error(Shinonome::ExecCommand::FormatError, '正しいカラム名を指定してください。')
+          expect { Shinonome::ExecCommand::Command::GetWorkSelect.new.execute(command, output_dir: dir) }.to raise_error(Shinonome::ExecCommand::FormatError, '正しいカラム名を指定してください。')
         end
       end
     end

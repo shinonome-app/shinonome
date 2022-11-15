@@ -5,7 +5,8 @@ module Shinonome
     class Command
       # 書誌情報登録
       class AddBibclass < Base
-        def execute(work_id, name, num, note)
+        def execute(command)
+          work_id, name, num, note = command.body
           _work = find_work!(work_id)
 
           bibclass = Bibclass.create!(work_id: work_id,

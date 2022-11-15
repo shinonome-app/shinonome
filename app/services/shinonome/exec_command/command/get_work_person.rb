@@ -5,7 +5,7 @@ module Shinonome
     class Command
       # book_personコマンド
       class GetWorkPerson < Base
-        def execute(output_dir:)
+        def execute(_command, output_dir:)
           filename = 'book_person.csv'
           output_file = File.join(output_dir, filename)
 

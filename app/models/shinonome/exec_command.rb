@@ -37,7 +37,7 @@ module Shinonome
     attr_reader :csv_path
 
     # 失敗したらerrorを保存してfalseを返す
-    def execute # rubocop:disable Metrics/CyclomaticComplexity
+    def execute
       Dir.mktmpdir do |tmpdir|
         path = File.join(tmpdir, 'result.zip')
         outputdir = File.join(tmpdir, 'output')
@@ -49,18 +49,18 @@ module Shinonome
 
         if commands_result.successful?
           make_zip(zip_dir: outputdir, path: path)
-          self.result_data.attach(io: File.open(path), filename: "result.zip", content_type: 'application/zip')
-          self.result = {success: true}
-          self.save!
+          result_data.attach(io: File.open(path), filename: 'result.zip', content_type: 'application/zip')
+          self.result = { success: true }
+          save!
 
           true
         else
           error_messages = commands_result.errors.map do |error|
-            "#{error[:error].message}"
+            error[:error].message
           end
 
-          self.result = {success: false, messages: error_messages}
-          self.save!
+          self.result = { success: false, messages: error_messages }
+          save!
 
           false
         end
@@ -76,9 +76,7 @@ module Shinonome
     end
 
     def error_messages
-      if result && !result['success']
-        result['messages']
-      end
+      result['messages'] if result && !result['success']
     end
 
     private

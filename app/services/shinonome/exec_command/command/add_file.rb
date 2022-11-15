@@ -5,22 +5,19 @@ module Shinonome
     class Command
       # 作品ファイル追加
       class AddFile < Base
-        # rubocop:disable Metrics/ParameterLists
-        def execute(
-          work_id:,
-          filetype_name:,
-          compresstype_name:,
-          url:,
-          create_date:,
-          update_date:,
-          revision_count:,
-          file_encoding_name:,
-          charset_name:,
-          note:,
-          filename:,
-          upload_dir:
-        )
-          # rubocop:enable Metrics/ParameterLists
+        def execute(command, upload_dir:)
+          work_id,
+          filetype_name,
+          compresstype_name,
+          url,
+          create_date,
+          update_date,
+          revision_count,
+          file_encoding_name,
+          charset_name,
+          note,
+          filename = command.body
+
           work = find_work!(work_id)
 
           filetype = find_filetype_by_name!(filetype_name)

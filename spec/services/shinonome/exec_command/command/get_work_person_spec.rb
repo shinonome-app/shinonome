@@ -11,8 +11,10 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkPerson do
     end
 
     it '正しいCSVが生成される' do
+      command = Shinonome::ExecCommand::Command.new(['book_person'])
+
       Dir.mktmpdir do |dir|
-        Shinonome::ExecCommand::Command::GetWorkPerson.new.execute(output_dir: dir)
+        Shinonome::ExecCommand::Command::GetWorkPerson.new.execute(command, output_dir: dir)
         output_file = File.join(dir, 'book_person.csv')
         File.open(output_file) do |f|
           line1 = f.gets

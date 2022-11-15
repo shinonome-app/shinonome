@@ -5,7 +5,7 @@ module Shinonome
     class Command
       # 書誌情報取得
       class GetBibclass < Base
-        def execute(output_dir:)
+        def execute(_command, output_dir:)
           filename = 'bibclass.csv'
           output_file = File.join(output_dir, filename)
 

@@ -1,17 +1,21 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <p id="notice"><%= notice %></p>
   <h1 class="text-2xl">コマンド実行</h1>
-  <%= render 'form', exec_command: @exec_command %>
 
-  <% if @last_exec_command&.failed? %>
-  <div class="error-messages">
-    <%= @last_exec_command.inspect %>
-    <% @last_exec_command.error_messages.each do |message| %>
-    <%= message %>
+  <% if @error_exec_command %>
+  <div id="error_explanation">
+    <h2>コマンド実行エラー</h2>
+    <ul>
+    <% @error_exec_command.error_messages.each do |message| %>
+    <li><%= message %></li>
     <% end %>
+    </ul>
   </div>
   <% end %>
+
+  <%= render 'form', exec_command: @exec_command %>
+
   <% if @last_exec_command&.result_data&.attached? %>
-    <% link_to 'download', @last_exec_command.result_data %>
+    link: <%= link_to 'download', @last_exec_command.result_data %>
   <% end %>
 </div>

@@ -8,7 +8,7 @@ module Shinonome
         COLUMNS = %i[id name url owner_name email note updated_at updated_by].freeze
         FILENAME = 'work.csv'
 
-        def execute(output_dir:)
+        def execute(_command, output_dir:)
           filename = 'site.csv'
           output_file = File.join(output_dir, filename)
 

@@ -7,7 +7,9 @@ module Shinonome
       #
       # PersonではなくWorkPersonへの追加なのに注意
       class AddPerson < Base
-        def execute(work_id, person_id, role_name)
+        def execute(command)
+          work_id, person_id, role_name = command.body
+
           work = find_work!(work_id)
           person = find_person!(person_id)
           role = find_role_by_name!(role_name)

@@ -5,7 +5,9 @@ module Shinonome
     class Command
       # 書誌情報更新
       class EditBibclass < Base
-        def execute(work_id, name, num, note)
+        def execute(command)
+          work_id, name, num, note = command.body
+
           work = find_work!(work_id)
 
           note = '' if note == 'null'

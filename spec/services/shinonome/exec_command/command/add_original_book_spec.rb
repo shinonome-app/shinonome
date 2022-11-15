@@ -20,7 +20,8 @@ RSpec.describe Shinonome::ExecCommand::Command::AddOriginalBook do
 
     context '正しい引数を与えた場合' do
       it 'original_bookを含むResultを返す' do
-        result = Shinonome::ExecCommand::Command::AddOriginalBook.new.execute(*args)
+        command = Shinonome::ExecCommand::Command.new(['底本追加', *args])
+        result = Shinonome::ExecCommand::Command::AddOriginalBook.new.execute(command)
         expect(result).to be_successful
         original_book = result.command_result
         expect(original_book.work_id).to eq work.id
@@ -33,8 +34,10 @@ RSpec.describe Shinonome::ExecCommand::Command::AddOriginalBook do
       it '例外をあげる' do
         args2 = args.dup
         args2[0] = 'abc'
+        command = Shinonome::ExecCommand::Command.new(['底本追加', *args2])
+
         expect do
-          Shinonome::ExecCommand::Command::AddOriginalBook.new.execute(*args2)
+          Shinonome::ExecCommand::Command::AddOriginalBook.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           'BookIDが数値ではありません。'
@@ -46,8 +49,10 @@ RSpec.describe Shinonome::ExecCommand::Command::AddOriginalBook do
       it '例外をあげる' do
         args2 = args.dup
         args2[6] = '底本2'
+        command = Shinonome::ExecCommand::Command.new(['底本追加', *args2])
+
         expect do
-          Shinonome::ExecCommand::Command::AddOriginalBook.new.execute(*args2)
+          Shinonome::ExecCommand::Command::AddOriginalBook.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           '種別フラグには"底本"か"底本の親本"を指定してください。'

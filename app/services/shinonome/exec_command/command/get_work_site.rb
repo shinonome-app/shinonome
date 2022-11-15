@@ -5,7 +5,7 @@ module Shinonome
     class Command
       # 作品関連サイト取得
       class GetWorkSite
-        def execute(output_dir:)
+        def execute(_command, output_dir:)
           filename = 'book_site.csv'
           output_file = File.join(output_dir, filename)
 

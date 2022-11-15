@@ -7,7 +7,9 @@ module Shinonome
       #
       # WorkerではなくWorkWorkerへの追加なのに注意
       class AddWorker < Base
-        def execute(work_id, worker_id, role_name)
+        def execute(command)
+          work_id, worker_id, role_name = command.body
+
           work = find_work!(work_id)
           worker = find_worker!(worker_id)
           worker_role = find_worker_role_by_name!(role_name)

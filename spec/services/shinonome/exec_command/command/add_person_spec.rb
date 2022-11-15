@@ -9,7 +9,9 @@ RSpec.describe Shinonome::ExecCommand::Command::AddPerson do
 
     context '正しい引数を与えた場合' do
       it 'work_personを含むResultを返す' do
-        result = Shinonome::ExecCommand::Command::AddPerson.new.execute(work.id, person.id, '著者')
+        command = Shinonome::ExecCommand::Command.new(['人物追加', work.id, person.id, '著者'])
+
+        result = Shinonome::ExecCommand::Command::AddPerson.new.execute(command)
         expect(result).to be_successful
         expect(result.command_result.role_id).to eq 1
       end
@@ -17,8 +19,10 @@ RSpec.describe Shinonome::ExecCommand::Command::AddPerson do
 
     context '存在しないroleを与えた場合' do
       it '例外をあげる' do
+        command = Shinonome::ExecCommand::Command.new(['人物追加', work.id, person.id, '役割テスト'])
+
         expect do
-          Shinonome::ExecCommand::Command::AddPerson.new.execute(work.id, person.id, '役割テスト')
+          Shinonome::ExecCommand::Command::AddPerson.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           '役割フラグには"著者"か"翻訳者"か"校訂者"か"編者"か"その他"を指定してください。'

@@ -18,7 +18,7 @@
       <% @exec_commands.each do |exec_command| %>
         <tr>
           <td><%= exec_command.id %></td>
-          <td><%= link_to exec_command.command, admin_exec_command_path(exec_command) %></td>
+          <td><%= exec_command.command.truncate(30) %></td>
           <td><%= exec_command.created_at %></td>
         </tr>
       <% end %>

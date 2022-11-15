@@ -5,7 +5,8 @@ module Shinonome
     class Command
       # 作品情報絞り込み
       class GetWorkSelect < Base
-        def execute(columns_string, output_dir:)
+        def execute(command, output_dir:)
+          columns_string = command.body.first
           columns = CSV.parse_line(columns_string)
           raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.book_id_column') unless columns[0] == 'bookid'
 

@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, exec_command], url: admin_exec_commands_path) do |form| %>
+<%= form_with(model: [:admin, exec_command], url: admin_exec_commands_path, data: { turbo: false }) do |form| %>
   <% if exec_command.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(exec_command.errors.count, "error") %> prohibited this exec_command from being saved:</h2>

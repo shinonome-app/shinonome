@@ -5,7 +5,9 @@ module Shinonome
     class Command
       # 関連サイト削除
       class DeleteSite < Base
-        def execute(work_id, site_id)
+        def execute(command)
+          work_id, site_id = command.body
+
           work = find_work!(work_id)
           site = find_site!(site_id)
 

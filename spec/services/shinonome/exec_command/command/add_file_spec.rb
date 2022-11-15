@@ -37,7 +37,11 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
         File.write(file_path, file_fixture('html/01jo.html').read)
         args0 = args.merge(filename: '01jo.html')
 
-        result = Shinonome::ExecCommand::Command::AddFile.new.execute(**args0, upload_dir: tmpdir)
+        rows = args0.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
+        result = Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         expect(result).to be_successful
         workfile = result.command_result
         expect(workfile.work_id).to eq work.id
@@ -53,7 +57,11 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
       it 'workfileを含むResultを返す' do
         args0 = args.merge(url: 'https://example.com/sample/01jo.html')
 
-        result = Shinonome::ExecCommand::Command::AddFile.new.execute(**args0, upload_dir: tmpdir)
+        rows = args0.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
+        result = Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         expect(result).to be_successful
         workfile = result.command_result
         expect(workfile.work_id).to eq work.id
@@ -68,8 +76,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'work_idが数値ではない場合' do
       it '例外をあげる' do
         args2 = args.merge(work_id: 'abc')
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           'BookIDが数値ではありません。'
@@ -80,8 +92,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'work_idが存在しない場合' do
       it '例外をあげる' do
         args2 = args.merge(work_id: 100000)
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, '対象の作品ID100000がありません。')
       end
     end
@@ -89,8 +105,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'filetypeが正しくない場合' do
       it '例外をあげる' do
         args2 = args.merge(filetype_name: 'TEXTファイル')
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".workファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"その他"を指定してください。')
       end
     end
@@ -98,8 +118,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'filetypeの数値が正しくない場合' do
       it '例外をあげる' do
         args2 = args.merge(filetype_name: 100)
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".workファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"その他"を指定してください。')
       end
     end
@@ -107,8 +131,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'compresstypeが正しくない場合' do
       it '例外をあげる' do
         args2 = args.merge(compresstype_name: 'TAR+GZ圧縮')
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, '圧縮形式には"圧縮なし"か"ZIP圧縮"か"GZIP圧縮"か"LHA圧縮"か"SIT圧縮"を指定してください。')
       end
     end
@@ -116,8 +144,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'file_encodingが正しくない場合' do
       it '例外をあげる' do
         args2 = args.merge(file_encoding_name: 'UTF-16')
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイルエンコーディングには"ShiftJIS"か"JIS"か"EUC"か"UTF-8"か"その他"を指定してください。')
       end
     end
@@ -125,8 +157,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'charsetが正しくない場合' do
       it '例外をあげる' do
         args2 = args.merge(charset_name: 'JIS X 0211')
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, '文字集合には"JIS X 0208"か"JIS X 0213"か"Unicode"か"その他"を指定してください。')
       end
     end
@@ -134,8 +170,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'URLもfilenameもない場合' do
       it '例外をあげる' do
         args2 = args.merge(url: '', filename: '')
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイルかURLを指定してください。')
       end
     end
@@ -143,8 +183,12 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
     context 'filenameが違っている場合' do
       it '例外をあげる' do
         args2 = args.merge(filename: 'foobar.html')
+        rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                               :revision_count, :file_encoding_name, :charset_name, :note, :filename)
+        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
+
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(**args2, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイルがアップロードされていません。')
       end
     end

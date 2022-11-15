@@ -5,7 +5,7 @@ module Shinonome
     class Command
       # 著者関連サイト取得
       class GetPersonSite < Base
-        def execute(output_dir:)
+        def execute(_command, output_dir:)
           filename = 'person_site.csv'
           output_file = File.join(output_dir, filename)
 
