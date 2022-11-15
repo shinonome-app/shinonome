@@ -106,7 +106,7 @@ RSpec.describe '/admin/news_entries', type: :request do
     end
   end
 
-  describe 'PATCH /update' do
+  describe 'PATCH /admin/update' do
     before { sign_in user }
 
     context 'with valid parameters' do
@@ -143,7 +143,7 @@ RSpec.describe '/admin/news_entries', type: :request do
     end
   end
 
-  describe 'DELETE /destroy' do
+  describe 'DELETE /admin/destroy' do
     before { sign_in user }
 
     it 'destroys the requested news entry' do
