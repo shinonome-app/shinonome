@@ -35,7 +35,7 @@
             <% end %>
           </td>
           <td class="px-2">
-            <%= form_with(url: admin_work_work_people_binds_path, method: 'post', data: { turbo: false }) do |form| %>
+            <%= form_with(url: admin_work_work_people_path, method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :person_id, value: person.id %>
             <%= form.collection_select :role_id, Role.order(:id).all, :id, :name %>として
             <%= form.submit '関連づける', class: 'btn-normal' %>

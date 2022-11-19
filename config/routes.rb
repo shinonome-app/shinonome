@@ -76,19 +76,16 @@ Rails.application.routes.draw do
       resources :work_workers, only: %i[new edit create update destroy]
       namespace :work_workers do
         resources :text_searches, only: %i[index]
-        resources :binds, only: %i[create]
       end
 
-      resources :work_people, only: %i[new create edit update destroy]
+      resources :work_people, only: %i[new create destroy]
       namespace :work_people do
         resources :text_searches, only: %i[index]
-        resources :binds, only: %i[create]
       end
 
       resources :work_sites, only: %i[new create edit update destroy]
       namespace :work_sites do
         resources :text_searches, only: %i[index]
-        resources :binds, only: %i[create]
       end
 
       # resources :worker_assigns, only: %i[index new show]

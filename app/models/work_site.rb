@@ -27,4 +27,6 @@ require 'csv'
 class WorkSite < ApplicationRecord
   belongs_to :work
   belongs_to :site
+
+  validates :site_id, uniqueness: { scope: :work_id, message: 'がすでに関連付けられています' }
 end

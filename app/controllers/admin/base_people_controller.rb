@@ -2,13 +2,8 @@
 
 module Admin
   class BasePeopleController < ApplicationController
-    before_action :set_person
     before_action :set_base_person, only: %i[destroy]
-
-    # GET /base_people
-    def index
-      @base_people = BasePerson.all
-    end
+    before_action :set_person
 
     # GET /base_people/new
     def new
@@ -18,19 +13,21 @@ module Admin
     # POST /admin/people/:person_id/base_people
     def create
       @base_person = BasePerson.new(person_id: params[:person_id], original_person_id: params[:original_person_id])
-      @base_person.save!
 
-      redirect_to [:admin, @base_person.person], notice: '関連づけました.'
-    rescue ActiveRecord::RecordInvalid
-      redirect_to admin_person_path(params[:person_id]), notice: @base_person.errors.full_messages.join
-    rescue RuntimeError
-      render '/admin/base_person/new', status: :unprocessable_entity
+      if @base_person.save
+        redirect_to admin_person_path(params[:person_id]), success: '関連づけました.'
+      else
+        redirect_to admin_person_path(params[:person_id]), alert: @base_person.errors.full_messages.join(', ')
+      end
     end
 
     # DELETE /base_people/1
     def destroy
-      @base_person.destroy
-      redirect_to admin_person_path(@person), notice: '基本人物の関連づけを削除しました.'
+      if @base_person.destroy
+        redirect_to admin_person_path(params[:person_id]), success: '基本人物の関連づけを削除しました.'
+      else
+        redirect_to admin_person_path(params[:person_id]), alert: '基本人物の関連づけが削除できませんでした.'
+      end
     end
 
     private

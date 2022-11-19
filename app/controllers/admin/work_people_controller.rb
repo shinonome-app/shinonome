@@ -5,46 +5,28 @@ module Admin
     before_action :set_work_person, only: %i[show edit update destroy]
     before_action :set_work, only: %i[new destroy]
 
-    # GET /work_people
-    def index
-      @work_people = WorkPerson.all
-    end
-
-    # GET /work_people/1
-    def show; end
-
     # GET /work_people/new
     def new
       @work_person = WorkPerson.new
     end
 
-    # GET /work_people/1/edit
-    def edit; end
-
-    # POST /work_people
+    # POST /admin/works/:work_id/work_people
     def create
-      @work_person = WorkPerson.new(work_person_params)
-
+      @work_person = WorkPerson.new(work_id: params[:work_id], person_id: params[:person_id], role_id: params[:role_id])
       if @work_person.save
-        redirect_to @work_person, notice: '追加しました.'
+        redirect_to admin_work_path(params[:work_id]), success: '関連づけました.'
       else
-        render :new, status: :unprocessable_entity
-      end
-    end
-
-    # PATCH/PUT /work_people/1
-    def update
-      if @work_person.update(work_person_params)
-        redirect_to @work_person, notice: '更新しました.'
-      else
-        render :edit, status: :unprocessable_entity
+        redirect_to admin_work_path(params[:work_id]), alert: @work_person.errors.full_messages.join(', ')
       end
     end
 
     # DELETE /work_people/1
     def destroy
-      @work_person.destroy
-      redirect_to admin_work_path(@work), notice: '削除しました.'
+      if @work_person.destroy
+        redirect_to admin_work_path(@work), success: '削除しました.'
+      else
+        redirect_to admin_work_path(@work), alert: '削除できませんでした.'
+      end
     end
 
     private

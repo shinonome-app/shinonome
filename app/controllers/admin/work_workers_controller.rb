@@ -9,14 +9,14 @@ module Admin
       @work_worker = WorkWorker.new
     end
 
-    # POST /admin/work_workers
+    # POST /admin/work/:work_id/work_workers
     def create
-      @work_worker = WorkWorker.new(work_worker_params)
+      @work_worker = WorkWorker.new(work_id: params[:work_id], worker_id: params[:worker_id], worker_role_id: params[:worker_role_id])
 
       if @work_worker.save
-        redirect_to admin_work_url(@work_worker.work), notice: '追加しました.'
+        redirect_to admin_work_url(@work_worker.work), success: '関連づけました.'
       else
-        redirect_to admin_work_url(@work_worker.work)
+        redirect_to admin_work_path(params[:work_id]), notice: @work_worker.errors.full_messages.join
       end
     end
 
@@ -24,7 +24,7 @@ module Admin
     def destroy
       work = @work_worker.work
       @work_worker.destroy
-      redirect_to admin_work_url(work), notice: '削除しました.'
+      redirect_to admin_work_url(work), success: '削除しました.'
     end
 
     private

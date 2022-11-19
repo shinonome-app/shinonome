@@ -25,8 +25,8 @@ require 'rails_helper'
 
 RSpec.describe BasePerson, type: :model do
   describe 'validation' do
-    let (:base_person) { create(:base_person) }
-    let (:person) { create(:person) }
+    let(:base_person) { create(:base_person) }
+    let(:person) { create(:person) }
 
     it 'person_idが重複したらエラーになる' do
       person2 = base_person.person

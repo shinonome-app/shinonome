@@ -78,8 +78,7 @@
   <div class="flex py-2">
     <%= link_to '更新', edit_admin_person_path(@person), class: "btn-normal" %>
     <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-normal bg-red-300" %>
-  </div>
-
+  </div><div>
 <h3 class="text-xl">人物基本名</h3>
 
   <% if @person.original_person %>
@@ -93,6 +92,7 @@
   </div>
   <% end %>
 
+  </div><div>
 <h3 class="text-xl">関連サイトデータ</h3>
 
   <% if @person.sites.present? %>
@@ -123,6 +123,7 @@
   </div>
   <% end %>
 
+  </div><div>
 <h3 class="text-xl">関連した作品</h3>
 
 <table class="w-full">
@@ -148,7 +149,9 @@
 
 </table>
 
+  </div><div>
 <div class="py-4">
   <%= link_to '戻る', admin_people_path, class: "btn-normal" %>
+</div>
 </div>
 </div>

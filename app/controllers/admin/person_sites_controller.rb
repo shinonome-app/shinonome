@@ -3,9 +3,9 @@
 module Admin
   class PersonSitesController < ApplicationController
     before_action :set_person_site, only: %i[destroy]
-    before_action :set_person, only: %i[new destroy]
+    before_action :set_person
 
-    # GET /person_sites/new
+    # GET /admin/people/:person_id/person_sites/new
     def new
       @person_site = PersonSite.new
     end
@@ -13,19 +13,21 @@ module Admin
     # POST /admin/people/:person_id/person_sites
     def create
       @person_site = PersonSite.new(person_id: params[:person_id], site_id: params[:site_id])
-      @person_site.save!
 
-      redirect_to [:admin, @person_site.person], notice: '関連づけました.'
-    rescue ActiveRecord::RecordInvalid
-      redirect_to admin_person_path(params[:person_id]), notice: @person_site.errors.full_messages.join
-    rescue RuntimeError
-      render '/admin/person_sites/new', status: :unprocessable_entity
+      if @person_site.save
+        redirect_to admin_person_path(params[:person_id]), success: '関連づけました.'
+      else
+        redirect_to admin_person_path(params[:person_id]), alert: @person_site.errors.full_messages.join(', ')
+      end
     end
 
-    # DELETE /person_sites/1
+    # DELETE /admin/people/:person_id/person_sites/1
     def destroy
-      @person_site.destroy
-      redirect_to admin_person_path(@person), notice: '関連サイトの関連づけを削除しました.'
+      if @person_site.destroy
+        redirect_to admin_person_path(params[:person_id]), success: '関連サイトの関連づけを削除しました.'
+      else
+        redirect_to admin_person_path(params[:person_id]), alert: '関連サイトの関連づけが削除できませんでした.'
+      end
     end
 
     private

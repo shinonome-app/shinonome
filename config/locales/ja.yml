@@ -216,6 +216,9 @@ ja:
         work_id: "作品ID"
         person_id: "人物ID"
         role_id: "役割ID"
+      work_site:
+        work_id: "作品"
+        site_id: "サイト"
       work_worker:
         work_id: "作品ID"
         worker_id: "工作員ID"
