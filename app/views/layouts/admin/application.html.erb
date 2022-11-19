@@ -24,6 +24,7 @@
     <div class="font-sans m-0 antialiased leading-none">
       <%= render(Admin::NaviComponent.new(title: "管理", user: current_admin_user)) %>
       <div class="container mx-auto">
+        <%= render Admin::FlashComponent.new(flash: flash) %>
         <div class="flex w-full min-w-full rounded-sm mt-4">
           <%= render Admin::AsideComponent.new %>
           <%= yield %>

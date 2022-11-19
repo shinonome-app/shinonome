@@ -1,0 +1,6 @@
+<% flash.each do |type, message| %>
+<div class="<%= flash_class(type) %> border px-4 py-3 my-2 rounded relative" role="alert">
+  <span><%= flash_icon(type) %></span>
+  <span class="block sm:inline"><%= message %></span>
+</div>
+<% end %>
