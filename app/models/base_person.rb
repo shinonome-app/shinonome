@@ -25,5 +25,13 @@ class BasePerson < ApplicationRecord
   belongs_to :person
   belongs_to :original_person, class_name: 'Person'
 
-  validates :person_id, uniqueness: { message: 'がすでに関連付けられています' }
+  validates :person_id, uniqueness: { message: I18n.t('errors.base_person.unique') }
+
+  validate :person_and_original_persion_must_be_different
+
+  def person_and_original_persion_must_be_different
+    if original_person_id == person_id
+       errors.add(:person_id, I18n.t('errors.base_person.same_person'))
+    end
+  end
 end

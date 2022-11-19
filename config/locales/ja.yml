@@ -240,6 +240,9 @@ ja:
         charset_id: "文字集合"
         note: "備考"
   errors:
+    base_person:
+      unique: 'がすでに他の基本人物に関連付けられています'
+      same_person: 'が基本人物IDと重複しています'
     command_parser:
       invalid_format: "サポートされていないフォーマットです。カンマ区切りかタブ区切りにしてください。"
       invalid_work_id: "作品ID'%{work_id}'は正しいIDではありません。作品IDは数値にしてください。"

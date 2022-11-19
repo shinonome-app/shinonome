@@ -17,115 +17,74 @@ require 'rails_helper'
 RSpec.describe '/base_people', type: :request do
   # BasePerson. As you add validations to BasePerson, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
+  let!(:person) { create(:person) }
+  let!(:original_person) { create(:person) }
 
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
+  let(:valid_attributes) { { original_person_id: original_person.id, person_id: person.id } }
+  let(:invalid_attributes) { { person_id: 'foo' } }
 
-  describe 'GET /index' do
-    xit 'renders a successful response' do
-      BasePerson.create! valid_attributes
-      get base_people_url
-      expect(response).to be_successful
-    end
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
   end
 
   describe 'GET /show' do
-    xit 'renders a successful response' do
-      base_person = BasePerson.create! valid_attributes
-      get base_person_url(base_person)
+    it 'renders a successful response' do
+      base_person = BasePerson.create!({ original_person_id: original_person.id, person_id: person.id })
+      get admin_person_url(person)
       expect(response).to be_successful
+      expect(response.body).to include(original_person.name)
     end
   end
 
   describe 'GET /new' do
-    xit 'renders a successful response' do
-      get new_base_person_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /edit' do
-    xit 'render a successful response' do
-      base_person = BasePerson.create! valid_attributes
-      get edit_base_person_url(base_person)
+    it 'renders a successful response' do
+      get new_admin_person_base_person_url(person)
       expect(response).to be_successful
     end
   end
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      xit 'creates a new BasePerson' do
+      it 'creates a new BasePerson' do
         expect do
-          post base_people_url, params: { base_person: valid_attributes }
+          post admin_person_base_people_url(person), params: { original_person_id: original_person.id }
         end.to change(BasePerson, :count).by(1)
       end
 
-      xit 'redirects to the created base_person' do
-        post base_people_url, params: { base_person: valid_attributes }
-        expect(response).to redirect_to(base_person_url(BasePerson.last))
+      it 'redirects to the created base_person' do
+        post admin_person_base_people_url(person), params: { original_person_id: original_person.id }
+        expect(response).to redirect_to(admin_person_url(BasePerson.last.person))
       end
     end
 
     context 'with invalid parameters' do
-      xit 'does not create a new BasePerson' do
+      it 'does not create a new BasePerson' do
         expect do
-          post base_people_url, params: { base_person: invalid_attributes }
+          post admin_person_base_people_url(person), params: { original_person_id: -123 }
         end.not_to change(BasePerson, :count)
       end
 
-      xit "renders a successful response (i.e. to display the 'new' template)" do
-        post base_people_url, params: { base_person: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
-      xit 'updates the requested base_person' do
-        base_person = BasePerson.create! valid_attributes
-        patch base_person_url(base_person), params: { base_person: new_attributes }
-        base_person.reload
-        skip('Add assertions for updated state')
-      end
-
-      xit 'redirects to the base_person' do
-        base_person = BasePerson.create! valid_attributes
-        patch base_person_url(base_person), params: { base_person: new_attributes }
-        base_person.reload
-        expect(response).to redirect_to(base_person_url(base_person))
-      end
-    end
-
-    context 'with invalid parameters' do
-      xit "renders a successful response (i.e. to display the 'edit' template)" do
-        base_person = BasePerson.create! valid_attributes
-        patch base_person_url(base_person), params: { base_person: invalid_attributes }
-        expect(response).to be_successful
+      it "renders a successful response (i.e. to display the 'new' template)" do
+        post admin_person_base_people_url(person), params: { original_person_id: -123 }
+        expect(response).to have_http_status(302)
       end
     end
   end
 
   describe 'DELETE /destroy' do
-    xit 'destroys the requested base_person' do
+    it 'destroys the requested base_person' do
       base_person = BasePerson.create! valid_attributes
       expect do
-        delete base_person_url(base_person)
+        delete admin_person_base_person_url(person, base_person)
       end.to change(BasePerson, :count).by(-1)
     end
 
-    xit 'redirects to the base_people list' do
+    it 'redirects to the base_people list' do
       base_person = BasePerson.create! valid_attributes
-      delete base_person_url(base_person)
-      expect(response).to redirect_to(base_people_url)
+      delete admin_person_base_person_url(person, base_person)
+      expect(response).to redirect_to(admin_person_url(person))
     end
   end
 end

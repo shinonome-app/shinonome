@@ -51,7 +51,6 @@ Rails.application.routes.draw do
       resources :base_people, only: %i[new create edit update destroy]
       namespace :base_people do
         resources :text_searches, only: %i[index]
-        resources :binds, only: %i[create]
       end
 
       resources :person_sites, only: %i[new create edit update destroy]

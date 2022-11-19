@@ -16,5 +16,9 @@
 require 'rails_helper'
 
 RSpec.describe Bibclass, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.csv_header' do
+    it '値は決め打ち' do
+      expect(Bibclass.csv_header).to eq "bookid,分類名,分類番号,備考\r\n"
+    end
+  end
 end

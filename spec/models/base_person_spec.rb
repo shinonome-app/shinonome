@@ -24,5 +24,17 @@
 require 'rails_helper'
 
 RSpec.describe BasePerson, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validation' do
+    let (:base_person) { create(:base_person) }
+    let (:person) { create(:person) }
+
+    it 'person_idが重複したらエラーになる' do
+      person2 = base_person.person
+      expect { BasePerson.create!(person_id: person2.id, original_person_id: person.id) }.to raise_error(ActiveRecord::RecordInvalid, 'バリデーションに失敗しました: 人物IDがすでに他の基本人物に関連付けられています')
+    end
+
+    it 'person_idとoriginal_person_idが重複したらエラーになる' do
+      expect { BasePerson.create!(person_id: person.id, original_person_id: person.id) }.to raise_error(ActiveRecord::RecordInvalid, 'バリデーションに失敗しました: 人物IDが基本人物IDと重複しています')
+    end
+  end
 end

@@ -23,6 +23,7 @@
 
 FactoryBot.define do
   factory :base_person do
-    person_id { 1 }
+    person
+    original_person { association :person }
   end
 end

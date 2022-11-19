@@ -14,5 +14,17 @@
 require 'rails_helper'
 
 RSpec.describe Compresstype, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'compressed?' do
+    it 'none' do
+      expect(Compresstype.find(1).compressed?).to eq false
+    end
+
+    it 'zip' do
+      expect(Compresstype.find(2).compressed?).to eq true
+    end
+
+    it 'gzip' do
+      expect(Compresstype.find(3).compressed?).to eq true
+    end
+  end
 end
