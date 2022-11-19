@@ -16,7 +16,7 @@
           <td><%= link_to site.name, admin_site_path(site) %></td>
           <td><%= site.url %></td>
           <td class="px-2">
-            <%= form_with(url: admin_person_person_sites_path, method: 'post', data: { turbo: false }) do |form| %>
+            <%= form_with(model: [:admin, @person, @person.person_sites.build], method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :site_id, value: site.id %>
             <%= form.submit '関連づける', class: 'btn-normal' %>
             <% end %>

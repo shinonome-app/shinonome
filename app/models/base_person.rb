@@ -30,8 +30,6 @@ class BasePerson < ApplicationRecord
   validate :person_and_original_persion_must_be_different
 
   def person_and_original_persion_must_be_different
-    if original_person_id == person_id
-       errors.add(:person_id, I18n.t('errors.base_person.same_person'))
-    end
+    errors.add(:person_id, I18n.t('errors.base_person.same_person')) if original_person_id == person_id
   end
 end

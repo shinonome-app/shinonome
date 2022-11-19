@@ -3,7 +3,7 @@
 module Admin
   class WorkSitesController < ApplicationController
     before_action :set_work_site, only: %i[destroy]
-    before_action :set_work, only: %i[new destroy]
+    before_action :set_work
 
     # GET /work_sites/new
     def new
@@ -12,7 +12,7 @@ module Admin
 
     # POST /admin/people/:work_id/work_sites
     def create
-      @work_site = WorkSite.new(work_id: params[:work_id], site_id: params[:site_id])
+      @work_site = WorkSite.new(work_site_params)
 
       if @work_site.save
         redirect_to admin_work_path(params[:work_id]), success: '関連づけました.'
@@ -43,7 +43,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def work_site_params
-      params.require(:work_site).permit(:work_id, :site_id)
+      params.require(:work_site).merge(work_id: params[:work_id]).permit(:work_id, :site_id)
     end
   end
 end

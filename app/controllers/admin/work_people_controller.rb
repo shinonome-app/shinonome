@@ -12,7 +12,7 @@ module Admin
 
     # POST /admin/works/:work_id/work_people
     def create
-      @work_person = WorkPerson.new(work_id: params[:work_id], person_id: params[:person_id], role_id: params[:role_id])
+      @work_person = WorkPerson.new(work_person_params)
       if @work_person.save
         redirect_to admin_work_path(params[:work_id]), success: '関連づけました.'
       else
@@ -42,7 +42,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def work_person_params
-      params.require(:work_person).permit(:work_id, :person_id, :role_id)
+      params.require(:work_person).merge(work_id: params[:work_id]).permit(:work_id, :person_id, :role_id)
     end
   end
 end

@@ -49,12 +49,12 @@ RSpec.describe '/base_people', type: :request do
     context 'with valid parameters' do
       it 'creates a new BasePerson' do
         expect do
-          post admin_person_base_people_url(person), params: { original_person_id: original_person.id }
+          post admin_person_base_people_url(person), params: { base_person: { original_person_id: original_person.id } }
         end.to change(BasePerson, :count).by(1)
       end
 
       it 'redirects to the created base_person' do
-        post admin_person_base_people_url(person), params: { original_person_id: original_person.id }
+        post admin_person_base_people_url(person), params: { base_person: { original_person_id: original_person.id } }
         expect(response).to redirect_to(admin_person_url(BasePerson.last.person))
       end
     end
@@ -62,12 +62,12 @@ RSpec.describe '/base_people', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new BasePerson' do
         expect do
-          post admin_person_base_people_url(person), params: { original_person_id: -123 }
+          post admin_person_base_people_url(person), params: { base_person: { original_person_id: -123 } }
         end.not_to change(BasePerson, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_person_base_people_url(person), params: { original_person_id: -123 }
+        post admin_person_base_people_url(person), params: { base_person: { original_person_id: -123 } }
         expect(response).to have_http_status(302)
       end
     end

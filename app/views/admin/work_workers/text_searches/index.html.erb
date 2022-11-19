@@ -25,7 +25,7 @@
             <%= worker.name_kana %>
           </td>
           <td class="px-2">
-            <%= form_with(url: admin_work_work_workers_path(@work), method: 'post', data: { turbo: false }) do |form| %>
+            <%= form_with(model: [:admin, @work, @work.work_workers.build], method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :worker_id, value: worker.id %>
             <%= form.collection_select :worker_role_id, WorkerRole.order(:id).all, :id, :name %>として
             <%= form.submit '関連づける', class: 'btn-normal' %>

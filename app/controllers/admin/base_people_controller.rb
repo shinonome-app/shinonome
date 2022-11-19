@@ -12,7 +12,7 @@ module Admin
 
     # POST /admin/people/:person_id/base_people
     def create
-      @base_person = BasePerson.new(person_id: params[:person_id], original_person_id: params[:original_person_id])
+      @base_person = BasePerson.new(base_person_params)
 
       if @base_person.save
         redirect_to admin_person_path(params[:person_id]), success: '関連づけました.'
@@ -43,7 +43,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def base_person_params
-      params.require(:base_person).permit(:person_id)
+      params.require(:base_person).merge(person_id: params[:person_id]).permit(:person_id, :original_person_id)
     end
   end
 end
