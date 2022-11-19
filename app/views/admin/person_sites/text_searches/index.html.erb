@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <% @sites.each do |site| %>
-        <tr>
+        <tr id="person-site-<%= site.id %>">
           <td><%= site.id %></td>
           <td><%= link_to site.name, admin_site_path(site) %></td>
           <td><%= site.url %></td>
