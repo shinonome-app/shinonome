@@ -1,9 +1,10 @@
 <div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
   <h1 class="text-2xl py-4">管理者の追加・削除</h1>
+  <h2 class="text-xl py-4">管理者追加</h1>
   <%= form_with(model: @user, url: admin_users_others_path, method: "post") do |form| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+        <h2><%= t("errors.template.header", model: @user.model_name.human, count: @user.errors.count) %></h2>
         <ul>
           <% @user.errors.each do |error| %>
             <li><%= error.full_message %></li>
@@ -12,7 +13,7 @@
       </div>
     <% end %>
     <div class="field">
-      <%= form.label :username, "username" %>
+      <%= form.label :username, "ユーザー名" %>
       <%= form.text_field :username %>
     </div>
     <div class="field">
@@ -20,22 +21,23 @@
       <%= form.text_field :email %>
     </div>
     <div class="field">
-      <%= form.label :password, "password" %>
+      <%= form.label :password, "パスワード" %>
       <%= form.text_field :password %>
     </div>
     <div class="field">
-      <%= form.label :password_confirmation, "password(確認用)" %>
+      <%= form.label :password_confirmation, "パスワード(確認用)" %>
       <%= form.text_field :password_confirmation %>
     </div>
     <div class="actions">
-      <%= form.submit "登録" %>
+      <%= form.submit "登録", class: 'btn-normal' %>
     </div>
   <% end %>
+  <h2 class="text-xl py-4">管理者一覧</h1>
   <table>
     <thead>
       <tr>
         <th>ID</th>
-        <th>username</th>
+        <th>ユーザー名</th>
         <th>email</th>
       </tr>
     </thead>

@@ -85,7 +85,7 @@
     <% work = work_worker.work %>
     <tr>
       <td><%= work_worker.worker_role.name %></td>
-      <td><%= work.title %></td>
+      <td><%= link_to work.title, admin_work_path(work) %></td>
       <td><%= work.subtitle %></td>
       <td><%= work.kana_type&.name %></td>
       <td><%= work.work_status&.name %></td>

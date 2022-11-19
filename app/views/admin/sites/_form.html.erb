@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, site]) do |form| %>
   <% if site.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(site.errors.count, "件") %>の入力エラーがあります:</h2>
+      <h2><%= t("errors.template.header", model: site.model_name.human, count: site.errors.count) %></h2>
       <ul>
         <% site.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -33,6 +33,6 @@
       <%= work_site.hidden_field :work_id %>
     <% end %>
   <div class="actions">
-    <%= form.submit "更新", class: 'btn-normal' %>
+    <%= form.submit "更新", class: 'btn-normal py-2' %>
   </div>
 <% end %>

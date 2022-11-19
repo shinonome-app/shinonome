@@ -1,7 +1,7 @@
 <%= form_with(model: user, url: admin_users_other_path) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= t("errors.template.header", model: user.model_name.human, count: user.errors.count) %></h2>
       <ul>
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -9,15 +9,15 @@
       </ul>
     </div>
     <% end %>
-  <div class="field">
-    <%= form.label :username, "username" %>
+  <div class="field py-2">
+    <%= form.label :username %>
     <%= form.text_field :username %>
   </div>
-  <div class="field">
-    <%= form.label :email, "email" %>
+  <div class="field py-2">
+    <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
-  <div class="actions">
-    <%= form.submit "更新" %>
+  <div class="actions py-2">
+    <%= form.submit "更新", class: 'btn-normal' %>
   </div>
 <% end %>

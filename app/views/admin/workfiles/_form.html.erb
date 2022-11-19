@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, workfile.work, workfile]) do |form| %>
   <% if workfile.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(workfile.errors.count, "error") %> prohibited this workfile from being saved:</h2>
+      <h2><%= t("errors.template.header", model: workfile.model_name.human, count: workfile.errors.count) %></h2>
       <ul>
         <% workfile.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -48,6 +48,9 @@
   </div>
   <div class="field py-2">
     <%= form.label :workdata %>
+    <% if @workfile.workdata.attached? %>
+    <p><%= link_to @workfile.filename, rails_blob_url(@workfile.workdata) %></p>
+    <% end %>
     <%= form.file_field :workdata, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">

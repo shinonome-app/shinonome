@@ -88,7 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "command"
     t.bigint "user_id"
     t.integer "separator"
-    t.json "result"
+    t.jsonb "result"
     t.datetime "executed_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

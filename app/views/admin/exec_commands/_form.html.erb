@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, exec_command], url: admin_exec_commands_path, data: { turbo: false }) do |form| %>
   <% if exec_command.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(exec_command.errors.count, "error") %> prohibited this exec_command from being saved:</h2>
+      <h2><%= t("errors.template.header", model: exec_command.model_name.human, count: exec_command.errors.count) %></h2>
       <ul>
         <% exec_command.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -18,7 +18,7 @@
   <div class="flex flex-col md:flex-row mb-3 p-2">
     <div class="flex-1 mr-2">
       <%= form.label :separator, '区切り文字', class: "mb-2 text-lg text-grey-darkest" %>
-      <%= form.select :separator, [['タブ区切り', 'tab'], ['カンマ区切り', 'comma']] %>
+      <%= form.select :separator, [%w[タブ区切り tab], %w[カンマ区切り comma]] %>
     </div>
   </div>
   <div class="field">

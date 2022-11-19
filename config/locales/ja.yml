@@ -90,6 +90,7 @@ ja:
       shinonome/user: ユーザー
       worker: 工作員
       work_worker: 工作員関連づけ
+      workfile: 作品ファイル
     attributes:
       admin_mail_secret:
         subject: 件名
@@ -233,15 +234,20 @@ ja:
         sortkey: "ソート用読み"
       workfile:
         filetype_id: "ファイル形式"
+        filetype: "ファイル形式"
         compresstype_id: "圧縮形式"
+        compresstype: "圧縮形式"
         filesize: "ファイルサイズ"
         url: "URL"
         filename: "ファイル名"
         opened_on: "状態の開始日"
         revision_count: "修正回数"
         file_encoding_id: "ファイルエンコーディング"
+        file_encoding: "ファイルエンコーディング"
         charset_id: "文字集合"
+        charset: "文字集合"
         note: "備考"
+        workdata: "作品ファイル"
   errors:
     base_person:
       unique: 'がすでに他の基本人物に関連付けられています'
