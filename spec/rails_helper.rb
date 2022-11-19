@@ -1,5 +1,3 @@
-# rubocop:disable Style/FrozenStringLiteralComment
-
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -66,6 +64,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include RequestSpecHelper, type: :request
   config.include FactoryBot::Syntax::Methods
   config.include ActionDispatch::TestProcess::FixtureFile
@@ -73,6 +72,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     Rails.application.load_seed # loading seeds
   end
-end
 
-# rubocop:enable Style/FrozenStringLiteralComment
+  config.before(:each, type: :system) do
+    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 2000]
+  end
+end
