@@ -31,7 +31,7 @@ RSpec.describe '/base_people', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      base_person = BasePerson.create!({ original_person_id: original_person.id, person_id: person.id })
+      _base_person = BasePerson.create!({ original_person_id: original_person.id, person_id: person.id })
       get admin_person_url(person)
       expect(response).to be_successful
       expect(response.body).to include(original_person.name)
@@ -68,7 +68,7 @@ RSpec.describe '/base_people', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post admin_person_base_people_url(person), params: { base_person: { original_person_id: -123 } }
-        expect(response).to have_http_status(302)
+        expect(response).to have_http_status(:found)
       end
     end
   end

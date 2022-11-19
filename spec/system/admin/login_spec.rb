@@ -1,9 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'log_in' do
   let(:username) { 'admin' }
   let(:password) { 'shinonome' }
-  let!(:user) { create(:user, username: username, password: password) }
+
+  before do
+    create(:user, username: username, password: password)
+  end
 
   describe 'sign_in' do
     context '正しいユーザー名、パスワードの場合' do

@@ -63,6 +63,9 @@ Rails/SkipsModelValidations:
   Exclude:
     - "db/seeds/*"
 
+RSpec/BeEq:
+  Enabled: false
+
 RSpec/ContextWording:
   Enabled: false
 

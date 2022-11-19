@@ -21,6 +21,7 @@
 #  fk_rails_...  (person_id => people.id)
 #
 
+# 基本人物
 class BasePerson < ApplicationRecord
   belongs_to :person
   belongs_to :original_person, class_name: 'Person'

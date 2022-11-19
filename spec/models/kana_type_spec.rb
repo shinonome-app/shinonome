@@ -11,7 +11,3 @@
 #
 
 require 'rails_helper'
-
-RSpec.describe KanaType, type: :model do
-  # skip
-end

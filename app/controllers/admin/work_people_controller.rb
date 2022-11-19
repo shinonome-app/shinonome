@@ -2,8 +2,8 @@
 
 module Admin
   class WorkPeopleController < ApplicationController
-    before_action :set_work_person, only: %i[show edit update destroy]
-    before_action :set_work, only: %i[new destroy]
+    before_action :set_work_person, only: %i[destroy]
+    before_action :set_work
 
     # GET /work_people/new
     def new
