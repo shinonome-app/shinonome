@@ -29,7 +29,7 @@ module Admin
       @site = Site.new(site_params)
 
       if @site.save
-        redirect_to [:admin, @site], notice: '追加しました.'
+        redirect_to [:admin, @site], success: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -38,7 +38,7 @@ module Admin
     # PATCH/PUT /admin/sites/1
     def update
       if @site.update(site_params)
-        redirect_to [:admin, @site], notice: '更新しました.'
+        redirect_to [:admin, @site], success: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -46,8 +46,11 @@ module Admin
 
     # DELETE /sites/1
     def destroy
-      @site.destroy
-      redirect_to admin_sites_url, notice: '削除しました.'
+      if @site.destroy
+        redirect_to admin_sites_url, success: '削除しました.'
+      else
+        redirect_to admin_sites_url, alert: '削除できませんでした.'
+      end
     end
 
     private

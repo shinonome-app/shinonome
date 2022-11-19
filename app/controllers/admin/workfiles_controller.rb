@@ -33,7 +33,7 @@ module Admin
         else
           @workfile.save!
         end
-        redirect_to [:admin, @workfile.work], notice: '追加しました.'
+        redirect_to [:admin, @workfile.work], success: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -49,7 +49,7 @@ module Admin
         else
           @workfile.save!
         end
-        redirect_to [:admin, @workfile.work], notice: '更新しました.'
+        redirect_to [:admin, @workfile.work], success: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -58,8 +58,8 @@ module Admin
     # DELETE /admin/work/workfiles/1
     def destroy
       work = @workfile.work
-      @workfile.destroy
-      redirect_to admin_work_url(work), notice: '削除しました.'
+      @workfile.destroy!
+      redirect_to admin_work_url(work), success: '削除しました.'
     end
 
     private

@@ -20,7 +20,7 @@ module Admin
       @bibclass = Bibclass.new(bibclass_params)
 
       if @bibclass.save
-        redirect_to [:admin, @bibclass.work], notice: '追加しました.'
+        redirect_to [:admin, @bibclass.work], success: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -29,8 +29,8 @@ module Admin
     # DELETE /admin/works/:work_id/bibclasses/1
     def destroy
       work = @bibclass.work
-      @bibclass.destroy
-      redirect_to [:admin, work], notice: '削除しました.'
+      @bibclass.destroy!
+      redirect_to [:admin, work], success: '削除しました.'
     end
 
     private

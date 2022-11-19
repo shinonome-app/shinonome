@@ -17,7 +17,7 @@ module Admin
 
       result = AdminMailSender.new.send(admin_mail_params)
       if result.sent?
-        redirect_to admin_url, notice: 'メールを送信しました'
+        redirect_to admin_url, success: 'メールを送信しました'
       else
         @admin_mail_secret = result.admin_mail_secret
         render :new, status: :unprocessable_entity

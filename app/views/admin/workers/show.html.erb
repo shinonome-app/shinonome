@@ -35,7 +35,7 @@
     <tr>
       <th class="w-36 text-left">URL</th>
       <td>
-        <%= @worker.worker_secret&.url %>
+        <%= link_to @worker.worker_secret&.url, @worker.worker_secret&.url %>
       </td>
     </tr>
     <tr>

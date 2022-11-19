@@ -27,7 +27,7 @@ module Admin
       @news_entry = NewsEntry.new(news_entry_params)
 
       if @news_entry.save
-        redirect_to admin_news_entries_url, notice: '追加しました.'
+        redirect_to admin_news_entries_url, success: '追加しました.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -36,7 +36,7 @@ module Admin
     # PATCH/PUT /admin/news_entries/1
     def update
       if @news_entry.update(news_entry_params)
-        redirect_to [:admin, @news_entry], notice: '更新しました.'
+        redirect_to [:admin, @news_entry], success: '更新しました.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -44,8 +44,8 @@ module Admin
 
     # DELETE /admin/news_entries/1
     def destroy
-      @news_entry.destroy
-      redirect_to admin_news_entries_url, notice: '削除しました.'
+      @news_entry.destroy!
+      redirect_to admin_news_entries_url, success: '削除しました.'
     end
 
     private

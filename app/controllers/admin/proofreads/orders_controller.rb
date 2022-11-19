@@ -18,7 +18,7 @@ module Admin
         @order_form = ::Admin::Proofreads::OrderForm.new(order_params, proofread: @proofread)
         @order_form.send!
 
-        redirect_to admin_proofreads_path, notice: '送信しました.'
+        redirect_to admin_proofreads_path, success: '送信しました.'
       end
 
       private

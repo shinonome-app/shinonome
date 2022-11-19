@@ -20,7 +20,7 @@ module Admin
         @user = Shinonome::User.new(user_params)
 
         if @user.save
-          redirect_to admin_users_others_path, notice: '追加しました.'
+          redirect_to admin_users_others_path, success: '追加しました.'
         else
           @users = Shinonome::User.order(:id).all
           render :index, status: :unprocessable_entity
@@ -30,7 +30,7 @@ module Admin
       # PATCH/PUT /users/1
       def update
         if @user.update(user_params)
-          redirect_to admin_users_others_path, notice: '更新しました.'
+          redirect_to admin_users_others_path, success: '更新しました.'
         else
           render :edit, status: :unprocessable_entity
         end
@@ -38,8 +38,8 @@ module Admin
 
       # DELETE /users/1
       def destroy
-        @user.destroy
-        redirect_to admin_users_others_path, notice: '削除しました'
+        @user.destroy!
+        redirect_to admin_users_others_path, success: '削除しました'
       end
 
       protected

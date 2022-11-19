@@ -22,8 +22,6 @@ class Site < ApplicationRecord
   has_many :work_sites, dependent: :destroy
   has_many :works, through: :work_sites
 
-  accepts_nested_attributes_for :work_sites
-
   validates :name, :url, presence: true
 
   def self.csv_header

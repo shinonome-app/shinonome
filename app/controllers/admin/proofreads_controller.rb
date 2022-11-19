@@ -49,7 +49,7 @@ module Admin
 
       @proofread_form = Admin::ProofreadForm.new(proofread_form_params, proofread: proofread)
       if @proofread_form.save
-        redirect_to admin_proofreads_path, notice: '更新しました.'
+        redirect_to admin_proofreads_path, success: '更新しました.'
       else
         @worker, @worker_secret = @proofread_form.worker_and_worker_secret
         render 'admin/proofreads/edit', status: :unprocessable_entity
@@ -61,7 +61,7 @@ module Admin
       proofread = Proofread.find(params[:id])
       proofread.deleted_at = Time.zone.now
       proofread.save!
-      redirect_to admin_proofreads_url, notice: '削除しました.'
+      redirect_to admin_proofreads_url, success: '削除しました.'
     end
 
     private

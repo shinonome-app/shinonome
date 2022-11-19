@@ -16,9 +16,9 @@ module Admin
           # @proofreads.destroy!
           deleted_time = Time.zone.now
           @proofreads.update(deleted_at: deleted_time, updated_at: deleted_time)
-          redirect_to admin_proofreads_path, notice: '一括削除しました'
+          redirect_to admin_proofreads_path, success: '一括削除しました'
         rescue StandardError
-          redirect_to admin_proofreads_path, notice: '削除に失敗しました'
+          redirect_to admin_proofreads_path, alert: '削除に失敗しました'
         end
       end
     end
