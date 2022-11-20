@@ -48,12 +48,12 @@ Rails.application.routes.draw do
       resources :text_searches, only: %i[index]
     end
     resources :people do
-      resources :base_people, only: %i[new create edit update destroy]
+      resources :base_people, only: %i[new create destroy]
       namespace :base_people do
         resources :text_searches, only: %i[index]
       end
 
-      resources :person_sites, only: %i[new create edit update destroy]
+      resources :person_sites, only: %i[new create destroy]
       namespace :person_sites do
         resources :text_searches, only: %i[index]
       end
@@ -73,7 +73,7 @@ Rails.application.routes.draw do
       resources :original_books, only: %i[new edit create update destroy]
       resources :bibclasses
 
-      resources :work_workers, only: %i[new edit create update destroy]
+      resources :work_workers, only: %i[new create destroy]
       namespace :work_workers do
         resources :text_searches, only: %i[index]
       end
@@ -83,7 +83,7 @@ Rails.application.routes.draw do
         resources :text_searches, only: %i[index]
       end
 
-      resources :work_sites, only: %i[new create edit update destroy]
+      resources :work_sites, only: %i[new create destroy]
       namespace :work_sites do
         resources :text_searches, only: %i[index]
       end
