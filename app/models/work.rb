@@ -40,6 +40,8 @@
 #  fk_rails_...  (work_status_id => work_statuses.id)
 #
 
+# published_onは不要かも？
+
 require 'csv'
 
 # 作品
@@ -78,7 +80,7 @@ class Work < ApplicationRecord
   }
 
   scope :published, ->(date = Time.zone.today) { where('work_status_id = 1 AND published_on <= ?', date) }
-  scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) or published_on is null or published_on > ?', date) }
+  scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) or (work_status_id = 1 AND (published_on is NULL or published_on > ?))', date) }
   scope :not_proofread, -> { where('work_status_id in (5, 6)') }
 
   validates :title_kana, presence: true

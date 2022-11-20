@@ -11,4 +11,11 @@
 #
 
 class Role < ApplicationRecord
+  def author?
+    id == 1
+  end
+
+  def not_author?
+    id != 1
+  end
 end
