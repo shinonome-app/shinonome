@@ -45,11 +45,5 @@ class WorkPerson < ApplicationRecord
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end
 
-  def author?
-    role.author?
-  end
-
-  def not_author?
-    role.not_author?
-  end
+  delegate :author?, :not_author?, to: :role
 end

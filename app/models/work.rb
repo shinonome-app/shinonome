@@ -195,4 +195,8 @@ class Work < ApplicationRecord
   def updated_at_text
     updated_at.strftime('%Y年%m月%d日').gsub('年0', '年').gsub('月0', '月')
   end
+
+  def card_url
+    "https://www.aozora.gr.jp/cards/#{card_person_id}/card#{id}.html"
+  end
 end

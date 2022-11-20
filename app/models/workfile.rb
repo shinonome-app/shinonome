@@ -135,6 +135,10 @@ class Workfile < ApplicationRecord
     end
   end
 
+  def download_url
+    url.presence || "#{Rails.application.config.x.main_site_url}/cards/#{work.card_person_id}/files/#{filename}"
+  end
+
   private
 
   def set_filename
