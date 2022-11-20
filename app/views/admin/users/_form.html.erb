@@ -11,13 +11,13 @@
   <% end %>
   <div class="field">
     <%= form.label :username, "username" %>
-    <%= form.text_field :username %>
+    <%= form.text_field :username, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field">
     <%= form.label :email, "email" %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="actions">
-    <%= form.submit "更新" %>
+    <%= form.submit "更新", class: 'btn-normal py-2' %>
   </div>
 <% end %>

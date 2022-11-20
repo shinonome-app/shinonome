@@ -6,17 +6,17 @@
 
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full border border-gray-800 p-1" %>
   </div>
 
   <div class="field">
     <%= f.label :username %><br>
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: "w-full border border-gray-800 p-1" %>
   </div>
 
   <div class="field">
     <%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "w-full border border-gray-800 p-1" %>
     <% if @minimum_password_length %>
       <br>
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -25,12 +25,12 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full border border-gray-800 p-1" %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(確認のため現在のパスワードを入力してください)</i><br>
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full border border-gray-800 p-1" %>
   </div>
 
   <div class="actions">

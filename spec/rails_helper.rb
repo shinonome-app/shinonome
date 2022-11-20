@@ -65,11 +65,13 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.include FactoryBot::Syntax::Methods
+  config.include ActionDispatch::TestProcess::FixtureFile
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include RequestSpecHelper, type: :request
-  config.include FactoryBot::Syntax::Methods
-  config.include ActionDispatch::TestProcess::FixtureFile
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
 
   config.before(:suite) do
     Rails.application.load_seed # loading seeds
