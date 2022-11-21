@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #
 
+# 人物の役割
 class Role < ApplicationRecord
   def author?
     id == 1
