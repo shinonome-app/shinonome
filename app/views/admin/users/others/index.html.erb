@@ -14,19 +14,19 @@
     <% end %>
     <div class="field">
       <%= form.label :username, "ユーザー名" %>
-      <%= form.text_field :username %>
+      <%= form.text_field :username, class: "w-full border border-gray-800 p-1" %>
     </div>
     <div class="field">
       <%= form.label :email, "email" %>
-      <%= form.text_field :email %>
+      <%= form.text_field :email, class: "w-full border border-gray-800 p-1" %>
     </div>
     <div class="field">
       <%= form.label :password, "パスワード" %>
-      <%= form.text_field :password %>
+      <%= form.text_field :password, class: "w-full border border-gray-800 p-1" %>
     </div>
     <div class="field">
       <%= form.label :password_confirmation, "パスワード(確認用)" %>
-      <%= form.text_field :password_confirmation %>
+      <%= form.text_field :password_confirmation, class: "w-full border border-gray-800 p-1" %>
     </div>
     <div class="actions">
       <%= form.submit "登録", class: 'btn-normal' %>
