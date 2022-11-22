@@ -127,7 +127,7 @@ class CsvCreator
     Work.published.eager_load(:workers).eager_load(:people).eager_load(:original_books).order(:sortkey, :sortkey2, :id, 'people.sortkey').each do |work|
       copyright_text = work.copyright_flag ? 'あり' : 'なし'
 
-      orig_books = make_orig_books(work)
+      orig_books = make_original_books(work)
 
       text_file = work.workfiles.select { |workfile| workfile.filetype.text? }.first
       html_file = work.workfiles.select { |workfile| workfile.filetype.html? }.first
@@ -185,7 +185,7 @@ class CsvCreator
     end
   end
 
-  def make_orig_books(work)
+  def make_original_books(work)
     original_books = { teihon: [], oyahon: [] }
 
     work.original_books.order(:id).each do |original_book|
@@ -207,7 +207,7 @@ class CsvCreator
     File.open(to, 'wb:cp932') do |io_to|
       File.open(from, 'rb:BOM|utf-8') do |io_from|
         io_from.each_line do |line|
-          io_to.write(line.gsub(Shinonome::ExecCommand::BOM, '').encode('cp932'))
+          io_to.write(line.encode('cp932'))
         end
       end
     end
