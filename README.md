@@ -19,9 +19,9 @@ $ bin/rails s
 $ git clone https://github.com/takahashim/shinonome
 $ cd shinonome
 $ docker-compose build
-$ docker-compose run web rails db:create
-$ docker-compose run web rails db:migrate
-$ docker-compose run web rails db:seed USE_ALL_SEEDS=1
+$ docker-compose run app rails db:create
+$ docker-compose run app rails db:migrate
+$ docker-compose run app rails db:seed USE_ALL_SEEDS=1
 $ docker-compose up
 ```
 
