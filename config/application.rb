@@ -33,5 +33,6 @@ module Shinonome
     config.x.main_site_url = ENV.fetch('MAIN_SITE_URL', nil)
     config.x.site_name = ENV.fetch('SITE_NAME', 'Shinonome')
     config.x.csv_dir = ENV.fetch('CSV_DIR', Rails.public_path.join('csv'))
+    config.x.reception_email = ENV.fetch('RECEPTION_EMAIL', nil)
   end
 end
