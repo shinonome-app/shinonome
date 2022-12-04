@@ -3,7 +3,7 @@
   <!-- First Aside Menu -->
   <div class="bg-white rounded">
     <div class="border-b border-gray-200">
-      <div class="text-black font-light uppercase text-sm py-5 px-5">検索・登録</div>
+      <div class="text-black font-light uppercase text-sm py-5 px-5">登録</div>
     </div>
     <div>
       <%= link_to new_admin_work_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
@@ -13,23 +13,9 @@
       <% end %>
     </div>
     <div>
-      <%= link_to admin_works_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
-        <div class="text-gray-700">
-          <i class="icon ion-ios-person mr-2 text-gray-600 inline-block"></i>作品検索
-        </div>
-      <% end %>
-    </div>
-    <div>
       <%= link_to new_admin_person_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
-          <i class="icon ion-ios-briefcase mr-2 text-gray-600 inline-block"></i>人物新規登録
-        </div>
-      <% end %>
-    </div>
-    <div>
-      <%= link_to admin_people_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
-        <div class="text-gray-700">
-          <i class="icon ion-ios-basketball mr-2 text-gray-600 inline-block"></i>人物検索
+          <i class="icon ion-ios-person mr-2 text-gray-600 inline-block"></i>人物新規登録
         </div>
       <% end %>
     </div>
@@ -41,28 +27,48 @@
       <% end %>
     </div>
     <div>
-      <%= link_to admin_workers_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
+      <%= link_to new_admin_site_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
-          <i class="icon ion-ios-images mr-2 text-gray-600 inline-block"></i>工作員検索
+          <i class="icon ion-ios-browsers mr-2 text-gray-600 inline-block"></i>関連サイト新規登録
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- Second Aside Menu -->
+  <div class="mt-5 bg-white rounded">
+    <div class="border-b border-gray-200">
+      <div class="text-black font-light uppercase text-sm py-5 px-5">検索</div>
+    </div>
+    <div>
+      <%= link_to admin_works_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
+        <div class="text-gray-700">
+          <i class="icon ion-ios-paper mr-2 text-gray-600 inline-block"></i>作品検索
         </div>
       <% end %>
     </div>
     <div>
-      <%= link_to new_admin_site_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
+      <%= link_to admin_people_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
-          <i class="icon ion-ios-bicycle mr-2 text-gray-600 inline-block"></i>関連サイト新規登録
+          <i class="icon ion-ios-person mr-2 text-gray-600 inline-block"></i>人物検索
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to admin_workers_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
+        <div class="text-gray-700">
+          <i class="icon ion-ios-bicycle mr-2 text-gray-600 inline-block"></i>工作員検索
         </div>
       <% end %>
     </div>
     <div>
       <%= link_to admin_sites_path, class: "block py-3 px-5 hover:bg-gray-100" do %>
         <div class="text-gray-700">
-          <i class="icon ion-ios-images mr-2 text-gray-600 inline-block"></i>関連サイト検索
+          <i class="icon ion-ios-browsers mr-2 text-gray-600 inline-block"></i>関連サイト検索
         </div>
       <% end %>
     </div>
   </div>
-  <!-- Second Aside Menu -->
+  <!-- Third Aside Menu -->
   <div class="mt-5 bg-white rounded">
     <div class="border-b border-gray-200">
       <div class="text-black font-light uppercase text-sm py-5 px-5">
