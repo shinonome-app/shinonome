@@ -14,7 +14,6 @@
 #  note                  :text
 #  orig_text             :text
 #  original_title        :text
-#  published_on          :date
 #  sortkey               :text
 #  started_on            :date             not null
 #  subtitle              :text
@@ -79,8 +78,8 @@ class Work < ApplicationRecord
     end
   }
 
-  scope :published, ->(date = Time.zone.today) { where('work_status_id = 1 AND published_on <= ?', date) }
-  scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) or (work_status_id = 1 AND (published_on is NULL or published_on > ?))', date) }
+  scope :published, ->(date = Time.zone.today) { where('work_status_id = 1 AND started_on <= ?', date) }
+  scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) OR (work_status_id = 1 AND started_on > ?)', date) }
   scope :not_proofread, -> { where('work_status_id in (5, 6)') }
 
   validates :title_kana, presence: true
@@ -127,7 +126,7 @@ class Work < ApplicationRecord
   def self.latest_published(year: nil, until_date: Time.zone.today)
     year ||= until_date.year
 
-    Work.where('work_status_id = 1 AND published_on IS NOT NULL AND extract(year from published_on) = ? AND published_on <= ?', year, until_date)
+    Work.where('work_status_id = 1 AND started_on IS NOT NULL AND extract(year from started_on) = ? AND started_on <= ?', year, until_date)
   end
 
   def copyright?

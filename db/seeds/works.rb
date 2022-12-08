@@ -42,14 +42,11 @@ works = (1..5000).map do |n|
     started_on: started,
     note: note,
     copyright_flag: rand(100) <= 90,
-    published_on: nil,
     sortkey: "#{ch}さくひん#{n}",
     user_id: user_id_list.sample,
     created_at: created,
     updated_at: Time.current
   }
-
-  work[:published_on] = started if work[:work_status_id] == 1
 
   work
 end

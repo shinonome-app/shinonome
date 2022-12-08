@@ -7,7 +7,7 @@
 #  id          :bigint           not null, primary key
 #  command     :text
 #  executed_at :datetime
-#  result      :json
+#  result      :jsonb
 #  separator   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

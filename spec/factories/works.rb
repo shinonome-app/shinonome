@@ -14,7 +14,6 @@
 #  note                  :text
 #  orig_text             :text
 #  original_title        :text
-#  published_on          :date
 #  sortkey               :text
 #  started_on            :date             not null
 #  subtitle              :text
