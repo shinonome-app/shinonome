@@ -87,10 +87,6 @@ Rails.application.routes.draw do
       namespace :work_sites do
         resources :text_searches, only: %i[index]
       end
-
-      # resources :worker_assigns, only: %i[index new show]
-      get 'worker_assigns', to: 'works/worker_assigns#index', as: :worker_assigns
-      get 'worker_assigns/new', to: 'works/worker_assigns#new', as: :new_worker_assign
     end
 
     namespace :sites do
