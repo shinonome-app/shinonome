@@ -30,8 +30,8 @@
     <%= form.text_field :proof_edition, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-1">
-    <%= form.label :worktype_id %>
-    <%= form.collection_select :worktype_id, Worktype.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'w-full border border-gray-800 p-1' } %>
+    <%= form.label :booktype_id %>
+    <%= form.collection_select :booktype_id, Booktype.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'w-full border border-gray-800 p-1' } %>
   </div>
   <div class="field py-1">
     <%= form.label :note %>

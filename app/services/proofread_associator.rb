@@ -24,9 +24,9 @@ class ProofreadAssociator
     Result.new(associated: false)
   end
 
-  def update_original_book!(proofread_form, work, worktype_id)
-    original_book = OriginalBook.find_by(work_id: work.id, worktype_id: worktype_id)
-    case worktype_id
+  def update_original_book!(proofread_form, work, booktype_id)
+    original_book = OriginalBook.find_by(work_id: work.id, booktype_id: booktype_id)
+    case booktype_id
     when 1
       original_book.title = proofread_form.original_book_title
       original_book.publisher = proofread_form.publisher

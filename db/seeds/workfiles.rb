@@ -60,9 +60,9 @@ end
 
 def generate_footer(work)
   buf = ''.dup
-  work.original_books.order(:worktype_id).each do |original_book|
-    worktype = original_book.worktype.name
-    buf << "#{worktype}：「#{original_book.title}」#{original_book.publisher}\n"
+  work.original_books.order(:booktype_id).each do |original_book|
+    booktype = original_book.booktype.name
+    buf << "#{booktype}：「#{original_book.title}」#{original_book.publisher}\n"
     buf << "　　　#{original_book.first_pubdate}#{original_book.input_edition}発行\n"
   end
   buf << if work.inputer_text.blank?

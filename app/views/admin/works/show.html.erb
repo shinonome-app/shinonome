@@ -284,9 +284,9 @@
   <h2 class="text-2xl py-4">底本データ</h2>
 
   <div>
-  <% @work.original_books.order(%i[worktype_id id]).each do |original_book| %>
+  <% @work.original_books.order(%i[booktype_id id]).each do |original_book| %>
 
-  <h3 class="text-xl py-2"><%= original_book.worktype.name %></h3>
+  <h3 class="text-xl py-2"><%= original_book.booktype.name %></h3>
 
   <table class="bg-gray-100 my-2 w-full">
     <tr>

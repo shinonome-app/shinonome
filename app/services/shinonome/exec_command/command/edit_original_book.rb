@@ -8,17 +8,17 @@ module Shinonome
         def execute(command)
           raise ArgumentError, I18n.t('errors.exec_command.invalid_argument_number') if command.body.size > 8
 
-          work_id, title, publisher, first_pubdate, input_edition, proof_edition, worktype_name, note = command.body
+          work_id, title, publisher, first_pubdate, input_edition, proof_edition, booktype_name, note = command.body
 
           work = find_work!(work_id)
-          worktype = find_worktype_by_name!(worktype_name)
+          booktype = find_booktype_by_name!(booktype_name)
 
           update_values = {
             first_pubdate: first_pubdate,
             input_edition: input_edition,
             note: note,
             proof_edition: proof_edition,
-            worktype_id: worktype.id
+            booktype_id: booktype.id
           }
 
           update_values.reject! { |_, val| val == '' }

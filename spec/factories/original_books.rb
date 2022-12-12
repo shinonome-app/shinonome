@@ -14,17 +14,17 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  work_id       :bigint
-#  worktype_id   :bigint
+#  booktype_id   :bigint
 #
 # Indexes
 #
 #  index_original_books_on_work_id      (work_id)
-#  index_original_books_on_worktype_id  (worktype_id)
+#  index_original_books_on_booktype_id  (booktype_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (work_id => works.id)
-#  fk_rails_...  (worktype_id => worktypes.id)
+#  fk_rails_...  (booktype_id => booktypes.id)
 #
 
 FactoryBot.define do
@@ -35,7 +35,7 @@ FactoryBot.define do
     first_pubdate { "初出年月日#{work.id}" }
     input_edition { "入力使用版#{work.id}" }
     proof_edition { "校正使用版#{work.id}" }
-    worktype_id { 1 }
+    booktype_id { 1 }
     note { "備考#{work.id}" }
   end
 end

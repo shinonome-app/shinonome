@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: worktypes
+# Table name: booktypes
 #
 #  id         :bigint           not null, primary key
 #  name       :text             not null
@@ -11,7 +11,7 @@
 #
 
 FactoryBot.define do
-  factory :worktype do
+  factory :booktype do
     name { 'MyString' }
   end
 end

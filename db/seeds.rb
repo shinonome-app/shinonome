@@ -121,14 +121,14 @@ work_statuses.each_line do |line|
   WorkStatus.create!(id: rows[0].to_i, name: rows[1], sort_order: rows[2].to_i)
 end
 
-worktypes = {
+booktypes = {
   1 => '底本',
   2 => '底本の親本'
 }
 
-# Worktype.connection.execute('TRUNCATE TABLE worktypes;')
-worktypes.each do |k, v|
-  Worktype.create!(id: k, name: v)
+# Booktype.connection.execute('TRUNCATE TABLE booktypes;')
+booktypes.each do |k, v|
+  Booktype.create!(id: k, name: v)
 end
 
 ## 人物（著者なし）を追加

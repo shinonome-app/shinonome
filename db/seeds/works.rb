@@ -143,7 +143,7 @@ original_books = work_id_list.map do |n|
     proof_edition: "校正使用版#{n}",
     publisher: "底本出版社#{n}",
     note: "底本備考#{n}",
-    worktype_id: 1,
+    booktype_id: 1,
     created_at: Time.current,
     updated_at: Time.current
   }
@@ -160,7 +160,7 @@ work_id_list.each do |n|
     proof_edition: "校正使用版#{n}",
     publisher: "親本出版社#{n}",
     note: "底本の親本備考#{n}",
-    worktype_id: 2,
+    booktype_id: 2,
     created_at: Time.current,
     updated_at: Time.current
   }

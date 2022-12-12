@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe Shinonome::ExecCommand::Command::GetOriginalBook do
   describe '.execute' do
     before do
-      create(:original_book, worktype_id: 1)
-      create(:original_book, worktype_id: 2)
+      create(:original_book, booktype_id: 1)
+      create(:original_book, booktype_id: 2)
     end
 
     it '正しいCSVが生成される' do

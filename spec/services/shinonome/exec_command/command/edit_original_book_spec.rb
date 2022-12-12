@@ -19,7 +19,7 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
     end
 
     before do
-      create(:original_book, work: work, worktype_id: 1, title: '底本タイトル', publisher: '底本出版社')
+      create(:original_book, work: work, booktype_id: 1, title: '底本タイトル', publisher: '底本出版社')
     end
 
     context '正しい引数を与えた場合' do
@@ -77,7 +77,7 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
 
         last_original_book = OriginalBook.last
         expect(last_original_book.title).to eq '底本タイトル'
-        expect(last_original_book.worktype.name).to eq '底本の親本'
+        expect(last_original_book.booktype.name).to eq '底本の親本'
         expect(last_original_book.note).to eq '備考1'
       end
     end
@@ -95,7 +95,7 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
 
         last_original_book = OriginalBook.last
         expect(last_original_book.title).to eq '底本タイトル'
-        expect(last_original_book.worktype.name).to eq '底本'
+        expect(last_original_book.booktype.name).to eq '底本'
         expect(last_original_book.note).to eq "備考#{work.id}"
       end
     end

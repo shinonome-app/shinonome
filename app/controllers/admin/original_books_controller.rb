@@ -53,7 +53,7 @@ module Admin
     # Only allow a list of trusted parameters through.
     def original_book_params
       params.require(:original_book).permit(:work_id, :title, :publisher, :first_pubdate, :input_edition,
-                                            :proof_edition, :worktype_id, :note)
+                                            :proof_edition, :booktype_id, :note)
     end
   end
 end

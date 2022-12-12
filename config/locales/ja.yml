@@ -111,8 +111,8 @@ ja:
         first_pubdate: "初版発行年月日"
         input_edition: "入力に使用した版"
         proof_edition: "校正に使用した版"
-        worktype_id: "種別フラグ"
-        worktype: "種別フラグ"
+        booktype_id: "種別フラグ"
+        booktype: "種別フラグ"
         note: "備考"
       person:
         id: "人物ID"
@@ -286,7 +286,7 @@ ja:
       worker_id_numeric: "工作員IDが数値ではありません。"
       worker_not_found: "対象の工作員ID%{work_id}が見つかりません。"
       worker_role_invalid: "役割フラグには%{worker_roles}を指定してください。"
-      worktype_invalid: "種別フラグには%{worktypes}を指定してください。"
+      booktype_invalid: "種別フラグには%{booktypes}を指定してください。"
   admin_mailer:
     order_receipt:
       subject: "「%{title}」入力のお願い"

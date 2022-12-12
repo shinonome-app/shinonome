@@ -14,17 +14,17 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  work_id       :bigint
-#  worktype_id   :bigint
+#  booktype_id   :bigint
 #
 # Indexes
 #
 #  index_original_books_on_work_id      (work_id)
-#  index_original_books_on_worktype_id  (worktype_id)
+#  index_original_books_on_booktype_id  (booktype_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (work_id => works.id)
-#  fk_rails_...  (worktype_id => worktypes.id)
+#  fk_rails_...  (booktype_id => booktypes.id)
 #
 
 require 'rails_helper'

@@ -168,7 +168,7 @@ class Work < ApplicationRecord
   end
 
   def first_teihon
-    original_books.where(worktype: 1).first
+    original_books.where(booktype: 1).first
   end
 
   def author_text

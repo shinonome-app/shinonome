@@ -23,7 +23,7 @@ RSpec.describe '/original_books', type: :request do
       publisher: '底本社',
       first_pubdate: '1998（平成10）年2月3日',
       input_edition: '1998（平成10）年2月3日第1刷',
-      worktype_id: worktype.id,
+      booktype_id: booktype.id,
       work_id: work.id,
       note: '備考'
     }
@@ -37,7 +37,7 @@ RSpec.describe '/original_books', type: :request do
 
   let(:work) { create(:work) }
   let(:user) { create(:user) }
-  let(:worktype) { Worktype.first }
+  let(:booktype) { Booktype.first }
 
   before { sign_in(user) }
 

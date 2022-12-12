@@ -70,12 +70,12 @@ class ReceiptAssociator
     Result.new(associated: false)
   end
 
-  def add_original_book!(receipt_form, work, worktype_id)
-    case worktype_id
+  def add_original_book!(receipt_form, work, booktype_id)
+    case booktype_id
     when 1
       OriginalBook.create!(
         work_id: work.id,
-        worktype_id: worktype_id,
+        booktype_id: booktype_id,
         title: receipt_form.original_book_title,
         publisher: receipt_form.publisher,
         first_pubdate: receipt_form.first_pubdate,
@@ -84,7 +84,7 @@ class ReceiptAssociator
     when 2
       OriginalBook.create!(
         work_id: work.id,
-        worktype_id: worktype_id,
+        booktype_id: booktype_id,
         title: receipt_form.original_book_title2,
         publisher: receipt_form.publisher2,
         first_pubdate: receipt_form.first_pubdate2,

@@ -132,12 +132,12 @@ module Shinonome
           work_status
         end
 
-        def find_worktype_by_name!(worktype_name)
-          worktypes = Worktype.order(:id).pluck(:name)
-          worktype = Worktype.where(name: worktype_name).first
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worktype_invalid', worktypes: %("#{worktypes.join('"か"')}")) unless worktype
+        def find_booktype_by_name!(booktype_name)
+          booktypes = Booktype.order(:id).pluck(:name)
+          booktype = Booktype.where(name: booktype_name).first
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.booktype_invalid', booktypes: %("#{booktypes.join('"か"')}")) unless booktype
 
-          worktype
+          booktype
         end
 
         def find_role_by_name!(role_name)

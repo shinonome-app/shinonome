@@ -8,10 +8,10 @@ module Shinonome
         def execute(command)
           raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.invalid_argument_number') if command.body.size > 8
 
-          work_id, title, publisher, first_pubdate, input_edition, proof_edition, worktype_name, note = command.body
+          work_id, title, publisher, first_pubdate, input_edition, proof_edition, booktype_name, note = command.body
 
           work = find_work!(work_id)
-          worktype = find_worktype_by_name!(worktype_name)
+          booktype = find_booktype_by_name!(booktype_name)
 
           original_book = OriginalBook.create!(work_id: work.id,
                                                first_pubdate: first_pubdate,
@@ -20,7 +20,7 @@ module Shinonome
                                                proof_edition: proof_edition,
                                                publisher: publisher,
                                                title: title,
-                                               worktype_id: worktype.id)
+                                               booktype_id: booktype.id)
 
           Result.new(executed: true, command_result: original_book)
         end

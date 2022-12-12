@@ -9,7 +9,7 @@ class CreateOriginalBooks < ActiveRecord::Migration[6.1]
       t.text :first_pubdate
       t.text :input_edition
       t.text :proof_edition
-      t.references :worktype, foreign_key: true
+      t.references :booktype, foreign_key: true
       t.text :note
 
       t.timestamps

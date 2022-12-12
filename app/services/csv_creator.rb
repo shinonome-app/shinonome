@@ -51,7 +51,7 @@ class CsvCreator
 
     Work.unpublished.eager_load(:workers).eager_load(:people).eager_load(:original_books).order(:sortkey, :sortkey2, :id, 'people.sortkey').each do |work|
       not_author_text = not_author_names(work)
-      original_book = work.original_books.where(worktype_id: 1).order(:id).first
+      original_book = work.original_books.where(booktype_id: 1).order(:id).first
       original_book_text = original_book&.title
       publisher_text = original_book&.publisher
       input_edition_text = original_book&.input_edition
@@ -88,7 +88,7 @@ class CsvCreator
 
     Work.published.eager_load(:workers).eager_load(:people).eager_load(:original_books).order(:sortkey, :sortkey2, :id, 'people.sortkey').each do |work|
       not_author_text = not_author_names(work)
-      original_book = work.original_books.where(worktype_id: 1).order(:id).first
+      original_book = work.original_books.where(booktype_id: 1).order(:id).first
       original_book_text = original_book&.title
       publisher_text = original_book&.publisher
       input_edition_text = original_book&.input_edition
@@ -189,7 +189,7 @@ class CsvCreator
     original_books = { teihon: [], oyahon: [] }
 
     work.original_books.order(:id).each do |original_book|
-      if original_book.worktype_id == 1
+      if original_book.booktype_id == 1
         original_books[:teihon] << original_book
       else
         original_books[:oyahon] << original_book

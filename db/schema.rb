@@ -71,6 +71,12 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "booktypes", force: :cascade do |t|
+    t.text "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "charsets", force: :cascade do |t|
     t.text "name", null: false
     t.datetime "created_at", null: false
@@ -129,12 +135,12 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "first_pubdate"
     t.text "input_edition"
     t.text "proof_edition"
-    t.bigint "worktype_id"
+    t.bigint "booktype_id"
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["booktype_id"], name: "index_original_books_on_booktype_id"
     t.index ["work_id"], name: "index_original_books_on_work_id"
-    t.index ["worktype_id"], name: "index_original_books_on_worktype_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -387,18 +393,12 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.index ["work_status_id"], name: "index_works_on_work_status_id"
   end
 
-  create_table "worktypes", force: :cascade do |t|
-    t.text "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "base_people", "people"
   add_foreign_key "base_people", "people", column: "original_person_id"
+  add_foreign_key "original_books", "booktypes"
   add_foreign_key "original_books", "works"
-  add_foreign_key "original_books", "worktypes"
   add_foreign_key "person_sites", "people"
   add_foreign_key "person_sites", "sites"
   add_foreign_key "proofreads", "people"

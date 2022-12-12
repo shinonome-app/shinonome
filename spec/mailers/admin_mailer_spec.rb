@@ -8,7 +8,7 @@ RSpec.describe AdminMailer, type: :mailer do
     let(:worker) { worker_secret.worker }
     let(:receipt) do
       create(:receipt, :work, worker: worker) do |receipt|
-        create(:original_book, work: receipt.work, worktype_id: 1)
+        create(:original_book, work: receipt.work, booktype_id: 1)
       end
     end
     let(:mail) { described_class.order_receipt(receipt) }

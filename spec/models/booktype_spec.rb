@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: worktypes
+# Table name: booktypes
 #
 #  id         :bigint           not null, primary key
 #  name       :text             not null
@@ -12,6 +12,6 @@
 
 require 'rails_helper'
 
-RSpec.describe Worktype, type: :model do
+RSpec.describe Booktype, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -14,23 +14,23 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  work_id       :bigint
-#  worktype_id   :bigint
+#  booktype_id   :bigint
 #
 # Indexes
 #
 #  index_original_books_on_work_id      (work_id)
-#  index_original_books_on_worktype_id  (worktype_id)
+#  index_original_books_on_booktype_id  (booktype_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (work_id => works.id)
-#  fk_rails_...  (worktype_id => worktypes.id)
+#  fk_rails_...  (booktype_id => booktypes.id)
 #
 
 # 底本
 class OriginalBook < ApplicationRecord
   belongs_to :work
-  belongs_to :worktype
+  belongs_to :booktype
 
   validates :title, presence: true
 
@@ -39,7 +39,7 @@ class OriginalBook < ApplicationRecord
   end
 
   def to_csv
-    array = [work_id, title, publisher, first_pubdate, input_edition, proof_edition, worktype.name, note]
+    array = [work_id, title, publisher, first_pubdate, input_edition, proof_edition, booktype.name, note]
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end
