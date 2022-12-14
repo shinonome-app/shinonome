@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Receipts::Thanks', type: :request do
+RSpec.describe 'Receipts::Thanks' do
   describe 'GET /receipts/thanks/' do
     it 'returns http success' do
       get '/receipts/thanks/'

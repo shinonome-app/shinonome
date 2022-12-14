@@ -13,7 +13,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Compresstype, type: :model do
+RSpec.describe Compresstype do
   describe 'compressed?' do
     it 'none' do
       expect(Compresstype.find(1).compressed?).to eq false

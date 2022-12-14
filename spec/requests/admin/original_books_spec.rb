@@ -14,7 +14,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/original_books', type: :request do
+RSpec.describe '/original_books' do
   # OriginalBook. As you add validations to OriginalBook, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do

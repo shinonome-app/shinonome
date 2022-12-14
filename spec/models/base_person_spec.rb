@@ -23,7 +23,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BasePerson, type: :model do
+RSpec.describe BasePerson do
   describe 'validation' do
     let(:base_person) { create(:base_person) }
     let(:person) { create(:person) }

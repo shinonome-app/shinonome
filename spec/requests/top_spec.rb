@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Tops', type: :request do
+RSpec.describe 'Tops' do
   describe 'GET /index' do
     it 'returns http success' do
       get '/'

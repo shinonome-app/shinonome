@@ -24,6 +24,6 @@
 
 require 'rails_helper'
 
-RSpec.describe WorkSite, type: :model do
+RSpec.describe WorkSite do
   pending "add some examples to (or delete) #{__FILE__}"
 end

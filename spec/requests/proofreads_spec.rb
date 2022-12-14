@@ -14,7 +14,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/proofreads', type: :request do
+RSpec.describe '/proofreads' do
   # Proofread. As you add validations to Proofread, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
@@ -26,7 +26,7 @@ RSpec.describe '/proofreads', type: :request do
   end
 
   describe 'GET /index' do
-    xit 'renders a successful response' do
+    it 'renders a successful response' do
       Proofread.create! valid_attributes
       get proofreads_url
       expect(response).to be_successful
@@ -34,7 +34,7 @@ RSpec.describe '/proofreads', type: :request do
   end
 
   describe 'GET /show' do
-    xit 'renders a successful response' do
+    it 'renders a successful response' do
       proofread = Proofread.create! valid_attributes
       get proofread_url(proofread)
       expect(response).to be_successful

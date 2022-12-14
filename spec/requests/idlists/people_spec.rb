@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Idlists::People', type: :request do
+RSpec.describe 'Idlists::People' do
   describe 'GET /idlists/people/' do
     it 'returns http success' do
       get '/idlists/people/'

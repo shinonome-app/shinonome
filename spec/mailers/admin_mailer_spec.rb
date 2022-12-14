@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AdminMailer, type: :mailer do
+RSpec.describe AdminMailer do
   describe 'order_receipt' do
     let(:worker_secret) { create(:worker_secret, email: 'to@example.com') }
     let(:worker) { worker_secret.worker }

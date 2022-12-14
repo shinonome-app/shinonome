@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Users::Others', type: :request do
+RSpec.describe 'Admin::Users::Others' do
   let(:valid_attributes) do
     {
       username: 'user3',

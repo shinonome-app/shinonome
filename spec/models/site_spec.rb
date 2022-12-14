@@ -17,6 +17,6 @@
 
 require 'rails_helper'
 
-RSpec.describe Site, type: :model do
+RSpec.describe Site do
   pending "add some examples to (or delete) #{__FILE__}"
 end

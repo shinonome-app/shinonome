@@ -29,6 +29,6 @@
 
 require 'rails_helper'
 
-RSpec.describe OriginalBook, type: :model do
+RSpec.describe OriginalBook do
   pending "add some examples to (or delete) #{__FILE__}"
 end

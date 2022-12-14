@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Works::CreatorIndexSearches', type: :request do
+RSpec.describe 'Admin::Works::CreatorIndexSearches' do
   before { sign_in(user) }
 
   let(:user) { create(:user) }

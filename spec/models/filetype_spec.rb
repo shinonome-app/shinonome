@@ -13,7 +13,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Filetype, type: :model do
+RSpec.describe Filetype do
   describe 'html?' do
     it '正しい結果を返す' do
       expect(Filetype.find(1).html?).to eq false

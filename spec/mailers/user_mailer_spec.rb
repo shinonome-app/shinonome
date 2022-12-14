@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserMailer, type: :mailer do
+RSpec.describe UserMailer do
   describe 'register_receipt' do
     let(:receipt) { create(:receipt) }
     let(:sub_works) do

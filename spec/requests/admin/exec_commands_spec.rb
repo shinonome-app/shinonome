@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::ExecCommands', type: :request do
+RSpec.describe 'Admin::ExecCommands' do
   let(:user) { create(:user) }
 
   describe 'GET /' do

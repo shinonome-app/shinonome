@@ -23,6 +23,6 @@
 
 require 'rails_helper'
 
-RSpec.describe Shinonome::User, type: :model do
+RSpec.describe Shinonome::User do
   pending "add some examples to (or delete) #{__FILE__}"
 end

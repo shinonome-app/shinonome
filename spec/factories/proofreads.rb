@@ -37,19 +37,19 @@
 
 FactoryBot.define do
   factory :proofread do
-    work_id { 1 }
+    work
     work_copy { 'MyText' }
     work_print { 'MyText' }
     proof_edition { 'MyText' }
-    workfile_id { 1 }
+    workfile
     address { 'MyText' }
     memo { 'MyText' }
-    worker_id { 1 }
+    worker
     worker_kana { 'MyText' }
     worker_name { 'MyText' }
     email { 'MyText' }
     url { 'MyText' }
-    person_id { 1 }
+    person
     assign_status { 'MyText' }
     order_status { 'MyText' }
   end

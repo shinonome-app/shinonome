@@ -14,7 +14,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/admin/workers', type: :request do
+RSpec.describe '/admin/workers' do
   # Worker. As you add validations to Worker, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do

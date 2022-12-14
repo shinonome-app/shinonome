@@ -39,7 +39,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Workfile, type: :model do
+RSpec.describe Workfile do
   describe '#using_ruby?' do
     let(:workfile) { create(:workfile, :xhtml) }
 

@@ -15,6 +15,6 @@
 
 require 'rails_helper'
 
-RSpec.describe NewsEntry, type: :model do
+RSpec.describe NewsEntry do
   pending "add some examples to (or delete) #{__FILE__}"
 end

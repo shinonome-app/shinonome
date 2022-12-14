@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Works::StatusSearches', type: :request do
+RSpec.describe 'Admin::Works::StatusSearches' do
   before { sign_in(user) }
 
   let(:user) { create(:user) }

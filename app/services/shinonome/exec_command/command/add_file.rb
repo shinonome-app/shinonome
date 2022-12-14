@@ -26,7 +26,7 @@ module Shinonome
           charset = find_charset_by_name!(charset_name)
 
           if url.blank?
-            if filename.blank? # rubocop:disable Style/GuardClause
+            if filename.blank?
               raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.filename_url_blank')
             elsif !File.exist?(File.join(upload_dir, filename))
               raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.file_not_uploaded')
