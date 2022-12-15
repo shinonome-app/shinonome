@@ -76,19 +76,19 @@
 </table>
 
   <div class="flex py-2">
-    <%= link_to '更新', edit_admin_person_path(@person), class: "btn-normal" %>
-    <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-normal bg-red-300" %>
+    <%= link_to '更新', edit_admin_person_path(@person), class: "btn-admin-normal" %>
+    <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-admin-danger bg-red-300" %>
   </div><div>
 <h3 class="text-xl">人物基本名</h3>
 
   <% if @person.original_person %>
   <div class="py-4">
     <%= @person.original_person.name %>
-    <%= button_to '削除', [:admin, @person, @person.base_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }, class: 'inline-block' }, class: "btn-normal bg-red-300" %>
+    <%= button_to '削除', [:admin, @person, @person.base_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }, class: 'inline-block' }, class: "btn-admin-danger bg-red-300" %>
   </div>
   <% else %>
   <div class="py-4">
-    <%= link_to '関連づけ', new_admin_person_base_person_path(@person), class: "btn-normal" %>
+    <%= link_to '関連づけ', new_admin_person_base_person_path(@person), class: "btn-admin-normal" %>
   </div>
   <% end %>
 
@@ -113,13 +113,13 @@
           <td><%= person_site.site.owner_name %></td>
         </tr>
       </table>
-      <%= button_to '削除', [:admin, @person, person_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-normal bg-red-300" %>
+      <%= button_to '削除', [:admin, @person, person_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-admin-danger bg-red-300" %>
     </div>
   <% end %>
   </div>
   <% else %>
   <div class="py-4">
-    <%= link_to '関連づけ', new_admin_person_person_site_path(@person), class: "btn-normal" %>
+    <%= link_to '関連づけ', new_admin_person_person_site_path(@person), class: "btn-admin-normal" %>
   </div>
   <% end %>
 

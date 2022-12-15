@@ -143,7 +143,7 @@
 
     <hr class="border-1 my-4">
 
-    <%= form.submit '登録', class: "btn-normal" %>
+    <%= form.submit '登録', class: "btn-admin-normal" %>
     <%= form.submit '戻る', formaction: admin_receipts_path, formmethod: :get, class: "btn-normal" %>
-    <%= form.submit '削除', class: "btn-normal", formaction: admin_receipt_path, formmethod: :delete %>
+    <%= form.submit '削除', class: "btn-admin-danger", formaction: admin_receipt_path, formmethod: :delete %>
 <% end %>

@@ -54,7 +54,7 @@
 <h2 class="text-xl py-2">一括削除</h2>
 
 <%= form_with(url: admin_proofreads_bulk_removes_path, method: :post, data: { turbo_confirm: '本当に一括削除しますか？' }) do |form| %>
-<%= form.submit '一括削除する', class: "btn-normal" %>
+<%= form.submit '一括削除する', class: "btn-admin-danger" %>
 <% end %>
 
 </div>

@@ -13,7 +13,7 @@
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "原題", name: "original_title")) %>
     <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品について", name: "description")) %>
   </table>
-    <input type="submit" name="text" value="検索" class="btn-normal">
+    <input type="submit" name="text" value="検索" class="btn-admin-normal">
   <% end %>
 
   <h2 class="text-2xl py-4">作品50音順インデックス</h2>
@@ -42,7 +42,7 @@
   <h2 class="text-2xl py-4">著者不明作品検索</h2>
   <%= form_with(url: admin_works_unknown_creator_searches_path, method: 'get') do |form| %>
   <div class="flex">
-    <input type="submit" name="creator" value="検索" class="btn-normal">
+    <input type="submit" name="creator" value="検索" class="btn-admin-normal">
   </div>
   <% end %>
 

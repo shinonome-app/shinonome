@@ -16,7 +16,10 @@
         @apply p-1 bg-red-300 table w-full;
     }
     .btn-admin-normal {
-        @apply w-full inline-flex justify-center rounded-md px-12 py-2 bg-blue-500 text-white hover:text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm;
+        @apply bg-blue-500 text-white text-center hover:text-white hover:bg-blue-700 px-8 py-2 rounded;
+    }
+    .btn-admin-danger {
+        @apply bg-red-400 hover:bg-red-700 text-gray-900 hover:text-white px-8 py-2 text-center border border-red-800 hover:border-transparent rounded;
     }
 
     /** rails form **/

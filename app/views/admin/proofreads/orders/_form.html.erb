@@ -122,8 +122,8 @@
       <%= form.label :cc_flag, "青空文庫にCCする" %>
     </div>
 
-    <%= form.submit '送付', class: "btn-normal" %>
+    <%= form.submit '送付', class: "btn-admin-normal" %>
     <%= form.submit '戻る', formaction: admin_proofreads_path, formmethod: :get, class: "btn-normal" %>
 <% end %>
 
-<%= button_to '削除', admin_proofread_path(proofread), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか？' } }, class: "btn-normal bg-red-300" %>
+<%= button_to '削除', admin_proofread_path(proofread), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか？' } }, class: "btn-admin-danger" %>

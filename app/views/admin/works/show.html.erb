@@ -134,8 +134,8 @@
   </table>
 
   <div class="py-2">
-  <%= link_to '更新', edit_admin_work_path(@work), class: 'btn-normal' %>
-  <%= link_to '削除', [:admin, @work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-normal' %>
+  <%= link_to '更新', edit_admin_work_path(@work), class: 'btn-admin-normal' %>
+  <%= link_to '削除', [:admin, @work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
   </div>
 
@@ -216,13 +216,13 @@
   </table>
 
   <div class="py-2">
-    <%= button_to '削除', [:admin, @work, work_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-normal' %>
+    <%= button_to '削除', [:admin, @work, work_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
 
   <% end %>
 
   <div class="py-4">
-    <%= link_to '人物関連づけ', new_admin_work_work_person_path(@work), class: "btn-normal" %>
+    <%= link_to '人物関連づけ', new_admin_work_work_person_path(@work), class: "btn-admin-normal" %>
   </div>
   </div>
 
@@ -272,13 +272,13 @@
   </table>
 
   <div class="py-2">
-    <%= button_to '削除', [:admin, @work, work_worker], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-normal' %>
+    <%= button_to '削除', [:admin, @work, work_worker], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
   <% end %>
   </div>
 
   <div class="py-4">
-    <%= link_to '工作員関連づけ', new_admin_work_work_worker_path(@work), class: 'btn-normal' %>
+    <%= link_to '工作員関連づけ', new_admin_work_work_worker_path(@work), class: 'btn-admin-normal' %>
   </div>
 
   <h2 class="text-2xl py-4">底本データ</h2>
@@ -316,14 +316,14 @@
   </table>
 
   <div class="py-4">
-  <%= link_to '更新', edit_admin_work_original_book_path(@work, original_book), class: 'btn-normal' %>
-  <%= button_to '削除', [:admin, @work, original_book], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }, class: 'inline-block' }, class: 'btn-normal' %>
+  <%= link_to '更新', edit_admin_work_original_book_path(@work, original_book), class: 'btn-admin-normal' %>
+  <%= button_to '削除', [:admin, @work, original_book], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }, class: 'inline-block' }, class: 'btn-admin-danger' %>
   </div>
   <% end %>
   </div>
 
   <div class="py-4">
-    <%= link_to '底本/底本の親本追加', new_admin_work_original_book_path(work_id: params[:id]), class: 'btn-normal' %>
+    <%= link_to '底本/底本の親本追加', new_admin_work_original_book_path(work_id: params[:id]), class: 'btn-admin-normal' %>
   </div>
 
   <h2 class="text-2xl py-4">分類番号データ</h2>
@@ -349,14 +349,14 @@
   </table>
 
   <div class="py-4">
-    <%= link_to '更新', edit_admin_work_bibclass_path(bibclass.work, bibclass), class: 'btn-normal' %>
-    <%= link_to '削除', [:admin, bibclass.work, bibclass], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-normal' %>
+    <%= link_to '更新', edit_admin_work_bibclass_path(bibclass.work, bibclass), class: 'btn-admin-normal' %>
+    <%= link_to '削除', [:admin, bibclass.work, bibclass], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
 
   <% end %>
 
   <div class="py-4">
-    <%= link_to '分類番号追加', new_admin_work_bibclass_path(params[:id]), class: 'btn-normal' %>
+    <%= link_to '分類番号追加', new_admin_work_bibclass_path(params[:id]), class: 'btn-admin-normal' %>
   </div>
 
   <h2 class="text-2xl py-4">ファイル</h2>
@@ -411,14 +411,14 @@
   </table>
 
   <div class="py-4">
-    <%= link_to '更新', edit_admin_work_workfile_path(workfile.work, workfile), class: 'btn-normal' %>
-    <%= link_to '削除', [:admin, workfile.work, workfile], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-normal' %>
+    <%= link_to '更新', edit_admin_work_workfile_path(workfile.work, workfile), class: 'btn-admin-normal' %>
+    <%= link_to '削除', [:admin, workfile.work, workfile], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
   <% end %>
   </div>
 
   <div class="py-4">
-    <%= link_to 'ファイル追加', new_admin_work_workfile_path(params[:id]), class: 'btn-normal' %>
+    <%= link_to 'ファイル追加', new_admin_work_workfile_path(params[:id]), class: 'btn-admin-normal' %>
   </div>
 
   <div>
@@ -447,14 +447,14 @@
   </table>
 
   <div class="py-4">
-    <%= button_to '削除', [:admin, @work, work_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-normal' %>
+    <%= button_to '削除', [:admin, @work, work_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
 
   <% end %>
   </div>
 
   <div class="py-4">
-    <%= link_to '関連サイト関連づけ', new_admin_work_work_site_path(params[:id]), class: 'btn-normal' %>
+    <%= link_to '関連サイト関連づけ', new_admin_work_work_site_path(params[:id]), class: 'btn-admin-normal' %>
   </div>
   </div>
 

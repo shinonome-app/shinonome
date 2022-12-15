@@ -10,7 +10,7 @@
   <p>管理者を削除します。この操作は戻せません。</p>
 
   <div class="field py-2">
-    <%= button_to '削除', admin_users_other_path(@user), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-normal py-2' %>
+    <%= button_to '削除', admin_users_other_path(@user), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger py-2' %>
   </div>
 
 </div>

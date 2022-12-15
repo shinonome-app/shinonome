@@ -18,7 +18,7 @@
           <td class="px-2">
             <%= form_with(model: [:admin, @work, @work.work_sites.build], method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :site_id, value: site.id %>
-            <%= form.submit '関連づける', class: 'btn-normal' %>
+            <%= form.submit '関連づける', class: 'btn-admin-normal' %>
             <% end %>
           </td>
         </tr>

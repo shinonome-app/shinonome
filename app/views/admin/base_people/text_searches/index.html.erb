@@ -37,7 +37,7 @@
           <td class="px-2">
             <%= form_with(model: [:admin, @person, @person.build_base_person], method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :original_person_id, value: base_person.id %>
-            <%= form.submit '関連づける', class: 'btn-normal' %>
+            <%= form.submit '関連づける', class: 'btn-admin-normal' %>
             <% end %>
           </td>
         </tr>

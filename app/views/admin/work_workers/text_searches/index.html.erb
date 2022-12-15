@@ -28,7 +28,7 @@
             <%= form_with(model: [:admin, @work, @work.work_workers.build], method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :worker_id, value: worker.id %>
             <%= form.collection_select :worker_role_id, WorkerRole.order(:id).all, :id, :name %>として
-            <%= form.submit '関連づける', class: 'btn-normal' %>
+            <%= form.submit '関連づける', class: 'btn-admin-normal' %>
             <% end %>
           </td>
         </tr>
