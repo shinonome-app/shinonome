@@ -1,5 +1,5 @@
 <%= form_with(model: receipt_form, url: receipts_previews_path, data: { turbo: false }) do |form| %>
-  <%= render ::FormsErrorHeaderComponent.new(form: receipt_form) %>
+  <%= render FormsErrorHeaderComponent.new(form: receipt_form) %>
   <h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">入力者データ</h2>
 
   <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">

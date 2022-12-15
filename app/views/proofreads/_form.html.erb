@@ -1,5 +1,5 @@
 <%= form_with(model: proofread_form, url: proofreads_previews_path, data: { turbo: false }) do |form| %>
-  <%= render ::FormsErrorHeaderComponent.new(form: proofread_form) %>
+  <%= render FormsErrorHeaderComponent.new(form: proofread_form) %>
 
 <h2 class="flex my-4 px-5 py-1 text-2xl font-semibold bg-gray-300 border-t border-b border-gray-500">
   作品データ
