@@ -42,9 +42,10 @@ RSpec.describe '/proofreads' do
   end
 
   describe 'GET /new' do
-    xit 'renders a successful response' do
-      get new_proofread_url
-      expect(response).to be_successful
+    context 'paramsがない場合' do
+      it 'renders a error response' do
+        expect { get new_proofread_url }.to raise_error(ActionController::ParameterMissing)
+      end
     end
   end
 
