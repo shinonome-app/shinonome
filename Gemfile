@@ -108,6 +108,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'erb_lint', '~> 0.2.0', require: false
+gem 'erb_lint', '~> 0.3.0', require: false
 
 gem 'aozora2html', '~> 3.0'
