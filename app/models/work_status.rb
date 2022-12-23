@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 
+# 作品の状態
 class WorkStatus < ApplicationRecord
   # 1	公開	published
   # 2	非公開	unpublished

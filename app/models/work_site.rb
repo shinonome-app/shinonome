@@ -24,6 +24,7 @@
 
 require 'csv'
 
+# 作品サイト情報
 class WorkSite < ApplicationRecord
   belongs_to :work
   belongs_to :site

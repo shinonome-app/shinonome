@@ -13,6 +13,7 @@
 #  updated_at   :datetime         not null
 #
 
+# そらもよう
 class NewsEntry < ApplicationRecord
   scope :published, ->(date = Time.zone.today) { where('published_on <= ?', date) }
 
