@@ -77,6 +77,8 @@ group :development, :test do
 
   # Makes zipped bookdata for seeds
   gem 'rubyzip'
+
+  gem 'brakeman'
 end
 
 group :development do

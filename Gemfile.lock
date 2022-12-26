@@ -85,6 +85,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
+    brakeman (5.4.0)
     builder (3.2.4)
     capybara (3.38.0)
       addressable
@@ -345,6 +346,7 @@ DEPENDENCIES
   annotate
   aozora2html (~> 3.0)
   bootsnap (>= 1.4.4)
+  brakeman
   capybara (>= 3.26)
   debug
   devise
