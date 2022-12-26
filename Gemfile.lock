@@ -85,6 +85,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
+    brakeman (5.4.0)
     builder (3.2.4)
     capybara (3.38.0)
       addressable
@@ -165,7 +166,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
+    mini_portile2 (2.8.1)
     minitest (5.16.3)
     msgpack (1.6.0)
     net-imap (0.3.4)
@@ -180,12 +181,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.13.10-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (5.10.1)
@@ -351,6 +346,7 @@ DEPENDENCIES
   annotate
   aozora2html (~> 3.0)
   bootsnap (>= 1.4.4)
+  brakeman
   capybara (>= 3.26)
   debug
   devise
@@ -387,7 +383,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.2.0p0
 
 BUNDLED WITH
    2.3.7
