@@ -19,6 +19,14 @@
     <%= form.collection_select :compresstype_id, Compresstype.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: "w-full border border-gray-800 p-1" } %>
   </div>
   <div class="field py-2">
+    <%= form.label :registrated_on %>
+    <%= form.date_select :registrated_on, class: "w-full border border-gray-800 p-1" %>
+  </div>
+  <div class="field py-2">
+    <%= form.label :last_updated_on %>
+    <%= form.date_select :last_updated_on, class: "w-full border border-gray-800 p-1" %>
+  </div>
+  <div class="field py-2">
     <%= form.label :filesize %>
     <%= form.text_field :filesize, class: "w-full border border-gray-800 p-1" %>
   </div>

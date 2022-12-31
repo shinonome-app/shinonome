@@ -14,6 +14,8 @@ class CreateWorkfiles < ActiveRecord::Migration[6.1]
       t.integer :revision_count
       t.references :file_encoding, foreign_key: true, null: false
       t.references :charset, foreign_key: true, null: false
+      t.date :registrated_on
+      t.date :last_updated_on
       t.text :note
 
       t.timestamps

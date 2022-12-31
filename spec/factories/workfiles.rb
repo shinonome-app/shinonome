@@ -7,8 +7,10 @@
 #  id               :bigint           not null, primary key
 #  filename         :text
 #  filesize         :integer
+#  last_updated_on  :date
 #  note             :text
 #  opened_on        :date
+#  registrated_on   :date
 #  revision_count   :integer
 #  url              :text
 #  created_at       :datetime         not null

@@ -356,6 +356,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.integer "revision_count"
     t.bigint "file_encoding_id", null: false
     t.bigint "charset_id", null: false
+    t.date "registrated_on"
+    t.date "last_updated_on"
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
