@@ -23,14 +23,6 @@
     <%= form.text_field :filesize, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
-    <%= form.label :url %>
-    <%= form.text_field :url, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :opened_on %>
-    <%= form.date_select :opened_on, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
     <%= form.label :revision_count %>
     <%= form.text_field :revision_count, class: "w-full border border-gray-800 p-1" %>
   </div>
@@ -52,6 +44,14 @@
     <p><%= link_to @workfile.filename, rails_blob_url(@workfile.workdata) %></p>
     <% end %>
     <%= form.file_field :workdata, class: "w-full border border-gray-800 p-1" %>
+  </div>
+  <div class="field py-2">
+    <%= form.label :url %>
+    <%= form.text_field :url, class: "w-full border border-gray-800 p-1" %>
+  </div>
+  <div class="field py-2">
+    <%= form.label :opened_on %>
+    <%= form.date_select :opened_on, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
     <%= form.submit "登録する", class: "btn-admin-normal" %>
