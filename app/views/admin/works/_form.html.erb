@@ -62,7 +62,7 @@
     <%= form.text_area :orig_text, class: "w-full border border-gray-800 p-1" %>
   </div>
   <div class="field py-2">
-    <%= form.label :status, "状態" %>
+    <%= form.label :work_status_id, "状態" %>
     <%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, { prompt: '選択してください' }, { class: 'text-gray-800' } %>
   </div>
   <div class="field py-2">
