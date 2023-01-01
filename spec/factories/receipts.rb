@@ -63,31 +63,39 @@ FactoryBot.define do
     title { '作品その一' }
     subtitle_kana { 'ふくだいそのに' }
     subtitle { '副題その二' }
-    original_title { '原題その３' }
+    original_title { '原題その三' }
     kana_type_id { 1 }
-    first_appearance { 'MyText' }
+    first_appearance { '初出その4' }
     started_on { '2022-05-10' }
     copyright_flag { false }
-    last_name_kana { 'MyText' }
-    last_name_en { 'MyText' }
-    last_name { 'MyText' }
-    first_name_kana { 'MyText' }
-    first_name_en { 'MyText' }
-    first_name { 'MyText' }
-    note { 'MyText' }
-    person_note { 'MyText' }
-    worker_kana { 'MyText' }
-    worker_name { 'MyText' }
+    last_name_kana { 'あおぞら' }
+    last_name_en { 'Aozora' }
+    last_name { '青空' }
+    first_name_kana { 'ぶんこ' }
+    first_name_en { 'Bunko' }
+    first_name { '文子' }
+    note { '備考5' }
+    person_note { '著者備考6' }
+    worker_kana { 'こうさくいん6' }
+    worker_name { '耕作員6' }
     email { 'sample@example.com' }
-    original_book_title { 'MyText' }
-    publisher { 'MyText' }
-    first_pubdate { 'MyText' }
-    input_edition { 'MyText' }
-    original_book_title2 { 'MyText' }
-    publisher2 { 'MyText' }
-    first_pubdate2 { 'MyText' }
+    original_book_title { '底本名7' }
+    publisher { '出版社8' }
+    first_pubdate { '初版発行年9' }
+    input_edition { '入力版10' }
+    original_book_title2 { '底本の親本名11' }
+    publisher2 { '底本の親本出版社12' }
+    first_pubdate2 { '底本の親本初版発行年12' }
     register_status { 1 }
-    original_book_note { 'MyText' }
+    original_book_note { '底本備考' }
+
+    trait :not_ordered do
+      register_status { :not_ordered }
+    end
+
+    trait :ordered do
+      register_status { :ordered }
+    end
 
     trait :work do
       work do
