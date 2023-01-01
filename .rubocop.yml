@@ -75,7 +75,7 @@ RSpec/DescribedClass:
   Enabled: false
 
 RSpec/ExampleLength:
-  Max: 40
+  Max: 100
   Exclude:
   - "spec/services/**/*.rb"
 
