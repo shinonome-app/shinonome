@@ -286,7 +286,6 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     smart_properties (1.17.0)
-    spring (4.1.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -355,7 +354,7 @@ DEPENDENCIES
   faker
   gimei
   jsbundling-rails
-  letter_opener_web (~> 2.0)
+  letter_opener_web
   listen (~> 3.3)
   pagy
   pg
@@ -371,7 +370,6 @@ DEPENDENCIES
   rubocop-rspec
   rubyzip
   selenium-webdriver
-  spring
   sprockets-rails
   tailwindcss-rails
   test-prof

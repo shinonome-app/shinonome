@@ -68,7 +68,7 @@ group :development, :test do
   gem 'annotate'
 
   # Fake mail system on web
-  gem 'letter_opener_web', '~> 2.0'
+  gem 'letter_opener_web'
 
   # Ruby static analytics and lint
   gem 'rubocop'
@@ -88,8 +88,6 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 3.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
 
 group :test do
