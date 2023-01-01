@@ -180,8 +180,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
 
   create_table "proofreads", force: :cascade do |t|
     t.bigint "work_id", null: false
-    t.text "work_copy"
-    t.text "work_print"
+    t.integer "work_copy", default: 0, null: false
+    t.integer "work_print", default: 0, null: false
     t.text "proof_edition"
     t.bigint "workfile"
     t.text "address"

@@ -13,8 +13,8 @@
 #  order_status  :integer          not null
 #  proof_edition :text
 #  url           :text
-#  work_copy     :text
-#  work_print    :text
+#  work_copy     :integer          default("no_need_copy"), not null
+#  work_print    :integer          default("no_need_print"), not null
 #  worker_kana   :text
 #  worker_name   :text
 #  workfile      :bigint
@@ -44,8 +44,8 @@ class Proofread < ApplicationRecord
 
   enum assign_status: { non_assigned: 0, assigned: 1 }
   enum order_status: { non_ordered: 0, ordered: 1 }
-  enum work_copy: { need_copy: 0, no_need_copy: 1 }
-  enum work_print: { need_print: 0, no_need_print: 1 }
+  enum work_copy: { no_need_copy: 0, need_copy: 1 }
+  enum work_print: { no_need_print: 0, need_print: 1 }
 
   scope :active, -> { where(deleted_at: nil) }
 

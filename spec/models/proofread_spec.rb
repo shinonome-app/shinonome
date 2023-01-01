@@ -13,8 +13,8 @@
 #  order_status  :integer          not null
 #  proof_edition :text
 #  url           :text
-#  work_copy     :text
-#  work_print    :text
+#  work_copy     :integer          default("no_need_copy"), not null
+#  work_print    :integer          default("no_need_print"), not null
 #  worker_kana   :text
 #  worker_name   :text
 #  workfile      :bigint

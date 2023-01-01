@@ -4,8 +4,8 @@ class CreateProofreads < ActiveRecord::Migration[6.1]
   def change
     create_table :proofreads do |t|
       t.references :work, foreign_key: true, null: false
-      t.text :work_copy
-      t.text :work_print
+      t.integer :work_copy, null: false, default: 0
+      t.integer :work_print, null: false, default: 0
       t.text :proof_edition
       t.bigint :workfile
       t.text :address
