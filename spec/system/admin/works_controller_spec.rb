@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::WorksController' do
+describe Admin::WorksController do
   let(:user) { create(:user) }
 
   before { sign_in(user) }

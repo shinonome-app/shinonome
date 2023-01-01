@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::PersonSitesController' do
+describe Admin::PersonSitesController do
   let!(:user) { create(:user) }
   let!(:person) { create(:person) }
   let!(:site) { create(:site) }
