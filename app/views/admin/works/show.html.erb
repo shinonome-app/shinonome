@@ -133,9 +133,9 @@
     </tr>
   </table>
 
-  <div class="py-2">
+  <div class="py-2 flex">
   <%= link_to '更新', edit_admin_work_path(@work), class: 'btn-admin-normal' %>
-  <%= link_to '削除', [:admin, @work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
+  <%= button_to '削除', [:admin, @work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
   </div>
 
@@ -348,9 +348,9 @@
     </tr>
   </table>
 
-  <div class="py-4">
+  <div class="py-4 flex">
     <%= link_to '更新', edit_admin_work_bibclass_path(bibclass.work, bibclass), class: 'btn-admin-normal' %>
-    <%= link_to '削除', [:admin, bibclass.work, bibclass], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
+    <%= button_to '削除', [:admin, bibclass.work, bibclass], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
 
   <% end %>
@@ -410,9 +410,9 @@
     </tr>
   </table>
 
-  <div class="py-4">
+  <div class="py-4 flex">
     <%= link_to '更新', edit_admin_work_workfile_path(workfile.work, workfile), class: 'btn-admin-normal' %>
-    <%= link_to '削除', [:admin, workfile.work, workfile], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
+    <%= button_to '削除', [:admin, workfile.work, workfile], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger' %>
   </div>
   <% end %>
   </div>
