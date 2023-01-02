@@ -2,9 +2,7 @@
 
 class ProofreadsController < ApplicationController
   # GET /proofreads
-  def index
-    @proofreads = Proofread.all
-  end
+  def index; end
 
   # GET /proofreads/new
   def new

@@ -59,11 +59,11 @@
       <%= form.fields_for :sub_works, sub_work do |fields| %>
       <td class="border border-gray-400 bg-white">
         <%= fields.hidden_field :work_id %>
-        <%= sub_work.work_copy.to_i > 0 ? '要' : '不要' %>
+        <%= sub_work.work_copy? ? '要' : '不要' %>
         <%= fields.hidden_field :work_copy %>
       </td>
       <td class="border border-gray-400 bg-white">
-        <%= sub_work.work_print.to_i > 0 ? '要' : '不要' %>
+        <%= sub_work.work_print? ? '要' : '不要' %>
         <%= fields.hidden_field :work_print %>
       </td>
       <td class="border border-gray-400 bg-white">

@@ -66,7 +66,7 @@ FactoryBot.define do
     sortkey { "さくひん#{n}" }
 
     trait :teihon do
-      original_book
+      original_books { [association(:original_book)] }
     end
   end
 end

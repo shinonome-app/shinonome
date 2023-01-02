@@ -38,19 +38,19 @@
 FactoryBot.define do
   factory :proofread do
     work
-    work_copy { 'MyText' }
-    work_print { 'MyText' }
-    proof_edition { 'MyText' }
+    work_copy { 1 }
+    work_print { 1 }
+    proof_edition { '校正使用版1' }
     workfile
-    address { 'MyText' }
-    memo { 'MyText' }
+    address { "〒100-0001\n東京都千代田区千代田1-1-1-111\n青空太郎" }
+    memo { '連絡事項1' }
     worker
-    worker_kana { 'MyText' }
-    worker_name { 'MyText' }
-    email { 'MyText' }
-    url { 'MyText' }
+    worker_kana { 'あおぞらたろう' }
+    worker_name { '青空太郎' }
+    email { 'proofread@example.com' }
+    url { 'https://example.com/proofread' }
     person
-    assign_status { 'MyText' }
-    order_status { 'MyText' }
+    assign_status { 0 }
+    order_status { 0 }
   end
 end
