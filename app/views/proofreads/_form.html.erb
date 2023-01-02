@@ -44,12 +44,16 @@
         <%= sub_work.first_teihon.publisher %>
       </td>
       <td class="border border-gray-400 bg-white">
-        <%= fields.check_box :work_copy, {}, 1, 0 %>
-        要
+        <label for="work_copy">
+          <%= fields.check_box :work_copy, {}, 1, 0 %>
+          要コピー
+        </label>
       </td>
       <td class="border border-gray-400 bg-white">
-        <%= fields.check_box :work_print, {}, 1, 0 %>
-        要
+        <label for="work_print">
+          <%= fields.check_box :work_print, {}, 1, 0 %>
+          要プリントアウト
+        </label>
       </td>
       <td class="border border-gray-400 bg-white">
         <%= fields.text_area :proof_edition, size: "24x3" %>
