@@ -13,5 +13,8 @@
     "postcss": "^8.4.5"
   },
   "version": "0.1.0",
-  "devDependencies": {}
+  "devDependencies": {
+    "vite": "^4.0.0",
+    "vite-plugin-ruby": "^3.1.2"
+  }
 }
