@@ -1,0 +1,31 @@
+      <div slot="navi" class="flex gap-8">
+        <snm-link label="<%= Rails.configuration.x.site_name %>トップページ" href="<%= Rails.configuration.x.main_site_url %>" buttonStyle="normal" fontColor="nav" icon="home"></snm-link>
+        <snm-link label="作業着手連絡システム" href="<%= root_path %>" buttonStyle="normal" fontColor="nav" icon="notice"></snm-link>
+        <div id="menu-title" class="relative">
+          <div class="flex items-baseline gap-2">
+            <snm-link label="<%= @user.email %>" href="#" buttonStyle="normal" fontColor="nav" icon="user"></snm-link>
+            <svg
+              class="max-[900px]:hidden"
+              width="10"
+              height="7"
+              viewBox="0 0 10 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.86214 6.49977L0.619141 2.25677L2.03414 0.842773L4.86214 3.67177L7.69014 0.842773L9.10514 2.25677L4.86214 6.49977Z"
+                fill="#051831"
+              />
+            </svg>
+          </div>
+          <!-- ホバーメニュー - start -->
+          <div id="menu-open" class="menu-open absolute right-0 w-[163px] bg-white px-5 py-4 drop-shadow-md">
+            <ul class="text-xs grid gap-5 cursor-pointer">
+              <li><%= link_to "パスワード変更", edit_admin_user_registration_path %></li>
+              <li><%= link_to "ログアウト", destroy_admin_user_session_path, data: { 'turbo-method': :delete } %></li>
+            </ul>
+          </div>
+          <!-- ホバーメニュー - end -->
+
+        </div>
+      </div>

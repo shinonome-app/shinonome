@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <title><%= Rails.configuration.x.site_name %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -13,20 +15,23 @@
     <style>
       /*      a { text-decoration: underline blue; color: blue; }
             a:hover { text-decoration: none; background-color: transparent; color: inherit; } */
-            a:hover { background-color: transparent; color: inherit; }
-            svg { transition: all .3s ease; }
-            #usermenu > div       { transition: all .1s ease-in-out; }
-            #usermenu:hover svg   { transform: translateX(35px) rotate(180deg); opacity: 0; }
-            #usermenu:hover > div { visibility: visible; }
     </style>
   </head>
-  <body class="bg-gray-100">
-    <div class="font-sans m-0 antialiased leading-none">
-      <%= render(Admin::NaviComponent.new(title: "管理", user: current_admin_user)) %>
-      <div class="container mx-auto">
+  <body class="bg-ab_bg_gray">
+    <snm-header>
+      <snm-logo slot="logo" href="<%= admin_path %>" src="/images/top_logo.png" label="<%= Rails.configuration.x.site_name %> DB管理"></snm-logo>
+      <%= render(Admin::SnmNaviComponent.new(title: "管理", user: current_admin_user)) %>
+    </snm-header>
+
+    <div class="mt-24 max-w-7xl m-auto flex gap-5">
+      <div class="w-[60%] sm:w-[40%] xl:w-[30%]">
+        <snm-sidebar></snm-sidebar>
+      </div>
+      <div class="w-full flex flex-col">
+
         <%= render Admin::FlashComponent.new(flash: flash) %>
-        <div class="flex w-full min-w-full rounded-sm mt-4">
-          <%= render Admin::AsideComponent.new %>
+
+        <div class="h-full bg-white p-5">
           <%= yield %>
         </div>
       </div>

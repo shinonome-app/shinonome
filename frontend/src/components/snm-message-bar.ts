@@ -2,27 +2,27 @@ import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import globalStyles from "~/src/input.css?inline";
 
-type ButtonStyle = "blue" | "green" | "red" ;
+type ButtonStyle = "notice" | "success" | "alert" ;
 
 @customElement("snm-message-bar")
 export class SnmMessageBar extends LitElement {
  
   @property()
-  buttonStyle: ButtonStyle = "blue";
+  buttonStyle: ButtonStyle = "notice";
 
   render() {
     let styleClasses = "";
 
     switch (this.buttonStyle) {
-      case "blue":
+      case "notice":
         styleClasses =
           "text-[#022C45] bg-[#C3E9FF] text-xs px-8 py-3 rounded mb-2";
         break;
-      case "green":
+      case "success":
         styleClasses =
           "text-[#012B14] bg-[#BFF9D9] text-xs px-8 py-3 rounded mb-2";
         break;
-      case "red":
+      case "alert":
         styleClasses =
           "text-[#400601] bg-[#FECDC9] text-xs px-8 py-3 rounded mb-2";
         break;
