@@ -81,7 +81,6 @@
       </div>
       <!--著者不明作品検索 end-->
 
-
       <!--作品一覧 start-->
       <div class="mt-10 mb-5">
         <snm-headline h="h2">作品一覧</snm-headline>
@@ -107,7 +106,7 @@
               <td class="text-center whitespace-nowrap py-3 px-5"><%= work.author_text %></td>
               <td class="text-center whitespace-nowrap py-3 px-5"><%= work.translator_text %></td>
               <td class="text-center whitespace-nowrap py-3 px-5"><%= work.kana_type.name %></td>
-              <td class="text-center whitespace-nowrap py-3 px-5"><snm-status statusType="<%= work.work_status.color %>" label="<%= work.work_status.name%>"></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><snm-status statusType="<%= work.work_status.color %>" label="<%= work.work_status.name %>"></td>
               <td class="text-center whitespace-nowrap py-3 px-5"><%= work.started_on %></td>
             </tr>
             <% end %>
@@ -115,4 +114,3 @@
         </table>
         <%== pagy_nav(@pagy) %>
       </div>
-
