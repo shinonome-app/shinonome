@@ -1,8 +1,9 @@
 {
   "name": "shinonome",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "vite run build"
+    "dev": "vite"
   },
   "dependencies": {
     "@hotwired/turbo-rails": "^7.1.1",
