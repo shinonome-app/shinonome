@@ -1,37 +1,8 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <p id="notice"><%= notice %></p>
-  <h1 class="text-2xl py-4">作品検索結果一覧</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>作品ID</th>
-        <th>作品名</th>
-        <th>副題</th>
-        <th>著者</th>
-        <th>翻訳者</th>
-        <th>仮名遣い</th>
-        <th>状態</th>
-        <th>状態の開始日</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @works.each do |work| %>
-        <tr>
-          <td><%= work.id %></td>
-          <td><%= link_to work.title, admin_work_path(work) %></td>
-          <td><%= work.subtitle %></td>
-          <td><%= work.author_text %></td>
-          <td><%= work.translator_text %></td>
-          <td><%= work.kana_type.name %></td>
-          <td><%= work.work_status.name %></td>
-          <td><%= work.started_on %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%== pagy_nav(@pagy) %>
+<snm-headline h="h1">作品検索結果一覧</snm-headline>
+<div class="mt-10 mb-5">
+  <%= render(Admin::WorkSearchResultComponent.new(pagy: @pagy, works: @works)) %>
+</div>
 
-  <div class="py-4">
-    <%= link_to '新規作品登録', new_admin_work_path, class: 'btn-admin-normal py-2' %>
-  </div>
+<div class="mt-10 mb-5">
+  <%= link_to '新規作品登録', new_admin_work_path, class: 'btn-admin-normal py-2' %>
 </div>
