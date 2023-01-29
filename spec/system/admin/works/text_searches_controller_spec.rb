@@ -14,9 +14,9 @@ describe Admin::Works::TextSearchesController do
 
       visit '/admin/works'
 
-      fill_in '作品名:', with: '蛛の'
+      fill_in 'title', with: '蛛の'
 
-      page.find('h2', text: '作品テキスト検索').sibling('form[action="/admin/works/text_searches"]').click_button('検索')
+      page.find('snm-headline', text: '作品テキスト検索').sibling('form[action="/admin/works/text_searches"]').click_button('検索')
 
       expect(page).to have_content('作品検索結果一覧')
       expect(page).to have_content('蜘蛛の糸')
@@ -29,10 +29,10 @@ describe Admin::Works::TextSearchesController do
 
       visit '/admin/works'
 
-      fill_in '作品名:', with: '蜘蛛'
+      fill_in 'title', with: '蜘蛛'
       select 'で始まる', from: 'text_selector_title'
 
-      page.find('h2', text: '作品テキスト検索').sibling('form[action="/admin/works/text_searches"]').click_button('検索')
+      page.find('snm-headline', text: '作品テキスト検索').sibling('form[action="/admin/works/text_searches"]').click_button('検索')
 
       expect(page).to have_content('作品検索結果一覧')
       expect(page).to have_content('蜘蛛の糸')
@@ -45,10 +45,10 @@ describe Admin::Works::TextSearchesController do
 
       visit '/admin/works'
 
-      fill_in '作品名:', with: '蜘蛛'
+      fill_in 'title', with: '蜘蛛'
       select 'と等しい', from: 'text_selector_title'
 
-      page.find('h2', text: '作品テキスト検索').sibling('form[action="/admin/works/text_searches"]').click_button('検索')
+      page.find('snm-headline', text: '作品テキスト検索').sibling('form[action="/admin/works/text_searches"]').click_button('検索')
 
       expect(page).to have_content('作品検索結果一覧')
       expect(page).to have_content('蜘蛛')
