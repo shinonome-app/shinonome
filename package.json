@@ -8,7 +8,8 @@
   "dependencies": {
     "@hotwired/turbo-rails": "^7.1.1",
     "@rails/activestorage": "^7.0.0",
-    "lit": "^2.6.1"
+    "lit": "^2.6.1",
+    "vite-plugin-rails": "^0.1.0"
   },
   "version": "0.1.0",
   "devDependencies": {

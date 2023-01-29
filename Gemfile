@@ -15,7 +15,7 @@ gem 'sprockets-rails'
 gem 'puma', '~> 6.0'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem 'jsbundling-rails'
+# gem 'jsbundling-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
@@ -49,7 +49,7 @@ gem 'devise'
 gem 'pagy'
 
 # Use TailswindCSS
-gem 'tailwindcss-rails'
+# gem 'tailwindcss-rails'
 
 # Some libraries use rexml as XML processor
 gem 'rexml'
