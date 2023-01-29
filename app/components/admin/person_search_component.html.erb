@@ -1,11 +1,18 @@
-  <%= form_with(url: form_url, method: 'get', data: { turbo: false }) do |form| %>
-  <table>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓読み", name: "last_name_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓", name: "last_name")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名読み", name: "first_name_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名", name: "first_name")) %>
-  </table>
-  <div class="py-2">
-    <input type="submit" name="text" value="検索" class="btn-admin-normal">
-  </div>
-  <% end %>
+<%= form_with(url: form_url, method: 'get', data: { turbo: false }) do |form| %>
+<div class="flex gap-1 items-end">
+  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓読み", name: "last_name_kana")) %>
+</div>
+<div class="flex gap-1 items-end">
+  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓", name: "last_name")) %>
+</div>
+<div class="flex gap-1 items-end">
+  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名読み", name: "first_name_kana")) %>
+</div>
+<div class="flex gap-1 items-end">
+  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名", name: "first_name")) %>
+</div>
+
+<div class="flex">
+  <input type="submit" name="text" value="検索" class="grid bg-ab_primary border-2 border-white hover:bg-ab_primary_hover hover:border-2 hover:border-white hover:shadow-[0px_2px_18px_0px_#ebf8ff] active:bg-ab_primary_hover focus-visible:ring ring-gray-300 text-white text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 mb-2 cursor-pointer">
+</div>
+<% end %>
