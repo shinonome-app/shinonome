@@ -31,11 +31,11 @@ class WorkStatus < ApplicationRecord
   def color
     case id
     when 1
-      "green"
+      'green'
     when 2, 12
-      "gray"
+      'gray'
     else
-      "yellow"
+      'yellow'
     end
   end
 end
