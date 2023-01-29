@@ -17,7 +17,7 @@ export class SnmLogo extends LitElement {
     return html`
       <div>
         <a href="${this.href}" class="inline-flex items-center text-black-800 text-lg font-bold gap-2.5">
-          <img src="${this.src}" height="40" width="40" /><span class="hidden sm:block">${this.label}</span>
+          <img src="${this.src}" height="50" width="50" /><span class="hidden sm:block">${this.label}</span>
         </a>
       </div>
     `;

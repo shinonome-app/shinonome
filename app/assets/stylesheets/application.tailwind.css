@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* from snm-button */
+@media screen and (max-width: 900px) {
+    .small-screen-hidden {
+        font-size: 0;
+    }
+}
+
+
 @layer components {
     .btn-normal {
         @apply bg-gray-200 hover:bg-gray-500 text-gray-900 hover:text-white px-8 py-2 text-center border border-gray-500 hover:border-transparent rounded;

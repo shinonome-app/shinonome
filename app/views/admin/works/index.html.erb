@@ -1,79 +1,118 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">作品検索</h2>
+      <snm-headline h="h1">作品新規登録</snm-headline>
+      <!--作品テキスト start-->
+      <div class="mt-10">
+        <snm-headline h="h2">作品テキスト</snm-headline>
+        <%= form_with(url: admin_works_text_searches_path, method: 'get') do |form| %>
+          <div class="flex flex-col lg:flex-row gap-0 lg:gap-10">
+            <div class="">
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名読み", name: "title_kana", error: nil)) %>
+              </div>
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名", name: "title", error: nil)) %>
+              </div>
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題読み", name: "subtitle_kana", error: nil)) %>
+              </div>
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題", name: "subtitle", error: nil)) %>
+              </div>
+            </div>
 
-  <h2 class="text-2xl py-4">作品テキスト検索</h2>
-  <%= form_with(url: admin_works_text_searches_path, method: 'get') do |form| %>
-  <table>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名読み", name: "title_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名", name: "title")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題読み", name: "subtitle_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題", name: "subtitle")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名読み", name: "collection_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名", name: "collection")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "原題", name: "original_title")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品について", name: "description")) %>
-  </table>
-    <input type="submit" name="text" value="検索" class="btn-admin-normal">
-  <% end %>
+            <div>
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名読み", name: "collection_kana", error: nil)) %>
+              </div>
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名", name: "collection", error: nil)) %>
+              </div>
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "原題", name: "original_title", error: nil)) %>
+              </div>
+              <div class="flex gap-1 items-end">
+                <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品について", name: "description", error: nil)) %>
+              </div>
+            </div>
+          </div>
 
-  <h2 class="text-2xl py-4">作品50音順インデックス</h2>
-  <%= form_with(url: admin_works_work_index_searches_path, method: 'get') do |form| %>
-  <div class="flex">
-    <%= render(Admin::SyllabaryTableComponent.new(key: "work")) %>
-  </div>
-  <input type="submit" name="work" value="その他" class="border border-1 border-gray-600 hover:bg-gray-200 p-2">
-  <% end %>
+          <div class="flex">
+            <input type="submit" name="text" value="検索" class="grid bg-ab_primary border-2 border-white hover:bg-ab_primary_hover hover:border-2 hover:border-white hover:shadow-[0px_2px_18px_0px_#ebf8ff] active:bg-ab_primary_hover focus-visible:ring ring-gray-300 text-white text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 mb-2 cursor-pointer">
+          </div>
+        <% end %>
+      </div>
+      <!--作品テキスト end-->
 
-  <h2 class="text-2xl py-4">作品状態検索</h2>
-  <%= form_with(url: admin_works_status_searches_path, method: 'get') do |form| %>
-  <div class="flex">
-    <%= render(Admin::WorkStatusComponent.new(form: form, years: @years)) %>
-  </div>
-  <% end %>
-
-  <h2 class="text-2xl py-4">著者別インデックス</h2>
-  <%= form_with(url: admin_works_creator_index_searches_path, method: 'get') do |form| %>
-  <div class="flex">
-    <%= render(Admin::SyllabaryTableComponent.new(key: "creator")) %>
-  </div>
-  <input type="submit" name="creator" value="その他" class="border border-1 border-gray-600 hover:bg-gray-200 p-2">
-  <% end %>
-
-  <h2 class="text-2xl py-4">著者不明作品検索</h2>
-  <%= form_with(url: admin_works_unknown_creator_searches_path, method: 'get') do |form| %>
-  <div class="flex">
-    <input type="submit" name="creator" value="検索" class="btn-admin-normal">
-  </div>
-  <% end %>
-
-  <h2 class="text-2xl py-4">作品一覧</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>作品ID</th>
-        <th>作品名</th>
-        <th>副題</th>
-        <th>著者</th>
-        <th>翻訳者</th>
-        <th>仮名遣い</th>
-        <th>状態</th>
-        <th>状態の開始日</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @works.each do |work| %>
-        <tr>
-          <td><%= work.id %></td>
-          <td><%= link_to work.title, admin_work_path(work) %></td>
-          <td><%= work.subtitle %></td>
-          <td><%= work.author_text %></td>
-          <td><%= work.translator_text %></td>
-          <td><%= work.kana_type.name %></td>
-          <td><%= work.work_status.name %></td>
-          <td><%= work.started_on %></td>
-        </tr>
+      <!--50音順インデックス end-->
+      <div class="mt-10 flex flex-col lg:flex-row gap-10">
+      <%= form_with(url: admin_works_work_index_searches_path, method: 'get') do |form| %>
+      <div>
+        <snm-headline h="h2">作品50音順インデックス</snm-headline>
+        <%= render(Admin::SyllabaryTableComponent.new(key: "work")) %>
+      </div>
       <% end %>
-    </tbody>
-  </table>
-  <%== pagy_nav(@pagy) %>
-</div>
+
+      <%= form_with(url: admin_works_creator_index_searches_path, method: 'get') do |form| %>
+      <div>
+        <snm-headline h="h2">著者別インデックス</snm-headline>
+        <%= render(Admin::SyllabaryTableComponent.new(key: "creator")) %>
+      </div>
+      <% end %>
+      </div>
+      <!--50音順インデックス start-->
+
+      <!--作品状態検索 start-->
+      <div class="mt-10">
+        <snm-headline h="h2">作品状態検索</snm-headline>
+
+        <%= form_with(url: admin_works_status_searches_path, method: 'get', class: "flex gap-1 items-center") do |form| %>
+        <%= render(Admin::WorkStatusComponent.new(form: form, years: @years)) %>
+        <% end %>
+      </div>
+      <!--作品状態検索 end-->
+
+      <!--著者不明作品検索 start-->
+      <div class="mt-10">
+        <snm-headline h="h2">著者不明作品検索</snm-headline>
+        <%= form_with(url: admin_works_unknown_creator_searches_path, method: 'get') do |form| %>
+        <div class="flex">
+          <input type="submit" name="creator" value="検索" class="btn-admin-normal">
+        </div>
+        <% end %>
+      </div>
+      <!--著者不明作品検索 end-->
+
+
+      <!--作品一覧 start-->
+      <div class="mt-10 mb-5">
+        <snm-headline h="h2">作品一覧</snm-headline>
+        <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+          <thead class="text-center bg-[#f8fafc]">
+            <tr class="h-10 even:bg-[#f8fafc]">
+              <th class="whitespace-nowrap">作品ID</th>
+              <th class="whitespace-nowrap">作品名</th>
+              <th class="whitespace-nowrap">副題</th>
+              <th class="whitespace-nowrap">著者</th>
+              <th class="whitespace-nowrap">翻訳者</th>
+              <th class="whitespace-nowrap">仮名遣い</th>
+              <th class="whitespace-nowrap">状態</th>
+              <th class="whitespace-nowrap">状態の開始日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @works.each do |work| %>
+            <tr class="h-10 even:bg-[#f8fafc]">
+              <td class="text-center whitespace-nowrap py-3 px-5"><%= work.id %></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><%= link_to work.title, admin_work_path(work), class: 'underline' %></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><%= work.subtitle %></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><%= work.author_text %></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><%= work.translator_text %></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><%= work.kana_type.name %></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><snm-status statusType="<%= work.work_status.color %>" label="<%= work.work_status.name%>"></td>
+              <td class="text-center whitespace-nowrap py-3 px-5"><%= work.started_on %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%== pagy_nav(@pagy) %>
+      </div>
+

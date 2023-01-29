@@ -1,17 +1,21 @@
-<% Admin::SyllabaryTableComponent::TABLES.each do |table| %>
-<table>
+<table class="flex gap-3">
+  <% Admin::SyllabaryTableComponent::TABLES.each do |table| %>
+  <tbody>
   <% table.each do |row| %>
-  <tr>
+  <tr class="flex gap-1">
     <% row.each do |cell| %>
     <td>
       <% if cell %>
-      <input type="submit" name="<%= @key %>" value="<%= cell %>" class="border border-1 border-gray-600 hover:bg-gray-200 p-2">
+      <div class="mb-2">
+        <input type="submit" name="<%= @key %>" value="<%= cell %>" class="w-full border-2 text-sm hover:bg-[#D9E8FF] border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] rounded outline-none transition duration-100 px-2 py-1 cursor-pointer">
+      </div>
       <% else %>
-      &nbsp;
+      <div class="mb-2">&nbsp;</div>
       <% end %>
     </td>
     <% end %>
   </tr>
   <% end %>
-</table>
+  <tbody>
 <% end %>
+</table>
