@@ -13,9 +13,9 @@
     </div>
 
     <div class="flex">
-      <input type="submit" name="text" value="検索" class="grid bg-ab_primary border-2 border-white hover:bg-ab_primary_hover hover:border-2 hover:border-white hover:shadow-[0px_2px_18px_0px_#ebf8ff] active:bg-ab_primary_hover focus-visible:ring ring-gray-300 text-white text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 mb-2 cursor-pointer">
+      <%= render(Admin::SubmitComponent.new(name: "text", value: "検索")) %>
     </div>
-  <% end %>
+    <% end %>
   <!--人物検索 start-->
   </div>
 </div>
@@ -23,24 +23,12 @@
 <!--人物一覧 start-->
 <div class="mt-10 mb-5">
   <snm-headline h="h2">人物一覧</snm-headline>
-  <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
-    <thead class="text-center bg-[#f8fafc]">
-      <tr class="h-10 even:bg-[#f8fafc]">
-        <th class="whitespace-nowrap">工作員ID</th>
-        <th class="whitespace-nowrap">姓名</th>
-        <th class="whitespace-nowrap">読み</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @workers.each do |worker| %>
-      <tr class="h-10 even:bg-[#f8fafc]">
-        <td class="text-center whitespace-nowrap py-3 px-5"><%= worker.id %></td>
-        <td class="text-center whitespace-nowrap py-3 px-5"><%= link_to worker.name, admin_worker_path(worker), class: 'underline' %></td>
-        <td class="text-center whitespace-nowrap py-3 px-5"><%= worker.name_kana %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render(Admin::SnmTableComponent.new(
+      header: ["工作員ID", "姓名", "読み"],
+      body: @workers.map do |worker|
+        [worker.id, link_to(worker.name, admin_worker_path(worker), class: 'underline'), worker.name_kana]
+      end
+      )) %>
 </div>
 
 <%== pagy_nav(@pagy) %>

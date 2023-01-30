@@ -84,7 +84,7 @@ describe Admin::WorksController do
       expect(page).to have_content('作品データ')
       expect(page).to have_content('作品その1')
 
-      page.find('h2', text: '作品データ').sibling('div').click_button('削除')
+      page.find('snm-headline', text: '作品データ').sibling('div').click_button('削除')
       expect do
         expect(page.accept_confirm).to eq '本当に削除しますか?'
         expect(page).to have_content '削除しました'

@@ -9,24 +9,15 @@
 
 <div class="mt-10 mb-5">
   <snm-headline h="h2">関連サイト一覧</snm-headline>
-  <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
-    <thead class="text-center bg-[#f8fafc]">
-      <tr class="h-10 even:bg-[#f8fafc]">
-        <th class="whitespace-nowrap">ID</th>
-        <th class="whitespace-nowrap">サイト名</th>
-        <th class="whitespace-nowrap">URL</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sites.each do |site| %>
-      <tr class="h-10 even:bg-[#f8fafc]">
-        <td class="text-center whitespace-nowrap py-3 px-5"><%= site.id %></td>
-        <td class="text-center whitespace-nowrap py-3 px-5"><%= link_to site.name, admin_site_path(site), class: 'underline' %></td>
-        <td class="text-center whitespace-nowrap py-3 px-5"><%= site.url %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render(Admin::SnmTableComponent.new(
+      header: %w(ID サイト名 URL),
+      body: @sites.map do |site|
+      [site.id,
+      link_to(site.name, admin_site_path(site), class: 'underline'),
+      site.url,
+      ]
+      end
+      )) %>
 </div>
 
 <div class="mt-5 flex">

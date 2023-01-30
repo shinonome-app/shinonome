@@ -13,42 +13,19 @@
 <!--人物一覧 start-->
 <div class="mt-10 mb-5">
   <snm-headline h="h2">人物一覧</snm-headline>
-  <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
-    <thead class="text-center bg-[#f8fafc]">
-      <tr class="h-10 even:bg-[#f8fafc]">
-        <th class="whitespace-nowrap">人物ID</th>
-        <th class="whitespace-nowrap">姓名</th>
-        <th class="whitespace-nowrap">読み</th>
-        <th class="whitespace-nowrap">著作権</th>
-        <th class="whitespace-nowrap">他の名前</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @people.each do |person| %>
-      <tr class="h-10 even:bg-[#f8fafc]">
-          <td class="text-center whitespace-nowrap py-3 px-5">
-            <%= person.id %>
-          </td>
-          <td class="text-center whitespace-nowrap py-3 px-5">
-            <%= link_to admin_person_path(person), class: 'underline' do %>
-              <%= person.last_name %>
-              <%= person.first_name %>
-            <% end %>
-          </td>
-          <td class="text-center whitespace-nowrap py-3 px-5">
-            <%= person.last_name_kana %>
-            <%= person.first_name_kana %>
-          </td>
-          <td class="text-center whitespace-nowrap py-3 px-5"><%= person.copyright_text %></td>
-          <td class="text-center whitespace-nowrap py-3 px-5">
-            <% person.other_people.each do |other_person| %>
-              →<%= link_to other_person.name, admin_person_path(other_person), class: 'underline' %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render(Admin::SnmTableComponent.new(
+      header: %w(人物ID 姓名 読み 著作権 他の名前),
+      body: @people.map do |person|
+      [
+      person.id,
+      link_to(person.name, admin_person_path(person), class: 'underline'),
+      person.name_kana,
+      person.copyright_text,
+      person.other_people.map{ |other_person| "→#{link_to(other_person.name, admin_person_path(other_person), class: 'underline')}" }.join(' ').html_safe
+      ]
+      end
+      )) %>
+
   <%== pagy_nav(@pagy) %>
 </div>
 
