@@ -36,7 +36,7 @@
           </div>
 
           <div class="flex">
-            <input type="submit" name="text" value="検索" class="grid bg-ab_primary border-2 border-white hover:bg-ab_primary_hover hover:border-2 hover:border-white hover:shadow-[0px_2px_18px_0px_#ebf8ff] active:bg-ab_primary_hover focus-visible:ring ring-gray-300 text-white text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 mb-2 cursor-pointer">
+            <%= render(Admin::SubmitComponent.new(name: "text", value: "検索")) %>
           </div>
         <% end %>
       </div>
@@ -75,7 +75,7 @@
         <snm-headline h="h2">著者不明作品検索</snm-headline>
         <%= form_with(url: admin_works_unknown_creator_searches_path, method: 'get') do |form| %>
         <div class="flex">
-          <input type="submit" name="creator" value="検索" class="btn-admin-normal">
+          <%= render(Admin::SubmitComponent.new(name: "text", value: "検索")) %>
         </div>
         <% end %>
       </div>

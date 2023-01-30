@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', 'pagy', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= stylesheet_link_tag "inter-font" %>
+    <%= vite_stylesheet_tag 'application' %>
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <%= vite_client_tag %>
     <%= vite_typescript_tag 'application' %>

@@ -1,4 +1,4 @@
-
+/** Pagy **/
 .pagy-nav,
 .pagy-nav-js {
   @apply flex space-x-2;
@@ -44,7 +44,6 @@
     @apply bg-gray-400 text-white;
   }
 }
-
 
 .pagy-combo-nav-js {
   @apply flex max-w-max rounded-full px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
