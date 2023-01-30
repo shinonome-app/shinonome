@@ -293,13 +293,6 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     smart_properties (1.17.0)
-    sprockets (4.2.0)
-      concurrent-ruby (~> 1.0)
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      sprockets (>= 3.0.0)
     test-prof (1.1.0)
     thor (1.2.1)
     timeout (0.3.1)
@@ -375,7 +368,6 @@ DEPENDENCIES
   rubocop-rspec
   rubyzip
   selenium-webdriver
-  sprockets-rails
   test-prof
   turbo-rails
   tzinfo-data
