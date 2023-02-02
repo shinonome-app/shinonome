@@ -5,7 +5,7 @@ module.exports = {
     './app/assets/stylesheets/*.css',
     './app/views/**/*.html.erb',
     './app/components/**/*.{html.erb,rb}',
-    './app/lib/pagy/extras/*.rb',
+    './app/lib/pagy/*.rb',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './frontend/**/*.{ts,js}'
