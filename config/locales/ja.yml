@@ -294,6 +294,10 @@ ja:
       subject: "「%{title}」入力のお願い"
     order_proofread:
       subject: "「%{title}」校正のお願い"
+  pagy:
+    nav:
+      prev: '< 前へ'
+      next: '次へ >'
   user_mailer:
     register_proofread:
       subject:

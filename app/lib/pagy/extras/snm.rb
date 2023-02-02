@@ -12,7 +12,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra: %(class="#{pagy_link_class}" #{link_extra}))
       link_arrow = pagy_link_proc(pagy, link_extra: %(#{link_extra}))
 
-      html = +%(<nav#{p_id} aria-label="pagination">)
+      html = +%(<nav#{p_id}>)
       html << %(<ul class="#{pagy_ul_class}">)
       html << pagy_snm_prev_html(pagy, link_arrow)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -52,7 +52,8 @@ class Pagy # :nodoc:
       if (p_prev = pagy.prev)
         %(<li><span>#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span></li>)
       else
-        %(<li><span>#{pagy_t 'pagy.nav.prev'}</span></li>)
+        # %(<li><span>#{pagy_t 'pagy.nav.prev'}</span></li>)
+        ''
       end
     end
 
@@ -60,7 +61,8 @@ class Pagy # :nodoc:
       if (p_next = pagy.next)
         %(<li><span>#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span></li>)
       else
-        %(<li><span>#{pagy_t 'pagy.nav.next'}</span></li>)
+        # %(<li><span>#{pagy_t 'pagy.nav.next'}</span></li>)
+        ''
       end
     end
   end
