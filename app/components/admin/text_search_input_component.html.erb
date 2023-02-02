@@ -1,10 +1,10 @@
-  <div class="mb-2 flex flex-col">
+  <div class="mb-2 w-full">
     <%= @form.label @name, @label.to_s, class: "inline-block text-sm #{@label.blank? ? 'hidden' : ''}" %>
-    <%= text_field_tag @name, @value, autocomplete: :on, class: "w-full border-2 border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 px-2 py-2" %>
+    <%= text_field_tag @name, @value, autocomplete: :on, class: input_form_class %>
     <div class="text-xs text-red-500 <%= @error.present? ? '' : 'hidden' %> required:block"><%= @error %></div>
   </div>
-  <div class="mb-2 flex flex-col">
+  <div class="mb-2">
     <label class="inline-block text-sm mb-1 ${this.label hidden"></label>
-    <%= @form.select "text_selector_#{@name}", TextSearcher::TEXT_SELECTOR, { include_blank: false }, class: "min-w-[200px] bg-[url('/images/svg/dropdown.svg')] bg-no-repeat bg-[right_0.8rem_center] rounded px-2 py-2 border-2 border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] cursor-pointer appearance-none" %>
+    <%= @form.select "text_selector_#{@name}", TextSearcher::TEXT_SELECTOR, { include_blank: false }, class: select_form_class %>
     <div class="text-xs text-red-500 hidden required:block"></div>
   </div>

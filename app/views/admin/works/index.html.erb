@@ -84,21 +84,5 @@
 <!--作品一覧 start-->
 <div class="mt-10 mb-5">
   <snm-headline h="h2">作品一覧</snm-headline>
-  <%= render(Admin::SnmTableComponent.new(
-      header: %w(作品ID 作品名 副題 著者 翻訳者 仮名遣い 状態 状態の開始日),
-      body: @works.map do |work|
-      [
-      work.id,
-      link_to(work.title, admin_work_path(work), class: 'underline'),
-      work.subtitle,
-      work.author_text,
-      work.translator_text,
-      work.kana_type.name,
-      %Q(<snm-status statusType="#{work.work_status.color}" label="#{work.work_status.name}"></snm-status>).html_safe,
-      work.started_on
-      ]
-      end
-      )) %>
-
-  <%== pagy_nav(@pagy) %>
+  <%= render(Admin::WorksTableComponent.new(works: @works, pagy: @pagy)) %>
 </div>

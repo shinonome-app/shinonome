@@ -13,20 +13,8 @@
 <!--人物一覧 start-->
 <div class="mt-10 mb-5">
   <snm-headline h="h2">人物一覧</snm-headline>
-  <%= render(Admin::SnmTableComponent.new(
-      header: %w(人物ID 姓名 読み 著作権 他の名前),
-      body: @people.map do |person|
-      [
-      person.id,
-      link_to(person.name, admin_person_path(person), class: 'underline'),
-      person.name_kana,
-      person.copyright_text,
-      person.other_people.map{ |other_person| "→#{link_to(other_person.name, admin_person_path(other_person), class: 'underline')}" }.join(' ').html_safe
-      ]
-      end
-      )) %>
-
-  <%== pagy_nav(@pagy) %>
+  <%= render(Admin::PeopleTableComponent.new(people: @people)) %>
+  <%== pagy_snm_nav(@pagy) %>
 </div>
 
 <!--人物一覧 end-->

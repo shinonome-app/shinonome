@@ -1,157 +1,97 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h2 class="text-2xl">人物詳細</h2>
-  <table class="w-full">
-    <tr>
-      <th class="w-32 py-1 text-left">人物ID</th>
-      <td><%= @person.id %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">姓読み</th>
-      <td><%= @person.last_name_kana %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">姓読みソート用</th>
-      <td><%= @person.sortkey %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">姓</th>
-      <td><%= @person.last_name %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">姓ローマ字</th>
-      <td><%= @person.last_name_en %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">名読み</th>
-      <td><%= @person.first_name_kana %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">名読みソート用</th>
-      <td><%= @person.sortkey2 %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">名</th>
-      <td><%= @person.first_name %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">名ローマ字</th>
-      <td><%= @person.first_name_en %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">生年月日</th>
-      <td><%= @person.born_on %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">没年月日</th>
-      <td><%= @person.died_on %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">著作権フラグ</th>
-      <td><%= @person.copyright_flag %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">email</th>
-      <td><%= @person.email %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">URL</th>
-      <td><%= link_to @person.url, @person.url %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">人物について</th>
-      <td><%= @person.description %></td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">別名義</th>
-      <td>
-        <% if @person.original_person %>
-        <%= link_to @person.original_person.name, admin_person_path(@person.original_person), class: "link-normal" %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th class="w-32 py-1 text-left">備考</th>
-      <td><%= @person.note %></td>
-    </tr>
-</table>
+<!--作品テキスト start-->
+<div>
+  <snm-headline h="h2">人物詳細</snm-headline>
+  <%= render(Admin::SnmTableVComponent.new(rows:
+      [
+        ["人物ID", @person.id],
+        ["姓読み", @person.last_name_kana],
+        ["姓読みソート用", @person.sortkey],
+        ["姓", @person.last_name],
+        ["姓ローマ字", @person.last_name_en],
+        ["名読み", @person.first_name_kana],
+        ["名読みソート用", @person.sortkey2],
+        ["名", @person.first_name],
+        ["名ローマ字", @person.first_name_en],
+        ["生年月日", @person.born_on],
+        ["没年月日", @person.died_on],
+        ["著作権フラグ", @person.copyright_flag],
+        ["email", @person.email],
+        ["URL", link_to(@person.url, @person.url)],
+        ["人物について", @person.description],
+        ["別名義", @person.original_person ? link_to(@person.original_person.name, admin_person_path(@person.original_person), class: "link-normal") : ""],
+        ["備考", @person.note]
+      ])) %>
 
-  <div class="flex py-2">
-    <%= link_to '更新', edit_admin_person_path(@person), class: "btn-admin-normal" %>
-    <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-admin-danger bg-red-300" %>
-  </div><div>
-<h3 class="text-xl">人物基本名</h3>
+  <div class="mt-2 flex gap-2">
+    <snm-link href="<%= edit_admin_person_path(@person) %>">更新</snm-link>
+    <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+  </div>
+</div>
+
+<div class="mt-6">
+  <snm-headline h="h3">人物基本名</snm-headline>
 
   <% if @person.original_person %>
-  <div class="py-4">
+  <div class="mt-2 flex gap-2">
     <%= @person.original_person.name %>
-    <%= button_to '削除', [:admin, @person, @person.base_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }, class: 'inline-block' }, class: "btn-admin-danger bg-red-300" %>
+    <%= button_to '削除', [:admin, @person, @person.base_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }, class: 'inline-block' }, class: delete_button_class %>
   </div>
   <% else %>
-  <div class="py-4">
-    <%= link_to '関連づけ', new_admin_person_base_person_path(@person), class: "btn-admin-normal" %>
+  <div class="mt-2 flex gap-2">
+    <snm-link href="<%= new_admin_person_base_person_path(@person) %>">関連付け</snm-link>
   </div>
   <% end %>
+</div>
 
-  </div><div>
-<h3 class="text-xl">関連サイトデータ</h3>
+<div class="mt-6">
+  <snm-headline h="h3">関連サイトデータ</snm-headline>
 
   <% if @person.sites.present? %>
-  <div class="py-4">
+  <div class="mt-2 flex gap-2">
     <% @person.person_sites.each do |person_site| %>
     <div class="p-2">
-      <table>
-        <tr>
-          <th>関連サイト名</th>
-          <td><%= person_site.site.name %></td>
-        </tr>
-        <tr>
-          <th>URL</th>
-          <td><%= person_site.site.url %></td>
-        </tr>
-        <tr>
-          <th>関連サイト運営者</th>
-          <td><%= person_site.site.owner_name %></td>
-        </tr>
-      </table>
-      <%= button_to '削除', [:admin, @person, person_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: "btn-admin-danger bg-red-300" %>
+      <%= render(Admin::SnmTableVComponent.new(rows:
+          [
+            ["関連サイト名", person_site.site.name],
+            ["URL", person_site.site.url],
+            ["関連サイト運営者", person_site.site.owner_name]
+          ])) %>
+
+      <%= button_to '削除', [:admin, @person, person_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
     </div>
   <% end %>
   </div>
   <% else %>
-  <div class="py-4">
-    <%= link_to '関連づけ', new_admin_person_person_site_path(@person), class: "btn-admin-normal" %>
+  <div class="mt-2 flex gap-2">
+    <snm-link label="関連付け" href="<%= new_admin_person_person_site_path(@person) %>"></snm-link>
   </div>
   <% end %>
 
-  </div><div>
-<h3 class="text-xl">関連した作品</h3>
-
-<table class="w-full">
-  <tr>
-    <th>役割</th>
-    <th>作品名</th>
-    <th>副題</th>
-    <th>仮名遣い</th>
-    <th>状態</th>
-    <th>状態の開始日</th>
-  </tr>
-  <% @work_people.each do |work_person| %>
-  <% work = work_person.work %>
-  <tr>
-    <td><%= work_person.role.name %></td>
-    <td><%= link_to work.title, admin_work_path(work) %></td>
-    <td><%= work.subtitle %></td>
-    <td><%= work.kana_type.name %></td>
-    <td><%= work.work_status.name %></td>
-    <td><%= work.started_on %></td>
-  </tr>
-  <% end %>
-
-</table>
-
-  </div><div>
-<div class="py-4">
-  <%= link_to '戻る', admin_people_path, class: "btn-normal" %>
 </div>
+
+<!--作品一覧 start-->
+<div class="mt-6 mb-5">
+  <snm-headline h="h3">関連した作品</snm-headline>
+
+  <%= render(Admin::SnmTableComponent.new(
+               header: %w[役割 作品名 副題 仮名遣い 状態 状態の開始日],
+               body: @work_people.map do |work_person|
+                 work = work_person.work
+                 [
+                   work_person.role.name,
+                   link_to(work.title, admin_work_path(work)),
+                   work.subtitle,
+                   work.kana_type.name,
+                   work.work_status.name,
+                   work.started_on
+                 ]
+               end
+             )) %>
+
 </div>
+
+<div>
+  <div class="py-4">
+    <%= link_to '戻る', admin_people_path, class: primary_button_class %>
+  </div>
 </div>

@@ -9,15 +9,7 @@
 
 <div class="mt-10 mb-5">
   <snm-headline h="h2">関連サイト一覧</snm-headline>
-  <%= render(Admin::SnmTableComponent.new(
-      header: %w(ID サイト名 URL),
-      body: @sites.map do |site|
-      [site.id,
-      link_to(site.name, admin_site_path(site), class: 'underline'),
-      site.url,
-      ]
-      end
-      )) %>
+  <%= render(Admin::SitesTableComponent.new(sites: @sites)) %>
 </div>
 
 <div class="mt-5 flex">

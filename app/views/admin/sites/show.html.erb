@@ -1,51 +1,22 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">関連サイト</h1>
+<div class="flex flex-col gap-5">
+  <snm-headline h="h2">関連サイト</snm-headline>
 
-  <table class="bg-gray-100 my-2 w-full">
-    <tr>
-      <th class="w-36 text-left">関連サイト名</th>
-      <td>
-        <%= @site.name %>
-      </td>
-    </tr>
-    <tr>
-      <th class="w-36 text-left">関連サイト運営者</th>
-      <td>
-        <%= @site.owner_name %>
-      </td>
-    </tr>
-    <tr>
-      <th class="w-36 text-left">email</th>
-      <td>
-        <%= @site.email %>
-      </td>
-    </tr>
-    <tr>
-      <th class="w-36 text-left">URL</th>
-      <td>
-        <%= link_to @site.url, @site.url %>
-      </td>
-    </tr>
-    <tr>
-      <th class="w-36 text-left">備考</th>
-      <td>
-        <%= @site.note %>
-      </td>
-    </tr>
-    <tr>
-      <th class="w-36 text-left">最終更新日</th>
-      <td>
-        <%= @site.updated_at %>
-      </td>
-    </tr>
-    <tr>
-      <th class="w-36 text-left">更新者</th>
-      <td>
-        <%= @site.updated_by %>
-      </td>
-    </tr>
-  </table>
+  <%= render(Admin::SnmTableVComponent.new(rows:
+      [
+      ["関連サイト名", @site.name],
+      ["関連サイト運営者",  @site.owner_name],
+      ["email", @site.email],
+      ["URL", link_to(@site.url, @site.url, class: 'underline')],
+      ["備考", @site.note],
+      ["最終更新日", @site.updated_at],
+      ["更新者", @site.updated_by],
+      ]
+      )) %>
 
-  <div class="py-4">
-    <%= link_to '更新', edit_admin_site_path(@site), class: 'btn-admin-normal' %>  <%= link_to '戻る', admin_sites_path, class: 'btn-normal' %>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "更新", href: edit_admin_site_path(@site) %>
+    <%= tag.snm_link "戻る", href: admin_sites_path, buttonstyle: "secondary" %>
   </div>
+</div>
+
+

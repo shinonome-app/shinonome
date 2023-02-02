@@ -26,7 +26,7 @@ type Icon =
 @customElement("snm-link")
 export class SnmLink extends LitElement {
   @property()
-  label?: string = "label";
+  label?: string;
 
   @property()
   buttonStyle?: ButtonStyle = "primary";
@@ -98,7 +98,7 @@ export class SnmLink extends LitElement {
         fontStyle = "text-ab_font_black hover:text-blue-800 text-xs small-screen-hidden";
         break;
       case "sidebar":
-        fontStyle = "text-white hover:text-ab_font_black text-sm hover:bg-[#95A1CB] px-2 py-3 rounded-md";
+        fontStyle = "whitespace-nowrap text-white hover:text-ab_font_black text-sm hover:bg-[#95A1CB] px-2 py-3 rounded-md";
         break;
     }
 
@@ -120,7 +120,11 @@ export class SnmLink extends LitElement {
         break;
     }
 
-    return html` <a href="${this.href}" class="${styleClasses}">${this.label}</a> `;
+    if (this.label) {
+      return html` <a href="${this.href}" class="${styleClasses}">${this.label}</a> `;
+    } else {
+      return html` <a href="${this.href}" class="${styleClasses}"><slot></slot></a> `;
+    }
   }
 
   static styles = [

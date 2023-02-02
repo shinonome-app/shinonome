@@ -1,8 +1,8 @@
 <snm-headline h="h1">作品検索結果一覧</snm-headline>
 <div class="mt-10 mb-5">
-  <%= render(Admin::WorkSearchResultComponent.new(pagy: @pagy, works: @works)) %>
+  <%= render(Admin::WorksTableComponent.new(pagy: @pagy, works: @works)) %>
 </div>
 
 <div class="mt-10 mb-5">
-  <snm-link label="新規作品登録" href="<%= new_admin_work_path %>"></snm-link>
+  <%= tag.snm_link "新規作品登録", href: new_admin_work_path %>
 </div>

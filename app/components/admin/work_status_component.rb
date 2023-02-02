@@ -3,6 +3,8 @@
 module Admin
   # 作品状態入力用コンポーネント
   class WorkStatusComponent < ViewComponent::Base
+    include TailwindHelper
+
     def initialize(form:, years:)
       super
       @form = form

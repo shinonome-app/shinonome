@@ -23,13 +23,8 @@
 <!--人物一覧 start-->
 <div class="mt-10 mb-5">
   <snm-headline h="h2">人物一覧</snm-headline>
-  <%= render(Admin::SnmTableComponent.new(
-      header: ["工作員ID", "姓名", "読み"],
-      body: @workers.map do |worker|
-        [worker.id, link_to(worker.name, admin_worker_path(worker), class: 'underline'), worker.name_kana]
-      end
-      )) %>
+  <%= render(Admin::WorkersTableComponent.new(workers: @workers)) %>
 </div>
 
-<%== pagy_nav(@pagy) %>
+<%== pagy_snm_nav(@pagy) %>
 <!--人物一覧 end-->
