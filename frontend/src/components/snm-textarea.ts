@@ -5,7 +5,7 @@ import globalStyles from "../input.css?inline";
 @customElement("snm-textarea")
 export class SnmTextarea extends LitElement {
   @property()
-  label?: string = "labelname";
+  label?: string = "";
 
   @property()
   for?: string = "";
@@ -17,6 +17,9 @@ export class SnmTextarea extends LitElement {
   textareaId?: string = "textareaId";
 
   @property()
+  text?: string = "";
+
+  @property()
   errormessage?: string = "";
 
   render() {
@@ -26,8 +29,9 @@ export class SnmTextarea extends LitElement {
         <textarea
           name="${this.name}"
           id="${this.textareaId}"
-          class="w-full border-2 border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 px-2 py-2"
-        ></textarea>
+          rows="10"
+          class="w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 px-2 py-2"
+        >${this.text}</textarea>
         <div class="text-xs text-red-500 ${this.errormessage ? "" : "hidden"} required:block">${this.errormessage}</div>
       </div>
     `;

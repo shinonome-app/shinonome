@@ -2,8 +2,8 @@ import { LitElement, HTMLTemplateResult, css, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import globalStyles from "../input.css?inline";
 
-@customElement("snm-table")
-export class SnmTable extends LitElement {
+@customElement("snm-table-2column")
+export class SnmTable2column extends LitElement {
   rowCount: number = 0;
 
   @property()
@@ -23,11 +23,11 @@ export class SnmTable extends LitElement {
         col.childNodes.forEach((node) => {
           children.push(node);
         });
-        tdList.push(isHead ? html`<th class="whitespace-nowrap">${children}</th>` : html`<td class="text-center py-3 px-5">${children}</td>`);
+        tdList.push(isHead ? html`<th class="whitespace-nowrap">${children}</th>` : html`<td class="odd:w-[25%] py-3 px-5">${children}</td>`);
       }); 
 
       // prettier-ignore
-      trList.push(html`<tr class="h-10 even:bg-[#f8fafc]">${tdList}</tr>`);
+      trList.push(html`<tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">${tdList}</tr>`);
     });
 
     if (!isHead) {
@@ -35,7 +35,7 @@ export class SnmTable extends LitElement {
     }
 
     // prettier-ignore
-    return isHead ? html`<thead class="text-center bg-[#f8fafc]">${trList}</thead>` : html`<tbody>${trList}</tbody>`;
+    return isHead ? html`<thead class="bg-[#f8fafc]">${trList}</thead>` : html`<tbody>${trList}</tbody>`;
   }
 
   private getTableHead() {
@@ -94,6 +94,6 @@ export class SnmTable extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "snm-table": SnmTable;
+    "snm-table-2column": SnmTable2column;
   }
 }

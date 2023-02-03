@@ -7,14 +7,24 @@ export class SnmCheckbox extends LitElement {
   @property()
   label?: string = "label";
 
+  @property()
   name?: string = "name";
+
+  @property()
   value?: string = "value";
+
+  @property()
+  for?: string = "";
+
+  @property()
+  inputID?: string = "";
+
 
   render() {
     return html`
       <div class="mb-2">
-        <input type="checkbox" name="${this.name}" value="${this.value}" />
-        <label class="text-sm">${this.label}</label>
+        <input type="checkbox" name="${this.name}" id="${this.inputID}" value="${this.value}" />
+        <label for="${this.for}" class="text-sm">${this.label}</label>
       </div>
     `;
   }

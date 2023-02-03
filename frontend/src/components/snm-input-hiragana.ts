@@ -20,7 +20,7 @@ export class SnmInputHiragana extends LitElement {
           name="${this.name}"
           type="${this.type}"
           value="${this.label}"
-          class="w-full border-2 text-sm hover:bg-[#D9E8FF] border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] rounded outline-none transition duration-100 px-2 py-1 cursor-pointer"
+          class="w-full border text-sm hover:bg-[#D9E8FF] border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] rounded outline-none transition duration-100 px-2 py-1 cursor-pointer"
         />
       </div>
     `;

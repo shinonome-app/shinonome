@@ -14,9 +14,9 @@ export class SnmMainContainer extends LitElement {
 
         <div class="w-full flex flex-col">
           
-          <snm-message-bar buttonStyle="blue">ログインしました。</snm-message-bar>
-          <snm-message-bar buttonStyle="green">追加しました。</snm-message-bar>
-          <snm-message-bar buttonStyle="red">削除しました。</snm-message-bar>
+          <snm-message-bar level="notice">ログインしました。</snm-message-bar>
+          <snm-message-bar level="success">追加しました。</snm-message-bar>
+          <snm-message-bar level="alert">更新できませんでした。</snm-message-bar>
           
           <div class="h-full bg-white p-5"><slot></slot></div>
         </div>

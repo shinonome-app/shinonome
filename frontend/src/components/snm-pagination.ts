@@ -4,7 +4,6 @@ import globalStyles from "../input.css?inline";
 
 @customElement("snm-pagination")
 export class SnmPagination extends LitElement {
-  
   @property()
   baseUrl: string = window.location.origin + window.location.pathname;
 
@@ -22,21 +21,16 @@ export class SnmPagination extends LitElement {
 
   constructor() {
     super();
-    
+
     const url = new URL(window.location.href);
     const page = url.searchParams.get(this.pageParam);
-    
+
     if (page) {
       this.currentPage = parseInt(page);
     }
   }
 
   private getPagedUrl(page: number): string {
-    let normalizedPage = page;
-
-    normalizedPage = Math.min(1, page);
-    normalizedPage = Math.max(normalizedPage, this.maxPages);
-
     const url = new URL(this.baseUrl);
 
     url.searchParams.append(this.pageParam, page.toString());
@@ -48,18 +42,18 @@ export class SnmPagination extends LitElement {
     const ul = document.createElement("ul");
     ul.classList.add("flex", "gap-2", "items-center");
 
-    const restItems = this.maxPages - 1;
-    const restItemsPerSide = Math.ceil(restItems / 2);
+    const restItems = this.maxPages;
+    const restItemsPerSide = Math.ceil(restItems / 1);
 
     const paginationStart = Math.max(1, this.currentPage - restItemsPerSide);
     const paginationEnd = Math.min(this.currentPage + restItemsPerSide, this.maxPages);
 
-    if (paginationStart > 1) {
+    if (this.currentPage > 1) {
       const li = document.createElement("li");
       const a = document.createElement("a");
 
       a.setAttribute("href", this.getPagedUrl(this.currentPage - 1));
-      a.textContent = "<"
+      a.textContent = "< 次へ";
 
       li.appendChild(a);
 
@@ -68,13 +62,25 @@ export class SnmPagination extends LitElement {
 
     for (let i = paginationStart, j = paginationEnd; i <= j; i++) {
       const li = document.createElement("li");
-      li.classList.add();
+      li.classList.add(
+        "h-7",
+        "w-8",
+        "rounded",
+        "text-sm",
+        "overflow-hidden",
+        "bg-ab_navy",
+        "text-white",
+        "flex",
+        "wrap",
+        "justify-center",
+        "items-center"
+      );
 
       if (i !== this.currentPage) {
         const a = document.createElement("a");
 
         a.setAttribute("href", this.getPagedUrl(i));
-        a.classList.add("active:text-white", "active:bg-ab_primary", "bg-ab_lightgray", "py-2", "px-4", "rounded-md");
+        a.classList.add("h-7", "w-8", "bg-ab_lightgray", "text-sm", "text-black", "flex", "wrap", "justify-center", "items-center");
         a.textContent = i.toString();
 
         li.appendChild(a);
@@ -85,12 +91,12 @@ export class SnmPagination extends LitElement {
       ul.appendChild(li);
     }
 
-    if (paginationEnd < this.maxPages) {
+    if (this.currentPage < this.maxPages) {
       const li = document.createElement("li");
       const a = document.createElement("a");
 
-      a.setAttribute("href", this.getPagedUrl(this.currentPage + restItemsPerSide + 1));
-      a.textContent = ">";
+      a.setAttribute("href", this.getPagedUrl(this.currentPage + 1));
+      a.textContent = "次へ >";
 
       li.appendChild(a);
 
@@ -101,7 +107,7 @@ export class SnmPagination extends LitElement {
   }
 
   render() {
-    return html`${this.getTemplate()}`;
+    return html`<nav>${this.getTemplate()}</nav>`;
   }
 
   static styles = [unsafeCSS(globalStyles)];
