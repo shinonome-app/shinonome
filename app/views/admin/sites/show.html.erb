@@ -3,20 +3,17 @@
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
-      ["関連サイト名", @site.name],
-      ["関連サイト運営者",  @site.owner_name],
-      ["email", @site.email],
-      ["URL", link_to(@site.url, @site.url, class: 'underline')],
-      ["備考", @site.note],
-      ["最終更新日", @site.updated_at],
-      ["更新者", @site.updated_by],
-      ]
-      )) %>
+        ["関連サイト名", @site.name],
+        ["関連サイト運営者", @site.owner_name],
+        ["email", @site.email],
+        ["URL", link_to(@site.url, @site.url, class: 'underline')],
+        ["備考", @site.note],
+        ["最終更新日", @site.updated_at],
+        ["更新者", @site.updated_by]
+      ])) %>
 
   <div class="mt-2 flex gap-2">
     <%= tag.snm_link "更新", href: edit_admin_site_path(@site) %>
     <%= tag.snm_link "戻る", href: admin_sites_path, buttonstyle: "secondary" %>
   </div>
 </div>
-
-

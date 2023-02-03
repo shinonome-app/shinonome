@@ -5,4 +5,3 @@
   <%= @form.collection_select :status, WorkStatus.all, :id, :name, {}, { class: select_form_class } %>
 </div>
 <%= render(Admin::SubmitComponent.new(name: "text", value: "検索")) %>
-
