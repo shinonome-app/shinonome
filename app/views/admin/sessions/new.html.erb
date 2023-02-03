@@ -1,9 +1,4 @@
-<% if notice.present? %>
-<snm-message-bar buttonStyle="blue"><%= notice %></snm-message-bar>
-<% elsif alert.present? %>
-<snm-message-bar buttonStyle="red"><%= alert %></snm-message-bar>
-<% end %>
-
+<%= render Admin::FlashComponent.new(flash: flash) %>
 <h1 class="text-3xl text-white text-center mt-32 mb-16"><%= Rails.configuration.x.site_name %> DBへログインします</h1>
 <div class="max-w-xl bg-white m-auto rounded-sm py-11 px-10 sm:px-28 mb-9">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
