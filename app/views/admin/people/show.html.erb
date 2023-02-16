@@ -23,7 +23,7 @@
       ])) %>
 
   <div class="mt-2 flex gap-2">
-    <snm-link href="<%= edit_admin_person_path(@person) %>">更新</snm-link>
+    <%= tag.snm_link "更新", href: edit_admin_person_path(@person) %>
     <%= button_to '削除', [:admin, @person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
   </div>
 </div>
@@ -38,7 +38,7 @@
   </div>
   <% else %>
   <div class="mt-2 flex gap-2">
-    <snm-link href="<%= new_admin_person_base_person_path(@person) %>">関連付け</snm-link>
+    <%= tag.snm_link "関連付け", href: new_admin_person_base_person_path(@person) %>
   </div>
   <% end %>
 </div>
@@ -63,7 +63,7 @@
   </div>
   <% else %>
   <div class="mt-2 flex gap-2">
-    <snm-link label="関連付け" href="<%= new_admin_person_person_site_path(@person) %>"></snm-link>
+    <%= tag.snm_link "関連づけ", href: new_admin_person_person_site_path(@person) %>
   </div>
   <% end %>
 
@@ -92,6 +92,6 @@
 
 <div>
   <div class="py-4">
-    <%= link_to '戻る', admin_people_path, class: primary_button_class %>
+    <%= tag.snm_link '戻る', href: admin_people_path %>
   </div>
 </div>

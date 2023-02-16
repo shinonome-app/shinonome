@@ -1,25 +1,25 @@
 <%= render Admin::FlashComponent.new(flash: flash) %>
 <h1 class="text-3xl text-white text-center mt-32 mb-16"><%= Rails.configuration.x.site_name %> DBへログインします</h1>
 <div class="max-w-xl bg-white m-auto rounded-sm py-11 px-10 sm:px-28 mb-9">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |form| %>
   <div class="mb-2">
-    <%= f.label :login, class: "inline-block text-sm" %>
-    <%= f.text_field :login, autofocus: true, required: true, class: input_form_class %>
+    <%= form.label :login, class: "inline-block text-sm" %>
+    <%= form.text_field :login, autofocus: true, required: true, class: input_form_class %>
   </div>
   <div class="mb-2">
-    <%= f.label :password, class: "inline-block text-sm" %>
-    <%= f.password_field :password, autocomplete: "current-password", required: true, class: input_form_class %>
+    <%= form.label :password, class: "inline-block text-sm" %>
+    <%= form.password_field :password, autocomplete: "current-password", required: true, class: input_form_class %>
   </div>
   <% if devise_mapping.rememberable? %>
   <div class="mb-2">
-    <%= f.label :remember_me, class: "text-sm" do %>
-    <%= f.check_box :remember_me %>
+    <%= form.label :remember_me, class: "text-sm" do %>
+    <%= form.check_box :remember_me %>
     ブラウザにログイン情報を保存
     <% end %>
   </div>
   <% end %>
   <div>
-    <%= render(Admin::SubmitComponent.new(form: f, name: "commit", value: "ログイン")) %>
+    <%= render(Admin::SubmitComponent.new(form:, name: "commit", value: "ログイン")) %>
   </div>
   <% end %>
 </div>

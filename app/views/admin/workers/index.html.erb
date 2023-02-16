@@ -6,14 +6,14 @@
     <snm-headline h="h2">工作員検索</snm-headline>
     <%= form_with(url: admin_workers_text_searches_path, method: 'get') do |form| %>
     <div class="flex gap-1 items-end">
-      <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名読み", name: "name_kana")) %>
+      <%= render(Admin::TextSearchInputComponent.new(form:, label: "姓名読み", name: "name_kana")) %>
     </div>
     <div class="flex gap-1 items-end">
-      <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名", name: "name")) %>
+      <%= render(Admin::TextSearchInputComponent.new(form:, label: "姓名", name: "name")) %>
     </div>
 
     <div class="flex">
-      <%= render(Admin::SubmitComponent.new(name: "text", value: "検索")) %>
+      <%= render(Admin::SubmitComponent.new(form:, name: "text", value: "検索")) %>
     </div>
     <% end %>
   <!--人物検索 start-->

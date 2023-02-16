@@ -29,13 +29,5 @@
     .btn-admin-danger {
         @apply bg-red-400 hover:bg-red-700 text-gray-900 hover:text-white px-8 py-2 text-center border border-red-800 hover:border-transparent rounded;
     }
-
-    /** rails form **/
-    div#error_explanation h2 {
-        @apply text-red-700 font-bold;
-    }
-    div#error_explanation ul li {
-        @apply text-red-500 list-disc ml-4;
-    }
 }
 
