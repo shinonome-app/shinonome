@@ -1,5 +1,13 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require("tailwindcss/plugin");
 
+const fs = require("node:fs");
+const svg2DataUri = (path) => {
+  svg = fs.readFileSync(`./frontend/assets/svg/${path}`, "utf-8");
+  return `url('data:image/svg+xml,${encodeURIComponent(svg)}')`;
+};
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './app/assets/stylesheets/*.css',

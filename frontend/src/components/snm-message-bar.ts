@@ -14,13 +14,13 @@ export class SnmMessageBar extends LitElement {
 
     switch (this.level) {
       case "notice":
-        styleClasses = "text-[#022C45] bg-[#C3E9FF] text-xs px-8 py-3 rounded mb-2";
+        styleClasses = "text-[#022C45] bg-[#C3E9FF] text-sm px-8 py-3 rounded mb-2";
         break;
       case "success":
-        styleClasses = "text-[#012B14] bg-[#BFF9D9] text-xs px-8 py-3 rounded mb-2";
+        styleClasses = "text-[#012B14] bg-[#BFF9D9] text-sm px-8 py-3 rounded mb-2";
         break;
       case "alert":
-        styleClasses = "text-[#400601] bg-[#FECDC9] text-xs px-8 py-3 rounded mb-2";
+        styleClasses = "text-[#400601] bg-[#FECDC9] text-sm px-8 py-3 rounded mb-2";
         break;
     }
 

@@ -50,46 +50,43 @@ export class SnmLink extends LitElement {
 
     switch (this.icon) {
       case "home":
-        iconName = "before:content-[url('/images/svg/home.svg')]";
+        iconName = "before:content-homeIcon";
         break;
       case "notice":
-        iconName = "before:content-[url('/images/svg/notice.svg')]";
+        iconName = "before:content-noticeIcon";
         break;
       case "user":
-        iconName = "before:content-[url('/images/svg/user.svg')]";
-        break;
-      case "down-arrow":
-        iconName = "after:content-[url('/images/svg/dropdown.svg')]";
+        iconName = "before:content-userIcon";
         break;
       case "work":
-        iconName = "before:content-[url('/images/svg/work.svg')]";
+        iconName = "before:content-workIcon";
         break;
       case "person":
-        iconName = "before:content-[url('/images/svg/person.svg')]";
+        iconName = "before:content-personIcon";
         break;
       case "worker":
-        iconName = "before:content-[url('/images/svg/worker.svg')]";
+        iconName = "before:content-workerIcon";
         break;
       case "website":
-        iconName = "before:content-[url('/images/svg/website.svg')]";
+        iconName = "before:content-websiteIcon";
         break;
       case "db":
-        iconName = "before:content-[url('/images/svg/db.svg')]";
+        iconName = "before:content-dbIcon";
         break;
       case "file":
-        iconName = "before:content-[url('/images/svg/file.svg')]";
+        iconName = "before:content-fileIcon";
         break;
       case "mail":
-        iconName = "before:content-[url('/images/svg/mail.svg')]";
+        iconName = "before:content-mailIcon";
         break;
       case "pen":
-        iconName = "before:content-[url('/images/svg/pen.svg')]";
+        iconName = "before:content-penIcon";
         break;
       case "command":
-        iconName = "before:content-[url('/images/svg/command.svg')]";
+        iconName = "before:content-commandIcon";
         break;
       case "admin":
-        iconName = "before:content-[url('/images/svg/admin.svg')]";
+        iconName = "before:content-adminIcon";
         break;
     }
 

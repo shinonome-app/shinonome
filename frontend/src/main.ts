@@ -16,6 +16,7 @@ export { SnmInputHiragana } from "./components/snm-input-hiragana";
 export { SnmInputFile } from "./components/snm-input-file";
 export { SnmTable } from "./components/snm-table";
 export { SnmTableVertical } from "./components/snm-table-vertical";
+export { SnmTable2column } from "./components/snm-table-2column";
 export { SnmStatus } from "./components/snm-status";
 export { SnmPagination } from "./components/snm-pagination";
 export { SnmMessageBar } from "./components/snm-message-bar";
