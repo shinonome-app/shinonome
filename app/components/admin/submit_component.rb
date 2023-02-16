@@ -11,8 +11,9 @@ module Admin
     }.freeze
     # rubocop:enable Layout/LineLength
 
-    def initialize(name:, value:, button_style: :primary)
+    def initialize(form:, name:, value:, button_style: :primary)
       super
+      @form = form
       @name = name
       @value = value
       @button_style = button_style

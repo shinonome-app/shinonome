@@ -36,7 +36,7 @@
   </div>
 
   <div class="flex">
-    <%= render(Admin::SubmitComponent.new(name: "text", value: "検索")) %>
+    <%= render(Admin::SubmitComponent.new(form:, name: "text", value: "検索")) %>
   </div>
   <% end %>
 </div>
@@ -75,7 +75,7 @@
   <snm-headline h="h2">著者不明作品検索</snm-headline>
   <%= form_with(url: admin_works_unknown_creator_searches_path, method: 'get') do |form| %>
   <div class="flex">
-    <%= render(Admin::SubmitComponent.new(name: "text", value: "検索")) %>
+    <%= render(Admin::SubmitComponent.new(form:, name: "text", value: "検索")) %>
   </div>
   <% end %>
 </div>

@@ -1,9 +1,9 @@
       <div slot="navi" class="flex gap-8">
-        <snm-link label="<%= Rails.configuration.x.site_name %>トップページ" href="<%= Rails.configuration.x.main_site_url %>" buttonStyle="normal" fontColor="nav" icon="home"></snm-link>
-        <snm-link label="作業着手連絡システム" href="<%= root_path %>" buttonStyle="normal" fontColor="nav" icon="notice"></snm-link>
+        <%= tag.snm_link "#{Rails.configuration.x.site_name}トップページ", href: Rails.configuration.x.main_site_url, buttonStyle: "normal", fontColor: "nav", icon: "home" %>
+        <%= tag.snm_link "作業着手連絡システム", href: root_path, buttonStyle: "normal", fontColor: "nav", icon: "notice" %>
         <div id="menu-title" class="relative">
           <div class="flex items-baseline gap-2">
-            <snm-link label="<%= @user.email %>" href="#" buttonStyle="normal" fontColor="nav" icon="user"></snm-link>
+            <%= tag.snm_link @user.email, href: "#", buttonStyle: "normal", fontColor: "nav", icon: "user" %>
             <svg
               class="max-[900px]:hidden"
               width="10"
@@ -24,6 +24,5 @@
             </ul>
           </div>
           <!-- ホバーメニュー - end -->
-
         </div>
       </div>

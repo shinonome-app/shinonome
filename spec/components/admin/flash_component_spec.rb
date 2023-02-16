@@ -8,7 +8,7 @@ RSpec.describe Admin::FlashComponent, type: :component do
       flashes = { notice: 'notice message.' }
       flash = ActionDispatch::Flash::FlashHash.new(flashes)
       component = render_inline(described_class.new(flash: flash))
-      expect(component.css('snm-message-bar').to_html).to include('buttonstype="notice"')
+      expect(component.css('snm-message-bar').to_html).to include('level="notice"')
       expect(component.css('snm-message-bar').to_html).to include('notice message.')
     end
   end

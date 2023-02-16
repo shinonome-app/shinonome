@@ -2,7 +2,7 @@
 
 module Admin
   class BibclassesController < Admin::ApplicationController
-    before_action :set_bibclass, only: %i[destroy]
+    before_action :set_bibclass, only: %i[destroy edit update]
 
     # GET /admin/works/:work_id/bibclasses
     def index
@@ -15,6 +15,10 @@ module Admin
       @bibclass.work_id = params[:work_id] if params[:work_id]
     end
 
+    def edit
+      @bibclass.work_id = params[:work_id] if params[:work_id]
+    end
+
     # POST /admin/works/:work_id/bibclasses
     def create
       @bibclass = Bibclass.new(bibclass_params)
@@ -23,6 +27,14 @@ module Admin
         redirect_to [:admin, @bibclass.work], success: '追加しました.'
       else
         render :new, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      if @bibclass.update(bibclass_params)
+        redirect_to [:admin, @bibclass.work], success: '更新しました.'
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
 
