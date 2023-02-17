@@ -1,79 +1,42 @@
 <%= form_with(model: [:admin, work]) do |form| %>
   <% if work.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(work.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% work.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
-  <div class="field py-2">
-    <%= form.label :title_kana, "作品名読み" %>
-    <%= form.text_field :title_kana, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :sortkey, "ソート用読み" %>
-    <%= form.text_field :sortkey, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :title, "作品名" %>
-    <%= form.text_field :title, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :subtitle_kana, "副題読み" %>
-    <%= form.text_field :subtitle_kana, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :subtitle, "副題" %>
-    <%= form.text_field :subtitle, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :collection_kana, "作品集名読み" %>
-    <%= form.text_field :collection_kana, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :collection, "作品集名" %>
-    <%= form.text_field :collection, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :original_title, "原題" %>
-    <%= form.text_field :original_title, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :kana_type_id, "仮名遣い種別" %>
-    <%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'text-gray-800' } %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :first_appearance, "初出" %>
-    <%= form.text_field :first_appearance, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :description, "作品について" %>
-    <%= form.text_area :description, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :note, "備考" %>
-    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :orig_text, "底本管理情報" %>
-    <%= form.text_area :orig_text, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :work_status_id, "状態" %>
-    <%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, { prompt: '選択してください' }, { class: 'text-gray-800' } %>
-  </div>
+  <% errors = work.errors %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title_kana, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :subtitle_kana, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :subtitle, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :collection_kana, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :collection, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :original_title, errors:)) %>
+  <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                     name: :kana_type_id,
+                                                     collection: KanaType.order(:id).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_appearance, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :description, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :note, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :orig_text, errors:)) %>
+  <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                     name: :work_status_id,
+                                                     collection: WorkStatus.order(:sort_order).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     errors:)) %>
   <div class="field py-2">
     <%= form.label :started_on, "状態の開始日" %>
-    <%= form.date_select :started_on, start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true, class: "w-full border border-gray-800 p-1" %>
+    <%= form.date_select :started_on, { start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true }, { class: "min-w-[100px] bg-dropdownIcon bg-no-repeat bg-[right_0.8rem_center] rounded px-2 py-2 border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] cursor-pointer appearance-none" } %>
   </div>
-  <div class="field py-2">
-    <%= form.label :copyright_flag, "著作権フラグ" %>
-    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], { include_blank: false }, { class: 'text-gray-800' } %>
-  </div>
-  <div class="actions py-4">
-    <%= form.submit "登録する", class: 'btn-admin-normal' %>
+  <%= render(Admin::SnmSelectComponent.new(form:,
+                                           name: :copyright_flag,
+                                           choices: [["なし", 0], ["あり", 1]],
+                                           options: { include_blank: false },
+                                           errors:)) %>
+  <div class="mt-2 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>
 <% end %>

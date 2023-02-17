@@ -26,13 +26,11 @@ describe Admin::WorksController do
         visit '/admin/works/new'
         click_button('登録する')
         expect(page).to have_content('作品新規登録')
-        expect(page).to have_content('6 件の入力エラーがあります')
+        expect(page).to have_content('入力エラーがあります')
         expect(page).to have_content('仮名遣い種別を入力してください')
         expect(page).to have_content('状態を入力してください')
         expect(page).to have_content('作品名読みを入力してください')
         expect(page).to have_content('作品名を入力してください')
-        expect(page).to have_content('仮名遣い種別は一覧にありません')
-        expect(page).to have_content('状態は一覧にありません')
       end
     end
 
@@ -84,7 +82,7 @@ describe Admin::WorksController do
       expect(page).to have_content('作品データ')
       expect(page).to have_content('作品その1')
 
-      page.find('h2', text: '作品データ').sibling('div').click_button('削除')
+      page.find('snm-headline', text: '作品データ').sibling('div').click_button('削除')
       expect do
         expect(page.accept_confirm).to eq '本当に削除しますか?'
         expect(page).to have_content '削除しました'

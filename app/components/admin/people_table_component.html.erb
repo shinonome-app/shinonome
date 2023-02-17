@@ -1,0 +1,12 @@
+<%= render(Admin::SnmTableComponent.new(
+             header: @header,
+             body: @people.map do |person|
+                     [
+                       person.id,
+                       link_to(person.name, admin_person_path(person)),
+                       person.name_kana,
+                       person.copyright_text,
+                       safe_join(person.other_people.map { |other_person| link_to("→#{other_person.name}", admin_person_path(other_person)) }, ', ')
+                     ]
+                   end
+           )) %>

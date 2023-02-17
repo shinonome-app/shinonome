@@ -1,58 +1,46 @@
 <%= form_with(model: admin_mail_secret, url: admin_admin_mail_secrets_path, data: { turbo: false }) do |form| %>
   <% if admin_mail_secret.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(admin_mail_secret.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% admin_mail_secret.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
-  <table>
-    <tr>
-      <td class="align-top text-top">
-        <%= form.label :worker_id, "工作員ID" %>
-      </td>
-      <td class="bg-gray-200">
-        <%= admin_mail_secret.worker_id %>
-        <%= form.hidden_field :worker_id %>
-        <% if admin_mail_secret.email %>
-        <div>email: <%= admin_mail_secret.email %></div>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= form.label :subject, "件名" %>
-      </td>
-      <td class="bg-gray-200">
-        <%= admin_mail_secret.subject %>
-        <%= form.hidden_field :subject %>
-      </td>
-    </tr>
-    <tr>
-      <td class="align-top text-top">
-        <%= form.label :body, "本文" %>
-      </td>
-      <td class="bg-gray-200">
-        <pre><%= admin_mail_secret.body %></pre>
-        <%= form.hidden_field :body %>
-      </td>
-    </tr>
-    <tr>
-      <td class="align-top text-top">
-        <%= form.label :cc_flag, "青空文庫にCCする" %>
-      </td>
-      <td class="bg-gray-200">
-        <%= admin_mail_secret.cc_reception? ? "する" : "しない" %>
-        <%= form.hidden_field :cc_flag %>
-      </td>
-    </tr>
-  </table>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
+  <% end %>
 
-  <div>
-    <%= form.submit "送信", class: "btn-admin-normal" %>
-    <%= form.submit '戻る', name: 'edit', formaction: admin_admin_mail_secrets_path, class: "btn-normal" %>
+  <%= form.hidden_field :worker_id %>
+  <%= form.hidden_field :subject %>
+  <%= form.hidden_field :body %>
+  <%= form.hidden_field :cc_flag %>
+
+  <snm-headline h="h3">工作員ID</snm-headline>
+  <div class="bg-ab_bg_gray p-4">
+    <p>
+      <%= admin_mail_secret.worker_id %>
+    </p>
+    <% if admin_mail_secret.email %>
+    <p>email: <%= admin_mail_secret.email %></p>
+    <% end %>
+  </div>
+
+  <snm-headline h="h3">件名</snm-headline>
+  <div class="bg-ab_bg_gray p-4">
+    <p>
+      <%= admin_mail_secret.subject %>
+    </p>
+  </div>
+
+  <snm-headline h="h3">本文</snm-headline>
+  <div class="bg-ab_bg_gray p-4">
+    <pre><%= admin_mail_secret.body %></pre>
+  </div>
+
+  <snm-headline h="h3">青空文庫にCCする</snm-headline>
+  <div class="bg-ab_bg_gray p-4">
+    <p>
+      <%= admin_mail_secret.cc_reception? ? "する" : "しない" %>
+    </p>
+  </div>
+
+  <div class="mt-4 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "送信する")) %>
+    <div>
+      <%= form.submit '戻る', name: 'edit', formaction: admin_admin_mail_secrets_path, class: secondary_button_class %>
+    </div>
   </div>
 <% end %>

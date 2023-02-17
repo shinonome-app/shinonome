@@ -9,13 +9,13 @@ ruby '3.2.0'
 gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+# gem 'sprockets-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 6.0'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem 'jsbundling-rails'
+# gem 'jsbundling-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
@@ -49,7 +49,7 @@ gem 'devise'
 gem 'pagy'
 
 # Use TailswindCSS
-gem 'tailwindcss-rails'
+# gem 'tailwindcss-rails'
 
 # Some libraries use rexml as XML processor
 gem 'rexml'
@@ -111,3 +111,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'erb_lint', '~> 0.3.0', require: false
 
 gem 'aozora2html', '~> 3.0'
+
+gem 'vite_rails', '~> 3.0'

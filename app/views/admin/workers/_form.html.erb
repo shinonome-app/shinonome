@@ -1,41 +1,17 @@
 <%= form_with(model: [:admin, worker]) do |form| %>
   <% if worker.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(worker.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% worker.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
-  <div class="field">
-    <%= form.label :name_kana, "姓名読み" %>
-    <%= form.text_field :name_kana, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :sortkey, "ソート用読み" %>
-    <%= form.text_field :sortkey, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :name, "姓名" %>
-    <%= form.text_field :name, class: "w-full border border-gray-800 p-1" %>
-  </div>
+  <% errors = worker.errors %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name_kana, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, errors:)) %>
   <%= form.fields_for :worker_secret do |secret_form| %>
-  <div class="field">
-    <%= secret_form.label :email, "email" %>
-    <%= secret_form.text_field :email, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= secret_form.label :url, "URL" %>
-    <%= secret_form.text_field :url, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= secret_form.label :note, "備考(非公開)" %>
-    <%= secret_form.text_area :note, class: "w-full border border-gray-800 p-1" %>
-  </div>
+  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :email, errors:, error_key: :'worker_secret.email')) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :url, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :note, label: "備考(非公開)", errors:)) %>
   <% end %>
-  <div class="actions">
-    <%= form.submit "更新", class: 'btn-admin-normal' %>
+  <div class="mt-2 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>
 <% end %>

@@ -1,0 +1,33 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* from snm-button */
+@media screen and (max-width: 900px) {
+    .small-screen-hidden {
+        font-size: 0;
+    }
+}
+
+
+@layer components {
+    .btn-normal {
+        @apply bg-gray-200 hover:bg-gray-500 text-gray-900 hover:text-white px-8 py-2 text-center border border-gray-500 hover:border-transparent rounded;
+    }
+    .btn-danger {
+        @apply bg-red-400 hover:bg-red-700 text-gray-900 hover:text-white px-8 py-2 text-center border border-red-800 hover:border-transparent rounded;
+    }
+    .link-normal {
+        @apply text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline;
+    }
+    .field_with_errors {
+        @apply p-1 bg-red-300 table w-full;
+    }
+    .btn-admin-normal {
+        @apply bg-blue-500 text-white text-center hover:text-white hover:bg-blue-700 px-8 py-2 rounded;
+    }
+    .btn-admin-danger {
+        @apply bg-red-400 hover:bg-red-700 text-gray-900 hover:text-white px-8 py-2 text-center border border-red-800 hover:border-transparent rounded;
+    }
+}
+

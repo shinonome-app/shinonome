@@ -1,66 +1,26 @@
-<div class="py-4">
-<%= form_with(model: [:admin, news_entry]) do |form| %>
+<div>
+  <%= form_with(model: [:admin, news_entry]) do |form| %>
   <% if news_entry.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(news_entry.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% news_entry.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
-  <table class="w-full">
-    <tr>
-      <td class="w-24"><%= form.label :published_on, "日付" %></td>
-      <td><%= form.date_select :published_on, start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true %></td>
-    </tr>
-    <tr>
-      <td>
-        <%= form.label :title, "見出し" %>
-      </td>
-      <td>
-        <%= form.text_field :title, class: 'w-full' %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= form.label :body, "本文" %>
-      </td>
-      <td>
-        <%= form.text_area :body, rows: 15, class: 'w-full' %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        &nbsp;
-      </td>
-      <td>
-        <%= form.label :flag do %>
-          <%= form.check_box :flag %>
-          ニュースに指定する
-        <% end %>
-      </td>
-    </tr>
-  </table>
+  <% errors = news_entry.errors %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :published_on, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :body, errors:)) %>
+  <%= render(Admin::SnmSelectComponent.new(form:, name: :flag, choices: [["指定する", true], ["指定しない", false]], label: "トピックに指定する", errors:)) %>
 
-<div class="py-4">
-  <p>
-    図書カードURLの書式：
-    <blockquote>
-      ../cards/xxxxxx/cardzzzz.html
-    </blockquote>
+  <p class="mt-8 text-sm">
+    図書カードURLの書式:<br>
+    /cards/xxxxxx/cardzzzz.html<br>
+    xxxxxxは人物ID、先頭ゼロの6桁固定<br>
+    zzzzは作品ID、先頭ゼロなし、桁数は不定
   </p>
-  <p>
-    　xxxxxxは人物ID、先頭ゼロの6桁固定<br>
-    　zzzzは作品ID、先頭ゼロなし、桁数は不定
-  </p>
-</div>
 
-<div class="actions">
-  <%= form.submit "更新", class: 'btn-admin-normal' %>
-  <%= link_to '戻る', news_entry.id ? admin_news_entry_path(news_entry) : admin_news_entries_path, class: 'btn-normal' %>
-</div>
-<% end %>
-
+  <div class="mt-4 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "更新する")) %>
+    <%= tag.snm_link '戻る',
+                     href: news_entry.id ? admin_news_entry_path(news_entry) : admin_news_entries_path,
+                     buttonstyle: "secondary" %>
+  </div>
+  <% end %>
 </div>

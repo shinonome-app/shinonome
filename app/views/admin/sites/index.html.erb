@@ -1,29 +1,17 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl">関連サイト</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">関連サイト</snm-headline>
 
-  <h2 class="text-2xl">関連サイト検索</h2>
+  <div class="mt-10">
+    <snm-headline h="h2">関連サイト検索</snm-headline>
+    <%= render(Admin::SiteSearchComponent.new(form_url: admin_sites_text_searches_path)) %>
+  </div>
+</div>
 
-  <%= render(Admin::SiteSearchComponent.new(form_url: admin_sites_text_searches_path)) %>
+<div class="mt-10 mb-5">
+  <snm-headline h="h2">関連サイト一覧</snm-headline>
+  <%= render(Admin::SitesTableComponent.new(sites: @sites)) %>
+</div>
 
-  <h2 class="text-2xl">関連サイト一覧</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>サイト名</th>
-        <th>URL</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sites.each do |site| %>
-        <tr>
-          <td><%= site.id %></td>
-          <td><%= link_to site.name, admin_site_path(site) %></td>
-          <td><%= site.url %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <br>
-  <%= link_to '関連サイト新規登録', new_admin_site_path, class: 'btn-admin-normal' %>
+<div class="mt-5 flex">
+  <%= tag.snm_link "関連サイト新規登録", href: new_admin_site_path %>
 </div>

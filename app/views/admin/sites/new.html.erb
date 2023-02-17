@@ -1,7 +1,7 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">新規関連サイト</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">新規関連サイト登録</snm-headline>
   <%= render 'form', site: @site %>
-  <div class="py-4">
-    <%= link_to '戻る', admin_sites_path, class: 'btn-normal' %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '戻る', href: admin_sites_path, buttonstyle: "secondary" %>
   </div>
 </div>

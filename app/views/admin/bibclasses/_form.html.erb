@@ -1,29 +1,13 @@
 <%= form_with(model: [:admin, bibclass.work, bibclass]) do |form| %>
-  <% if bibclass.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bibclass.errors.count, "error") %>件のエラーがあります:</h2>
-      <ul>
-        <% bibclass.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= form.label :name, "分類名" %>
-    <%= form.text_field :name, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :num, "分類番号" %>
-    <%= form.text_field :num, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :note, "備考" %>
-    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
-  </div>
+<% if bibclass.errors.any? %>
+  <b class="text-red-500"><%= pluralize(bibclass.errors.count, "件") %>のエラーがあります</b>
+<% end %>
+<%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, errors: bibclass.errors)) %>
+<%= render(Admin::SnmTextFieldComponent.new(form:, name: :num, errors: bibclass.errors)) %>
+<%= render(Admin::SnmTextFieldComponent.new(form:, name: :note, errors: bibclass.errors)) %>
+<%= form.hidden_field :work_id %>
 
-  <%= form.hidden_field :work_id %>
-  <div class="actions py-4">
-    <%= form.submit "更新", class: 'btn-admin-normal' %>
-  </div>
+<div class="mt-2 flex">
+  <%= render(Admin::SubmitComponent.new(form:, name: 'commit', value: "登録する")) %>
+</div>
 <% end %>

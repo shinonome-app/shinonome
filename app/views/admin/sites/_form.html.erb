@@ -1,38 +1,17 @@
 <%= form_with(model: [:admin, site]) do |form| %>
   <% if site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t("errors.template.header", model: site.model_name.human, count: site.errors.count) %></h2>
-      <ul>
-        <% site.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
-  <div class="field">
-    <%= form.label :name, "関連サイト名" %>
-    <%= form.text_field :name, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :url, "URL" %>
-    <%= form.text_field :url, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :owner_name, "運営者名" %>
-    <%= form.text_field :owner_name, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :email, "email" %>
-    <%= form.text_field :email, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field">
-    <%= form.label :note, "備考" %>
-    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
-  </div>
+  <% errors = site.errors %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :owner_name, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
     <%= form.fields_for :work_sites do |work_site| %>
       <%= work_site.hidden_field :work_id %>
     <% end %>
-  <div class="actions">
-    <%= form.submit "更新", class: 'btn-admin-normal py-2' %>
+  <div class="mt-2 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>
 <% end %>

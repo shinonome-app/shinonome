@@ -1,35 +1,30 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">工作員一覧</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">工作員一覧</snm-headline>
 
-  <h2 class="text-xl">工作員検索</h2>
-  <%= form_with(url: admin_workers_text_searches_path, method: 'get') do |form| %>
-  <table>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名読み", name: "name_kana")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓名", name: "name")) %>
-  </table>
-    <input type="submit" name="text" value="検索" class="btn-admin-normal">
-  <% end %>
+  <div class="mt-10">
+    <!--人物検索 start-->
+    <snm-headline h="h2">工作員検索</snm-headline>
+    <%= form_with(url: admin_workers_text_searches_path, method: 'get') do |form| %>
+    <div class="flex gap-1 items-end">
+      <%= render(Admin::TextSearchInputComponent.new(form:, label: "姓名読み", name: "name_kana")) %>
+    </div>
+    <div class="flex gap-1 items-end">
+      <%= render(Admin::TextSearchInputComponent.new(form:, label: "姓名", name: "name")) %>
+    </div>
 
-  <h2 class="text-xl">工作員一覧</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>工作員ID</th>
-        <th>姓名</th>
-        <th>読み</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @workers.each do |worker| %>
-        <tr>
-          <td><%= worker.id %></td>
-          <td><%= link_to worker.name, admin_worker_path(worker) %></td>
-          <td><%= worker.name_kana %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <%== pagy_nav(@pagy) %>
+    <div class="flex">
+      <%= render(Admin::SubmitComponent.new(form:, name: "text", value: "検索")) %>
+    </div>
+    <% end %>
+  <!--人物検索 start-->
+  </div>
 </div>
+
+<!--人物一覧 start-->
+<div class="mt-10 mb-5">
+  <snm-headline h="h2">人物一覧</snm-headline>
+  <%= render(Admin::WorkersTableComponent.new(workers: @workers)) %>
+</div>
+
+<%== pagy_snm_nav(@pagy) %>
+<!--人物一覧 end-->

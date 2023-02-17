@@ -1,0 +1,9 @@
+<div class="mb-2 flex flex-col">
+  <% if label %>
+  <%= form.label name, label, class: "inline-block text-sm mb-1" %>
+  <% end %>
+  <%= form.collection_select name, collection, value_method, text_method, options, html_options %>
+  <% if errors[name].any? %>
+  <%= tag.div errors.full_messages_for(name).join(', '), class: "text-sm text-red-500 required:block" %>
+  <% end %>
+</div>

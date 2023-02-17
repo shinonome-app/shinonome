@@ -1,5 +1,7 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl">作品新規登録</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">作品新規登録</snm-headline>
   <%= render 'form', work: @work %>
-  <%= link_to '戻る', admin_works_path, class: 'btn-normal' %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '戻る', href: admin_works_path, buttonstyle: "secondary" %>
+  </div>
 </div>

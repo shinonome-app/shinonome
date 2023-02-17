@@ -101,9 +101,18 @@ ja:
         id: "ID"
         person_id: "人物ID"
         original_person_id: "基本人物ID"
+      bibclass:
+        name: 分類名
+        num: 分類番号
+        note: 備考
       exec_command:
         command: コマンド
         separator: 区切り文字
+      news_entry:
+        published_on: "公開日"
+        title: "見出し"
+        body: "本文"
+        flag: "トピックに指定する"
       original_book:
         id: "底本ID"
         title: "書籍名"
@@ -123,8 +132,8 @@ ja:
         last_name_en: "姓ローマ字"
         first_name_kana: "名読み"
         last_name_kana: "姓読み"
-        sortkey: "名ソート用"
-        sortkey2: "姓ソート用"
+        sortkey: "姓読みソート用"
+        sortkey2: "名読みソート用"
         born_on: "生年月日"
         died_on: "没年月日"
         copyright_flag: "著作権フラグ"
@@ -212,7 +221,7 @@ ja:
         note: "備考"
         orig_text: "底本管理情報"
         user_id: "更新者"
-        sortkey: "ソートキー"
+        sortkey: "ソート用読み"
       work_person:
         work_id: "作品ID"
         person_id: "人物ID"
@@ -228,10 +237,11 @@ ja:
         id: "工作員ID"
         name: "姓名"
         name_kana: "姓名読み"
-        url: "URL"
-        email: "email"
-        note: "備考"
         sortkey: "ソート用読み"
+      worker_secret:
+        email: "email"
+        url: "URL"
+        note: "備考"
       workfile:
         filetype_id: "ファイル形式"
         filetype: "ファイル形式"
@@ -294,6 +304,10 @@ ja:
       subject: "「%{title}」入力のお願い"
     order_proofread:
       subject: "「%{title}」校正のお願い"
+  pagy:
+    nav:
+      prev: '< 前へ'
+      next: '次へ >'
   user_mailer:
     register_proofread:
       subject:

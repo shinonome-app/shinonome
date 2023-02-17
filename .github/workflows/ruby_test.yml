@@ -55,7 +55,6 @@ jobs:
     - name: build JS, CSS
       run:  |
         yarn build
-        bundle exec rails tailwindcss:build
     - name: Run rspec
       run: |
         bundle exec rspec

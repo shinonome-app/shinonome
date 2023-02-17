@@ -1,16 +1,16 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-2">管理者更新</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">管理者更新</snm-headline>
   <%= render 'form', user: @user %>
-  <div class="field py-2">
-    <%= link_to '戻る', admin_users_others_path, class: 'btn-normal py-2' %>
+  <div class="flex">
+    <%= tag.snm_link "戻る", href: admin_users_others_path, buttonstyle: "secondary" %>
   </div>
 
-  <h2 class="text-xl py-2">管理者削除</h2>
+  <snm-headline h="h1">管理者削除</snm-headline>
 
   <p>管理者を削除します。この操作は戻せません。</p>
 
-  <div class="field py-2">
-    <%= button_to '削除', admin_users_other_path(@user), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-admin-danger py-2' %>
+  <div class="flex mt-5">
+    <%= button_to '削除', admin_users_other_path(@user), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
   </div>
 
 </div>

@@ -27,4 +27,15 @@ class WorkStatus < ApplicationRecord
   # 12	入力取り消し	input_canceled
 
   has_many :works, dependent: :restrict_with_error
+
+  def color
+    case id
+    when 1
+      'green'
+    when 2, 12
+      'gray'
+    else
+      'yellow'
+    end
+  end
 end

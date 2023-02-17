@@ -1,23 +1,11 @@
 <%= form_with(model: user, url: admin_users_other_path) do |form| %>
   <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t("errors.template.header", model: user.model_name.human, count: user.errors.count) %></h2>
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
-  <div class="field py-2">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-  <div class="actions py-2">
-    <%= form.submit "更新", class: 'btn-admin-normal' %>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
+  <% end %>
+  <% errors = user.errors %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :username, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, errors:)) %>
+  <div class="mt-2 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "更新する")) %>
   </div>
 <% end %>

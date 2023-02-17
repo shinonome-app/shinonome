@@ -3,6 +3,8 @@
 module Admin
   # 50音検索用
   class SyllabaryTableComponent < ViewComponent::Base
+    include TailwindHelper
+
     TABLES = [
       [
         %w[あ い う え お],
@@ -14,7 +16,7 @@ module Admin
       [
         %w[は ひ ふ へ ほ],
         %w[ま み む め も],
-        ['や', nil, 'ゆ', nil, 'よ'],
+        ['や', 'ゆ', 'よ', nil, nil],
         %w[ら り る れ ろ],
         ['わ', 'を', 'ん', nil, nil]
       ]
