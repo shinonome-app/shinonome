@@ -10,17 +10,17 @@
   <%= render(Admin::SnmSelectComponent.new(form:, name: :flag, choices: [["指定する", true], ["指定しない", false]], label: "トピックに指定する", errors:)) %>
 
   <p class="mt-8 text-sm">
-    図書カードURLの書式:<br />
-    /cards/xxxxxx/cardzzzz.html<br />
-    xxxxxxは人物ID、先頭ゼロの6桁固定<br />
+    図書カードURLの書式:<br>
+    /cards/xxxxxx/cardzzzz.html<br>
+    xxxxxxは人物ID、先頭ゼロの6桁固定<br>
     zzzzは作品ID、先頭ゼロなし、桁数は不定
   </p>
 
   <div class="mt-4 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "更新する")) %>
     <%= tag.snm_link '戻る',
-        href: news_entry.id ? admin_news_entry_path(news_entry) : admin_news_entries_path,
-        buttonstyle: "secondary" %>
+                     href: news_entry.id ? admin_news_entry_path(news_entry) : admin_news_entries_path,
+                     buttonstyle: "secondary" %>
   </div>
   <% end %>
 </div>

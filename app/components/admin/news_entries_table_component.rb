@@ -13,13 +13,13 @@ module Admin
     end
 
     def before_render
-      @header = ["日付", "見出し・本文", raw('トピック<br />指定'), ""]
+      @header = ['日付', '見出し・本文', safe_join(['トピック', tag.br, '指定']), '']
       @body = @news_entries.map do |news_entry|
         [
           link_to(news_entry.published_on, admin_news_entry_path(news_entry), class: 'underline'),
-          raw(news_entry.title) + raw('<br />') + raw(truncate(news_entry.body, length: 40)),
-          news_entry.flag ? "○" : "-",
-          button_to('削除', [:admin, news_entry], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class),
+          safe_join([news_entry.title, tag.br, truncate(news_entry.body, length: 40)]),
+          news_entry.flag ? '○' : '-',
+          button_to('削除', [:admin, news_entry], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class)
         ]
       end
     end

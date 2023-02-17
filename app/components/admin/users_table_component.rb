@@ -17,7 +17,7 @@ module Admin
         [
           link_to(user.id, edit_admin_users_other_path(user), class: 'underline'),
           link_to(user.username, edit_admin_users_other_path(user), class: 'underline'),
-          user.email,
+          user.email
         ]
       end
     end

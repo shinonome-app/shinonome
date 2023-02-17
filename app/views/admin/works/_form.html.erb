@@ -1,13 +1,6 @@
 <%= form_with(model: [:admin, work]) do |form| %>
   <% if work.errors.any? %>
   <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <!--
-  <ul>
-    <% work.errors.each do |error| %>
-    <li class="text-red-500 text-sm"><%= error.full_message %></li>
-    <% end %>
-  </ul>
-  -->
   <% end %>
   <% errors = work.errors %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title_kana, label: "作品名読み", errors:)) %>
@@ -19,35 +12,34 @@
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :collection, label: "作品集名", errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :original_title, label: "原題", errors:)) %>
   <%= render(Admin::SnmCollectionSelectComponent.new(form:,
-      name: :kana_type_id,
-      collection: KanaType.order(:id).all,
-      value_method: :id,
-      text_method: :name,
-      label: "仮名遣い種別",
-      errors:)) %>
+                                                     name: :kana_type_id,
+                                                     collection: KanaType.order(:id).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     label: "仮名遣い種別",
+                                                     errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_appearance, label: "初出", errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :description, label: "作品について", errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :note, label: "備考", errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :orig_text, label: "底本管理情報", errors:)) %>
   <%= render(Admin::SnmCollectionSelectComponent.new(form:,
-      name: :work_status_id,
-      collection: WorkStatus.order(:sort_order).all,
-      value_method: :id,
-      text_method: :name,
-      label: "状態",
-      errors:)) %>
+                                                     name: :work_status_id,
+                                                     collection: WorkStatus.order(:sort_order).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     label: "状態",
+                                                     errors:)) %>
   <div class="field py-2">
     <%= form.label :started_on, "状態の開始日" %>
     <%= form.date_select :started_on, { start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true }, { class: "min-w-[100px] bg-[url('/images/svg/dropdown.svg')] bg-no-repeat bg-[right_0.8rem_center] rounded px-2 py-2 border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] cursor-pointer appearance-none" } %>
   </div>
   <%= render(Admin::SnmSelectComponent.new(form:,
-      name: :copyright_flag,
-      choices: [["なし", 0], ["あり", 1]],
-      label: "著作権フラグ",
-      options: { include_blank: false },
-      errors:)) %>
+                                           name: :copyright_flag,
+                                           choices: [["なし", 0], ["あり", 1]],
+                                           label: "著作権フラグ",
+                                           options: { include_blank: false },
+                                           errors:)) %>
   <div class="mt-2 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>
 <% end %>
-

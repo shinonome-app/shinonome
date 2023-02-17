@@ -14,11 +14,11 @@
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :born_on, label: "生年月日", errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :died_on, label: "没年月日", errors:)) %>
   <%= render(Admin::SnmSelectComponent.new(form:,
-      name: :copyright_flag,
-      choices: [["なし", 0], ["あり", 1]],
-      label: "著作権フラグ",
-      options: { include_blank: false },
-      errors:)) %>
+                                           name: :copyright_flag,
+                                           choices: [["なし", 0], ["あり", 1]],
+                                           label: "著作権フラグ",
+                                           options: { include_blank: false },
+                                           errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, label: "email", errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, label: "URL", errors:)) %>
   <%= render(Admin::SnmTextAreaComponent.new(form:, name: :description, label: "人物について", errors:)) %>
