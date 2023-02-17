@@ -36,10 +36,34 @@ module.exports = {
         ab_gray: "#6F6969", //グレー
         ab_lightgray: "#F4F4F4", //淡いグレー
       },
+      content: {
+        homeIcon: svg2DataUri("home.svg"),
+        noticeIcon: svg2DataUri("notice.svg"),
+        userIcon: svg2DataUri("user.svg"),
+        workIcon: svg2DataUri("work.svg"),
+        personIcon: svg2DataUri("person.svg"),
+        workerIcon: svg2DataUri("worker.svg"),
+        websiteIcon: svg2DataUri("website.svg"),
+        dbIcon: svg2DataUri("db.svg"),
+        fileIcon: svg2DataUri("file.svg"),
+        mailIcon: svg2DataUri("mail.svg"),
+        penIcon: svg2DataUri("pen.svg"),
+        commandIcon: svg2DataUri("command.svg"),
+        adminIcon: svg2DataUri("admin.svg"),
+      },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
     },
   },
-  plugins: []
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        ".bg-dropdownIcon": {
+          "background-image": svg2DataUri("dropdown.svg"),
+        },
+      };
+      addUtilities(newUtilities);
+    }),
+  ],
 }
