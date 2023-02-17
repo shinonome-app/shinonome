@@ -31,7 +31,7 @@
                                                      errors:)) %>
   <div class="field py-2">
     <%= form.label :started_on, "状態の開始日" %>
-    <%= form.date_select :started_on, { start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true }, { class: "min-w-[100px] bg-[url('/images/svg/dropdown.svg')] bg-no-repeat bg-[right_0.8rem_center] rounded px-2 py-2 border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] cursor-pointer appearance-none" } %>
+    <%= form.date_select :started_on, { start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true }, { class: "min-w-[100px] bg-dropdownIcon bg-no-repeat bg-[right_0.8rem_center] rounded px-2 py-2 border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] cursor-pointer appearance-none" } %>
   </div>
   <%= render(Admin::SnmSelectComponent.new(form:,
                                            name: :copyright_flag,
