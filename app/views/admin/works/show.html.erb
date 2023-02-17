@@ -180,7 +180,6 @@
 <div class="mt-2 flex gap-2">
   <%= tag.snm_link "ファイル追加", href: new_admin_work_workfile_path(params[:id]) %>
 </div>
-</div>
 <!--ファイル end-->
 <!--関連サイトデータ start-->
 <div class="mt-6">
@@ -210,5 +209,5 @@
 <!--関連サイトデータ end-->
 
 <div class="mt-2 flex gap-2">
-  <%= tag.snm_link "戻る", href: admin_works_path %>
+  <%= tag.snm_link "戻る", href: admin_works_path, buttonstyle: 'secondary' %>
 </div>

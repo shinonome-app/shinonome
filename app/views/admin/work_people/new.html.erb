@@ -1,13 +1,13 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">人物関連づけ登録</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">人物関連づけ登録</snm-headline>
 
-  <div class="py-2">
+  <div class="mt-2 flex">
     <p>対象作品: <%= @work.title %></p>
   </div>
 
   <%= render(Admin::PersonSearchComponent.new(form_url: admin_work_work_people_text_searches_path(work_id: @work.id))) %>
 
-  <div class="py-4">
-    <%= link_to '戻る', admin_work_path(id: @work.id), class: 'btn-normal' %>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "戻る", href: admin_work_path(id: @work.id), buttonstyle: 'secondary' %>
   </div>
 </div>

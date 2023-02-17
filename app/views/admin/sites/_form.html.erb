@@ -8,9 +8,9 @@
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :owner_name, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, errors:)) %>
   <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
-    <%= form.fields_for :work_sites do |work_site| %>
-      <%= work_site.hidden_field :work_id %>
-    <% end %>
+  <%= form.fields_for :work_sites do |work_site| %>
+    <%= work_site.hidden_field :work_id %>
+  <% end %>
   <div class="mt-2 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>

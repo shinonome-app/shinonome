@@ -1,43 +1,21 @@
 <%= form_with(model: [:admin, @work, original_book]) do |form| %>
   <% if original_book.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(original_book.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% original_book.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
-  <div class="field py-1">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-1">
-    <%= form.label :publisher %>
-    <%= form.text_field :publisher, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-1">
-    <%= form.label :first_pubdate %>
-    <%= form.text_field :first_pubdate, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-1">
-    <%= form.label :input_edition %>
-    <%= form.text_field :input_edition, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-1">
-    <%= form.label :proof_edition %>
-    <%= form.text_field :proof_edition, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-1">
-    <%= form.label :booktype_id %>
-    <%= form.collection_select :booktype_id, Booktype.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'w-full border border-gray-800 p-1' } %>
-  </div>
-  <div class="field py-1">
-    <%= form.label :note %>
-    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="actions py-4">
-    <%= form.submit '更新', class: 'btn-admin-normal' %>
+  <% errors = original_book.errors %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :publisher, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_pubdate, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :input_edition, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :proof_edition, errors:)) %>
+  <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                     name: :booktype_id,
+                                                     collection: Booktype.order(:id).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
+  <div class="mt-2 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "更新する")) %>
   </div>
 <% end %>

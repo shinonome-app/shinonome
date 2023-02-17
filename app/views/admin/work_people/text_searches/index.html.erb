@@ -1,44 +1,46 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">人物検索結果一覧</h1>
+<div class="w-full">
+  <snm-headline h="h1">人物検索結果一覧</snm-headline>
 
-  <table>
-    <thead>
-      <tr>
-        <th>人物ID</th>
-        <th>姓名</th>
-        <th>読み</th>
-        <th>著作権</th>
-        <th>他の名前</th>
-        <th>&nbsp;</th>
+<table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+  <thead class="text-center bg-[#f8fafc]">
+    <tr class="h-10 even:bg-[#f8fafc]">
+      <th class="whitespace-nowrap">人物ID</th>
+      <th class="whitespace-nowrap">姓名</th>
+      <th class="whitespace-nowrap">読み</th>
+      <th class="whitespace-nowrap">著作権</th>
+      <th class="whitespace-nowrap">他の名前</th>
+      <th class="whitespace-nowrap">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
       <% @people.each do |person| %>
-        <tr>
-          <td>
+        <tr class="h-10 even:bg-[#f8fafc]">
+          <td class="text-center whitespace-nowrap py-3">
             <%= person.id %>
           </td>
-          <td>
+          <td class="text-center whitespace-nowrap py-3">
             <%= link_to admin_person_path(person) do %>
               <%= person.last_name %>
               <%= person.first_name %>
             <% end %>
           </td>
-          <td>
+          <td class="text-center whitespace-nowrap py-3">
             <%= person.last_name_kana %>
             <%= person.first_name_kana %>
           </td>
-          <td><%= person.copyright_text %></td>
-          <td>
+          <td class="text-center whitespace-nowrap py-3">
+            <%= person.copyright_text %>
+          </td>
+          <td class="text-center whitespace-nowrap py-3">
             <% person.other_people.each do |other_person| %>
               →<%= link_to other_person.name, admin_person_path(other_person) %>
             <% end %>
           </td>
-          <td class="px-2">
+          <td class="text-center whitespace-nowrap py-3">
             <%= form_with(model: [:admin, @work, @work.work_people.build], method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :person_id, value: person.id %>
             <%= form.collection_select :role_id, Role.order(:id).all, :id, :name %>として
-            <%= form.submit '関連づける', class: 'btn-admin-normal' %>
+            <%= form.submit '関連づける', class: primary_small_button_class %>
             <% end %>
           </td>
         </tr>
@@ -47,7 +49,7 @@
   </table>
   <%== pagy_snm_nav(@pagy) %>
 
-  <div class="py-4">
-    <%= link_to '戻る', new_admin_work_work_person_path, class: 'btn-normal py-2' %>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "戻る", href: new_admin_work_work_person_path, buttonstyle: 'secondary' %>
   </div>
 </div>
