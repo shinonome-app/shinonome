@@ -4,11 +4,12 @@ module Admin
   module Users
     # 管理者管理
     class OthersController < Admin::ApplicationController
+      include Pagy::Backend
       before_action :set_user, only: %i[edit update destroy]
 
       # GET /users
       def index
-        @users = Shinonome::User.order(:id).all
+        @pagy, @users = pagy(Shinonome::User.order(:id).all, items: 50)
         @user = Shinonome::User.new
       end
 
@@ -21,7 +22,7 @@ module Admin
         if @user.save
           redirect_to admin_users_others_path, success: '追加しました.'
         else
-          @users = Shinonome::User.order(:id).all
+          @pagy, @users = pagy(Shinonome::User.order(:id).all, items: 50)
           render :index, status: :unprocessable_entity
         end
       end

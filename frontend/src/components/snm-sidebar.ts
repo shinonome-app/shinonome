@@ -31,7 +31,7 @@ export class SnmSidebar extends LitElement {
           <snm-link href="/admin/admin_mail_secrets/new.html" buttonStyle="normal" icon="mail">工作員メール送信</snm-link>
           <snm-link href="/admin/news_entries.html" buttonStyle="normal" icon="pen">そらもよう</snm-link>
           <snm-link href="/admin/exec_commands.html" buttonStyle="normal" icon="command">コマンド実行機能</snm-link>
-          <snm-link href="/admin/user/others.html" buttonStyle="normal" icon="admin">管理者の追加・削除</snm-link>
+          <snm-link href="/admin/users/others.html" buttonStyle="normal" icon="admin">管理者の追加・削除</snm-link>
         </div>
       </aside>
     `;

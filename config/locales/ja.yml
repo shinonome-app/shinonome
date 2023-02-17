@@ -108,6 +108,11 @@ ja:
       exec_command:
         command: コマンド
         separator: 区切り文字
+      news_entry:
+        published_on: "公開日"
+        title: "見出し"
+        body: "本文"
+        flag: "トピックに指定する"
       original_book:
         id: "底本ID"
         title: "書籍名"
@@ -232,10 +237,11 @@ ja:
         id: "工作員ID"
         name: "姓名"
         name_kana: "姓名読み"
-        url: "URL"
-        email: "email"
-        note: "備考"
         sortkey: "ソート用読み"
+      worker_secret:
+        email: "email"
+        url: "URL"
+        note: "備考"
       workfile:
         filetype_id: "ファイル形式"
         filetype: "ファイル形式"

@@ -1,32 +1,32 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">記事の表示</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">記事の表示</snm-headline>
 
-  <h3 class="text-xl py-2">日付</h3>
+  <snm-headline h="h3">日付</snm-headline>
 
   <div>
       <%= @news_entry.published_on %>
   </div>
 
-  <h3 class="text-xl py-2">見出し</h3>
+  <snm-headline h="h3">見出し</snm-headline>
 
   <div>
     <%= @news_entry.title %>
   </div>
 
-  <h3 class="text-xl py-2">本文</h3>
+  <snm-headline h="h3">本文</snm-headline>
 
   <div>
     <%= @news_entry.body %>
   </div>
 
-  <h3 class="text-xl py-2">ニュースに指定する</h3>
+  <snm-headline h="h3">トピックに指定する</snm-headline>
 
   <div>
     <%= @news_entry.flag ? '指定する' : '指定しない' %>
   </div>
 
-  <div class="py-4">
-  <%= link_to '修正', edit_admin_news_entry_path(@news_entry), class: 'btn-admin-normal' %>
-  <%= link_to '戻る', admin_news_entries_path, class: 'btn-normal' %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '修正', href: edit_admin_news_entry_path(@news_entry) %>
+    <%= tag.snm_link '戻る', href: admin_news_entries_path, buttonstyle: "secondary" %>
   </div>
 </div>

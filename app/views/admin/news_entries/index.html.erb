@@ -1,33 +1,9 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">そらもよう編集室</h1>
-  <div class="py-4">
-    <%= link_to '新しい記事を追加', new_admin_news_entry_path, class: 'btn-admin-normal' %>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">そらもよう編集室</snm-headline>
+
+  <div class="flex">
+    <%= tag.snm_link "新しい記事を追加", href: new_admin_news_entry_path %>
   </div>
-  <table class="w-full">
-    <thead>
-      <tr>
-        <th class="w-28">日付</th>
-        <th>見出し・本文</th>
-        <th>トピック指定</th>
-        <th class="w-24">&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @news_entries.each do |news_entry| %>
-        <tr class="h-12">
-          <td class="my-2">
-            <%= link_to news_entry.published_on, admin_news_entry_path(news_entry) %>
-          </td>
-          <td class="my-2">
-            <%= link_to news_entry.title, admin_news_entry_path(news_entry) %>
-            <br>
-            <%= truncate(news_entry.body, length: 40) %>
-          </td class="my-2">
-          <td class="text-center"><%= news_entry.flag ? "○" : "-" %></td>
-          <td><%= button_to '削除', [:admin, news_entry], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: 'btn-danger text-sm' %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%== pagy_snm_nav(@pagy) %>
+
+  <%= render(Admin::NewsEntriesTableComponent.new(news_entries: @news_entries, pagy: @pagy)) %>
 </div>

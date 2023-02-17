@@ -1,55 +1,22 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">管理者の追加・削除</h1>
-  <h2 class="text-xl py-4">管理者追加</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">管理者の追加・削除</snm-headline>
+
+  <snm-headline h="h2">管理者追加</snm-headline>
+
   <%= form_with(model: @user, url: admin_users_others_path, method: "post") do |form| %>
     <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= t("errors.template.header", model: @user.model_name.human, count: @user.errors.count) %></h2>
-        <ul>
-          <% @user.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
+    <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
     <% end %>
-    <div class="field">
-      <%= form.label :username, "ユーザー名" %>
-      <%= form.text_field :username, class: "w-full border border-gray-800 p-1" %>
-    </div>
-    <div class="field">
-      <%= form.label :email, "email" %>
-      <%= form.text_field :email, class: "w-full border border-gray-800 p-1" %>
-    </div>
-    <div class="field">
-      <%= form.label :password, "パスワード" %>
-      <%= form.text_field :password, class: "w-full border border-gray-800 p-1" %>
-    </div>
-    <div class="field">
-      <%= form.label :password_confirmation, "パスワード(確認用)" %>
-      <%= form.text_field :password_confirmation, class: "w-full border border-gray-800 p-1" %>
-    </div>
-    <div class="actions">
-      <%= form.submit "登録", class: 'btn-admin-normal' %>
+    <% errors = @user.errors %>
+    <%= render(Admin::SnmTextFieldComponent.new(form:, name: :username, label: "ユーザー名", errors:)) %>
+    <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, label: "email", errors:)) %>
+    <%= render(Admin::SnmTextFieldComponent.new(form:, name: :password, label: "パスワード", errors:)) %>
+    <%= render(Admin::SnmTextFieldComponent.new(form:, name: :password_confirmation, label: "パスワード(確認用)", errors:)) %>
+    <div class="mt-2 flex">
+      <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
     </div>
   <% end %>
-  <h2 class="text-xl py-4">管理者一覧</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>ユーザー名</th>
-        <th>email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= link_to user.id, edit_admin_users_other_path(user) %></td>
-          <td><%= link_to user.username, edit_admin_users_other_path(user) %></td>
-          <td><%= user.email %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <br>
+
+  <snm-headline h="h2">管理者一覧</snm-headline>
+  <%= render(Admin::UsersTableComponent.new(users: @users, pagy: @pagy)) %>
 </div>

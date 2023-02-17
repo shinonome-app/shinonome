@@ -1,75 +1,29 @@
 <%= form_with(model: [:admin, @person], data: { turbo: false }) do |form| %>
   <% if @person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@person.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% @person.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
-  <div class="field py-2">
-    <%= form.label :last_name_kana, "姓読み" %>
-    <%= form.text_field :last_name_kana, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :sortkey, "姓読みソート用" %>
-    <%= form.text_field :sortkey, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :last_name, "姓" %>
-    <%= form.text_field :last_name, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :last_name_en, "姓ローマ字" %>
-    <%= form.text_field :last_name_en, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :first_name_kana, "名読み" %>
-    <%= form.text_field :first_name_kana, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :sortkey2, "名読みソート用" %>
-    <%= form.text_field :sortkey2, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :first_name, "名" %>
-    <%= form.text_field :first_name, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :first_name_en, "名ローマ字" %>
-    <%= form.text_field :first_name_en, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :born_on, "生年月日" %>
-    <%= form.text_field :born_on %> (YYYY-MM-DD)
-  </div>
-  <div class="field py-2">
-    <%= form.label :died_on, "没年月日" %>
-    <%= form.text_field :died_on %> (YYYY-MM-DD)
-  </div>
-  <div class="field py-2">
-    <%= form.label :copyright_flag, "著作権フラグ" %>
-    <%= form.select :copyright_flag, [["なし", 0], ["あり", 1]], { include_blank: false }, { class: 'text-gray-800' } %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :email, "email" %>
-    <%= form.text_field :email, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :url, "URL" %>
-    <%= form.text_field :url, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :description, "人物について" %>
-    <%= form.text_area :description, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :note, "備考" %>
-    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="actions py-4">
-    <%= form.submit "登録", class: 'btn-admin-normal' %>
+  <% errors = @person.errors %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_kana, label: "姓読み", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey, label: "姓読みソート用", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name, label: "姓", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_en, label: "姓ローマ字", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_kana, label: "名読み", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey2, label: "名読みソート用", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name, label: "名", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_en, label: "名ローマ字", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :born_on, label: "生年月日", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :died_on, label: "没年月日", errors:)) %>
+  <%= render(Admin::SnmSelectComponent.new(form:,
+      name: :copyright_flag,
+      choices: [["なし", 0], ["あり", 1]],
+      label: "著作権フラグ",
+      options: { include_blank: false },
+      errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, label: "email", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, label: "URL", errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :description, label: "人物について", errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, label: "備考", errors:)) %>
+  <div class="mt-2 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>
 <% end %>
