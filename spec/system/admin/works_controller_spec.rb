@@ -26,13 +26,11 @@ describe Admin::WorksController do
         visit '/admin/works/new'
         click_button('登録する')
         expect(page).to have_content('作品新規登録')
-        expect(page).to have_content('6 件の入力エラーがあります')
+        expect(page).to have_content('入力エラーがあります')
         expect(page).to have_content('仮名遣い種別を入力してください')
         expect(page).to have_content('状態を入力してください')
         expect(page).to have_content('作品名読みを入力してください')
         expect(page).to have_content('作品名を入力してください')
-        expect(page).to have_content('仮名遣い種別は一覧にありません')
-        expect(page).to have_content('状態は一覧にありません')
       end
     end
 

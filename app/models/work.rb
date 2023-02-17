@@ -85,9 +85,11 @@ class Work < ApplicationRecord
   validates :title_kana, presence: true
   validates :title, presence: true
   validates :copyright_flag, inclusion: { in: [true, false] }
-  validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }
+  validates :kana_type_id, presence: true
+  validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }, if: :present?
   validates :started_on, presence: true
-  validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
+  validates :work_status_id, presence: true
+  validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }, if: :present?
 
   def self.csv_header
     "bookid,作品名,作品名読み,副題,副題読み,作品集名,作品集名読み,原題,仮名遣い種別,初出,作品について,状態,状態の開始日,著作権フラグ,備考,底本管理情報,最終更新日,更新者,ソート用読み\r\n"
