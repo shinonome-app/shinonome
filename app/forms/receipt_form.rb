@@ -26,7 +26,7 @@ class ReceiptForm
     validates :title, presence: true
     validates :copyright_flag, inclusion: { in: [0, 1] }
     validates :kana_type_id, presence: true
-    validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }, if: :present?
+    validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }, if: -> { kana_type_id.present? }
 
     def title_and_subtitle
       if subtitle.present?

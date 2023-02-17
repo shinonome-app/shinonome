@@ -2,9 +2,9 @@
 <% if bibclass.errors.any? %>
   <b class="text-red-500"><%= pluralize(bibclass.errors.count, "件") %>のエラーがあります</b>
 <% end %>
-<%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, label: "分類名", errors: bibclass.errors)) %>
-<%= render(Admin::SnmTextFieldComponent.new(form:, name: :num, label: "分類番号", errors: bibclass.errors)) %>
-<%= render(Admin::SnmTextFieldComponent.new(form:, name: :note, label: "備考", errors: bibclass.errors)) %>
+<%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, errors: bibclass.errors)) %>
+<%= render(Admin::SnmTextFieldComponent.new(form:, name: :num, errors: bibclass.errors)) %>
+<%= render(Admin::SnmTextFieldComponent.new(form:, name: :note, errors: bibclass.errors)) %>
 <%= form.hidden_field :work_id %>
 
 <div class="mt-2 flex">

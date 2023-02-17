@@ -3,11 +3,11 @@
   <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
   <% errors = site.errors %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, label: "関連サイト名", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, label: "URL", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :owner_name, label: "運営者名", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, label: "email", errors:)) %>
-  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, label: "備考", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :owner_name, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
     <%= form.fields_for :work_sites do |work_site| %>
       <%= work_site.hidden_field :work_id %>
     <% end %>

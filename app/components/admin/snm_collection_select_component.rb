@@ -3,14 +3,14 @@
 module Admin
   # collection_select用コンポーネント
   class SnmCollectionSelectComponent < ViewComponent::Base
-    def initialize(form:, name:, collection:, value_method:, text_method:, label:, options: nil, html_options: nil, errors: nil) # rubocop:disable Metrics/ParameterLists
+    def initialize(form:, name:, collection:, value_method:, text_method:, label: nil, options: nil, html_options: nil, errors: nil) # rubocop:disable Metrics/ParameterLists
       super
       @form = form
       @name = name
       @collection = collection
       @value_method = value_method
       @text_method = text_method
-      @label = label
+      @label = label || form.object.class.human_attribute_name(name)
       @options = options || { prompt: '選択してください' }
 
       default_class = {

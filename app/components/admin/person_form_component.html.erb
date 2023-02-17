@@ -3,26 +3,25 @@
   <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
   <% errors = @person.errors %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_kana, label: "姓読み", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey, label: "姓読みソート用", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name, label: "姓", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_en, label: "姓ローマ字", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_kana, label: "名読み", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey2, label: "名読みソート用", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name, label: "名", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_en, label: "名ローマ字", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :born_on, label: "生年月日", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :died_on, label: "没年月日", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_kana, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_en, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_kana, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey2, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_en, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :born_on, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :died_on, errors:)) %>
   <%= render(Admin::SnmSelectComponent.new(form:,
                                            name: :copyright_flag,
                                            choices: [["なし", 0], ["あり", 1]],
-                                           label: "著作権フラグ",
                                            options: { include_blank: false },
                                            errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, label: "email", errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, label: "URL", errors:)) %>
-  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :description, label: "人物について", errors:)) %>
-  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, label: "備考", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :description, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
   <div class="mt-2 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>

@@ -3,12 +3,12 @@
 module Admin
   # select用コンポーネント
   class SnmSelectComponent < ViewComponent::Base
-    def initialize(form:, name:, choices:, label:, options: nil, html_options: nil, errors: nil) # rubocop:disable Metrics/ParameterLists
+    def initialize(form:, name:, choices:, label: nil, options: nil, html_options: nil, errors: nil) # rubocop:disable Metrics/ParameterLists
       super
       @form = form
       @name = name
       @choices = choices
-      @label = label
+      @label = label || form.object.class.human_attribute_name(name)
       @options = options || { prompt: '選択してください' }
 
       default_class = {
