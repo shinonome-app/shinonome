@@ -31,7 +31,7 @@ export class SnmNavi extends LitElement {
           <!-- ホバーメニュー - start -->
           <div class="hidden group-hover/item:block menu-open absolute right-0 w-[163px] bg-white px-5 py-4 drop-shadow-md">
             <ul class="text-xs grid gap-5 cursor-pointer">
-              <li><a href="/admin/user/edit.html">パスワード変更</a></li>
+              <li><a href="/admin/users/edit.html">パスワード変更</a></li>
               <li><a href="/login.html">ログアウト</a></li>
             </ul>
           </div>

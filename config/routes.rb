@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   namespace :admin, path: (ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin') do
     get '/' => 'top#index'
 
-    devise_for :users, path: 'user', class_name: 'Shinonome::User', controllers: {
+    devise_for :users, path: 'users', class_name: 'Shinonome::User', controllers: {
       passwords: 'admin/passwords',
       registrations: 'admin/registrations',
       sessions: 'admin/sessions'
