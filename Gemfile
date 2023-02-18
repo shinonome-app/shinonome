@@ -61,9 +61,6 @@ gem 'gimei'
 gem 'dotenv-rails'
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
-
   # Annotate models with DB
   gem 'annotate'
 
@@ -82,6 +79,9 @@ group :development, :test do
 end
 
 group :development do
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
+
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
