@@ -73,6 +73,8 @@ module Admin
     validates :first_pubdate, presence: true
     validates :input_edition, presence: true
 
+    validates :copyright_flag, inclusion: { in: [true, false] }
+
     validate :email_is_valid
 
     delegate :persisted?, to: :receipt

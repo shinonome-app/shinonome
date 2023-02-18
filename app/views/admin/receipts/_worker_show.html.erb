@@ -1,37 +1,55 @@
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th>工作員ID</th>
-        <td>
-          <%= form.hidden_field :worker_id %>
-          <%= receipt_form.worker_id %>
-        </td>
-      </tr>
-      <tr>
-        <th>工作員名読み</th>
-        <td>
-          <%= receipt_form.worker_kana %>
-        </td>
-      </tr>
-      <tr>
-        <th>工作員名</th>
-        <td>
-          <%= receipt_form.worker_name %>
-        </td>
-      </tr>
-      <tr>
-        <th>e-mail</th>
-        <td>
-          <%= receipt_form.email %>
-        </td>
-      </tr>
-      <tr>
-        <th>ホームページ</th>
-        <td>
-          <%= receipt_form.url %>
-        </td>
-      </tr>
-    </table>
+<table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+  <thead class="bg-[#f8fafc]">
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <th class="whitespace-nowrap">
+        項目名
+      </th>
+      <th class="whitespace-nowrap">
+        入力データ
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        工作員ID
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.hidden_field :worker_id %>
+        <%= receipt_form.worker_id %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        工作員名読み
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.worker_kana %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        工作員名
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.worker_name %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        e-mail
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.email %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        ホームページ
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.url %>
+      </td>
+    </tr>
+  </tbody>
+</table>

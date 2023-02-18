@@ -51,10 +51,15 @@ class Workfile < ApplicationRecord
   has_one_attached :workdata if defined?(ActiveStorage)
 
   after_save :set_filename
-  validates :filetype_id, numericality: { only_integer: true }
-  validates :charset_id, numericality: { only_integer: true }
-  validates :compresstype_id, numericality: { only_integer: true }
-  validates :file_encoding_id, numericality: { only_integer: true }
+
+  validates :filetype_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
+  validates :filetype_id, numericality: { only_integer: true }, if: -> { filetype_id.present? }
+  validates :charset_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
+  validates :charset_id, numericality: { only_integer: true }, if: -> { charset_id.present? }
+  validates :compresstype_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
+  validates :compresstype_id, numericality: { only_integer: true }, if: -> { compresstype_id.present? }
+  validates :file_encoding_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
+  validates :file_encoding_id, numericality: { only_integer: true }, if: -> { file_encoding_id.present? }
 
   def html?
     filetype&.html?

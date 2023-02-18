@@ -1,182 +1,341 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-<h1 class="text-2xl py-4">申請内容確認</h1>
+<div class="w-full">
+  <snm-headline h="h1">申請内容確認</snm-headline>
 
-    <h2 class="text-xl py-2">【作品データ】</h2>
+  <div class="flex flex-col gap-5 mb-5">
+    <snm-headline h="h2">作品データ</snm-headline>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th>作品名読み</th>
-        <td><%= @receipt.title_kana %></td>
-      </tr>
-      <tr>
-        <th>作品名</th>
-        <td><%= @receipt.title %></td>
-      </tr>
-      <tr>
-        <th>副題読み</th>
-        <td><%= @receipt.subtitle_kana %></td>
-      </tr>
-      <tr>
-        <th>副題</th>
-        <td><%= @receipt.subtitle %></td>
-      </tr>
-      <tr>
-        <th>原題</th>
-        <td><%= @receipt.original_title %></td>
-      </tr>
-      <tr>
-        <th>仮名遣い種別</th>
-        <td><%= @receipt.kana_type_id %></td>
-      </tr>
-      <tr>
-        <th>初出</th>
-        <td><%= @receipt.first_appearance %></td>
-      </tr>
-      <tr>
-        <th>作品について</th>
-        <td class="border border-gray-800 p-1" rows="15"><%= @receipt.memo %></td>
-      </tr>
-      <tr>
-        <th>備考</th>
-        <td class="border border-gray-800 p-1" rows="15"><%= @receipt.note %></td>
-      </tr>
-      <tr>
-        <th>状態</th>
-        <td><%= @receipt.work_status_id %></td>
-      </tr>
-      <tr>
-        <th>状態の開始日</th>
-        <td><%= @receipt.started_on %></td>
-      </tr>
-      <tr>
-        <th>著作権</th>
-        <td><%= @receipt.copyright_flag %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">
+            項目名
+          </th>
+          <th class="whitespace-nowrap">
+            入力データ
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            作品名読み
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.title_kana %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            作品名
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.title %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            副題読み
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.subtitle_kana %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            副題
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.subtitle %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            原題
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.original_title %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            仮名遣い種別
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.kana_type_id %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            初出
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.first_appearance %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc]">
+          <td class="odd:w-[25%] py-3 px-5">
+            作品について
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.memo %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            備考
+          </th>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.note %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            状態
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.work_status_id %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            状態の開始日
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.started_on %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            著作権
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.copyright_flag %>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
-    <hr class="border-1 my-4">
+    <snm-headline h="h2">著者データ</snm-headline>
 
-    <h2 class="text-xl">【著者データ】</h2>
-
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th>人物ID</th>
-        <td class="p-1"><%= @receipt.person_id %></td>
-      </tr>
-      <tr>
-        <th>姓読み</th>
-        <td class="p-1"><%= @receipt.last_name_kana %></td>
-      </tr>
-      <tr>
-        <th>姓</th>
-        <td class="p-1"><%= @receipt.last_name %></td>
-      </tr>
-      <tr>
-        <th>姓ローマ字</th>
-        <td class="p-1"><%= @receipt.last_name_en %></td>
-      </tr>
-      <tr>
-        <th>名読み</th>
-        <td class="p-1"><%= @receipt.first_name_kana %></td>
-      </tr>
-      <tr>
-        <th>名</th>
-        <td class="p-1"><%= @receipt.first_name %></td>
-      </tr>
-      <tr>
-        <th>名ローマ字</th>
-        <td class="p-1"><%= @receipt.first_name_en %></td>
-      </tr>
-      <tr>
-        <th>備考</th>
-        <td class="p-1"><%= @receipt.person_note %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">
+            項目名
+          </th>
+          <th class="whitespace-nowrap">
+            入力データ
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            人物ID
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.person_id %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            姓読み
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.last_name_kana %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            姓
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.last_name %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            姓ローマ字
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.last_name_en %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            名読み
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.first_name_kana %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            名
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.first_name %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            名ローマ字
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.first_name_en %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            備考
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.person_note %>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
-    <hr class="border-1 my-4">
+    <snm-headline h="h2">入力者データ</snm-headline>
 
-    <h2 class="text-xl">【入力者データ】</h2>
-
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th>工作員ID</th>
-        <td>
-          <%= @receipt.worker_id %>
-        </td>
-      </tr>
-      <tr>
-        <th>工作員名読み</th>
-        <td><%= @receipt.worker_kana %></td>
-      </tr>
-      <tr>
-        <th>工作員名</th>
-        <td><%= @receipt.worker_name %></td>
-      </tr>
-      <tr>
-        <th>e-mail</th>
-        <td><%= @receipt.email %></td>
-      </tr>
-      <tr>
-        <th>ホームページ</th>
-        <td><%= @receipt.url %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">
+            項目名
+          </th>
+          <th class="whitespace-nowrap">
+            入力データ
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            工作員ID
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.worker_id %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            工作員名読み
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.worker_kana %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            工作員名
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.worker_name %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            e-mail
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.email %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            ホームページ
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.url %>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
-    <h2 class="text-xl">【底本データ】</h2>
+    <snm-headline h="h2">底本データ</snm-headline>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th>底本名</th>
-        <td><%= @receipt.original_book_title %></td>
-      </tr>
-      <tr>
-        <th>出版社名</th>
-        <td><%= @receipt.publisher %></td>
-      </tr>
-      <tr>
-        <th>初版発行年</th>
-        <td><%= @receipt.first_pubdate %></td>
-      </tr>
-      <tr>
-        <th>入力に使用する版</th>
-        <td><%= @receipt.input_edition %></td>
-      </tr>
-      <tr>
-        <th>備考</th>
-        <td><%= @receipt.original_book_note %></td>
-      </tr>
-      <tr>
-        <th>底本の親本名</th>
-        <td><%= @receipt.original_book_title2 %></td>
-      </tr>
-      <tr>
-        <th>底本の親本出版社名</th>
-        <td><%= @receipt.publisher2 %></td>
-      </tr>
-      <tr>
-        <th>底本の親本初版発行年</th>
-        <td><%= @receipt.first_pubdate2 %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">
+            項目名
+          </th>
+          <th class="whitespace-nowrap">
+            入力データ
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            底本名
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.original_book_title %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            出版社名
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.publisher %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            初版発行年
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.first_pubdate %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            入力に使用する版
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.input_edition %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            備考
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.original_book_note %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            底本の親本名
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.original_book_title2 %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            底本の親本出版社名
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.publisher2 %>
+          </td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">
+            底本の親本初版発行年
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= @receipt.first_pubdate2 %>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <hr class="border-1 my-4">
-
-    <%= link_to '戻る', admin_receipts_path, class: "btn-normal" %>
-
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "戻る", href: admin_receipts_path, buttonstyle: 'secondary' %>
+  </div>
 </div>

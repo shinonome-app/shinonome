@@ -1,55 +1,79 @@
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th><%= form.label :person_id %></th>
-        <td class="p-1">
-          <%= form.hidden_field :person_id %>
-          <%= receipt_form.person_id %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= form.label :last_name_kana %></th>
-        <td class="p-1">
-          <%= receipt_form.last_name_kana %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= form.label :last_name %></th>
-        <td class="p-1">
-          <%= receipt_form.last_name %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= form.label :last_name_en %></th>
-        <td class="p-1">
-          <%= receipt_form.last_name_en %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_name_kana %></th>
-        <td class="p-1">
-          <%= receipt_form.first_name_kana %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_name %></th>
-        <td class="p-1">
-          <%= receipt_form.first_name %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_name_en %></th>
-        <td class="p-1">
-          <%= receipt_form.first_name_en %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= form.label :person_note %></th>
-        <td class="p-1">
-          <%= receipt_form.person_note %>
-        </td>
-      </tr>
-    </table>
+<table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+  <thead class="bg-[#f8fafc]">
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <th class="whitespace-nowrap">
+        項目名
+      </th>
+      <th class="whitespace-nowrap">
+        入力データ
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :person_id %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.hidden_field :person_id %>
+        <%= receipt_form.person_id %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :last_name_kana %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.last_name_kana %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :last_name %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.last_name %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :last_name_en %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.last_name_en %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :first_name_kana %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.first_name_kana %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :first_name %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.first_name %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :first_name_en %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.first_name_en %>
+      </td>
+    </tr>
+    <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= form.label :person_note %>
+      </td>
+      <td class="odd:w-[25%] py-3 px-5">
+        <%= receipt_form.person_note %>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -2,15 +2,7 @@
 
 module Admin
   class WorkfilesController < Admin::ApplicationController
-    before_action :set_workfile, only: %i[show edit update destroy]
-
-    # GET /admin/workfiles
-    def index
-      @workfiles = Workfile.all
-    end
-
-    # GET /admin/workfiles/1
-    def show; end
+    before_action :set_workfile, only: %i[edit update destroy]
 
     # GET /admin/workfiles/new
     def new

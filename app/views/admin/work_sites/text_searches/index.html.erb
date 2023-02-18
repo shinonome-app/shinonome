@@ -1,24 +1,30 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl">関連サイト検索結果一覧</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>サイト名</th>
-        <th>URL</th>
+<div class="w-full">
+  <snm-headline h="h1">関連サイト検索結果一覧</snm-headline>
+  <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+    <thead class="text-center bg-[#f8fafc]">
+      <tr class="h-10 even:bg-[#f8fafc]">
+        <th class="whitespace-nowrap">ID</th>
+        <th class="whitespace-nowrap">サイト名</th>
+        <th class="whitespace-nowrap">URL</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @sites.each do |site| %>
-        <tr>
-          <td><%= site.id %></td>
-          <td><%= link_to site.name, admin_site_path(site) %></td>
-          <td><%= site.url %></td>
-          <td class="px-2">
+        <tr class="h-10 even:bg-[#f8fafc]">
+          <td class="text-center whitespace-nowrap py-3">
+            <%= site.id %>
+          </td>
+          <td class="text-center whitespace-nowrap py-3">
+            <%= link_to site.name, admin_site_path(site), class: 'underline' %>
+          </td>
+          <td class="text-center whitespace-nowrap py-3">
+            <%= link_to site.url, site.url, class: 'underline' %>
+          </td>
+          <td class="text-center whitespace-nowrap py-3">
             <%= form_with(model: [:admin, @work, @work.work_sites.build], method: 'post', data: { turbo: false }) do |form| %>
             <%= form.hidden_field :site_id, value: site.id %>
-            <%= form.submit '関連づける', class: 'btn-admin-normal' %>
+            <%= form.submit '関連づける', class: primary_small_button_class %>
             <% end %>
           </td>
         </tr>

@@ -1,5 +1,5 @@
 <div class="mb-2 flex flex-col">
-  <% if label %>
+  <% if label.present? %>
   <%= form.label name, label, class: "inline-block text-sm mb-1" %>
   <% end %>
   <%= form.select name, choices, options, html_options %>

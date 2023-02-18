@@ -68,7 +68,7 @@ Rails.application.routes.draw do
     end
 
     resources :works do
-      resources :workfiles
+      resources :workfiles, only: %i[new edit create update destroy]
       resources :sites
       resources :original_books, only: %i[new edit create update destroy]
       resources :bibclasses

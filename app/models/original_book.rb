@@ -32,7 +32,7 @@ class OriginalBook < ApplicationRecord
   belongs_to :work
   belongs_to :booktype
 
-  validates :booktype_id, presence: true
+  validates :booktype_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
   validates :title, presence: true
 
   def self.csv_header

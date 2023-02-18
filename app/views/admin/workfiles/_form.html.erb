@@ -1,67 +1,49 @@
 <%= form_with(model: [:admin, workfile.work, workfile]) do |form| %>
   <% if workfile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t("errors.template.header", model: workfile.model_name.human, count: workfile.errors.count) %></h2>
-      <ul>
-        <% workfile.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
   <% end %>
+  <% errors = workfile.errors %>
   <%= form.hidden_field :work_id %>
-  <div class="field py-2">
-    <%= form.label :filetype_id %>
-    <%= form.collection_select :filetype_id, Filetype.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: "w-full border border-gray-800 p-1" } %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :compresstype_id %>
-    <%= form.collection_select :compresstype_id, Compresstype.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: "w-full border border-gray-800 p-1" } %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :registrated_on %>
-    <%= form.date_select :registrated_on, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :last_updated_on %>
-    <%= form.date_select :last_updated_on, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :filesize %>
-    <%= form.text_field :filesize, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :revision_count %>
-    <%= form.text_field :revision_count, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :file_encoding_id %>
-    <%= form.collection_select :file_encoding_id, FileEncoding.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: "w-full border border-gray-800 p-1" } %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :charset_id %>
-    <%= form.collection_select :charset_id, Charset.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: "w-full border border-gray-800 p-1" } %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :note %>
-    <%= form.text_area :note, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :workdata %>
+
+  <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                     name: :filetype_id,
+                                                     collection: Filetype.order(:id).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     errors:)) %>
+  <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                     name: :compresstype_id,
+                                                     collection: Compresstype.order(:id).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     errors:)) %>
+  <%= render(Admin::SnmDateFieldComponent.new(form:, name: :registrated_on, errors:)) %>
+  <%= render(Admin::SnmDateFieldComponent.new(form:, name: :last_updated_on, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :filesize, errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :revision_count, errors:)) %>
+  <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                     name: :file_encoding_id,
+                                                     collection: FileEncoding.order(:id).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     errors:)) %>
+  <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                     name: :charset_id,
+                                                     collection: Charset.order(:id).all,
+                                                     value_method: :id,
+                                                     text_method: :name,
+                                                     errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
+  <div class="mb-2">
+    <%= form.label :workdata, class: "inline-block text-sm" %>
     <% if @workfile.workdata.attached? %>
     <p><%= link_to @workfile.filename, rails_blob_url(@workfile.workdata) %></p>
     <% end %>
-    <%= form.file_field :workdata, class: "w-full border border-gray-800 p-1" %>
+    <%= form.file_field :workdata, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 px-2 py-2" %>
   </div>
-  <div class="field py-2">
-    <%= form.label :url %>
-    <%= form.text_field :url, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.label :opened_on %>
-    <%= form.date_select :opened_on, class: "w-full border border-gray-800 p-1" %>
-  </div>
-  <div class="field py-2">
-    <%= form.submit "登録する", class: "btn-admin-normal" %>
+  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, errors:)) %>
+  <%= render(Admin::SnmDateFieldComponent.new(form:, name: :opened_on, errors:)) %>
+  <div class="mt-2 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>
 <% end %>

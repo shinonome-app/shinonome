@@ -57,22 +57,6 @@ RSpec.describe '/workfiles' do
 
   before { sign_in(admin) }
 
-  describe 'GET /index' do
-    it 'renders a successful response' do
-      Workfile.create! valid_attributes
-      get admin_work_workfiles_url(work)
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /show' do
-    it 'renders a successful response' do
-      workfile = Workfile.create! valid_attributes
-      get admin_work_workfile_url(work, workfile)
-      expect(response).to be_successful
-    end
-  end
-
   describe 'GET /new' do
     it 'renders a successful response' do
       get new_admin_work_workfile_url(work)

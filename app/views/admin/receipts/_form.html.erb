@@ -1,75 +1,134 @@
 <%= form_with(model: [:admin, receipt_form], method: :patch, data: { turbo: false }) do |form| %>
   <% if receipt_form.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(receipt_form.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% receipt_form.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
+  <% end %>
+  <% errors = receipt_form.errors %>
+  <snm-headline h="h2">作品データ</snm-headline>
 
-    <h2 class="text-xl py-2">【作品データ】</h2>
-
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th><%= form.label :title_kana %></th>
-        <td><%= form.text_field :title_kana, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :title %></th>
-        <td><%= form.text_field :title, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :subtitle_kana %></th>
-        <td><%= form.text_field :subtitle_kana, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :subtitle %></th>
-        <td><%= form.text_field :subtitle, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :original_title %></th>
-        <td><%= form.text_field :original_title, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :kana_type_id %></th>
-        <td><%= form.collection_select :kana_type_id, KanaType.order(:id).all, :id, :name, { prompt: '選択してください' }, { class: 'py-1 pr-8' } %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_appearance %></th>
-        <td><%= form.text_field :first_appearance, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :memo %></th>
-        <td><%= form.text_area :memo, class: "w-full border border-gray-800 p-1", rows: "15" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :note %></th>
-        <td><%= form.text_area :note, class: "w-full border border-gray-800 p-1", rows: "15" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :work_status %></th>
-        <td><%= form.collection_select :work_status_id, WorkStatus.order(:sort_order).all, :id, :name, { prompt: '選択してください' }, { class: 'py-1 pr-8' } %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :started_on %></th>
-        <td><%= form.date_select :started_on, start_year: 1997, end_year: Time.zone.now.year + 1, date_separator: '-', use_month_numbers: true %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :copyright_flag %></th>
-        <td><%= form.select :copyright_flag, [%w[なし 0], %w[あり 1]] %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">
+            項目名
+          </th>
+          <th class="whitespace-nowrap">
+            入力データ
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :title_kana %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title_kana, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :title %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :subtitle_kana %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :subtitle_kana, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :subtitle %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :subtitle, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :original_title %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :original_title, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :kana_type_id %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                               name: :kana_type_id,
+                                                               label: '',
+                                                               collection: KanaType.order(:id).all,
+                                                               value_method: :id,
+                                                               text_method: :name,
+                                                               errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :first_appearance %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_appearance, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :memo %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextAreaComponent.new(form:, name: :memo, label: '', rows: 10, errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :note %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :work_status %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmCollectionSelectComponent.new(form:,
+                                                               name: :work_status_id,
+                                                               label: '',
+                                                               collection: WorkStatus.order(:id).all,
+                                                               value_method: :id,
+                                                               text_method: :name,
+                                                               errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :started_on %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmDateSelectComponent.new(form:, name: :started_on, label: '', start_year: 1997, end_year: Time.zone.now.year + 2, errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :copyright_flag %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmSelectComponent.new(form:, name: :copyright_flag, choices: [%w[なし 0], %w[あり 1]], label: '', errors:)) %>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
-    <hr class="border-1 my-4">
-
-    <h2 class="text-xl">【著者データ】</h2>
+    <snm-headline h="h2">著者データ</snm-headline>
 
     <% if receipt_form.person_id.present? %>
     <%= render 'person_show', receipt_form: receipt_form, form: form %>
@@ -77,9 +136,7 @@
     <%= render 'person_form', receipt_form: receipt_form, form: form %>
     <% end %>
 
-    <hr class="border-1 my-4">
-
-    <h2 class="text-xl">【入力者データ】</h2>
+    <snm-headline h="h2">入力者データ</snm-headline>
 
     <% if receipt_form.worker_id.present? %>
     <%= render 'worker_show', receipt_form: receipt_form, form: form %>
@@ -87,63 +144,98 @@
     <%= render 'worker_form', receipt_form: receipt_form, form: form %>
     <% end %>
 
-    <h2 class="text-xl">【底本データ】</h2>
+    <snm-headline h="h2">底本データ</snm-headline>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th><%= form.label :original_book_title %></th>
-        <td><%= form.text_field :original_book_title, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :publisher %></th>
-        <td><%= form.text_field :publisher, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_pubdate %></th>
-        <td><%= form.text_field :first_pubdate, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :input_edition %></th>
-        <td><%= form.text_field :input_edition, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :original_book_note %></th>
-        <td><%= form.text_area :original_book_note, class: "w-full p-1", rows: "15" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :original_book_title2 %></th>
-        <td><%= form.text_field :original_book_title2, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :publisher2 %></th>
-        <td><%= form.text_field :publisher2, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th><%= form.label :first_pubdate2 %></th>
-        <td><%= form.text_field :first_pubdate2, class: "w-full p-1" %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">
+            項目名
+          </th>
+          <th class="whitespace-nowrap">
+            入力データ
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :original_book_title %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :original_book_title, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :publisher %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :publisher, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :first_pubdate %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_pubdate, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :input_edition %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :input_edition, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :original_book_note %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextAreaComponent.new(form:, name: :original_book_note, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :original_book_title2 %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :original_book_title2, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :publisher2 %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :publisher2, label: '', errors:)) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :first_pubdate2 %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_pubdate2, label: '', errors:)) %>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
-    <hr class="border-1 my-4">
+    <div class="my-5">
+      <%= render(Admin::SnmCheckboxComponent.new(form:, name: :no_send_mail, label: "「入力のお願い」メールを送信しない。", checked_value: 1, unchecked_value: 0, errors:)) %>
+      <%= render(Admin::SnmCheckboxComponent.new(form:, name: :cc_flag, label: "青空文庫にCCする", checked_value: 1, unchecked_value: 0, errors:)) %>
+    </div>
 
-    <ul>
-      <li>
-        <%= form.check_box :no_send_mail, {}, 1, 0 %>
-        <%= form.label :no_send_mail, "「入力のお願い」メールを送信しない。" %>
-      </li>
-      <li>
-        <%= form.check_box :cc_flag, {}, 1, 0 %>
-        <%= form.label :cc_flag, "青空文庫にCCする" %>
-      </li>
-    </ul>
+    <div class="mt-2 flex">
+      <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
+      <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "削除", button_style: :alert, options: { formaction: admin_receipt_path, formmethod: :delete })) %>
+    </div>
 
-    <hr class="border-1 my-4">
-
-    <%= form.submit '登録', class: "btn-admin-normal" %>
-    <%= form.submit '戻る', formaction: admin_receipts_path, formmethod: :get, class: "btn-normal" %>
-    <%= form.submit '削除', class: "btn-admin-danger", formaction: admin_receipt_path, formmethod: :delete %>
-<% end %>
+    <div class="mt-5 flex">
+      <%= tag.snm_link '戻る', href: admin_receipts_path, buttonStyle: "secondary" %>
+    </div>
+    <% end %>
