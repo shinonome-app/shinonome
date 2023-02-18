@@ -27,7 +27,7 @@
 
   <div class="mt-2 flex gap-2">
     <%= tag.snm_link "更新", href: edit_admin_work_path(@work) %>
-    <%= button_to '削除', [:admin, @work], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_work_path(@work))) %>
   </div>
 </div>
 <!--作品テキスト end-->
@@ -56,7 +56,7 @@
       ])) %>
 
   <div class="py-2">
-    <%= button_to '削除', [:admin, @work, work_person], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_work_work_person_path(@work, work_person))) %>
   </div>
 
   <% end %>
@@ -87,7 +87,7 @@
       ])) %>
 
   <div class="py-2">
-    <%= button_to '削除', [:admin, @work, work_worker], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_work_work_worker_path(@work, work_worker))) %>
   </div>
   <% end %>
 </div>
@@ -118,7 +118,7 @@
 
   <div class="mt-2 flex gap-2">
     <%= tag.snm_link "更新", href: edit_admin_work_original_book_path(@work, original_book) %>
-    <%= button_to '削除', [:admin, @work, original_book], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_work_original_book_path(@work, original_book))) %>
   </div>
   <% end %>
 </div>
@@ -142,7 +142,7 @@
 
   <div class="mt-2 flex gap-2">
     <%= tag.snm_link "更新", href: edit_admin_work_bibclass_path(bibclass.work, bibclass) %>
-    <%= button_to '削除', [:admin, bibclass.work, bibclass], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_work_bibclass_path(@work, bibclass))) %>
   </div>
 
   <% end %>
@@ -172,7 +172,7 @@
 
   <div class="mt-2 flex gap-2">
     <%= tag.snm_link "更新", href: edit_admin_work_workfile_path(workfile.work, workfile) %>
-    <%= button_to '削除', [:admin, workfile.work, workfile], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_work_workfile_path(@work, workfile))) %>
   </div>
   <% end %>
 </div>
@@ -196,7 +196,7 @@
       ])) %>
 
   <div class="mt-2 flex gap-2">
-    <%= button_to '削除', [:admin, @work, work_site], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_work_work_site_path(@work, work_site))) %>
   </div>
 
   <% end %>

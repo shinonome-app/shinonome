@@ -1,4 +1,4 @@
-<div>
+<div class="w-full">
   <snm-headline h="h2">工作員データ</snm-headline>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
@@ -32,7 +32,7 @@
 
   <div class="mt-2 flex gap-2">
     <%= tag.snm_link '更新', href: edit_admin_worker_path(@worker) %>
-    <%= button_to '削除', [:admin, @worker], method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_worker_path(@worker))) %>
     <%= tag.snm_link '戻る', href: admin_workers_path %>
   </div>
 </div>

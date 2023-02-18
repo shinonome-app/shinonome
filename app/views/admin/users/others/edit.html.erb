@@ -10,7 +10,7 @@
   <p>管理者を削除します。この操作は戻せません。</p>
 
   <div class="flex mt-5">
-    <%= button_to '削除', admin_users_other_path(@user), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' } }, class: delete_button_class %>
+    <%= render(Admin::DeleteButtonComponent.new(url: admin_users_other_path(@user))) %>
   </div>
 
 </div>
