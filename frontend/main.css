@@ -17,6 +17,30 @@ tbody a:hover {
     text-decoration: none;
 }
 
+/* anti-floc */
+snm-sidebar:not(:defined) {
+  display: inline-block;
+  height: 100vh;
+  opacity: 0;
+}
+snm-header:not(:defined) {
+  display: inline-block;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+snm-headline:not(:defined) {
+  display: inline-block;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+snm-status:not(:defined) {
+  display: inline-block;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
 
 @layer components {
     .btn-normal {
