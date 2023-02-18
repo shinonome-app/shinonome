@@ -1,7 +1,7 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1>工作員の更新</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">工作員の更新</snm-headline>
   <%= render 'form', worker: @worker %>
-  <div class="py-2">
-    <%= link_to '戻る', [:admin, @worker], class: 'btn-normal' %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '戻る', href: admin_worker_path(@worker), buttonstyle: "secondary" %>
   </div>
 </div>
