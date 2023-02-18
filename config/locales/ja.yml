@@ -241,7 +241,7 @@ ja:
       worker_secret:
         email: "email"
         url: "URL"
-        note: "備考"
+        note: "備考(非公開)"
       workfile:
         filetype_id: "ファイル形式"
         filetype: "ファイル形式"

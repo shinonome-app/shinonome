@@ -34,6 +34,7 @@ module Admin
       if @worker.save
         redirect_to [:admin, @worker], success: '追加しました'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :new, status: :unprocessable_entity
       end
     end

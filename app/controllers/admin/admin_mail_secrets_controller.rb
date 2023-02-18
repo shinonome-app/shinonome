@@ -19,6 +19,7 @@ module Admin
       if result.sent?
         redirect_to admin_url, success: 'メールを送信しました'
       else
+        flash.now[:alert] = 'メールを送信できませんでした'
         @admin_mail_secret = result.admin_mail_secret
         render :new, status: :unprocessable_entity
       end

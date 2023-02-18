@@ -1,15 +1,12 @@
 <%= form_with(model: [:admin, worker]) do |form| %>
-  <% if worker.errors.any? %>
-  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <% end %>
   <% errors = worker.errors %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name_kana, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, errors:)) %>
   <%= form.fields_for :worker_secret do |secret_form| %>
-  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :email, errors:, error_key: :'worker_secret.email')) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :url, errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :note, label: "備考(非公開)", errors:)) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :email, field_type: :email, errors:, error_key: :'worker_secret.email')) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :url, field_type: :url, errors:, error_key: :'worker_secret.url')) %>
+  <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :note, errors:, error_key: :'worker_secret.note')) %>
   <% end %>
   <div class="mt-2 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>

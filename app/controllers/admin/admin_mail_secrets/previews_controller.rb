@@ -11,6 +11,7 @@ module Admin
         if result.valid?
           render :new
         else
+          flash.now[:alert] = '入力エラーがあります'
           render 'admin/admin_mail_secrets/new', status: :unprocessable_entity
         end
       end

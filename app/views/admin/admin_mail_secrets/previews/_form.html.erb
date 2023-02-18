@@ -1,8 +1,4 @@
 <%= form_with(model: admin_mail_secret, url: admin_admin_mail_secrets_path, data: { turbo: false }) do |form| %>
-  <% if admin_mail_secret.errors.any? %>
-  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <% end %>
-
   <%= form.hidden_field :worker_id %>
   <%= form.hidden_field :subject %>
   <%= form.hidden_field :body %>

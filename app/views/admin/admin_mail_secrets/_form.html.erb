@@ -1,7 +1,4 @@
 <%= form_with(model: admin_mail_secret, url: admin_admin_mail_secrets_previews_path, data: { turbo: false }) do |form| %>
-  <% if admin_mail_secret.errors.any? %>
-  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <% end %>
   <% errors = admin_mail_secret.errors %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :worker_id, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :subject, errors:)) %>
