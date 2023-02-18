@@ -100,7 +100,6 @@ GEM
     connection_pool (2.3.0)
     crass (1.0.6)
     date (3.3.3)
-    debug (1.7.1)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -135,9 +134,6 @@ GEM
       activesupport (>= 5.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    io-console (0.6.0)
-    irb (1.6.2)
-      reline (>= 0.3.0)
     json (2.6.3)
     launchy (2.5.2)
       addressable (~> 2.8)
@@ -241,8 +237,6 @@ GEM
     redis-client (0.11.2)
       connection_pool
     regexp_parser (2.6.1)
-    reline (0.3.2)
-      io-console (~> 0.5)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -343,14 +337,12 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   brakeman
   capybara (>= 3.26)
-  debug
   devise
   dotenv-rails
   erb_lint (~> 0.3.0)
   factory_bot_rails
   faker
   gimei
-  irb
   letter_opener_web
   listen (~> 3.3)
   pagy
@@ -360,7 +352,6 @@ DEPENDENCIES
   rails (~> 7.0.2, >= 7.0.2.3)
   rails-i18n
   redis (~> 5.0)
-  reline
   rexml
   rspec-rails
   rubocop
