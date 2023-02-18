@@ -1,6 +1,6 @@
 <%= render(Admin::SnmTableComponent.new(
              header: @header,
              body: @sites.map do |site|
-               [site.id, link_to(site.name, admin_site_path(site), class: 'underline'), site.url]
+               [site.id, link_to(site.name, admin_site_path(site)), site.url]
              end
            )) %>

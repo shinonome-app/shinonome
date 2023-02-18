@@ -9,6 +9,14 @@
     }
 }
 
+/* from snm-table* */
+tbody a {
+    text-decoration: underline;
+}
+tbody a:hover {
+    text-decoration: none;
+}
+
 
 @layer components {
     .btn-normal {

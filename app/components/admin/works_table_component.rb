@@ -16,7 +16,7 @@ module Admin
       @body = @works.map do |work|
         [
           work.id,
-          link_to(work.title, admin_work_path(work), class: 'underline'),
+          link_to(work.title, admin_work_path(work)),
           work.subtitle,
           work.author_text,
           work.translator_text,

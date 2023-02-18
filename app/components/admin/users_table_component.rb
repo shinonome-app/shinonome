@@ -15,8 +15,8 @@ module Admin
       @header = %w[ID ユーザー名 email]
       @body = @users.map do |user|
         [
-          link_to(user.id, edit_admin_users_other_path(user), class: 'underline'),
-          link_to(user.username, edit_admin_users_other_path(user), class: 'underline'),
+          link_to(user.id, edit_admin_users_other_path(user)),
+          link_to(user.username, edit_admin_users_other_path(user)),
           user.email
         ]
       end

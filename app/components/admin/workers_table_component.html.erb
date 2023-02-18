@@ -1,6 +1,1 @@
-<%= render(Admin::SnmTableComponent.new(
-             header: @header,
-             body: @workers.map do |worker|
-               [worker.id, link_to(worker.name, admin_worker_path(worker), class: 'underline'), worker.name_kana]
-             end
-           )) %>
+<%= render(Admin::SnmTableComponent.new(header: @header, body: @body)) %>
