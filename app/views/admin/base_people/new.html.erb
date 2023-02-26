@@ -1,5 +1,5 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">人物関連づけ登録</h1>
+<div class="w-full">
+  <snm-headline h="h2">人物関連づけ登録</snm-headline>
 
   <div class="py-2">
     <p>対象人物: <%= @person.name %></p>
@@ -7,7 +7,7 @@
 
   <%= render(Admin::PersonSearchComponent.new(form_url: admin_person_base_people_text_searches_path(person_id: @person.id))) %>
 
-  <div class="py-4">
-    <%= link_to '戻る', admin_person_path(id: @person.id), class: 'btn-normal' %>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link '戻る', href: admin_person_path(@person), buttonstyle: "secondary" %>
   </div>
 </div>

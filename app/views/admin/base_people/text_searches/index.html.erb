@@ -1,52 +1,52 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">人物検索結果一覧</h1>
+<div class="w-full">
+  <snm-headline h="h1">人物検索結果一覧</snm-headline>
 
-  <table>
-    <thead>
-      <tr>
-        <th>人物ID</th>
-        <th>姓名</th>
-        <th>読み</th>
-        <th>著作権</th>
-        <th>他の名前</th>
-        <th>&nbsp;</th>
+  <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+    <thead class="text-center bg-[#f8fafc]">
+      <tr class="h-10 even:bg-[#f8fafc]">
+        <th class="whitespace-nowrap">人物ID</th>
+        <th class="whitespace-nowrap">姓名</th>
+        <th class="whitespace-nowrap">読み</th>
+        <th class="whitespace-nowrap">著作権</th>
+        <th class="whitespace-nowrap">他の名前</th>
+        <th class="whitespace-nowrap">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
       <% @people.each do |base_person| %>
-        <tr>
-          <td>
-            <%= base_person.id %>
-          </td>
-          <td>
-            <%= link_to admin_person_path(base_person) do %>
-              <%= base_person.last_name %>
-              <%= base_person.first_name %>
-            <% end %>
-          </td>
-          <td>
-            <%= base_person.last_name_kana %>
-            <%= base_person.first_name_kana %>
-          </td>
-          <td><%= base_person.copyright_text %></td>
-          <td>
-            <% base_person.other_people.each do |other_person| %>
-              →<%= link_to other_person.name, admin_person_path(other_person) %>
-            <% end %>
-          </td>
-          <td class="px-2">
-            <%= form_with(model: [:admin, @person, @person.build_base_person], method: 'post', data: { turbo: false }) do |form| %>
-            <%= form.hidden_field :original_person_id, value: base_person.id %>
-            <%= form.submit '関連づける', class: 'btn-admin-normal' %>
-            <% end %>
-          </td>
-        </tr>
+      <tr class="h-10 even:bg-[#f8fafc]">
+        <td class="text-center py-3 px-5">
+          <%= base_person.id %>
+        </td>
+        <td class="text-center py-3 px-5">
+          <%= link_to admin_person_path(base_person) do %>
+          <%= base_person.name %>
+          <% end %>
+        </td>
+        <td class="text-center py-3 px-5">
+          <%= base_person.name_kana %>
+        </td>
+        <td class="text-center py-3 px-5">
+          <%= base_person.copyright_text %>
+        </td>
+        <td class="text-center py-3 px-5">
+          <% base_person.other_people.each do |other_person| %>
+          →<%= link_to other_person.name, admin_person_path(other_person) %>
+          <% end %>
+        </td>
+        <td class="text-center py-3 px-5">
+          <%= form_with(model: [:admin, @person, @person.build_base_person], method: 'post', data: { turbo: false }) do |form| %>
+          <%= form.hidden_field :original_person_id, value: base_person.id %>
+          <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "関連づける")) %>
+          <% end %>
+        </td>
+      </tr>
       <% end %>
     </tbody>
   </table>
   <%== pagy_snm_nav(@pagy) %>
 
-  <div class="py-4">
-    <%= link_to '戻る', new_admin_person_base_person_path, class: 'btn-normal py-2' %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '戻る', href: new_admin_person_base_person_path, buttonstyle: "secondary" %>
   </div>
 </div>

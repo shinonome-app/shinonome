@@ -33,4 +33,12 @@ class BasePerson < ApplicationRecord
   def person_and_original_persion_must_be_different
     errors.add(:person_id, I18n.t('errors.base_person.same_person')) if original_person_id == person_id
   end
+
+  def name
+    "#{last_name} #{first_name}"
+  end
+
+  def name_kana
+    "#{last_name_kana} #{first_name_kana}"
+  end
 end
