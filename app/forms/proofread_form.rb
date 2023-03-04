@@ -55,8 +55,8 @@ class ProofreadForm
   validates :email, presence: true, if: ->(proofread) { proofread.worker_id.blank? }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, if: ->(proofread) { proofread.email.present? }
 
-  validate :presence_of_sub_works
   validate :need_address
+  validate :presence_of_sub_works
 
   attr_accessor :sub_works
 

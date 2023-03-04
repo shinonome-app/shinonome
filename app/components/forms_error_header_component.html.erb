@@ -3,10 +3,13 @@
   <h2>
     <%= I18n.t("errors.header_message", count: form.errors.count) %>
   </h2>
-  <ul>
+  <ul class="list-disc px-4">
     <% form.errors.each do |error| %>
     <li>
       <%= error.full_message %>
+      <% if error.attribute.to_s == "sub_works" %>
+      (<%= error.inspect %>)
+      <% end %>
     </li>
     <% end %>
   </ul>

@@ -24,7 +24,8 @@ class ReceiptForm
 
     validates :title_kana, presence: true
     validates :title, presence: true
-    validates :copyright_flag, inclusion: { in: [0, 1] }
+    validates :copyright_flag, presence: true
+    validates :copyright_flag, inclusion: { in: [0, 1] }, if: -> { copyright_flag.present? }
     validates :kana_type_id, presence: true
     validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }, if: -> { kana_type_id.present? }
 
@@ -80,8 +81,8 @@ class ReceiptForm
   validates :first_pubdate, presence: true
   validates :input_edition, presence: true
 
-  validate :sub_works_are_valid
   validate :email_is_valid
+  validate :sub_works_are_valid
 
   def already_registered_works
     sub_works.find_all do |sub_work|
@@ -104,7 +105,13 @@ class ReceiptForm
   end
 
   def sub_works_are_valid
-    errors.add(:sub_works, I18n.t('errors.messages.invalid')) if sub_works.any?(&:invalid?)
+    sub_works.each_with_index do |sub_work, sub_work_index|
+      next if sub_work.valid?
+
+      sub_work.errors.each do |error|
+        errors.add("作品#{sub_work_index + 1}の", error.full_message)
+      end
+    end
   end
 
   def email_is_valid
