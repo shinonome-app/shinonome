@@ -78,7 +78,7 @@
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
-        ["工作員ID",  link_to(worker.id, admin_worker_path(worker))],
+        ["工作員ID", link_to(worker.id, admin_worker_path(worker))],
         ["読み", worker.name_kana],
         ["#{work_worker.worker_role.name}名", worker.name],
         ["e-mail", worker.worker_secret&.email],
