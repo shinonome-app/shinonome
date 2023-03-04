@@ -1,7 +1,9 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">人物更新</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">人物更新</snm-headline>
+
   <%= render(Admin::PersonFormComponent.new(person: @person)) %>
 
-  <div class="py-4">
-  <%= link_to '戻る', [:admin, @person], class: 'btn-normal' %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '戻る', href: admin_person_path(@person), buttonstyle: "secondary" %>
   </div>
+</div>

@@ -1,13 +1,11 @@
-<div>
+<div class="w-full">
   <snm-headline h="h1">人物検索結果一覧</snm-headline>
 
   <%= render(Admin::PeopleTableComponent.new(people: @people)) %>
 
   <%== pagy_snm_nav(@pagy) %>
-</div>
 
-<div>
-  <div class="py-4">
-    <%= link_to '新規人物登録', new_admin_person_path, class: primary_button_class %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '新規人物登録', href: new_admin_person_path %>
   </div>
 </div>
