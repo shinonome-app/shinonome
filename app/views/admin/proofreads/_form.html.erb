@@ -1,154 +1,181 @@
 <%= form_with(model: [:admin, proofread_form], method: :patch, data: { turbo: false }) do |form| %>
     <% work = proofread_form.work %>
-    <% if proofread_form.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(proofread_form.errors.count, "件") %>の入力エラーがあります:</h2>
-      <ul>
-        <% proofread_form.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <% errors = proofread_form.errors %>
+    <div class="py-4">
+    <snm-headline h="h2">【選択された作品】</snm-headline>
+
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">著者</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= work.author_text %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">
+            作品ID
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= work.id %>
+            <%= form.hidden_field :work_id %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">作品名<br>副題</td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= work.title %><br>
+            <%= work.subtitle %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">状態</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= work.work_status.name %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本（コピー）</td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <% if proofread_form.need_copy? %>
+            要
+            <% else %>
+            不要
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">プリントアウト</td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <% if proofread_form.need_print? %>
+            要
+            <% else %>
+            不要
+            <% end %>
+          </td>
+        </tr>
+    </table>
     </div>
-    <% end %>
 
-    <h2 class="text-xl py-2">【選択された作品】</h2>
+    <div class="py-4">
+    <snm-headline h="h2">【送付先】</snm-headline>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>データ</th>
-      </tr>
-      <tr>
-        <th>著者</th>
-        <td><%= work.author_text %></td>
-      </tr>
-      <tr>
-        <th>
-          作品ID
-        </th>
-        <td>
-          <%= work.id %>
-          <%= form.hidden_field :work_id %>
-        </td>
-      </tr>
-      <tr>
-        <th>作品名<br>副題</th>
-        <td>
-          <%= work.title %><br>
-          <%= work.subtitle %>
-        </td>
-      </tr>
-      <tr>
-        <th>状態</th>
-        <td><%= work.work_status.name %></td>
-      </tr>
-      <tr>
-        <th>底本（コピー）</th>
-        <td>
-          <% if proofread_form.need_copy? %>
-          要
-          <% else %>
-          不要
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>プリントアウト</th>
-        <td>
-          <% if proofread_form.need_print? %>
-          要
-          <% else %>
-          不要
-          <% end %>
-        </td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">送付先</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= proofread_form.address %></td>
+        </tr>
+      </tbody>
     </table>
 
-    <h2 class="text-xl py-2">【送付先】</h2>
+    </div>
+    <div class="py-4">
+    <snm-headline h="h2">【校正者からの連絡事項】</snm-headline>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>データ</th>
-      </tr>
-      <tr>
-        <th>送付先</th>
-        <td><%= proofread_form.address %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">連絡事項</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= proofread_form.memo %></td>
+        </tr>
+      </tbody>
     </table>
+    </div>
 
-    <h2 class="text-xl py-2">【校正者からの連絡事項】</h2>
-
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>データ</th>
-      </tr>
-      <tr>
-        <th>連絡事項</th>
-        <td><%= proofread_form.memo %></td>
-      </tr>
-    </table>
-
-    <h2 class="text-xl py-2">【校正者データ】</h2>
+    <div class="py-4">
+    <snm-headline h="h2">【校正者データ】</snm-headline>
     <% if @worker.id.present? %>
     <%= render 'worker_show', proofread_form: proofread_form, form: form %>
     <% else %>
     <%= render 'worker_form', proofread_form: proofread_form, form: form %>
     <% end %>
+    </div>
 
-    <h2 class="text-xl">【底本データ】</h2>
+    <div class="py-4">
+    <snm-headline h="h2">【底本データ】</snm-headline>
 
-    <h3 class="text-xl">底本</h3>
+    <snm-headline h="h3">底本</snm-headline>
 
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>入力データ</th>
-      </tr>
-      <tr>
-        <th>底本名</th>
-        <td><%= form.text_field :original_book_title, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>出版社名</th>
-        <td><%= form.text_field :publisher, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>初版発行年</th>
-        <td><%= form.text_field :first_pubdate, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>入力に使用した版</th>
-        <td><%= form.text_field :input_edition, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>校正に使用する版</th>
-        <td><%= form.text_field :proof_edition, class: "w-full p-1" %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :original_book_title, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">出版社名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :publisher, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">初版発行年</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :first_pubdate, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">入力に使用した版</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :input_edition, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">校正に使用する版</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :proof_edition, class: "w-full p-1" %></td>
+        </tr>
+      </tbody>
     </table>
 
-    <h3 class="text-xl">底本の親本</h3>
+    <snm-headline h="h3">底本の親本</snm-headline>
 
-    <table class="w-full">
-      <tr>
-        <th>底本の親本名</th>
-        <td><%= form.text_field :original_book_title2, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>底本の親本出版社名</th>
-        <td><%= form.text_field :publisher2, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>底本の親本出版発行年</th>
-        <td><%= form.text_area :first_pubdate2, class: "w-full p-1" %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本の親本名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :original_book_title2, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本の親本出版社名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :publisher2, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本の親本出版発行年</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_area :first_pubdate2, class: "w-full p-1" %></td>
+        </tr>
+      </tbody>
     </table>
+    </div>
 
-    <hr class="border-1 my-4">
+    <div class="mt-2 flex">
+      <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "関連付ける")) %>
 
-    <%= form.submit '関連付ける', class: "btn-admin-normal" %>
-    <%= form.submit '戻る', formaction: admin_proofreads_path, formmethod: :get, class: "btn-normal" %>
+      <%= tag.snm_link '戻る', href: admin_proofreads_path, buttonStyle: "secondary" %>
+    </div>
 <% end %>
 
-<%= button_to '削除', admin_proofread_path(proofread_form.proofread), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか？' } }, class: "btn-admin-danger bg-red-300" %>
+<%= form_with(url: admin_proofread_path(proofread_form.proofread), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }) do |form| %>
+<%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "削除", button_style: :alert)) %>
+<% end %>
+

@@ -1,32 +1,36 @@
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>データ</th>
-      </tr>
-      <tr>
-        <th>工作員ID</th>
-        <td><%= text_field_tag :worker_id_disabled, nil, disabled: true, autocomplete: :off, class: "w-full p-1 bg-gray-100" %></td>
-      </tr>
-      <tr>
-        <th>姓名読み</th>
-        <td><%= form.text_field :worker_kana, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>姓名</th>
-        <td><%= form.text_field :worker_name, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>e-mail</th>
-        <td><%= form.text_field :email, class: "w-full p-1" %></td>
-      </tr>
-      <tr>
-        <th>ホームページ</th>
-        <td><%= form.text_field :url, class: "w-full p-1" %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>工作員ID</th>
+          <td><%= text_field_tag :worker_id_disabled, nil, disabled: true, autocomplete: :off, class: "w-full p-1 bg-gray-100" %></td>
+        </tr>
+        <tr>
+          <th>姓名読み</th>
+          <td><%= form.text_field :worker_kana, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <th>姓名</th>
+          <td><%= form.text_field :worker_name, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <th>e-mail</th>
+          <td><%= form.text_field :email, class: "w-full p-1" %></td>
+        </tr>
+        <tr>
+          <th>ホームページ</th>
+          <td><%= form.text_field :url, class: "w-full p-1" %></td>
+        </tr>
+      </tbody>
     </table>
 
     <div class="py-4">
-    <h3 class="text-lg py-2 ml-24">工作員選択オプション</h3>
+    <snm-headline h="h3">工作員選択オプション</snm-headline>
     <ul class="w-full py-4 ml-24">
       <li>
         <%= form.radio_button :worker_id, -1 %>上記の内容で工作員を新規登録する

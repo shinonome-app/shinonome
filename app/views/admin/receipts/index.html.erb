@@ -29,23 +29,23 @@
         <td class="text-center whitespace-nowrap py-3">
           <%= receipt.created_at.strftime("%Y-%m-%d") %>
         </td>
-        <td class="text-center whitespace-nowrap py-3">
+        <td class="text-center py-3">
           <%= link_to receipt.title, edit_admin_receipt_path(receipt), class: "link-normal" %>
         </td>
         <td class="text-center whitespace-nowrap py-3">
           <%= receipt.kana_type&.name %>
         </td>
-        <td class="text-center whitespace-nowrap py-3">
+        <td class="text-center py-3">
           <% if receipt.person_id.present? %>
           <%= receipt.name %> (<%= link_to receipt.person_id, admin_person_path(id: receipt.person_id), class: "link-normal" %>)
           <% else %>
           <%= receipt.name %> (<%= receipt.person_id %>)
           <% end %>
         </td>
-        <td class="text-center whitespace-nowrap py-3">
+        <td class="text-center py-3">
           <%= receipt.worker_name %>
         </td>
-        <td class="text-center whitespace-nowrap py-3">
+        <td class="text-center py-3">
           <% if receipt.ordered? %>
           <%= tag.snm_status statusType: "green", label: "済" %>
           <% else %>

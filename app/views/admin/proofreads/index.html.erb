@@ -1,60 +1,65 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-<h1 class="text-2xl py-4">Web校正受付管理</h1>
+<div class="w-full">
+  <snm-headline h="h1">Web校正受付管理</snm-headline>
+  <div class="flex flex-col gap-5 mb-5">
+    <div>
+      <snm-headline h="h3">Web受付作品一覧</snm-headline>
+      <p>
+        <%= @proofreads.count %>件の作品が見つかりました。
+      </p>
+    </div>
 
-<h2 class="text-xl py-2">Web受付作品一覧</h2>
-<p>
-  <%= @proofreads.count %>件の作品が見つかりました。
-</p>
-<table class="w-full my-4">
-  <thead>
-    <tr>
-      <th>連番</th>
-      <th>日付</th>
-      <th>ID</th>
-      <th>作品名</th>
-      <th>文字遣い</th>
-      <th>著者</th>
-      <th>校正者</th>
-      <th>状態</th>
-      <th>関連づけ</th>
-      <th>発注</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @proofreads.order(created_at: :desc).each_with_index do |proofread, index| %>
-      <% work = proofread.work %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= proofread.created_at.strftime("%Y-%m-%d") %></td>
-        <td><%= work.id %></td>
-        <td><%= link_to work.title, edit_admin_proofread_path(proofread), class: "link-normal" %></td>
-        <td><%= work.kana_type&.name %></td>
-        <td><%= work.author_text %></td>
-        <td><%= proofread.worker_name %></td>
-        <td><%= work.work_status.name %></td>
-        <td>
-          <% if proofread.assigned? %>
-          <span>済</span>
-          <% else %>
-          <span class="text-red-500">未</span>
-          <% end %>
-        </td>
-        <td>
-          <% if proofread.ordered? %>
-          <span>済</span>
-          <% else %>
-          <span class="text-red-500">未</span>
-          <% end %>
-        </td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="text-center bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc]">
+          <th class="whitespace-nowrap">連番</th>
+          <th class="whitespace-nowrap">日付</th>
+          <th class="whitespace-nowrap">ID</th>
+          <th class="whitespace-nowrap">作品名</th>
+          <th class="whitespace-nowrap">文字遣い</th>
+          <th class="whitespace-nowrap">著者</th>
+          <th class="whitespace-nowrap">校正者</th>
+          <th class="whitespace-nowrap">状態</th>
+          <th class="whitespace-nowrap">関連づけ</th>
+          <th class="whitespace-nowrap">発注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @proofreads.order(created_at: :desc).each_with_index do |proofread, index| %>
+        <% work = proofread.work %>
+        <tr>
+          <td class="text-center py-3"><%= index + 1 %></td>
+          <td class="text-center py-3"><%= proofread.created_at.strftime("%Y-%m-%d") %></td>
+          <td class="text-center py-3"><%= work.id %></td>
+          <td class="text-center py-3"><%= link_to work.title, edit_admin_proofread_path(proofread), class: "link-normal" %></td>
+          <td class="text-center py-3"><%= work.kana_type&.name %></td>
+          <td class="text-center py-3"><%= work.author_text %></td>
+          <td class="text-center py-3"><%= proofread.worker_name %></td>
+          <td class="text-center py-3"><%= work.work_status.name %></td>
+          <td class="text-center py-3">
+            <% if proofread.assigned? %>
+            <snm-status statusType="green" label="済"></snm-status>
+            <% else %>
+            <snm-status statusType="gray" label="未"></snm-status>
+            <% end %>
+          </td>
+          <td class="text-center py-3">
+            <% if proofread.ordered? %>
+            <snm-status statusType="green" label="済"></snm-status>
+            <% else %>
+            <snm-status statusType="gray" label="未"></snm-status>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-5 inline-block">
+    <snm-headline h="h3">一括削除</snm-headline>
+
+    <%= form_with(url: admin_proofreads_bulk_removes_path, method: :post, data: { turbo_confirm: '本当に一括削除しますか？' }) do |form| %>
+    <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "一括削除する", button_style: :alert)) %>
     <% end %>
-  </tbody>
-</table>
-
-<h2 class="text-xl py-2">一括削除</h2>
-
-<%= form_with(url: admin_proofreads_bulk_removes_path, method: :post, data: { turbo_confirm: '本当に一括削除しますか？' }) do |form| %>
-<%= form.submit '一括削除する', class: "btn-admin-danger" %>
-<% end %>
-
+  </div>
 </div>

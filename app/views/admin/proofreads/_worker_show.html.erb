@@ -1,29 +1,33 @@
-    <table class="w-full">
-      <tr>
-        <th class="w-48">項目名</th>
-        <th>データ</th>
-      </tr>
-      <tr>
-        <th>工作員ID</th>
-        <td>
-          <%= @worker.id %>
-          <%= form.hidden_field :worker_id %>
-        </td>
-      </tr>
-      <tr>
-        <th>姓名読み</th>
-        <td><%= @worker.name_kana %></td>
-      </tr>
-      <tr>
-        <th>姓名</th>
-        <td><%= @worker.name %></td>
-      </tr>
-      <tr>
-        <th>e-mail</th>
-        <td><%= @worker_secret.email %></td>
-      </tr>
-      <tr>
-        <th>ホームページ</th>
-        <td><%= @worker_secret.url %></td>
-      </tr>
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>工作員ID</th>
+          <td>
+            <%= @worker.id %>
+            <%= form.hidden_field :worker_id %>
+          </td>
+        </tr>
+        <tr>
+          <th>姓名読み</th>
+          <td><%= @worker.name_kana %></td>
+        </tr>
+        <tr>
+          <th>姓名</th>
+          <td><%= @worker.name %></td>
+        </tr>
+        <tr>
+          <th>e-mail</th>
+          <td><%= @worker_secret.email %></td>
+        </tr>
+        <tr>
+          <th>ホームページ</th>
+          <td><%= @worker_secret.url %></td>
+        </tr>
+      </tbody>
     </table>

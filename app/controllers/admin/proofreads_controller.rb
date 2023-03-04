@@ -51,6 +51,7 @@ module Admin
       if @proofread_form.save
         redirect_to admin_proofreads_path, success: '更新しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         @worker, @worker_secret = @proofread_form.worker_and_worker_secret
         render 'admin/proofreads/edit', status: :unprocessable_entity
       end
