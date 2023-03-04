@@ -3,7 +3,7 @@
 module Admin
   # text_field用コンポーネント
   class SnmTextFieldComponent < ViewComponent::Base
-    def initialize(form:, name:, label: nil, field_type: nil, errors: nil, error_key: nil)
+    def initialize(form:, name:, label: nil, field_type: nil, errors: nil, error_key: nil) # rubocop:disable Metrics/ParameterLists
       super
       @form = form
       @name = name
