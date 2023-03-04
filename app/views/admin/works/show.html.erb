@@ -42,7 +42,7 @@
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
-        ["人物ID", person.id],
+        ["人物ID", link_to(person.id, admin_person_path(person))],
         ["読み", "#{person.last_name_kana} #{person.first_name_kana}"],
         ["著者名", person.name],
         ["ローマ字", person.name_en],
@@ -78,7 +78,7 @@
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
-        ["工作員ID", worker.id],
+        ["工作員ID",  link_to(worker.id, admin_worker_path(worker))],
         ["読み", worker.name_kana],
         ["#{work_worker.worker_role.name}名", worker.name],
         ["e-mail", worker.worker_secret&.email],
