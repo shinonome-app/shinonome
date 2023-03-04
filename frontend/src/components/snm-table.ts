@@ -20,10 +20,13 @@ export class SnmTable extends LitElement {
 
       columns?.forEach((col) => {
         const children: ChildNode[] = [];
+        const noIndent = col.getAttribute("noIndent");
+        const indentCSS = noIndent ? "whitespace-nowrap" : "";
+
         col.childNodes.forEach((node) => {
           children.push(node);
         });
-        tdList.push(isHead ? html`<th class="whitespace-nowrap">${children}</th>` : html`<td class="text-center py-3 px-5">${children}</td>`);
+        tdList.push(isHead ? html`<th class="whitespace-nowrap px-5">${children}</th>` : html`<td class="text-center py-3 px-5 ${indentCSS}">${children}</td>`);
       }); 
 
       // prettier-ignore

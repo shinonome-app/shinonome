@@ -1,4 +1,4 @@
-import { LitElement, css, html, unsafeCSS } from "lit";
+import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import globalStyles from "../input.css?inline";
 
@@ -37,7 +37,7 @@ export class SnmSidebar extends LitElement {
     `;
   }
 
-  static styles = [unsafeCSS(globalStyles), css``];
+  static styles = [unsafeCSS(globalStyles)];
 }
 
 declare global {
