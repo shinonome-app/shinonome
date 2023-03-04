@@ -1,7 +1,5 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">管理者の追加・削除</snm-headline>
-
-  <snm-headline h="h2">管理者追加</snm-headline>
+  <snm-headline h="h2">管理者の追加</snm-headline>
 
   <%= form_with(model: @user, url: admin_users_others_path, method: "post") do |form| %>
     <% if @user.errors.any? %>
@@ -17,6 +15,8 @@
     </div>
   <% end %>
 
-  <snm-headline h="h2">管理者一覧</snm-headline>
-  <%= render(Admin::UsersTableComponent.new(users: @users, pagy: @pagy)) %>
+  <div class="mt-4">
+    <snm-headline h="h2">管理者一覧</snm-headline>
+    <%= render(Admin::UsersTableComponent.new(users: @users, pagy: @pagy)) %>
+  </div>
 </div>
