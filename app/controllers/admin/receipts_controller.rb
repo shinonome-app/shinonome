@@ -24,7 +24,13 @@ module Admin
         return
       end
 
-      @receipt_form = ReceiptForm.new(receipt: receipt)
+      @receipt_form =
+        if params[:receipt]
+          ReceiptForm.new(receipt_params, receipt: receipt)
+        else
+          ReceiptForm.new(receipt: receipt)
+        end
+
       if params[:receipt]
         @receipt_form.worker_name = params[:receipt][:worker_name]
         @receipt_form.worker_kana = params[:receipt][:worker_kana]

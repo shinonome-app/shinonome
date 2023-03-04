@@ -134,7 +134,7 @@
             人物ID
           </td>
           <td class="odd:w-[25%] py-3 px-5">
-            <%= @receipt.person_id %>
+            <%= link_to @receipt.person_id, admin_person_path(@receipt.person_id) %>
           </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -215,7 +215,7 @@
             工作員ID
           </td>
           <td class="odd:w-[25%] py-3 px-5">
-            <%= @receipt.worker_id %>
+            <%= link_to @receipt.worker_id, admin_worker_path(@receipt.worker_id) %>
           </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
