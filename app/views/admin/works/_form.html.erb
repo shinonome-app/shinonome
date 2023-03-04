@@ -1,7 +1,4 @@
 <%= form_with(model: [:admin, work]) do |form| %>
-  <% if work.errors.any? %>
-  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <% end %>
   <% errors = work.errors %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title_kana, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :sortkey, errors:)) %>

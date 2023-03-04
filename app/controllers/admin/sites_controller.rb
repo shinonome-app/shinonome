@@ -31,6 +31,7 @@ module Admin
       if @site.save
         redirect_to [:admin, @site], success: '追加しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :new, status: :unprocessable_entity
       end
     end
@@ -40,6 +41,7 @@ module Admin
       if @site.update(site_params)
         redirect_to [:admin, @site], success: '更新しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :edit, status: :unprocessable_entity
       end
     end

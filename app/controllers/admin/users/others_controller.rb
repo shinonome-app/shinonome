@@ -23,6 +23,7 @@ module Admin
           redirect_to admin_users_others_path, success: '追加しました.'
         else
           @pagy, @users = pagy(Shinonome::User.order(:id).all, items: 50)
+          flash.now[:alert] = '入力エラーがあります'
           render :index, status: :unprocessable_entity
         end
       end
@@ -32,6 +33,7 @@ module Admin
         if @user.update(user_params)
           redirect_to admin_users_others_path, success: '更新しました.'
         else
+          flash.now[:alert] = '入力エラーがあります'
           render :edit, status: :unprocessable_entity
         end
       end

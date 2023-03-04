@@ -2,9 +2,6 @@
   <snm-headline h="h2">管理者の追加</snm-headline>
 
   <%= form_with(model: @user, url: admin_users_others_path, method: "post") do |form| %>
-    <% if @user.errors.any? %>
-    <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-    <% end %>
     <% errors = @user.errors %>
     <%= render(Admin::SnmTextFieldComponent.new(form:, name: :username, errors:)) %>
     <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, errors:)) %>

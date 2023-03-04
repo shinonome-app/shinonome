@@ -29,6 +29,7 @@ module Admin
       if @news_entry.save
         redirect_to admin_news_entries_url, success: '追加しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :new, status: :unprocessable_entity
       end
     end
@@ -38,6 +39,7 @@ module Admin
       if @news_entry.update(news_entry_params)
         redirect_to [:admin, @news_entry], success: '更新しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :edit, status: :unprocessable_entity
       end
     end

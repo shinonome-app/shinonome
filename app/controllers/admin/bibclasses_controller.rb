@@ -26,6 +26,7 @@ module Admin
       if @bibclass.save
         redirect_to [:admin, @bibclass.work], success: '追加しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :new, status: :unprocessable_entity
       end
     end
@@ -34,6 +35,7 @@ module Admin
       if @bibclass.update(bibclass_params)
         redirect_to [:admin, @bibclass.work], success: '更新しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :edit, status: :unprocessable_entity
       end
     end

@@ -1,7 +1,4 @@
 <%= form_with(model: [:admin, workfile.work, workfile]) do |form| %>
-  <% if workfile.errors.any? %>
-  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <% end %>
   <% errors = workfile.errors %>
   <%= form.hidden_field :work_id %>
 

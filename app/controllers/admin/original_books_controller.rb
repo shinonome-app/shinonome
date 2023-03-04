@@ -20,6 +20,7 @@ module Admin
       if @original_book.save
         redirect_to admin_work_url(@work), success: '追加しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :new, status: :unprocessable_entity
       end
     end
@@ -29,6 +30,7 @@ module Admin
       if @original_book.update(original_book_params)
         redirect_to admin_work_url(@work), success: '更新しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render :edit, status: :unprocessable_entity
       end
     end

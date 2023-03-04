@@ -52,6 +52,7 @@ module Admin
         ReceiptOrderSender.new.send(receipt: @receipt_form.receipt)
         redirect_to [:admin, @receipt_form], success: '更新しました.'
       else
+        flash.now[:alert] = '入力エラーがあります'
         render 'admin/receipts/edit', status: :unprocessable_entity
       end
     end

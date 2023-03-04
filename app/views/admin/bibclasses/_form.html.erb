@@ -1,7 +1,4 @@
 <%= form_with(model: [:admin, bibclass.work, bibclass]) do |form| %>
-<% if bibclass.errors.any? %>
-<%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-<% end %>
 <%= render(Admin::SnmTextFieldComponent.new(form:, name: :name, errors: bibclass.errors)) %>
 <%= render(Admin::SnmTextFieldComponent.new(form:, name: :num, errors: bibclass.errors)) %>
 <%= render(Admin::SnmTextFieldComponent.new(form:, name: :note, errors: bibclass.errors)) %>

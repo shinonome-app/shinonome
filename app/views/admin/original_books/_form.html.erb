@@ -1,7 +1,4 @@
 <%= form_with(model: [:admin, @work, original_book]) do |form| %>
-  <% if original_book.errors.any? %>
-  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <% end %>
   <% errors = original_book.errors %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :publisher, errors:)) %>

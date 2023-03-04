@@ -1,7 +1,4 @@
 <%= form_with(model: [:admin, receipt_form], method: :patch, data: { turbo: false }) do |form| %>
-  <% if receipt_form.errors.any? %>
-  <%= tag.snm_message_bar "入力エラーがあります", level: "alert" %>
-  <% end %>
   <% errors = receipt_form.errors %>
   <snm-headline h="h2">作品データ</snm-headline>
 
