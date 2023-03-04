@@ -44,19 +44,19 @@
         <%= sub_work.first_teihon.publisher %>
       </td>
       <td class="border border-gray-400 bg-white">
-        <label for="work_copy">
+        <label>
           <%= fields.check_box :work_copy, {}, 1, 0 %>
           要コピー
         </label>
       </td>
       <td class="border border-gray-400 bg-white">
-        <label for="work_print">
+        <label>
           <%= fields.check_box :work_print, {}, 1, 0 %>
           要プリントアウト
         </label>
       </td>
       <td class="border border-gray-400 bg-white">
-        <%= fields.text_area :proof_edition, size: "24x3" %>
+        <%= fields.text_area :proof_edition, size: "24x3", class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         <% if idx == 0 %>
@@ -94,7 +94,7 @@
         <%= form.label :address do %>送付先<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_area :address, size: "50x15", class: "m-1" %>
+        <%= form.text_area :address, size: "50x15", class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         〒100-0001<br>
@@ -128,7 +128,7 @@
         <%= form.label :memo do %>連絡事項<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_area :memo, size: "50x15", class: "m-1" %>
+        <%= form.text_area :memo, size: "50x15", class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         ※底本や作品に関して伝えたいことがある場合、ここに記入してください。<br>
@@ -160,7 +160,7 @@
         <%= form.label :worker_id do %>工作員ID<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :worker_id, class: "m-1" %>
+        <%= form.text_field :worker_id, class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         1<br>
@@ -173,7 +173,7 @@
         <%= form.label :worker_kana do %>工作員読み<span class="text-red-500">（必須）</span><% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :worker_kana, class: "m-1" %>
+        <%= form.text_field :worker_kana, class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         あおぞらたろう
@@ -184,7 +184,7 @@
         <%= form.label :worker_name do %>工作員名<span class="text-red-500">（必須）</span><% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :worker_name, class: "m-1" %>
+        <%= form.text_field :worker_name, class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         青空太郎
@@ -195,7 +195,7 @@
         <%= form.label :email do %>e-mail<span class="text-red-500">（必須）</span><% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :email, class: "m-1" %>
+        <%= form.text_field :email, class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         reception@aozora.gr.jp
@@ -206,7 +206,7 @@
         <%= form.label :url do %>ホームページ<% end %>
       </td>
       <td class="border border-gray-400 bg-yellow-100">
-        <%= form.text_field :url %>
+        <%= form.text_field :url, class: "m-1 border border-gray-400" %>
       </td>
       <td class="border border-gray-400 bg-yellow-200 max-w-xs">
         https://www.aozora.gr.jp
