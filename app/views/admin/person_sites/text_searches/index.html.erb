@@ -17,7 +17,7 @@
         <td class="text-center py-3 px-5"><%= link_to site.name, admin_site_path(site) %></td>
         <td class="text-center py-3 px-5"><%= link_to site.url, site.url %></td>
         <td class="text-center py-3 px-5">
-          <%= form_with(model: [:admin, @person, @person.person_sites.build], method: 'post', data: { turbo: false }) do |form| %>
+          <%= form_with(model: [:admin, @person, @person.person_sites.build], method: 'post', data: { turbo: false }, class: "person-site-form-#{site.id}") do |form| %>
           <%= form.hidden_field :site_id, value: site.id %>
           <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "関連づける")) %>
           <% end %>

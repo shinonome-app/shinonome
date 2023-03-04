@@ -31,7 +31,7 @@ describe Admin::PersonSitesController do
       expect(page).to have_content(/#{site.id}.*#{site.name}.*#{site.url}/)
       expect(page).to have_content(/#{site2.id}.*#{site2.name}.*#{site2.url}/)
 
-      page.find("#person-site-#{site.id}").click_button('関連づける')
+      page.find(".person-site-form-#{site.id}").click_button('関連づける')
 
       expect(page).to have_content('関連づけました.')
       expect(page).to have_content('人物詳細')
@@ -44,7 +44,7 @@ describe Admin::PersonSitesController do
 
       PersonSite.create!(person_id: person.id, site_id: site.id)
 
-      page.find("#person-site-#{site.id}").click_button('関連づける')
+      page.find(".person-site-form-#{site.id}").click_button('関連づける')
 
       expect(page).to have_content('人物IDがすでに関連付けられています')
       expect(page).to have_content('人物詳細')

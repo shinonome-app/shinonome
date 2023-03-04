@@ -16,7 +16,7 @@ describe ReceiptsController do
 
       click_button('確認')
 
-      expect(page).to have_content('10件のエラーが見つかりました')
+      expect(page).to have_content('13件のエラーが見つかりました')
     end
 
     it '一通り入力して確認すると確認画面に進む' do
