@@ -136,9 +136,9 @@
     <snm-headline h="h2">入力者データ</snm-headline>
 
     <% if receipt_form.worker_id.present? %>
-    <%= render 'worker_show', receipt_form: receipt_form, form: form %>
+    <%= render 'worker_show', receipt_form: receipt_form, form: form, errors: errors %>
     <% else %>
-    <%= render 'worker_form', receipt_form: receipt_form, form: form %>
+    <%= render 'worker_form', receipt_form: receipt_form, form: form, errors: errors %>
     <% end %>
 
     <snm-headline h="h2">底本データ</snm-headline>

@@ -30,7 +30,11 @@
           <%= receipt.created_at.strftime("%Y-%m-%d") %>
         </td>
         <td class="text-center py-3">
+          <% if receipt.ordered? %>
+          <%= link_to receipt.title, admin_receipt_path(receipt), class: "link-normal" %>
+          <% else %>
           <%= link_to receipt.title, edit_admin_receipt_path(receipt), class: "link-normal" %>
+          <% end %>
         </td>
         <td class="text-center whitespace-nowrap py-3">
           <%= receipt.kana_type&.name %>
