@@ -10,6 +10,8 @@
 # See https://docs.rubocop.org/rubocop/configuration
 
 require:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-rails
   - rubocop-rspec
 

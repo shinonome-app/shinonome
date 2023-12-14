@@ -380,6 +380,8 @@ DEPENDENCIES
   rexml
   rspec-rails
   rubocop
+  rubocop-capybara
+  rubocop-factory_bot
   rubocop-rails
   rubocop-rspec
   rubyzip

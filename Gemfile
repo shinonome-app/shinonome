@@ -72,6 +72,8 @@ group :development, :test do
 
   # Ruby static analytics and lint
   gem 'rubocop'
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 
