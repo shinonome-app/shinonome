@@ -123,7 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.date "published_on"
     t.text "title", null: false
     t.text "body", null: false
-    t.boolean "flag", null: false
+    t.boolean "flag", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -152,7 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "first_name_en"
     t.text "born_on"
     t.text "died_on"
-    t.boolean "copyright_flag", null: false
+    t.boolean "copyright_flag", default: false, null: false
     t.text "email"
     t.text "url"
     t.text "description"
@@ -213,7 +213,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "first_appearance"
     t.text "memo"
     t.text "note"
-    t.boolean "copyright_flag", null: false
+    t.boolean "copyright_flag", default: false, null: false
     t.text "last_name_kana", null: false
     t.text "last_name", null: false
     t.text "last_name_en"
@@ -383,7 +383,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.bigint "description_person_id"
     t.bigint "work_status_id", null: false
     t.date "started_on", null: false
-    t.boolean "copyright_flag", null: false
+    t.boolean "copyright_flag", default: false, null: false
     t.text "note"
     t.text "orig_text"
     t.bigint "user_id", null: false

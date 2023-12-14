@@ -7,7 +7,7 @@
 #  id              :bigint           not null, primary key
 #  basename        :text
 #  born_on         :text
-#  copyright_flag  :boolean          not null
+#  copyright_flag  :boolean          default(FALSE), not null
 #  description     :text
 #  died_on         :text
 #  email           :text

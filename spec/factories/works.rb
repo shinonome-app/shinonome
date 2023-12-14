@@ -8,7 +8,7 @@
 #  author_display_name   :text
 #  collection            :text
 #  collection_kana       :text
-#  copyright_flag        :boolean          not null
+#  copyright_flag        :boolean          default(FALSE), not null
 #  description           :text
 #  first_appearance      :text
 #  note                  :text

@@ -6,7 +6,7 @@
 #
 #  id           :bigint           not null, primary key
 #  body         :text             not null
-#  flag         :boolean          not null
+#  flag         :boolean          default(FALSE), not null
 #  published_on :date
 #  title        :text             not null
 #  created_at   :datetime         not null

@@ -7,7 +7,7 @@
 #  id                   :bigint           not null, primary key
 #  collection           :text
 #  collection_kana      :text
-#  copyright_flag       :boolean          not null
+#  copyright_flag       :boolean          default(FALSE), not null
 #  deleted_at           :datetime
 #  email                :text             not null
 #  first_appearance     :text
