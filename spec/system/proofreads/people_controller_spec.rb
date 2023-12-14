@@ -51,7 +51,7 @@ describe Proofreads::PeopleController do
       expect(page).to have_content('作品その1')
       expect(page).to have_content('作品その2')
 
-      find('form[action="/proofreads/new"]').all('input[type="checkbox"]').each { |input| input.click }
+      find('form[action="/proofreads/new"]').all('input[type="checkbox"]').each { |input| input.click } # rubocop:disable Rails/FindEach
 
       click_button('確認')
 
