@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :people, only: %i[index]
   end
 
-  namespace :admin, path: (ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin') do
+  namespace :admin, path: ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin' do
     get '/' => 'top#index'
 
     devise_for :users, path: 'users', class_name: 'Shinonome::User', controllers: {

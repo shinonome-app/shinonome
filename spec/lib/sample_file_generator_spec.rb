@@ -19,7 +19,7 @@ RSpec.describe SampleFileGenerator do
         text = SampleFileGenerator.new.text_convert(work)
 
         # rubocop:disable Layout/HeredocIndentation
-        expect(text).to eq <<TEXT.gsub(/\n/, "\r\n")
+        expect(text).to eq <<TEXT.gsub("\n", "\r\n")
 #{work.title}
 #{work.subtitle}
 
@@ -67,7 +67,7 @@ TEXT
         text = SampleFileGenerator.new.text_convert(work)
 
         # rubocop:disable Layout/HeredocIndentation
-        expect(text).to eq <<TEXT.gsub(/\n/, "\r\n")
+        expect(text).to eq <<TEXT.gsub("\n", "\r\n")
 #{work.title}
 #{work.original_title}
 #{work.subtitle}

@@ -17,7 +17,7 @@ class CreateWorks < ActiveRecord::Migration[6.1]
       t.bigint :description_person_id
       t.references :work_status, foreign_key: true, null: false
       t.date :started_on, null: false
-      t.boolean :copyright_flag, null: false
+      t.boolean :copyright_flag, null: false, default: false
       t.text :note
       t.text :orig_text
       t.references :user, null: false

@@ -6,7 +6,7 @@ class CreateNewsEntries < ActiveRecord::Migration[6.1]
       t.date :published_on
       t.text :title, null: false
       t.text :body, null: false
-      t.boolean :flag, null: false
+      t.boolean :flag, null: false, default: false
 
       t.timestamps
     end

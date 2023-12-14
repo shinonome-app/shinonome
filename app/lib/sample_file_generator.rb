@@ -108,7 +108,7 @@ class SampleFileGenerator
     Dir.mktmpdir do |folder|
       htmlfile_path = File.join(folder, html_file)
 
-      content = text_convert(work).gsub(/\r\n/, "\n")
+      content = text_convert(work).gsub("\r\n", "\n")
       html_data = "<html>\n<head>\n<title>#{work.title}</title>\n</head>\n<body>\n<pre>\n#{content}</pre>\n</body>\n</html>\n"
       File.write(htmlfile_path, html_data)
 

@@ -139,7 +139,7 @@ class ReceiptForm
 
   def sub_works_attributes=(attributes)
     @sub_works ||= []
-    attributes.each do |_i, sub_work_params|
+    attributes.each_value do |sub_work_params|
       sub_work = SubWork.new(sub_work_params)
       @sub_works.push(sub_work)
     end

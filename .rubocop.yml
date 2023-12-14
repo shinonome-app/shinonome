@@ -79,6 +79,9 @@ RSpec/ExampleLength:
   Exclude:
   - "spec/services/**/*.rb"
 
+RSpec/IndexedLet:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
 

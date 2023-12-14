@@ -11,7 +11,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.text :first_name_en
       t.text :born_on
       t.text :died_on
-      t.boolean :copyright_flag, null: false
+      t.boolean :copyright_flag, null: false, default: false
       t.text :email
       t.text :url
       t.text :description

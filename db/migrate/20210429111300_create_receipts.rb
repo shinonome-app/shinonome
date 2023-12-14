@@ -14,7 +14,7 @@ class CreateReceipts < ActiveRecord::Migration[6.1]
       t.text :first_appearance
       t.text :memo
       t.text :note
-      t.boolean :copyright_flag, null: false
+      t.boolean :copyright_flag, null: false, default: false
       t.text :last_name_kana, null: false
       t.text :last_name, null: false
       t.text :last_name_en

@@ -91,7 +91,7 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
 
     context 'filetypeが正しくない場合' do
       let(:command) do
-        Shinonome::ExecCommand::Command.new(['ファイル削除', workfile.work.id, 'TEXTファイル',  '', workfile.id])
+        Shinonome::ExecCommand::Command.new(['ファイル削除', workfile.work.id, 'TEXTファイル', '', workfile.id])
       end
 
       it '例外をあげる' do

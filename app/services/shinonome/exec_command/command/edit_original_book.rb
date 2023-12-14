@@ -30,7 +30,7 @@ module Shinonome
             work_id: work.id,
             publisher: publisher,
             title: title
-          ).each { |original_book| original_book.update!(update_values) }
+          ).find_each { |original_book| original_book.update!(update_values) }
 
           original_books = OriginalBook.where(
             work_id: work.id,

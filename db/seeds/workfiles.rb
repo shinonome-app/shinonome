@@ -3,7 +3,7 @@
 require 'zip'
 require 'tmpdir'
 
-Workfile.all.each do |workfile|
+Workfile.find_each do |workfile|
   workfile.workdata.purge if workfile&.workdata&.attached?
 end
 Workfile.connection.execute('TRUNCATE TABLE workfiles;')
@@ -123,7 +123,7 @@ def generate_sample_html(workfile)
   Dir.mktmpdir do |folder|
     htmlfile_path = File.join(folder, html_file)
 
-    content = erubi_convert(SAMPLE_TEXT_FORMAT, work).gsub(/\r\n/, "\n")
+    content = erubi_convert(SAMPLE_TEXT_FORMAT, work).gsub("\r\n", "\n")
     html_data = "<html>\n<head>\n<title>#{work.title}</title>\n</head>\n<body>\n<pre>\n#{content}</pre>\n</body>\n</html>\n"
     File.write(htmlfile_path, html_data)
 
@@ -136,7 +136,7 @@ def generate_sample_html(workfile)
   end
 end
 
-work_id_status_list = Work.all.pluck(:id, :work_status_id)
+work_id_status_list = Work.pluck(:id, :work_status_id)
 # user_id_list = Shinonome::User.all.pluck(:id)
 user_id_list = (1..10).to_a
 
@@ -184,7 +184,7 @@ end.flatten.compact
 
 Workfile.insert_all(workfiles)
 
-Workfile.includes(:work).all.each do |workfile|
+Workfile.includes(:work).find_each do |workfile|
   case workfile.compresstype_id
   when 2
     generate_sample_zip(workfile)
