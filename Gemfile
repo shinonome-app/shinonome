@@ -95,7 +95,8 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  # gem 'webdrivers'
+  gem 'selenium-devtools', '~> 0.119'
 
   # Use Rspec instead of MiniTest
   gem 'rspec-rails'
