@@ -150,7 +150,7 @@ WorkerSecret.create(
   url: 'https://shinonome.example.com/dummy/workers/0'
 )
 
-if Rails.env.development? || ENV.fetch('USE_ALL_SEEDS', nil)
+if Rails.env.development? || ENV.fetch('DISABLE_DATABASE_ENVIRONMENT_CHECK', nil) || ENV.fetch('USE_ALL_SEEDS', nil)
   require_relative 'seeds/users'
   require_relative 'seeds/news_entries'
   require_relative 'seeds/workers'
