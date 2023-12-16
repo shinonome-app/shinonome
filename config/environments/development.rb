@@ -62,6 +62,12 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # logger
+  STDOUT.sync = true
+  logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
+  config.logger = Logger.new('log/development.log')
+
   # Suppress logger output for asset requests.
   # config.assets.quiet = true
 
