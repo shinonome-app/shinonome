@@ -1,0 +1,27 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+
+# Ignore pidfiles
+/tmp/pids/*
+
+# Ignore uploaded files in development.
+/storage/*
+/tmp/storage/*
+/public/assets
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+/app/assets/builds/*
+
+# Ignore SSG
+/build/*
+
+# others
+*~
+#*#
+.env
