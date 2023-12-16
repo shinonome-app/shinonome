@@ -1,0 +1,87 @@
+# Name of your application. Used to uniquely configure containers.
+service: shinonome
+
+# Name of the container image.
+image: takahashim/shinonome
+
+# Deploy to these servers.
+servers:
+  web:
+    hosts:
+      - 153.127.193.121
+    labels:
+      traefik.http.routers.web.rule: Host(`reception.aozora-renewal.cloud`)
+      traefik.http.routers.web_secure.entrypoints: websecure
+      traefik.http.routers.web_secure.rule: Host(`reception.aozora-renewal.cloud`)
+      traefik.http.routers.web_secure.tls: true
+      traefik.http.routers.web_secure.tls.certresolver: myresolver
+
+# Credentials for your image host.
+registry:
+  username: takahashim
+  password:
+    - MRSK_REGISTRY_PASSWORD
+
+env:
+  clear:
+    DATABASE_NAME: shinonome_production
+    DD_SERVICE: 'shinonome-app1'
+    DD_ENV: 'production'
+    RAILS_LOG_TO_STDOUT: ''
+  secret:
+    - RAILS_MASTER_KEY
+    - DATABASE_HOST
+    - DATABASE_USER
+    - DATABASE_PASS
+
+builder:
+  dockerfile: Dockerfile.production
+
+accessories:
+  monitoring:
+    image: gcr.io/datadoghq/agent:7
+    host: 153.127.193.121
+    port: 8126
+    env:
+      clear:
+        DD_LOGS_ENABLED: true
+        DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: true
+        DD_SITE: "us3.datadoghq.com"
+        DD_CONTAINER_EXCLUDE_LOGS: "name:shinonome-monitoring"
+        DD_APM_NON_LOCAL_TRAFFIC: true
+      secret:
+        - DD_API_KEY
+        - DD_SITE
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /proc/:/host/proc/:ro
+      - /opt/datadog-agent/run:/opt/datadog-agent/run:rw
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+
+# Configure custom arguments for Traefik
+#
+# Before deploy, create acme.json file on host:
+#   mkdir -p /letsencrypt && touch /letsencrypt/acme.json && chmod 600 /letsencrypt/acme.json
+traefik:
+  args:
+    accesslog: true
+    accesslog.format: json
+    entrypoints.web.address: ":80"
+    entrypoints.websecure.address: ":443"
+    entryPoints.web.http.redirections.entryPoint.to: websecure
+    entryPoints.web.http.redirections.entryPoint.scheme: https
+    entryPoints.web.http.redirections.entrypoint.permanent: true
+    certificatesresolvers.myresolver.acme.email: 'takahashimm@gmail.com'
+    certificatesresolvers.myresolver.acme.storage: '/letsencrypt/acme.json'
+    certificatesresolvers.myresolver.acme.httpchallenge: true
+    certificatesresolvers.myresolver.acme.httpchallenge.entrypoint: web
+#    certificatesresolvers.myresolver.acme.caserver: 'https://acme-staging-v02.api.letsencrypt.org/directory'
+  options:
+    publish:
+      - 443:443
+    volume:
+      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
+healthcheck:
+  max_attempts: 10
+  interval: 10s
