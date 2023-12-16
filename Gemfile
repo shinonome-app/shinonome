@@ -60,7 +60,6 @@ gem 'gimei'
 
 gem 'lograge', '~> 0.12.0'
 gem 'lograge-sql'
-gem 'ddtrace', require: 'ddtrace/auto_instrument'
 
 # Fake mail system on web
 gem 'letter_opener_web'

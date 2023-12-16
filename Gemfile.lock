@@ -100,12 +100,6 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
-    ddtrace (1.10.1)
-      debase-ruby_core_source (>= 0.10.16, <= 3.2.0)
-      libdatadog (~> 2.0.0.1.0)
-      libddwaf (~> 1.6.2.0.0)
-      msgpack
-    debase-ruby_core_source (3.2.0)
     debug (1.9.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -158,16 +152,6 @@ GEM
       letter_opener (~> 1.7)
       railties (>= 5.2)
       rexml
-    libdatadog (2.0.0.1.0)
-    libdatadog (2.0.0.1.0-x86_64-linux)
-    libddwaf (1.6.2.0.0)
-      ffi (~> 1.0)
-    libddwaf (1.6.2.0.0-arm64-darwin)
-      ffi (~> 1.0)
-    libddwaf (1.6.2.0.0-x86_64-darwin)
-      ffi (~> 1.0)
-    libddwaf (1.6.2.0.0-x86_64-linux)
-      ffi (~> 1.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -387,7 +371,6 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   brakeman
   capybara (>= 3.26)
-  ddtrace
   debug
   devise
   dotenv-rails
