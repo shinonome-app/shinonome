@@ -36,6 +36,8 @@ env:
 
 builder:
   dockerfile: Dockerfile.production
+  remote:
+    arch: amd64
 
 accessories:
   monitoring:
