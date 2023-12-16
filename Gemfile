@@ -118,6 +118,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'erb_lint', '> 0.3.0', require: false
 
+gem 'kamal', require: false
+
 gem 'aozora2html', '~> 3.0'
 
 gem 'vite_rails', '~> 3.0'
