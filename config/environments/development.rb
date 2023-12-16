@@ -63,8 +63,8 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   # logger
-  STDOUT.sync = true
-  logger = ActiveSupport::Logger.new(STDOUT)
+  $stdout.sync = true
+  logger = ActiveSupport::Logger.new($stdout)
   config.logger = ActiveSupport::TaggedLogging.new(logger)
   config.logger = Logger.new('log/development.log')
 

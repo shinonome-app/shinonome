@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'top#index'
 
   # health check
-  get "up" => "health#show"
+  get 'up' => 'health#show'
 
   resources :receipts, only: %i[new create index] do
     collection do
