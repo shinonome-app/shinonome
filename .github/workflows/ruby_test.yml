@@ -49,8 +49,8 @@ jobs:
         bundle exec rails db:test:prepare
       env:
         RAILS_ENV: test
-        DATABASE_USERNAME: postgres
-        DATABASE_PASSWORD: postgres
+        DATABASE_USER: postgres
+        DATABASE_PASS: postgres
         DATABASE_HOST: localhost
     - name: build JS, CSS
       run:  |
@@ -61,6 +61,6 @@ jobs:
         bundle exec rspec --only-failures
       env:
         RAILS_ENV: test
-        DATABASE_USERNAME: postgres
-        DATABASE_PASSWORD: postgres
+        DATABASE_USER: postgres
+        DATABASE_PASS: postgres
         DATABASE_HOST: localhost
