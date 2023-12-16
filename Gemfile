@@ -58,8 +58,6 @@ gem 'rexml'
 gem 'faker'
 gem 'gimei'
 
-gem 'dotenv-rails'
-
 gem 'lograge', '~> 0.12.0'
 gem 'lograge-sql'
 gem 'ddtrace', require: 'ddtrace/auto_instrument'
@@ -83,6 +81,8 @@ group :development, :test do
 
   # Makes zipped bookdata for seeds
   gem 'rubyzip'
+
+  gem 'dotenv-rails'
 
   gem 'brakeman'
 end
