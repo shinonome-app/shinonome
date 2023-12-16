@@ -64,15 +64,15 @@ gem 'lograge', '~> 0.12.0'
 gem 'lograge-sql'
 gem 'ddtrace', require: 'ddtrace/auto_instrument'
 
+# Fake mail system on web
+gem 'letter_opener_web'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   # Annotate models with DB
   gem 'annotate'
-
-  # Fake mail system on web
-  gem 'letter_opener_web'
 
   # Ruby static analytics and lint
   gem 'rubocop'
