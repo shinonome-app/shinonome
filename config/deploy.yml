@@ -33,7 +33,12 @@ env:
     - DATABASE_HOST
     - DATABASE_USER
     - DATABASE_PASS
+    - SENDGRID_API_KEY
     - SKYLIGHT_AUTHENTICATION
+    - MAIN_SITE_URL
+    - SITE_NAME
+    - RECEPTION_EMAIL
+    - RAILS_ADMIN_PATH
 
 builder:
   dockerfile: Dockerfile.production
