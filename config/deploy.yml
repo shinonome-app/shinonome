@@ -44,6 +44,8 @@ builder:
   dockerfile: Dockerfile.production
   remote:
     arch: amd64
+  cache:
+    type: registry
 
 # Configure custom arguments for Traefik
 #
