@@ -7,7 +7,7 @@ module Admin
 
     # GET /admin/workers
     def index
-      @pagy, @workers = pagy(Worker.all)
+      @pagy, @workers = pagy(Worker.order(:id).all)
     end
 
     # GET /admin/workers/1

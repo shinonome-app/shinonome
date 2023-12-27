@@ -7,7 +7,7 @@ module Admin
     # GET /admin/sites
     # GET /admin/works/:work_id/sites
     def index
-      @sites = Site.all
+      @sites = Site.order(:id).all
     end
 
     # GET /admin/sites/1

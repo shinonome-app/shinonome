@@ -6,7 +6,7 @@ module Admin
 
     # GET /admin/works/:work_id/bibclasses
     def index
-      @bibclasses = Bibclass.all
+      @bibclasses = Bibclass.ordre(:id).all
     end
 
     # GET /admin/works/:work_id/bibclasses/new
