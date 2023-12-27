@@ -42,7 +42,7 @@
 </div>
 <!--作品テキスト end-->
 
-<!--50音順インデックス end-->
+<!--50音順インデックス start-->
 <div class="mt-10 flex flex-col lg:flex-row gap-10">
   <%= form_with(url: admin_works_work_index_searches_path, method: 'get') do |form| %>
   <div>
@@ -58,7 +58,7 @@
   </div>
   <% end %>
 </div>
-<!--50音順インデックス start-->
+<!--50音順インデックス end-->
 
 <!--作品状態検索 start-->
 <div class="mt-10">
@@ -86,3 +86,4 @@
   <snm-headline h="h2">作品一覧</snm-headline>
   <%= render(Admin::WorksTableComponent.new(works: @works, pagy: @pagy)) %>
 </div>
+<!--作品一覧 end-->
