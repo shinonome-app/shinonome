@@ -21,7 +21,7 @@
         ["備考", @work.note],
         ["底本管理情報", @work.orig_text],
         ["最終更新日", @work.updated_at],
-        ["更新者", @work.user_id],
+        ["更新者", @work.user&.username],
         ["ソート読み", @work.sortkey]
       ])) %>
 

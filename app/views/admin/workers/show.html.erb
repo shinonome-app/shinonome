@@ -11,7 +11,7 @@
         ["URL", link_to(@worker.worker_secret&.url, @worker.worker_secret&.url)],
         ["備考", @worker.worker_secret&.note],
         ["最終更新日時", @worker.updated_at],
-        ["更新者", @worker.worker_secret&.user_id]
+        ["更新者", @worker.worker_secret&.user&.username]
       ])) %>
 
   <snm-headline h="h2">関連した作品</snm-headline>
