@@ -70,9 +70,9 @@ Rails.application.configure do
     port: 587,
     domain: 'aozora-renewal.cloud',
     user_name: 'apikey',
-    password: ENV['SENDGRID_API_KEY'],
+    password: ENV.fetch('SENDGRID_API_KEY', nil),
     authentication: :plain,
-    enable_starttls_auto: true,
+    enable_starttls_auto: true
   }
 
   config.action_mailer.perform_deliveries = true
