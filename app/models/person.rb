@@ -60,6 +60,14 @@ class Person < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }, allow_blank: true
 
+  scope :with_name_firstchar, lambda { |char|
+    if char.blank? || char == 'その他'
+      where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
+    else
+      where('sortkey ~ ?', "^#{char}")
+    end
+  }
+
   def self.csv_header
     "人物id,姓,姓読み,姓英字,名,名読み,名英字,生年月日,没年月日,著作権フラグ,email,url,人物について,人物基本名,備考,最終更新日,更新者,姓ソート用読み,名ソート用読み\r\n"
   end

@@ -6,17 +6,27 @@
     <snm-headline h="h2">人物検索</snm-headline>
 
     <%= render(Admin::PersonSearchComponent.new(form_url: admin_people_text_searches_path)) %>
-    <!--人物検索 start-->
+    <!--人物検索 end-->
   </div>
 </div>
+
+<!--50音順インデックス start-->
+<div class="mt-10 flex flex-col lg:flex-row gap-10">
+  <%= form_with(url: admin_people_person_index_searches_path, method: 'get') do |form| %>
+  <div>
+    <snm-headline h="h2">人物50音順インデックス</snm-headline>
+    <%= render(Admin::SyllabaryTableComponent.new(key: "person")) %>
+  </div>
+  <% end %>
+</div>
+<!--50音順インデックス end-->
 
 <!--人物一覧 start-->
 <div class="mt-10 mb-5">
   <snm-headline h="h2">人物一覧</snm-headline>
-  <%= render(Admin::PeopleTableComponent.new(people: @people)) %>
+  <%= render(Admin::PeopleTableComponent.new(pagy: @pagy, people: @people)) %>
   <%== pagy_snm_nav(@pagy) %>
 </div>
-
 <!--人物一覧 end-->
 
 <div class="mt-5 flex">

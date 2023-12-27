@@ -1,7 +1,7 @@
 <div class="w-full">
   <snm-headline h="h1">人物検索結果一覧</snm-headline>
 
-  <%= render(Admin::PeopleTableComponent.new(people: @people)) %>
+  <%= render(Admin::PeopleTableComponent.new(pagy: @pagy, people: @people)) %>
 
   <%== pagy_snm_nav(@pagy) %>
 

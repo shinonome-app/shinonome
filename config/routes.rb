@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 
     namespace :people do
       resources :text_searches, only: %i[index]
+      resources :person_index_searches, only: %i[index]
     end
     resources :people do
       resources :base_people, only: %i[new create destroy]
