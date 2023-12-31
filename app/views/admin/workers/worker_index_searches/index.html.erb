@@ -1,0 +1,4 @@
+<snm-headline h="h1">工作員一覧</snm-headline>
+<div class="mt-10 mb-5">
+  <%= render(Admin::WorkersTableComponent.new(pagy: @pagy, workers: @workers)) %>
+</div>

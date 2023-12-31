@@ -100,6 +100,7 @@ Rails.application.routes.draw do
 
     namespace :workers do
       resources :text_searches, only: %i[index]
+      resources :worker_index_searches, only: %i[index]
     end
     resources :workers
 

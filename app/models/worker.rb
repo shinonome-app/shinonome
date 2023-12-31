@@ -69,6 +69,14 @@ class Worker < ApplicationRecord
     end
   }
 
+  scope :with_name_firstchar, lambda { |char|
+    if char.blank? || char == 'その他'
+      where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
+    else
+      where('sortkey ~ ?', "^#{char}")
+    end
+  }
+
   validates :name, :name_kana, presence: true
 
   def self.csv_header

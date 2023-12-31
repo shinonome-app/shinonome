@@ -16,14 +16,25 @@
       <%= render(Admin::SubmitComponent.new(form:, name: "text", value: "検索")) %>
     </div>
     <% end %>
-  <!--人物検索 start-->
+  <!--人物検索 end-->
   </div>
 </div>
+
+<!--50音順インデックス start-->
+<div class="mt-10 flex flex-col lg:flex-row gap-10">
+  <%= form_with(url: admin_workers_worker_index_searches_path, method: 'get') do |form| %>
+  <div>
+    <snm-headline h="h2">工作員50音順インデックス</snm-headline>
+    <%= render(Admin::SyllabaryTableComponent.new(key: "worker")) %>
+  </div>
+  <% end %>
+</div>
+<!--50音順インデックス end-->
 
 <!--人物一覧 start-->
 <div class="mt-10 mb-5">
   <snm-headline h="h2">人物一覧</snm-headline>
-  <%= render(Admin::WorkersTableComponent.new(workers: @workers)) %>
+  <%= render(Admin::WorkersTableComponent.new(workers: @workers, pagy: @pagy)) %>
 </div>
 
 <%== pagy_snm_nav(@pagy) %>

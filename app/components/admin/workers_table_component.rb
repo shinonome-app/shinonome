@@ -3,10 +3,13 @@
 module Admin
   # 縦表用コンポーネント
   class WorkersTableComponent < ViewComponent::Base
-    def initialize(workers:)
+    include ::Pagy::Frontend
+
+    def initialize(workers:, pagy:)
       super
       @header = %w[工作員ID 姓名 読み]
       @workers = workers
+      @pagy = pagy
     end
 
     def before_render
