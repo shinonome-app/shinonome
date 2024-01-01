@@ -65,8 +65,8 @@ Rails.application.configure do
   # logger
   $stdout.sync = true
   logger = ActiveSupport::Logger.new($stdout)
+  # config.logger = Logger.new('log/development.log')
   config.logger = ActiveSupport::TaggedLogging.new(logger)
-  config.logger = Logger.new('log/development.log')
 
   # Suppress logger output for asset requests.
   # config.assets.quiet = true
