@@ -1,0 +1,43 @@
+<div class="w-full">
+  <snm-headline h="h1">工作員検索結果一覧</snm-headline>
+
+<table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+  <thead class="text-center bg-[#f8fafc]">
+    <tr class="h-10 even:bg-[#f8fafc]">
+        <th class="whitespace-nowrap">工作員ID</th>
+        <th class="whitespace-nowrap">姓名</th>
+        <th class="whitespace-nowrap">読み</th>
+        <th class="whitespace-nowrap">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @workers.each do |worker| %>
+        <tr class="h-10 even:bg-[#f8fafc]">
+          <td class="text-center whitespace-nowrap py-3">
+            <%= worker.id %>
+          </td>
+          <td class="text-center whitespace-nowrap py-3">
+            <%= link_to admin_worker_path(worker) do %>
+              <%= worker.name %>
+            <% end %>
+          </td>
+          <td class="text-center whitespace-nowrap py-3">
+            <%= worker.name_kana %>
+          </td>
+          <td class="text-center whitespace-nowrap py-3">
+            <%= form_with(model: [:admin, @work, @work.work_workers.build], method: 'post', data: { turbo: false }) do |form| %>
+            <%= form.hidden_field :worker_id, value: worker.id %>
+            <%= form.collection_select :worker_role_id, WorkerRole.order(:id).all, :id, :name %>として
+            <%= form.submit '関連づける', class: primary_small_button_class %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_snm_nav(@pagy) %>
+
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "戻る", href: new_admin_work_work_worker_path, buttonstyle: 'secondary' %>
+  </div>
+</div>

@@ -1,13 +1,30 @@
 <div class="w-full md:w-2/3">
   <snm-headline h="h1">工作員関連づけ登録</snm-headline>
 
-  <div class="mt-2 flex">
+  <div class="mt-10">
     <p>対象作品: <%= @work.title %></p>
   </div>
 
-  <%= render(Admin::WorkerSearchComponent.new(form_url: admin_work_work_workers_text_searches_path(work_id: @work.id))) %>
+  <div class="mt-10">
+    <snm-headline h="h2">工作員検索</snm-headline>
 
-  <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "戻る", href: admin_work_path(id: @work.id), buttonstyle: 'secondary' %>
+    <div class="mt-2 flex">
+      <%= render(Admin::WorkerSearchComponent.new(form_url: admin_work_work_workers_text_searches_path(work_id: @work.id))) %>
+    </div>
   </div>
+</div>
+
+<!--50音順インデックス start-->
+<div class="mt-10">
+  <%= form_with(url: admin_work_work_workers_worker_index_searches_path, method: 'get') do |form| %>
+  <div>
+    <snm-headline h="h2">工作員50音順インデックス</snm-headline>
+    <%= render(Admin::SyllabaryTableComponent.new(key: "worker")) %>
+  </div>
+  <% end %>
+</div>
+<!--50音順インデックス end-->
+
+<div class="mt-2 flex gap-2">
+  <%= tag.snm_link "戻る", href: admin_work_path(id: @work.id), buttonstyle: 'secondary' %>
 </div>

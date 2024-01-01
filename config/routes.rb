@@ -80,6 +80,7 @@ Rails.application.routes.draw do
       resources :work_workers, only: %i[new create destroy]
       namespace :work_workers do
         resources :text_searches, only: %i[index]
+        resources :worker_index_searches, only: %i[index]
       end
 
       resources :work_people, only: %i[new create destroy]
