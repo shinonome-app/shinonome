@@ -45,6 +45,10 @@ module Admin
 
     # protected
 
+    def after_update_path_for(resource)
+      admin_path
+    end
+
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
       devise_parameter_sanitizer.permit(:sign_up, keys: %i[username email])
@@ -59,6 +63,10 @@ module Admin
     # def after_sign_up_path_for(resource)
     #   super(resource)
     # end
+    def after_sign_in_path_for(resource_or_scope)
+      logger.info("SING IN: resource: #{resource_or_scope}")
+      admin_path
+    end
 
     # The path used after sign up for inactive accounts.
     # def after_inactive_sign_up_path_for(resource)

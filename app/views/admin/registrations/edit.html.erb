@@ -1,49 +1,53 @@
 <div class="w-full md:w-2/3">
   <snm-headline h="h1">ユーザー情報更新</snm-headline>
+  <% input_class = 'text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 px-2 py-2' %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { turbo: false }) do |f| %>
+  <%= form_with(model: resource, scope: :admin_user, url: "/admin", html: { method: :put }, data: { turbo: false }) do |f| %>
   <%= render "admin/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full border border-gray-800 p-1" %>
+    <%= f.label :email, class: "inline-block text-sm" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: input_class %>
   </div>
 
   <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username, class: "w-full border border-gray-800 p-1" %>
+    <%= f.label :username, class: "inline-block text-sm" %>
+    <%= f.text_field :username, class: input_class %>
   </div>
 
   <div class="field">
-    <%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br>
-    <%= f.password_field :password, autocomplete: "new-password", class: "w-full border border-gray-800 p-1" %>
+    <%= f.label :password, class: "inline-block text-sm" %><span class="text-sm">(変更しない場合は空欄のままにしてください)</span>
+    <%= f.password_field :password, autocomplete: "new-password", class: input_class %>
     <% if @minimum_password_length %>
       <br>
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em class="text-sm"><%= @minimum_password_length %>文字以上</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full border border-gray-800 p-1" %>
+    <%= f.label :password_confirmation, class: "inline-block text-sm" %><br>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: input_class %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(確認のため現在のパスワードを入力してください)</i><br>
-    <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full border border-gray-800 p-1" %>
+    <%= f.label :current_password, class: "inline-block text-sm" %> <span class="text-sm">(確認のため現在のパスワードを入力してください)</span>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: input_class %>
   </div>
 
-  <div class="actions">
+  <div class="mt-5 flex">
     <%= f.submit "更新", class: 'btn-admin-normal' %>
   </div>
 <% end %>
-
-<h3 class="text-xl py-4">アカウントの削除</h3>
-
-<div class="py-2">
-  <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" } }, class: 'btn-admin-danger' %>
 </div>
 
-<div class="py-2">
-  <%= link_to "戻る", :back, class: 'btn-normal' %>
+<div class="mt-10 mb-5">
+  <snm-headline h="h2">アカウントの削除</snm-headline>
+
+  <div class="mt-5 flex">
+    <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" } }, class: "grid w-full bg-ab_alert border-2 border-white hover:bg-ab_alert hover:border-2 hover:border-white hover:shadow-[0px_2px_18px_0px_#fed7e2] active:bg-ab_alert focus-visible:ring ring-gray-300 text-white text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 mb-2 cursor-pointer" %>
+  </div>
+
+  <div class="mt-5 flex">
+    <%= tag.snm_link "戻る", href: 'javascript:history.back()', buttonstyle: 'secondary' %>
+  </div>
 </div>
