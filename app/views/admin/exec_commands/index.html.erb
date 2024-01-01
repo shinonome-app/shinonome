@@ -1,8 +1,8 @@
-<div class="p-4 w-full bg-white ml-4 mb-5 rounded">
-  <h1 class="text-2xl">コマンド実行</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">コマンド実行</snm-headline>
 
-  <div class="py-4">
-    <%= link_to '新規コマンド実行', new_admin_exec_command_path, class: "btn-admin-normal" %>
+  <div class="mt-5 flex">
+    <%= tag.snm_link '新規コマンド実行', href: new_admin_exec_command_path, buttonstyle: "primary" %>
   </div>
 
   <table class="w-full">

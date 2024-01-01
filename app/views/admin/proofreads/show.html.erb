@@ -1,7 +1,7 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">登録内容確認</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">登録内容確認</snm-headline>
 
-  <h2 class="text-xl py-2">【作品データ】</h2>
+  <snm-headline h="h2">【作品データ】</snm-headline>
 
     <table class="w-full">
       <tr>
@@ -69,7 +69,7 @@
       </tr>
     </table>
 
-    <h2 class="text-xl py-2">【校正者データ】</h2>
+  <snm-headline h="h2">【校正者データ】</snm-headline>
     <table class="w-full">
       <tr>
         <th class="w-48">項目名</th>
@@ -99,7 +99,7 @@
       </tr>
     </table>
 
-    <h2 class="text-xl py-2">【校正者からの連絡事項】</h2>
+    <snm-headline h="h2">【校正者からの連絡事項】</snm-headline>
 
     <table class="w-full">
       <tr>
@@ -112,7 +112,7 @@
       </tr>
     </table>
 
-    <h2 class="text-xl py-2">【作品データ】</h2>
+    <snm-headline h="h2">【作品データ】</snm-headline>
 
     <table class="w-full">
       <tr>
@@ -166,5 +166,7 @@
 
     <hr class="border-1 my-4">
 
-    <%= link_to '戻る', admin_proofreads_path, class: "btn-normal" %>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link '戻る', href: admin_proofreads_path, buttonstyle: 'secondary' %>
+  </div>
 </div>

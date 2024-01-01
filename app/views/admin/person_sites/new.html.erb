@@ -1,13 +1,13 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-  <h1 class="text-2xl py-4">関連サイト関連づけ登録</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">関連サイト関連づけ登録</snm-headline>
 
-  <div class="py-2">
+  <div class="mt-5 flex">
     <p>対象人物: <%= @person.name %></p>
   </div>
 
   <%= render(Admin::SiteSearchComponent.new(form_url: admin_person_person_sites_text_searches_path(person_id: @person.id))) %>
 
-  <div class="py-4">
+  <div class="mt-5 flex">
     <%= link_to '戻る', admin_person_path(id: @person.id), class: 'btn-normal' %>
   </div>
 </div>

@@ -1,6 +1,9 @@
-<div class="p-4 w-full bg-white ml-4 font-light mb-5 rounded">
-<h1 class="text-2xl">底本／底本の親本更新</h1>
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">底本／底本の親本更新</snm-headline>
 
 <%= render 'form', original_book: @original_book %>
 
-<%= link_to '戻る', admin_work_path(@work), class: 'btn-normal' %>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "戻る", href: admin_work_path(@work), buttonstyle: 'secondary' %>
+  </div>
+</div>
