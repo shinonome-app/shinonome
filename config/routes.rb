@@ -32,11 +32,11 @@ Rails.application.routes.draw do
     resources :people, only: %i[index]
   end
 
-  devise_for :admin_users, path: (ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin'), class_name: 'Shinonome::User', controllers: {
-               passwords: 'admin/passwords',
-               registrations: 'admin/registrations',
-               sessions: 'admin/sessions'
-             }
+  devise_for :admin_users, path: ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin', class_name: 'Shinonome::User', controllers: {
+    passwords: 'admin/passwords',
+    registrations: 'admin/registrations',
+    sessions: 'admin/sessions'
+  }
 
   namespace :admin, path: ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin' do
     get '/' => 'top#index'

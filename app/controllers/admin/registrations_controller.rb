@@ -45,7 +45,7 @@ module Admin
 
     # protected
 
-    def after_update_path_for(resource)
+    def after_update_path_for(_resource)
       admin_path
     end
 
