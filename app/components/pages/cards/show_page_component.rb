@@ -2,6 +2,7 @@
 
 module Pages
   module Cards
+    # 静的サイトの図書カード本体
     class ShowPageComponent < ViewComponent::Base
       attr_reader :work, :booklog_url, :voyger_url, :airzoshi_url, :rodoku_url
 
