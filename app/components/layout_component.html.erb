@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "tailwind", "inter-font" %>
+
+    <% if defined?(ViteRuby) %>
+    <%= vite_stylesheet_tag 'application' %>
+    <%= vite_client_tag %>
+    <%= vite_typescript_tag 'application' %>
+    <% else %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_importmap_tags %>
+    <% end %>
+  </head>
+
+  <body class="<%= bgcolor %>">
+    <main class="container mx-auto py-1">
+      <%= content %>
+    </main>
+  </body>
+</html>
