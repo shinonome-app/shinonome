@@ -1,12 +1,12 @@
-<%= render ::LayoutComponent.new(title: "図書カード：#{work.title} | 青空文庫",
-      bgcolor: work.copyright? ? 'bg-rose-50' : 'bg-sky-50') do -%>
+<%= render LayoutComponent.new(title: "図書カード：#{work.title} | 青空文庫",
+                               bgcolor: work.copyright? ? 'bg-rose-50' : 'bg-sky-50') do -%>
 <div id="app" class="container mx-auto max-w-5xl">
   <div id="top" name="top">&nbsp;</div>
 
   <header class="flex items-center justify-between">
     <a href="/" class="md:hidden flex justify-between px-2">
-	  <img src="/images/top_logo.png" alt="Logo" class="h-8 w-8" />
-	</a>
+      <img src="/images/top_logo.png" alt="Logo" class="h-8 w-8">
+    </a>
     <span class="hidden md:flex">&nbsp;</span>
     <nav class="flex justify-end">
       <div class="md:flex justify-end py-3 hidden">
@@ -26,8 +26,9 @@
         <div class="px-2">
           ●
           <%= link_to "作家別作品リスト",
-              person_index_pages_path(id: work.first_author.id, format: :html),
-              class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" %>
+                      person_index_pages_path(id: work.first_author.id,
+                                              format: :html),
+                      class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" %>
         </div>
         <div class="px-2">●<span class="current font-bold text-red-500">図書カード</span></div>
 
@@ -73,10 +74,10 @@
       <tr>
         <th class="text-left text-red-800 w-1/6">著者名：</th>
         <td>
-          <% work.work_people.where(role_id: 1).each do |work_person| %>
+          <% work.work_people.where(role_id: 1).find_each do |work_person| %>
           <%= link_to work_person.person.name,
-              person_index_pages_path(id: work_person.person_id, format: :html),
-              class: "underline text-blue-700 text-1xl" %>
+                      person_index_pages_path(id: work_person.person_id, format: :html),
+                      class: "underline text-blue-700 text-1xl" %>
           <% end %>
         </td>
       </tr>
@@ -134,7 +135,7 @@
         <th class="text-left text-red-800 align-top">備考：</th>
         <td>
           <%= work.note %>
-          <%= render(::Pages::Cards::LinkComponent.new(work: work)) %>
+          <%= render(Pages::Cards::LinkComponent.new(work: work)) %>
         </td>
       </tr>
     </table>
@@ -153,8 +154,8 @@
       <tr>
         <th class="text-left text-red-800 w-1/6 align-top">作家名：</th>
         <td><%= link_to person.name,
-                person_index_pages_path(id: person.id, format: :html),
-                class: "underline text-blue-700" %></td>
+                        person_index_pages_path(id: person.id, format: :html),
+                        class: "underline text-blue-700" %></td>
       </tr>
       <tr><th class="text-left text-red-800 w-1/6 align-top">作家名読み：</th><td><%= person.name_kana %></td></tr>
       <tr><th class="text-left text-red-800 w-1/6 align-top">ローマ字表記：</th><td><%= person.name_en %></td></tr>
@@ -280,8 +281,6 @@
   <div class="p-4">
   </div>
 
-
-
   <div class="text-right py-4">
     <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#top">▲</a>
   </div>
@@ -289,7 +288,7 @@
   <hr class="border-gray-400">
 
   <div>
-    ●作家リスト：公開中　
+    <span>●作家リスト：公開中　</span>
     <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_a.html">[あ]</a>
     <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_ka.html">[か]</a>
     <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_sa.html">[さ]</a>
@@ -303,9 +302,7 @@
     <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_zz.html">[他]</a>
   </div>
   <div>
-    <span>
-      ●作家リスト：全　　　
-    </span>
+    <span>●作家リスト：全　　　</span>
     <span>
       <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_all_a.html">[あ]</a>
       <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_all_ka.html">[か]</a>
