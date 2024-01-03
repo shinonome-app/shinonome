@@ -43,6 +43,9 @@ export class SnmLink extends LitElement {
   @property()
   name?: string = "";
 
+  @property()
+  target?: string = "";
+
   render() {
     let styleClasses = "";
     let iconName = "";
@@ -118,9 +121,9 @@ export class SnmLink extends LitElement {
     }
 
     if (this.label) {
-      return html` <a href="${this.href}" class="${styleClasses}">${this.label}</a> `;
+      return html` <a href="${this.href}" target=${this.target} class="${styleClasses}">${this.label}</a> `;
     } else {
-      return html` <a href="${this.href}" class="${styleClasses}"><slot></slot></a> `;
+      return html` <a href="${this.href}" target=${this.target} class="${styleClasses}"><slot></slot></a> `;
     }
   }
 
