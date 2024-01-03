@@ -23,8 +23,8 @@ works = (1..5000).map do |n|
   (0..4).to_a.sample.times { note << Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
 
   ch = FIRST_CHAR.chars.sample
-  created = Faker::Time.between(from: Time.zone.parse('1997-01-01'), to: Time.zone.parse('2023-03-05'))
-  started = Faker::Time.between(from: Time.zone.parse('1998-01-01'), to: Time.zone.parse('2023-04-05'))
+  created = Faker::Time.between(from: Time.zone.parse('1997-01-01'), to: Time.zone.parse('2024-01-05'))
+  started = Faker::Time.between(from: Time.zone.parse('1998-01-01'), to: Time.zone.parse('2024-04-05'))
   started = created if created > started
 
   work = {
