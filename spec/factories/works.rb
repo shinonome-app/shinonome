@@ -68,5 +68,11 @@ FactoryBot.define do
     trait :teihon do
       original_books { [association(:original_book)] }
     end
+
+    trait :with_person do
+      after(:build) do |work|
+        create(:work_person, work:)
+      end
+    end
   end
 end
