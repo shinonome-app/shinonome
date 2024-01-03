@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       resources :creator_index_searches, only: %i[index]
       resources :status_searches, only: %i[index]
       resources :unknown_creator_searches, only: %i[index]
+      resources :previews, only: %i[show]
     end
 
     resources :works do

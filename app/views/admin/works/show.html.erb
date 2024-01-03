@@ -207,6 +207,12 @@
 </div>
 
 <!--関連サイトデータ end-->
+<div class="mt-6">
+  <snm-headline h="h2">図書カードプレビュー</snm-headline>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "プレビュー", href: admin_works_preview_path(@work), target: "_blank" %>
+  </div>
+</div>
 
 <div class="mt-2 flex gap-2">
   <%= tag.snm_link "戻る", href: admin_works_path, buttonstyle: 'secondary' %>
