@@ -1,4 +1,7 @@
 ---
+deploy:
+  # Set an id and/or a sha. If no id is provided, the sha will be used.
+  git_sha: <%= `git rev-parse HEAD` %>
 ignored_endpoints:
   - HealthController#show
 
