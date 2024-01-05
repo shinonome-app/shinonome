@@ -8,7 +8,7 @@ image: takahashim/shinonome
 servers:
   web:
     hosts:
-      - 153.127.194.59
+      - <%= ENV['PRIMARY_HOST'] %>
     labels:
       traefik.http.routers.web.rule: Host(`reception.aozora-renewal.cloud`)
       traefik.http.routers.web_secure.entrypoints: websecure
@@ -42,6 +42,7 @@ builder:
   dockerfile: Dockerfile.production
   remote:
     arch: amd64
+    host: <%= ENV['BUILDER_HOST'] %>
   cache:
     type: registry
 
