@@ -72,5 +72,5 @@ traefik:
     volume:
       - "/letsencrypt/acme.json:/letsencrypt/acme.json"
 healthcheck:
-  max_attempts: 10
+  max_attempts: 20
   interval: 10s
