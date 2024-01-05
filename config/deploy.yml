@@ -38,6 +38,9 @@ env:
     - RECEPTION_EMAIL
     - RAILS_ADMIN_PATH
 
+volumes:
+  - "/mnt/storage:/myapp/storage"
+
 builder:
   dockerfile: Dockerfile.production
   remote:
