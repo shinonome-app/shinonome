@@ -61,6 +61,51 @@ class Workfile < ApplicationRecord
   validates :file_encoding_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
   validates :file_encoding_id, numericality: { only_integer: true }, if: -> { file_encoding_id.present? }
 
+  def self.parse(url, validate: true)
+    # ex.
+    #   https://www.aozora.gr.jp/cards/001234/files/46340_24939.html
+    #   https://www.aozora.gr.jp/cards/001234/files/46340_ruby_24806.zip
+    #
+    path = URI.parse(url).path
+    case path
+    #                person_id         extension          ext
+    #                            work_id           workfile_id
+    when %r{\A/cards/(\d+)/files/(\d+)_([0-9a-z]+)_(\d+)\.([a-z]+)\z}
+      person_id = ::Regexp.last_match(1).to_i
+      work_id = ::Regexp.last_match(2).to_i
+      extension = ::Regexp.last_match(3)
+      workfile_id = ::Regexp.last_match(4).to_i
+      ext = ::Regexp.last_match(5)
+
+      workfile = Workfile.find(workfile_id)
+      return workfile unless validate
+
+      raise ActiveRecord::RecordNotFound, "work_id should be `#{workfile.work.id}`, but is `#{work_id}`" if workfile.work.id != work_id
+      raise ActiveRecord::RecordNotFound, "person_id should be `#{workfile.work.card_person_id}`, but is `#{person_id}`" if workfile.work.card_person_id.to_i != person_id
+      raise ActiveRecord::RecordNotFound, "ext should be `#{workfile.calc_ext}`, but is `#{ext}`" if workfile.calc_ext != ext
+      raise ActiveRecord::RecordNotFound, "extension should be `#{workfile.calc_extension}`, but is `#{extension}`" if workfile.calc_extension != extension
+    #                person_id         extension
+    #                            work_id      ext
+    when %r{\A/cards/(\d+)/files/(\d+)_(\d+)\.([a-z]+)\z}
+      person_id = ::Regexp.last_match(1).to_i
+      work_id = ::Regexp.last_match(2).to_i
+      workfile_id = ::Regexp.last_match(3).to_i
+      ext = ::Regexp.last_match(4)
+      extension = nil
+      workfile = Workfile.find(workfile_id)
+      return workfile unless validate
+
+      raise ActiveRecord::RecordNotFound, "work_id should be `#{workfile.work.id}`, but is `#{work_id}`" if workfile.work.id != work_id
+      raise ActiveRecord::RecordNotFound, "person_id should be `#{workfile.work.card_person_id}`, but is `#{person_id}`" if workfile.work.card_person_id.to_i != person_id
+      raise ActiveRecord::RecordNotFound, "ext should be `#{workfile.calc_ext}`, but is `#{ext}`" if workfile.calc_ext != ext
+      raise ActiveRecord::RecordNotFound, "extension should be `#{workfile.calc_extension}`, but is `#{extension}`" if workfile.calc_extension != extension
+    else
+      raise ArgumentError, "invalid format: `#{path}`"
+    end
+
+    workfile
+  end
+
   def html?
     filetype&.html?
   end
@@ -125,20 +170,31 @@ class Workfile < ApplicationRecord
     # URLがある場合はfilenameは空、filesizeは0
     return if url.present?
 
-    ext = if compresstype&.compressed?
-            compresstype.extension
-          elsif filetype&.rtxt?
-            'txt'
-          else
-            filetype&.extension
-          end
+    ext = calc_ext
+    extension = calc_extension
 
-    if filetype&.rtxt?
-      "#{work.id}_ruby_#{id}.#{ext}"
-    elsif compresstype&.compressed?
-      "#{work.id}_#{filetype&.extension}_#{id}.#{ext}"
+    if extension
+      "#{work.id}_#{extension}_#{id}.#{ext}"
     else
       "#{work.id}_#{id}.#{ext}"
+    end
+  end
+
+  def calc_extension
+    if filetype&.rtxt?
+      'ruby'
+    elsif compresstype&.compressed?
+      filetype&.extension
+    end
+  end
+
+  def calc_ext
+    if compresstype&.compressed?
+      compresstype.extension
+    elsif filetype&.rtxt?
+      'txt'
+    else
+      filetype&.extension
     end
   end
 
