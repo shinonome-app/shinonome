@@ -88,4 +88,28 @@ RSpec.describe Workfile do
       end
     end
   end
+
+  describe '#download_url' do
+    let(:work) { create(:work) }
+    let(:person) { create(:person) }
+    let!(:work_person) { create(:work_person, work:, person:)}
+
+    context 'xhtmlの場合' do
+      let(:workfile) { create(:workfile, :xhtml, work:) }
+
+      it '正しいurlを返す' do
+        allow(Rails.application.config.x).to receive(:main_site_url).and_return('https://example.com')
+        expect(workfile.download_url).to eq("https://example.com/cards/#{work.card_person_id}/files/#{work.id}_#{workfile.id}.html")
+      end
+    end
+
+    context 'zipの場合' do
+      let(:workfile) { create(:workfile, :zip, work:) }
+
+      it '正しいurlを返す' do
+        allow(Rails.application.config.x).to receive(:main_site_url).and_return('https://example.com')
+        expect(workfile.download_url).to eq("https://example.com/cards/#{work.card_person_id}/files/#{work.id}_ruby_#{workfile.id}.zip")
+      end
+    end
+  end
 end

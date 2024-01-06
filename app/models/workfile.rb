@@ -143,7 +143,11 @@ class Workfile < ApplicationRecord
   end
 
   def download_url
-    url.presence || "#{Rails.application.config.x.main_site_url}/cards/#{work.card_person_id}/files/#{filename}"
+    url.presence || (Rails.application.config.x.main_site_url + download_path)
+  end
+
+  def download_path
+    "/cards/#{work.card_person_id}/files/#{filename}"
   end
 
   private
