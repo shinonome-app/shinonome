@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_06_025545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -111,6 +111,9 @@ ActiveRecord::Schema[7.0].define(version: 2021_12_29_040000) do
     t.text "extension"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_html", default: false, null: false
+    t.boolean "is_text", default: false, null: false
+    t.boolean "is_rtxt", default: false, null: false
   end
 
   create_table "kana_types", force: :cascade do |t|

@@ -31,23 +31,32 @@ charsets.each do |k, v|
   Charset.create!(id: k, name: v)
 end
 
+# rubocop:disable Layout/SpaceInsideArrayPercentLiteral
 filetypes = {
-  0 => %w[入力完了ファイル txt],
-  1 => %w[テキストファイル(ルビあり) rtxt],
-  2 => %w[テキストファイル(ルビなし) txt],
-  3 => %w[HTMLファイル html],
-  4 => %w[エキスパンドブックファイル ebk],
-  5 => %w[.workファイル work],
-  6 => %w[TTZファイル ttz],
-  7 => %w[PDFファイル pdf],
-  8 => %w[PalmDocファイル doc],
-  9 => %w[XHTMLファイル html],
-  99 => %w[その他 etc]
+  0 => %w[入力完了ファイル           txt  f t f],
+  1 => %w[テキストファイル(ルビあり) rtxt f t t],
+  2 => %w[テキストファイル(ルビなし) txt  f t f],
+  3 => %w[HTMLファイル              html t f f],
+  4 => %w[エキスパンドブックファイル ebk  f f f],
+  5 => %w[.workファイル             work f f f],
+  6 => %w[TTZファイル               ttz  f f f],
+  7 => %w[PDFファイル               pdf  f f f],
+  8 => %w[PalmDocファイル           doc  f f f],
+  9 => %w[XHTMLファイル             html t f f],
+  99 => %w[その他                   etc  f f f]
 }
+# rubocop:enable Layout/SpaceInsideArrayPercentLiteral
 
 # Filetype.connection.execute('TRUNCATE TABLE filetypes;')
 filetypes.each do |k, v|
-  Filetype.create!(id: k, name: v[0], extension: v[1])
+  Filetype.create!(
+    id: k,
+    name: v[0],
+    extension: v[1],
+    is_html: (v[2] == 't'),
+    is_text: (v[3] == 't'),
+    is_rtxt: (v[4] == 't')
+  )
 end
 
 compresstypes = {
