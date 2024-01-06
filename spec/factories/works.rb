@@ -74,5 +74,17 @@ FactoryBot.define do
         create(:work_person, work:)
       end
     end
+
+    trait :with_zip_workfile do
+      after(:build) do |work|
+        create(:workfile, :zip, work:)
+      end
+    end
+
+    trait :with_xhtml_workfile do
+      after(:build) do |work|
+        create(:workfile, :xhtml, work:)
+      end
+    end
   end
 end

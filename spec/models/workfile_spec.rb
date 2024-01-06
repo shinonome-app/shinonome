@@ -42,6 +42,76 @@
 require 'rails_helper'
 
 RSpec.describe Workfile do
+  describe '.parse' do
+    context 'zipの場合' do
+      let!(:work) { create(:work, :with_person, :with_zip_workfile) }
+
+      it 'person_idが違っていればエラー' do
+        url = 'https://www.aozora.gr.jp/cards/999999/files/46340_ruby_24939.zip'
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it 'workfile_idが違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/123_ruby_99999.zip"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it 'work_idが違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/123_ruby_#{work.workfile.id}.zip"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it '拡張子が違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/#{work.id}_ruby_#{work.workfile.id}.html"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it '拡張名が違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/#{work.id}_#{work.workfile.id}.zip"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it '全部正しければエラーがない' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/#{work.id}_ruby_#{work.workfile.id}.zip"
+        expect { Workfile.parse(url) }.not_to raise_error
+      end
+    end
+
+    context 'xhtmlの場合' do
+      let!(:work) { create(:work, :with_person, :with_xhtml_workfile) }
+
+      it 'person_idが違っていればエラー' do
+        url = 'https://www.aozora.gr.jp/cards/999999/files/46340_24939.html'
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it 'workfile_idが違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/123_99999.html"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it 'work_idが違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/123_#{work.workfile.id}.html"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it '拡張子が違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/#{work.id}_#{work.workfile.id}.xhtml"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it '拡張名が違っていればエラー' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/#{work.id}_ruby_#{work.workfile.id}.html"
+        expect { Workfile.parse(url) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it '全部正しければエラーがない' do
+        url = "https://www.aozora.gr.jp/cards/#{work.card_person_id}/files/#{work.id}_#{work.workfile.id}.html"
+        expect { Workfile.parse(url) }.not_to raise_error
+      end
+    end
+  end
+
   describe '#using_ruby?' do
     let(:workfile) { create(:workfile, :xhtml) }
 
@@ -90,9 +160,7 @@ RSpec.describe Workfile do
   end
 
   describe '#download_url' do
-    let(:work) { create(:work) }
-    let(:person) { create(:person) }
-    let!(:work_person) { create(:work_person, work:, person:)}
+    let(:work) { create(:work, :with_person) }
 
     context 'xhtmlの場合' do
       let(:workfile) { create(:workfile, :xhtml, work:) }
@@ -109,6 +177,142 @@ RSpec.describe Workfile do
       it '正しいurlを返す' do
         allow(Rails.application.config.x).to receive(:main_site_url).and_return('https://example.com')
         expect(workfile.download_url).to eq("https://example.com/cards/#{work.card_person_id}/files/#{work.id}_ruby_#{workfile.id}.zip")
+      end
+    end
+  end
+
+  describe '#calc_ext' do
+    let(:work) { create(:work, :with_person) }
+
+    context 'txt + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 2) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('txt')
+      end
+    end
+
+    context 'rtxt + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 1) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('txt')
+      end
+    end
+
+    context 'html + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 3) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('html')
+      end
+    end
+
+    context 'pdf + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 7) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('pdf')
+      end
+    end
+
+    context 'txt + zipの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 2, filetype_id: 2) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('zip')
+      end
+    end
+
+    context 'txt + gzipの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 3, filetype_id: 2) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('gz')
+      end
+    end
+
+    context 'txt + lhaの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 4, filetype_id: 2) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('lzh')
+      end
+    end
+
+    context 'pdf + gzipの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 3, filetype_id: 7) }
+
+      it '正しい拡張子を返す' do
+        expect(workfile.calc_ext).to eq('gz')
+      end
+    end
+  end
+
+  describe '#calc_extension' do
+    let(:work) { create(:work, :with_person) }
+
+    context 'txt + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 2) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq(nil)
+      end
+    end
+
+    context 'rtxt + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 1) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq('ruby')
+      end
+    end
+
+    context 'html + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 3) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq(nil)
+      end
+    end
+
+    context 'pdf + 圧縮なしの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 1, filetype_id: 7) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq(nil)
+      end
+    end
+
+    context 'txt + zipの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 2, filetype_id: 2) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq('txt')
+      end
+    end
+
+    context 'txt + gzipの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 3, filetype_id: 2) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq('txt')
+      end
+    end
+
+    context 'txt + lhaの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 4, filetype_id: 2) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq('txt')
+      end
+    end
+
+    context 'pdf + gzipの場合' do
+      let(:workfile) { create(:workfile, work:, compresstype_id: 3, filetype_id: 7) }
+
+      it '正しい拡張名を返す' do
+        expect(workfile.calc_extension).to eq('pdf')
       end
     end
   end
