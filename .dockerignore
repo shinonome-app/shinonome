@@ -27,3 +27,4 @@
 .env
 .env.*
 .tool-versions
+/data/*
