@@ -29,7 +29,7 @@
 #  person_note          :text
 #  publisher            :text             not null
 #  publisher2           :text
-#  register_status      :integer          default("not_ordered"), not null
+#  register_status      :integer          default("non_ordered"), not null
 #  started_on           :date             not null
 #  subtitle             :text
 #  subtitle_kana        :text
@@ -89,8 +89,8 @@ FactoryBot.define do
     register_status { 1 }
     original_book_note { '底本備考' }
 
-    trait :not_ordered do
-      register_status { :not_ordered }
+    trait :non_ordered do
+      register_status { :non_ordered }
     end
 
     trait :ordered do

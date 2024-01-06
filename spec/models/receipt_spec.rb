@@ -29,7 +29,7 @@
 #  person_note          :text
 #  publisher            :text             not null
 #  publisher2           :text
-#  register_status      :integer          default("not_ordered"), not null
+#  register_status      :integer          default("non_ordered"), not null
 #  started_on           :date             not null
 #  subtitle             :text
 #  subtitle_kana        :text

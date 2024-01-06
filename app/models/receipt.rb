@@ -29,7 +29,7 @@
 #  person_note          :text
 #  publisher            :text             not null
 #  publisher2           :text
-#  register_status      :integer          default("not_ordered"), not null
+#  register_status      :integer          default("non_ordered"), not null
 #  started_on           :date             not null
 #  subtitle             :text
 #  subtitle_kana        :text
@@ -63,7 +63,7 @@ class Receipt < ApplicationRecord
   belongs_to :work, optional: true
   belongs_to :person, optional: true
 
-  enum register_status: { not_ordered: 0, ordered: 1 }
+  enum register_status: { non_ordered: 0, ordered: 1 }
 
   scope :active, -> { where(deleted_at: nil) }
 

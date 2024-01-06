@@ -9,7 +9,7 @@ describe Admin::ReceiptsController do
 
   describe '#index' do
     it '一覧に表示される' do
-      create(:receipt, :not_ordered)
+      create(:receipt, :non_ordered)
 
       visit '/admin/receipts'
 
