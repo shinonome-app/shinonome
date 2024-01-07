@@ -44,7 +44,7 @@ env:
     - RAILS_ADMIN_PATH
 
 volumes:
-  - "/mnt/storage:/myapp/storage"
+  - "/mnt/storage/str:/myapp/storage"
 
 builder:
   dockerfile: Dockerfile.production
