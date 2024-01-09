@@ -17,6 +17,7 @@
 #  index_work_people_on_role_id                (role_id)
 #  index_work_people_on_work_id                (work_id)
 #  index_work_people_on_work_id_and_person_id  (work_id,person_id) UNIQUE
+#  index_work_people_on_work_id_and_role_id    (work_id,role_id)
 #
 # Foreign Keys
 #

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_06_025545) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_09_142001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -288,6 +288,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_025545) do
     t.index ["person_id"], name: "index_work_people_on_person_id"
     t.index ["role_id"], name: "index_work_people_on_role_id"
     t.index ["work_id", "person_id"], name: "index_work_people_on_work_id_and_person_id", unique: true
+    t.index ["work_id", "role_id"], name: "index_work_people_on_work_id_and_role_id"
     t.index ["work_id"], name: "index_work_people_on_work_id"
   end
 
