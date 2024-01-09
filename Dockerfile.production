@@ -21,9 +21,12 @@ RUN mkdir -p /etc/apt/keyrings; \
 RUN mkdir /myapp
 WORKDIR /myapp
 
+ARG GIT_SHA
+
 ENV LANG="C.UTF-8"
 ENV RAILS_ENV="production"
 ENV NODE_ENV="production"
+ENV SKYLIGHT_DEPLOY_GIT_SHA=$GIT_SHA
 
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock

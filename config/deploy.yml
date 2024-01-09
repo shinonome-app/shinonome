@@ -53,6 +53,8 @@ builder:
     host: <%= ENV['BUILDER_HOST'] %>
   cache:
     type: registry
+  args:
+    GIT_SHA: <%= %x(git rev-parse HEAD) %>
 
 # Configure custom arguments for Traefik
 #
