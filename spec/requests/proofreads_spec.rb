@@ -42,9 +42,30 @@ RSpec.describe '/proofreads' do
   end
 
   describe 'GET /new' do
+    let(:work) { create(:work, :with_person, :teihon) }
+
     context 'paramsがない場合' do
       it 'renders a error response' do
-        expect { get new_proofread_url }.to raise_error(ActionController::ParameterMissing)
+        get new_proofread_url
+        expect(response).to have_http_status :bad_request
+        expect(response.body).to include('ActionController::ParameterMissing')
+      end
+    end
+
+    context '正しいparamsがある場合' do
+      # http://localhost:3000/proofreads/new?proofread_form[sub_works_attributes][0][work_id]=4885&proofread_form[sub_works_attributes][0][enabled]=0&proofread_form[sub_works_attributes][0][enabled]=1&proofread_form[person_id]=380
+      it 'renders a successful response' do
+        valid_params = {
+          proofread_form: {
+            sub_works_attributes: {
+              '0': { work_id: work.id, enabled: 1 }
+            },
+            person_id: work.people[0].id
+          }
+        }
+
+        get new_proofread_url(valid_params)
+        expect(response).to have_http_status :ok
       end
     end
   end
