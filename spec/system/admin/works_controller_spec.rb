@@ -24,7 +24,7 @@ describe Admin::WorksController do
     context '何も入力しない場合' do
       it 'エラーになる' do
         visit '/admin/works/new'
-        click_button('登録する')
+        click_on('登録する')
         expect(page).to have_content('作品新規登録')
         expect(page).to have_content('入力エラーがあります')
         expect(page).to have_content('仮名遣い種別を入力してください')
@@ -51,7 +51,7 @@ describe Admin::WorksController do
         select '23', from: 'work_started_on_3i'
         select 'なし', from: '著作権フラグ'
 
-        click_button('登録する')
+        click_on('登録する')
         expect(page).to have_content('追加しました')
         expect(page).to have_content('作品データ')
 
@@ -82,7 +82,7 @@ describe Admin::WorksController do
       expect(page).to have_content('作品データ')
       expect(page).to have_content('作品その1')
 
-      page.find('snm-headline', text: '作品データ').sibling('div').click_button('削除')
+      page.find('snm-headline', text: '作品データ').sibling('div').click_on('削除')
       expect do
         expect(page.accept_confirm).to eq '本当に削除しますか?'
         expect(page).to have_content '削除しました'

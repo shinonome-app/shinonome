@@ -16,7 +16,7 @@ describe Proofreads::PeopleController do
     it '作家別の「あ」をクリックすると校正待ち作家一覧が表示される' do
       visit '/proofreads'
 
-      click_link('あ', href: '/proofreads/people?people=a')
+      click_link('あ', href: '/proofreads/people?people=a') # rubocop:disable Capybara/ClickLinkOrButtonStyle
 
       expect(page).to have_content('校正受付システム　作家リスト：あ')
       expect(page).to have_content('青空 太郎')
@@ -27,7 +27,7 @@ describe Proofreads::PeopleController do
     it '作家名をクリックすると校正待ちタイトルが表示され、チェックを入れるとそのタイトルの入力フォームに飛ぶ' do
       visit '/proofreads/people?people=a'
 
-      click_link('青空 太郎')
+      click_on('青空 太郎')
 
       expect(page).to have_content('校正受付システム:青空 太郎')
       expect(page).to have_content('作品その1')
@@ -35,17 +35,17 @@ describe Proofreads::PeopleController do
 
       find('form[action="/proofreads/new"]').first('input[type="checkbox"]').click
 
-      click_button('確認')
+      click_on('確認')
 
       expect(page).to have_content('校正受付システム：必要事項の記入')
       expect(page).to have_content('作品その1')
-      expect(page).not_to have_content('作品その2')
+      expect(page).to have_no_content('作品その2')
     end
 
     it '作家名をクリックすると校正待ちタイトルが表示され、全てチェックを入れると入力フォームに飛ぶ' do
       visit '/proofreads/people?people=a'
 
-      click_link('青空 太郎')
+      click_on('青空 太郎')
 
       expect(page).to have_content('校正受付システム:青空 太郎')
       expect(page).to have_content('作品その1')
@@ -53,7 +53,7 @@ describe Proofreads::PeopleController do
 
       find('form[action="/proofreads/new"]').all('input[type="checkbox"]').each { |input| input.click } # rubocop:disable Rails/FindEach
 
-      click_button('確認')
+      click_on('確認')
 
       expect(page).to have_content('校正受付システム：必要事項の記入')
       expect(page).to have_content(work1.title)

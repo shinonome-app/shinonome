@@ -31,7 +31,7 @@ describe Admin::PersonSitesController do
       expect(page).to have_content(/#{site.id}.*#{site.name}.*#{site.url}/)
       expect(page).to have_content(/#{site2.id}.*#{site2.name}.*#{site2.url}/)
 
-      page.find(".person-site-form-#{site.id}").click_button('関連づける')
+      page.find(".person-site-form-#{site.id}").find_button('関連づける').click
 
       expect(page).to have_content('関連づけました.')
       expect(page).to have_content('人物詳細')
@@ -44,7 +44,7 @@ describe Admin::PersonSitesController do
 
       PersonSite.create!(person_id: person.id, site_id: site.id)
 
-      page.find(".person-site-form-#{site.id}").click_button('関連づける')
+      page.find(".person-site-form-#{site.id}").click_on('関連づける')
 
       expect(page).to have_content('人物IDがすでに関連付けられています')
       expect(page).to have_content('人物詳細')
@@ -62,7 +62,7 @@ describe Admin::PersonSitesController do
       expect(page).to have_content('人物詳細')
       expect(page).to have_content(/関連サイト名.*#{site.name}/)
 
-      page.find('snm-headline', text: '関連サイトデータ').sibling('div').click_button('削除')
+      page.find('snm-headline', text: '関連サイトデータ').sibling('div').click_on('削除')
       expect do
         expect(page.accept_confirm).to eq '本当に削除しますか?'
         expect(page).to have_content '関連サイトの関連づけを削除しました'

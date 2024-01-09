@@ -6,7 +6,7 @@ describe ReceiptsController do
   describe '#new' do
     it 'トップページから入力受付システムに遷移する' do
       visit '/'
-      click_link('入力受付システム', href: '/receipts/new')
+      click_link('入力受付システム', href: '/receipts/new') # rubocop:disable Capybara/ClickLinkOrButtonStyle
 
       expect(page).to have_content('入力受付システム：必要事項の記入')
     end
@@ -14,7 +14,7 @@ describe ReceiptsController do
     it '何も入力せずに確認するとエラーが表示される' do
       visit '/receipts/new'
 
-      click_button('確認')
+      click_on('確認')
 
       expect(page).to have_content('13件のエラーが見つかりました')
     end
@@ -49,7 +49,7 @@ describe ReceiptsController do
       fill_in 'receipt_form_sub_works_attributes_0_note', with: '作品備考サンプル'
       choose 'receipt_form_sub_works_attributes_0_copyright_flag_0'
 
-      click_button('確認')
+      click_on('確認')
       expect(page).to have_current_path receipts_previews_path, ignore_query: true
 
       expect(page).to have_content('入力受付システム：記入事項の確認')
@@ -90,8 +90,8 @@ describe ReceiptsController do
       fill_in 'receipt_form_sub_works_attributes_0_note', with: '作品備考サンプル'
       choose 'receipt_form_sub_works_attributes_0_copyright_flag_0'
 
-      click_button('確認')
-      click_button('登録')
+      click_on('確認')
+      click_on('登録')
 
       expect(page).to have_current_path receipts_thanks_path
 

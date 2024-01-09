@@ -6,7 +6,7 @@ describe ProofreadsController do
   describe '#index' do
     it 'トップページから入力受付システムに遷移する' do
       visit '/'
-      click_link('校正受付システム', href: '/proofreads')
+      click_link('校正受付システム', href: '/proofreads') # rubocop:disable Capybara/ClickLinkOrButtonStyle
 
       expect(page).to have_content('校正受付システム：作業中作家インデックス')
     end
@@ -32,14 +32,14 @@ describe ProofreadsController do
         visit "/proofreads/people/#{person.id}"
 
         find('form[action="/proofreads/new"]').first('input[type="checkbox"]').set(true)
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
         fill_in '工作員ID', with: worker.id
 
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：記入事項の確認')
 
@@ -47,15 +47,15 @@ describe ProofreadsController do
         expect(page).to have_content('工作員名（必須） 青空太郎')
 
         # メールアドレスやURLは非公開なので表示しない
-        expect(page).not_to have_content('taro@example.com')
-        expect(page).not_to have_content('https://example.com/taro')
+        expect(page).to have_no_content('taro@example.com')
+        expect(page).to have_no_content('https://example.com/taro')
       end
 
       it '要コピーを選んで送付先を入力しないとエラーになる' do
         visit "/proofreads/people/#{person.id}"
 
         find('form[action="/proofreads/new"]').first('input[type="checkbox"]').set(true)
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
@@ -63,7 +63,7 @@ describe ProofreadsController do
         fill_in '工作員ID', with: worker.id
         check('要コピー')
 
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
         expect(page).to have_content('1件のエラーが見つかりました')
@@ -76,17 +76,17 @@ describe ProofreadsController do
         visit "/proofreads/people/#{person.id}"
 
         find('form[action="/proofreads/new"]').first('input[type="checkbox"]').set(true)
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
         fill_in '工作員ID', with: worker.id
 
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：記入事項の確認')
-        click_button('登録')
+        click_on('登録')
 
         expect(page).to have_content('校正受付システム：受付完了')
         expect(UserMailer).to have_received(:register_proofread)
@@ -106,7 +106,7 @@ describe ProofreadsController do
         visit "/proofreads/people/#{person.id}"
 
         find('form[action="/proofreads/new"]').first('input[type="checkbox"]').set(true)
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
@@ -116,10 +116,10 @@ describe ProofreadsController do
         check('要コピー')
         check('要プリントアウト')
 
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：記入事項の確認')
-        click_button('登録')
+        click_on('登録')
 
         expect(page).to have_content('校正受付システム：受付完了')
         proofread = Proofread.last
@@ -140,7 +140,7 @@ describe ProofreadsController do
         visit "/proofreads/people/#{person.id}"
 
         find('form[action="/proofreads/new"]').first('input[type="checkbox"]').set(true)
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
@@ -148,7 +148,7 @@ describe ProofreadsController do
         fill_in '工作員読み', with: 'こうさくいんいち'
         fill_in '工作員名', with: '工作員1'
 
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
         expect(page).to have_content('1件のエラーが見つかりました')
@@ -162,7 +162,7 @@ describe ProofreadsController do
         visit "/proofreads/people/#{person.id}"
 
         find('form[action="/proofreads/new"]').first('input[type="checkbox"]').set(true)
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
@@ -172,7 +172,7 @@ describe ProofreadsController do
         fill_in 'e-mail', with: 'user1@example.com'
         fill_in 'ホームページ', with: 'https://example.com/user1'
 
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：記入事項の確認')
 
@@ -189,7 +189,7 @@ describe ProofreadsController do
         visit "/proofreads/people/#{person.id}"
 
         find('form[action="/proofreads/new"]').first('input[type="checkbox"]').set(true)
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
@@ -199,10 +199,10 @@ describe ProofreadsController do
         fill_in 'e-mail', with: 'user1@example.com'
         fill_in 'ホームページ', with: 'https://example.com/user1'
 
-        click_button('確認')
+        click_on('確認')
 
         expect(page).to have_content('校正受付システム：記入事項の確認')
-        click_button('登録')
+        click_on('登録')
 
         expect(page).to have_content('校正受付システム：受付完了')
         expect(UserMailer).to have_received(:register_proofread)

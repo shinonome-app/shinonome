@@ -17,7 +17,7 @@ describe 'log_in' do
 
         fill_in 'admin_user[login]', with: username
         fill_in 'admin_user[password]', with: password
-        click_button 'commit'
+        click_on 'commit'
 
         expect(page).to have_content('top page')
       end
@@ -29,7 +29,7 @@ describe 'log_in' do
 
         fill_in 'admin_user[login]', with: username
         fill_in 'admin_user[password]', with: 'invalid-password'
-        click_button 'commit'
+        click_on 'commit'
 
         expect(page).to have_content('Loginまたはパスワードが違います。')
       end
