@@ -38,5 +38,16 @@
 require 'rails_helper'
 
 RSpec.describe Proofread do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.active' do
+    before do
+      create(:proofread, deleted_at: nil, memo: '未削除')
+      create(:proofread, deleted_at: 1.day.ago, memo: '削除済み')
+    end
+
+    it 'activeなものを返す' do
+      active_proofreads = Proofread.active
+      expect(active_proofreads.count).to eq(1)
+      expect(active_proofreads.first.memo).to eq('未削除')
+    end
+  end
 end
