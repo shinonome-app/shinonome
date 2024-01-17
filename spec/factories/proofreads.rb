@@ -41,7 +41,7 @@ FactoryBot.define do
     work_copy { 1 }
     work_print { 1 }
     proof_edition { '校正使用版1' }
-    workfile
+    # workfile
     address { "〒100-0001\n東京都千代田区千代田1-1-1-111\n青空太郎" }
     memo { '連絡事項1' }
     worker
