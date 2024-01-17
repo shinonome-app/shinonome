@@ -102,7 +102,7 @@ class Receipt < ApplicationRecord
   end
 
   def copyright_flag_name
-    copyright_flag.to_i > 0 ? 'あり' : 'なし'
+    copyright_flag ? 'あり' : 'なし'
   end
 
   private
