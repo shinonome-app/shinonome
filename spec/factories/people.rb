@@ -45,7 +45,7 @@ FactoryBot.define do
     died_on { day_death }
     born_on { day_death + (365 * 20) + rand(365 * 60) }
     copyright_flag { [true, false].sample }
-    sequence(:email) { |_i| 'sample-person@example.com' }
+    sequence(:email) { |i| "sample-person-#{i}@example.com" }
     sequence(:url) { |i| "https://sample#{i}.example.com" }
     description { Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
     note_user_id { nil }
