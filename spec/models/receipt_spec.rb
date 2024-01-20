@@ -59,7 +59,7 @@ require 'rails_helper'
 
 RSpec.describe Receipt do
   describe '#name' do
-    let (:receipt) { create(:receipt) }
+    let(:receipt) { create(:receipt) }
 
     it '正しい名前を返す' do
       expect(receipt.name).to eq '青空 文子'
@@ -67,7 +67,7 @@ RSpec.describe Receipt do
   end
 
   describe '#name_kana' do
-    let (:receipt) { create(:receipt) }
+    let(:receipt) { create(:receipt) }
 
     it '正しい名前(かな)を返す' do
       expect(receipt.name_kana).to eq 'あおぞら ぶんこ'
@@ -75,7 +75,7 @@ RSpec.describe Receipt do
   end
 
   describe '#name_en' do
-    let (:receipt) { create(:receipt) }
+    let(:receipt) { create(:receipt) }
 
     it '正しい名前(アルファベット表記)を返す' do
       expect(receipt.name_en).to eq 'Bunko, Aozora'
@@ -83,7 +83,7 @@ RSpec.describe Receipt do
   end
 
   describe '#kana_type_name' do
-    let (:receipt) { create(:receipt) }
+    let(:receipt) { create(:receipt) }
 
     it '正しい仮名遣い種別を返す' do
       expect(receipt.kana_type_name).to eq '旧字旧仮名'
@@ -91,7 +91,7 @@ RSpec.describe Receipt do
   end
 
   describe '#copyright_flag_name' do
-    let (:receipt) { create(:receipt) }
+    let(:receipt) { create(:receipt) }
 
     it '正しい著作権表示を返す' do
       expect(receipt.copyright_flag_name).to eq 'なし'
