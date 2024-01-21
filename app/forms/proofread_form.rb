@@ -125,18 +125,18 @@ class ProofreadForm
   def save_as_proofread!(sub_work)
     Rails.logger.info("work_id: #{sub_work.work_id}")
     Proofread.create!(
-      address: address,
-      email: email,
-      memo: memo,
+      address:,
+      email:,
+      memo:,
+      url:,
+      worker_kana:,
+      worker_name:,
+      person_id:,
+      worker_id:,
       proof_edition: sub_work.proof_edition,
-      url: url,
       work_copy: sub_work.work_copy,
       work_print: sub_work.work_print,
-      worker_kana: worker_kana,
-      worker_name: worker_name,
-      person_id: person_id,
-      work_id: sub_work.work_id,
-      worker_id: worker_id
+      work_id: sub_work.work_id
     )
   end
 end
