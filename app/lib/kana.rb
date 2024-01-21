@@ -66,6 +66,10 @@ class Kana
     str
   end
 
+  def self.from_string(roma_str)
+    new(roma_str.to_sym)
+  end
+
   def initialize(roma_sym)
     @sym = roma_sym
     raise Kana::Error, "invalid symbol (#{@sym})" unless ROMA2KANA.keys.include?(@sym)

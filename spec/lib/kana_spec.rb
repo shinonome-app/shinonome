@@ -31,6 +31,18 @@ RSpec.describe Kana do
     end
   end
 
+  describe '.from_string' do
+    context '文字列が与えられた場合' do
+      it 'Kanaオブジェクトを返す' do
+        expect(Kana.from_string('a').to_char).to eq 'あ'
+        expect(Kana.from_string('i').to_char).to eq 'い'
+        expect(Kana.from_string('ku').to_char).to eq 'く'
+        expect(Kana.from_string('yo').to_char).to eq 'よ'
+        expect(Kana.from_string('zz').to_char).to eq nil
+      end
+    end
+  end
+
   describe '#to_chars' do
     context '正しいシンボルが与えられた場合' do
       it '配列を返す' do

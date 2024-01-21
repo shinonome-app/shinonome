@@ -6,7 +6,7 @@ module Proofreads
 
     # GET /proofreads/people?people=a
     def index
-      @kana = Kana.new(params[:people].to_sym).to_char
+      @kana = Kana.from_string(params[:people]).to_char
       @authors = if @kana
                    Person.where('sortkey like ?', "#{@kana}%").order(sortkey: :asc)
                  else
