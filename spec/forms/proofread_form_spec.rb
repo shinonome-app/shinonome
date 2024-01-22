@@ -4,15 +4,25 @@ require 'rails_helper'
 
 RSpec.describe ProofreadForm do
   describe 'validations' do
-    subject { ProofreadForm.new(proofread_form_params) }
+    let(:proofread_form) { ProofreadForm.new(proofread_form_params) }
 
     let(:work) { create(:work, :teihon, :with_person, work_status_id: 5, title: '作品その1') }
+    let(:work2) { create(:work, :with_person, work_status_id: 5, title: '作品その2') }
+    let(:work3) { create(:work, :with_person, work_status_id: 5, title: '作品その3') }
     let(:proofread_form_params) do
       {
         sub_works_attributes: {
           '0' => {
             work_id: work.id,
             enabled: 1
+          },
+          '1' => {
+            work_id: work2.id,
+            enabled: 1
+          },
+          '2' => {
+            work_id: work3.id,
+            enabled: 0
           }
         },
         person_id: work.people.first.id,
@@ -22,7 +32,10 @@ RSpec.describe ProofreadForm do
       }
     end
 
-    it { is_expected.to be_valid }
+    it '成功する' do
+      expect(proofread_form).to be_valid
+      expect(proofread_form.sub_works.count).to eq(2)
+    end
   end
 
   describe '.new_by_author' do
