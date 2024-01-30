@@ -113,6 +113,8 @@ Rails.application.routes.draw do
 
     resources :exec_commands, only: %i[index new create]
 
+    resources :typesettings, only: %i[index show new create]
+
     resources :receipts, only: %i[index show edit update]
     namespace :receipts do
       resources :previews, only: %i[update]

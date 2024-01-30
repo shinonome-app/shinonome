@@ -1,0 +1,8 @@
+<div class="w-full md:w-2/3">
+  <snm-headline h="h1">組版実行</snm-headline>
+  <%= render 'form', typesetting: @typesetting %>
+
+  <div class="mt-5 flex">
+    <%= tag.snm_link '戻る', href: admin_typesettings_path, buttonStyle: "secondary" %>
+  </div>
+</div>

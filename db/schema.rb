@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_09_142001) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_28_123807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -265,6 +265,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_142001) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "typesettings", force: :cascade do |t|
+    t.text "filename"
+    t.text "content"
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.bigint "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_typesettings_on_user_id"
+    t.index ["work_id"], name: "index_typesettings_on_work_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -410,6 +422,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_142001) do
   add_foreign_key "proofreads", "people"
   add_foreign_key "proofreads", "works"
   add_foreign_key "receipts", "work_statuses"
+  add_foreign_key "typesettings", "users"
+  add_foreign_key "typesettings", "works"
   add_foreign_key "work_people", "people"
   add_foreign_key "work_people", "roles"
   add_foreign_key "work_people", "works"
