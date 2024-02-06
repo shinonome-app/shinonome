@@ -31,16 +31,16 @@ module Admin
             input_file = File.join(tmpdir, 'input.txt')
             output_file = File.join(tmpdir, 'output.html')
             File.binwrite(input_file, text)
-            input_io = File.open(input_file, 'rb:Shift_JIS:Shift_JIS')
-            output_io = File.open(output_file, 'w:Shift_JIS:Shift_JIS')
-            begin
-              ::Aozora2Html.new(input_io, output_io).process
-            rescue Exception => e
-              Rails.logger.info(e.inspect)
-              Rails.logger.info(e.backtrace.inspect)
+            File.open(input_file, 'rb:Shift_JIS:Shift_JIS') do |input_io|
+              File.open(output_file, 'w:Shift_JIS:Shift_JIS') do |output_io|
+                begin
+                  ::Aozora2Html.new(input_io, output_io).process
+                rescue Exception => e
+                  Rails.logger.info(e.inspect)
+                  Rails.logger.info(e.backtrace.inspect)
+                end
+              end
             end
-            input_io.close
-            output_io.close
             send_data File.read(output_file), filename: 'output.html'
           end
         else
