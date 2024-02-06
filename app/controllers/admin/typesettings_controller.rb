@@ -33,12 +33,10 @@ module Admin
             File.binwrite(input_file, text)
             File.open(input_file, 'rb:Shift_JIS:Shift_JIS') do |input_io|
               File.open(output_file, 'w:Shift_JIS:Shift_JIS') do |output_io|
-                begin
-                  ::Aozora2Html.new(input_io, output_io).process
-                rescue Exception => e
-                  Rails.logger.info(e.inspect)
-                  Rails.logger.info(e.backtrace.inspect)
-                end
+                ::Aozora2Html.new(input_io, output_io).process
+              rescue StandardError, ::Aozora2Html::FatalError => e
+                Rails.logger.error(e.inspect)
+                Rails.logger.error(e.backtrace.inspect)
               end
             end
             send_data File.read(output_file), filename: 'output.html'
