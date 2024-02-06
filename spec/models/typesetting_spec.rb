@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: typesettings
@@ -23,6 +25,6 @@
 #
 require 'rails_helper'
 
-RSpec.describe Typesetting, type: :model do
+RSpec.describe Typesetting do
   pending "add some examples to (or delete) #{__FILE__}"
 end

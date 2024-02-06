@@ -27,9 +27,9 @@ module Admin
       if @typesetting.save
         if textfile.present?
           text = textfile.read
-          Dir.mktmpdir("aozora2html") do |tmpdir|
-            input_file = File.join(tmpdir, "input.txt")
-            output_file = File.join(tmpdir, "output.html")
+          Dir.mktmpdir('aozora2html') do |tmpdir|
+            input_file = File.join(tmpdir, 'input.txt')
+            output_file = File.join(tmpdir, 'output.html')
             File.binwrite(input_file, text)
             input_io = File.open(input_file, 'rb:Shift_JIS:Shift_JIS')
             output_io = File.open(output_file, 'w:Shift_JIS:Shift_JIS')
@@ -41,7 +41,6 @@ module Admin
             end
             input_io.close
             output_io.close
-            FileUtils.cp(output_file, "tmp/hoge2.html")
             send_data File.read(output_file), filename: 'output.html'
           end
         else

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: typesettings
@@ -23,8 +25,8 @@
 #
 FactoryBot.define do
   factory :typesetting do
-    filename { "MyText" }
-    content { "MyText" }
+    filename { 'MyText' }
+    content { 'MyText' }
     user { nil }
   end
 end
