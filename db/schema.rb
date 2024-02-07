@@ -266,7 +266,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_123807) do
   end
 
   create_table "typesettings", force: :cascade do |t|
-    t.text "filename"
+    t.text "original_filename"
     t.text "content"
     t.text "comment"
     t.bigint "user_id", null: false

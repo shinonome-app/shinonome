@@ -4,14 +4,14 @@
 #
 # Table name: typesettings
 #
-#  id         :bigint           not null, primary key
-#  comment    :text
-#  content    :text
-#  filename   :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
-#  work_id    :bigint
+#  id                :bigint           not null, primary key
+#  comment           :text
+#  content           :text
+#  original_filename :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :bigint           not null
+#  work_id           :bigint
 #
 # Indexes
 #
