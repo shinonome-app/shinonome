@@ -1,10 +1,13 @@
 <div class="w-full md:w-2/3">
   <snm-headline h="h1">組版</snm-headline>
-  <snm-headline h="h2">組版結果一覧</snm-headline>
-  <%= render(Admin::TypesettingsTableComponent.new(pagy: @pagy, typesettings: @typesettings)) %>
-  <%== pagy_snm_nav(@pagy) %>
-</div>
 
-<div class="mt-5 flex">
-  <%= tag.snm_link "組版実行", href: new_admin_typesetting_path %>
+  <div class="flex">
+    <%= tag.snm_link "組版実行", href: new_admin_typesetting_path %>
+  </div>
+
+  <div class="mt-5">
+    <snm-headline h="h2">組版結果一覧</snm-headline>
+    <%= render(Admin::TypesettingsTableComponent.new(pagy: @pagy, typesettings: @typesettings)) %>
+    <%== pagy_snm_nav(@pagy) %>
+  </div>
 </div>
