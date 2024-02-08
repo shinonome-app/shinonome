@@ -26,4 +26,18 @@
 class Typesetting < ApplicationRecord
   belongs_to :user, class_name: 'Shinonome::User'
   belongs_to :work, optional: true
+
+  validates :original_filename, presence: true
+
+  def file_path
+    Rails.root.join("data/typesettings/#{created_date_path}/file_#{id}.html")
+  end
+
+  def result_filename
+    "#{File.basename(original_filename, '.*')}.html"
+  end
+
+  def created_date_path
+    created_at.strftime('%Y%m%d')
+  end
 end

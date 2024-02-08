@@ -20,29 +20,23 @@ module Admin
     # POST /admin/typesettings
     def create
       @typesetting = Typesetting.new(typesetting_params)
-      Rails.logger.info(params[:typesetting][:textfile])
       textfile = params[:typesetting][:textfile]
+      if textfile.blank?
+        flash.now[:alert] = '変換するファイルを指定してください'
+        render :new, status: :unprocessable_entity
+        return
+      end
+
       @typesetting.user = current_admin_user
+      @typesetting.original_filename = textfile&.original_filename
 
       if @typesetting.save
-        if textfile.present?
-          text = textfile.read
-          Dir.mktmpdir('aozora2html') do |tmpdir|
-            input_file = File.join(tmpdir, 'input.txt')
-            output_file = File.join(tmpdir, 'output.html')
-            File.binwrite(input_file, text)
-            File.open(input_file, 'rb:Shift_JIS:Shift_JIS') do |input_io|
-              File.open(output_file, 'w:Shift_JIS:Shift_JIS') do |output_io|
-                ::Aozora2Html.new(input_io, output_io).process
-              rescue StandardError, ::Aozora2Html::FatalError => e
-                Rails.logger.error(e.inspect)
-                Rails.logger.error(e.backtrace.inspect)
-              end
-            end
-            send_data File.read(output_file), filename: 'output.html'
-          end
+        content = textfile.read
+        result = TypesettingConverter.new.convert_file(typesetting: @typesetting, content:)
+        if result.converted?
+          redirect_to admin_typesetting_path(@typesetting), success: '変換しました'
         else
-          flash.now[:alert] = 'ファイルを指定してください'
+          flash.now[:alert] = '変換できませんでした'
           render :new, status: :unprocessable_entity
         end
       else

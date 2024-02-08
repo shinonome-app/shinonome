@@ -1,0 +1,15 @@
+<div class="flex flex-col gap-5">
+  <snm-headline h="h2">組版結果</snm-headline>
+
+  <%= render(Admin::SnmTableVComponent.new(rows:
+      [
+        ["コメント", @typesetting.comment],
+        ["作成日", @typesetting.created_at],
+        ["元ファイル名", @typesetting.original_filename],
+        ["変換結果", link_to(@typesetting.result_filename, admin_typesetting_results_path(@typesetting), data: {turbo: false})],
+      ])) %>
+
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "戻る", href: admin_typesettings_path, buttonstyle: "secondary" %>
+  </div>
+</div>
