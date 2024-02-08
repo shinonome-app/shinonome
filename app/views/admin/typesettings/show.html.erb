@@ -6,7 +6,7 @@
         ["コメント", @typesetting.comment],
         ["作成日", @typesetting.created_at],
         ["元ファイル名", @typesetting.original_filename],
-        ["変換結果", link_to(@typesetting.result_filename, admin_typesetting_results_path(@typesetting), data: {turbo: false})],
+        ["変換結果", link_to(@typesetting.result_filename, admin_typesetting_results_path(@typesetting), data: {turbo: false}, target: '_blank')],
       ])) %>
 
   <div class="mt-2 flex gap-2">
