@@ -308,6 +308,9 @@ ja:
     nav:
       prev: '< 前へ'
       next: '次へ >'
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
   user_mailer:
     register_proofread:
       subject:

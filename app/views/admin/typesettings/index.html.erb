@@ -1,7 +1,8 @@
 <div class="w-full md:w-2/3">
   <snm-headline h="h1">組版</snm-headline>
   <snm-headline h="h2">組版結果一覧</snm-headline>
-  <%= render(Admin::TypesettingsTableComponent.new(typesettings: @typesettings)) %>
+  <%= render(Admin::TypesettingsTableComponent.new(pagy: @pagy, typesettings: @typesettings)) %>
+  <%== pagy_snm_nav(@pagy) %>
 </div>
 
 <div class="mt-5 flex">

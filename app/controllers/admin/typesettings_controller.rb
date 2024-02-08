@@ -2,9 +2,11 @@
 
 module Admin
   class TypesettingsController < Admin::ApplicationController
+    include Pagy::Backend
+
     # GET /admin/typesettings
     def index
-      @typesettings = Typesetting.order(:id).all
+      @pagy, @typesettings = pagy(Typesetting.order(id: :desc).all, items: 20)
     end
 
     # GET /admin/typesettings/1
