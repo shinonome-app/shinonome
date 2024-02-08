@@ -1,13 +1,13 @@
 <%= render(
-    Admin::SnmTableComponent.new(
+      Admin::SnmTableComponent.new(
         header: @header,
         body: @typesettings.map do |typesetting|
-        [
+          [
             typesetting.id,
             I18n.l(typesetting.created_at),
             link_to(typesetting.original_filename, admin_typesetting_path(typesetting)),
             typesetting.comment
-        ]
+          ]
         end
-    )
-) %>
+      )
+    ) %>
