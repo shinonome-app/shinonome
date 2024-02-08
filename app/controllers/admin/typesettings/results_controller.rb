@@ -7,7 +7,11 @@ module Admin
       def index
         @typesetting = Typesetting.find(params[:typesetting_id])
 
-        render file: @typesetting.file_path, layout: false, content_type: 'text/html;charset=Shift_JIS'
+        content = File.read(@typesetting.file_path, encoding: 'Shift_JIS:Shift_JIS')
+
+        content.gsub!('../../aozora.css', '/css/aozora.css')
+
+        render body: content, layout: false, content_type: 'text/html;charset=Shift_JIS'
       end
     end
   end
