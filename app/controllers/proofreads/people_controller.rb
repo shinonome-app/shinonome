@@ -6,12 +6,13 @@ module Proofreads
 
     # GET /proofreads/people?people=a
     def index
-      @kana = Kana.from_string(params[:people]).to_char
-      @authors = if @kana
-                   Person.where('sortkey like ?', "#{@kana}%").order(sortkey: :asc)
-                 else
-                   Person.where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]').order(sortkey: :asc)
-                 end
+      if params[:people].present?
+        @kana = Kana.from_string(params[:people]).to_char
+        @authors = Person.with_name_firstchar(@kana).order(sortkey: :asc)
+      else
+        @kana = '全て'
+        @authors = Person.joins(:works).where('works.work_status_id in (5, 6)').group('people.id').order(sortkey: :asc)
+      end
     end
 
     # GET /proofreads/people/1
