@@ -20,6 +20,7 @@ type Icon =
   | "mail"
   | "pen"
   | "command"
+  | "roller"
   | "admin"
   | "";
 
@@ -87,6 +88,9 @@ export class SnmLink extends LitElement {
         break;
       case "command":
         iconName = "before:content-commandIcon";
+        break;
+      case "roller":
+        iconName = "before:content-rollerIcon";
         break;
       case "admin":
         iconName = "before:content-adminIcon";

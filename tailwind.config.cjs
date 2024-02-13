@@ -49,6 +49,7 @@ module.exports = {
         mailIcon: svg2DataUri("mail.svg"),
         penIcon: svg2DataUri("pen.svg"),
         commandIcon: svg2DataUri("command.svg"),
+        rollerIcon: svg2DataUri("roller.svg"),
         adminIcon: svg2DataUri("admin.svg"),
       },
       fontFamily: {
