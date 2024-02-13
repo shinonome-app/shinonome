@@ -1,5 +1,4 @@
 // Components
-export { SnmMainContainer } from "./components/snm-main-container";
 export { SnmHeader } from "./components/snm-header";
 export { SnmLogo } from "./components/snm-logo";
 export { SnmNavi } from "./components/snm-navi";
