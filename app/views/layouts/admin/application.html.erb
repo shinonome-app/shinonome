@@ -17,10 +17,11 @@
     </style>
   </head>
   <body class="bg-ab_bg_gray">
-    <snm-header>
-      <snm-logo slot="logo" href="<%= admin_path %>" src="/images/top_logo.png" label="<%= Rails.configuration.x.site_name %> DB管理"></snm-logo>
-      <%= render(Admin::SnmNaviComponent.new(title: "管理", user: current_admin_user)) %>
-    </snm-header>
+    <%= render(Admin::SnmHeaderComponent.new(title: "管理", user: current_admin_user)) do |component| %>
+      <% component.with_logo do %>
+        <%= tag.snm_logo  href: admin_path, src: "/images/top_logo.png",  label: Rails.configuration.x.site_name + " DB管理" %>
+      <% end %>
+    <% end %>
 
     <div class="mt-24 max-w-7xl m-auto flex gap-5">
       <div class="w-[60%] sm:w-[40%] xl:w-[30%]">

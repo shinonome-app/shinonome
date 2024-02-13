@@ -1,0 +1,10 @@
+      <header class="bg-white shadow-sm fixed top-0 left-0 w-full z-50 transition ease-in duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center py-2 px-4 md:px-8">
+          <!-- ロゴ - start -->
+          <%= logo %>
+          <!-- ロゴ - end -->
+          <!-- ナビゲーション - start -->
+          <%= render(Admin::SnmNaviComponent.new(title:, user:)) %>
+          <!-- ナビゲーション - end -->
+        </div>
+      </header>
