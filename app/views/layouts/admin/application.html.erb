@@ -19,7 +19,7 @@
   <body class="bg-ab_bg_gray">
     <%= render(Admin::SnmHeaderComponent.new(title: "管理", user: current_admin_user)) do |component| %>
       <% component.with_logo do %>
-        <%= tag.snm_logo  href: admin_path, src: "/images/top_logo.png",  label: Rails.configuration.x.site_name + " DB管理" %>
+        <%= tag.snm_logo href: admin_path, src: "/images/top_logo.png", label: "#{Rails.configuration.x.site_name} DB管理" %>
       <% end %>
     <% end %>
 
