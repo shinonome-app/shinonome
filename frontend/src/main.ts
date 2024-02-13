@@ -1,19 +1,9 @@
 // Components
 export { SnmLogo } from "./components/snm-logo";
-export { SnmSidebar } from "./components/snm-sidebar";
-export { SnmButton } from "./components/snm-button";
 export { SnmLink } from "./components/snm-link";
-export { SnmCheckbox } from "./components/snm-checkbox";
-export { SnmInput } from "./components/snm-input";
-export { SnmSelect } from "./components/snm-select";
-export { SnmTextarea } from "./components/snm-textarea";
 export { SnmHeadline } from "./components/snm-headline";
-export { SnmHiraganaIndex } from "./components/snm-hiragana-index";
-export { SnmInputHiragana } from "./components/snm-input-hiragana";
-export { SnmInputFile } from "./components/snm-input-file";
 export { SnmTable } from "./components/snm-table";
 export { SnmTableVertical } from "./components/snm-table-vertical";
 export { SnmTable2column } from "./components/snm-table-2column";
 export { SnmStatus } from "./components/snm-status";
-export { SnmPagination } from "./components/snm-pagination";
 export { SnmMessageBar } from "./components/snm-message-bar";
