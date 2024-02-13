@@ -113,7 +113,7 @@ Rails.application.routes.draw do
 
     resources :exec_commands, only: %i[index new create]
 
-    resources :typesettings, only: %i[index show new create] do
+    resources :typesettings, only: %i[index show new create destroy] do
       resources :results, only: %i[index], controller: 'typesettings/results'
     end
 

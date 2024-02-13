@@ -47,6 +47,13 @@ module Admin
       end
     end
 
+    # DELETE /admin/typesettings/1
+    def destroy
+      @typesetting = Typesetting.find(params[:id])
+      @typesetting.destroy!
+      redirect_to admin_typesettings_path, success: '削除しました.'
+    end
+
     private
 
     # Only allow a list of trusted parameters through.

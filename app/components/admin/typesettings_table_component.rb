@@ -7,7 +7,7 @@ module Admin
 
     def initialize(typesettings:, pagy:)
       super
-      @header = %w[ID 作成日時 ファイル名 コメント]
+      @header = %w[ID 作成日時 ファイル名 コメント 削除]
       @typesettings = typesettings
       @pagy = pagy
     end

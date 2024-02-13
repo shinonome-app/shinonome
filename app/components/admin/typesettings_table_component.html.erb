@@ -6,7 +6,13 @@
             typesetting.id,
             I18n.l(typesetting.created_at),
             link_to(typesetting.original_filename, admin_typesetting_path(typesetting)),
-            typesetting.comment
+            typesetting.comment,
+            render(
+              Admin::DeleteButtonComponent.new(
+                url: admin_typesetting_path(typesetting),
+                options: { class: 'grid bg-ab_alert border-2 border-white hover:bg-ab_alert hover:border-2 hover:border-white hover:shadow-[0px_2px_18px_0px_#fed7e2] active:bg-ab_alert focus-visible:ring ring-gray-300 text-white text-sm font-semibold text-center rounded-lg outline-none transition duration-100 w-16 px-2 py-2 mb-2 cursor-pointer' }
+              )
+            )
           ]
         end
       )
