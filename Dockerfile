@@ -3,7 +3,7 @@ FROM ruby:3.3.0-slim
 RUN mkdir /app
 WORKDIR /app
 
-RUN apt-get update -qq && apt-get upgrade -y && apt-get install -yq --no-install-recommends curl git gnupg2 \
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl git gnupg2 \
   && apt-get clean \
   && rm -rf /var/cache/apt/archives/* \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
