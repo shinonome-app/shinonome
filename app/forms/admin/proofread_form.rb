@@ -99,7 +99,7 @@ module Admin
           name: worker_name,
           name_kana: worker_kana
         )
-        worker_secret = WorkerSecret.new(
+        worker_secret = Shinonome::WorkerSecret.new(
           email: email,
           url: url
         )
@@ -121,7 +121,7 @@ module Admin
 
     def set_email
       if worker_id.present? # rubocop:disable Style/GuardClause
-        worker_secret = WorkerSecret.find_by(worker_id: worker_id)
+        worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
         self.email = worker_secret.email
       end
     end

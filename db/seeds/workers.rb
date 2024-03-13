@@ -32,4 +32,4 @@ worker_secrets = items.map do |item|
   }
 end
 
-WorkerSecret.insert_all(worker_secrets)
+Shinonome::WorkerSecret.insert_all(worker_secrets)

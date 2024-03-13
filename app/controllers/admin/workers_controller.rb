@@ -18,7 +18,7 @@ module Admin
     # GET /admin/workers/new
     def new
       @worker = Worker.new
-      @worker.worker_secret = WorkerSecret.new
+      @worker.worker_secret = Shinonome::WorkerSecret.new
     end
 
     # GET /admin/workers/1/edit

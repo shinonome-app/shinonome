@@ -17,6 +17,6 @@
 module Shinonome
   # 作品ファイル非公開情報
   class WorkfileSecret < ApplicationRecord
-    belongs_to :workfile, foreign_key: true, null: false, inverse_of: :workfile_secret
+    belongs_to :workfile, foreign_key: true, inverse_of: :workfile_secret
   end
 end

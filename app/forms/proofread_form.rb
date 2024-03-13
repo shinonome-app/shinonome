@@ -107,7 +107,7 @@ class ProofreadForm
 
   def set_email
     if worker_id.present? # rubocop:disable Style/GuardClause
-      worker_secret = WorkerSecret.find_by(worker_id: worker_id)
+      worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
       self.email = worker_secret.email
     end
   end

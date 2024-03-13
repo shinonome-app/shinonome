@@ -20,7 +20,7 @@
 #
 
 FactoryBot.define do
-  factory :worker_secret do
+  factory :worker_secret, class: 'Shinonome::WorkerSecret' do
     worker
     email { "worker#{worker.id}@example.com" }
     url { "https://example.com/workers/#{worker.id}" }

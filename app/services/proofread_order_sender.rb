@@ -13,7 +13,7 @@ class ProofreadOrderSender
 
   def fill_email(admin_mail_secret)
     if admin_mail_secret.worker_id.present? # rubocop:disable Style/GuardClause
-      worker_secret = WorkerSecret.find_by(worker_id: admin_mail_secret.worker_id)
+      worker_secret = Shinonome::WorkerSecret.find_by(worker_id: admin_mail_secret.worker_id)
       admin_mail_secret.email = worker_secret.email
     end
   end
