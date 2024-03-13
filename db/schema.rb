@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_28_123807) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_114309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -304,6 +304,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_123807) do
     t.index ["work_id"], name: "index_work_people_on_work_id"
   end
 
+  create_table "work_secrets", force: :cascade do |t|
+    t.text "memo"
+    t.bigint "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id"], name: "index_work_secrets_on_work_id"
+  end
+
   create_table "work_sites", force: :cascade do |t|
     t.bigint "work_id", null: false
     t.bigint "site_id", null: false
@@ -358,6 +366,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_123807) do
     t.bigint "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "workfile_secrets", force: :cascade do |t|
+    t.text "memo"
+    t.bigint "workfile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workfile_id"], name: "index_workfile_secrets_on_workfile_id"
   end
 
   create_table "workfiles", force: :cascade do |t|

@@ -19,8 +19,8 @@
 #  index_worker_secrets_on_worker_id  (worker_id)
 #
 
-# 工作員非公開情報
 module Shinonome
+  # 工作員非公開情報
   class WorkerSecret < ApplicationRecord
     belongs_to :user, class_name: 'Shinonome::User', optional: true
     belongs_to :worker
