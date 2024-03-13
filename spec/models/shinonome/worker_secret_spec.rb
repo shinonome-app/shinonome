@@ -21,6 +21,6 @@
 
 require 'rails_helper'
 
-RSpec.describe WorkerSecret do
+RSpec.describe Shinonome::WorkerSecret do
   pending "add some examples to (or delete) #{__FILE__}"
 end

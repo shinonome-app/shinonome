@@ -38,7 +38,7 @@ class Worker < ApplicationRecord
   has_many :work_workers, dependent: :destroy
   has_many :works, through: :work_workers
 
-  has_one :worker_secret, dependent: :destroy
+  has_one :worker_secret, class_name: 'Shinonome::WorkerSecret', dependent: :destroy
 
   accepts_nested_attributes_for :work_workers
   accepts_nested_attributes_for :worker_secret

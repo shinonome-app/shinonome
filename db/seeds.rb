@@ -152,7 +152,7 @@ worker_dummy = Worker.create(id: 0,
                              name: '予備工作員',
                              name_kana: 'よびこうさくいん',
                              sortkey: 'よびこうさくいん')
-WorkerSecret.create(
+Shinonome::WorkerSecret.create(
   worker_id: worker_dummy.id,
   email: 'shinonome-worker0@example.com',
   note: '予備工作員用',

@@ -20,9 +20,11 @@
 #
 
 # 工作員非公開情報
-class WorkerSecret < ApplicationRecord
-  belongs_to :user, class_name: 'Shinonome::User', optional: true
-  belongs_to :worker
+module Shinonome
+  class WorkerSecret < ApplicationRecord
+    belongs_to :user, class_name: 'Shinonome::User', optional: true
+    belongs_to :worker
 
-  validates :email, presence: true
+    validates :email, presence: true
+  end
 end
