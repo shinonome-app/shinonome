@@ -16,6 +16,13 @@ class CreateFileSecrets < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
+    create_table :person_secrets do |t|
+      t.text :memo
+      t.references :person
+
+      t.timestamps
+    end
+
     create_table :original_book_secrets do |t|
       t.text :memo
       t.references :original_book

@@ -179,6 +179,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "person_secrets", force: :cascade do |t|
+    t.text "memo"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_person_secrets_on_person_id"
+  end
+
   create_table "person_sites", force: :cascade do |t|
     t.bigint "person_id", null: false
     t.bigint "site_id", null: false
