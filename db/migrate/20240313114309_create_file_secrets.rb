@@ -33,7 +33,7 @@ class CreateFileSecrets < ActiveRecord::Migration[7.1]
     create_table :site_secrets do |t|
       t.text :email
       t.text :owner_name
-      t.text :note
+      t.text :memo
       t.references :site
 
       t.timestamps

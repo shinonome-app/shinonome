@@ -147,7 +147,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.text "input_edition"
     t.text "proof_edition"
     t.bigint "booktype_id"
-    t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["booktype_id"], name: "index_original_books_on_booktype_id"
@@ -167,9 +166,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.text "email"
     t.text "url"
     t.text "description"
-    t.bigint "note_user_id"
     t.text "basename"
-    t.text "note"
     t.bigint "updated_by"
     t.text "sortkey"
     t.text "sortkey2"
@@ -273,7 +270,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   create_table "site_secrets", force: :cascade do |t|
     t.text "email"
     t.text "owner_name"
-    t.text "note"
+    t.text "memo"
     t.bigint "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -283,9 +280,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   create_table "sites", force: :cascade do |t|
     t.text "name", null: false
     t.text "url", null: false
-    t.text "owner_name"
-    t.text "email"
-    t.text "note"
     t.bigint "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -408,16 +402,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.bigint "filetype_id", null: false
     t.bigint "compresstype_id", null: false
     t.integer "filesize"
-    t.bigint "user_id"
     t.text "url"
     t.text "filename"
-    t.date "opened_on"
     t.integer "revision_count"
     t.bigint "file_encoding_id", null: false
     t.bigint "charset_id", null: false
     t.date "registrated_on"
     t.date "last_updated_on"
-    t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["charset_id"], name: "index_workfiles_on_charset_id"
@@ -444,7 +435,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.date "started_on", null: false
     t.boolean "copyright_flag", default: false, null: false
     t.text "note"
-    t.text "orig_text"
     t.bigint "user_id", null: false
     t.text "sortkey"
     t.datetime "created_at", null: false

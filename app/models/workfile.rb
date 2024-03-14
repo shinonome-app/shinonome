@@ -8,8 +8,6 @@
 #  filename         :text
 #  filesize         :integer
 #  last_updated_on  :date
-#  note             :text
-#  opened_on        :date
 #  registrated_on   :date
 #  revision_count   :integer
 #  url              :text
@@ -19,7 +17,6 @@
 #  compresstype_id  :bigint           not null
 #  file_encoding_id :bigint           not null
 #  filetype_id      :bigint           not null
-#  user_id          :bigint
 #  work_id          :bigint           not null
 #
 # Indexes

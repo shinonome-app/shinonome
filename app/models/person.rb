@@ -18,7 +18,6 @@
 #  last_name       :text             not null
 #  last_name_en    :text
 #  last_name_kana  :text             not null
-#  note            :text
 #  publish_count   :integer
 #  sortkey         :text
 #  sortkey2        :text
@@ -26,7 +25,6 @@
 #  url             :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  note_user_id    :bigint
 #
 
 require 'csv'

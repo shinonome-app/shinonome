@@ -6,7 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  email      :text
-#  note       :text
+#  memo       :text
 #  owner_name :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
