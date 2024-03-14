@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_114309) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,6 +129,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_114309) do
     t.boolean "flag", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "original_book_secrets", force: :cascade do |t|
+    t.text "memo"
+    t.bigint "original_book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["original_book_id"], name: "index_original_book_secrets_on_original_book_id"
   end
 
   create_table "original_books", force: :cascade do |t|
@@ -254,6 +262,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_114309) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "site_secrets", force: :cascade do |t|
+    t.text "email"
+    t.text "owner_name"
+    t.text "note"
+    t.bigint "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_site_secrets_on_site_id"
+  end
+
   create_table "sites", force: :cascade do |t|
     t.text "name", null: false
     t.text "url", null: false
@@ -286,6 +304,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_114309) do
     t.string "username", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "old_password"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
