@@ -30,16 +30,19 @@
                                                      value_method: :id,
                                                      text_method: :name,
                                                      errors:)) %>
-  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
+  <%= form.fields_for :workfile_secret do |secret_form| %>
+    <%= render(Admin::SnmTextAreaComponent.new(form: secret_form, name: :memo, errors:, error_key: :'workfile_secret.memo')) %>
+  <% end %>
   <div class="mb-2">
     <%= form.label :workdata, class: "inline-block text-sm" %>
     <% if @workfile.workdata.attached? %>
     <p><%= link_to @workfile.filename, rails_blob_url(@workfile.workdata) %></p>
+    <% else %>
+    <p><%= @workfile.filename %></p>
     <% end %>
     <%= form.file_field :workdata, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 px-2 py-2" %>
   </div>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, errors:)) %>
-  <%= render(Admin::SnmDateFieldComponent.new(form:, name: :opened_on, errors:)) %>
   <div class="mt-2 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>
   </div>

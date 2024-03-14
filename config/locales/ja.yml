@@ -250,7 +250,6 @@ ja:
         filesize: "ファイルサイズ"
         url: "URL"
         filename: "ファイル名"
-        opened_on: "状態の開始日"
         revision_count: "修正回数"
         file_encoding_id: "ファイルエンコーディング"
         file_encoding: "ファイルエンコーディング"
@@ -260,6 +259,8 @@ ja:
         registrated_on: "初登録日"
         last_updated_on: "最終更新日"
         workdata: "作品ファイル"
+      workfile_secret:
+        memo: "備考(非公開)"
   errors:
     base_person:
       unique: 'がすでに他の基本人物に関連付けられています'

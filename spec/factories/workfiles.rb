@@ -46,7 +46,6 @@ FactoryBot.define do
     user
     filesize { 1000 }
     filename { nil }
-    opened_on { '2021-04-29' }
     revision_count { 1 }
     note { "備考のテスト#{n}" }
 

@@ -16,7 +16,6 @@ module Admin
     # POST /admin/workfiles
     def create
       @workfile = Workfile.new(workfile_params)
-      @workfile.user = current_admin_user
       @workfile.filename = @workfile.workdata.filename
 
       if @workfile.valid?
@@ -35,12 +34,13 @@ module Admin
     # PATCH/PUT /admin/work/workfiles/1
     def update
       if @workfile.update(workfile_params)
-        @workfile.user = current_admin_user
-        @workfile.filename = @workfile.workdata.filename
-        if File.extname(@workfile.filename) == '.txt'
-          WorkfileConverter.new.convert_format(@workfile)
-        else
-          @workfile.save!
+        if @workfile.workdata.filename.present?
+          @workfile.filename = @workfile.workdata.filename
+          if File.extname(@workfile.filename) == '.txt'
+            WorkfileConverter.new.convert_format(@workfile)
+          else
+            @workfile.save!
+          end
         end
         redirect_to [:admin, @workfile.work], success: '更新しました.'
       else
@@ -65,8 +65,8 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def workfile_params
-      params.require(:workfile).permit(:work_id, :filetype_id, :compresstype_id, :filesize, :user_id, :url, :filename,
-                                       :registrated_on, :last_updated_on, :opened_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata)
+      params.require(:workfile).permit(:work_id, :filetype_id, :compresstype_id, :filesize, :url, :filename,
+                                       :registrated_on, :last_updated_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata)
     end
   end
 end

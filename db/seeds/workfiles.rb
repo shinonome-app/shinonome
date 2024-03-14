@@ -154,7 +154,6 @@ workfiles = work_id_status_list.map do |n, status|
       filetype_id: 1, # テキストファイル(ルビあり) rtxt
       user_id: user_id_list.sample,
       revision_count: 1,
-      opened_on: Time.current,
       registrated_on: Time.current,
       last_updated_on: Time.current,
       note: "備考#{n}",
