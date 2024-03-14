@@ -15,8 +15,8 @@
 
   <snm-headline h="h3">本文</snm-headline>
 
-  <div>
-    <%= @news_entry.body %>
+  <div class="news-body">
+    <%== nl2br(@news_entry.body) %>
   </div>
 
   <snm-headline h="h3">トピックに指定する</snm-headline>
