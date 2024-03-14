@@ -19,6 +19,8 @@ class Site < ApplicationRecord
   has_many :work_sites, dependent: :destroy
   has_many :works, through: :work_sites
 
+  has_one :site_secret, class_name: 'Shinonome::SiteSecret', dependent: :destroy
+
   validates :name, :url, presence: true
 
   def self.csv_header

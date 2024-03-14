@@ -31,6 +31,8 @@ class OriginalBook < ApplicationRecord
   belongs_to :work
   belongs_to :booktype
 
+  has_one :original_book_secret, class_name: 'Shinonome::OriginalBookSecret', dependent: :destroy
+
   validates :booktype_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
   validates :title, presence: true
 

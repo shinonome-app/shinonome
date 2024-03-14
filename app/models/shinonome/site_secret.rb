@@ -19,7 +19,7 @@
 module Shinonome
   # サイト非公開情報
   class SiteSecret < ApplicationRecord
-    belongs_to :worker
+    belongs_to :site
 
     validates :email, presence: true
   end

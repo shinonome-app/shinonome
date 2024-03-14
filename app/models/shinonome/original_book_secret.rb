@@ -17,6 +17,6 @@
 module Shinonome
   # 底本非公開情報
   class OriginalBookSecret < ApplicationRecord
-    belongs_to :original_book, inverse_of: :original_book
+    belongs_to :original_book
   end
 end

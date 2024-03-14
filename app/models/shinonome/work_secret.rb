@@ -17,6 +17,6 @@
 module Shinonome
   # 作品非公開情報
   class WorkSecret < ApplicationRecord
-    belongs_to :work, foreign_key: true, inverse_of: :work_secret
+    belongs_to :work
   end
 end

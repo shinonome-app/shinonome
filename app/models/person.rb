@@ -52,6 +52,8 @@ class Person < ApplicationRecord
   has_many :person_sites, dependent: :destroy
   has_many :sites, through: :person_sites
 
+  has_one :person_secret, class_name: 'Shinonome::PersonSecret', dependent: :destroy
+
   validates :last_name, :last_name_kana, presence: true
   validates :copyright_flag, inclusion: { in: [true, false] }
   validates :input_count, :publish_count, numericality: { only_integer: true }, allow_nil: true

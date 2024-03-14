@@ -45,8 +45,9 @@ class Workfile < ApplicationRecord
   belongs_to :file_encoding
   belongs_to :charset
 
-  has_one :workfile_secret, class_name: 'Shinonome::WorkfileSecret', dependent: :destroy
   has_one_attached :workdata if defined?(ActiveStorage)
+
+  has_one :workfile_secret, class_name: 'Shinonome::WorkfileSecret', dependent: :destroy
 
   after_save :set_filename
 
