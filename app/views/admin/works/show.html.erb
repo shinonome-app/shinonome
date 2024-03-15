@@ -5,24 +5,24 @@
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
         ["作品ID", @work.id],
-        ["作品名", @work.title],
         ["作品名読み", @work.title_kana],
-        ["副題", @work.subtitle],
+        ["ソート読み", @work.sortkey],
+        ["作品名", @work.title],
         ["副題読み", @work.subtitle_kana],
-        ["作品集名", @work.collection],
+        ["副題", @work.subtitle],
         ["作品集名読み", @work.collection_kana],
+        ["作品集名", @work.collection],
         ["原題", @work.original_title],
         ["仮名遣い種別", @work.kana_type.name],
         ["初出", @work.first_appearance],
-        ["作品について", @work.description],
+        ["作品について", nl2br(@work.description), { no_escape: true } ],
+        ["備考", @work.note, { no_escape: true } ],
+        ["底本管理情報(非公開)", @work.work_secret&.memo, { no_escape: true } ],
         ["状態", @work.work_status.name],
         ["状態の開始日", @work.started_on],
-        ["著作権フラグ", @work.copyright_flag],
-        ["備考", @work.note],
-        ["底本管理情報", @work.orig_text],
+        ["著作権フラグ", (@work.copyright_flag_name)],
         ["最終更新日", @work.updated_at],
         ["更新者", @work.user&.username],
-        ["ソート読み", @work.sortkey]
       ])) %>
 
   <div class="mt-2 flex gap-2">
@@ -35,7 +35,7 @@
 <div class="mt-6">
   <snm-headline h="h2">著者データ</snm-headline>
 
-  <% @work.work_people.each do |work_person| %>
+  <% @work.work_people.order(%i[role_id person_id]).each do |work_person| %>
   <% person = work_person.person %>
 
   <snm-headline h="h3"><%= work_person.role.name %>データ</snm-headline>
