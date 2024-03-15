@@ -4,22 +4,20 @@
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
         ["人物ID", @person.id],
-        ["姓読み", @person.last_name_kana],
-        ["姓読みソート用", @person.sortkey],
-        ["姓", @person.last_name],
-        ["姓ローマ字", @person.last_name_en],
-        ["名読み", @person.first_name_kana],
-        ["名読みソート用", @person.sortkey2],
-        ["名", @person.first_name],
-        ["名ローマ字", @person.first_name_en],
+        ["読み", "#{@person.last_name_kana} #{@person.first_name_kana}"],
+        ["ソート用読み", "#{@person.sortkey} #{@person.sortkey2}"],
+        ["人物名", "#{@person.last_name} #{@person.first_name}"],
+        ["ローマ字", "#{@person.last_name_en} #{@person.first_name_en}"],
         ["生年月日", @person.born_on],
         ["没年月日", @person.died_on],
-        ["著作権フラグ", @person.copyright_flag],
+        ["著作権フラグ", @person.copyright_flag_name],
         ["email", @person.email],
         ["URL", link_to(@person.url, @person.url)],
-        ["人物について", @person.description],
+        ["人物について", nl2br(@person.description), { no_escape: true }],
         ["別名義", @person.original_person ? link_to(@person.original_person.name, admin_person_path(@person.original_person), class: "link-normal") : ""],
-        ["備考", @person.note]
+        ["備考(非公開)", @person.person_secret&.memo],
+        ["最終更新日", @person.updated_at],
+        ["更新者", @person.updated_user&.username],
       ])) %>
 
   <div class="mt-2 flex gap-2">

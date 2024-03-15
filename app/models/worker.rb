@@ -41,7 +41,7 @@ class Worker < ApplicationRecord
   has_one :worker_secret, class_name: 'Shinonome::WorkerSecret', dependent: :destroy
 
   accepts_nested_attributes_for :work_workers
-  accepts_nested_attributes_for :worker_secret
+  accepts_nested_attributes_for :worker_secret, update_only: true
 
   scope :with_name_kana_search, lambda { |name_kana, selector|
     case selector.to_i

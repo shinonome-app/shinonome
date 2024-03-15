@@ -11,7 +11,9 @@
                                                      value_method: :id,
                                                      text_method: :name,
                                                      errors:)) %>
-  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
+  <%= form.fields_for :original_book_secret do |secret_form| %>
+    <%= render(Admin::SnmTextAreaComponent.new(form: secret_form, name: :memo, errors:, error_key: :'original_book_secret.memo')) %>
+  <% end %>
   <div class="mt-2 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "更新する")) %>
   </div>

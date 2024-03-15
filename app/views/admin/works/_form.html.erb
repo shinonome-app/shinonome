@@ -17,7 +17,10 @@
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_appearance, errors:)) %>
   <%= render(Admin::SnmTextAreaComponent.new(form:, name: :description, errors:)) %>
   <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
-  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :orig_text, errors:)) %>
+  <%= form.fields_for :work_secret do |secret_form| %>
+    <%= render(Admin::SnmTextAreaComponent.new(form: secret_form, name: :orig_text, errors:)) %>
+    <%= render(Admin::SnmTextAreaComponent.new(form: secret_form, name: :memo, errors:)) %>
+  <% end %>
   <%= render(Admin::SnmCollectionSelectComponent.new(form:,
                                                      name: :work_status_id,
                                                      collection: WorkStatus.order(:sort_order).all,

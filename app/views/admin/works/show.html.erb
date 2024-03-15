@@ -48,11 +48,11 @@
         ["ローマ字", person.name_en],
         ["生年月日", person.born_on],
         ["没年月日", person.died_on],
-        ["著作権フラグ", person.copyright_flag],
+        ["著作権フラグ", person.copyright_flag_name],
         ["email", person.email],
         ["URL", person.url],
-        ["人物について", person.description],
-        ["備考", person.note]
+        ["人物について", nl2br(person.description), { no_escape: true } ],
+        ["備考(非公開)", person.person_secret&.memo]
       ])) %>
 
   <div class="py-2">
@@ -83,7 +83,7 @@
         ["#{work_worker.worker_role.name}名", worker.name],
         ["e-mail", worker.worker_secret&.email],
         ["URL", worker.worker_secret&.url],
-        ["備考", worker.worker_secret&.note]
+        ["備考(非公開)", worker.worker_secret&.note, { no_escape: true } ]
       ])) %>
 
   <div class="py-2">
@@ -113,7 +113,7 @@
         ["初版発行日", original_book.first_pubdate],
         ["入力に使用した版", original_book.input_edition],
         ["校正に使用した版", original_book.proof_edition],
-        ["備考", original_book.note]
+        ["備考(非公開)", original_book.original_book_secret&.memo]
       ])) %>
 
   <div class="mt-2 flex gap-2">
@@ -167,7 +167,7 @@
         ["修正回数", workfile.revision_count],
         ["ファイルエンコーディング", workfile.file_encoding.name],
         ["文字集合", workfile.charset.name],
-        ["備考", workfile.note]
+        ["備考(非公開)", nl2br(workfile.workfile_secret&.memo), { no_escape: true } ]
       ])) %>
 
   <div class="mt-2 flex gap-2">

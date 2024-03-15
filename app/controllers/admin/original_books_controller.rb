@@ -8,6 +8,8 @@ module Admin
     # GET /admin/original_books/new
     def new
       @original_book = OriginalBook.new
+      @original_book.work = @work
+      @original_book.build_original_book_secret
     end
 
     # GET /admin/original_books/1/edit
@@ -46,6 +48,9 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_original_book
       @original_book = OriginalBook.find(params[:id])
+      if @original_book.original_book_secret.blank?
+        @original_book.build_original_book_secret
+      end
     end
 
     def set_work
@@ -55,7 +60,8 @@ module Admin
     # Only allow a list of trusted parameters through.
     def original_book_params
       params.require(:original_book).permit(:work_id, :title, :publisher, :first_pubdate, :input_edition,
-                                            :proof_edition, :booktype_id, :note)
+                                            :proof_edition, :booktype_id,
+                                            { original_book_secret_attributes: [:id, :memo] })
     end
   end
 end

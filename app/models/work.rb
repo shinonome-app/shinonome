@@ -57,6 +57,8 @@ class Work < ApplicationRecord
 
   has_one :work_secret, class_name: 'Shinonome::WorkSecret', dependent: :destroy
 
+  accepts_nested_attributes_for :work_secret, update_only: true
+
   belongs_to :user, class_name: 'Shinonome::User'
   belongs_to :kana_type
   belongs_to :work_status
@@ -142,6 +144,10 @@ class Work < ApplicationRecord
 
   def noncopyright?
     people.all? { |person| !person.copyright? }
+  end
+
+  def copyright_flag_name
+    copyright_flag ? 'あり' : 'なし'
   end
 
   def proofread_waiting_inspected?

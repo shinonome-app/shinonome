@@ -9,7 +9,7 @@
         ["姓名", @worker.name],
         ["email", @worker.worker_secret&.email],
         ["URL", link_to(@worker.worker_secret&.url, @worker.worker_secret&.url)],
-        ["備考", @worker.worker_secret&.note],
+        ["備考(非公開)", @worker.worker_secret&.note],
         ["最終更新日時", @worker.updated_at],
         ["更新者", @worker.worker_secret&.user&.username]
       ])) %>

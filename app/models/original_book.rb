@@ -33,6 +33,8 @@ class OriginalBook < ApplicationRecord
 
   has_one :original_book_secret, class_name: 'Shinonome::OriginalBookSecret', dependent: :destroy
 
+  accepts_nested_attributes_for :original_book_secret, update_only: true
+
   validates :booktype_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
   validates :title, presence: true
 

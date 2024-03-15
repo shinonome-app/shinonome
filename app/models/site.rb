@@ -16,10 +16,14 @@ require 'csv'
 
 # 関連サイト
 class Site < ApplicationRecord
+  belongs_to :updated_user, class_name: 'Shinonome::User', optional: true, foreign_key: 'updated_by'
+
   has_many :work_sites, dependent: :destroy
   has_many :works, through: :work_sites
 
   has_one :site_secret, class_name: 'Shinonome::SiteSecret', dependent: :destroy
+
+  accepts_nested_attributes_for :site_secret, update_only: true
 
   validates :name, :url, presence: true
 

@@ -8,6 +8,7 @@ module Admin
     def new
       @workfile = Workfile.new
       @workfile.work_id = params[:work_id]
+      @workfile.build_workfile_secret
     end
 
     # GET /admin/workfiles/1/edit
@@ -61,12 +62,16 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_workfile
       @workfile = Workfile.find(params[:id])
+      if @workfile.workfile_secret.blank?
+        @workfile.build_workfile_secret
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def workfile_params
       params.require(:workfile).permit(:work_id, :filetype_id, :compresstype_id, :filesize, :url, :filename,
-                                       :registrated_on, :last_updated_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata)
+                                       :registrated_on, :last_updated_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata,
+                                       { workfile_secret_attributes: %i[id memo] })
     end
   end
 end

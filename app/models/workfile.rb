@@ -49,7 +49,7 @@ class Workfile < ApplicationRecord
 
   has_one :workfile_secret, class_name: 'Shinonome::WorkfileSecret', dependent: :destroy
 
-  accepts_nested_attributes_for :workfile_secret
+  accepts_nested_attributes_for :workfile_secret, update_only: true
 
   after_save :set_filename
 

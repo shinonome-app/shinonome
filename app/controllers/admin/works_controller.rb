@@ -18,6 +18,7 @@ module Admin
     # GET /works/new
     def new
       @work = Work.new
+      @work.build_work_secret
     end
 
     # GET /works/1/edit
@@ -49,8 +50,11 @@ module Admin
 
     # DELETE /works/1
     def destroy
-      @work.destroy
-      redirect_to admin_works_url, success: '削除しました.'
+      if @work.destroy
+        redirect_to admin_works_url, success: '削除しました.'
+      else
+        redirect_to admin_works_url, success: '削除できませんでした.'
+      end
     end
 
     private
@@ -58,14 +62,18 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_work
       @work = Work.find(params[:id])
+      if @work.work_secret.blank?
+        @work.build_work_secret
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def work_params
       params.require(:work).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
                                    :original_title, :kana_type_id, :author_display_name, :first_appearance, :description,
-                                   :description_person_id, :work_status_id, :started_on, :copyright_flag, :note, :orig_text,
-                                   :updated_at, :user_id, :sortkey)
+                                   :description_person_id, :work_status_id, :started_on, :copyright_flag, :note,
+                                   :updated_at, :user_id, :sortkey,
+                                   { work_secret_attributes: %i[id memo orig_text] } )
     end
   end
 end

@@ -6,6 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  memo       :text
+#  orig_text  :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  work_id    :bigint

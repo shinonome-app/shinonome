@@ -18,14 +18,17 @@ module Admin
     # GET /admin/people/new
     def new
       @person = Person.new
+      @person.build_person_secret
     end
 
     # GET /admin/people/1/edit
-    def edit; end
+    def edit
+    end
 
     # POST /admin/people
     def create
       @person = Person.new(person_params)
+      @person.updated_user = current_admin_user
 
       if @person.save
         redirect_to [:admin, @person], success: '追加しました.'
@@ -37,7 +40,8 @@ module Admin
 
     # PATCH/PUT /admin/people/1
     def update
-      if @person.update(person_params)
+      update_params = person_params.merge(updated_by: current_admin_user.id)
+      if @person.update(update_params)
         redirect_to [:admin, @person], success: '更新しました.'
       else
         flash.now[:alert] = '入力エラーがあります'
@@ -47,8 +51,11 @@ module Admin
 
     # DELETE /admin/people/1
     def destroy
-      @person.destroy
-      redirect_to admin_people_url, success: '削除しました.'
+      if @person.destroy
+        redirect_to admin_people_url, success: '削除しました.'
+      else
+        redirect_to admin_sites_url, alert: '削除できませんでした.'
+      end
     end
 
     private
@@ -56,14 +63,18 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
+      if @person.person_secret.blank?
+        @person.build_person_secret
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def person_params
       params.require(:person).permit(:last_name, :last_name_kana, :last_name_en, :first_name, :first_name_kana,
                                      :first_name_en, :born_on, :died_on, :copyright_flag, :email, :url,
-                                     :description, :note_user_id, :basename, :note, :updated_by,
-                                     :sortkey, :sortkey2, :input_count, :publish_count)
+                                     :description, :basename,
+                                     :sortkey, :sortkey2, :input_count, :publish_count,
+                                     { person_secret_attributes: %i[id memo] })
     end
   end
 end

@@ -18,12 +18,11 @@ module Admin
     # GET /admin/workers/new
     def new
       @worker = Worker.new
-      @worker.worker_secret = Shinonome::WorkerSecret.new
+      @worker.build_worker_secret
     end
 
     # GET /admin/workers/1/edit
     def edit
-      @worker = Worker.find(params[:id])
     end
 
     # POST /admin/workers
@@ -51,19 +50,26 @@ module Admin
 
     # DELETE /admin/workers/1
     def destroy
-      @worker.destroy
-      redirect_to admin_workers_url, success: '削除しました.'
+      if @worker.destroy
+        redirect_to admin_workers_url, success: '削除しました.'
+      else
+        redirect_to admin_workers_url, success: '削除できませんでした.'
+      end
     end
 
     private
 
     def set_worker
       @worker = Worker.find(params[:id])
+      if @worker.worker_secret.blank?
+        @worker.build_worker_secret
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def worker_params
-      params.require(:worker).permit(:name, :name_kana, :sortkey, { worker_secret_attributes: %i[url email note id], work_workers_attributes: %i[work_id worker_role_id] })
+      params.require(:worker).permit(:name, :name_kana, :sortkey,
+                                     { worker_secret_attributes: %i[url email note id], work_workers_attributes: %i[work_id worker_role_id] })
     end
   end
 end

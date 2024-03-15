@@ -4,12 +4,12 @@
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
         ["関連サイト名", @site.name],
-        ["関連サイト運営者", @site.owner_name],
-        ["email", @site.email],
+        ["関連サイト運営者", @site.site_secret&.owner_name],
+        ["email", @site.site_secret&.email],
         ["URL", link_to(@site.url, @site.url)],
-        ["備考", @site.note],
+        ["備考(非公開)", @site.site_secret&.memo],
         ["最終更新日", @site.updated_at],
-        ["更新者", @site.updated_by]
+        ["更新者", @site.updated_user.username]
       ])) %>
 
   <div class="mt-2 flex gap-2">
