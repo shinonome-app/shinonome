@@ -5,11 +5,13 @@
     <th class="pl-5 w-[20%] whitespace-nowrap">
       <%= cols[0] %>
     </th>
-    <% cols[1..].each do |col| %>
-    <td class="py-0 px-5">
-      <%= col %>
+    <td class="py-0 px-5 break-all">
+      <% if cols[2] && cols[2][:no_escape] %>
+      <%== cols[1] %>
+      <% else %>
+      <%= cols[1] %>
+      <% end %>
     </td>
-    <% end %>
   </tr>
   <% end %>
   </tbody>
