@@ -15,9 +15,9 @@
                                                      text_method: :name,
                                                      errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_appearance, errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :description, errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :note, errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :orig_text, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :description, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :note, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :orig_text, errors:)) %>
   <%= render(Admin::SnmCollectionSelectComponent.new(form:,
                                                      name: :work_status_id,
                                                      collection: WorkStatus.order(:sort_order).all,
