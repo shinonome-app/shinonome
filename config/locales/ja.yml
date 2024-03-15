@@ -199,12 +199,13 @@ ja:
         id: "関連サイトID"
         name: "関連サイト名"
         url: "関連サイトURL"
-        owner_name: "関連サイト運営者名"
-        email: "email"
-        note: "備考"
         created_at: "作成日時"
         updated_at: "更新日時"
         updated_by: "更新者"
+      shinonome/site_secret:
+        owner_name: "関連サイト運営者名"
+        email: "email"
+        memo: "備考(非公開)"
       work:
         id: "作品ID"
         title: "作品名"
@@ -223,9 +224,11 @@ ja:
         started_on: "状態の開始日"
         copyright_flag: "著作権フラグ"
         note: "備考"
-        orig_text: "底本管理情報"
         user_id: "更新者"
         sortkey: "ソート用読み"
+      shinonome/work_secret:
+        orig_text: "底本管理情報(非公開)"
+        memo: "備考(非公開)"
       work_person:
         work_id: "作品ID"
         person_id: "人物ID"
@@ -243,6 +246,10 @@ ja:
         name_kana: "姓名読み"
         sortkey: "ソート用読み"
       shinonome/worker_secret:
+        email: "email"
+        url: "URL"
+        note: "備考(非公開)"
+      worker_secret:
         email: "email"
         url: "URL"
         note: "備考(非公開)"
