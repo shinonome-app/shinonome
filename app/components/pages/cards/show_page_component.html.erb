@@ -115,7 +115,7 @@
       <tr>
         <th class="text-left text-red-800 align-top">作品について：</th>
         <td>
-          <%= work.description %>
+          <%== work.description %>
           <!-- TODO: データを分割
                <div class="flex flex-row">
                  <a href="http://ja.wikipedia.org/" target="_blank">
@@ -134,7 +134,7 @@
       <tr>
         <th class="text-left text-red-800 align-top">備考：</th>
         <td>
-          <%= work.note %>
+          <%== work.note %>
           <%= render(Pages::Cards::LinkComponent.new(work: work)) %>
         </td>
       </tr>
@@ -164,7 +164,7 @@
       <tr>
         <th class="text-left text-red-800 w-1/6 align-top">人物について：</th>
         <td>
-          <%= person.description %>
+          <%== person.description %>
           <!-- TODO: データを分割
                <div class="flex flex-row">
                  <a href="http://ja.wikipedia.org/" target="_blank">
