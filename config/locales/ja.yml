@@ -91,6 +91,7 @@ ja:
       worker: 工作員
       work_worker: 工作員関連づけ
       workfile: 作品ファイル
+      workfile_secret: 作品ファイル(非公開情報)
     attributes:
       admin_mail_secret:
         subject: 件名
@@ -122,7 +123,8 @@ ja:
         proof_edition: "校正に使用した版"
         booktype_id: "種別フラグ"
         booktype: "種別フラグ"
-        note: "備考"
+      shinonome/original_book_secret:
+        memo: "備考(非公開)"
       person:
         id: "人物ID"
         site_id: "関連サイトID"
@@ -141,6 +143,8 @@ ja:
         url: "URL"
         description: "人物について"
         note: "備考"
+      shinonome/person_secret:
+        memo: "備考(非公開)"
       person_site:
         id: "ID"
         person_id: "人物ID"
@@ -238,7 +242,7 @@ ja:
         name: "姓名"
         name_kana: "姓名読み"
         sortkey: "ソート用読み"
-      worker_secret:
+      shinonome/worker_secret:
         email: "email"
         url: "URL"
         note: "備考(非公開)"
@@ -259,7 +263,7 @@ ja:
         registrated_on: "初登録日"
         last_updated_on: "最終更新日"
         workdata: "作品ファイル"
-      workfile_secret:
+      shinonome/workfile_secret:
         memo: "備考(非公開)"
   errors:
     base_person:
