@@ -8,7 +8,7 @@ module Admin
       @form = form
       @name = name
       @label = label || form.object.class.human_attribute_name(name)
-      @rows = rows || 5
+      @rows = rows || 10
       @errors = errors || {}
       @error_key = error_key || name
     end
