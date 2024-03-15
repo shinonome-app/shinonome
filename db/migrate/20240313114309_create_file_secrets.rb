@@ -10,6 +10,7 @@ class CreateFileSecrets < ActiveRecord::Migration[7.1]
     end
 
     create_table :work_secrets do |t|
+      t.text :orig_text
       t.text :memo
       t.references :work
 

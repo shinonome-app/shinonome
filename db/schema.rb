@@ -326,6 +326,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   end
 
   create_table "work_secrets", force: :cascade do |t|
+    t.text "orig_text"
     t.text "memo"
     t.bigint "work_id"
     t.datetime "created_at", null: false
