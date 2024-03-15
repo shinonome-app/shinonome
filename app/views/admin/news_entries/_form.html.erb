@@ -3,7 +3,7 @@
   <% errors = news_entry.errors %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :published_on, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :title, errors:)) %>
-  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :body, errors:)) %>
+  <%= render(Admin::SnmTextAreaComponent.new(form:, name: :body, rows: 20, errors:)) %>
   <%= render(Admin::SnmSelectComponent.new(form:, name: :flag, choices: [["指定する", true], ["指定しない", false]], label: "トピックに指定する", errors:)) %>
 
   <p class="mt-8 text-sm">
