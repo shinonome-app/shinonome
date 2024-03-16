@@ -17,5 +17,6 @@
 FactoryBot.define do
   factory :person_secret, class: 'Shinonome::PersonSecret' do
     memo { Faker::Lorem.sentence(word_count: 5, random_words_to_add: 15) }
+    person
   end
 end

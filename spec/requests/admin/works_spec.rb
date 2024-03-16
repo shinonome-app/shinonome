@@ -26,7 +26,10 @@ RSpec.describe '/admin/works' do
       work_status_id: work_status.id,
       note: '備考1',
       user_id: user.id,
-      kana_type_id: kana_type.id
+      kana_type_id: kana_type.id,
+      work_secret_attributes: {
+        memo: '非公開メモ'
+      }
     }
   end
 

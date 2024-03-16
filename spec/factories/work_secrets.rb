@@ -19,5 +19,6 @@ FactoryBot.define do
   factory :work_secret, class: 'Shinonome::WorkSecret' do
     memo { '備考work' }
     orig_text { '底本管理情報work' }
+    work
   end
 end

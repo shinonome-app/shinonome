@@ -18,7 +18,7 @@ describe ProofreadsController do
     let(:work2) { create(:work, :teihon, work_status_id: 5, title: '作品その2') }
     let(:worker) do
       create(:worker, name: '青空太郎', name_kana: 'あおぞらたろう', sortkey: 'あおぞらたろう') do |worker|
-        create(:worker_secret, worker:, email: 'taro@example.com', url: 'https://example.com/taro')
+        worker.worker_secret.update!(email: 'taro@example.com', url: 'https://example.com/taro')
       end
     end
 

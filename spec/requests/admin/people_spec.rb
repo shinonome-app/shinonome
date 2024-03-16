@@ -23,7 +23,8 @@ RSpec.describe '/people' do
       last_name_kana: 'てすと',
       first_name: '東雲',
       first_name_kana: 'しののめ',
-      copyright_flag: false
+      copyright_flag: false,
+      person_secret_attributes: { memo: '非公開コメント' }
     }
   end
 

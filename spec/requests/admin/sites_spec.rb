@@ -19,6 +19,7 @@ RSpec.describe '/admin/sites' do
     {
       name: '関連サイト',
       url: 'https://shinonome.example.com/sites/1',
+      updated_by: user.id,
       site_secret_attributes: {
         owner_name: '運営者',
         email: 'shinonome-site@example.com',
@@ -62,8 +63,9 @@ RSpec.describe '/admin/sites' do
   end
 
   describe 'GET /edit' do
+    let(:site) { create(:site, updated_by: user.id) }
+
     it 'render a successful response' do
-      site = Site.create! valid_attributes
       get edit_admin_site_url(site)
       expect(response).to be_successful
     end

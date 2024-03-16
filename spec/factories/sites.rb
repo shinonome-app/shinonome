@@ -20,6 +20,6 @@ FactoryBot.define do
 
     name { "関連サイト#{n}" }
     url { "https://shinonome.example.com/sites/#{n}" }
-    updated_by { 1 }
+    updated_user { association :user }
   end
 end

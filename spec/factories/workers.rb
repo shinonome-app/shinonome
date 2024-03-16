@@ -22,5 +22,9 @@ FactoryBot.define do
     name { name_full.kanji }
     name_kana { name_full.hiragana }
     sortkey { name_full.hiragana }
+
+    after(:build) do |worker|
+      create(:worker_secret, worker:)
+    end
   end
 end
