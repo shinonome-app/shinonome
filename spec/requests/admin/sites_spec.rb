@@ -22,7 +22,7 @@ RSpec.describe '/admin/sites' do
       site_secret_attributes: {
         owner_name: '運営者',
         email: 'shinonome-site@example.com',
-        memo: '備考',
+        memo: '備考'
       }
     }
   end

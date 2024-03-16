@@ -44,8 +44,7 @@ module Shinonome
                                       file_encoding_id: file_encoding.id,
                                       charset_id: charset.id,
                                       filename: filename,
-                                      workfile_secret_attributes: { memo: note }
-                                     )
+                                      workfile_secret_attributes: { memo: note })
 
           if url.blank?
             new_filename = workfile.generate_filename

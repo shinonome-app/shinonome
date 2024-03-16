@@ -44,7 +44,7 @@ class Person < ApplicationRecord
     ['わ', nil, 'を', nil, 'ん']
   ].freeze
 
-  belongs_to :updated_user, class_name: 'Shinonome::User', optional: true, foreign_key: 'updated_by'
+  belongs_to :updated_user, class_name: 'Shinonome::User', optional: true, foreign_key: 'updated_by', inverse_of: false
 
   has_many :work_people, dependent: :destroy
   has_many :works, through: :work_people

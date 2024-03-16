@@ -25,7 +25,7 @@ RSpec.describe '/original_books' do
       input_edition: '1998（平成10）年2月3日第1刷',
       booktype_id: booktype.id,
       work_id: work.id,
-      original_book_secret_attributes: { memo: '備考' },
+      original_book_secret_attributes: { memo: '備考' }
     }
   end
 

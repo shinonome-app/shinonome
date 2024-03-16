@@ -3,7 +3,7 @@
 module Admin
   # text_area用コンポーネント
   class SnmTextAreaComponent < ViewComponent::Base
-    def initialize(form:, name:, label: nil, rows: nil, errors: nil, error_key: nil)
+    def initialize(form:, name:, label: nil, rows: nil, errors: nil, error_key: nil) # rubocop:disable Metrics/ParameterLists
       super
       @form = form
       @name = name

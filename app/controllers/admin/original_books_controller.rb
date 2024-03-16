@@ -48,9 +48,7 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_original_book
       @original_book = OriginalBook.find(params[:id])
-      if @original_book.original_book_secret.blank?
-        @original_book.build_original_book_secret
-      end
+      @original_book.build_original_book_secret if @original_book.original_book_secret.blank?
     end
 
     def set_work
@@ -61,7 +59,7 @@ module Admin
     def original_book_params
       params.require(:original_book).permit(:work_id, :title, :publisher, :first_pubdate, :input_edition,
                                             :proof_edition, :booktype_id,
-                                            { original_book_secret_attributes: [:id, :memo] })
+                                            { original_book_secret_attributes: %i[id memo] })
     end
   end
 end

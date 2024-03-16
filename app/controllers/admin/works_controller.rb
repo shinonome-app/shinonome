@@ -62,9 +62,7 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_work
       @work = Work.find(params[:id])
-      if @work.work_secret.blank?
-        @work.build_work_secret
-      end
+      @work.build_work_secret if @work.work_secret.blank?
     end
 
     # Only allow a list of trusted parameters through.
@@ -73,7 +71,7 @@ module Admin
                                    :original_title, :kana_type_id, :author_display_name, :first_appearance, :description,
                                    :description_person_id, :work_status_id, :started_on, :copyright_flag, :note,
                                    :updated_at, :user_id, :sortkey,
-                                   { work_secret_attributes: %i[id memo orig_text] } )
+                                   { work_secret_attributes: %i[id memo orig_text] })
     end
   end
 end

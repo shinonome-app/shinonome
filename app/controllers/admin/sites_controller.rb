@@ -63,17 +63,14 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_site
       @site = Site.find(params[:id])
-      if @site.site_secret.blank?
-        @site.build_site_secret
-      end
+      @site.build_site_secret if @site.site_secret.blank?
     end
 
     # Only allow a list of trusted parameters through.
     def site_params
       params.require(:site).permit(:name, :url, :owner_name, :email, :note, :updated_by,
-                                   { work_sites_attributes: [:id, :work_id] },
-                                   { site_secret_attributes: [:id, :memo, :email, :owner_name] },
-                                  )
+                                   { work_sites_attributes: %i[id work_id] },
+                                   { site_secret_attributes: %i[id memo email owner_name] })
     end
   end
 end

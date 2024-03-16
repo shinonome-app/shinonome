@@ -62,9 +62,7 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_workfile
       @workfile = Workfile.find(params[:id])
-      if @workfile.workfile_secret.blank?
-        @workfile.build_workfile_secret
-      end
+      @workfile.build_workfile_secret if @workfile.workfile_secret.blank?
     end
 
     # Only allow a list of trusted parameters through.

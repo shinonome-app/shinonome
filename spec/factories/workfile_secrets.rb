@@ -16,6 +16,6 @@
 #
 FactoryBot.define do
   factory :workfile_secret, class: 'Shinonome::WorkfileSecret' do
-    memo { "備考workfile" }
+    memo { '備考workfile' }
   end
 end

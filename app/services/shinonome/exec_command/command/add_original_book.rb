@@ -20,8 +20,7 @@ module Shinonome
                                                publisher: publisher,
                                                title: title,
                                                booktype_id: booktype.id,
-                                               original_book_secret_attributes: { memo: note }
-                                              )
+                                               original_book_secret_attributes: { memo: note })
 
           Result.new(executed: true, command_result: original_book)
         end

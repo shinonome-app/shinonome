@@ -22,8 +22,7 @@ module Admin
     end
 
     # GET /admin/workers/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /admin/workers
     def create
@@ -61,9 +60,7 @@ module Admin
 
     def set_worker
       @worker = Worker.find(params[:id])
-      if @worker.worker_secret.blank?
-        @worker.build_worker_secret
-      end
+      @worker.build_worker_secret if @worker.worker_secret.blank?
     end
 
     # Only allow a list of trusted parameters through.

@@ -17,6 +17,6 @@
 
 FactoryBot.define do
   factory :original_book_secret, class: 'Shinonome::OriginalBookSecret' do
-    memo { "備考original_book" }
+    memo { '備考original_book' }
   end
 end

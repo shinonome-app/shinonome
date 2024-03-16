@@ -22,8 +22,7 @@ module Admin
     end
 
     # GET /admin/people/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /admin/people
     def create
@@ -63,9 +62,7 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
-      if @person.person_secret.blank?
-        @person.build_person_secret
-      end
+      @person.build_person_secret if @person.person_secret.blank?
     end
 
     # Only allow a list of trusted parameters through.

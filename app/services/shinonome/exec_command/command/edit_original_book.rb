@@ -18,7 +18,7 @@ module Shinonome
             input_edition: input_edition,
             proof_edition: proof_edition,
             booktype_id: booktype.id,
-            original_book_secret_attributes: { memo: note },
+            original_book_secret_attributes: { memo: note }
           }
 
           update_values.reject! { |_, val| val == '' }

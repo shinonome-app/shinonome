@@ -68,7 +68,7 @@ class MigrateData
         id: row[0],
         username: row[1],
         old_password: row[2],
-        email: "dummy-#{row[0]}@example.jp",
+        email: "dummy-#{row[0]}@example.jp"
         # encrypted_password: SecureRandom.hex(5),
       }
     end
@@ -391,7 +391,7 @@ class MigrateData
       buf << {
         id: row[0],
         person_id: row[1],
-        site_id: row[2],
+        site_id: row[2]
       }
     end
     PersonSite.insert_all(buf)
@@ -405,7 +405,7 @@ class MigrateData
       buf << {
         id: row[0],
         work_id: row[1],
-        site_id: row[2],
+        site_id: row[2]
       }
     end
     WorkSite.insert_all(buf)
@@ -420,29 +420,29 @@ class MigrateData
       buf << {
         id: row[0],
         work_id: row[1],
-	      filetype_id: row[2],
-	      compresstype_id: row[3],
-	      filesize: row[4],
-	      # old_user_id: row[5],
-	      url: row[6],
-	      filename: row[7],
-	      # old_opened_on: row[8],
-	      registrated_on: row[9],
-	      last_updated_on: row[10],
-	      revision_count: row[11],
-	      file_encoding_id: row[12],
-	      charset_id: row[13],
-	      # note: row[14],
-	      created_at: row[9].presence || DEFAULT_DATE,
-	      updated_at: row[10].presence || DEFAULT_DATE,
+        filetype_id: row[2],
+        compresstype_id: row[3],
+        filesize: row[4],
+        # old_user_id: row[5],
+        url: row[6],
+        filename: row[7],
+        # old_opened_on: row[8],
+        registrated_on: row[9],
+        last_updated_on: row[10],
+        revision_count: row[11],
+        file_encoding_id: row[12],
+        charset_id: row[13],
+        # NOTE: row[14],
+        created_at: row[9].presence || DEFAULT_DATE,
+        updated_at: row[10].presence || DEFAULT_DATE
       }
 
       if row[14].present?
         buf2 << {
           workfile_id: row[0],
           memo: row[14],
-	        created_at: row[9].presence || DEFAULT_DATE,
-	        updated_at: row[10].presence || DEFAULT_DATE,
+          created_at: row[9].presence || DEFAULT_DATE,
+          updated_at: row[10].presence || DEFAULT_DATE
         }
       end
     end

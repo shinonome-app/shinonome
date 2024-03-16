@@ -30,7 +30,7 @@ RSpec.describe '/workfiles' do
       filename: 'sample.zip',
       workdata: workdata,
       revision_count: 1,
-      workfile_secret_attributes: { memo: 'test' },
+      workfile_secret_attributes: { memo: 'test' }
     }
   end
 
@@ -111,7 +111,7 @@ RSpec.describe '/workfiles' do
           filesize: 12_121,
           filename: 'sample.zip',
           revision_count: 1,
-          workfile_secret_attributes: { memo: 'test2' },
+          workfile_secret_attributes: { memo: 'test2' }
         }
       end
 
