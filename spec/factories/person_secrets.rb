@@ -5,7 +5,7 @@
 # Table name: person_secrets
 #
 #  id         :bigint           not null, primary key
-#  memo       :text
+#  memo       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  person_id  :bigint

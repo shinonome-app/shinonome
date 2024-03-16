@@ -5,9 +5,9 @@
 # Table name: site_secrets
 #
 #  id         :bigint           not null, primary key
-#  email      :text
-#  memo       :text
-#  owner_name :text
+#  email      :text             default(""), not null
+#  memo       :text             default(""), not null
+#  owner_name :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  site_id    :bigint

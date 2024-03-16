@@ -134,14 +134,12 @@ class MigrateData
       }
 
       # person_secrets
-      if row[15].present?
-        buf2 << {
-          person_id: row[0],
-          memo: row[15],
-          created_at: row[16].presence || DEFAULT_DATE,
-          updated_at: row[16].presence || DEFAULT_DATE
-        }
-      end
+      buf2 << {
+        person_id: row[0],
+        memo: row[15],
+        created_at: row[16].presence || DEFAULT_DATE,
+        updated_at: row[16].presence || DEFAULT_DATE
+      }
     end
     Person.insert_all(buf)
     update_serial('people')
@@ -245,13 +243,11 @@ class MigrateData
       }
 
       # work_secrets
-      if row[17].present?
-        buf2 << {
-          work_id: row[0],
-          orig_text: row[17],
-          memo:
-        }
-      end
+      buf2 << {
+        work_id: row[0],
+        orig_text: row[17] || '',
+        memo: memo || ''
+      }
     end
     Work.insert_all(buf)
     update_serial('works')
@@ -291,12 +287,10 @@ class MigrateData
         # secret_memo: row[8],
       }
 
-      if row[8].present?
-        buf2 << {
-          original_book_id: row[0],
-          memo: row[8]
-        }
-      end
+      buf2 << {
+        original_book_id: row[0],
+        memo: row[8]
+      }
     end
     OriginalBook.insert_all(buf)
     update_serial('original_books')
@@ -367,16 +361,14 @@ class MigrateData
         updated_at: row[6].presence || DEFAULT_DATE
       }
 
-      if row[3].present? || row[4].present? || row[5].present?
-        buf2 << {
-          site_id: row[0],
-          owner_name: row[3],
-          email: row[4],
-          memo: row[5],
-          created_at: row[6].presence || DEFAULT_DATE,
-          updated_at: row[6].presence || DEFAULT_DATE
-        }
-      end
+      buf2 << {
+        site_id: row[0],
+        owner_name: row[3],
+        email: row[4],
+        memo: row[5],
+        created_at: row[6].presence || DEFAULT_DATE,
+        updated_at: row[6].presence || DEFAULT_DATE
+      }
     end
     Site.insert_all(buf)
     update_serial('sites')
@@ -437,14 +429,12 @@ class MigrateData
         updated_at: row[10].presence || DEFAULT_DATE
       }
 
-      if row[14].present?
-        buf2 << {
-          workfile_id: row[0],
-          memo: row[14],
-          created_at: row[9].presence || DEFAULT_DATE,
-          updated_at: row[10].presence || DEFAULT_DATE
-        }
-      end
+      buf2 << {
+        workfile_id: row[0],
+        memo: row[14],
+        created_at: row[9].presence || DEFAULT_DATE,
+        updated_at: row[10].presence || DEFAULT_DATE
+      }
     end
     Workfile.insert_all(buf)
     update_serial('workfiles')

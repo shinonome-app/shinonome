@@ -44,7 +44,11 @@ class Person < ApplicationRecord
     ['わ', nil, 'を', nil, 'ん']
   ].freeze
 
-  belongs_to :updated_user, class_name: 'Shinonome::User', optional: true, foreign_key: 'updated_by', inverse_of: false
+  belongs_to :updated_user,
+             class_name: 'Shinonome::User',
+             optional: true,
+             foreign_key: 'updated_by',
+             inverse_of: false
 
   has_many :work_people, dependent: :destroy
   has_many :works, through: :work_people
@@ -53,7 +57,10 @@ class Person < ApplicationRecord
   has_many :person_sites, dependent: :destroy
   has_many :sites, through: :person_sites
 
-  has_one :person_secret, class_name: 'Shinonome::PersonSecret', dependent: :destroy
+  has_one :person_secret,
+          class_name: 'Shinonome::PersonSecret',
+          required: true,
+          dependent: :destroy
 
   accepts_nested_attributes_for :person_secret, update_only: true
 

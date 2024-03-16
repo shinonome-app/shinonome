@@ -55,7 +55,10 @@ class Work < ApplicationRecord
   has_many :bibclasses, dependent: :destroy
   has_many :original_books, dependent: :destroy
 
-  has_one :work_secret, class_name: 'Shinonome::WorkSecret', dependent: :destroy
+  has_one :work_secret,
+          class_name: 'Shinonome::WorkSecret',
+          required: true,
+          dependent: :destroy
 
   accepts_nested_attributes_for :work_secret, update_only: true
 

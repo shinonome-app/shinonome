@@ -31,7 +31,10 @@ class OriginalBook < ApplicationRecord
   belongs_to :work
   belongs_to :booktype
 
-  has_one :original_book_secret, class_name: 'Shinonome::OriginalBookSecret', dependent: :destroy
+  has_one :original_book_secret,
+          class_name: 'Shinonome::OriginalBookSecret',
+          required: true,
+          dependent: :destroy
 
   accepts_nested_attributes_for :original_book_secret, update_only: true
 

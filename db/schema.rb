@@ -132,7 +132,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   end
 
   create_table "original_book_secrets", force: :cascade do |t|
-    t.text "memo"
+    t.text "memo", default: "", null: false
     t.bigint "original_book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -177,7 +177,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   end
 
   create_table "person_secrets", force: :cascade do |t|
-    t.text "memo"
+    t.text "memo", default: "", null: false
     t.bigint "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -268,9 +268,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   end
 
   create_table "site_secrets", force: :cascade do |t|
-    t.text "email"
-    t.text "owner_name"
-    t.text "memo"
+    t.text "email", default: "", null: false
+    t.text "owner_name", default: "", null: false
+    t.text "memo", default: "", null: false
     t.bigint "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -326,8 +326,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   end
 
   create_table "work_secrets", force: :cascade do |t|
-    t.text "orig_text"
-    t.text "memo"
+    t.text "orig_text", default: "", null: false
+    t.text "memo", default: "", null: false
     t.bigint "work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -391,7 +391,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   end
 
   create_table "workfile_secrets", force: :cascade do |t|
-    t.text "memo"
+    t.text "memo", default: "", null: false
     t.bigint "workfile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
