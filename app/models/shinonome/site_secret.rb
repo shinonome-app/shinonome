@@ -14,7 +14,11 @@
 #
 # Indexes
 #
-#  index_site_secrets_on_site_id  (site_id)
+#  index_site_secrets_on_site_id  (site_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (site_id => sites.id)
 #
 module Shinonome
   # サイト非公開情報

@@ -13,7 +13,11 @@
 #
 # Indexes
 #
-#  index_work_secrets_on_work_id  (work_id)
+#  index_work_secrets_on_work_id  (work_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (work_id => works.id)
 #
 FactoryBot.define do
   factory :work_secret, class: 'Shinonome::WorkSecret' do

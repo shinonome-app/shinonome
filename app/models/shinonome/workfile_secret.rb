@@ -12,7 +12,11 @@
 #
 # Indexes
 #
-#  index_workfile_secrets_on_workfile_id  (workfile_id)
+#  index_workfile_secrets_on_workfile_id  (workfile_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (workfile_id => workfiles.id)
 #
 module Shinonome
   # 作品ファイル非公開情報

@@ -136,7 +136,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.bigint "original_book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["original_book_id"], name: "index_original_book_secrets_on_original_book_id"
+    t.index ["original_book_id"], name: "index_original_book_secrets_on_original_book_id", unique: true
   end
 
   create_table "original_books", force: :cascade do |t|
@@ -181,7 +181,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.bigint "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_person_secrets_on_person_id"
+    t.index ["person_id"], name: "index_person_secrets_on_person_id", unique: true
   end
 
   create_table "person_sites", force: :cascade do |t|
@@ -274,7 +274,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.bigint "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["site_id"], name: "index_site_secrets_on_site_id"
+    t.index ["site_id"], name: "index_site_secrets_on_site_id", unique: true
   end
 
   create_table "sites", force: :cascade do |t|
@@ -331,7 +331,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.bigint "work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["work_id"], name: "index_work_secrets_on_work_id"
+    t.index ["work_id"], name: "index_work_secrets_on_work_id", unique: true
   end
 
   create_table "work_sites", force: :cascade do |t|
@@ -395,7 +395,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.bigint "workfile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["workfile_id"], name: "index_workfile_secrets_on_workfile_id"
+    t.index ["workfile_id"], name: "index_workfile_secrets_on_workfile_id", unique: true
   end
 
   create_table "workfiles", force: :cascade do |t|
@@ -449,23 +449,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "base_people", "people"
   add_foreign_key "base_people", "people", column: "original_person_id"
+  add_foreign_key "original_book_secrets", "original_books"
   add_foreign_key "original_books", "booktypes"
   add_foreign_key "original_books", "works"
+  add_foreign_key "person_secrets", "people"
   add_foreign_key "person_sites", "people"
   add_foreign_key "person_sites", "sites"
   add_foreign_key "proofreads", "people"
   add_foreign_key "proofreads", "works"
   add_foreign_key "receipts", "work_statuses"
+  add_foreign_key "site_secrets", "sites"
   add_foreign_key "typesettings", "users"
   add_foreign_key "typesettings", "works"
   add_foreign_key "work_people", "people"
   add_foreign_key "work_people", "roles"
   add_foreign_key "work_people", "works"
+  add_foreign_key "work_secrets", "works"
   add_foreign_key "work_sites", "sites"
   add_foreign_key "work_sites", "works"
   add_foreign_key "work_workers", "worker_roles"
   add_foreign_key "work_workers", "workers"
   add_foreign_key "work_workers", "works"
+  add_foreign_key "workfile_secrets", "workfiles"
   add_foreign_key "workfiles", "charsets"
   add_foreign_key "workfiles", "compresstypes"
   add_foreign_key "workfiles", "file_encodings"

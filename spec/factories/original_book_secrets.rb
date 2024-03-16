@@ -12,7 +12,11 @@
 #
 # Indexes
 #
-#  index_original_book_secrets_on_original_book_id  (original_book_id)
+#  index_original_book_secrets_on_original_book_id  (original_book_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (original_book_id => original_books.id)
 #
 
 FactoryBot.define do

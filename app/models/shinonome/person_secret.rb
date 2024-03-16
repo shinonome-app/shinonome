@@ -12,7 +12,11 @@
 #
 # Indexes
 #
-#  index_person_secrets_on_person_id  (person_id)
+#  index_person_secrets_on_person_id  (person_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (person_id => people.id)
 #
 module Shinonome
   # Person非公開情報
