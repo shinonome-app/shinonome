@@ -17,7 +17,7 @@
         ["別名義", @person.original_person ? link_to(@person.original_person.name, admin_person_path(@person.original_person), class: "link-normal") : ""],
         ["備考(非公開)", @person.person_secret&.memo],
         ["最終更新日", @person.updated_at],
-        ["更新者", @person.updated_user&.username],
+        ["更新者", @person.updated_user&.username]
       ])) %>
 
   <div class="mt-2 flex gap-2">

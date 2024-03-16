@@ -15,14 +15,14 @@
         ["原題", @work.original_title],
         ["仮名遣い種別", @work.kana_type.name],
         ["初出", @work.first_appearance],
-        ["作品について", nl2br(@work.description), { no_escape: true } ],
-        ["備考", @work.note, { no_escape: true } ],
-        ["底本管理情報(非公開)", @work.work_secret&.memo, { no_escape: true } ],
+        ["作品について", nl2br(@work.description), { no_escape: true }],
+        ["備考", @work.note, { no_escape: true }],
+        ["底本管理情報(非公開)", @work.work_secret&.memo, { no_escape: true }],
         ["状態", @work.work_status.name],
         ["状態の開始日", @work.started_on],
-        ["著作権フラグ", (@work.copyright_flag_name)],
+        ["著作権フラグ", @work.copyright_flag_name],
         ["最終更新日", @work.updated_at],
-        ["更新者", @work.user&.username],
+        ["更新者", @work.user&.username]
       ])) %>
 
   <div class="mt-2 flex gap-2">
@@ -51,7 +51,7 @@
         ["著作権フラグ", person.copyright_flag_name],
         ["email", person.email],
         ["URL", person.url],
-        ["人物について", nl2br(person.description), { no_escape: true } ],
+        ["人物について", nl2br(person.description), { no_escape: true }],
         ["備考(非公開)", person.person_secret&.memo]
       ])) %>
 
@@ -83,7 +83,7 @@
         ["#{work_worker.worker_role.name}名", worker.name],
         ["e-mail", worker.worker_secret&.email],
         ["URL", worker.worker_secret&.url],
-        ["備考(非公開)", worker.worker_secret&.note, { no_escape: true } ]
+        ["備考(非公開)", worker.worker_secret&.note, { no_escape: true }]
       ])) %>
 
   <div class="py-2">
@@ -167,7 +167,7 @@
         ["修正回数", workfile.revision_count],
         ["ファイルエンコーディング", workfile.file_encoding.name],
         ["文字集合", workfile.charset.name],
-        ["備考(非公開)", nl2br(workfile.workfile_secret&.memo), { no_escape: true } ]
+        ["備考(非公開)", nl2br(workfile.workfile_secret&.memo), { no_escape: true }]
       ])) %>
 
   <div class="mt-2 flex gap-2">
