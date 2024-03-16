@@ -1,6 +1,6 @@
 <div class="w-full md:w-2/3">
   <snm-headline h="h1">工作員検索結果一覧</snm-headline>
-  <%= render(Admin::WorkersTableComponent.new(workers: @workers)) %>
+  <%= render(Admin::WorkersTableComponent.new(workers: @workers, pagy: @pagy)) %>
 
   <%== pagy_snm_nav(@pagy) %>
 </div>
