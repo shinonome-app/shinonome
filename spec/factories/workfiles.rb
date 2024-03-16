@@ -43,14 +43,16 @@ FactoryBot.define do
     end
 
     work
-    user
     filesize { 1000 }
     filename { nil }
     revision_count { 1 }
-    note { "備考のテスト#{n}" }
 
     charset_id { 1 }
     file_encoding_id { 1 }
+
+    after(:build) do |workfile|
+      create(:workfile_secret, workfile:)
+    end
 
     trait :zip do
       compresstype { Compresstype.find(2) }

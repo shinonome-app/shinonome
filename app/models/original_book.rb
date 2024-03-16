@@ -43,7 +43,7 @@ class OriginalBook < ApplicationRecord
   end
 
   def to_csv
-    array = [work_id, title, publisher, first_pubdate, input_edition, proof_edition, booktype.name, note]
+    array = [work_id, title, publisher, first_pubdate, input_edition, proof_edition, booktype.name, original_book_secret&.memo]
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end

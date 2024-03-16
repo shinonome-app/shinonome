@@ -28,7 +28,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetOriginalBook do
           expect(row2[4]).to eq original_book2.input_edition
           expect(row2[5]).to eq original_book2.proof_edition
           expect(row2[6]).to eq '底本'
-          expect(row2[7]).to eq original_book2.note
+          expect(row2[7]).to eq original_book2.original_book_secret&.memo
 
           ## line 3
           line3 = f.gets
@@ -41,7 +41,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetOriginalBook do
           expect(row3[4]).to eq original_book3.input_edition
           expect(row3[5]).to eq original_book3.proof_edition
           expect(row3[6]).to eq '底本の親本'
-          expect(row3[7]).to eq original_book3.note
+          expect(row3[7]).to eq original_book3.original_book_secret&.memo
         end
       end
     end

@@ -76,7 +76,7 @@ class Person < ApplicationRecord
   end
 
   def to_csv
-    array = [id, last_name, last_name_kana, last_name_en, first_name, first_name_kana, first_name_en, born_on, died_on, copyright_char, email, url, description, basename, note, updated_at, updated_by, sortkey, sortkey2]
+    array = [id, last_name, last_name_kana, last_name_en, first_name, first_name_kana, first_name_en, born_on, died_on, copyright_char, email, url, description, basename, person_secret&.memo, updated_at, updated_by, sortkey, sortkey2]
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end

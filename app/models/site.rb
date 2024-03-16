@@ -32,7 +32,7 @@ class Site < ApplicationRecord
   end
 
   def to_csv
-    array = [id, name, url, owner_name, email, note, updated_at, updated_by]
+    array = [id, name, url, site_secret&.owner_name, site_secret&.email, site_secret&.memo, updated_at, updated_by]
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end

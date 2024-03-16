@@ -52,7 +52,7 @@
           [
             ["関連サイト名", person_site.site.name],
             ["URL", person_site.site.url],
-            ["関連サイト運営者", person_site.site.owner_name]
+            ["関連サイト運営者", person_site.site.site_secret&.owner_name]
           ])) %>
 
     </div>

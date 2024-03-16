@@ -78,7 +78,7 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
         last_original_book = OriginalBook.last
         expect(last_original_book.title).to eq '底本タイトル'
         expect(last_original_book.booktype.name).to eq '底本の親本'
-        expect(last_original_book.note).to eq '備考1'
+        expect(last_original_book.original_book_secret.memo).to eq '備考1'
       end
     end
 
@@ -96,7 +96,7 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
         last_original_book = OriginalBook.last
         expect(last_original_book.title).to eq '底本タイトル'
         expect(last_original_book.booktype.name).to eq '底本'
-        expect(last_original_book.note).to eq "備考#{work.id}"
+        expect(last_original_book.original_book_secret.memo).to eq "備考original_book"
       end
     end
   end

@@ -23,7 +23,6 @@ RSpec.describe '/workfiles' do
     {
       work_id: work.id,
       filetype_id: filetype.id,
-      user_id: admin.id,
       compresstype_id: compresstype.id,
       file_encoding_id: file_encoding.id,
       charset_id: charset.id,
@@ -31,7 +30,7 @@ RSpec.describe '/workfiles' do
       filename: 'sample.zip',
       workdata: workdata,
       revision_count: 1,
-      note: 'test'
+      workfile_secret_attributes: { memo: 'test' },
     }
   end
 
@@ -39,7 +38,6 @@ RSpec.describe '/workfiles' do
     {
       work_id: work.id,
       filetype_id: 'test',
-      user_id: admin.id,
       compresstype_id: compresstype.id,
       file_encoding_id: file_encoding.id,
       charset_id: charset.id
@@ -113,7 +111,7 @@ RSpec.describe '/workfiles' do
           filesize: 12_121,
           filename: 'sample.zip',
           revision_count: 1,
-          note: 'test2'
+          workfile_secret_attributes: { memo: 'test2' },
         }
       end
 
@@ -121,7 +119,7 @@ RSpec.describe '/workfiles' do
         workfile = Workfile.create! valid_attributes
         patch admin_work_workfile_url(work, workfile), params: { workfile: new_attributes }
         workfile.reload
-        expect(workfile.note).to eq 'test2'
+        expect(workfile.workfile_secret&.memo).to eq 'test2'
       end
 
       it 'redirects to the workfile' do

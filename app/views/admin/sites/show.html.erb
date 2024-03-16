@@ -9,7 +9,7 @@
         ["URL", link_to(@site.url, @site.url)],
         ["備考(非公開)", @site.site_secret&.memo],
         ["最終更新日", @site.updated_at],
-        ["更新者", @site.updated_user.username]
+        ["更新者", @site.updated_user&.username]
       ])) %>
 
   <div class="mt-2 flex gap-2">

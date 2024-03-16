@@ -19,10 +19,11 @@ RSpec.describe '/admin/sites' do
     {
       name: '関連サイト',
       url: 'https://shinonome.example.com/sites/1',
-      owner_name: '運営者',
-      email: 'shinonome-site@example.com',
-      note: '備考',
-      updated_by: Shinonome::User.first
+      site_secret_attributes: {
+        owner_name: '運営者',
+        email: 'shinonome-site@example.com',
+        memo: '備考',
+      }
     }
   end
 
@@ -45,7 +46,7 @@ RSpec.describe '/admin/sites' do
   end
 
   describe 'GET /show' do
-    let(:site) { create(:site) }
+    let(:site) { create(:site, updated_by: user.id) }
 
     it 'renders a successful response' do
       get admin_site_url(site)
@@ -111,8 +112,8 @@ RSpec.describe '/admin/sites' do
         site.reload
         expect(site.name).to eq '関連サイト2'
         expect(site.url).to eq 'https://shinonome.example.com/sites/2'
-        expect(site.owner_name).to eq '運営者'
-        expect(site.email).to eq 'shinonome-site@example.com'
+        expect(site.site_secret&.owner_name).to eq '運営者'
+        expect(site.site_secret&.email).to eq 'shinonome-site@example.com'
       end
 
       it 'redirects to the site' do

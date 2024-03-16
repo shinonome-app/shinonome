@@ -37,7 +37,7 @@ class PersonSite < ApplicationRecord
     array = [person.id, person.last_name, person.last_name_kana, person.last_name_en, person.first_name, person.first_name_kana, person.first_name_en, person.born_on, person.died_on, person.copyright_char]
 
     sites_array = if person.person_sites.first.present?
-                    [site.id, site.name, site.url, site.owner_name, site.email, site.note]
+                    [site.id, site.name, site.url, site.site_secret&.owner_name, site.site_secret&.email, site.site_secret&.memo]
                   else
                     ['', '', '', '', '', '', '']
                   end

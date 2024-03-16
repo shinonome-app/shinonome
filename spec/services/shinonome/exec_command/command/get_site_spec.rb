@@ -5,8 +5,12 @@ require 'rails_helper'
 RSpec.describe Shinonome::ExecCommand::Command::GetSite do
   describe '.execute' do
     before do
-      create(:site)
-      create(:site)
+      create(:site) do |site|
+        create(:site_secret, site:)
+      end
+      create(:site) do |site|
+        create(:site_secret, site:)
+      end
     end
 
     it '正しいCSVが生成される' do
@@ -27,9 +31,9 @@ RSpec.describe Shinonome::ExecCommand::Command::GetSite do
           expect(row2[0]).to eq site2.id.to_s
           expect(row2[1]).to eq site2.name
           expect(row2[2]).to eq site2.url
-          expect(row2[3]).to eq site2.owner_name
-          expect(row2[4]).to eq site2.email
-          expect(row2[5]).to eq site2.note
+          expect(row2[3]).to eq site2.site_secret&.owner_name
+          expect(row2[4]).to eq site2.site_secret&.email
+          expect(row2[5]).to eq site2.site_secret&.memo
           expect(row2[6]).to eq site2.updated_at.to_s
           expect(row2[7]).to eq site2.updated_by.to_s
 
@@ -41,9 +45,9 @@ RSpec.describe Shinonome::ExecCommand::Command::GetSite do
           expect(row3[0]).to eq site3.id.to_s
           expect(row3[1]).to eq site3.name
           expect(row3[2]).to eq site3.url
-          expect(row3[3]).to eq site3.owner_name
-          expect(row3[4]).to eq site3.email
-          expect(row3[5]).to eq site3.note
+          expect(row3[3]).to eq site3.site_secret&.owner_name
+          expect(row3[4]).to eq site3.site_secret&.email
+          expect(row3[5]).to eq site3.site_secret&.memo
           expect(row3[6]).to eq site3.updated_at.to_s
           expect(row3[7]).to eq site3.updated_by.to_s
         end

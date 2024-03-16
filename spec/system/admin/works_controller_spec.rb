@@ -44,6 +44,8 @@ describe Admin::WorksController do
         select '新字新仮名', from: '仮名遣い種別'
         fill_in '初出', with: '初出1'
         fill_in '作品について', with: '作品について1'
+        fill_in '底本管理情報(非公開)', with: '底本管理情報1'
+        fill_in '備考(非公開)', with: '備考1'
         select '入力予約', from: '状態'
         # '状態の開始日'
         select '2023', from: 'work_started_on_1i'
@@ -69,6 +71,9 @@ describe Admin::WorksController do
         expect(work.kana_type_name).to eq '新字新仮名'
         expect(work.copyright_flag).to eq false
         expect(work.started_on.to_fs(:db)).to eq '2023-03-23'
+        expect(work.work_secret.orig_text).to eq '底本管理情報1'
+        expect(work.work_secret.memo).to eq '備考1'
+        expect(work.user_id).to eq user.id
       end
     end
   end

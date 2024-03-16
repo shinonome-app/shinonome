@@ -46,13 +46,15 @@ FactoryBot.define do
     sequence(:email) { |i| "sample-person-#{i}@example.com" }
     sequence(:url) { |i| "https://sample#{i}.example.com" }
     description { Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
-    note_user_id { nil }
     basename { nil }
-    note { "備考#{rand(100)}" }
     updated_by { rand(1..10) }
     sortkey { name.last.hiragana }
     sortkey2 { name.first.hiragana }
     input_count { 1 }
     publish_count { 1 }
+
+    after(:build) do |person|
+      create(:person_secret, person:)
+    end
   end
 end

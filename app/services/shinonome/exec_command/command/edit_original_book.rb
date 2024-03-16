@@ -16,9 +16,9 @@ module Shinonome
           update_values = {
             first_pubdate: first_pubdate,
             input_edition: input_edition,
-            note: note,
             proof_edition: proof_edition,
-            booktype_id: booktype.id
+            booktype_id: booktype.id,
+            original_book_secret_attributes: { memo: note },
           }
 
           update_values.reject! { |_, val| val == '' }

@@ -55,7 +55,7 @@ RSpec.describe Shinonome::ExecCommand::Command::EditFile do
         expect(workfile.revision_count).to eq 5
         expect(workfile.file_encoding_id).to eq 1
         expect(workfile.charset_id).to eq 1
-        expect(workfile.note).to eq '備考123'
+        expect(workfile.workfile_secret.memo).to eq '備考123'
         expect(workfile.filename).to eq "#{work.id}_#{workfile.id}.html"
         expect(File.basename(remove_filename)).to eq "#{work.id}_#{workfile.id}.html"
       end

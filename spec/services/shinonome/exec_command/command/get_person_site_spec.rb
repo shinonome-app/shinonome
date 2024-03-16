@@ -5,8 +5,12 @@ require 'rails_helper'
 RSpec.describe Shinonome::ExecCommand::Command::GetPersonSite do
   describe '.execute' do
     before do
-      create(:person_site)
-      create(:person_site)
+      create(:person_site) do |person_site|
+        create(:site_secret, site: person_site.site)
+      end
+      create(:person_site) do |person_site|
+        create(:site_secret, site: person_site.site)
+      end
     end
 
     it '正しいCSVが生成される' do
@@ -37,9 +41,9 @@ RSpec.describe Shinonome::ExecCommand::Command::GetPersonSite do
           expect(row2[10]).to eq site2.id.to_s
           expect(row2[11]).to eq site2.name
           expect(row2[12]).to eq site2.url
-          expect(row2[13]).to eq site2.owner_name
-          expect(row2[14]).to eq site2.email
-          expect(row2[15]).to eq site2.note
+          expect(row2[13]).to eq site2.site_secret&.owner_name
+          expect(row2[14]).to eq site2.site_secret&.email
+          expect(row2[15]).to eq site2.site_secret&.memo
         end
       end
     end

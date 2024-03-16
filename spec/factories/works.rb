@@ -61,8 +61,11 @@ FactoryBot.define do
     started_on { Faker::Date.birthday(min_age: 0, max_age: 3) }
     copyright_flag { false }
     note { Faker::Lorem.sentence(word_count: 10, random_words_to_add: 15) }
-    orig_text { nil }
     sortkey { "さくひん#{n}" }
+
+    after(:build) do |work|
+      create(:work_secret, work:)
+    end
 
     trait :teihon do
       original_books { [association(:original_book)] }

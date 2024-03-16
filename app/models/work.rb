@@ -103,7 +103,7 @@ class Work < ApplicationRecord
   end
 
   def to_csv
-    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, description, work_status.name, started_on, copyright_char, note, orig_text, updated_at, user.username, sortkey]
+    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, description, work_status.name, started_on, copyright_char, note, work_secret&.orig_text, updated_at, user.username, sortkey]
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end
@@ -118,12 +118,12 @@ class Work < ApplicationRecord
 
     work_site = work_sites.first
     sites_array = if work_site
-                    [sites[0].id, sites[0].name, sites[0].url, sites[0].owner_name, sites[0].email, sites[0].note]
+                    [sites[0].id, sites[0].name, sites[0].url, sites[0].site_secret&.owner_name, sites[0].site_secret&.email, sites[0].site_secret&.memo]
                   else
                     ['', '', '', '', '', '']
                   end
 
-    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, work_status.name, started_on, copyright_char, note, orig_text, updated_at, user.username] + people_array + sites_array
+    array = [id, title, title_kana, subtitle, subtitle_kana, collection, collection_kana, original_title, kana_type_name, first_appearance, work_status.name, started_on, copyright_char, note, work_secret&.orig_text, updated_at, user.username] + people_array + sites_array
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end

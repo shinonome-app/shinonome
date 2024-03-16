@@ -35,6 +35,9 @@ FactoryBot.define do
     input_edition { "入力使用版#{work.id}" }
     proof_edition { "校正使用版#{work.id}" }
     booktype_id { 1 }
-    note { "備考#{work.id}" }
+
+    after(:build) do |original_book|
+      create(:original_book_secret, original_book:)
+    end
   end
 end

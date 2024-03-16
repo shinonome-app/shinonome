@@ -39,7 +39,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWork do
           expect(row2[12]).to eq work2.started_on.to_s
           expect(row2[13]).to eq work2.copyright_char
           expect(row2[14]).to eq work2.note
-          expect(row2[15]).to eq work2.orig_text.to_s
+          expect(row2[15]).to eq work2.work_secret&.orig_text.to_s
           expect(row2[16]).to eq work2.updated_at.to_s
           expect(row2[17]).to eq work2.user.username
           expect(row2[18]).to eq work2.sortkey
@@ -64,7 +64,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWork do
           expect(row3[12]).to eq work3.started_on.to_s
           expect(row3[13]).to eq work3.copyright_char
           expect(row3[14]).to eq work3.note
-          expect(row3[15]).to eq work3.orig_text.to_s
+          expect(row3[15]).to eq work3.work_secret&.orig_text.to_s
           expect(row3[16]).to eq work3.updated_at.to_s
           expect(row3[17]).to eq work3.user.username
           expect(row3[18]).to eq work3.sortkey

@@ -16,11 +16,12 @@ module Shinonome
           original_book = OriginalBook.create!(work_id: work.id,
                                                first_pubdate: first_pubdate,
                                                input_edition: input_edition,
-                                               note: note,
                                                proof_edition: proof_edition,
                                                publisher: publisher,
                                                title: title,
-                                               booktype_id: booktype.id)
+                                               booktype_id: booktype.id,
+                                               original_book_secret_attributes: { memo: note }
+                                              )
 
           Result.new(executed: true, command_result: original_book)
         end

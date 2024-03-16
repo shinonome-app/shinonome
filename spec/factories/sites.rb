@@ -20,9 +20,6 @@ FactoryBot.define do
 
     name { "関連サイト#{n}" }
     url { "https://shinonome.example.com/sites/#{n}" }
-    owner_name { "運営者#{n}" }
-    email { "shinonome-site#{n}@example.com" }
-    note { "備考#{n}" }
     updated_by { 1 }
   end
 end

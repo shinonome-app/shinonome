@@ -5,7 +5,7 @@ module Shinonome
     class Command
       # 作品更新
       class EditWork < Base
-        COLUMN_NAMES = %i[title title_kana subtitle subtitle_kana collection collection_kana original_title first_appearance description note orig_text started_on sortkey].freeze
+        COLUMN_NAMES = %i[title title_kana subtitle subtitle_kana collection collection_kana original_title first_appearance description note started_on sortkey].freeze
         OPTS_KEYS = COLUMN_NAMES + %i[work_id kana_type_name work_status_name copyright_name user_id]
         ARGS_NAMES = %i[work_id
                         title
@@ -51,6 +51,7 @@ module Shinonome
           update_values[:kana_type_id] = kana_type.id if kana_type
           update_values[:work_status_id] = work_status.id if work_status
           update_values[:user_id] = opts[:user_id]
+          update_values[:work_secret_attributes] = { orig_text: opts[:orig_text] }
 
           work.update!(update_values)
 

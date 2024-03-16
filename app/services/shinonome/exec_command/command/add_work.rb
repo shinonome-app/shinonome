@@ -42,12 +42,12 @@ module Shinonome
             first_appearance: first_appearance,
             description: description,
             note: note,
-            orig_text: orig_text,
             work_status_id: work_status.id,
             started_on: started_on,
             copyright_flag: copyright_flag,
             sortkey: sortkey,
-            user_id: user_id
+            user_id: user_id,
+            work_secret_attributes: { orig_text: orig_text },
           )
 
           Result.new(executed: true, command_result: work)

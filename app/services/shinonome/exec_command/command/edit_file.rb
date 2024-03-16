@@ -61,9 +61,6 @@ module Shinonome
             update_values.merge!(filename: nil, filesize: 0)
           end
 
-          if note.present?
-            update_values[:note] = note == 'null' ? '' : note
-          end
           if url.present?
             update_values[:url] = url == 'null' ? '' : url
           end
@@ -75,6 +72,8 @@ module Shinonome
           update_values[:updated_at] = update_date.presence || Time.zone.now
           update_values[:file_encoding_id] = file_encoding.id if file_encoding
           update_values[:charset_id] = charset.id if charset
+
+          update_values[:workfile_secret_attributes] = { memo: note } if note.present? && note != 'null'
 
           workfile.update!(**update_values)
 

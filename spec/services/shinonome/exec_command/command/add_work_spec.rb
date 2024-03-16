@@ -46,7 +46,7 @@ RSpec.describe Shinonome::ExecCommand::Command::AddWork do
         expect(command.first_appearance).to eq '1950年3月6日'
         expect(command.description).to eq '作品説明1'
         expect(command.note).to eq '備考1'
-        expect(command.orig_text).to eq 'dummy1'
+        expect(command.work_secret.orig_text).to eq 'dummy1'
         expect(command.work_status.name).to eq '入力中'
         expect(command.started_on.to_s).to eq '2022-10-12'
         expect(command.copyright_flag).to be false
@@ -76,7 +76,7 @@ RSpec.describe Shinonome::ExecCommand::Command::AddWork do
         expect(command.first_appearance).to eq '1950年3月6日'
         expect(command.description).to eq '作品説明1'
         expect(command.note).to eq '備考1'
-        expect(command.orig_text).to eq 'dummy1'
+        expect(command.work_secret.orig_text).to eq 'dummy1'
         expect(command.work_status.name).to eq '入力中'
         expect(command.started_on.to_s).to eq '2022-10-12'
         expect(command.copyright_flag).to be false

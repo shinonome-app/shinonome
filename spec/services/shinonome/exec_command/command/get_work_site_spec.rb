@@ -6,9 +6,11 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSite do
   describe '.execute' do
     before do
       create(:work_site) do |work_site1|
+        create(:site_secret, site: work_site1.site)
         create(:work_person, work: work_site1.work)
       end
       create(:work_site) do |work_site2|
+        create(:site_secret, site: work_site2.site)
         create(:work_person, work: work_site2.work)
         create(:work_person, work: work_site2.work, role_id: 2)
       end
@@ -44,7 +46,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSite do
           expect(row2[11]).to eq work2.started_on.to_s
           expect(row2[12]).to eq work2.copyright_char
           expect(row2[13]).to eq work2.note
-          expect(row2[14]).to eq work2.orig_text.to_s
+          expect(row2[14]).to eq work2.work_secret&.orig_text.to_s
           expect(row2[15]).to eq work2.updated_at.to_s
           expect(row2[16]).to eq work2.user.username
           expect(row2[17]).to eq work_person2.person.id.to_s
@@ -62,10 +64,9 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSite do
           expect(row2[29]).to eq site2.id.to_s
           expect(row2[30]).to eq site2.name
           expect(row2[31]).to eq site2.url
-          expect(row2[32]).to eq site2.owner_name
-          expect(row2[33]).to eq site2.email
-          expect(row2[34]).to eq site2.note
-
+          expect(row2[32]).to eq site2.site_secret&.owner_name
+          expect(row2[33]).to eq site2.site_secret&.email
+          expect(row2[34]).to eq site2.site_secret&.memo
           ## line 3
           line3 = f.gets
           row3 = CSV.parse(line3)[0]
@@ -87,7 +88,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSite do
           expect(row3[11]).to eq work3.started_on.to_s
           expect(row3[12]).to eq work3.copyright_char
           expect(row3[13]).to eq work3.note
-          expect(row3[14]).to eq work3.orig_text.to_s
+          expect(row3[14]).to eq work3.work_secret&.orig_text.to_s
           expect(row3[15]).to eq work3.updated_at.to_s
           expect(row3[16]).to eq work3.user.username
           expect(row3[17]).to eq work_person3.person.id.to_s
@@ -105,9 +106,9 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorkSite do
           expect(row3[29]).to eq site3.id.to_s
           expect(row3[30]).to eq site3.name
           expect(row3[31]).to eq site3.url
-          expect(row3[32]).to eq site3.owner_name
-          expect(row3[33]).to eq site3.email
-          expect(row3[34]).to eq site3.note
+          expect(row3[32]).to eq site3.site_secret&.owner_name
+          expect(row3[33]).to eq site3.site_secret&.email
+          expect(row3[34]).to eq site3.site_secret&.memo
         end
       end
     end
