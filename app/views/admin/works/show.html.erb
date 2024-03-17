@@ -1,6 +1,6 @@
 <!--作品テキスト start-->
 <div>
-  <snm-headline h="h2">作品データ</snm-headline>
+  <snm-headline h="h1">作品データ</snm-headline>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -18,7 +18,7 @@
         ["作品について", nl2br(@work.description), { no_escape: true }],
         ["備考", @work.note, { no_escape: true }],
         ["底本管理情報(非公開)", @work.work_secret&.memo, { no_escape: true }],
-        ["状態", @work.work_status.name],
+        ["状態", work_status_mark(@work.work_status)],
         ["状態の開始日", @work.started_on],
         ["著作権フラグ", @work.copyright_flag_name],
         ["最終更新日", @work.updated_at],
