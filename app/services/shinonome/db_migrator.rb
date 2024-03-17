@@ -4,7 +4,7 @@ require 'csv'
 
 module Shinonome
   # データ移行用
-  class MigrateData
+  class DbMigrator
     DEFAULT_DATE = '2024-01-01'
     DATA_DIR = ENV['DATA_DIR'] || '/var/tmp/aozora2_out'
 
@@ -39,7 +39,10 @@ module Shinonome
           :workfile_secrets, # o
           :works, # o
           :work_secrets, # o
-          :typesettings # -
+          :typesettings,
+          :active_storage_attachments,
+          :active_storage_blobs,
+          :active_storage_variant_records
         )
         load_users('users.csv')
         load_news('news_entries.csv')
