@@ -168,7 +168,7 @@ class Work < ApplicationRecord
   end
 
   def first_author
-    work_people.where(role_id: 1).first.person
+    work_people.where(role_id: 1).first&.person
   end
 
   def kana_type_name
@@ -185,6 +185,10 @@ class Work < ApplicationRecord
 
   def author_text
     work_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
+  end
+
+  def base_author_text
+    work_people.where(role_id: 1).map { |a| a.person.original_person&.name }.compact.join(', ')
   end
 
   def translator_text
