@@ -24,7 +24,6 @@ people = (1..2000).map do |n|
     email: "shinonome+person#{n}@example.com",
     url: "https://shononome.example.com/dummy/people/#{n}",
     description: desc,
-    note: "備考#{n}",
     sortkey: name.last.hiragana,
     sortkey2: name.first.hiragana,
     created_at: Time.current,
@@ -32,7 +31,15 @@ people = (1..2000).map do |n|
   }
 end
 
+person_secrets = (1..2000).map do |n|
+  {
+    person_id: n,
+    memo: "備考#{n}"
+  }
+end
+
 Person.insert_all(people)
+Shinonome::PersonSecret.insert_all(person_secrets)
 
 base_people = (1..100).map do
   x = rand(1..2000)

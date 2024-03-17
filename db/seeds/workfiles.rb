@@ -6,7 +6,7 @@ require 'tmpdir'
 Workfile.find_each do |workfile|
   workfile.workdata.purge if workfile&.workdata&.attached?
 end
-Workfile.connection.execute('TRUNCATE TABLE workfiles;')
+Workfile.connection.execute('TRUNCATE TABLE workfiles, workfile_secrets;')
 
 # rubocop:disable Layout/HeredocIndentation
 SAMPLE_TEXT_FORMAT = <<TEXT
@@ -137,8 +137,6 @@ def generate_sample_html(workfile)
 end
 
 work_id_status_list = Work.pluck(:id, :work_status_id)
-# user_id_list = Shinonome::User.all.pluck(:id)
-user_id_list = (1..10).to_a
 
 workfiles = work_id_status_list.map do |n, status|
   # 校了と公開のみ
@@ -152,11 +150,9 @@ workfiles = work_id_status_list.map do |n, status|
       compresstype_id: 2, # zip
       file_encoding_id: 1, # Shift_JIS
       filetype_id: 1, # テキストファイル(ルビあり) rtxt
-      user_id: user_id_list.sample,
       revision_count: 1,
       registrated_on: Time.current,
       last_updated_on: Time.current,
-      note: "備考#{n}",
       filesize: 10000 + (rand(2000) * 17),
       created_at: Time.current,
       updated_at: Time.current
@@ -168,12 +164,9 @@ workfiles = work_id_status_list.map do |n, status|
       compresstype_id: 1, # 圧縮なし
       file_encoding_id: 1, # Shift_JIS
       filetype_id: 3, # htmlファイル
-      user_id: user_id_list.sample,
       revision_count: 1,
-      opened_on: Time.current,
       registrated_on: Time.current,
       last_updated_on: Time.current,
-      note: "備考#{n}",
       filesize: 10000 + (rand(2000) * 17),
       created_at: Time.current,
       updated_at: Time.current
@@ -184,6 +177,7 @@ end.flatten.compact
 Workfile.insert_all(workfiles)
 
 Workfile.includes(:work).find_each do |workfile|
+  workfile.create_workfile_secret!(memo: "備考#{workfile.id}")
   case workfile.compresstype_id
   when 2
     generate_sample_zip(workfile)

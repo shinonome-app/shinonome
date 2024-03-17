@@ -142,7 +142,6 @@ original_books = work_id_list.map do |n|
     input_edition: "入力使用版#{n}",
     proof_edition: "校正使用版#{n}",
     publisher: "底本出版社#{n}",
-    note: "底本備考#{n}",
     booktype_id: 1,
     created_at: Time.current,
     updated_at: Time.current
@@ -159,7 +158,6 @@ work_id_list.each do |n|
     input_edition: "入力使用版#{n}",
     proof_edition: "校正使用版#{n}",
     publisher: "親本出版社#{n}",
-    note: "底本の親本備考#{n}",
     booktype_id: 2,
     created_at: Time.current,
     updated_at: Time.current
@@ -167,3 +165,12 @@ work_id_list.each do |n|
 end
 
 OriginalBook.insert_all(original_books)
+
+ob_secrets = OriginalBook.pluck(:id).map do |ob_id|
+  {
+    original_book_id: ob_id,
+    memo: "底本備考#{ob_id}"
+  }
+end
+
+Shinonome::OriginalBookSecret.insert_all(ob_secrets)
