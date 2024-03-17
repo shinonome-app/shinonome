@@ -25,7 +25,9 @@
 <div class="mt-10 mb-5">
   <snm-headline h="h2">人物一覧</snm-headline>
   <%= render(Admin::PeopleTableComponent.new(pagy: @pagy, people: @people)) %>
+  <div class="py-2">
   <%== pagy_snm_nav(@pagy) %>
+  </div>
 </div>
 <!--人物一覧 end-->
 

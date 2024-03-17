@@ -1,3 +1,5 @@
 <%= render(Admin::SnmTableComponent.new(header: @header, body: @body)) %>
 
+<div class="py-2">
 <%== pagy_snm_nav(@pagy) %>
+</div>

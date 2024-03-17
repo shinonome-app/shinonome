@@ -44,8 +44,9 @@
       <% end %>
     </tbody>
   </table>
-  <%== pagy_snm_nav(@pagy) %>
-
+  <div class="py-2">
+    <%== pagy_snm_nav(@pagy) %>
+  </div>
   <div class="mt-5 flex">
     <%= tag.snm_link '戻る', href: new_admin_person_base_person_path, buttonstyle: "secondary" %>
   </div>

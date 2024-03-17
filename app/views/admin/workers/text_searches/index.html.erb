@@ -2,5 +2,7 @@
   <snm-headline h="h1">工作員検索結果一覧</snm-headline>
   <%= render(Admin::WorkersTableComponent.new(workers: @workers, pagy: @pagy)) %>
 
+  <div class="py-2">
   <%== pagy_snm_nav(@pagy) %>
+  </div>
 </div>

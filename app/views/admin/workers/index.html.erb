@@ -37,5 +37,7 @@
   <%= render(Admin::WorkersTableComponent.new(workers: @workers, pagy: @pagy)) %>
 </div>
 
+<div class="py-2">
 <%== pagy_snm_nav(@pagy) %>
+</div>
 <!--人物一覧 end-->

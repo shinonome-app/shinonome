@@ -8,6 +8,8 @@
   <div class="mt-5">
     <snm-headline h="h2">組版結果一覧</snm-headline>
     <%= render(Admin::TypesettingsTableComponent.new(pagy: @pagy, typesettings: @typesettings)) %>
+    <div class="py-2">
     <%== pagy_snm_nav(@pagy) %>
+    </div>
   </div>
 </div>
