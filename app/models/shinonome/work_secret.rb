@@ -9,7 +9,7 @@
 #  orig_text  :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  work_id    :bigint
+#  work_id    :bigint           not null
 #
 # Indexes
 #

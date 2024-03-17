@@ -8,7 +8,7 @@
 #  memo             :text             default(""), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  original_book_id :bigint
+#  original_book_id :bigint           not null
 #
 # Indexes
 #

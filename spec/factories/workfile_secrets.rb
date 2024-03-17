@@ -8,7 +8,7 @@
 #  memo        :text             default(""), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  workfile_id :bigint
+#  workfile_id :bigint           not null
 #
 # Indexes
 #

@@ -10,7 +10,7 @@
 #  owner_name :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  site_id    :bigint
+#  site_id    :bigint           not null
 #
 # Indexes
 #

@@ -133,7 +133,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
 
   create_table "original_book_secrets", force: :cascade do |t|
     t.text "memo", default: "", null: false
-    t.bigint "original_book_id"
+    t.bigint "original_book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["original_book_id"], name: "index_original_book_secrets_on_original_book_id", unique: true
@@ -178,7 +178,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
 
   create_table "person_secrets", force: :cascade do |t|
     t.text "memo", default: "", null: false
-    t.bigint "person_id"
+    t.bigint "person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_person_secrets_on_person_id", unique: true
@@ -271,7 +271,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.text "email", default: "", null: false
     t.text "owner_name", default: "", null: false
     t.text "memo", default: "", null: false
-    t.bigint "site_id"
+    t.bigint "site_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_site_secrets_on_site_id", unique: true
@@ -329,7 +329,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
   create_table "work_secrets", force: :cascade do |t|
     t.text "orig_text", default: "", null: false
     t.text "memo", default: "", null: false
-    t.bigint "work_id"
+    t.bigint "work_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["work_id"], name: "index_work_secrets_on_work_id", unique: true
@@ -393,7 +393,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
 
   create_table "workfile_secrets", force: :cascade do |t|
     t.text "memo", default: "", null: false
-    t.bigint "workfile_id"
+    t.bigint "workfile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["workfile_id"], name: "index_workfile_secrets_on_workfile_id", unique: true
