@@ -186,7 +186,7 @@ ja:
         first_appearance: "初出"
         memo: "作品について"
         note: "備考"
-        status: "状態"
+        work_status: "状態"
         started_on: "状態の開始日"
         copyright_flag: "著作権"
       shinonome/user:
