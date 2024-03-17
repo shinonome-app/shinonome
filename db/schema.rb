@@ -320,7 +320,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_work_people_on_person_id"
     t.index ["role_id"], name: "index_work_people_on_role_id"
-    t.index ["work_id", "person_id"], name: "index_work_people_on_work_id_and_person_id", unique: true
+    t.index ["work_id", "person_id", "role_id"], name: "index_work_people_on_work_id_and_person_id_and_role_id", unique: true
+    t.index ["work_id", "person_id"], name: "index_work_people_on_work_id_and_person_id"
     t.index ["work_id", "role_id"], name: "index_work_people_on_work_id_and_role_id"
     t.index ["work_id"], name: "index_work_people_on_work_id"
   end
