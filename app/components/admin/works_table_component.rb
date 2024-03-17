@@ -4,6 +4,7 @@ module Admin
   # 縦表用コンポーネント
   class WorksTableComponent < ViewComponent::Base
     include ::Pagy::Frontend
+    include WorkHelper
 
     def initialize(works:, pagy:)
       super
@@ -19,7 +20,7 @@ module Admin
           safe_join([link_to(work.title, admin_work_path(work)), tag.br, work.subtitle]),
           safe_join([work.author_text, tag.br, work.translator_text]),
           work.kana_type.name,
-          safe_join([tag.snm_status(statusType: work.work_status.color, label: work.work_status.name), tag.br, work.started_on])
+          safe_join([work_status_mark(work.work_status), tag.br, work.started_on])
         ]
       end
     end
