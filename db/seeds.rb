@@ -43,6 +43,7 @@ filetypes = {
   7 => %w[PDFファイル               pdf  f f f],
   8 => %w[PalmDocファイル           doc  f f f],
   9 => %w[XHTMLファイル             html t f f],
+  10 => %w[EPUBファイル             epub f f f],
   99 => %w[その他                   etc  f f f]
 }
 # rubocop:enable Layout/SpaceInsideArrayPercentLiteral
@@ -90,6 +91,7 @@ roles = {
   2 => '翻訳者',
   3 => '校訂者',
   4 => '編者',
+  5 => '監修者',
   99 => 'その他'
 }
 
@@ -122,6 +124,9 @@ work_statuses = <<~ROWS
   10	校了	10
   11	翻訳中	11
   12	入力取り消し	12
+  13	校了（点検前）	13
+  14	校正受領	14
+  15	公開保留	15
 ROWS
 
 # WorkStatus.connection.execute('TRUNCATE TABLE work_statuses;')
