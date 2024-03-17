@@ -12,12 +12,12 @@ RSpec.describe WorkfileConverter do
       end
 
       it 'テキストを渡すと正常に変換される' do
-        result = described_class.new.convert_format(workfile)
+        result = WorkfileConverter.new.convert_format(workfile)
         expect(result.converted?).to be true
       end
 
       it '変換後のHTMLは正しい結果になる' do
-        result = described_class.new.convert_format(workfile)
+        result = WorkfileConverter.new.convert_format(workfile)
         content = result.workfile.workdata.open { |file| file.read }
         content.force_encoding('Shift_JIS').encode('utf-8')
         html_content = file_fixture('html/01jo.html').read
@@ -33,7 +33,7 @@ RSpec.describe WorkfileConverter do
         end
       end
 
-      let(:result) { described_class.new.convert_format(workfile) }
+      let(:result) { WorkfileConverter.new.convert_format(workfile) }
 
       it 'テキストを渡すと正常に変換される' do
         expect(result.converted?).to be true

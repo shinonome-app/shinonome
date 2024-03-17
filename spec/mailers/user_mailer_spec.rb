@@ -8,7 +8,7 @@ RSpec.describe UserMailer do
     let(:sub_works) do
       [build(:receipt_form_sub_work)]
     end
-    let(:mail) { described_class.register_receipt(receipt, sub_works) }
+    let(:mail) { UserMailer.register_receipt(receipt, sub_works) }
 
     it 'renders the headers' do
       expect(mail.subject).to eq('「作品その一」他の入力受付完了のお知らせ')

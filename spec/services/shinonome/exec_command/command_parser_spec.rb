@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Shinonome::ExecCommand::CommandParser do
   describe '.parse_tsv' do
-    let(:command_parser) { described_class.new }
+    let(:command_parser) { Shinonome::ExecCommand::CommandParser.new }
 
     context '文字列で与える場合' do
       it '正しく解析される' do

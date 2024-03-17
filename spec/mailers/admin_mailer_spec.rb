@@ -11,7 +11,7 @@ RSpec.describe AdminMailer do
         create(:original_book, work: receipt.work, booktype_id: 1)
       end
     end
-    let(:mail) { described_class.order_receipt(receipt) }
+    let(:mail) { AdminMailer.order_receipt(receipt) }
 
     it 'renders the headers' do
       expect(mail.subject).to eq("「#{receipt.title} #{receipt.subtitle}」入力のお願い")
