@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= vite_stylesheet_tag 'application' %>
+    <%= vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' } %>
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <%= vite_client_tag %>
     <%= vite_typescript_tag 'application' %>
@@ -23,8 +23,8 @@
       <% end %>
     <% end %>
 
-    <div class="mt-24 max-w-7xl m-auto flex gap-5">
-      <div class="w-[60%] sm:w-[40%] xl:w-[30%]">
+    <div class="mt-24 max-w-[80rem] m-auto flex gap-5">
+      <div class="w-[60%] sm:w-72 xl:w-80 ml-4">
         <%= render(Admin::SnmSidebarComponent.new) %>
       </div>
       <div class="w-full flex flex-col">

@@ -1,5 +1,5 @@
-<div class="w-full">
-  <snm-headline h="h2">工作員データ</snm-headline>
+<div>
+  <snm-headline h="h1">工作員データ</snm-headline>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -13,21 +13,31 @@
         ["最終更新日時", @worker.updated_at],
         ["更新者", @worker.worker_secret&.user&.username]
       ])) %>
-
+</div>
+<div class="mt-6">
   <snm-headline h="h2">関連した作品</snm-headline>
 
   <%= render(Admin::SnmTableComponent.new(
                header: %w[役割 作品名 副題 仮名遣い種別 状態 状態の開始日],
+               classes: [
+                 'text-center w-24',
+                 'text-center px-5',
+                 'text-center px-5',
+                 'text-center px-5',
+                 'text-center px-5',
+                 'text-center px-5'
+               ],
                body: @work_workers.map do |work_worker|
-                 work = work_worker.work
-                 [
-                   work_worker.worker_role.name,
-                   link_to(work.title, admin_work_path(work)),
-                   work.kana_type&.name,
-                   work.work_status&.name,
-                   work.started_on
-                 ]
-               end
+                       work = work_worker.work
+                       [
+                         work_worker.worker_role.name,
+                         link_to(work.title, admin_work_path(work)),
+                         work.subtitle,
+                         work.kana_type&.name,
+                         work_status_mark(work.work_status),
+                         work.started_on
+                       ]
+                     end
              )) %>
 
   <div class="mt-2 flex gap-2">

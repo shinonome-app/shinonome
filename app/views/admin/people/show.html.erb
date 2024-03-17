@@ -51,7 +51,7 @@
       <%= render(Admin::SnmTableVComponent.new(rows:
           [
             ["関連サイト名", person_site.site.name],
-            ["URL", person_site.site.url],
+            ["URL", link_to(person_site.site.url, person_site.site.url)],
             ["関連サイト運営者", person_site.site.site_secret&.owner_name]
           ])) %>
 
@@ -75,17 +75,18 @@
 
   <%= render(Admin::SnmTableComponent.new(
                header: %w[役割 作品名 副題 仮名遣い 状態 状態の開始日],
+               classes: ['text-center w-24', 'text-center', 'text-center', 'text-center', 'text-center', 'text-center'],
                body: @work_people.map do |work_person|
-                 work = work_person.work
-                 [
-                   work_person.role.name,
-                   link_to(work.title, admin_work_path(work)),
-                   work.subtitle,
-                   work.kana_type.name,
-                   work.work_status.name,
-                   work.started_on
-                 ]
-               end
+                       work = work_person.work
+                       [
+                         work_person.role.name,
+                         link_to(work.title, admin_work_path(work)),
+                         work.subtitle,
+                         work.kana_type.name,
+                         work_status_mark(work.work_status),
+                         work.started_on
+                       ]
+                     end
              )) %>
 
 </div>
