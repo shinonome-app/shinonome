@@ -74,7 +74,7 @@ RSpec/ContextWording:
   Enabled: false
 
 RSpec/DescribedClass:
-  Enabled: false
+  EnforcedStyle: explicit
 
 RSpec/ExampleLength:
   Max: 100
@@ -114,6 +114,10 @@ Style/NumericLiterals:
   Enabled: false
 
 Style/NumericPredicate:
+  Enabled: false
+
+Style/SymbolArray:
+  MinSize: 3
   Enabled: false
 
 Style/SymbolProc:
