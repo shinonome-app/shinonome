@@ -159,6 +159,7 @@
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
         ["ファイル", workfile.workdata.attached? ? link_to(workfile.filename, rails_blob_url(workfile.workdata)) : workfile.filename],
+        ["URL", workfile.url.present? ? link_to(workfile.url, workfile.url) : '-'],
         ["ファイル形式", workfile.filetype.name],
         ["圧縮形式", workfile.compresstype.name],
         ["ファイルサイズ", workfile.filesize],
@@ -191,8 +192,8 @@
       [
         ["関連サイト名", site.name],
         ["URL", site.url],
-        ["運営者", site.owner_name],
-        ["備考", site.note]
+        ["運営者", site.site_secret&.owner_name],
+        ["備考", site.site_secret&.memo]
       ])) %>
 
   <div class="mt-2 flex gap-2">
