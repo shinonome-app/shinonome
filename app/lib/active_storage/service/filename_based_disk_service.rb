@@ -11,6 +11,8 @@ module ActiveStorage
     #  9_ruby_21.zip -> 09/9/9_ruby_21.zip
     #  3157_ruby_5251.zip -> 31/3157/3157_ruby_5251.zip
     class FilenameBasedDiskService < ::ActiveStorage::Service::DiskService
+      include ::DiskFolder
+
       def path_for(key)
         blob = ActiveStorage::Blob.find_by(key:)
         filename = blob.filename.to_s
@@ -20,13 +22,7 @@ module ActiveStorage
       private
 
       def folder_for_by_filename(filename)
-        base_folder_name = if filename.include?('_')
-                             filename.split('_').first
-                           else
-                             '_'
-                           end
-        first_part = format('%02d', base_folder_name[0, 2].to_i)
-        [first_part, base_folder_name].join('/')
+        folder_name_for(filename)
       end
     end
   end
