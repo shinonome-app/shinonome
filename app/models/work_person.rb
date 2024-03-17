@@ -35,7 +35,7 @@ class WorkPerson < ApplicationRecord
   belongs_to :person
   belongs_to :role
 
-  validates :person_id, uniqueness: { scope: :work_id, message: 'がすでに関連付けられています' }
+  validates :person_id, uniqueness: { scope: [:work_id, :role_id], message: 'がすでに関連付けられています' }
 
   def self.csv_header
     "bookid,人物id,役割フラグ\r\n"
