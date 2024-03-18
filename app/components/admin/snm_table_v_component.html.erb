@@ -7,7 +7,7 @@
     </th>
     <td class="py-0 px-5 break-all">
       <% if cols[2] && cols[2][:no_escape] %>
-      <%== cols[1] %>
+      <!-- unsafe --><%== cols[1] %>
       <% else %>
       <%= cols[1] %>
       <% end %>

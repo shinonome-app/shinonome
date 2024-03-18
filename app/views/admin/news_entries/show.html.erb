@@ -16,7 +16,7 @@
   <snm-headline h="h3">本文</snm-headline>
 
   <div class="news-body border border-gray-600 p-4">
-    <%== nl2br(@news_entry.body) %>
+    <!-- unsafe --><%== nl2br(@news_entry.body) %>
   </div>
 
   <snm-headline h="h3">トピックに指定する</snm-headline>
