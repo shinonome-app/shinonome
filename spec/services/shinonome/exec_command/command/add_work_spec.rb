@@ -126,7 +126,7 @@ RSpec.describe Shinonome::ExecCommand::Command::AddWork do
           Shinonome::ExecCommand::Command::AddWork.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
-          '状態には"公開"か"非公開"か"入力中"か"入力予約"か"校正待ち(点検済み)"か"校正待ち(点検前)"か"校正予約(点検済み)"か"校正予約(点検前)"か"校正中"か"校了"か"翻訳中"か"入力取り消し"を指定してください。'
+          '状態には"公開"か"非公開"か"入力中"か"入力予約"か"校正待ち(点検済み)"か"校正待ち(点検前)"か"校正予約(点検済み)"か"校正予約(点検前)"か"校正中"か"校了"か"翻訳中"か"入力取り消し"か"校了（点検前）"か"校正受領"か"公開保留"を指定してください。'
         )
       end
     end

@@ -25,7 +25,7 @@ RSpec.describe Shinonome::ExecCommand::Command::AddPerson do
           Shinonome::ExecCommand::Command::AddPerson.new.execute(command)
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
-          '役割フラグには"著者"か"翻訳者"か"校訂者"か"編者"か"その他"を指定してください。'
+          '役割フラグには"著者"か"翻訳者"か"校訂者"か"編者"か"監修者"か"その他"を指定してください。'
         )
       end
     end

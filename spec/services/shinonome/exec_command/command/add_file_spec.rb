@@ -111,7 +111,7 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
 
         expect do
           Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
-        end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".workファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"その他"を指定してください。')
+        end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".workファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"EPUBファイル"か"その他"を指定してください。')
       end
     end
 
@@ -124,7 +124,7 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
 
         expect do
           Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
-        end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".workファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"その他"を指定してください。')
+        end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".workファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"EPUBファイル"か"その他"を指定してください。')
       end
     end
 
