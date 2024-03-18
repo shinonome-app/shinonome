@@ -1,6 +1,6 @@
 <!--作品テキスト start-->
 <div>
-  <snm-headline h="h2">人物詳細</snm-headline>
+  <snm-headline h="h1">人物詳細</snm-headline>
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
         ["人物ID", @person.id],
@@ -27,7 +27,7 @@
 </div>
 
 <div class="mt-6">
-  <snm-headline h="h3">人物基本名</snm-headline>
+  <snm-headline h="h2">人物基本名</snm-headline>
 
   <% if @person.original_person %>
   <div class="mt-2">
@@ -42,7 +42,7 @@
 </div>
 
 <div class="mt-6">
-  <snm-headline h="h3">関連サイトデータ</snm-headline>
+  <snm-headline h="h2">関連サイトデータ</snm-headline>
 
   <% if @person.sites.present? %>
   <div class="mt-2">
@@ -71,7 +71,7 @@
 
 <!--作品一覧 start-->
 <div class="mt-6 mb-5">
-  <snm-headline h="h3">関連した作品</snm-headline>
+  <snm-headline h="h2">関連した作品</snm-headline>
 
   <%= render(Admin::SnmTableComponent.new(
                header: %w[役割 作品名 副題 仮名遣い 状態 状態の開始日],
