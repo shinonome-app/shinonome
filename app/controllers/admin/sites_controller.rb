@@ -2,6 +2,7 @@
 
 module Admin
   class SitesController < Admin::ApplicationController
+    include Pagy::Backend
     before_action :set_site, only: %i[show edit update destroy]
 
     # GET /admin/sites
@@ -11,7 +12,10 @@ module Admin
     end
 
     # GET /admin/sites/1
-    def show; end
+    def show
+      @work_sites = @site.work_sites
+      @pagy, @people = pagy(@site.people.order(:id).all)
+    end
 
     # GET /admin/sites/new
     # GET /admin/works/:work_id/sites/new

@@ -17,3 +17,26 @@
     <%= tag.snm_link "戻る", href: admin_sites_path, buttonstyle: "secondary" %>
   </div>
 </div>
+
+<div class="mt-6 mb-5">
+  <snm-headline h="h2">関連した作品</snm-headline>
+  <%= render(Admin::SnmTableComponent.new(
+               header: %w[作品名 副題 仮名遣い 状態 状態の開始日],
+               classes: ['text-center', 'text-center', 'text-center', 'text-center', 'text-center'],
+               body: @work_sites&.map do |work_site|
+                       work = work_site.work
+                       [
+                         link_to(work.title, admin_work_path(work)),
+                         work.subtitle,
+                         work.kana_type.name,
+                         work_status_mark(work.work_status),
+                         work.started_on
+                       ]
+                     end
+             )) %>
+</div>
+
+<div class="mt-6 mb-5">
+  <snm-headline h="h2">関連した人物</snm-headline>
+  <%= render(Admin::PeopleTableComponent.new(pagy: @pagy, people: @people)) %>
+</div>
