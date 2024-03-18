@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     namespace :people do
       resources :text_searches, only: %i[index]
       resources :person_index_searches, only: %i[index]
+      resources :previews, only: %i[show]
     end
     resources :people do
       resources :base_people, only: %i[new create destroy]
@@ -182,6 +183,7 @@ Rails.application.routes.draw do
       get 'list_person_all_extended_utf8', to: 'downloads#list_person_all_extended_utf8', constraints: { format: 'zip' }
     end
   end
+  get 'cards/:person_id/card:card_id', to: 'cards#show', constraints: { person_id: /\d+/, card_id: /\d+/ }, as: :card
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener'
 end

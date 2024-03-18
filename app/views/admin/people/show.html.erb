@@ -91,6 +91,14 @@
 
 </div>
 
+<div class="mt-6">
+  <snm-headline h="h2">作家別作品リストプレビュー</snm-headline>
+  <div class="mt-2 flex gap-2">
+    <%= tag.snm_link "プレビュー", href: admin_people_preview_path(@person), target: "_blank" %>
+  </div>
+</div>
+
+
 <div class="mt-5 flex">
   <%= tag.snm_link '戻る', href: admin_people_path, buttonstyle: "secondary" %>
 </div>

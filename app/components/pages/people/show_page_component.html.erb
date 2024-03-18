@@ -1,0 +1,220 @@
+<%= render LayoutComponent.new(title: "作家別作品リスト：#{author.name} | 青空文庫", bgcolor: author.copyright? ? 'bg-rose-50' : 'bg-sky-50') do -%>
+<div id="app" class="container mx-auto max-w-5xl ">
+  <div id="top" name="top">&nbsp;</div>
+
+  <header class="flex items-center justify-between">
+    <a href="/" class="md:hidden flex justify-between px-2">
+    <img src="/images/top_logo.png" alt="Logo" class="h-8 w-8">
+  </a>
+    <span class="hidden md:flex">&nbsp;</span>
+    <nav class="flex justify-end">
+      <div class="md:flex justify-end py-3 hidden">
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index.html">トップ</a>
+        </div>
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/index_top.html">インデックス</a>
+          ／
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/index_all.html">全</a>
+        </div>
+        <div class="px-2">
+          ●作家リスト:
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/person_<%= kana %>.html#<%= kana_fragment %>">公開</a>
+          ／
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/person_inp_<%= kana %>.html#<%= kana_fragment %>">作業</a>
+          ／
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/person_all_<%= kana %>.html#<%= kana_fragment %>">全</a>
+        </div>
+        <div class="px-2">●<span class="current font-bold text-red-500">作家別作品リスト</span></div>
+      </div>
+
+      <div class="flex md:hidden items-center space-x-3 py-3 px-3">
+        <!--
+            <button>
+              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
+              </svg>
+            </button>
+            -->
+            <button class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[メニュー]</button>
+      </div>
+    </nav>
+  </header>
+
+  <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">作家別作品リスト：No.<%= author.id %></h1>
+
+  <div class="p-4">
+    <table summary="作家データ">
+      <tr>
+        <th class="text-left text-red-800 w-1/6">作家名：</th>
+        <td>
+          <span class="text-2xl"><%= author.name %></span>
+          <% author.other_people.each do |other_person| %>
+          　→<%= other_person.name %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6">作家名読み：</th>
+        <td><%= author.name_kana %></td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6">ローマ字表記：</th>
+        <td><%= author.name_en %></td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6">生年：</th>
+        <td><%= author.born_on %></td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6">没年：</th>
+        <td><%= author.died_on %></td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6">人物について：</th>
+        <td>
+          <%== author.description %>
+          <!--
+              <div class="flex flex-row">
+                <a href="http://ja.wikipedia.org/" target="_blank">
+                  <img align="middle" src="/images/wikipedia-logo.svg" width="48" height="48" border="0" alt="wikipediaアイコン">
+                </a>
+                「<a class="underline text-blue-700" href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%B3%E3%83%BB%E3%83%81%E3%82%A7%E3%83%BC%E3%83%9B%E3%83%95" target="_blank">アントン・チェーホフ</a>」
+              </div>
+              -->
+        </td>
+      </tr>
+    </table>
+    <% if author.copyright? %>
+    <div class="bg-white my-2 py-1">
+      <span class="text-red-500 font-bold">＊著作権存続＊</span>
+      　作品の取り扱いについては「
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="https://www.aozora.gr.jp/guide/kijyunn.html">
+        ファイル取り扱い規準
+      </a>
+      」を御覧ください。
+    </div>
+    <% end %>
+  </div>
+
+  <hr class="border-gray-400">
+
+  <div class="text-right py-4">
+    ［
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#sakuhin_list_1">公開中の作品</a>
+    ｜
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#sakuhin_list_2">作業中の作品</a>
+    ］
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_1">公開中の作品</a></h2>
+
+  <div class="px-12 py-5">
+    <ol class="list-decimal">
+      <% author.published_works.includes(:kana_type).order(:sortkey, :id).each do |work| %>
+      <li>
+        <%= link_to work.title,
+                    card_path(person_id: work.card_person_id, card_id: work.id, format: :html),
+                    class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" %>
+        <%= work.subtitle %>
+        <span class="px-4">（<%= work.kana_type.name %>、作品ID：<%= work.id %>）</span>
+        <% work.work_people.order(:role_id).each do |work_person| %>
+        <% next if work_person.person_id == author.id %>
+        <span class="px-8">→<a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person<%= work_person.person_id %>.html"><%= work_person.person.name %></a>(<%= work_person.role.name %>) </span>
+        <% end %>
+      </li>
+      <% end %>
+
+    </ol>
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_2">作業中の作品</a></h2>
+
+  <div class="p-4">
+    →<a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="list_inp<%= author.id %>_1.html">作業中　作家別作品一覧：<%= author.name %></a>
+  </div>
+
+  <div class="px-12 py-5">
+    <ol class="list-decimal">
+      <% author.unpublished_works.includes(:kana_type).order(:sortkey, :id).each do |work| %>
+      <li>
+        <%= work.title %>
+        <span class="px-4">（<%= work.kana_type.name %>、作品ID：<%= work.id %>）</span>
+        <% work.work_people.order(:role_id).each do |work_person| %>
+        <% next if work_person.person_id == author.id %>
+        <span class="px-8">→<a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person<%= work_person.person_id %>.html"><%= work_person.person.name %></a>(<%= work_person.role.name %>)
+        </span>
+        <% end %>
+      </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500">関連サイト</h2>
+
+  <div class="text-right py-4">
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#top">▲</a>
+  </div>
+
+  <hr class="border-gray-400">
+
+  <footer class="pt-3 pb-14">
+    <div>
+      ●作家リスト：公開中
+      <a href="person_a.html">[あ]</a>
+      <a href="person_ka.html">[か]</a>
+      <a href="person_sa.html">[さ]</a>
+      <a href="person_ta.html">[た]</a>
+      <a href="person_na.html">[な]</a>
+      <a href="person_ha.html">[は]</a>
+      <a href="person_ma.html">[ま]</a>
+      <a href="person_ya.html">[や]</a>
+      <a href="person_ra.html">[ら]</a>
+      <a href="person_wa.html">[わ]</a>
+      <a href="person_zz.html">[他]</a>
+    </div>
+    <div>
+      <span>●作家リスト：作業中　</span>
+      <a href="person_inp_a.html">[あ]</a>
+      <a href="person_inp_ka.html">[か]</a>
+      <a href="person_inp_sa.html">[さ]</a>
+      <a href="person_inp_ta.html">[た]</a>
+      <a href="person_inp_na.html">[な]</a>
+      <a href="person_inp_ha.html">[は]</a>
+      <a href="person_inp_ma.html">[ま]</a>
+      <a href="person_inp_ya.html">[や]</a>
+      <a href="person_inp_ra.html">[ら]</a>
+      <a href="person_inp_wa.html">[わ]</a>
+      <a href="person_inp_zz.html">[他]</a>
+    </div>
+    <div>
+      <span>●作家リスト：全　　　</span>
+      <span>
+        <a href="person_all_a.html">[あ]</a>
+        <a href="person_all_ka.html">[か]</a>
+        <a href="person_all_sa.html">[さ]</a>
+        <a href="person_all_ta.html">[た]</a>
+        <a href="person_all_na.html">[な]</a>
+        <a href="person_all_ha.html">[は]</a>
+        <a href="person_all_ma.html">[ま]</a>
+        <a href="person_all_ya.html">[や]</a>
+        <a href="person_all_ra.html">[ら]</a>
+        <a href="person_all_wa.html">[わ]</a>
+        <a href="person_all_zz.html">[他]</a>
+      </span>
+    </div>
+
+    <div>
+      ●<a href="/index.html">トップ</a>　●<a href="/index_pages/index_top.html">インデックス</a>／<a href="/index_pages/index_all.html">全</a>
+    </div>
+  </footer>
+</div>
+<%- end -%>
