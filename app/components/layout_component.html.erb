@@ -14,10 +14,11 @@
     <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
     <% end %>
+    <base href="https://www.aozora.gr.jp/" target="_blank" />
   </head>
 
   <body class="<%= bgcolor %>">
-    <main class="container mx-auto py-1">
+    <main class="container mx-auto py-1" data-turbo="false">
       <%= content %>
     </main>
   </body>
