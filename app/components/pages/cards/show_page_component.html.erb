@@ -147,7 +147,7 @@
     <% work.work_people.each_with_index do |work_person, work_person_index| %>
     <% person = work_person.person %>
     <% if work_person_index > 0 %>
-    <hr class="border-gray-400">
+    <hr class="border-gray-400 my-2">
     <% end %>
     <table class="table-fixed w-full" summary="作家データ">
       <tr><th class="text-left text-red-800 w-1/6 align-top">分類：</th><td><%= work_person.role.name %></td></tr>
@@ -184,7 +184,7 @@
   <div class="p-4">
     <% work.original_books.each_with_index do |book, book_index| %>
     <% if book_index > 0 %>
-    <hr class="border-gray-400">
+    <hr class="border-gray-400 my-2">
     <% end %>
     <table summary="底本データ" class="w-full">
       <tr><th class="text-left text-red-800 w-1/6"><%= book.booktype.name %>：</th><td><%= book.title %></td></tr>
@@ -333,4 +333,5 @@
        href="/index_pages/person1155.html">作家別作品リスト</a>
   </div>
 </div>
+<!-- generated at: <%= Time.zone.now %> -->
 <%- end -%>
