@@ -1,168 +1,130 @@
 # frozen_string_literal: true
 
-kana_types = {
-  1 => '旧字旧仮名',
-  2 => '旧字新仮名',
-  3 => '新字旧仮名',
-  4 => '新字新仮名',
-  99 => 'その他'
-}
+ApplicationRecord.transaction do
+  # rubocop:disable Rails/SkipsModelValidations
+  kana_types = [
+    { id: 1, name: '旧字旧仮名' },
+    { id: 2, name: '旧字新仮名' },
+    { id: 3, name: '新字旧仮名' },
+    { id: 4, name: '新字新仮名' },
+    { id: 99, name: 'その他' }
+  ]
 
-# exist successfully if already created
-if KanaType.count.positive?
-  warn 'Seeds have already been created.'
-  return
-end
+  KanaType.upsert_all(kana_types)
 
-# KanaType.connection.execute('TRUNCATE TABLE kana_types;')
-kana_types.each do |k, v|
-  KanaType.create!(id: k, name: v)
-end
+  charsets = [
+    { id: 1, name: 'JIS X 0208' },
+    { id: 2, name: 'JIS X 0213' },
+    { id: 3, name: 'Unicode' },
+    { id: 99, name: 'その他' }
+  ]
 
-charsets = {
-  1 => 'JIS X 0208',
-  2 => 'JIS X 0213',
-  3 => 'Unicode',
-  99 => 'その他'
-}
+  Charset.upsert_all(charsets)
 
-# Charset.connection.execute('TRUNCATE TABLE charsets;')
-charsets.each do |k, v|
-  Charset.create!(id: k, name: v)
-end
+  filetypes = [
+    { id: 0, name: '入力完了ファイル', extension: 'txt', is_html: false, is_text: true, is_rtxt: false },
+    { id: 1, name: 'テキストファイル(ルビあり)', extension: 'rtxt', is_html: false, is_text: true, is_rtxt: true },
+    { id: 2, name: 'テキストファイル(ルビなし)', extension: 'txt', is_html: false, is_text: true, is_rtxt: false },
+    { id: 3, name: 'HTMLファイル', extension: 'html', is_html: true, is_text: false, is_rtxt: false },
+    { id: 4, name: 'エキスパンドブックファイル', extension: 'ebk', is_html: false, is_text: false, is_rtxt: false },
+    { id: 5, name: '.workファイル', extension: 'work', is_html: false, is_text: false, is_rtxt: false },
+    { id: 6, name: 'TTZファイル', extension: 'ttz', is_html: false, is_text: false, is_rtxt: false },
+    { id: 7, name: 'PDFファイル', extension: 'pdf', is_html: false, is_text: false, is_rtxt: false },
+    { id: 8, name: 'PalmDocファイル', extension: 'doc', is_html: false, is_text: false, is_rtxt: false },
+    { id: 9, name: 'XHTMLファイル', extension: 'html', is_html: true, is_text: false, is_rtxt: false },
+    { id: 10, name: 'EPUBファイル', extension: 'epub', is_html: false, is_text: false, is_rtxt: false },
+    { id: 99, name: 'その他', extension: 'etc', is_html: false, is_text: false, is_rtxt: false }
+  ]
+  Filetype.upsert_all(filetypes)
 
-# rubocop:disable Layout/SpaceInsideArrayPercentLiteral
-filetypes = {
-  0 => %w[入力完了ファイル           txt  f t f],
-  1 => %w[テキストファイル(ルビあり) rtxt f t t],
-  2 => %w[テキストファイル(ルビなし) txt  f t f],
-  3 => %w[HTMLファイル              html t f f],
-  4 => %w[エキスパンドブックファイル ebk  f f f],
-  5 => %w[.workファイル             work f f f],
-  6 => %w[TTZファイル               ttz  f f f],
-  7 => %w[PDFファイル               pdf  f f f],
-  8 => %w[PalmDocファイル           doc  f f f],
-  9 => %w[XHTMLファイル             html t f f],
-  10 => %w[EPUBファイル             epub f f f],
-  99 => %w[その他                   etc  f f f]
-}
-# rubocop:enable Layout/SpaceInsideArrayPercentLiteral
+  compresstypes = [
+    { id: 1, name: '圧縮なし', extension: 'none' },
+    { id: 2, name: 'ZIP圧縮', extension: 'zip' },
+    { id: 3, name: 'GZIP圧縮', extension: 'gz' },
+    { id: 4, name: 'LHA圧縮', extension: 'lzh' },
+    { id: 5, name: 'SIT圧縮', extension: 'sit' }
+  ]
 
-# Filetype.connection.execute('TRUNCATE TABLE filetypes;')
-filetypes.each do |k, v|
-  Filetype.create!(
-    id: k,
-    name: v[0],
-    extension: v[1],
-    is_html: (v[2] == 't'),
-    is_text: (v[3] == 't'),
-    is_rtxt: (v[4] == 't')
+  Compresstype.upsert_all(compresstypes)
+
+  file_encodings = [
+    { id: 1, name: 'ShiftJIS' },
+    { id: 2, name: 'JIS' },
+    { id: 3, name: 'EUC' },
+    { id: 4, name: 'UTF-8' },
+    { id: 99, name: 'その他' }
+  ]
+
+  FileEncoding.upsert_all(file_encodings)
+
+  roles = [
+    { id: 1, name: '著者' },
+    { id: 2, name: '翻訳者' },
+    { id: 3, name: '校訂者' },
+    { id: 4, name: '編者' },
+    { id: 5, name: '監修者' },
+    { id: 99, name: 'その他' }
+  ]
+
+  Role.upsert_all(roles)
+
+  worker_roles = [
+    { id: 1, name: '入力者' },
+    { id: 2, name: '校正者' },
+    { id: 99, name: 'その他' }
+  ]
+
+  WorkerRole.upsert_all(worker_roles)
+
+  work_statuses = [
+    { id: 1, name: '公開', sort_order: 1 },
+    { id: 2, name: '非公開', sort_order: 2 },
+    { id: 3, name: '入力中', sort_order: 3 },
+    { id: 4, name: '入力予約', sort_order: 4 },
+    { id: 5, name: '校正待ち(点検済み)', sort_order: 5 },
+    { id: 6, name: '校正待ち(点検前)', sort_order: 6 },
+    { id: 7, name: '校正予約(点検済み)', sort_order: 7 },
+    { id: 8, name: '校正予約(点検前)', sort_order: 8 },
+    { id: 9, name: '校正中', sort_order: 9 },
+    { id: 10, name: '校了', sort_order: 10 },
+    { id: 11, name: '翻訳中', sort_order: 11 },
+    { id: 12, name: '入力取り消し', sort_order: 12 },
+    { id: 13, name: '校了（点検前）', sort_order: 13 },
+    { id: 14, name: '校正受領', sort_order: 14 },
+    { id: 15, name: '公開保留', sort_order: 15 }
+  ]
+
+  WorkStatus.upsert_all(work_statuses)
+
+  booktypes = [
+    { id: 1, name: '底本' },
+    { id: 2, name: '底本の親本' }
+  ]
+
+  Booktype.upsert_all(booktypes)
+
+  ## 人物（著者なし）を追加
+  Person.upsert({ id: 0,
+                  last_name: '著者なし',
+                  last_name_kana: 'ちょしゃなし',
+                  last_name_en: 'Choshanashi',
+                  copyright_flag: false,
+                  sortkey: 'ちょしゃなし' })
+  ## 予備工作員を追加
+  Worker.upsert({ id: 0,
+                  name: '予備工作員',
+                  name_kana: 'よびこうさくいん',
+                  sortkey: 'よびこうさくいん' })
+  Shinonome::WorkerSecret.upsert(
+    { id: 0,
+      worker_id: 0,
+      email: 'shinonome-worker0@example.com',
+      note: '予備工作員用',
+      url: 'https://shinonome.example.com/dummy/workers/0' }
   )
+
+  # rubocop:enable Rails/SkipsModelValidations
 end
-
-compresstypes = {
-  1 => %w[圧縮なし none],
-  2 => %w[ZIP圧縮 zip],
-  3 => %w[GZIP圧縮 gz],
-  4 => %w[LHA圧縮 lzh],
-  5 => %w[SIT圧縮 sit]
-}
-
-# Compresstype.connection.execute('TRUNCATE TABLE compresstypes;')
-compresstypes.each do |k, v|
-  Compresstype.create!(id: k, name: v[0], extension: v[1])
-end
-
-file_encodings = {
-  1 => 'ShiftJIS',
-  2 => 'JIS',
-  3 => 'EUC',
-  4 => 'UTF-8',
-  99 => 'その他'
-}
-
-# FileEncoding.connection.execute('TRUNCATE TABLE file_encodings;')
-file_encodings.each do |k, v|
-  FileEncoding.create!(id: k, name: v)
-end
-
-roles = {
-  1 => '著者',
-  2 => '翻訳者',
-  3 => '校訂者',
-  4 => '編者',
-  5 => '監修者',
-  99 => 'その他'
-}
-
-# Role.connection.execute('TRUNCATE TABLE roles;')
-roles.each do |k, v|
-  Role.create!(id: k, name: v)
-end
-
-worker_roles = {
-  1 => '入力者',
-  2 => '校正者',
-  99 => 'その他'
-}
-
-# WorkerRole.connection.execute('TRUNCATE TABLE worker_roles;')
-worker_roles.each do |k, v|
-  WorkerRole.create!(id: k, name: v)
-end
-
-work_statuses = <<~ROWS
-  1	公開	1
-  2	非公開	2
-  3	入力中	3
-  4	入力予約	4
-  5	校正待ち(点検済み)	5
-  6	校正待ち(点検前)	6
-  7	校正予約(点検済み)	7
-  8	校正予約(点検前)	8
-  9	校正中	9
-  10	校了	10
-  11	翻訳中	11
-  12	入力取り消し	12
-  13	校了（点検前）	13
-  14	校正受領	14
-  15	公開保留	15
-ROWS
-
-# WorkStatus.connection.execute('TRUNCATE TABLE work_statuses;')
-work_statuses.each_line do |line|
-  rows = line.chomp.split
-  WorkStatus.create!(id: rows[0].to_i, name: rows[1], sort_order: rows[2].to_i)
-end
-
-booktypes = {
-  1 => '底本',
-  2 => '底本の親本'
-}
-
-# Booktype.connection.execute('TRUNCATE TABLE booktypes;')
-booktypes.each do |k, v|
-  Booktype.create!(id: k, name: v)
-end
-
-## 人物（著者なし）を追加
-Person.create(id: 0,
-              last_name: '著者なし',
-              last_name_kana: 'ちょしゃなし',
-              last_name_en: 'Choshanashi',
-              copyright_flag: false,
-              sortkey: 'ちょしゃなし')
-## 予備工作員を追加
-worker_dummy = Worker.create(id: 0,
-                             name: '予備工作員',
-                             name_kana: 'よびこうさくいん',
-                             sortkey: 'よびこうさくいん')
-Shinonome::WorkerSecret.create(
-  worker_id: worker_dummy.id,
-  email: 'shinonome-worker0@example.com',
-  note: '予備工作員用',
-  url: 'https://shinonome.example.com/dummy/workers/0'
-)
 
 if Rails.env.development? || ENV.fetch('DISABLE_DATABASE_ENVIRONMENT_CHECK', nil) || ENV.fetch('USE_ALL_SEEDS', nil)
   require_relative 'seeds/users'
