@@ -2,6 +2,7 @@
 
 module Pages
   module People
+    # 静的サイトの作家別作品リスト
     class ShowPageComponent < ViewComponent::Base
       attr_reader :kana_fragment, :kana, :author
 
