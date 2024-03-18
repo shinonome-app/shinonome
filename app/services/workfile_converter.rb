@@ -29,7 +29,7 @@ class WorkfileConverter
         end
 
         # Aozora2Html.new(src_file, dest_file).process
-        system("bundle exec aozora2html #{src_file} #{dest_file}")
+        system('bundle', 'exec', 'aozora2html', src_file, dest_file)
       rescue StandardError => _e
         return Result.new(converted: false, workfile: workfile)
       end
