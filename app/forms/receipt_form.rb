@@ -81,6 +81,7 @@ class ReceiptForm
   validates :first_pubdate, presence: true
   validates :input_edition, presence: true
 
+  validate :worker_id_is_valid
   validate :email_is_valid
   validate :sub_works_are_valid
 
@@ -118,6 +119,12 @@ class ReceiptForm
     errors.add(:email, :blank) if worker_id.blank? && email.blank?
   end
 
+  def worker_id_is_valid
+    return unless worker_id.present? && !Worker.exists?(worker_id)
+
+    errors.add(:worker_id, :invalid)
+  end
+
   def save
     return false if invalid?
 
@@ -148,12 +155,14 @@ class ReceiptForm
   private
 
   def set_worker_info
-    if worker_id.present? # rubocop:disable Style/GuardClause
+    if worker_id.present?
       worker = Worker.find(worker_id)
       self.worker_name = worker.name
       self.worker_kana = worker.name_kana
       self.email = ''
     end
+  rescue ActiveRecord::RecordNotFound
+    # do nothing; use validates
   end
 
   def set_email
