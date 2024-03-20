@@ -172,9 +172,8 @@ module Admin
     end
 
     def find_or_create_person
-      person = Person.find(person_id) if person_id
-      person.presence || Person.new(
-        id: person_id,
+      person = Person.find(person_id) if person_id && person_id.to_i >= 0
+      person.presence || Person.create(
         first_name: first_name,
         first_name_kana: first_name_kana,
         first_name_en: first_name_en,
@@ -184,8 +183,7 @@ module Admin
         born_on: born_on,
         died_on: died_on,
         copyright_flag: copyright_flag,
-        note: person_note,
-        note_user_id: current_admin_user.id
+        person_secret_attributes: { memo: person_note }
       )
     end
 
@@ -251,7 +249,6 @@ module Admin
         self.first_name = person.first_name
         self.first_name_kana = person.first_name_kana
         self.first_name_en = person.first_name_en
-        self.person_note = person.note
       end
     end
 
@@ -269,10 +266,10 @@ module Admin
     end
 
     def set_email
-      if worker_id.present? # rubocop:disable Style/GuardClause
-        worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
-        self.email = worker_secret.email
-      end
+      return if worker_id.blank?
+
+      worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
+      self.email = worker_secret&.email
     end
   end
 end
