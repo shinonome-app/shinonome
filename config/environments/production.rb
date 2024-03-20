@@ -67,16 +67,16 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "shinonome_production"
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
-    port: 587,
-    domain: 'aozora-renewal.cloud',
-    user_name: 'apikey',
-    password: ENV.fetch('SENDGRID_API_KEY', nil),
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
+  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.sendgrid.net',
+  #   port: 587,
+  #   domain: 'aozora-renewal.cloud',
+  #   user_name: 'apikey',
+  #   password: ENV.fetch('SENDGRID_API_KEY', nil),
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
 
   config.action_mailer.perform_deliveries = true
 
