@@ -25,6 +25,9 @@ class WorkStatus < ApplicationRecord
   # 10	校了	proofread_completed
   # 11	翻訳中	translating
   # 12	入力取り消し	input_canceled
+  # 13	校了（点検前）
+  # 14	校正受領
+  # 15	公開保留
 
   has_many :works, dependent: :restrict_with_error
 
