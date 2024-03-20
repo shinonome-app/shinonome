@@ -79,6 +79,20 @@ ja:
         copyright_flag: "著作権"
 
   activerecord:
+    errors:
+      models:
+        site:
+          attributes:
+            url:
+              invalid: 'はhttp:またはhttps:で始まるURLを入力してください'
+        person:
+          attributes:
+            url:
+              invalid: 'はhttp:またはhttps:で始まるURLを入力してください'
+        workfile:
+          attributes:
+            url:
+              invalid: 'はhttp:またはhttps:で始まるURLを入力してください'
     models:
       work: 作品
       news_entry: そらもよう

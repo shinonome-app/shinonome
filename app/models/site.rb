@@ -32,6 +32,7 @@ class Site < ApplicationRecord
   accepts_nested_attributes_for :site_secret, update_only: true
 
   validates :name, :url, presence: true
+  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }, allow_blank: true
 
   def self.csv_header
     "関連サイトid,関連サイト名,関連サイトurl,関連サイト運営者名,email,備考,最終更新日,更新者\r\n"
