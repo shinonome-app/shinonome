@@ -98,6 +98,15 @@ RSpec.describe '/people' do
         expect(response).to have_http_status :unprocessable_entity
       end
     end
+
+    context 'with invalid URL' do
+      it 'show errors' do
+        invalid_url_attributes = valid_attributes.dup
+        invalid_url_attributes[:url] = 'foo'
+        post admin_people_url, params: { person: invalid_url_attributes }
+        expect(response.body).to include('URLはhttp:またはhttps:で始まるURLを入力してください')
+      end
+    end
   end
 
   describe 'PATCH /update' do
@@ -128,6 +137,15 @@ RSpec.describe '/people' do
         person = Person.create! valid_attributes
         patch admin_person_url(person), params: { person: invalid_attributes }
         expect(response).to have_http_status :unprocessable_entity
+      end
+    end
+
+    context 'with invalid URL' do
+      it 'show errors' do
+        person = Person.create! valid_attributes
+        invalid_url_attributes = { url: 'foo' }
+        patch admin_person_url(person), params: { person: invalid_url_attributes }
+        expect(response.body).to include('URLはhttp:またはhttps:で始まるURLを入力してください')
       end
     end
   end
