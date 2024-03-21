@@ -95,9 +95,11 @@ module Admin
     def save
       return false if invalid?
 
-      set_email
-
       worker = WorkerFinder.new.find_with_form(self)
+
+      # 入力されたemailよりもWorkerSecretのemailを優先する
+      set_email(worker)
+
       person = find_or_create_person
 
       result = ReceiptAssociator.new.associate_receipt(
@@ -235,7 +237,6 @@ module Admin
         worker = Worker.find(worker_id)
         self.worker_name = worker.name
         self.worker_kana = worker.name_kana
-        self.email = ''
       end
     end
 
@@ -264,11 +265,8 @@ module Admin
       Kana.convert_sortkey(kana)
     end
 
-    def set_email
-      return if worker_id.blank?
-
-      worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
-      self.email = worker_secret&.email
+    def set_email(worker)
+      self.email = worker.worker_secret&.email
     end
   end
 end
