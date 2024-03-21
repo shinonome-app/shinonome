@@ -101,6 +101,10 @@ class Receipt < ApplicationRecord
     kana_type&.name
   end
 
+  def work_status_name
+    work_status&.name
+  end
+
   def copyright_flag_name
     copyright_flag ? 'あり' : 'なし'
   end
