@@ -98,7 +98,7 @@ module Admin
       worker = WorkerFinder.new.find_with_form(self)
 
       # 入力されたemailよりもWorkerSecretのemailを優先する
-      set_email(worker)
+      self.email = worker.worker_secret&.email
 
       person = find_or_create_person
 
@@ -263,10 +263,6 @@ module Admin
 
     def convert_sortkey(kana)
       Kana.convert_sortkey(kana)
-    end
-
-    def set_email(worker)
-      self.email = worker.worker_secret&.email
     end
   end
 end
