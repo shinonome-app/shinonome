@@ -152,13 +152,12 @@ module Admin
     end
 
     def worker_and_worker_secret
-      worker = Worker.find(worker_id) if worker_id
+      worker = Worker.find(worker_id) if worker_id && worker_id.to_i >= 0
 
       if worker.present?
         worker_secret = worker.worker_secret
       else
         worker = Worker.new(
-          id: worker_id,
           name: worker_name,
           name_kana: worker_kana
         )
