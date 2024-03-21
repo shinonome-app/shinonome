@@ -89,6 +89,14 @@ FactoryBot.define do
     register_status { 1 }
     original_book_note { '底本備考' }
 
+    trait :without_person do
+      person_id { nil }
+    end
+
+    trait :without_worker do
+      worker_id { nil }
+    end
+
     trait :non_ordered do
       register_status { :non_ordered }
     end
