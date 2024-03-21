@@ -86,6 +86,7 @@ module Admin
       @current_admin_user = current_admin_user
       new_params = params || default_params
       super(new_params)
+      @warnings = nil
     end
 
     def email_is_valid
@@ -143,6 +144,21 @@ module Admin
       else
         Person.none
       end
+    end
+
+    def check_warnings
+      warnings = []
+      warnings << '著作権フラグの「あり」「なし」が合致していません。' if inconsistent_copyright?
+      warnings << '同じ作家による、同一タイトル、同一仮名遣いの作品が、すでに登録されています。' if similar_title?
+      warnings
+    end
+
+    def warnings
+      @warnings ||= check_warnings
+    end
+
+    def warnings?
+      warnings.present?
     end
 
     def person_name
@@ -226,6 +242,7 @@ module Admin
         worker_name: @receipt.worker_name,
         kana_type_id: @receipt.kana_type_id,
         person_id: @receipt.person_id,
+        copyright_flag: @receipt.copyright_flag,
         work_id: @receipt.work_id,
         work_status_id: @receipt.work_status_id,
         worker_id: @receipt.worker_id
@@ -263,6 +280,21 @@ module Admin
 
     def convert_sortkey(kana)
       Kana.convert_sortkey(kana)
+    end
+
+    def inconsistent_copyright?
+      return false if person_id.blank? || !Person.exists?(person_id)
+
+      person = Person.find(person_id)
+      (!!copyright_flag) != (!!person.copyright_flag)
+    end
+
+    def similar_title?
+      return false if person_id.blank?
+
+      Work.joins(:work_people)
+          .where(title:, kana_type_id:)
+          .exists?(work_people: { person_id:, role_id: 1 })
     end
   end
 end

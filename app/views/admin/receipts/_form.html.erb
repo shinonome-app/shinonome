@@ -2,6 +2,15 @@
   <% errors = receipt_form.errors %>
   <snm-headline h="h2">作品データ</snm-headline>
 
+    <% if receipt_form.warnings? %>
+    <div class="m-4 p-4 border border-red-500 text-red-500">
+      <ul>
+        <% receipt_form.warnings.each do |warn| %>
+        <li><%= warn %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
     <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
       <thead class="bg-[#f8fafc]">
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
