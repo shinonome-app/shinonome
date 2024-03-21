@@ -24,6 +24,7 @@
         工作員名読み
       </td>
       <td class="odd:w-[25%] py-3 px-5">
+        <%= form.hidden_field :worker_kana %>
         <%= receipt_form.worker_kana %>
       </td>
     </tr>
@@ -32,6 +33,7 @@
         工作員名
       </td>
       <td class="odd:w-[25%] py-3 px-5">
+        <%= form.hidden_field :worker_name %>
         <%= receipt_form.worker_name %>
       </td>
     </tr>
@@ -40,6 +42,7 @@
         e-mail
       </td>
       <td class="odd:w-[25%] py-3 px-5">
+        <%= form.hidden_field :email %>
         <%= receipt_form.email %>
       </td>
     </tr>
