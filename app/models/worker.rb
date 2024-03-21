@@ -55,7 +55,7 @@ class Worker < ApplicationRecord
     when 3 # で終わる
       where('name_kana like ?', "%#{name_kana}")
     when 4 # と等しい
-      where(name_kana: name_kana)
+      where(name_kana:)
     end
   }
 
@@ -68,7 +68,7 @@ class Worker < ApplicationRecord
     when 3 # で終わる
       where('name like ?', "%#{name}")
     when 4 # と等しい
-      where(name: name)
+      where(name:)
     end
   }
 

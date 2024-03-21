@@ -14,9 +14,9 @@ module Shinonome
           booktype = find_booktype_by_name!(booktype_name)
 
           update_values = {
-            first_pubdate: first_pubdate,
-            input_edition: input_edition,
-            proof_edition: proof_edition,
+            first_pubdate:,
+            input_edition:,
+            proof_edition:,
             booktype_id: booktype.id,
             original_book_secret_attributes: { memo: note }
           }
@@ -28,14 +28,14 @@ module Shinonome
 
           OriginalBook.where(
             work_id: work.id,
-            publisher: publisher,
-            title: title
+            publisher:,
+            title:
           ).find_each { |original_book| original_book.update!(update_values) }
 
           original_books = OriginalBook.where(
             work_id: work.id,
-            publisher: publisher,
-            title: title
+            publisher:,
+            title:
           )
 
           Result.new(executed: true, command_result: original_books)

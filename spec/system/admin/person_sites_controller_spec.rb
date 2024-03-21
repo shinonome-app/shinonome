@@ -53,7 +53,7 @@ describe Admin::PersonSitesController do
 
   describe '#delete' do
     before do
-      create(:person_site, person: person, site: site)
+      create(:person_site, person:, site:)
     end
 
     it '人物詳細で削除をクリックすると削除される' do

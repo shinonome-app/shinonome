@@ -16,6 +16,6 @@ user = Shinonome::User.last
     memo: "備考#{n}"
   )
   work = selected_works.sample
-  sb = site.work_sites.build(work: work)
+  sb = site.work_sites.build(work:)
   sb.save!
 end

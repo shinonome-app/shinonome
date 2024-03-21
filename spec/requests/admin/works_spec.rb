@@ -76,7 +76,7 @@ RSpec.describe '/admin/works' do
   end
 
   describe 'GET /admin/works/edit' do
-    let(:work) { create(:work, user: user) }
+    let(:work) { create(:work, user:) }
 
     it 'render a successful response' do
       get edit_admin_work_url(work)
@@ -113,7 +113,7 @@ RSpec.describe '/admin/works' do
   end
 
   describe 'PATCH /admin/works/update' do
-    let!(:work) { create(:work, user: user) }
+    let!(:work) { create(:work, user:) }
 
     context 'with valid parameters' do
       let(:new_attributes) do
@@ -151,7 +151,7 @@ RSpec.describe '/admin/works' do
   end
 
   describe 'DELETE /admin/works/destroy' do
-    let!(:work) { create(:work, user: user) }
+    let!(:work) { create(:work, user:) }
 
     it 'destroys the requested work' do
       expect do

@@ -6,7 +6,7 @@
 class WorkfileConverter
   def convert_format(workfile)
     filename = workfile.filename
-    return Result.new(converted: false, workfile: workfile) if File.extname(filename) != '.txt'
+    return Result.new(converted: false, workfile:) if File.extname(filename) != '.txt'
 
     if workfile.html?
       convert_text_to_html(workfile)
@@ -31,7 +31,7 @@ class WorkfileConverter
         # Aozora2Html.new(src_file, dest_file).process
         system('bundle', 'exec', 'aozora2html', src_file, dest_file)
       rescue StandardError => _e
-        return Result.new(converted: false, workfile: workfile)
+        return Result.new(converted: false, workfile:)
       end
 
       workfile.filename = new_filename
@@ -46,9 +46,9 @@ class WorkfileConverter
       workfile.save!
     end
 
-    Result.new(converted: true, workfile: workfile)
+    Result.new(converted: true, workfile:)
   rescue StandardError => _e
-    Result.new(converted: false, workfile: workfile)
+    Result.new(converted: false, workfile:)
   end
 
   def convert_text_to_zip(workfile)
@@ -69,7 +69,7 @@ class WorkfileConverter
           zipfile.add(workfile.filename, src_file)
         end
       rescue StandardError => _e
-        return Result.new(converted: false, workfile: workfile)
+        return Result.new(converted: false, workfile:)
       end
 
       workfile.filename = new_filename
@@ -84,9 +84,9 @@ class WorkfileConverter
       workfile.save!
     end
 
-    Result.new(converted: true, workfile: workfile)
+    Result.new(converted: true, workfile:)
   rescue StandardError => _e
-    Result.new(converted: false, workfile: workfile)
+    Result.new(converted: false, workfile:)
   end
 
   # 結果返却用

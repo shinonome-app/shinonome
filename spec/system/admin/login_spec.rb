@@ -7,7 +7,7 @@ describe 'log_in' do
   let(:password) { 'shinonome' }
 
   before do
-    create(:user, username: username, password: password)
+    create(:user, username:, password:)
   end
 
   describe 'sign_in' do

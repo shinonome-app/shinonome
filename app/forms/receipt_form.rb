@@ -167,34 +167,34 @@ class ReceiptForm
 
   def set_email
     if worker_id.present? # rubocop:disable Style/GuardClause
-      worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
+      worker_secret = Shinonome::WorkerSecret.find_by(worker_id:)
       self.email = worker_secret.email
     end
   end
 
   def create_receipt!(sub_work)
     Receipt.create!(
-      worker_id: worker_id,
-      worker_kana: worker_kana,
-      worker_name: worker_name,
-      email: email,
-      url: url,
+      worker_id:,
+      worker_kana:,
+      worker_name:,
+      email:,
+      url:,
 
-      original_book_title: original_book_title,
-      publisher: publisher,
-      first_pubdate: first_pubdate,
-      input_edition: input_edition,
-      original_book_note: original_book_note,
-      original_book_title2: original_book_title2,
-      publisher2: publisher2,
-      first_pubdate2: first_pubdate2,
+      original_book_title:,
+      publisher:,
+      first_pubdate:,
+      input_edition:,
+      original_book_note:,
+      original_book_title2:,
+      publisher2:,
+      first_pubdate2:,
 
-      person_id: person_id,
-      last_name_kana: last_name_kana,
-      last_name: last_name,
-      first_name_kana: first_name_kana,
-      first_name: first_name,
-      person_note: person_note,
+      person_id:,
+      last_name_kana:,
+      last_name:,
+      first_name_kana:,
+      first_name:,
+      person_note:,
 
       title_kana: sub_work.title_kana,
       title: sub_work.title,

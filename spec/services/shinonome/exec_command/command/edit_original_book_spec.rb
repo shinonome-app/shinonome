@@ -19,7 +19,7 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
     end
 
     before do
-      create(:original_book, work: work, booktype_id: 1, title: '底本タイトル', publisher: '底本出版社')
+      create(:original_book, work:, booktype_id: 1, title: '底本タイトル', publisher: '底本出版社')
     end
 
     context '正しい引数を与えた場合' do

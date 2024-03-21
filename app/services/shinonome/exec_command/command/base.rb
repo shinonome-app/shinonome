@@ -38,7 +38,7 @@ module Shinonome
 
           Work.find(work_id)
         rescue ActiveRecord::RecordNotFound
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id: work_id)
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.work_not_found', work_id:)
         end
 
         def find_person!(person_id)
@@ -46,7 +46,7 @@ module Shinonome
 
           Person.find(person_id)
         rescue ActiveRecord::RecordNotFound
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.person_not_found', person_id: person_id)
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.person_not_found', person_id:)
         end
 
         def find_site!(site_id)
@@ -54,7 +54,7 @@ module Shinonome
 
           Site.find(site_id)
         rescue ActiveRecord::RecordNotFound
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.site_not_found', site_id: site_id)
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.site_not_found', site_id:)
         end
 
         def find_worker!(worker_id)
@@ -62,7 +62,7 @@ module Shinonome
 
           Worker.find(worker_id)
         rescue ActiveRecord::RecordNotFound
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worker_not_found', worker_id: worker_id)
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worker_not_found', worker_id:)
         end
 
         def find_filetype_by_name!(filetype_name)

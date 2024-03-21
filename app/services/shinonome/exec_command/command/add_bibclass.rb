@@ -9,10 +9,10 @@ module Shinonome
           work_id, name, num, note = command.body
           _work = find_work!(work_id)
 
-          bibclass = Bibclass.create!(work_id: work_id,
-                                      name: name,
-                                      num: num,
-                                      note: note)
+          bibclass = Bibclass.create!(work_id:,
+                                      name:,
+                                      num:,
+                                      note:)
 
           Result.new(executed: true, command_result: bibclass)
         end

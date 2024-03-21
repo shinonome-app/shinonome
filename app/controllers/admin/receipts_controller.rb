@@ -26,9 +26,9 @@ module Admin
 
       @receipt_form =
         if params[:receipt]
-          ReceiptForm.new(receipt_params, receipt: receipt)
+          ReceiptForm.new(receipt_params, receipt:)
         else
-          ReceiptForm.new(receipt: receipt)
+          ReceiptForm.new(receipt:)
         end
 
       if params[:receipt]
@@ -51,8 +51,8 @@ module Admin
 
       @receipt_form = ReceiptForm.new(
         receipt_params,
-        receipt: receipt,
-        current_admin_user: current_admin_user
+        receipt:,
+        current_admin_user:
       )
       if @receipt_form.save
         ReceiptOrderSender.new.send(receipt: @receipt_form.receipt)

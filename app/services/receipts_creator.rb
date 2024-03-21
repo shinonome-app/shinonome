@@ -9,9 +9,9 @@ class ReceiptsCreator
       receipts = receipt_form.save
 
       UserMailer.register_receipt(receipts.first, receipt_form.sub_works).deliver_now
-      Result.new(created: true, receipts: receipts, receipt_form: receipt_form)
+      Result.new(created: true, receipts:, receipt_form:)
     else
-      Result.new(created: false, receipts: receipts, receipt_form: receipt_form)
+      Result.new(created: false, receipts:, receipt_form:)
     end
   end
 

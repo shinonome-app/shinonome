@@ -4,7 +4,7 @@
 class ProofreadAssociator
   def associate_proofread(work:, worker:, proofread_form:)
     WorkWorker.transaction do
-      WorkWorker.create!(work: work, worker: worker, worker_role_id: 2)
+      WorkWorker.create!(work:, worker:, worker_role_id: 2)
       update_original_book!(proofread_form, work, 1) if proofread_form.original_book_title.strip.present?
       update_original_book!(proofread_form, work, 2) if proofread_form.original_book_title2.strip.present?
 
@@ -25,7 +25,7 @@ class ProofreadAssociator
   end
 
   def update_original_book!(proofread_form, work, booktype_id)
-    original_book = OriginalBook.find_by(work_id: work.id, booktype_id: booktype_id)
+    original_book = OriginalBook.find_by(work_id: work.id, booktype_id:)
     case booktype_id
     when 1
       original_book.title = proofread_form.original_book_title

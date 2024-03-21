@@ -40,7 +40,7 @@ works = (1..5000).map do |n|
     description: desc,
     work_status_id: rand(100) < 80 ? 1 : work_status_id_list.sample,
     started_on: started,
-    note: note,
+    note:,
     copyright_flag: rand(100) <= 90,
     sortkey: "#{ch}さくひん#{n}",
     user_id: user_id_list.sample,

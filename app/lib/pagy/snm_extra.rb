@@ -10,7 +10,7 @@ class Pagy # :nodoc:
     def pagy_snm_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="#{pagy_link_class}" #{link_extra}))
-      link_arrow = pagy_link_proc(pagy, link_extra: link_extra)
+      link_arrow = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<nav#{p_id}>)
       html << %(<ul class="#{pagy_ul_class}">)

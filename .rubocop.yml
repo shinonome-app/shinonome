@@ -107,9 +107,6 @@ Style/FetchEnvVar:
   Exclude:
     - 'bin/*'
 
-Style/HashSyntax:
-  Enabled: false
-
 Style/NumericLiterals:
   Enabled: false
 

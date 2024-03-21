@@ -9,11 +9,11 @@ RSpec.describe Shinonome::ExecCommand::Command::GetFile do
     let(:work) { create(:work, original_title: nil) }
 
     context 'HTMLの場合' do
-      let(:workfile) { create(:workfile, work: work, filetype_id: 9, compresstype_id: 1) }
+      let(:workfile) { create(:workfile, work:, filetype_id: 9, compresstype_id: 1) }
 
       before do
-        create(:work_worker, work: work, worker: input_worker, worker_role_id: 1)
-        create(:work_worker, work: work, worker: proofread_worker, worker_role_id: 2)
+        create(:work_worker, work:, worker: input_worker, worker_role_id: 1)
+        create(:work_worker, work:, worker: proofread_worker, worker_role_id: 2)
 
         SampleFileGenerator.new.generate_sample_html(workfile)
         workfile.reload
@@ -38,11 +38,11 @@ RSpec.describe Shinonome::ExecCommand::Command::GetFile do
     end
 
     context 'zipの場合' do
-      let(:workfile) { create(:workfile, work: work, filetype_id: 1, compresstype_id: 2) }
+      let(:workfile) { create(:workfile, work:, filetype_id: 1, compresstype_id: 2) }
 
       before do
-        create(:work_worker, work: work, worker: input_worker, worker_role_id: 1)
-        create(:work_worker, work: work, worker: proofread_worker, worker_role_id: 2)
+        create(:work_worker, work:, worker: input_worker, worker_role_id: 1)
+        create(:work_worker, work:, worker: proofread_worker, worker_role_id: 2)
 
         SampleFileGenerator.new.generate_sample_zip(workfile)
         workfile.reload

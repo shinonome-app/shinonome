@@ -9,9 +9,9 @@ class ProofreadCreator
       proofreads = proofread_form.save
 
       UserMailer.register_proofread(proofread_form, proofreads).deliver_now
-      Result.new(created: true, proofreads: proofreads, proofread_form: proofread_form)
+      Result.new(created: true, proofreads:, proofread_form:)
     else
-      Result.new(created: false, proofreads: proofreads, proofread_form: proofread_form)
+      Result.new(created: false, proofreads:, proofread_form:)
     end
   end
 

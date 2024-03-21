@@ -48,7 +48,7 @@ module Shinonome
         self.executed_at = Time.zone.now
 
         if commands_result.successful?
-          make_zip(zip_dir: outputdir, path: path)
+          make_zip(zip_dir: outputdir, path:)
           result_data.attach(io: File.open(path), filename: 'result.zip', content_type: 'application/zip')
           self.result = { success: true }
           save!

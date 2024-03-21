@@ -100,14 +100,14 @@ FactoryBot.define do
     trait :work do
       work do
         association :work,
-                    title: title,
-                    title_kana: title_kana,
-                    subtitle: subtitle,
-                    subtitle_kana: subtitle_kana,
-                    original_title: original_title,
-                    kana_type_id: kana_type_id,
+                    title:,
+                    title_kana:,
+                    subtitle:,
+                    subtitle_kana:,
+                    original_title:,
+                    kana_type_id:,
                     description: memo,
-                    note: note
+                    note:
       end
     end
   end

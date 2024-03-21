@@ -29,7 +29,7 @@ module Admin
           work.work_status_id = 9
           work.save!
         end
-        ProofreadOrderSender.new.send(proofread: proofread, mail_memo: mail_memo)
+        ProofreadOrderSender.new.send(proofread:, mail_memo:)
       end
 
       private

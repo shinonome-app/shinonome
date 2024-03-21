@@ -11,8 +11,8 @@ RSpec.describe SampleFileGenerator do
       let(:work) { create(:work, original_title: nil) }
 
       before do
-        create(:work_worker, work: work, worker: input_worker, worker_role_id: 1)
-        create(:work_worker, work: work, worker: proofread_worker, worker_role_id: 2)
+        create(:work_worker, work:, worker: input_worker, worker_role_id: 1)
+        create(:work_worker, work:, worker: proofread_worker, worker_role_id: 2)
       end
 
       it '正しいテキストが生成される' do
@@ -59,8 +59,8 @@ TEXT
       let(:work) { create(:work, original_title: 'Awesome title ABC') }
 
       before do
-        create(:work_worker, work: work, worker: input_worker, worker_role_id: 1)
-        create(:work_worker, work: work, worker: proofread_worker, worker_role_id: 2)
+        create(:work_worker, work:, worker: input_worker, worker_role_id: 1)
+        create(:work_worker, work:, worker: proofread_worker, worker_role_id: 2)
       end
 
       it '正しいテキストが生成される' do
@@ -111,11 +111,11 @@ TEXT
 
     context '原題がない場合' do
       let(:work) { create(:work, original_title: nil) }
-      let(:workfile) { create(:workfile, work: work, filetype_id: 9, compresstype_id: 1) }
+      let(:workfile) { create(:workfile, work:, filetype_id: 9, compresstype_id: 1) }
 
       before do
-        create(:work_worker, work: work, worker: input_worker, worker_role_id: 1)
-        create(:work_worker, work: work, worker: proofread_worker, worker_role_id: 2)
+        create(:work_worker, work:, worker: input_worker, worker_role_id: 1)
+        create(:work_worker, work:, worker: proofread_worker, worker_role_id: 2)
       end
 
       it '正しいHTMLが生成される' do
@@ -172,11 +172,11 @@ HTML
 
     context '原題がある場合' do
       let(:work) { create(:work, original_title: 'Awesome title ABC') }
-      let(:workfile) { create(:workfile, work: work, filetype_id: 9, compresstype_id: 1) }
+      let(:workfile) { create(:workfile, work:, filetype_id: 9, compresstype_id: 1) }
 
       before do
-        create(:work_worker, work: work, worker: input_worker, worker_role_id: 1)
-        create(:work_worker, work: work, worker: proofread_worker, worker_role_id: 2)
+        create(:work_worker, work:, worker: input_worker, worker_role_id: 1)
+        create(:work_worker, work:, worker: proofread_worker, worker_role_id: 2)
       end
 
       it '正しいHTMLが生成される' do

@@ -79,7 +79,7 @@ module Admin
       worker = WorkerFinder.new.find_with_form(self)
 
       work = @proofread.work
-      result = ProofreadAssociator.new.associate_proofread(work: work, worker: worker, proofread_form: self)
+      result = ProofreadAssociator.new.associate_proofread(work:, worker:, proofread_form: self)
 
       result.associated?
     end
@@ -100,8 +100,8 @@ module Admin
           name_kana: worker_kana
         )
         worker_secret = Shinonome::WorkerSecret.new(
-          email: email,
-          url: url
+          email:,
+          url:
         )
       end
 
@@ -121,7 +121,7 @@ module Admin
 
     def set_email
       if worker_id.present? # rubocop:disable Style/GuardClause
-        worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
+        worker_secret = Shinonome::WorkerSecret.find_by(worker_id:)
         self.email = worker_secret.email
       end
     end
@@ -154,7 +154,7 @@ module Admin
     end
 
     def modify_original_books(work_id)
-      original_book1 = OriginalBook.find_by(work_id: work_id, booktype_id: 1)
+      original_book1 = OriginalBook.find_by(work_id:, booktype_id: 1)
       if original_book1
         self.original_book_title = original_book1.title
         self.publisher = original_book1.publisher
@@ -163,7 +163,7 @@ module Admin
         self.proof_edition = original_book1.proof_edition
       end
 
-      original_book2 = OriginalBook.find_by(work_id: work_id, booktype_id: 2)
+      original_book2 = OriginalBook.find_by(work_id:, booktype_id: 2)
       if original_book2 # rubocop:disable Style/GuardClause
         self.original_book_title2 = original_book2.title
         self.publisher = original_book2.publisher

@@ -30,7 +30,7 @@ module Admin
         return
       end
 
-      @proofread_form = Admin::ProofreadForm.new(proofread: proofread)
+      @proofread_form = Admin::ProofreadForm.new(proofread:)
       if params[:proofread]
         @proofread_form.worker_name = params[:proofread][:worker_name]
         @proofread_form.worker_kana = params[:proofread][:worker_kana]
@@ -47,7 +47,7 @@ module Admin
     def update
       proofread = Proofread.find(params[:id])
 
-      @proofread_form = Admin::ProofreadForm.new(proofread_form_params, proofread: proofread)
+      @proofread_form = Admin::ProofreadForm.new(proofread_form_params, proofread:)
       if @proofread_form.save
         redirect_to admin_proofreads_path, success: '更新しました.'
       else

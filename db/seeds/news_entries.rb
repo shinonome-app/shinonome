@@ -13,10 +13,10 @@ news_entries = (1..200).map do
   body.gsub!('。') { rand(100) > 70 ? "。\n" : "。\n\n" }
 
   {
-    body: body,
+    body:,
     flag: rand(100) > 90,
     published_on: publish_date,
-    title: title,
+    title:,
     created_at: Time.current,
     updated_at: Time.current
   }

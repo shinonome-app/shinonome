@@ -10,7 +10,7 @@ module Shinonome
 
           work = find_work!(work_id)
 
-          OriginalBook.where(work_id: work.id, name: name, publisher: publisher).destroy_all!
+          OriginalBook.where(work_id: work.id, name:, publisher:).destroy_all!
 
           Result.new(executed: true, command_result: nil)
         end

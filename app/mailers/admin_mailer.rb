@@ -11,7 +11,7 @@ class AdminMailer < ApplicationMailer
     @worker = receipt.worker
     @work = receipt.work
     title = work_full_title(@work)
-    @subject = I18n.t('admin_mailer.order_receipt.subject', title: title)
+    @subject = I18n.t('admin_mailer.order_receipt.subject', title:)
 
     mail to: @worker.worker_secret&.email, subject: @subject
   end
@@ -22,7 +22,7 @@ class AdminMailer < ApplicationMailer
     @worker_secret = @worker.worker_secret
     @mail_memo = mail_memo
     title = work_full_title(@work)
-    @subject = I18n.t('admin_mailer.order_proofread.subject', title: title)
+    @subject = I18n.t('admin_mailer.order_proofread.subject', title:)
 
     mail to: @worker.worker_secret&.email, subject: @subject
   end
@@ -33,7 +33,7 @@ class AdminMailer < ApplicationMailer
 
     if admin_mail_secret.cc_reception?
       cc = Rails.application.config.x.reception_email
-      mail to: admin_mail_secret.email, cc: cc, subject: @subject
+      mail to: admin_mail_secret.email, cc:, subject: @subject
     else
       mail to: admin_mail_secret.email, subject: @subject
     end

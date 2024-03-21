@@ -14,11 +14,11 @@ module Shinonome
           booktype = find_booktype_by_name!(booktype_name)
 
           original_book = OriginalBook.create!(work_id: work.id,
-                                               first_pubdate: first_pubdate,
-                                               input_edition: input_edition,
-                                               proof_edition: proof_edition,
-                                               publisher: publisher,
-                                               title: title,
+                                               first_pubdate:,
+                                               input_edition:,
+                                               proof_edition:,
+                                               publisher:,
+                                               title:,
                                                booktype_id: booktype.id,
                                                original_book_secret_attributes: { memo: note })
 

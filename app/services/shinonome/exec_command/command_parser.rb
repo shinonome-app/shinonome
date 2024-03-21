@@ -31,7 +31,7 @@ module Shinonome
           next if row.empty?
 
           begin
-            command = Command.new(row, prev_command: prev_command)
+            command = Command.new(row, prev_command:)
           rescue FormatError => e
             errors << "#{line_num}行目: Syntax Error: #{e.message}"
           end
@@ -61,7 +61,7 @@ module Shinonome
           next if row.empty?
 
           begin
-            command = Command.new(row, prev_command: prev_command)
+            command = Command.new(row, prev_command:)
           rescue FormatError => e
             errors << "line #{line_num}: #{e.message}"
           end

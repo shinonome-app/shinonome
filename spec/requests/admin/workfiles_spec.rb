@@ -28,7 +28,7 @@ RSpec.describe '/workfiles' do
       charset_id: charset.id,
       filesize: 12_345,
       filename: 'sample.zip',
-      workdata: workdata,
+      workdata:,
       revision_count: 1,
       workfile_secret_attributes: { memo: 'test' }
     }

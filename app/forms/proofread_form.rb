@@ -65,7 +65,7 @@ class ProofreadForm
       ProofreadForm::SubWork.new(work_id: work.id, enabled: false)
     end
 
-    ProofreadForm.new(sub_works: sub_works, person_id: person.id)
+    ProofreadForm.new(sub_works:, person_id: person.id)
   end
 
   def save
@@ -107,7 +107,7 @@ class ProofreadForm
 
   def set_email
     if worker_id.present? # rubocop:disable Style/GuardClause
-      worker_secret = Shinonome::WorkerSecret.find_by(worker_id: worker_id)
+      worker_secret = Shinonome::WorkerSecret.find_by(worker_id:)
       self.email = worker_secret.email
     end
   end

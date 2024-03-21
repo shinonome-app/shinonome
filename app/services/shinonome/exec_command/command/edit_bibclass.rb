@@ -12,9 +12,9 @@ module Shinonome
 
           note = '' if note == 'null'
 
-          Bibclass.where(work_id: work.id, name: name, num: num).find_each { |bibclass| bibclass.update!(note: note, updated_at: Time.zone.now) }
+          Bibclass.where(work_id: work.id, name:, num:).find_each { |bibclass| bibclass.update!(note:, updated_at: Time.zone.now) }
 
-          bibclasses = Bibclass.where(work_id: work.id, name: name, num: num)
+          bibclasses = Bibclass.where(work_id: work.id, name:, num:)
 
           Result.new(executed: true, command_result: bibclasses)
         end

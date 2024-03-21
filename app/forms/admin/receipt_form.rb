@@ -103,9 +103,9 @@ module Admin
       person = find_or_create_person
 
       result = ReceiptAssociator.new.associate_receipt(
-        worker: worker,
-        person: person,
-        current_admin_user: current_admin_user,
+        worker:,
+        person:,
+        current_admin_user:,
         receipt_form: self
       )
 
@@ -164,8 +164,8 @@ module Admin
           name_kana: worker_kana
         )
         worker_secret = Shinonome::WorkerSecret.new(
-          email: email,
-          url: url
+          email:,
+          url:
         )
       end
 
@@ -175,15 +175,15 @@ module Admin
     def find_or_create_person
       person = Person.find(person_id) if person_id && person_id.to_i >= 0
       person.presence || Person.create(
-        first_name: first_name,
-        first_name_kana: first_name_kana,
-        first_name_en: first_name_en,
-        last_name: last_name,
-        last_name_kana: last_name_kana,
-        last_name_en: last_name_en,
-        born_on: born_on,
-        died_on: died_on,
-        copyright_flag: copyright_flag,
+        first_name:,
+        first_name_kana:,
+        first_name_en:,
+        last_name:,
+        last_name_kana:,
+        last_name_en:,
+        born_on:,
+        died_on:,
+        copyright_flag:,
         person_secret_attributes: { memo: person_note }
       )
     end

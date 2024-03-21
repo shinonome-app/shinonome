@@ -101,7 +101,7 @@ module Shinonome
       end
 
       def execute(output_dir:)
-        command_class.new.execute(self, output_dir: output_dir)
+        command_class.new.execute(self, output_dir:)
       end
 
       private

@@ -7,7 +7,7 @@ RSpec.describe AdminMailer do
     let(:worker_secret) { create(:worker_secret, email: 'to@example.com') }
     let(:worker) { worker_secret.worker }
     let(:receipt) do
-      create(:receipt, :work, worker: worker) do |receipt|
+      create(:receipt, :work, worker:) do |receipt|
         create(:original_book, work: receipt.work, booktype_id: 1)
       end
     end

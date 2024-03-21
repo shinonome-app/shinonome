@@ -29,8 +29,8 @@ class ReceiptAssociator
         description: receipt_form.memo,
         work_secret_attributes: { memo: '' }
       )
-      WorkPerson.create!(work: work, person: person, role_id: 1)
-      WorkWorker.create!(work: work, worker: worker, worker_role_id: 1)
+      WorkPerson.create!(work:, person:, role_id: 1)
+      WorkWorker.create!(work:, worker:, worker_role_id: 1)
 
       add_original_book!(receipt_form, work, 1) if receipt_form.original_book_title&.strip.present?
 
@@ -77,7 +77,7 @@ class ReceiptAssociator
     when 1
       OriginalBook.create!(
         work_id: work.id,
-        booktype_id: booktype_id,
+        booktype_id:,
         title: receipt_form.original_book_title,
         publisher: receipt_form.publisher,
         first_pubdate: receipt_form.first_pubdate,
@@ -87,7 +87,7 @@ class ReceiptAssociator
     when 2
       OriginalBook.create!(
         work_id: work.id,
-        booktype_id: booktype_id,
+        booktype_id:,
         title: receipt_form.original_book_title2,
         publisher: receipt_form.publisher2,
         first_pubdate: receipt_form.first_pubdate2,

@@ -10,30 +10,30 @@ module Shinonome
         errors = []
 
         begin
-          commands = command_parser.parse(command_text, format: format)
+          commands = command_parser.parse(command_text, format:)
         rescue StandardError => e
           errors << { error: e, index: 0, command: nil }
-          return Result.new(executed: false, errors: errors)
+          return Result.new(executed: false, errors:)
         end
 
         command_results = []
         commands.each_with_index do |command, idx|
           begin
-            command_result = command.execute(output_dir: output_dir)
+            command_result = command.execute(output_dir:)
             command_results << command_result
           rescue StandardError => e
-            errors << { error: e, index: idx, command: command }
+            errors << { error: e, index: idx, command: }
           end
 
           # TODO: should be ignore some errors in the loop
-          return Result.new(executed: false, command_results: command_results, errors: errors) if errors.present?
+          return Result.new(executed: false, command_results:, errors:) if errors.present?
         end
 
         if errors.empty?
-          Result.new(executed: true, command_results: command_results)
+          Result.new(executed: true, command_results:)
         else
           # TODO: never reached
-          Result.new(executed: false, command_results: command_results, errors: errors)
+          Result.new(executed: false, command_results:, errors:)
         end
       end
 

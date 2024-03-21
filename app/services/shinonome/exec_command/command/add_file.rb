@@ -37,13 +37,13 @@ module Shinonome
                                       filetype_id: filetype.id,
                                       compresstype_id: compresstype.id,
                                       filesize: 0,
-                                      url: url,
+                                      url:,
                                       created_at: create_date,
                                       updated_at: update_date,
-                                      revision_count: revision_count,
+                                      revision_count:,
                                       file_encoding_id: file_encoding.id,
                                       charset_id: charset.id,
-                                      filename: filename,
+                                      filename:,
                                       workfile_secret_attributes: { memo: note })
 
           if url.blank?
