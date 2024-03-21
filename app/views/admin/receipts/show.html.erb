@@ -1,5 +1,5 @@
 <div class="w-full">
-  <snm-headline h="h1">申請内容確認</snm-headline>
+  <snm-headline h="h1">申請内容詳細</snm-headline>
 
   <div class="flex flex-col gap-5 mb-5">
     <snm-headline h="h2">作品データ</snm-headline>
@@ -61,7 +61,7 @@
             仮名遣い種別
           </td>
           <td class="odd:w-[25%] py-3 px-5">
-            <%= @receipt.kana_type_id %>
+            <%= @receipt.kana_type_name %>
           </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -93,7 +93,7 @@
             状態
           </td>
           <td class="odd:w-[25%] py-3 px-5">
-            <%= @receipt.work_status_id %>
+            <%= @receipt.work_status_name %>
           </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -109,7 +109,7 @@
             著作権
           </td>
           <td class="odd:w-[25%] py-3 px-5">
-            <%= @receipt.copyright_flag %>
+            <%= @receipt.copyright_flag_name %>
           </td>
         </tr>
       </tbody>
