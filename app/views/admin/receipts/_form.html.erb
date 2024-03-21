@@ -128,17 +128,17 @@
     <snm-headline h="h2">著者データ</snm-headline>
 
     <% if receipt_form.person_id.present? %>
-    <%= render 'person_show', receipt_form: receipt_form, form: form %>
+    <%= render 'person_show', receipt_form:, form: %>
     <% else %>
-    <%= render 'person_form', receipt_form: receipt_form, form: form %>
+    <%= render 'person_form', receipt_form:, form: %>
     <% end %>
 
     <snm-headline h="h2">入力者データ</snm-headline>
 
     <% if receipt_form.worker_id.present? %>
-    <%= render 'worker_show', receipt_form: receipt_form, form: form, errors: errors %>
+    <%= render 'worker_show', receipt_form:, form:, errors: %>
     <% else %>
-    <%= render 'worker_form', receipt_form: receipt_form, form: form, errors: errors %>
+    <%= render 'worker_form', receipt_form:, form:, errors: %>
     <% end %>
 
     <snm-headline h="h2">底本データ</snm-headline>

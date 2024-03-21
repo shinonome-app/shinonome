@@ -1,6 +1,6 @@
 <h1 class="text-3xl text-white text-center mt-32 mb-16"><%= Rails.configuration.x.site_name %> DBへログインします</h1>
 <div class="max-w-xl m-auto">
-  <%= render Admin::FlashComponent.new(flash: flash) %>
+  <%= render Admin::FlashComponent.new(flash:) %>
   <div class="bg-white rounded-sm py-11 px-10 sm:px-28 mb-9">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |form| %>
     <div class="mb-2">

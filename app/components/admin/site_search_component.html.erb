@@ -1,12 +1,12 @@
 <%= form_with(url: form_url, method: 'get', data: { turbo: false }) do |form| %>
 <div class="flex gap-1 items-end">
-  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "関連サイト名", name: "name")) %>
+  <%= render(Admin::TextSearchInputComponent.new(form:, label: "関連サイト名", name: "name")) %>
 </div>
 <div class="flex gap-1 items-end">
-  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "関連サイトURL", name: "url")) %>
+  <%= render(Admin::TextSearchInputComponent.new(form:, label: "関連サイトURL", name: "url")) %>
 </div>
 <div class="flex gap-1 items-end">
-  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "関連サイト運営者名", name: "owner_name")) %>
+  <%= render(Admin::TextSearchInputComponent.new(form:, label: "関連サイト運営者名", name: "owner_name")) %>
 </div>
 
 <div class="flex">

@@ -1,7 +1,7 @@
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "admin/shared/error_messages", resource: resource %>
+  <%= render "admin/shared/error_messages", resource: %>
 
   <div class="field">
     <%= f.label :email %><br>
@@ -13,4 +13,4 @@
   </div>
 <% end %>
 
-<%= render Admin::Devise::LinksComponent.new(resource_name: resource_name, devise_mapping: devise_mapping) %>
+<%= render Admin::Devise::LinksComponent.new(resource_name:, devise_mapping:) %>

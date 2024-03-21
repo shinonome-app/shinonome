@@ -6,31 +6,31 @@
   <div class="flex flex-col lg:flex-row gap-0 lg:gap-10">
     <div class="">
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名読み", name: "title_kana", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "作品名読み", name: "title_kana", error: nil)) %>
       </div>
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品名", name: "title", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "作品名", name: "title", error: nil)) %>
       </div>
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題読み", name: "subtitle_kana", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "副題読み", name: "subtitle_kana", error: nil)) %>
       </div>
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "副題", name: "subtitle", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "副題", name: "subtitle", error: nil)) %>
       </div>
     </div>
 
     <div>
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名読み", name: "collection_kana", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "作品集名読み", name: "collection_kana", error: nil)) %>
       </div>
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品集名", name: "collection", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "作品集名", name: "collection", error: nil)) %>
       </div>
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "原題", name: "original_title", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "原題", name: "original_title", error: nil)) %>
       </div>
       <div class="flex gap-1 items-end">
-        <%= render(Admin::TextSearchInputComponent.new(form: form, label: "作品について", name: "description", error: nil)) %>
+        <%= render(Admin::TextSearchInputComponent.new(form:, label: "作品について", name: "description", error: nil)) %>
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
   <snm-headline h="h2">作品状態検索</snm-headline>
 
   <%= form_with(url: admin_works_status_searches_path, method: 'get', class: "flex gap-1 items-center") do |form| %>
-  <%= render(Admin::WorkStatusComponent.new(form: form, years: @years)) %>
+  <%= render(Admin::WorkStatusComponent.new(form:, years: @years)) %>
   <% end %>
 </div>
 <!--作品状態検索 end-->

@@ -15,7 +15,7 @@
         <%= form.label :person_id %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.hidden_field :person_id, value: (receipt_form.person_id || params.dig(:receipt, :person_id)) %>
+        <%= form.hidden_field :person_id, value: receipt_form.person_id || params.dig(:receipt, :person_id) %>
         <%= receipt_form.person_id %>
       </td>
     </tr>

@@ -1,15 +1,15 @@
 <%= form_with(url: form_url, method: 'get', data: { turbo: false }) do |form| %>
 <div class="flex gap-1 items-end">
-  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓読み", name: "last_name_kana")) %>
+  <%= render(Admin::TextSearchInputComponent.new(form:, label: "姓読み", name: "last_name_kana")) %>
 </div>
 <div class="flex gap-1 items-end">
-  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "姓", name: "last_name")) %>
+  <%= render(Admin::TextSearchInputComponent.new(form:, label: "姓", name: "last_name")) %>
 </div>
 <div class="flex gap-1 items-end">
-  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名読み", name: "first_name_kana")) %>
+  <%= render(Admin::TextSearchInputComponent.new(form:, label: "名読み", name: "first_name_kana")) %>
 </div>
 <div class="flex gap-1 items-end">
-  <%= render(Admin::TextSearchInputComponent.new(form: form, label: "名", name: "first_name")) %>
+  <%= render(Admin::TextSearchInputComponent.new(form:, label: "名", name: "first_name")) %>
 </div>
 
 <div class="flex">

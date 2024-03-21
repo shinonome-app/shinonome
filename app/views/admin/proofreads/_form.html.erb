@@ -100,9 +100,9 @@
     <div class="py-4">
     <snm-headline h="h2">【校正者データ】</snm-headline>
     <% if @worker.id.present? %>
-    <%= render 'worker_show', proofread_form: proofread_form, form: form %>
+    <%= render 'worker_show', proofread_form:, form: %>
     <% else %>
-    <%= render 'worker_form', proofread_form: proofread_form, form: form %>
+    <%= render 'worker_form', proofread_form:, form: %>
     <% end %>
     </div>
 

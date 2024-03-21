@@ -1,7 +1,7 @@
   <%= form_with(url: form_url, method: 'get', data: { turbo: false }) do |form| %>
   <table>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, name: "name_kana", label: "姓名読み")) %>
-    <%= render(Admin::TextSearchInputComponent.new(form: form, name: "name", label: "姓名")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form:, name: "name_kana", label: "姓名読み")) %>
+    <%= render(Admin::TextSearchInputComponent.new(form:, name: "name", label: "姓名")) %>
   </table>
   <div class="mt-2 flex gap-2">
     <%= render(Admin::SubmitComponent.new(form:, name: "text", value: "検索する")) %>
