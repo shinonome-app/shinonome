@@ -118,10 +118,174 @@ describe Admin::ReceiptsController do
       expect(page).to have_content('申請内容詳細')
       expect(page).to have_content(receipt.worker_name)
 
-      # worker_idが設定される
+      # worker_idとperson_idが設定される
       receipt.reload
       expect(receipt.worker_id).to eq(Work.last.workers.last.id)
       expect(receipt.person_id).to eq(Work.last.people.last.id)
+    end
+  end
+
+  describe '警告の表示' do
+    context 'すでに登録されている作品とかぶる作品の申請' do
+      it '警告が表示される' do
+        person = create(:person)
+        work = create(:work)
+        _work_person = create(:work_person, person:, work:, role_id: 1)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         person_id: person.id,
+                         title: work.title,
+                         kana_type_id: work.kana_type_id)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+        expect(page).to have_content('申請内容確認')
+        expect(page).to have_content('同じ作家による、同一タイトル、同一仮名遣いの作品が、すでに登録されています。')
+      end
+
+      it '警告が表示されてもそのまま申請できる' do
+        person = create(:person)
+        work = create(:work)
+        _work_person = create(:work_person, person:, work:, role_id: 1)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         person_id: person.id,
+                         title: work.title,
+                         kana_type_id: work.kana_type_id)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+
+        click_on('登録する')
+
+        expect(page).to have_content('申請内容詳細')
+        expect(page).to have_content(receipt.title)
+        expect(page).to have_content(receipt.worker_name)
+
+        # worker_idとperson_idが設定される
+        receipt.reload
+        expect(receipt.worker_id).to eq(Work.last.workers.last.id)
+        expect(receipt.person_id).to eq(Work.last.people.last.id)
+      end
+    end
+
+    context 'すでに登録されている作品とかぶる作品の申請(あとから作者が指定される)' do
+      before do
+        Capybara.current_session.driver.browser.manage.window.resize_to(1280, 4000)
+      end
+
+      it '作者を指定しないときは警告は表示されない' do
+        person = create(:person, copyright_flag: false)
+        work = create(:work)
+        _work_person = create(:work_person, person:, work:, role_id: 1)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         :without_person,
+                         copyright_flag: false,
+                         last_name: person.last_name,
+                         first_name: person.first_name,
+                         title: work.title,
+                         kana_type_id: work.kana_type_id)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+        expect(page).to have_content('申請内容確認')
+        expect(page).to have_no_content('同じ作家による、同一タイトル、同一仮名遣いの作品が、すでに登録されています。')
+      end
+
+      it '作者の名前が選択できるはずなので、選択して再検索すると警告が出る' do
+        person = create(:person, copyright_flag: false)
+        work = create(:work)
+        _work_person = create(:work_person, person:, work:, role_id: 1)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         :without_person,
+                         copyright_flag: false,
+                         last_name: person.last_name,
+                         first_name: person.first_name,
+                         title: work.title,
+                         kana_type_id: work.kana_type_id)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+
+        choose person.name
+        click_on('再検索')
+        expect(page).to have_content('同じ作家による、同一タイトル、同一仮名遣いの作品が、すでに登録されています。')
+      end
+
+      it '再検索後警告が出ても登録できる' do
+        person = create(:person, copyright_flag: false)
+        work = create(:work)
+        _work_person = create(:work_person, person:, work:, role_id: 1)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         :without_person,
+                         copyright_flag: false,
+                         last_name: person.last_name,
+                         first_name: person.first_name,
+                         title: work.title,
+                         kana_type_id: work.kana_type_id)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+
+        choose person.name
+        click_on('再検索')
+        click_on('登録する')
+
+        expect(page).to have_content('申請内容詳細')
+        expect(page).to have_content(receipt.title)
+        expect(page).to have_content(receipt.worker_name)
+
+        # person_idが設定される
+        receipt.reload
+        expect(receipt.person_id).to eq(Work.last.people.last.id)
+      end
+    end
+
+    context '著作権フラグが著者と作品で異なる場合' do
+      it '警告が表示される' do
+        person = create(:person, copyright_flag: false)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         person_id: person.id,
+                         copyright_flag: true)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+        expect(page).to have_content('申請内容確認')
+        expect(page).to have_content('著作権フラグの「あり」「なし」が合致していません。')
+      end
+
+      it '警告が表示されてもそのまま申請できる' do
+        person = create(:person, copyright_flag: false)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         person_id: person.id,
+                         copyright_flag: true)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+
+        click_on('登録する')
+
+        expect(page).to have_content('申請内容詳細')
+        expect(page).to have_content(receipt.title)
+        expect(page).to have_content(receipt.worker_name)
+
+        # worker_idとperson_idが設定される
+        receipt.reload
+        expect(receipt.person_id).to eq(Work.last.people.last.id)
+      end
+    end
+
+    context '問題ない場合' do
+      it '警告は表示されない' do
+        person = create(:person, copyright_flag: true)
+        receipt = create(:receipt,
+                         :non_ordered,
+                         person_id: person.id,
+                         copyright_flag: true)
+
+        visit "/admin/receipts/#{receipt.id}/edit"
+        expect(page).to have_content('申請内容確認')
+        expect(page).to have_no_content('著作権フラグの「あり」「なし」が合致していません。')
+        expect(page).to have_no_content('同じ作家による、同一タイトル、同一仮名遣いの作品が、すでに登録されています。')
+      end
     end
   end
 end
