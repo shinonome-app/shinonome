@@ -119,7 +119,7 @@
             <%= form.label :copyright_flag %>
           </td>
           <td class="odd:w-[25%] py-3 px-5">
-            <%= render(Admin::SnmSelectComponent.new(form:, name: :copyright_flag, choices: [%w[なし 0], %w[あり 1]], label: '', errors:)) %>
+            <%= render(Admin::SnmSelectComponent.new(form:, name: :copyright_flag, choices: [['なし', false], ['あり', true]], label: '', errors:)) %>
           </td>
         </tr>
       </tbody>
