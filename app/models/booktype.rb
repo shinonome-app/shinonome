@@ -11,4 +11,6 @@
 #
 
 class Booktype < ApplicationRecord
+  # 1 底本
+  # 2 底本の親本
 end

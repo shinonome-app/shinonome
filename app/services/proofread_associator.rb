@@ -8,6 +8,8 @@ class ProofreadAssociator
       update_original_book!(proofread_form, work, 1) if proofread_form.original_book_title.strip.present?
       update_original_book!(proofread_form, work, 2) if proofread_form.original_book_title2.strip.present?
 
+      # 「校正待ち(点検済み)」であれば「校正予約(点検済み)」に変更する
+      # それ以外であれば「校正予約(点検前)」に変更する
       if work.proofread_waiting_inspected?
         work.proofread_reserved_inspected!
       else
