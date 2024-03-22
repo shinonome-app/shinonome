@@ -139,11 +139,24 @@ module Admin
 
         # work_copy: @proofread.work_copy,
         # work_print: @proofread.work_print,
-        proof_edition: @proofread.proof_edition,
+        # proof_edition: @proofread.proof_edition,
         address: @proofread.address,
         memo: @proofread.memo
       }
     end
+
+    def teihon = work.first_teihon
+
+    def publisher = teihon.publisher
+    def first_pubdate = teihon.first_pubdate
+    def input_edition = teihon.input_edition
+    def proof_edition = teihon.proof_edition
+
+    def oyahon = work.first_oyahon
+
+    def original_book_title2 = oyahon.title
+    def publisher2 = oyahon.publisher
+    def first_pubdate2 = oyahon.first_pubdate
 
     def set_worker
       if worker_id && worker_id >= 0 # rubocop:disable Style/GuardClause

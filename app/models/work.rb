@@ -183,6 +183,10 @@ class Work < ApplicationRecord
     original_books.where(booktype: 1).first
   end
 
+  def first_oyahon
+    original_books.where(booktype: 2).first
+  end
+
   def author_text
     work_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
   end
