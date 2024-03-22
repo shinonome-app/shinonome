@@ -125,6 +125,30 @@ describe Admin::ReceiptsController do
     end
   end
 
+  describe '人物（著者なし）での新規登録' do
+    before do
+      Capybara.current_session.driver.browser.manage.window.resize_to(1280, 4000)
+    end
+
+    it '人物（著者なし）工作員を新規登録するとperson_id:0で登録される' do
+      receipt = create(:receipt, :non_ordered, :without_person)
+
+      visit "/admin/receipts/#{receipt.id}/edit"
+
+      choose '一時的に人物（著者なし）に関連付ける'
+      click_on('再検索')
+      expect(page).to have_content('申請内容確認')
+
+      click_on('登録する')
+      expect(page).to have_content('申請内容詳細')
+      expect(page).to have_content(receipt.worker_name)
+
+      # worker_idが設定される
+      receipt.reload
+      expect(receipt.worker_id).to eq(Work.last.workers.last.id)
+    end
+  end
+
   describe '警告の表示' do
     context 'すでに登録されている作品とかぶる作品の申請' do
       it '警告が表示される' do
