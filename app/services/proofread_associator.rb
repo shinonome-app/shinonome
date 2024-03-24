@@ -17,6 +17,7 @@ class ProofreadAssociator
       end
 
       proofread = proofread_form.proofread
+      proofread.worker = worker
       proofread.assigned!
     end
 
@@ -27,7 +28,12 @@ class ProofreadAssociator
   end
 
   def update_original_book!(proofread_form, work, booktype_id)
-    original_book = OriginalBook.find_by(work_id: work.id, booktype_id:)
+    original_book = work.original_books.where(booktype_id:).first ||
+                    work.original_books.build(
+                      booktype_id:,
+                      original_book_secret_attributes: { memo: '' }
+                    )
+
     case booktype_id
     when 1
       original_book.title = proofread_form.original_book_title
