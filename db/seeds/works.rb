@@ -53,6 +53,15 @@ end
 
 Work.insert_all(works.sort_by { |b| b[:created_at] })
 
+work_secrets = Work.pluck(:id).map do |work_id|
+  {
+    work_id:,
+    orig_text: "底本管理情報#{work_id}"
+  }
+end
+
+Shinonome::WorkSecret.insert_all(work_secrets)
+
 ## WorkWorkers
 work_id_status_list = Work.pluck(:id, :work_status_id)
 work_id_list = Work.pluck(:id)
