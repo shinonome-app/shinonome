@@ -30,12 +30,18 @@ module Admin
         return
       end
 
-      @proofread_form = Admin::ProofreadForm.new(proofread:)
-      if params[:proofread]
-        @proofread_form.worker_name = params[:proofread][:worker_name]
-        @proofread_form.worker_kana = params[:proofread][:worker_kana]
-        @proofread_form.email = params[:proofread][:email]
-        @proofread_form.url = params[:proofread][:url]
+      @proofread_form =
+        if params[:admin_proofread_form]
+          Admin::ProofreadForm.new(proofread_form_params, proofread:)
+        else
+          Admin::ProofreadForm.new(proofread:)
+        end
+
+      if params[:admin_proofread_form]
+        @proofread_form.worker_name = params[:admin_proofread_form][:worker_name]
+        @proofread_form.worker_kana = params[:admin_proofread_form][:worker_kana]
+        @proofread_form.email = params[:admin_proofread_form][:email]
+        @proofread_form.url = params[:admin_proofread_form][:url]
       end
 
       @worker, @worker_secret = @proofread_form.worker_and_worker_secret
@@ -69,14 +75,14 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def proofread_form_params
-      params.require(:proofread).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
-                                        :original_title, :kana_type_id, :author_display_name,
-                                        :work_id, :worker_id,
-                                        :original_book_title, :publisher, :first_pubdate,
-                                        :input_edition, :proof_edition,
-                                        :original_book_title2, :publisher2, :first_pubdate2,
-                                        :worker_name, :worker_kana,
-                                        :email, :url)
+      params.require(:admin_proofread_form).permit(:title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
+                                                   :original_title, :kana_type_id, :author_display_name,
+                                                   :work_id, :worker_id,
+                                                   :original_book_title, :publisher, :first_pubdate,
+                                                   :input_edition, :proof_edition,
+                                                   :original_book_title2, :publisher2, :first_pubdate2,
+                                                   :worker_name, :worker_kana,
+                                                   :email, :url)
     end
   end
 end

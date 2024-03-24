@@ -74,28 +74,28 @@ module Admin
     def save
       return false if invalid?
 
-      set_email
-
       worker = WorkerFinder.new.find_with_form(self)
 
+      # 入力されたemailよりもWorkerSecretのemailを優先する
+      self.email = worker.worker_secret&.email
+
       work = @proofread.work
-      result = ProofreadAssociator.new.associate_proofread(work:, worker:, proofread_form: self)
+      result = ProofreadAssociator.new.associate_proofread(
+        work:,
+        worker:,
+        proofread_form: self
+      )
 
       result.associated?
     end
 
-    def to_model
-      proofread
-    end
-
     def worker_and_worker_secret
-      worker = Worker.find(worker_id) if worker_id
+      worker = Worker.find(worker_id) if worker_id && worker_id.to_i >= 0
 
       if worker.present?
-        worker_secret = worker.worker_secret
+        worker_secret = worker.worker_secret || worker.build_worker_secret
       else
         worker = Worker.new(
-          id: worker_id,
           name: worker_name,
           name_kana: worker_kana
         )
@@ -111,19 +111,12 @@ module Admin
     private
 
     def proofread_params
-      params.require(:proofread).permit(:id, :title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
-                                        :original_title, :kana_type_id, :author_display_name,
-                                        :original_book_title, :publisher, :first_pubdate,
-                                        :work_id, :worker_id,
-                                        :input_edition, :proof_edition,
-                                        :original_book_title2, :publisher2, :first_pubdate2)
-    end
-
-    def set_email
-      if worker_id.present? # rubocop:disable Style/GuardClause
-        worker_secret = Shinonome::WorkerSecret.find_by(worker_id:)
-        self.email = worker_secret.email
-      end
+      params.require(:admin_proofread_form).permit(:id, :title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
+                                                   :original_title, :kana_type_id, :author_display_name,
+                                                   :original_book_title, :publisher, :first_pubdate,
+                                                   :work_id, :worker_id,
+                                                   :input_edition, :proof_edition,
+                                                   :original_book_title2, :publisher2, :first_pubdate2)
     end
 
     def default_params
@@ -139,24 +132,20 @@ module Admin
 
         # work_copy: @proofread.work_copy,
         # work_print: @proofread.work_print,
-        # proof_edition: @proofread.proof_edition,
+
+        proof_edition: @proofread.proof_edition,
+        publisher: @proofread.work.first_teihon&.publisher,
+        first_pubdate: @proofread.work.first_teihon&.first_pubdate,
+        input_edition: @proofread.work.first_teihon&.input_edition,
+
+        original_book_title2: @proofread.work.first_oyahon&.title,
+        publisher2: @proofread.work.first_oyahon&.publisher,
+        first_pubdate2: @proofread.work.first_oyahon&.first_pubdate,
+
         address: @proofread.address,
         memo: @proofread.memo
       }
     end
-
-    def teihon = work.first_teihon
-
-    def publisher = teihon.publisher
-    def first_pubdate = teihon.first_pubdate
-    def input_edition = teihon.input_edition
-    def proof_edition = teihon.proof_edition
-
-    def oyahon = work.first_oyahon
-
-    def original_book_title2 = oyahon.title
-    def publisher2 = oyahon.publisher
-    def first_pubdate2 = oyahon.first_pubdate
 
     def set_worker
       if worker_id && worker_id >= 0 # rubocop:disable Style/GuardClause

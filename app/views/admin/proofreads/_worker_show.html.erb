@@ -9,25 +9,37 @@
         <tr>
           <th>工作員ID</th>
           <td>
-            <%= @worker.id %>
-            <%= form.hidden_field :worker_id %>
+            <%= proofread_form.worker_id %>
+            <%= form.hidden_field :worker_id, value: proofread_form.worker_id || params.dig(:receipt, :worker_id) %>
           </td>
         </tr>
         <tr>
           <th>姓名読み</th>
-          <td><%= @worker.name_kana %></td>
+          <td>
+            <%= @worker.name_kana %>
+            <%= form.hidden_field :worker_kana %>
+          </td>
         </tr>
         <tr>
           <th>姓名</th>
-          <td><%= @worker.name %></td>
+          <td>
+            <%= @worker.name %>
+            <%= form.hidden_field :worker_name %>
+          </td>
         </tr>
         <tr>
           <th>e-mail</th>
-          <td><%= @worker_secret.email %></td>
+          <td>
+            <%= @worker_secret.email %>
+            <%= form.hidden_field :email %>
+          </td>
         </tr>
         <tr>
           <th>ホームページ</th>
-          <td><%= @worker_secret.url %></td>
+          <td>
+            <%= @worker_secret.url %>
+            <%= form.hidden_field :url %>
+          </td>
         </tr>
       </tbody>
     </table>
