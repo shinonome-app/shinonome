@@ -1,0 +1,57 @@
+    <snm-headline h="h3">底本</snm-headline>
+
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">底本名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :original_book_title, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">出版社名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :publisher, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">初版発行年</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :first_pubdate, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">入力に使用した版</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :input_edition, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <td class="odd:w-[25%] py-3 px-5">校正に使用する版</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :proof_edition, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <snm-headline h="h3">底本の親本</snm-headline>
+
+    <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
+      <thead class="bg-[#f8fafc]">
+        <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
+          <th class="whitespace-nowrap">項目名</th>
+          <th class="whitespace-nowrap">データ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本の親本名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :original_book_title2, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本の親本出版社名</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :publisher2, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+        <tr>
+          <td class="odd:w-[25%] py-3 px-5">底本の親本出版発行年</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.text_area :first_pubdate2, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+        </tr>
+      </tbody>
+    </table>

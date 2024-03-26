@@ -33,19 +33,22 @@
     <snm-headline h="h3">工作員選択オプション</snm-headline>
     <ul class="w-full py-4 ml-24">
       <li>
-        <%= form.radio_button :worker_id, -1 %>上記の内容で工作員を新規登録する
+        <%= form.radio_button :worker_id, -1 %>
+        <%= form.label :worker_id, '上記の内容で工作員を新規登録する', value: -1 %>
       </li>
       <li>
-        <%= form.radio_button :worker_id, 0 %>一時的に予備工作員に関連付ける
+        <%= form.radio_button :worker_id, 0 %>
+        <%= form.label :worker_id, '一時的に予備工作員に関連付ける', value: 0 %>
       </li>
       <li>
       </li>
       <% proofread_form.search_similar_workers.each do |searched_worker| %>
       <li>
         <%= form.radio_button :worker_id, searched_worker.id %>
-        <%= searched_worker.name %>
+        <%= form.label :worker_id, searched_worker.name, value: searched_worker.id %>
       </li>
       <% end %>
     </ul>
-    <%= form.submit '再検索', formaction: edit_admin_proofread_path(proofread_form.proofread), formmethod: :get, class: "btn-admin-normal" %>
+
+      <%= render(Admin::SubmitComponent.new(form:, name: "resubmit", value: "再検索", options: { formaction: edit_admin_proofread_path(proofread_form.proofread), formmethod: :get })) %>
     </div>
