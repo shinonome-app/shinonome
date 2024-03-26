@@ -18,7 +18,7 @@
         </tr>
         <tr>
           <td class="odd:w-[25%] py-3 px-5">
-            作品ID
+            <%= form.label :work_id %>
           </td>
           <td class="odd:w-[25%] py-3 px-5">
             <%= work.id %>
@@ -26,18 +26,18 @@
           </td>
         </tr>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5">作品名<br>副題</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.label :title %><br><%= form.label :subtitle %></td>
           <td class="odd:w-[25%] py-3 px-5">
             <%= work.title %><br>
             <%= work.subtitle %>
           </td>
         </tr>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5">状態</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.label :work_status_name %></td>
           <td class="odd:w-[25%] py-3 px-5"><%= work.work_status.name %></td>
         </tr>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5">底本（コピー）</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.label :copy %></td>
           <td class="odd:w-[25%] py-3 px-5">
             <% if proofread_form.need_copy? %>
             要
@@ -47,7 +47,7 @@
           </td>
         </tr>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5">プリントアウト</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.label :print %></td>
           <td class="odd:w-[25%] py-3 px-5">
             <% if proofread_form.need_print? %>
             要
@@ -71,7 +71,7 @@
       </thead>
       <tbody>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5">送付先</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.label :address %></td>
           <td class="odd:w-[25%] py-3 px-5"><%= proofread_form.address %></td>
         </tr>
       </tbody>
@@ -90,7 +90,7 @@
       </thead>
       <tbody>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5">連絡事項</td>
+          <td class="odd:w-[25%] py-3 px-5"><%= form.label :memo %></td>
           <td class="odd:w-[25%] py-3 px-5"><%= proofread_form.memo %></td>
         </tr>
       </tbody>

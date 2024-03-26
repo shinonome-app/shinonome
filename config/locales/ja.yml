@@ -35,6 +35,28 @@ ja:
         status: "状態"
         started_on: "状態の開始日"
         sub_works: "作品データ"
+      admin/proofread_form:
+        work_id: 作品ID
+        title: 作品名
+        subtitle: 副題
+        work_status_name: 状態
+        copy: 底本（コピー）
+        print: プリントアウト
+        address: 送付先
+        memo: 連絡事項
+        worker_id: 工作員ID
+        worker_kana: 姓名読み
+        worker_name: 姓名
+        email: e-mail
+        url: ホームページ
+        original_book_title: 底本名
+        publisher: 出版社名
+        first_pubdate: 初版発行年
+        input_edition: 入力に使用した版
+        proof_edition: 校正に使用する版
+        original_book_title2: 底本の親本名
+        publisher2: 底本の親本出版社名
+        first_pubdate2: 底本の親本初版発行年
       proofread_form:
         worker_id: "工作員ID"
         worker_kana: "工作員読み"

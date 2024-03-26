@@ -86,6 +86,41 @@ describe Admin::ProofreadsController do
         expect(worker.sortkey).to eq Kana.convert_sortkey(proofread.worker_kana)
         expect(worker.updated_by).to eq user.id
       end
+
+      it '再検索前に底本情報を更新するとそれが反映される' do
+        work = create(:work, :with_person, work_status_id: 5)
+        original_book = create(:original_book, work:)
+        original_book2 = create(:original_book, work:, booktype_id: 2)
+        proofread = create(:proofread, :non_ordered, work:, worker: nil)
+
+        visit '/admin/proofreads'
+
+        click_on(proofread.work.title)
+        expect(page).to have_content('申請内容確認')
+        fill_in '底本名', with: '更新底本1'
+        fill_in '出版社名', with: '更新出版社名1'
+        fill_in '初版発行年', with: '更新初版発行年1'
+        fill_in '入力に使用した版', with: '更新入力に使用した版1'
+        fill_in '校正に使用する版', with: '更新校正に使用する版1'
+        fill_in '底本の親本名', with: '更新底本2'
+        fill_in '底本の親本出版社名', with: '更新出版社名2'
+        fill_in '底本の親本初版発行年', with: '更新初版発行年2'
+        choose '上記の内容で工作員を新規登録する'
+        click_on('再検索')
+        click_on('関連付ける')
+        expect(page).to have_content('更新しました')
+
+        original_book.reload
+        original_book2.reload
+        expect(original_book.title).to eq '更新底本1'
+        expect(original_book.publisher).to eq '更新出版社名1'
+        expect(original_book.first_pubdate).to eq '更新初版発行年1'
+        expect(original_book.input_edition).to eq '更新入力に使用した版1'
+        expect(original_book.proof_edition).to eq '更新校正に使用する版1'
+        expect(original_book2.title).to eq '更新底本2'
+        expect(original_book2.publisher).to eq '更新出版社名2'
+        expect(original_book2.first_pubdate).to eq '更新初版発行年2'
+      end
     end
 
     context '既存の工作員を適用する場合' do
@@ -129,6 +164,46 @@ describe Admin::ProofreadsController do
         proofread.reload
         expect(new_worker.id).to eq worker.id
         expect(new_worker.id).to eq proofread.worker_id
+      end
+    end
+
+    context '工作員が指定されている場合' do
+      it 'すでに工作員が設定されている' do
+        work = create(:work, :with_person, work_status_id: 5)
+        worker = create(:worker)
+        original_book = create(:original_book, work:)
+        proofread = create(:proofread, :non_ordered, work:, worker:)
+
+        visit '/admin/proofreads'
+
+        click_on(proofread.work.title)
+        expect(page).to have_content('申請内容確認')
+        expect(page).to have_no_content('再検索')
+        expect(page).to have_content(worker.name)
+        expect(page).to have_content(worker.id)
+        expect(page).to have_field('admin_proofread_form_original_book_title', with: original_book.title)
+      end
+
+      it 'そのまま登録できる' do
+        work = create(:work, :with_person, work_status_id: 5)
+        worker = create(:worker)
+        _original_book = create(:original_book, work:)
+        proofread = create(:proofread, :non_ordered, work:, worker:)
+
+        visit '/admin/proofreads'
+
+        click_on(proofread.work.title)
+        click_on('関連付ける')
+        expect(page).to have_content('Web校正受付管理')
+        expect(page).to have_content('Web受付作品一覧')
+        expect(page).to have_content('更新しました')
+        expect(page).to have_content(proofread.worker_name)
+
+        expect(worker.id).to eq proofread.worker_id
+
+        # 申請の工作員名等は指定された工作員の名前と異なっていても修正されない
+        expect(proofread.worker_name).not_to eq worker.name
+        expect(proofread.worker_kana).not_to eq worker.name_kana
       end
     end
   end
