@@ -137,9 +137,9 @@
     <snm-headline h="h2">著者データ</snm-headline>
 
     <% if receipt_form.person_id.present? %>
-    <%= render 'person_show', receipt_form:, form: %>
+    <%= render 'person_show', receipt_form:, form:, errors: %>
     <% else %>
-    <%= render 'person_form', receipt_form:, form: %>
+    <%= render 'person_form', receipt_form:, form:, errors: %>
     <% end %>
 
     <snm-headline h="h2">入力者データ</snm-headline>

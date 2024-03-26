@@ -23,7 +23,7 @@
         <%= form.label :last_name_kana %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.text_field :last_name_kana, class: "w-full p-1" %>
+        <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_kana, label: '', errors:)) %>
       </td>
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -31,7 +31,7 @@
         <%= form.label :last_name %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.text_field :last_name, class: "w-full p-1" %>
+        <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name, label: '', errors:)) %>
       </td>
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -39,7 +39,7 @@
         <%= form.label :last_name_en %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.text_field :last_name_en, class: "w-full p-1" %>
+        <%= render(Admin::SnmTextFieldComponent.new(form:, name: :last_name_en, label: '', errors:)) %>
       </td>
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -47,7 +47,7 @@
         <%= form.label :first_name_kana %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.text_field :first_name_kana, class: "w-full p-1" %>
+        <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_kana, label: '', errors:)) %>
       </td>
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -55,7 +55,7 @@
         <%= form.label :first_name %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.text_field :first_name, class: "w-full p-1" %>
+        <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name, label: '', errors:)) %>
       </td>
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -63,7 +63,7 @@
         <%= form.label :first_name_en %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.text_field :first_name_en, class: "w-full p-1" %>
+        <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_name_en, label: '', errors:)) %>
       </td>
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
@@ -71,7 +71,7 @@
         <%= form.label :person_note %>
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= form.text_field :person_note, class: "w-full p-1" %>
+        <%= render(Admin::SnmTextFieldComponent.new(form:, name: :person_note, label: '', errors:)) %>
       </td>
     </tr>
   </tbody>
