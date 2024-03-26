@@ -87,8 +87,8 @@ describe Admin::ProofreadsController do
         expect(worker.updated_by).to eq user.id
 
         proofread.reload
-        expect(proofread.assigned?).to be_truthy
-        expect(proofread.ordered?).to be_falsey
+        expect(proofread.assigned?).to be(true)
+        expect(proofread.ordered?).to be(false)
       end
 
       it '再検索前に底本情報を更新するとそれが反映される' do
@@ -169,8 +169,8 @@ describe Admin::ProofreadsController do
         expect(new_worker.id).to eq worker.id
         expect(new_worker.id).to eq proofread.worker_id
 
-        expect(proofread.assigned?).to be_truthy
-        expect(proofread.ordered?).to be_falsey
+        expect(proofread.assigned?).to be(true)
+        expect(proofread.ordered?).to be(false)
       end
     end
 
@@ -213,8 +213,8 @@ describe Admin::ProofreadsController do
         expect(proofread.worker_name).not_to eq worker.name
         expect(proofread.worker_kana).not_to eq worker.name_kana
 
-        expect(proofread.assigned?).to be_truthy
-        expect(proofread.ordered?).to be_falsey
+        expect(proofread.assigned?).to be(true)
+        expect(proofread.ordered?).to be(false)
       end
     end
   end
