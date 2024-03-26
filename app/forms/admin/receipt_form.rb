@@ -8,7 +8,7 @@ module Admin
     include ActiveModel::Validations::Callbacks
     include ActiveRecord::AttributeAssignment
 
-    attr_reader :receipt, :current_admin_user
+    attr_reader :receipt
 
     attribute :worker_id, :integer
     attribute :worker_kana, :string
@@ -96,7 +96,7 @@ module Admin
     def save
       return false if invalid?
 
-      worker = WorkerFinder.new.find_with_form(self)
+      worker = WorkerFinder.new.find_with_form(self, current_admin_user:)
 
       # 入力されたemailよりもWorkerSecretのemailを優先する
       self.email = worker.worker_secret&.email
@@ -209,6 +209,8 @@ module Admin
     end
 
     private
+
+    attr_reader :current_admin_user
 
     def default_params
       {

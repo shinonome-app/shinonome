@@ -46,8 +46,9 @@ module Admin
     delegate :need_print?, to: :proofread
     delegate :address, to: :proofread
 
-    def initialize(params = nil, proofread: Proofread.new)
+    def initialize(params = nil, proofread: Proofread.new, current_admin_user: nil)
       @proofread = proofread
+      @current_admin_user = current_admin_user
       new_params = params || default_params
       super(new_params)
 
@@ -74,7 +75,7 @@ module Admin
     def save
       return false if invalid?
 
-      worker = WorkerFinder.new.find_with_form(self)
+      worker = WorkerFinder.new.find_with_form(self, current_admin_user:)
 
       # 入力されたemailよりもWorkerSecretのemailを優先する
       self.email = worker.worker_secret&.email
@@ -97,7 +98,8 @@ module Admin
       else
         worker = Worker.new(
           name: worker_name,
-          name_kana: worker_kana
+          name_kana: worker_kana,
+          updated_by: current_admin_user.id
         )
         worker_secret = Shinonome::WorkerSecret.new(
           email:,
@@ -109,6 +111,8 @@ module Admin
     end
 
     private
+
+    attr_reader :current_admin_user
 
     def proofread_params
       params.require(:admin_proofread_form).permit(:id, :title, :title_kana, :subtitle, :subtitle_kana, :collection, :collection_kana,
