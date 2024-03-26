@@ -64,7 +64,7 @@ describe Admin::ProofreadsController do
 
     it '再検索後そのまま登録すると新しい工作員が登録される' do
       work = create(:work, :with_person, work_status_id: 5)
-      original_book = create(:original_book, work:)
+      _original_book = create(:original_book, work:)
       proofread = create(:proofread, :non_ordered, work:, worker: nil)
 
       visit '/admin/proofreads'
