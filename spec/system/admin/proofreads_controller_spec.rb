@@ -85,6 +85,10 @@ describe Admin::ProofreadsController do
         expect(worker.name_kana).to eq proofread.worker_kana
         expect(worker.sortkey).to eq Kana.convert_sortkey(proofread.worker_kana)
         expect(worker.updated_by).to eq user.id
+
+        proofread.reload
+        expect(proofread.assigned?).to be_truthy
+        expect(proofread.ordered?).to be_falsey
       end
 
       it '再検索前に底本情報を更新するとそれが反映される' do
@@ -164,6 +168,9 @@ describe Admin::ProofreadsController do
         proofread.reload
         expect(new_worker.id).to eq worker.id
         expect(new_worker.id).to eq proofread.worker_id
+
+        expect(proofread.assigned?).to be_truthy
+        expect(proofread.ordered?).to be_falsey
       end
     end
 
@@ -199,11 +206,15 @@ describe Admin::ProofreadsController do
         expect(page).to have_content('更新しました')
         expect(page).to have_content(proofread.worker_name)
 
+        proofread.reload
         expect(worker.id).to eq proofread.worker_id
 
         # 申請の工作員名等は指定された工作員の名前と異なっていても修正されない
         expect(proofread.worker_name).not_to eq worker.name
         expect(proofread.worker_kana).not_to eq worker.name_kana
+
+        expect(proofread.assigned?).to be_truthy
+        expect(proofread.ordered?).to be_falsey
       end
     end
   end
