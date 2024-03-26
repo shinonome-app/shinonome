@@ -10,7 +10,7 @@
   <% else %>
   <%= form.text_field name, class: input_class %>
   <% end %>
-  <% if errors[error_key].any? %>
+  <% if errors[error_key]&.any? %>
   <%= tag.div errors.full_messages_for(error_key).join(', '), class: "text-sm text-red-500 required:block" %>
   <% end %>
 </div>

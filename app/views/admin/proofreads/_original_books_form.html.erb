@@ -9,24 +9,44 @@
       </thead>
       <tbody>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :original_book_title %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :original_book_title, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :original_book_title %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :original_book_title, label: '', errors:)) %>
+          </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :publisher %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :publisher, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :publisher %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :publisher, label: '', errors:)) %>
+          </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :first_pubdate %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :first_pubdate, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :first_pubdate %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_pubdate, label: '', errors:)) %>
+          </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :input_edition %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :input_edition, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :input_edition %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :input_edition, label: '', errors:)) %>
+          </td>
         </tr>
         <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :proof_edition %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :proof_edition, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :proof_edition %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :proof_edition, label: '', errors:)) %>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -42,16 +62,28 @@
       </thead>
       <tbody>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :original_book_title2 %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :original_book_title2, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :original_book_title2 %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :original_book_title2, label: '', errors:)) %>
+          </td>
         </tr>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :publisher2 %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :publisher2, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :publisher2 %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :publisher2, label: '', errors:)) %>
+          </td>
         </tr>
         <tr>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.label :first_pubdate2 %></td>
-          <td class="odd:w-[25%] py-3 px-5"><%= form.text_field :first_pubdate2, class: "text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 p-1" %></td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= form.label :first_pubdate2 %>
+          </td>
+          <td class="odd:w-[25%] py-3 px-5">
+            <%= render(Admin::SnmTextFieldComponent.new(form:, name: :first_pubdate2, label: '', errors:)) %>
+          </td>
         </tr>
       </tbody>
     </table>
