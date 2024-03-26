@@ -56,6 +56,10 @@
 <div class="py-4" id="worker-selector">
   <snm-headline h="h3">工作員選択オプション</snm-headline>
 
+  <% if errors[:worker_id]&.any? %>
+  <%= tag.div errors.full_messages_for(:worker_id).join(', '), class: "text-sm text-red-500 required:block" %>
+  <% end %>
+
   <div class="mb-2">
     <%= form.radio_button :worker_id, -1 %>
     <%= form.label :worker_id, '上記の内容で工作員を新規登録する', value: -1 %>

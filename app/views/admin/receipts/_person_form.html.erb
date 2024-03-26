@@ -80,6 +80,10 @@
 <div class="py-4" id="person-selector">
   <snm-headline h="h3">著者選択オプション</snm-headline>
 
+  <% if errors[:person_id]&.any? %>
+  <%= tag.div errors.full_messages_for(:person_id).join(', '), class: "text-sm text-red-500 required:block" %>
+  <% end %>
+
   <ul class="w-full py-4 ml-24">
     <li>
       <%= form.radio_button :person_id, -1 %>
