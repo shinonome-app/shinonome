@@ -131,7 +131,6 @@ Rails.application.routes.draw do
       end
     end
     namespace :proofreads do
-      resources :previews, only: %i[update]
       resources :bulk_removes, only: %i[create]
     end
 
