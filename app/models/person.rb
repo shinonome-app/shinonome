@@ -64,6 +64,8 @@ class Person < ApplicationRecord
 
   accepts_nested_attributes_for :person_secret, update_only: true
 
+  before_validation :set_sortkey
+
   validates :last_name, :last_name_kana, presence: true
   validates :copyright_flag, inclusion: { in: [true, false] }
   validates :input_count, :publish_count, numericality: { only_integer: true }, allow_nil: true
@@ -128,5 +130,12 @@ class Person < ApplicationRecord
 
   def unpublished_works
     Work.joins(:work_people).unpublished.where(work_people: { person_id: id })
+  end
+
+  private
+
+  def set_sortkey
+    self.sortkey = Kana.convert_sortkey(last_name_kana) if sortkey.blank?
+    self.sortkey2 = Kana.convert_sortkey(first_name_kana) if sortkey2.blank?
   end
 end
