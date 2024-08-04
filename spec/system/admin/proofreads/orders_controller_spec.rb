@@ -36,7 +36,7 @@ describe Admin::Proofreads::OrdersController do
         expect(page).to have_content("送信しました")
         expect(current_path).to eq(admin_proofreads_path)
         # 成功のフラッシュメッセージとリダイレクト先を確認
-        expect(AdminMailer).to have_received(:order_proofread)
+        expect(AdminMailer).to have_received(:order_proofread).twice
       end
     end
 
@@ -55,7 +55,7 @@ describe Admin::Proofreads::OrdersController do
         expect(page).to have_content("送信しました")
         expect(current_path).to eq(admin_proofreads_path)
         # 成功のフラッシュメッセージとリダイレクト先を確認
-        expect(AdminMailer).to have_received(:order_proofread)
+        expect(AdminMailer).to have_received(:order_proofread).twice
       end
     end
   end
