@@ -10,7 +10,6 @@
 #  copyright_flag  :boolean          default(FALSE), not null
 #  description     :text
 #  died_on         :text
-#  email           :text
 #  first_name      :text
 #  first_name_en   :text
 #  first_name_kana :text

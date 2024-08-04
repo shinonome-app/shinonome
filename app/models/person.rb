@@ -10,7 +10,6 @@
 #  copyright_flag  :boolean          default(FALSE), not null
 #  description     :text
 #  died_on         :text
-#  email           :text
 #  first_name      :text
 #  first_name_en   :text
 #  first_name_kana :text
@@ -69,7 +68,6 @@ class Person < ApplicationRecord
   validates :last_name, :last_name_kana, presence: true
   validates :copyright_flag, inclusion: { in: [true, false] }
   validates :input_count, :publish_count, numericality: { only_integer: true }, allow_nil: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }, allow_blank: true
 
   scope :with_name_firstchar, lambda { |char|
@@ -85,7 +83,7 @@ class Person < ApplicationRecord
   end
 
   def to_csv
-    array = [id, last_name, last_name_kana, last_name_en, first_name, first_name_kana, first_name_en, born_on, died_on, copyright_char, email, url, description, basename, person_secret&.memo, updated_at, updated_by, sortkey, sortkey2]
+    array = [id, last_name, last_name_kana, last_name_en, first_name, first_name_kana, first_name_en, born_on, died_on, copyright_char, person_secret&.email, url, description, basename, person_secret&.memo, updated_at, updated_by, sortkey, sortkey2]
 
     CSV.generate_line(array, force_quotes: true, row_sep: "\r\n")
   end

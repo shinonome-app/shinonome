@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_03_045608) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -163,7 +163,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.text "born_on"
     t.text "died_on"
     t.boolean "copyright_flag", default: false, null: false
-    t.text "email"
     t.text "url"
     t.text "description"
     t.text "basename"
@@ -181,6 +180,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_023548) do
     t.bigint "person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "email"
     t.index ["person_id"], name: "index_person_secrets_on_person_id", unique: true
   end
 

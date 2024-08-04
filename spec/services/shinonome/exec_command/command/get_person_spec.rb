@@ -32,7 +32,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetPerson do
           expect(row2[7]).to eq person2.born_on
           expect(row2[8]).to eq person2.died_on
           expect(row2[9]).to eq person2.copyright_char
-          expect(row2[10]).to eq person2.email
+          expect(row2[10]).to eq person2.person_secret.email.to_s
           expect(row2[11]).to eq person2.url
           expect(row2[12]).to eq person2.description
           expect(row2[13]).to eq person2.basename.to_s
@@ -54,7 +54,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetPerson do
           expect(row3[7]).to eq person3.born_on
           expect(row3[8]).to eq person3.died_on
           expect(row3[9]).to eq person3.copyright_char
-          expect(row3[10]).to eq person3.email
+          expect(row3[10]).to eq person3.person_secret.email.to_s
           expect(row3[11]).to eq person3.url
           expect(row3[12]).to eq person3.description
           expect(row3[13]).to eq person3.basename.to_s
