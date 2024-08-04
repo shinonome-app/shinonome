@@ -88,6 +88,8 @@ class Work < ApplicationRecord
   scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) OR (work_status_id = 1 AND started_on > ?)', date) }
   scope :not_proofread, -> { where('work_status_id in (5, 6)') }
 
+  before_validation :set_sortkey
+
   validates :title_kana, presence: true
   validates :title, presence: true
   validates :copyright_flag, inclusion: { in: [true, false] }
@@ -217,5 +219,11 @@ class Work < ApplicationRecord
 
   def card_url
     "https://www.aozora.gr.jp/cards/#{card_person_id}/card#{id}.html"
+  end
+
+  private
+
+  def set_sortkey
+    self.sortkey = Kana.convert_sortkey(title_kana) if sortkey.blank?
   end
 end
