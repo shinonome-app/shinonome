@@ -221,6 +221,10 @@ class Work < ApplicationRecord
     "https://www.aozora.gr.jp/cards/#{card_person_id}/card#{id}.html"
   end
 
+  def xhtml_link
+    workfiles.find{ | workfile | workfile.html? }
+  end
+
   private
 
   def set_sortkey

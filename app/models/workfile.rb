@@ -124,6 +124,14 @@ class Workfile < ApplicationRecord
     compresstype&.zip?
   end
 
+  def filename_to_download
+    if filename.present?
+      filename
+    else
+      "#{work.id}.#{filetype&.extension}"
+    end
+  end
+
   def using_ruby?
     content = uncompressed_workdata
     return false if content.nil?

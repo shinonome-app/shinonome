@@ -58,7 +58,9 @@
         <td>
           <span class="text-2xl"><%= author.name %></span>
           <% author.other_people.each do |other_person| %>
-          　→<%= other_person.name %>
+          　<span class="text-2xl">→<%= link_to other_person.name,
+                                               person_index_pages_path(other_person.id, format: :html),
+                                               class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" %></span>
           <% end %>
         </td>
       </tr>
@@ -169,51 +171,51 @@
   <footer class="pt-3 pb-14">
     <div>
       ●作家リスト：公開中
-      <a href="person_a.html">[あ]</a>
-      <a href="person_ka.html">[か]</a>
-      <a href="person_sa.html">[さ]</a>
-      <a href="person_ta.html">[た]</a>
-      <a href="person_na.html">[な]</a>
-      <a href="person_ha.html">[は]</a>
-      <a href="person_ma.html">[ま]</a>
-      <a href="person_ya.html">[や]</a>
-      <a href="person_ra.html">[ら]</a>
-      <a href="person_wa.html">[わ]</a>
-      <a href="person_zz.html">[他]</a>
+      <a href="person_a.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[あ]</a>
+      <a href="person_ka.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[か]</a>
+      <a href="person_sa.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[さ]</a>
+      <a href="person_ta.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[た]</a>
+      <a href="person_na.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[な]</a>
+      <a href="person_ha.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[は]</a>
+      <a href="person_ma.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[ま]</a>
+      <a href="person_ya.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[や]</a>
+      <a href="person_ra.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[ら]</a>
+      <a href="person_wa.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[わ]</a>
+      <a href="person_zz.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[他]</a>
     </div>
     <div>
       <span>●作家リスト：作業中　</span>
-      <a href="person_inp_a.html">[あ]</a>
-      <a href="person_inp_ka.html">[か]</a>
-      <a href="person_inp_sa.html">[さ]</a>
-      <a href="person_inp_ta.html">[た]</a>
-      <a href="person_inp_na.html">[な]</a>
-      <a href="person_inp_ha.html">[は]</a>
-      <a href="person_inp_ma.html">[ま]</a>
-      <a href="person_inp_ya.html">[や]</a>
-      <a href="person_inp_ra.html">[ら]</a>
-      <a href="person_inp_wa.html">[わ]</a>
-      <a href="person_inp_zz.html">[他]</a>
+      <a href="person_inp_a.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[あ]</a>
+      <a href="person_inp_ka.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[か]</a>
+      <a href="person_inp_sa.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[さ]</a>
+      <a href="person_inp_ta.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[た]</a>
+      <a href="person_inp_na.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[な]</a>
+      <a href="person_inp_ha.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[は]</a>
+      <a href="person_inp_ma.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[ま]</a>
+      <a href="person_inp_ya.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[や]</a>
+      <a href="person_inp_ra.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[ら]</a>
+      <a href="person_inp_wa.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[わ]</a>
+      <a href="person_inp_zz.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[他]</a>
     </div>
     <div>
       <span>●作家リスト：全　　　</span>
       <span>
-        <a href="person_all_a.html">[あ]</a>
-        <a href="person_all_ka.html">[か]</a>
-        <a href="person_all_sa.html">[さ]</a>
-        <a href="person_all_ta.html">[た]</a>
-        <a href="person_all_na.html">[な]</a>
-        <a href="person_all_ha.html">[は]</a>
-        <a href="person_all_ma.html">[ま]</a>
-        <a href="person_all_ya.html">[や]</a>
-        <a href="person_all_ra.html">[ら]</a>
-        <a href="person_all_wa.html">[わ]</a>
-        <a href="person_all_zz.html">[他]</a>
+        <a href="person_all_a.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[あ]</a>
+        <a href="person_all_ka.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[か]</a>
+        <a href="person_all_sa.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[さ]</a>
+        <a href="person_all_ta.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[た]</a>
+        <a href="person_all_na.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[な]</a>
+        <a href="person_all_ha.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[は]</a>
+        <a href="person_all_ma.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[ま]</a>
+        <a href="person_all_ya.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[や]</a>
+        <a href="person_all_ra.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[ら]</a>
+        <a href="person_all_wa.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[わ]</a>
+        <a href="person_all_zz.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[他]</a>
       </span>
     </div>
 
     <div>
-      ●<a href="/index.html">トップ</a>　●<a href="/index_pages/index_top.html">インデックス</a>／<a href="/index_pages/index_all.html">全</a>
+      ●<a href="/index.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">トップ</a>　●<a href="/index_pages/index_top.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">インデックス</a>／<a href="/index_pages/index_all.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">全</a>
     </div>
   </footer>
 </div>
