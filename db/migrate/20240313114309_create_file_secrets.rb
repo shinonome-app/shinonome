@@ -19,6 +19,7 @@ class CreateFileSecrets < ActiveRecord::Migration[7.1]
 
     create_table :person_secrets do |t|
       t.text :memo, null: false, default: ''
+      t.text :email, null: false, default: ''
       t.references :person, foreign_key: true, null: false, index: { unique: true }
 
       t.timestamps

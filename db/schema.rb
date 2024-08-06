@@ -177,10 +177,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_045608) do
 
   create_table "person_secrets", force: :cascade do |t|
     t.text "memo", default: "", null: false
+    t.text "email", default: "", null: false
     t.bigint "person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "email"
     t.index ["person_id"], name: "index_person_secrets_on_person_id", unique: true
   end
 

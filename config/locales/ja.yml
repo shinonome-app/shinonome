@@ -175,12 +175,13 @@ ja:
         born_on: "生年月日"
         died_on: "没年月日"
         copyright_flag: "著作権フラグ"
-        email: "email"
         url: "URL"
         description: "人物について"
         note: "備考"
       shinonome/person_secret:
         memo: "備考(非公開)"
+        email: "email"
+        person_id: "人物ID"
       person_site:
         id: "ID"
         person_id: "人物ID"
