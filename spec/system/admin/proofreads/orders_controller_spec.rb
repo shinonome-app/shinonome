@@ -16,7 +16,7 @@ describe Admin::Proofreads::OrdersController do
       visit orders_new_admin_proofread_path(proofread)
 
       expect(page).to have_content('ファイルの送付')
-      expect(page).to have_css('input[type=submit]')
+      expect(page).to have_button('送付')
       # 必要な要素がページ上に存在するかを確認
     end
   end
@@ -31,7 +31,7 @@ describe Admin::Proofreads::OrdersController do
 
         visit orders_new_admin_proofread_path(proofread)
 
-        click_button '送付'
+        click_on '送付'
 
         expect(page).to have_content('送信しました')
         expect(page).to have_current_path(admin_proofreads_path, ignore_query: true)
@@ -50,7 +50,7 @@ describe Admin::Proofreads::OrdersController do
         visit orders_new_admin_proofread_path(proofread)
 
         check '青空文庫にCCする'
-        click_button '送付'
+        click_on '送付'
 
         expect(page).to have_content('送信しました')
         expect(page).to have_current_path(admin_proofreads_path, ignore_query: true)
