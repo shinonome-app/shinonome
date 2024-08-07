@@ -222,7 +222,7 @@ class Work < ApplicationRecord
   end
 
   def xhtml_link
-    workfiles.find{ | workfile | workfile.html? }
+    workfiles.find { |workfile| workfile.html? }
   end
 
   private

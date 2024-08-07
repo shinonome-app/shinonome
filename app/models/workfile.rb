@@ -125,11 +125,7 @@ class Workfile < ApplicationRecord
   end
 
   def filename_to_download
-    if filename.present?
-      filename
-    else
-      "#{work.id}.#{filetype&.extension}"
-    end
+    filename.presence || "#{work.id}.#{filetype&.extension}"
   end
 
   def using_ruby?
