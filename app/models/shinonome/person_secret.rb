@@ -5,6 +5,7 @@
 # Table name: person_secrets
 #
 #  id         :bigint           not null, primary key
+#  email      :text             default(""), not null
 #  memo       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -22,5 +23,7 @@ module Shinonome
   # Person非公開情報
   class PersonSecret < ApplicationRecord
     belongs_to :person
+
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   end
 end

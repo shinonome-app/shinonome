@@ -49,7 +49,7 @@
         ["生年月日", person.born_on],
         ["没年月日", person.died_on],
         ["著作権フラグ", person.copyright_flag_name],
-        ["email", person.email],
+        ["email", person.person_secret&.email],
         ["URL", person.url],
         ["人物について", nl2br(person.description), { no_escape: true }],
         ["備考(非公開)", person.person_secret&.memo]

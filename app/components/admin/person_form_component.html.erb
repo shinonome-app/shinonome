@@ -15,11 +15,11 @@
                                            choices: [["なし", 0], ["あり", 1]],
                                            options: { include_blank: false },
                                            errors:)) %>
-  <%= render(Admin::SnmTextFieldComponent.new(form:, name: :email, errors:)) %>
   <%= render(Admin::SnmTextFieldComponent.new(form:, name: :url, errors:)) %>
   <%= render(Admin::SnmTextAreaComponent.new(form:, name: :description, errors:)) %>
   <%= form.fields_for :person_secret do |secret_form| %>
     <%= render(Admin::SnmTextAreaComponent.new(form: secret_form, name: :memo, errors:)) %>
+    <%= render(Admin::SnmTextFieldComponent.new(form: secret_form, name: :email, errors:)) %>
   <% end %>
   <div class="mt-2 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "登録する")) %>

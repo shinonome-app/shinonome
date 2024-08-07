@@ -26,6 +26,10 @@ class Bibclass < ApplicationRecord
     "bookid,分類名,分類番号,備考\r\n"
   end
 
+  def to_s
+    "#{name} #{num}"
+  end
+
   def to_csv
     array = [work_id, name, num, note]
 

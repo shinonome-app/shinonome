@@ -5,6 +5,7 @@
 # Table name: person_secrets
 #
 #  id         :bigint           not null, primary key
+#  email      :text             default(""), not null
 #  memo       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -21,6 +22,7 @@
 FactoryBot.define do
   factory :person_secret, class: 'Shinonome::PersonSecret' do
     memo { Faker::Lorem.sentence(word_count: 5, random_words_to_add: 15) }
+    sequence(:email) { |i| "sample-person-#{i}@example.com" }
     person
   end
 end
