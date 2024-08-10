@@ -69,8 +69,8 @@ ApplicationRecord.transaction do
   Role.upsert_all(roles)
 
   worker_roles = [
-    { id: 1, name: '入力' },
-    { id: 2, name: '校正' },
+    { id: 1, name: '入力者' },
+    { id: 2, name: '校正者' },
     { id: 99, name: 'その他' }
   ]
 
