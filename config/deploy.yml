@@ -56,6 +56,9 @@ builder:
   args:
     GIT_SHA: <%= %x(git rev-parse HEAD) %>
 
+sshkit:
+  pool_idle_timeout: 600
+
 # Configure custom arguments for Traefik
 #
 # Before deploy, create acme.json file on host:
