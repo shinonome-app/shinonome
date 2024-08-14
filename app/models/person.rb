@@ -94,6 +94,11 @@ class Person < ApplicationRecord
     Person.where(id: other_person_ids)
   end
 
+  def other_base_people
+    other_person_ids = BasePerson.where(person_id: id).pluck(:original_person_id)
+    Person.where(id: other_person_ids)
+  end
+
   def copyright?
     copyright_flag
   end
@@ -119,7 +124,7 @@ class Person < ApplicationRecord
   end
 
   def name_en
-    "#{first_name_en}, #{last_name_en}" if last_name_en || first_name_en
+    "#{last_name_en}, #{first_name_en}" if last_name_en || first_name_en
   end
 
   def published_works
