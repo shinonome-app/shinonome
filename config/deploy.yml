@@ -57,7 +57,7 @@ builder:
     GIT_SHA: <%= %x(git rev-parse HEAD) %>
 
 sshkit:
-  pool_idle_timeout: 600
+  pool_idle_timeout: 1000
 
 # Configure custom arguments for Traefik
 #
