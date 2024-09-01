@@ -303,7 +303,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.3)
+    rexml (3.3.6)
       strscan
     romaji (0.2.4)
       rake (>= 0.8.0)
