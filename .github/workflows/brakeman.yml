@@ -37,7 +37,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
-        ruby-version: 3.3.0
+        ruby-version: 3.3.5
 
     # Execute Brakeman CLI and generate a SARIF output with the security issues identified during the analysis
     - name: Scan
