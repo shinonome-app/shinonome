@@ -16,7 +16,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: 3.3.0
+          ruby-version: 3.3.5
       - uses: r7kamura/rubocop-problem-matchers-action@v1
       - name: rubocop
         run: bundle exec rubocop --parallel
