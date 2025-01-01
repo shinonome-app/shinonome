@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rails-html-sanitizer' ## XXX should be removed
+
 # Be sure to restart your server when you modify this file.
 #
 # This file eases your Rails 7.1 framework defaults upgrade.
