@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.3.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '7.1.3.4'
+gem 'rails', '7.2.2.1'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 # gem 'sprockets-rails'
@@ -58,7 +58,7 @@ gem 'rexml'
 gem 'faker'
 gem 'gimei'
 
-gem 'lograge', '~> 0.12.0'
+gem 'lograge'
 gem 'lograge-sql'
 
 # Fake mail system on web
@@ -103,7 +103,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   # gem 'webdrivers'
-  gem 'selenium-devtools', '~> 0.119'
+  gem 'selenium-devtools'
 
   # Use Rspec instead of MiniTest
   gem 'rspec-rails'
