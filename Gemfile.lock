@@ -233,7 +233,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    pagy (6.2.0)
+    pagy (7.0.11)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
@@ -429,7 +429,7 @@ DEPENDENCIES
   listen (~> 3.3)
   lograge
   lograge-sql
-  pagy (= 6.2.0)
+  pagy (~> 7.0)
   pg
   puma (~> 6.4)
   rack-mini-profiler
