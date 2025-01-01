@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
-require 'pagy/extras/frontend_helpers'
+require 'pagy/extras/js_tools'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module SnmExtra
     # Pagination for snm elements: it returns the html with the series of links to the pages
-    def pagy_snm_nav(pagy, pagy_id: nil, link_extra: '', **vars)
-      p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: %(class="#{pagy_link_class}" #{link_extra}))
-      link_arrow = pagy_link_proc(pagy, link_extra:)
+    def pagy_snm_nav(pagy)
+      link = pagy_anchor(pagy)
+      link_arrow = pagy_anchor(pagy)
 
-      html = %(<nav#{p_id}>)
+      html = +%(<nav>)
       html << %(<ul class="#{pagy_ul_class}">)
       html << pagy_snm_prev_html(pagy, link_arrow)
-      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
                   %(<li class="#{pagy_li_class}">#{link.call item}</li>)
@@ -50,7 +49,7 @@ class Pagy # :nodoc:
 
     def pagy_snm_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        %(<li><span>#{link.call p_prev, pagy_t('pagy.prev'), 'aria-label="previous"'}</span></li>)
+        %(<li><span>#{link.call p_prev, pagy_t('pagy.prev'), aria_label: "previous"}</span></li>)
       else
         # %(<li><span>#{pagy_t 'pagy.prev'}</span></li>)
         ''
@@ -59,7 +58,7 @@ class Pagy # :nodoc:
 
     def pagy_snm_next_html(pagy, link)
       if (p_next = pagy.next)
-        %(<li><span>#{link.call p_next, pagy_t('pagy.next'), 'aria-label="next"'}</span></li>)
+        %(<li><span>#{link.call p_next, pagy_t('pagy.next'), aria_label: "next"}</span></li>)
       else
         # %(<li><span>#{pagy_t 'pagy.next'}</span></li>)
         ''
