@@ -18,7 +18,7 @@
 #  index_admin_mail_secrets_on_worker_id  (worker_id)
 #
 class AdminMailSecret < ApplicationRecord
-  enum cc_flag: {
+  enum :cc_flag, {
     not_cc: 0,
     cc_reception: 1
   }
