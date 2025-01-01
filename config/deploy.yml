@@ -6,20 +6,7 @@ image: takahashim/shinonome
 
 # Deploy to these servers.
 servers:
-  web:
-    hosts:
-      - <%= ENV['PRIMARY_HOST'] %>
-    labels:
-      traefik.http.routers.web.rule: Host(`reception.aozora-renewal.cloud`)
-      traefik.http.routers.web_secure.entrypoints: websecure
-      traefik.http.routers.web_secure.rule: Host(`reception.aozora-renewal.cloud`)
-      traefik.http.routers.web_secure.tls: true
-      traefik.http.routers.web_secure.tls.certresolver: myresolver
-      traefik.http.routers.dashboard.service: api@internal
-      traefik.http.routers.dashboard.rule: Host(`traefik.aozora-renewal.cloud`)
-      traefik.http.routers.dashboard.entrypoints: websecure
-      traefik.http.routers.dashboard.tls: true
-      traefik.http.routers.dashboard.tls.certresolver: myresolver
+  - PRIMARY_HOST
 
 # Credentials for your image host.
 registry:
@@ -42,15 +29,16 @@ env:
     - SITE_NAME
     - RECEPTION_EMAIL
     - RAILS_ADMIN_PATH
+    - PRIMARY_HOST
+    - BUILDER_HOST
 
 volumes:
   - "/mnt/storage/str:/myapp/storage"
 
 builder:
   dockerfile: Dockerfile.production
-  remote:
-    arch: amd64
-    host: <%= ENV['BUILDER_HOST'] %>
+  arch: amd64
+  remote: BUILDER_HOST
   cache:
     type: registry
   args:
@@ -63,27 +51,9 @@ sshkit:
 #
 # Before deploy, create acme.json file on host:
 #   mkdir -p /letsencrypt && touch /letsencrypt/acme.json && chmod 600 /letsencrypt/acme.json
-traefik:
-  args:
-    accesslog: true
-    accesslog.format: json
-    api.insecure: false
-    api.dashboard: true
-    entrypoints.web.address: ":80"
-    entrypoints.websecure.address: ":443"
-    entryPoints.web.http.redirections.entryPoint.to: websecure
-    entryPoints.web.http.redirections.entryPoint.scheme: https
-    entryPoints.web.http.redirections.entrypoint.permanent: true
-    certificatesresolvers.myresolver.acme.email: 'takahashimm@gmail.com'
-    certificatesresolvers.myresolver.acme.storage: '/letsencrypt/acme.json'
-    certificatesresolvers.myresolver.acme.httpchallenge: true
-    certificatesresolvers.myresolver.acme.httpchallenge.entrypoint: web
-#    certificatesresolvers.myresolver.acme.caserver: 'https://acme-staging-v02.api.letsencrypt.org/directory'
-  options:
-    publish:
-      - 443:443
-    volume:
-      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
-healthcheck:
-  max_attempts: 20
-  interval: 30s
+proxy:
+  host: reception.aozora-renewal.cloud
+  ssl: true
+  healthcheck:
+    interval: 3
+    timeout: 3
