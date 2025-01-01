@@ -10,7 +10,7 @@ module Admin
         status = params[:status]
         year = params[:year]
 
-        @pagy, @works = pagy(Work.with_year_and_status(year, status).order(created_at: :desc), items: 50)
+        @pagy, @works = pagy(Work.with_year_and_status(year, status).order(created_at: :desc), limit: 50)
       end
     end
   end

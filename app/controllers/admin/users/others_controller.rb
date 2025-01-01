@@ -9,7 +9,7 @@ module Admin
 
       # GET /users
       def index
-        @pagy, @users = pagy(Shinonome::User.order(:id).all, items: 50)
+        @pagy, @users = pagy(Shinonome::User.order(:id).all, limit: 50)
         @user = Shinonome::User.new
       end
 
@@ -22,7 +22,7 @@ module Admin
         if @user.save
           redirect_to admin_users_others_path, success: '追加しました.'
         else
-          @pagy, @users = pagy(Shinonome::User.order(:id).all, items: 50)
+          @pagy, @users = pagy(Shinonome::User.order(:id).all, limit: 50)
           flash.now[:alert] = '入力エラーがあります'
           render :index, status: :unprocessable_entity
         end

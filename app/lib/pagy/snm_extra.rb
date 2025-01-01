@@ -17,11 +17,11 @@ class Pagy # :nodoc:
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<li class="#{pagy_li_class}">#{link.call item}</li>)
+                  %(<li class="#{pagy_link_class}">#{link.call item}</li>)
                 when String
                   %(<li class="#{pagy_li_class}">#{item}</li>)
                 when :gap
-                  %(<li class="#{pagy_li_class}"><span class="#{pagy_gap_class}">#{pagy_t 'pagy.gap'}</span></li>)
+                  %(<li class="#{pagy_gap_class}"><span>#{pagy_t 'pagy.gap'}</span></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
@@ -32,7 +32,7 @@ class Pagy # :nodoc:
     private
 
     def pagy_link_class
-      'h-7 w-8 bg-ab_lightgray text-sm text-black flex wrap justify-center items-center'
+      'h-7 w-8 bg-ab_lightgray text-sm text-black flex wrap justify-center items-center hover:bg-blue-100'
     end
 
     def pagy_ul_class
@@ -49,7 +49,7 @@ class Pagy # :nodoc:
 
     def pagy_snm_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        %(<li><span>#{link.call p_prev, pagy_t('pagy.prev'), aria_label: "previous"}</span></li>)
+        %(<li><span>#{link.call p_prev, pagy_t('pagy.prev'), aria_label: 'previous'}</span></li>)
       else
         # %(<li><span>#{pagy_t 'pagy.prev'}</span></li>)
         ''
@@ -58,7 +58,7 @@ class Pagy # :nodoc:
 
     def pagy_snm_next_html(pagy, link)
       if (p_next = pagy.next)
-        %(<li><span>#{link.call p_next, pagy_t('pagy.next'), aria_label: "next"}</span></li>)
+        %(<li><span>#{link.call p_next, pagy_t('pagy.next'), aria_label: 'next'}</span></li>)
       else
         # %(<li><span>#{pagy_t 'pagy.next'}</span></li>)
         ''

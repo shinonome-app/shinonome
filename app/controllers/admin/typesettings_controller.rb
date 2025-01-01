@@ -6,7 +6,7 @@ module Admin
 
     # GET /admin/typesettings
     def index
-      @pagy, @typesettings = pagy(Typesetting.order(id: :desc).all, items: 20)
+      @pagy, @typesettings = pagy(Typesetting.order(id: :desc).all, limit: 20)
     end
 
     # GET /admin/typesettings/1
