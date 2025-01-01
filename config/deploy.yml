@@ -6,7 +6,7 @@ image: takahashim/shinonome
 
 # Deploy to these servers.
 servers:
-  - PRIMARY_HOST
+  - <%= ENV['PRIMARY_HOST'] %>
 
 # Credentials for your image host.
 registry:
@@ -38,7 +38,7 @@ volumes:
 builder:
   dockerfile: Dockerfile.production
   arch: amd64
-  remote: BUILDER_HOST
+  remote: <%= ENV['BUILDER_HOST'] %>
   cache:
     type: registry
   args:
@@ -47,13 +47,16 @@ builder:
 sshkit:
   pool_idle_timeout: 1000
 
+deploy_timeout: 100
+
 # Configure custom arguments for Traefik
 #
 # Before deploy, create acme.json file on host:
 #   mkdir -p /letsencrypt && touch /letsencrypt/acme.json && chmod 600 /letsencrypt/acme.json
 proxy:
   host: reception.aozora-renewal.cloud
+  app_port: 3000
   ssl: true
   healthcheck:
     interval: 3
-    timeout: 3
+    timeout: 10
