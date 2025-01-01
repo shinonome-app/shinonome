@@ -9,7 +9,7 @@ module Admin
       def index
         char = params[:person]
 
-        @pagy, @people = pagy(Person.with_name_firstchar(char).order(created_at: :desc), items: 50)
+        @pagy, @people = pagy(Person.with_name_firstchar(char).order(created_at: :desc), limit: 50)
       end
     end
   end

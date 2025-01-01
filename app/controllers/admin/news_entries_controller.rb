@@ -8,7 +8,7 @@ module Admin
 
     # GET /admin/news_entries
     def index
-      @pagy, @news_entries = pagy(NewsEntry.order(published_on: :desc, created_at: :desc).all, items: 50)
+      @pagy, @news_entries = pagy(NewsEntry.order(published_on: :desc, created_at: :desc).all, limit: 50)
     end
 
     # GET /admin/news_entries/1

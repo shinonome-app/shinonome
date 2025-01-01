@@ -22,7 +22,7 @@ module Admin
 
         sites = Site.where(text_searcher.where_params)
 
-        @pagy, @sites = pagy(sites.order(created_at: :desc), items: 50)
+        @pagy, @sites = pagy(sites.order(created_at: :desc), limit: 50)
       end
     end
   end

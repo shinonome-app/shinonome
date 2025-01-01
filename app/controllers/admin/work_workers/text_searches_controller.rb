@@ -22,7 +22,7 @@ module Admin
 
         workers = Worker.where(text_searcher.where_params)
 
-        @pagy, @workers = pagy(workers.order(created_at: :desc), items: 50)
+        @pagy, @workers = pagy(workers.order(created_at: :desc), limit: 50)
       end
     end
   end

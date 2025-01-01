@@ -46,7 +46,7 @@ gem 'devise'
 # gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 
 # Pagination in views
-gem 'pagy', '6.2.0'
+gem 'pagy', '~> 9.0'
 
 # Use TailswindCSS
 # gem 'tailwindcss-rails'

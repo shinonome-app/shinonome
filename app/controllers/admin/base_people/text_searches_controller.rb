@@ -28,7 +28,7 @@ module Admin
 
         people = Person.where(text_searcher.where_params)
 
-        @pagy, @people = pagy(people.order(created_at: :desc), items: 50)
+        @pagy, @people = pagy(people.order(created_at: :desc), limit: 50)
       end
     end
   end

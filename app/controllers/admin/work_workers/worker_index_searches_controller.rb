@@ -10,7 +10,7 @@ module Admin
         @work = Work.find(params[:work_id])
 
         char = params[:worker]
-        @pagy, @workers = pagy(Worker.with_name_firstchar(char).order(created_at: :desc), items: 50)
+        @pagy, @workers = pagy(Worker.with_name_firstchar(char).order(created_at: :desc), limit: 50)
       end
     end
   end

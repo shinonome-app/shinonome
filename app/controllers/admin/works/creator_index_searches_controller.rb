@@ -9,7 +9,7 @@ module Admin
       def index
         char = params[:creator]
 
-        @pagy, @works = pagy(Work.with_creator_firstchar(char).order(created_at: :desc), items: 50)
+        @pagy, @works = pagy(Work.with_creator_firstchar(char).order(created_at: :desc), limit: 50)
       end
     end
   end
