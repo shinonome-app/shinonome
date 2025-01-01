@@ -20,11 +20,11 @@ Rails.application.config.add_autoload_paths_to_load_path = false
 # Remove the default X-Download-Options headers since it is used only by Internet Explorer.
 # If you need to support Internet Explorer, add back `"X-Download-Options" => "noopen"`.
 Rails.application.config.action_dispatch.default_headers = {
-  "X-Frame-Options" => "SAMEORIGIN",
-  "X-XSS-Protection" => "0",
-  "X-Content-Type-Options" => "nosniff",
-  "X-Permitted-Cross-Domain-Policies" => "none",
-  "Referrer-Policy" => "strict-origin-when-cross-origin"
+  'X-Frame-Options' => 'SAMEORIGIN',
+  'X-XSS-Protection' => '0',
+  'X-Content-Type-Options' => 'nosniff',
+  'X-Permitted-Cross-Domain-Policies' => 'none',
+  'Referrer-Policy' => 'strict-origin-when-cross-origin'
 }
 
 # Do not treat an `ActionController::Parameters` instance
@@ -129,9 +129,7 @@ Rails.application.config.active_support.use_message_serializer_for_metadata = tr
 # `config.load_defaults 7.1` does not set this value for environments other than
 # development and test.
 #
-if Rails.env.local?
-  Rails.application.config.log_file_size = 100 * 1024 * 1024
-end
+Rails.application.config.log_file_size = 100 * 1024 * 1024 if Rails.env.local?
 
 # Enable raising on assignment to attr_readonly attributes. The previous
 # behavior would allow assignment but silently not persist changes to the
