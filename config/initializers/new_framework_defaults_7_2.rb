@@ -34,7 +34,7 @@
 # backends that use the same database as Active Record as a queue, hence they
 # don't need this feature.
 #++
-# Rails.application.config.active_job.enqueue_after_transaction_commit = :default
+Rails.application.config.active_job.enqueue_after_transaction_commit = :default
 
 ###
 # Adds image/webp to the list of content types Active Storage considers as an image
@@ -69,4 +69,4 @@ Rails.application.config.active_record.postgresql_adapter_decode_dates = true
 # Enables YJIT as of Ruby 3.3, to bring sizeable performance improvements. If you are
 # deploying to a memory constrained environment you may want to set this to `false`.
 #++
-# Rails.application.config.yjit = true
+Rails.application.config.yjit = true
