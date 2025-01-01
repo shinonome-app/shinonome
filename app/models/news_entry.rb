@@ -15,7 +15,7 @@
 
 # そらもよう
 class NewsEntry < ApplicationRecord
-  scope :published, ->(date = Time.zone.today) { where('published_on <= ?', date) }
+  scope :published, ->(date = Time.zone.today) { where(published_on: ..date) }
 
   scope :topics, ->(date = Time.zone.today) { where('published_on <= ? and flag = true', date) }
 

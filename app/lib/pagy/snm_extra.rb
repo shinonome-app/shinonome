@@ -12,7 +12,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra: %(class="#{pagy_link_class}" #{link_extra}))
       link_arrow = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<nav#{p_id}>)
+      html = %(<nav#{p_id}>)
       html << %(<ul class="#{pagy_ul_class}">)
       html << pagy_snm_prev_html(pagy, link_arrow)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]

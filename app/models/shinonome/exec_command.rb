@@ -26,7 +26,7 @@ module Shinonome
     class Error < RuntimeError
     end
 
-    enum separator: { tab: 1, comma: 2 }
+    enum :separator, { tab: 1, comma: 2 }
 
     has_one_attached :result_data if defined?(ActiveStorage)
 

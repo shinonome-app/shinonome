@@ -63,7 +63,7 @@ class Receipt < ApplicationRecord
   belongs_to :work, optional: true
   belongs_to :person, optional: true
 
-  enum register_status: { non_ordered: 0, ordered: 1 }
+  enum :register_status, { non_ordered: 0, ordered: 1 }
 
   scope :active, -> { where(deleted_at: nil) }
 
