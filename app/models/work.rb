@@ -225,6 +225,14 @@ class Work < ApplicationRecord
     workfiles.find { |workfile| workfile.html? }
   end
 
+  def full_title
+    if subtitle.present?
+      "#{title} #{subtitle}"
+    else
+      title
+    end
+  end
+
   private
 
   def set_sortkey

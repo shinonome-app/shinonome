@@ -41,5 +41,21 @@
 require 'rails_helper'
 
 RSpec.describe Work do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#full_title' do
+    context 'no subtitle' do
+      let(:work) { create(:work, title: '作品名123', subtitle: nil) }
+
+      it 'is just title' do
+        expect(work.full_title).to eq '作品名123'
+      end
+    end
+
+    context 'with subtitle' do
+      let(:work) { create(:work, title: '作品名123', subtitle: '副題abc') }
+
+      it 'is title and subtitle' do
+        expect(work.full_title).to eq '作品名123 副題abc'
+      end
+    end
+  end
 end

@@ -10,7 +10,7 @@ class AdminMailer < ApplicationMailer
   def order_receipt(receipt)
     @worker = receipt.worker
     @work = receipt.work
-    title = work_full_title(@work)
+    title = @work.full_title
     @subject = I18n.t('admin_mailer.order_receipt.subject', title:)
 
     mail to: @worker.worker_secret&.email, subject: @subject
@@ -21,7 +21,7 @@ class AdminMailer < ApplicationMailer
     @work = proofread.work
     @worker_secret = @worker.worker_secret
     @mail_memo = mail_memo
-    title = work_full_title(@work)
+    title = @work.full_title
     @subject = I18n.t('admin_mailer.order_proofread.subject', title:)
 
     mail to: @worker.worker_secret&.email, subject: @subject
@@ -36,16 +36,6 @@ class AdminMailer < ApplicationMailer
       mail to: admin_mail_secret.email, cc:, subject: @subject
     else
       mail to: admin_mail_secret.email, subject: @subject
-    end
-  end
-
-  private
-
-  def work_full_title(work)
-    if work.subtitle.present?
-      "#{work.title} #{work.subtitle}"
-    else
-      work.title
     end
   end
 end
