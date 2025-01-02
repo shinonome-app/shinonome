@@ -72,7 +72,7 @@ RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
   config.include ViewComponent::TestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
-  config.include ActiveJob::TestHelper, type: :system
+  config.include ActiveJob::TestHelper
 
   config.before(:suite) do
     Rails.application.load_seed # loading seeds
