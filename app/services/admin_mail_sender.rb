@@ -3,14 +3,14 @@
 # 工作員メール送信
 class AdminMailSender
   def send(admin_mail_params)
-    @admin_mail_secret = AdminMailSecret.new(admin_mail_params)
-    fill_email(@admin_mail_secret) if @admin_mail_secret.email.blank?
+    admin_mail_secret = AdminMailSecret.new(admin_mail_params)
+    fill_email(admin_mail_secret) if admin_mail_secret.email.blank?
 
-    if @admin_mail_secret.save
-      AdminMailer.send_to_worker(@admin_mail_secret).deliver_later
-      Result.new(sent: true, admin_mail_secret: @admin_mail_secret)
+    if admin_mail_secret.save
+      AdminMailer.send_to_worker(admin_mail_secret).deliver_later
+      Result.new(sent: true, admin_mail_secret:)
     else
-      Result.new(sent: false, admin_mail_secret: @admin_mail_secret)
+      Result.new(sent: false, admin_mail_secret:)
     end
   end
 
