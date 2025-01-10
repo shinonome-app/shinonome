@@ -3,7 +3,7 @@
 module Admin
   # select用コンポーネント
   class SnmSelectComponent < ViewComponent::Base
-    def initialize(form:, name:, choices:, label: nil, options: nil, html_options: nil, errors: nil) # rubocop:disable Metrics/ParameterLists
+    def initialize(form:, name:, choices:, label: nil, options: nil, html_options: nil, errors: nil)
       super
       @form = form
       @name = name

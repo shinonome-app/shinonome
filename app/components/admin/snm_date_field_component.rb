@@ -3,7 +3,7 @@
 module Admin
   # date_select用コンポーネント
   class SnmDateFieldComponent < ViewComponent::Base
-    def initialize(form:, name:, label: nil, value: nil, options: nil, html_options: {}, errors: nil, error_key: nil) # rubocop:disable Metrics/ParameterLists
+    def initialize(form:, name:, label: nil, value: nil, options: nil, html_options: {}, errors: nil, error_key: nil)
       super
       @form = form
       @name = name

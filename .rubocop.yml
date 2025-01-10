@@ -55,6 +55,9 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   Max: 200
 
+Metrics/ParameterLists:
+  Max: 10
+
 Metrics/PerceivedComplexity:
   Max: 20
 

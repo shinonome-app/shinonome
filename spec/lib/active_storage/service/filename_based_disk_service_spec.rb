@@ -5,7 +5,7 @@ require 'rails_helper'
 # Helper module for test
 module FilenameBasedDiskServiceHelper
   # from ActiveStorage::BlobTest in Rails
-  def create_blob(key: nil, data: 'Hello world!', filename: 'hello.txt', content_type: 'text/plain', identify: true, service_name: nil, record: nil) # rubocop:disable Metrics/ParameterLists
+  def create_blob(key: nil, data: 'Hello world!', filename: 'hello.txt', content_type: 'text/plain', identify: true, service_name: nil, record: nil)
     ActiveStorage::Blob.create_and_upload!(
       key:,
       io: StringIO.new(data),

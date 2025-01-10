@@ -3,7 +3,7 @@
 module Admin
   # collection_select用コンポーネント
   class SnmCollectionSelectComponent < ViewComponent::Base
-    def initialize(form:, name:, collection:, value_method:, text_method:, label: nil, options: nil, html_options: nil, errors: nil) # rubocop:disable Metrics/ParameterLists
+    def initialize(form:, name:, collection:, value_method:, text_method:, label: nil, options: nil, html_options: nil, errors: nil)
       super
       @form = form
       @name = name

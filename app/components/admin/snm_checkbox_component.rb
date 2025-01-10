@@ -3,7 +3,7 @@
 module Admin
   # checkbox用コンポーネント
   class SnmCheckboxComponent < ViewComponent::Base
-    def initialize(form:, name:, label: nil, options: nil, checked_value: nil, unchecked_value: nil, errors: nil) # rubocop:disable Metrics/ParameterLists
+    def initialize(form:, name:, label: nil, options: nil, checked_value: nil, unchecked_value: nil, errors: nil)
       super
       @form = form
       @name = name
