@@ -1,28 +1,28 @@
 <aside class="bg-ab_navy min-h-screen px-6 py-10 rounded-md">
   <div>
     <span class="text-[#ABABAB] text-sm ml-2">検索</span>
-    <%= tag.snm_link "作品検索", href: admin_works_path, buttonStyle: "normal", icon: "work" %>
-    <%= tag.snm_link "人物検索", href: admin_people_path, buttonStyle: "normal", icon: "person" %>
-    <%= tag.snm_link "工作員検索", href: admin_workers_path, buttonStyle: "normal", icon: "worker" %>
-    <%= tag.snm_link "関連サイト検索", href: admin_sites_path, buttonStyle: "normal", icon: "website" %>
+    <%= helpers.snm_link "作品検索", href: admin_works_path, button_style: "normal", icon: "work" %>
+    <%= helpers.snm_link "人物検索", href: admin_people_path, button_style: "normal", icon: "person" %>
+    <%= helpers.snm_link "工作員検索", href: admin_workers_path, button_style: "normal", icon: "worker" %>
+    <%= helpers.snm_link "関連サイト検索", href: admin_sites_path, button_style: "normal", icon: "website" %>
   </div>
   <hr class="border-slate-500 my-3">
   <div>
     <span class="text-[#ABABAB] text-sm ml-2">登録</span>
-    <%= tag.snm_link "作品新規登録", href: new_admin_work_path, buttonStyle: "normal", icon: "work" %>
-    <%= tag.snm_link "人物新規登録", href: new_admin_person_path, buttonStyle: "normal", icon: "person" %>
-    <%= tag.snm_link "工作員新規登録", href: new_admin_worker_path, buttonStyle: "normal", icon: "worker" %>
-    <%= tag.snm_link "関連サイト新規登録", href: new_admin_site_path, buttonStyle: "normal", icon: "website" %>
+    <%= helpers.snm_link "作品新規登録", href: new_admin_work_path, button_style: "normal", icon: "work" %>
+    <%= helpers.snm_link "人物新規登録", href: new_admin_person_path, button_style: "normal", icon: "person" %>
+    <%= helpers.snm_link "工作員新規登録", href: new_admin_worker_path, button_style: "normal", icon: "worker" %>
+    <%= helpers.snm_link "関連サイト新規登録", href: new_admin_site_path, button_style: "normal", icon: "website" %>
   </div>
   <hr class="border-slate-500 my-3">
   <div>
     <span class="text-[#ABABAB] text-sm ml-2">その他</span>
-    <%= tag.snm_link "WEB入力受付処理", href: admin_receipts_path, buttonStyle: "normal", icon: "db" %>
-    <%= tag.snm_link "WEB校正受付処理", href: admin_proofreads_path, buttonStyle: "normal", icon: "file" %>
-    <%= tag.snm_link "工作員メール送信", href: new_admin_admin_mail_secret_path, buttonStyle: "normal", icon: "mail" %>
-    <%= tag.snm_link "そらもよう", href: admin_news_entries_path, buttonStyle: "normal", icon: "pen" %>
-    <%= tag.snm_link "コマンド実行機能", href: admin_exec_commands_path, buttonStyle: "normal", icon: "command" %>
-    <%= tag.snm_link "組版機能", href: admin_typesettings_path, buttonStyle: "normal", icon: "roller" %>
-    <%= tag.snm_link "管理者の追加・削除", href: admin_users_others_path, buttonStyle: "normal", icon: "admin" %>
+    <%= helpers.snm_link "WEB入力受付処理", href: admin_receipts_path, button_style: "normal", icon: "db" %>
+    <%= helpers.snm_link "WEB校正受付処理", href: admin_proofreads_path, button_style: "normal", icon: "file" %>
+    <%= helpers.snm_link "工作員メール送信", href: new_admin_admin_mail_secret_path, button_style: "normal", icon: "mail" %>
+    <%= helpers.snm_link "そらもよう", href: admin_news_entries_path, button_style: "normal", icon: "pen" %>
+    <%= helpers.snm_link "コマンド実行機能", href: admin_exec_commands_path, button_style: "normal", icon: "command" %>
+    <%= helpers.snm_link "組版機能", href: admin_typesettings_path, button_style: "normal", icon: "roller" %>
+    <%= helpers.snm_link "管理者の追加・削除", href: admin_users_others_path, button_style: "normal", icon: "admin" %>
   </div>
 </aside>

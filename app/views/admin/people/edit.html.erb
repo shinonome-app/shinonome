@@ -4,6 +4,6 @@
   <%= render(Admin::PersonFormComponent.new(person: @person)) %>
 
   <div class="mt-5 flex">
-    <%= tag.snm_link '戻る', href: admin_person_path(@person), buttonstyle: "secondary" %>
+    <%= snm_link '戻る', href: admin_person_path(@person), button_style: "secondary" %>
   </div>
 </div>

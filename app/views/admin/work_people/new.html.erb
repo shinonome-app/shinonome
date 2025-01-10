@@ -8,6 +8,6 @@
   <%= render(Admin::PersonSearchComponent.new(form_url: admin_work_work_people_text_searches_path(work_id: @work.id))) %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "戻る", href: admin_work_path(id: @work.id), buttonstyle: 'secondary' %>
+    <%= snm_link "戻る", href: admin_work_path(id: @work.id), button_style: 'secondary' %>
   </div>
 </div>

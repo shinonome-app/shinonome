@@ -1,10 +1,9 @@
       <div class="flex gap-8">
-        <%= tag.snm_link "#{Rails.configuration.x.site_name}トップページ", href: Rails.configuration.x.main_site_url, buttonStyle: "normal", fontColor: "nav", icon: "home" %>
-        <%= tag.snm_link "作業着手連絡システム", href: root_path, buttonStyle: "normal", fontColor: "nav", icon: "notice" %>
+        <%= helpers.snm_link("#{Rails.configuration.x.site_name}トップページ", href: Rails.configuration.x.main_site_url, button_style: "normal", font_color: "nav", icon: "home") %>
+        <%= helpers.snm_link("作業着手連絡システム", href: root_path, button_style: "normal", font_color: "nav", icon: "notice") %>
         <div class="group/item relative">
           <div class="flex items-baseline gap-2">
-            <%= tag.snm_link @user.email, href: "#", buttonStyle: "normal", fontColor: "nav", icon: "user" %>
-            <svg
+            <%= helpers.snm_link(@user.email, href: "#", button_style: "normal", font_color: "nav", icon: "user") %><svg
               class="max-[900px]:hidden"
               width="10"
               height="7"

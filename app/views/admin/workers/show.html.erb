@@ -41,8 +41,8 @@
              )) %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link '更新', href: edit_admin_worker_path(@worker) %>
+    <%= snm_link '更新', href: edit_admin_worker_path(@worker) %>
     <%= render(Admin::DeleteButtonComponent.new(url: admin_worker_path(@worker))) %>
-    <%= tag.snm_link '戻る', href: admin_workers_path %>
+    <%= snm_link '戻る', href: admin_workers_path %>
   </div>
 </div>

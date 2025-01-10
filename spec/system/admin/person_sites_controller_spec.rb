@@ -16,7 +16,7 @@ describe Admin::PersonSitesController do
 
       expect(page).to have_content('人物詳細')
 
-      find('snm-link', text: '関連づけ').click
+      find('.snm-link', text: '関連づけ').click
       expect(page).to have_content('関連サイト関連づけ登録')
 
       expect(page).to have_content("対象人物: #{person.name}")

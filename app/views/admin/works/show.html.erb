@@ -26,7 +26,7 @@
       ])) %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "更新", href: edit_admin_work_path(@work) %>
+    <%= snm_link "更新", href: edit_admin_work_path(@work) %>
     <%= render(Admin::DeleteButtonComponent.new(url: admin_work_path(@work))) %>
   </div>
 </div>
@@ -62,7 +62,7 @@
   <% end %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "人物関連づけ", href: new_admin_work_work_person_path(@work) %>
+    <%= snm_link "人物関連づけ", href: new_admin_work_work_person_path(@work) %>
   </div>
 </div>
 
@@ -93,7 +93,7 @@
 </div>
 
 <div class="mt-2 flex gap-2">
-  <%= tag.snm_link "工作員関連づけ", href: new_admin_work_work_worker_path(@work) %>
+  <%= snm_link "工作員関連づけ", href: new_admin_work_work_worker_path(@work) %>
 </div>
 
 <!--工作員データ end-->
@@ -117,14 +117,14 @@
       ])) %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "更新", href: edit_admin_work_original_book_path(@work, original_book) %>
+    <%= snm_link "更新", href: edit_admin_work_original_book_path(@work, original_book) %>
     <%= render(Admin::DeleteButtonComponent.new(url: admin_work_original_book_path(@work, original_book))) %>
   </div>
   <% end %>
 </div>
 
 <div class="mt-2 flex gap-2">
-  <%= tag.snm_link "底本/底本の親本追加", href: new_admin_work_original_book_path(work_id: params[:id]) %>
+  <%= snm_link "底本/底本の親本追加", href: new_admin_work_original_book_path(work_id: params[:id]) %>
 </div>
 
 <!--底本データ end-->
@@ -141,14 +141,14 @@
       ])) %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "更新", href: edit_admin_work_bibclass_path(bibclass.work, bibclass) %>
+    <%= snm_link "更新", href: edit_admin_work_bibclass_path(bibclass.work, bibclass) %>
     <%= render(Admin::DeleteButtonComponent.new(url: admin_work_bibclass_path(@work, bibclass))) %>
   </div>
 
   <% end %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "分類番号追加", href: new_admin_work_bibclass_path(params[:id]) %>
+    <%= snm_link "分類番号追加", href: new_admin_work_bibclass_path(params[:id]) %>
   </div>
 </div>
 <!--分類番号データ end-->
@@ -172,14 +172,14 @@
       ])) %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "更新", href: edit_admin_work_workfile_path(workfile.work, workfile) %>
+    <%= snm_link "更新", href: edit_admin_work_workfile_path(workfile.work, workfile) %>
     <%= render(Admin::DeleteButtonComponent.new(url: admin_work_workfile_path(@work, workfile))) %>
   </div>
   <% end %>
 </div>
 
 <div class="mt-2 flex gap-2">
-  <%= tag.snm_link "ファイル追加", href: new_admin_work_workfile_path(params[:id]) %>
+  <%= snm_link "ファイル追加", href: new_admin_work_workfile_path(params[:id]) %>
 </div>
 <!--ファイル end-->
 <!--関連サイトデータ start-->
@@ -203,7 +203,7 @@
   <% end %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "関連サイト関連づけ", href: new_admin_work_work_site_path(params[:id]) %>
+    <%= snm_link "関連サイト関連づけ", href: new_admin_work_work_site_path(params[:id]) %>
   </div>
 </div>
 
@@ -211,10 +211,10 @@
 <div class="mt-6">
   <snm-headline h="h2">図書カードプレビュー</snm-headline>
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "プレビュー", href: admin_works_preview_path(@work), target: "_blank" %>
+    <%= snm_link "プレビュー", href: admin_works_preview_path(@work), target: "_blank" %>
   </div>
 </div>
 
 <div class="mt-2 flex gap-2">
-  <%= tag.snm_link "戻る", href: admin_works_path, buttonstyle: 'secondary' %>
+  <%= snm_link "戻る", href: admin_works_path, button_style: 'secondary' %>
 </div>

@@ -1,6 +1,4 @@
 // Components
-export { SnmLogo } from "./components/snm-logo";
-export { SnmLink } from "./components/snm-link";
 export { SnmHeadline } from "./components/snm-headline";
 export { SnmTable } from "./components/snm-table";
 export { SnmTableVertical } from "./components/snm-table-vertical";

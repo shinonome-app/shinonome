@@ -2,6 +2,6 @@
   <snm-headline h="h1">人物新規登録</snm-headline>
   <%= render(Admin::PersonFormComponent.new(person: @person)) %>
   <div class="mt-5 flex">
-    <%= tag.snm_link '戻る', href: admin_people_path, buttonstyle: "secondary" %>
+    <%= snm_link '戻る', href: admin_people_path, button_style: "secondary" %>
   </div>
 </div>

@@ -21,7 +21,7 @@
       ])) %>
 
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "更新", href: edit_admin_person_path(@person) %>
+    <%= snm_link "更新", href: edit_admin_person_path(@person) %>
     <%= render(Admin::DeleteButtonComponent.new(url: admin_person_path(@person))) %>
   </div>
 </div>
@@ -36,7 +36,7 @@
   </div>
   <% else %>
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "関連付け", href: new_admin_person_base_person_path(@person) %>
+    <%= snm_link "関連付け", href: new_admin_person_base_person_path(@person) %>
   </div>
   <% end %>
 </div>
@@ -63,7 +63,7 @@
   </div>
   <% else %>
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "関連づけ", href: new_admin_person_person_site_path(@person) %>
+    <%= snm_link "関連づけ", href: new_admin_person_person_site_path(@person) %>
   </div>
   <% end %>
 
@@ -94,10 +94,10 @@
 <div class="mt-6">
   <snm-headline h="h2">作家別作品リストプレビュー</snm-headline>
   <div class="mt-2 flex gap-2">
-    <%= tag.snm_link "プレビュー", href: admin_people_preview_path(@person), target: "_blank" %>
+    <%= snm_link "プレビュー", href: admin_people_preview_path(@person), target: "_blank" %>
   </div>
 </div>
 
 <div class="mt-5 flex">
-  <%= tag.snm_link '戻る', href: admin_people_path, buttonstyle: "secondary" %>
+  <%= snm_link '戻る', href: admin_people_path, button_style: "secondary" %>
 </div>
