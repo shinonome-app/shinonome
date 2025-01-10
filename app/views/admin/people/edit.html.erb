@@ -1,5 +1,5 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">人物更新</snm-headline>
+  <%= snm_headline h: 'h1' do %>人物更新<% end %>
 
   <%= render(Admin::PersonFormComponent.new(person: @person)) %>
 

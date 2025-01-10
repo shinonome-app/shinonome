@@ -1,5 +1,5 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">ユーザー情報更新</snm-headline>
+  <%= snm_headline h: 'h1' do %>ユーザー情報更新<% end %>
   <% input_class = 'text-gray-600 w-full border border-ab_form focus:outline-none focus:border-ab_focus focus:ring-1 focus:ring-ab_focus focus:shadow-[0px_1px_13px_0px_#bee3f8] invalid:border-pink-500 invalid:text-pink-600 rounded outline-none transition duration-100 px-2 py-2' %>
 
   <%= form_with(model: resource, scope: :admin_user, url: "/admin", html: { method: :put }, data: { turbo: false }) do |f| %>
@@ -41,7 +41,7 @@
 </div>
 
 <div class="mt-10 mb-5">
-  <snm-headline h="h2">アカウントの削除</snm-headline>
+  <%= snm_headline h: 'h2' do %>アカウントの削除<% end %>
 
   <div class="mt-5 flex">
     <%= button_to "アカウントを削除する", registration_path(resource_name), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" } }, class: "grid w-full bg-ab_alert border-2 border-white hover:bg-ab_alert hover:border-2 hover:border-white hover:shadow-[0px_2px_18px_0px_#fed7e2] active:bg-ab_alert focus-visible:ring ring-gray-300 text-white text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 mb-2 cursor-pointer" %>

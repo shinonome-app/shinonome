@@ -1,9 +1,9 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">人物一覧</snm-headline>
+  <%= snm_headline h: 'h1' do %>人物一覧<% end %>
 
   <div class="mt-10">
     <!--人物検索 start-->
-    <snm-headline h="h2">人物検索</snm-headline>
+    <%= snm_headline h: 'h2' do %>人物検索<% end %>
 
     <%= render(Admin::PersonSearchComponent.new(form_url: admin_people_text_searches_path)) %>
     <!--人物検索 end-->
@@ -14,7 +14,7 @@
 <div class="mt-10 flex flex-col lg:flex-row gap-10">
   <%= form_with(url: admin_people_person_index_searches_path, method: 'get') do |form| %>
   <div>
-    <snm-headline h="h2">人物50音順インデックス</snm-headline>
+    <%= snm_headline h: 'h2' do %>人物50音順インデックス<% end %>
     <%= render(Admin::SyllabaryTableComponent.new(key: "person")) %>
   </div>
   <% end %>
@@ -23,7 +23,7 @@
 
 <!--人物一覧 start-->
 <div class="mt-10 mb-5">
-  <snm-headline h="h2">人物一覧</snm-headline>
+  <%= snm_headline h: 'h2' do %>人物一覧<% end %>
   <%= render(Admin::PeopleTableComponent.new(pagy: @pagy, people: @people)) %>
   <div class="py-2">
   <%== pagy_snm_nav(@pagy) %>

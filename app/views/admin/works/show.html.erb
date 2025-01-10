@@ -1,6 +1,6 @@
 <!--作品テキスト start-->
 <div>
-  <snm-headline h="h1">作品データ</snm-headline>
+  <%= snm_headline h: 'h1' do %>作品データ<% end %>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -33,12 +33,12 @@
 <!--作品テキスト end-->
 <!--著者データ start-->
 <div class="mt-6">
-  <snm-headline h="h2">著者データ</snm-headline>
+  <%= snm_headline h: 'h2' do %>著者データ<% end %>
 
   <% @work.work_people.order(%i[role_id person_id]).each do |work_person| %>
   <% person = work_person.person %>
 
-  <snm-headline h="h3"><%= work_person.role.name %>データ</snm-headline>
+  <%= snm_headline h: 'h3' do %><%= work_person.role.name %>データ<% end %>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -69,12 +69,12 @@
 <!--著者データ end-->
 <!--工作員データ start-->
 <div class="mt-6">
-  <snm-headline h="h2">工作員データ</snm-headline>
+  <%= snm_headline h: 'h2' do %>工作員データ<% end %>
 
   <% @work.work_workers.order(%i[worker_role_id worker_id]).each do |work_worker| %>
   <% worker = work_worker.worker %>
 
-  <snm-headline h="h3"><%= work_worker.worker_role.name %></snm-headline>
+  <%= snm_headline h: 'h3' do %><%= work_worker.worker_role.name %><% end %>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -100,11 +100,11 @@
 <!--底本データ start-->
 
 <div class="mt-6">
-  <snm-headline h="h2">底本データ</snm-headline>
+  <%= snm_headline h: 'h2' do %>底本データ<% end %>
 
   <% @work.original_books.order(%i[booktype_id id]).each do |original_book| %>
 
-  <snm-headline h="h3"><%= original_book.booktype.name %></snm-headline>
+  <%= snm_headline h: 'h3' do %><%= original_book.booktype.name %><% end %>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -130,7 +130,7 @@
 <!--底本データ end-->
 <!--分類番号データ start-->
 <div class="mt-6">
-  <snm-headline h="h2">分類番号データ</snm-headline>
+  <%= snm_headline h: 'h2' do %>分類番号データ<% end %>
 
   <% @work.bibclasses.each do |bibclass| %>
   <%= render(Admin::SnmTableVComponent.new(rows:
@@ -154,7 +154,7 @@
 <!--分類番号データ end-->
 <!--ファイル start-->
 <div class="mt-6">
-  <snm-headline h="h2">ファイル</snm-headline>
+  <%= snm_headline h: 'h2' do %>ファイル<% end %>
   <% @work.workfiles.each do |workfile| %>
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -184,7 +184,7 @@
 <!--ファイル end-->
 <!--関連サイトデータ start-->
 <div class="mt-6">
-  <snm-headline h="h2">関連サイトデータ</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連サイトデータ<% end %>
 
   <% @work.work_sites.each do |work_site| %>
   <% site = work_site.site %>
@@ -209,7 +209,7 @@
 
 <!--関連サイトデータ end-->
 <div class="mt-6">
-  <snm-headline h="h2">図書カードプレビュー</snm-headline>
+  <%= snm_headline h: 'h2' do %>図書カードプレビュー<% end %>
   <div class="mt-2 flex gap-2">
     <%= snm_link "プレビュー", href: admin_works_preview_path(@work), target: "_blank" %>
   </div>

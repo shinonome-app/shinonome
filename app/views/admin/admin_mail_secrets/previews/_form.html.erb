@@ -4,7 +4,7 @@
   <%= form.hidden_field :body %>
   <%= form.hidden_field :cc_flag %>
 
-  <snm-headline h="h3">工作員ID</snm-headline>
+  <%= snm_headline h: 'h3' do %>工作員ID<% end %>
   <div class="bg-ab_bg_gray p-4">
     <p>
       <%= admin_mail_secret.worker_id %>
@@ -14,19 +14,19 @@
     <% end %>
   </div>
 
-  <snm-headline h="h3">件名</snm-headline>
+  <%= snm_headline h: 'h3' do %>件名<% end %>
   <div class="bg-ab_bg_gray p-4">
     <p>
       <%= admin_mail_secret.subject %>
     </p>
   </div>
 
-  <snm-headline h="h3">本文</snm-headline>
+  <%= snm_headline h: 'h3' do %>本文<% end %>
   <div class="bg-ab_bg_gray p-4">
     <pre><%= admin_mail_secret.body %></pre>
   </div>
 
-  <snm-headline h="h3">青空文庫にCCする</snm-headline>
+  <%= snm_headline h: 'h3' do %>青空文庫にCCする<% end %>
   <div class="bg-ab_bg_gray p-4">
     <p>
       <%= admin_mail_secret.cc_reception? ? "する" : "しない" %>

@@ -1,4 +1,4 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">工作員メール</snm-headline>
+  <%= snm_headline h: 'h1' do %>工作員メール<% end %>
   <%= render 'admin/admin_mail_secrets/form', admin_mail_secret: @admin_mail_secret %>
 </div>

@@ -1,6 +1,6 @@
 <!--作品テキスト start-->
 <div>
-  <snm-headline h="h1">人物詳細</snm-headline>
+  <%= snm_headline h: 'h1' do %>人物詳細<% end %>
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
         ["人物ID", @person.id],
@@ -27,7 +27,7 @@
 </div>
 
 <div class="mt-6">
-  <snm-headline h="h2">人物基本名</snm-headline>
+  <%= snm_headline h: 'h2' do %>人物基本名<% end %>
 
   <% if @person.original_person %>
   <div class="mt-2">
@@ -42,7 +42,7 @@
 </div>
 
 <div class="mt-6">
-  <snm-headline h="h2">関連サイトデータ</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連サイトデータ<% end %>
 
   <% if @person.sites.present? %>
   <div class="mt-2">
@@ -71,7 +71,7 @@
 
 <!--作品一覧 start-->
 <div class="mt-6 mb-5">
-  <snm-headline h="h2">関連した作品</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連した作品<% end %>
 
   <%= render(Admin::SnmTableComponent.new(
                header: %w[役割 作品名 副題 仮名遣い 状態 状態の開始日],
@@ -92,7 +92,7 @@
 </div>
 
 <div class="mt-6">
-  <snm-headline h="h2">作家別作品リストプレビュー</snm-headline>
+  <%= snm_headline h: 'h2' do %>作家別作品リストプレビュー<% end %>
   <div class="mt-2 flex gap-2">
     <%= snm_link "プレビュー", href: admin_people_preview_path(@person), target: "_blank" %>
   </div>

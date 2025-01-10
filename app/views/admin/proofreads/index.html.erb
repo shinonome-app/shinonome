@@ -1,8 +1,8 @@
 <div class="w-full">
-  <snm-headline h="h1">Web校正受付管理</snm-headline>
+  <%= snm_headline h: 'h1' do %>Web校正受付管理<% end %>
   <div class="flex flex-col gap-5 mb-5">
     <div>
-      <snm-headline h="h3">Web受付作品一覧</snm-headline>
+      <%= snm_headline h: 'h3' do %>Web受付作品一覧<% end %>
       <p>
         <%= @proofreads.count %>件の作品が見つかりました。
       </p>
@@ -62,7 +62,7 @@
   </ul>
 
   <div class="mt-5 inline-block">
-    <snm-headline h="h3">一括削除</snm-headline>
+    <%= snm_headline h: 'h3' do %>一括削除<% end %>
 
     <%= form_with(url: admin_proofreads_bulk_removes_path, method: :post, data: { turbo_confirm: '本当に一括削除しますか？' }) do |form| %>
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "一括削除する", button_style: :alert)) %>

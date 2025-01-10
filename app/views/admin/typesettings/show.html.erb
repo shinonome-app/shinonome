@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-5">
-    <snm-headline h="h2">組版結果</snm-headline>
+    <%= snm_headline h: 'h2' do %>組版結果<% end %>
 
     <%= render(
           Admin::SnmTableVComponent.new(

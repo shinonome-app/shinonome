@@ -1,7 +1,7 @@
-<snm-headline h="h1">作品検索</snm-headline>
+<%= snm_headline h: 'h1' do %>作品検索<% end %>
 <!--作品テキスト start-->
 <div class="mt-4">
-  <snm-headline h="h2">作品テキスト検索</snm-headline>
+  <%= snm_headline h: 'h2' do %>作品テキスト検索<% end %>
   <%= form_with(url: admin_works_text_searches_path, method: 'get') do |form| %>
   <div class="flex flex-col lg:flex-row gap-0 lg:gap-10">
     <div class="">
@@ -46,14 +46,14 @@
 <div class="mt-10 flex flex-col lg:flex-row gap-10">
   <%= form_with(url: admin_works_work_index_searches_path, method: 'get') do |form| %>
   <div>
-    <snm-headline h="h2">作品50音順インデックス</snm-headline>
+    <%= snm_headline h: 'h2' do %>作品50音順インデックス<% end %>
     <%= render(Admin::SyllabaryTableComponent.new(key: "work")) %>
   </div>
   <% end %>
 
   <%= form_with(url: admin_works_creator_index_searches_path, method: 'get') do |form| %>
   <div>
-    <snm-headline h="h2">著者別インデックス</snm-headline>
+    <%= snm_headline h: 'h2' do %>著者別インデックス<% end %>
     <%= render(Admin::SyllabaryTableComponent.new(key: "creator")) %>
   </div>
   <% end %>
@@ -62,7 +62,7 @@
 
 <!--作品状態検索 start-->
 <div class="mt-10">
-  <snm-headline h="h2">作品状態検索</snm-headline>
+  <%= snm_headline h: 'h2' do %>作品状態検索<% end %>
 
   <%= form_with(url: admin_works_status_searches_path, method: 'get', class: "flex gap-1 items-center") do |form| %>
   <%= render(Admin::WorkStatusComponent.new(form:, years: @years)) %>
@@ -72,7 +72,7 @@
 
 <!--著者不明作品検索 start-->
 <div class="mt-10">
-  <snm-headline h="h2">著者不明作品検索</snm-headline>
+  <%= snm_headline h: 'h2' do %>著者不明作品検索<% end %>
   <%= form_with(url: admin_works_unknown_creator_searches_path, method: 'get') do |form| %>
   <div class="flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "text", value: "検索")) %>
@@ -83,7 +83,7 @@
 
 <!--作品一覧 start-->
 <div class="mt-10 mb-5">
-  <snm-headline h="h2">作品一覧</snm-headline>
+  <%= snm_headline h: 'h2' do %>作品一覧<% end %>
   <%= render(Admin::WorksTableComponent.new(works: @works, pagy: @pagy)) %>
 </div>
 <!--作品一覧 end-->

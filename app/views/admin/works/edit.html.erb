@@ -1,5 +1,5 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">作品更新</snm-headline>
+  <%= snm_headline h: 'h1' do %>作品更新<% end %>
   <%= render 'form', work: @work %>
   <div class="mt-5 flex">
     <%= snm_link '戻る', href: admin_work_path(@work), button_style: "secondary" %>

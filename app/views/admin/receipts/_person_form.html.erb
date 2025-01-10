@@ -78,7 +78,7 @@
 </table>
 
 <div class="py-4" id="person-selector">
-  <snm-headline h="h3">著者選択オプション</snm-headline>
+  <%= snm_headline h: 'h3' do %>著者選択オプション<% end %>
 
   <% if errors[:person_id]&.any? %>
   <%= tag.div errors.full_messages_for(:person_id).join(', '), class: "text-sm text-red-500 required:block" %>

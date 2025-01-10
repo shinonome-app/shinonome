@@ -1,14 +1,14 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">関連サイト</snm-headline>
+  <%= snm_headline h: 'h1' do %>関連サイト<% end %>
 
   <div class="mt-10">
-    <snm-headline h="h2">関連サイト検索</snm-headline>
+    <%= snm_headline h: 'h2' do %>関連サイト検索<% end %>
     <%= render(Admin::SiteSearchComponent.new(form_url: admin_sites_text_searches_path)) %>
   </div>
 </div>
 
 <div class="mt-10 mb-5">
-  <snm-headline h="h2">関連サイト一覧</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連サイト一覧<% end %>
   <%= render(Admin::SitesTableComponent.new(sites: @sites)) %>
 </div>
 

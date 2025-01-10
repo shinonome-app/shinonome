@@ -54,7 +54,7 @@
 </table>
 
 <div class="py-4" id="worker-selector">
-  <snm-headline h="h3">工作員選択オプション</snm-headline>
+  <%= snm_headline h: 'h3' do %>工作員選択オプション<% end %>
 
   <% if errors[:worker_id]&.any? %>
   <%= tag.div errors.full_messages_for(:worker_id).join(', '), class: "text-sm text-red-500 required:block" %>

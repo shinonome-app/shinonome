@@ -2,7 +2,7 @@
     <% work = proofread_form.work %>
     <% errors = proofread_form.errors %>
     <div class="py-4">
-    <snm-headline h="h2">選択された作品</snm-headline>
+    <%= snm_headline h: 'h2' do %>選択された作品<% end %>
 
     <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
       <thead class="bg-[#f8fafc]">
@@ -60,7 +60,7 @@
     </div>
 
     <div class="py-4">
-    <snm-headline h="h2">送付先</snm-headline>
+    <%= snm_headline h: 'h2' do %>送付先<% end %>
 
     <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
       <thead class="bg-[#f8fafc]">
@@ -79,7 +79,7 @@
 
     </div>
     <div class="py-4">
-    <snm-headline h="h2">校正者からの連絡事項</snm-headline>
+    <%= snm_headline h: 'h2' do %>校正者からの連絡事項<% end %>
 
     <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
       <thead class="bg-[#f8fafc]">
@@ -98,7 +98,7 @@
     </div>
 
     <div class="py-4">
-    <snm-headline h="h2">校正者データ</snm-headline>
+    <%= snm_headline h: 'h2' do %>校正者データ<% end %>
     <% if proofread_form.worker_id.present? %>
     <%= render 'worker_show', proofread_form:, form:, errors: %>
     <% else %>
@@ -107,7 +107,7 @@
     </div>
 
     <div class="py-4">
-      <snm-headline h="h2">底本データ</snm-headline>
+      <%= snm_headline h: 'h2' do %>底本データ<% end %>
       <%= render 'original_books_form', proofread_form:, form:, errors: %>
     </div>
 

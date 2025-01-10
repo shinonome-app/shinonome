@@ -1,25 +1,25 @@
 <div class="w-full">
-  <snm-headline h="h1">記事の表示</snm-headline>
+  <%= snm_headline h: 'h1' do %>記事の表示<% end %>
 
-  <snm-headline h="h3">日付</snm-headline>
+  <%= snm_headline h: 'h3' do %>日付<% end %>
 
   <div>
       <%= @news_entry.published_on %>
   </div>
 
-  <snm-headline h="h3">見出し</snm-headline>
+  <%= snm_headline h: 'h3' do %>見出し<% end %>
 
   <div>
     <%= @news_entry.title %>
   </div>
 
-  <snm-headline h="h3">本文</snm-headline>
+  <%= snm_headline h: 'h3' do %>本文<% end %>
 
   <div class="news-body border border-gray-600 p-4">
     <!-- unsafe --><%== nl2br(@news_entry.body) %>
   </div>
 
-  <snm-headline h="h3">トピックに指定する</snm-headline>
+  <%= snm_headline h: 'h3' do %>トピックに指定する<% end %>
 
   <div>
     <%= @news_entry.flag ? '指定する' : '指定しない' %>

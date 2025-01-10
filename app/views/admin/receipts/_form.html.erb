@@ -1,6 +1,6 @@
 <%= form_with(model: [:admin, receipt_form], method: :patch, data: { turbo: false }) do |form| %>
   <% errors = receipt_form.errors %>
-  <snm-headline h="h2">作品データ</snm-headline>
+  <%= snm_headline h: 'h2' do %>作品データ<% end %>
 
     <% if receipt_form.warnings? %>
     <div class="m-4 p-4 border border-red-500 text-red-500">
@@ -134,7 +134,7 @@
       </tbody>
     </table>
 
-    <snm-headline h="h2">著者データ</snm-headline>
+    <%= snm_headline h: 'h2' do %>著者データ<% end %>
 
     <% if receipt_form.person_id.present? %>
     <%= render 'person_show', receipt_form:, form:, errors: %>
@@ -142,7 +142,7 @@
     <%= render 'person_form', receipt_form:, form:, errors: %>
     <% end %>
 
-    <snm-headline h="h2">入力者データ</snm-headline>
+    <%= snm_headline h: 'h2' do %>入力者データ<% end %>
 
     <% if receipt_form.worker_id.present? %>
     <%= render 'worker_show', receipt_form:, form:, errors: %>
@@ -150,7 +150,7 @@
     <%= render 'worker_form', receipt_form:, form:, errors: %>
     <% end %>
 
-    <snm-headline h="h2">底本データ</snm-headline>
+    <%= snm_headline h: 'h2' do %>底本データ<% end %>
 
     <table class="table-auto w-full text-sm lg:text-base border borger-ab_gray">
       <thead class="bg-[#f8fafc]">

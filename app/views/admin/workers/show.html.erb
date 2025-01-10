@@ -1,5 +1,5 @@
 <div>
-  <snm-headline h="h1">工作員データ</snm-headline>
+  <%= snm_headline h: 'h1' do %>工作員データ<% end %>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -15,7 +15,7 @@
       ])) %>
 </div>
 <div class="mt-6">
-  <snm-headline h="h2">関連した作品</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連した作品<% end %>
 
   <%= render(Admin::SnmTableComponent.new(
                header: %w[役割 作品名 副題 仮名遣い種別 状態 状態の開始日],

@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-5">
-  <snm-headline h="h2">関連サイト</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連サイト<% end %>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
@@ -19,7 +19,7 @@
 </div>
 
 <div class="mt-6 mb-5">
-  <snm-headline h="h2">関連した作品</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連した作品<% end %>
   <%= render(Admin::SnmTableComponent.new(
                header: %w[作品名 副題 仮名遣い 状態 状態の開始日],
                classes: ['text-center', 'text-center', 'text-center', 'text-center min-x-16', 'text-center'],
@@ -37,6 +37,6 @@
 </div>
 
 <div class="mt-6 mb-5">
-  <snm-headline h="h2">関連した人物</snm-headline>
+  <%= snm_headline h: 'h2' do %>関連した人物<% end %>
   <%= render(Admin::PeopleTableComponent.new(pagy: @pagy, people: @people)) %>
 </div>

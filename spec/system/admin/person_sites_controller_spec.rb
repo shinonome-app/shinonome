@@ -62,7 +62,7 @@ describe Admin::PersonSitesController do
       expect(page).to have_content('人物詳細')
       expect(page).to have_content(/関連サイト名.*#{site.name}/)
 
-      page.find('snm-headline', text: '関連サイトデータ').sibling('div').click_on('削除')
+      page.find('h2', text: '関連サイトデータ').sibling('div').click_on('削除')
       expect do
         expect(page.accept_confirm).to eq '本当に削除しますか?'
         expect(page).to have_content '関連サイトの関連づけを削除しました'

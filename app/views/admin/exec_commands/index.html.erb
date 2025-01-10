@@ -1,5 +1,5 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">コマンド実行</snm-headline>
+  <%= snm_headline h: 'h1' do %>コマンド実行<% end %>
 
   <div class="mt-5 flex">
     <%= snm_link '新規コマンド実行', href: new_admin_exec_command_path, button_style: "primary" %>

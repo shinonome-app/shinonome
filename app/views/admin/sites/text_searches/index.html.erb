@@ -1,5 +1,5 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">関連サイト検索結果一覧</snm-headline>
+  <%= snm_headline h: 'h1' do %>関連サイト検索結果一覧<% end %>
   <%= render(Admin::SitesTableComponent.new(sites: @sites)) %>
 
   <div class="mt-10 mb-5">

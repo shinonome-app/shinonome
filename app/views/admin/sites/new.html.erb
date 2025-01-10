@@ -1,5 +1,5 @@
 <div class="w-full md:w-2/3">
-  <snm-headline h="h1">新規関連サイト登録</snm-headline>
+  <%= snm_headline h: 'h1' do %>新規関連サイト登録<% end %>
   <%= render 'form', site: @site %>
   <div class="mt-5 flex">
     <%= snm_link '戻る', href: admin_sites_path, button_style: "secondary" %>
