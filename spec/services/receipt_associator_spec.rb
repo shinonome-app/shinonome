@@ -32,14 +32,14 @@ RSpec.describe ReceiptAssociator do
         started_on: '2024-01-02',
         kana_type_id: 1,
         work_status_id: 5,
-        copyright_flag: true,
+        copyright_flag: true
       }
     end
 
     let(:receipt_form) { Admin::ReceiptForm.new(receipt_form_params, receipt:, current_admin_user:) }
 
     it '関連付けを正しく行う' do
-      result = described_class.new.associate_receipt(
+      result = ReceiptAssociator.new.associate_receipt(
         worker:,
         person:,
         current_admin_user:,
@@ -84,7 +84,7 @@ RSpec.describe ReceiptAssociator do
       # titleをnilにして保存を失敗させる
       receipt_form.title = nil
 
-      result = described_class.new.associate_receipt(
+      result = ReceiptAssociator.new.associate_receipt(
         worker:,
         person:,
         current_admin_user:,

@@ -52,20 +52,20 @@ RSpec.describe ReceiptForm do
     it 'original_book_titleがない場合は無効' do
       form.original_book_title = nil
       expect(form).not_to be_valid
-      expect(form.errors[:original_book_title]).to include("を入力してください")
+      expect(form.errors[:original_book_title]).to include('を入力してください')
     end
 
     it 'worker_idが無効な場合は無効' do
       form.worker_id = 9999
       expect(form).not_to be_valid
-      expect(form.errors[:worker_id]).to include("は不正な値です")
+      expect(form.errors[:worker_id]).to include('は不正な値です')
     end
 
     it 'emailがない場合、worker_idが必要' do
       form.email = nil
       form.worker_id = nil
       expect(form).not_to be_valid
-      expect(form.errors[:email]).to include("を入力してください")
+      expect(form.errors[:email]).to include('を入力してください')
     end
 
     it 'sub_worksが無効な場合はエラーを追加' do
@@ -73,8 +73,8 @@ RSpec.describe ReceiptForm do
       params[:sub_works_attributes]['0'][:title_kana] = nil
 
       expect(form).not_to be_valid
-      expect(form.errors.full_messages).to include("作品1の作品名を入力してください")
-      expect(form.errors.full_messages).to include("作品1の作品名読みを入力してください")
+      expect(form.errors.full_messages).to include('作品1の作品名を入力してください')
+      expect(form.errors.full_messages).to include('作品1の作品名読みを入力してください')
     end
   end
 
@@ -131,19 +131,19 @@ RSpec.describe ReceiptForm do
     it 'title_kanaがない場合は無効' do
       sub_work.title_kana = nil
       expect(sub_work).not_to be_valid
-      expect(sub_work.errors[:title_kana]).to include("を入力してください")
+      expect(sub_work.errors[:title_kana]).to include('を入力してください')
     end
 
     it 'kana_type_idが範囲外の場合は無効' do
       sub_work.kana_type_id = 999
       expect(sub_work).not_to be_valid
-      expect(sub_work.errors[:kana_type_id]).to include("は一覧にありません")
+      expect(sub_work.errors[:kana_type_id]).to include('は一覧にありません')
     end
 
     it 'copyright_flagが範囲外の場合は無効' do
       sub_work.copyright_flag = 2
       expect(sub_work).not_to be_valid
-      expect(sub_work.errors[:copyright_flag]).to include("は一覧にありません")
+      expect(sub_work.errors[:copyright_flag]).to include('は一覧にありません')
     end
 
     it 'title_and_subtitleが正しく生成される' do

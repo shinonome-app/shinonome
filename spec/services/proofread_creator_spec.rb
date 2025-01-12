@@ -42,7 +42,7 @@ RSpec.describe ProofreadCreator do
         expect(proofread.worker_kana).to eq('カナ')
         expect(proofread.worker_name).to eq('テストワーカー')
         expect(proofread.work.id).to eq(work.id)
-        expect(proofread.work_copy).to eq("need_copy")
+        expect(proofread.work_copy).to eq('need_copy')
         expect(proofread.worker).to be_nil # 登録後も変わらない
       end
     end

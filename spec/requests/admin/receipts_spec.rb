@@ -36,7 +36,7 @@ RSpec.describe Admin::ReceiptsController do
       it 'リクエストが成功し、編集画面が表示される' do
         get edit_admin_receipt_path(receipt.id)
 
-        expect(response).to have_http_status(302)
+        expect(response).to have_http_status(:found)
         expect(response).to redirect_to(admin_receipt_path(receipt))
         follow_redirect!
         expect(response.body).to include('申請内容詳細')

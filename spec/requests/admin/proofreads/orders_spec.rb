@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::Proofreads::OrdersController, type: :request do
+RSpec.describe Admin::Proofreads::OrdersController do
   let(:admin_user) { create(:user) }
   let(:worker) { create(:worker) }
   let(:worker_secret) { create(:worker_secret, worker:) }
