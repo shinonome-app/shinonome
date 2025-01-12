@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Tops' do
+RSpec.describe Admin::TopController do
   describe 'GET /admin' do
     context 'without sign in' do
       it 'redirects to the login page' do

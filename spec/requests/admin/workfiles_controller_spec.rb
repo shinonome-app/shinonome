@@ -14,7 +14,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/workfiles' do
+RSpec.describe Admin::WorkfilesController do
   include ActionDispatch::TestProcess::FixtureFile
 
   # Workfile. As you add validations to Workfile, be sure to

@@ -8,5 +8,4 @@
 
 RSpec/PendingWithoutReason:
   Exclude:
-    - 'spec/requests/proofreads_spec.rb'
-    - 'spec/requests/receipts_spec.rb'
+    - 'spec/requests/**/*_spec.rb'

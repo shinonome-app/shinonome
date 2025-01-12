@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Works::WorkIndexSearches' do
+RSpec.describe Admin::Works::TextSearchesController do
   before { sign_in(user) }
 
   let(:user) { create(:user) }
 
-  describe 'GET /admin/works/work_index_searchers' do
+  describe 'GET /admin/works/text_searches' do
     it 'returns http success' do
-      get '/admin/works/work_index_searches'
+      get '/admin/works/text_searches'
       expect(response).to have_http_status(:success)
     end
   end

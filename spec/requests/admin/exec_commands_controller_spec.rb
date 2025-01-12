@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Works::StatusSearches' do
-  before { sign_in(user) }
-
+RSpec.describe Admin::ExecCommandsController do
   let(:user) { create(:user) }
 
-  describe 'GET /admin/works/status_searches' do
+  describe 'GET /' do
+    before { sign_in(user) }
+
     it 'returns http success' do
-      get '/admin/works/status_searches'
+      get '/admin/exec_commands'
       expect(response).to have_http_status(:success)
     end
   end

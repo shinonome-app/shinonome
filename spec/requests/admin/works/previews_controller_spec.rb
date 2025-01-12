@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Works::Previews' do
+RSpec.describe Admin::Works::PreviewsController do
   describe 'GET /show' do
     let(:work) { create(:work, :with_person) }
     let(:user) { create(:user) }
