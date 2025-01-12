@@ -23,10 +23,4 @@ class UserMailer < ApplicationMailer
 
     mail to: proofreads.first.email, subject: @subject
   end
-
-  private
-
-  def admin_email
-    'takahashimm+admin@gmail.com'
-  end
 end
