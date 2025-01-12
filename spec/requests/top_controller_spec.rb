@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Idlists' do
-  describe 'GET /idlists/' do
+RSpec.describe TopController do
+  describe 'GET /index' do
     it 'returns http success' do
-      get '/idlists/'
+      get '/'
       expect(response).to have_http_status(:success)
     end
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Idlists::Workers' do
+RSpec.describe Idlists::WorkersController do
   describe 'GET /idlists/workers/' do
     it 'returns http success' do
       get '/idlists/workers/'
