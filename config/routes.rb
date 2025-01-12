@@ -40,6 +40,9 @@ Rails.application.routes.draw do
 
   namespace :admin, path: ENV.fetch('RAILS_ADMIN_PATH', nil) || 'admin' do
     get '/' => 'top#index'
+    namespace :top do
+      resources :previews, only: %i[index]
+    end
 
     namespace :users do
       resources :others, only: %i[index create edit update destroy]
@@ -182,6 +185,12 @@ Rails.application.routes.draw do
       get 'list_person_all_extended_utf8', to: 'downloads#list_person_all_extended_utf8', constraints: { format: 'zip' }
     end
   end
+
+  scope '/soramoyou' do
+    get 'soramoyouindex', to: 'news_entries#index', as: :soramoyou_index
+    get 'soramoyou:year', to: 'news_entries#index_year', constraints: { year: /\d\d\d\d/ }, as: :soramoyou_year
+  end
+
   get 'cards/:person_id/card:card_id', to: 'cards#show', constraints: { person_id: /\d+/, card_id: /\d+/ }, as: :card
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener'

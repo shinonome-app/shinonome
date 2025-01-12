@@ -99,6 +99,19 @@ class Work < ApplicationRecord
   validates :work_status_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
   validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }, if: -> { work_status_id.present? }
 
+  def self.copyrighted_count
+    published.joins(:people)
+             .where(people: { copyright_flag: true })
+             .distinct.count
+  end
+
+  def self.non_copyrighted_count
+    published.joins(:people)
+      .group('works.id')
+      .having('bool_and(people.copyright_flag = false)')
+      .distinct.pluck('works.id').size
+  end
+
   def self.csv_header
     "bookid,作品名,作品名読み,副題,副題読み,作品集名,作品集名読み,原題,仮名遣い種別,初出,作品について,状態,状態の開始日,著作権フラグ,備考,底本管理情報,最終更新日,更新者,ソート用読み\r\n"
   end
