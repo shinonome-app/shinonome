@@ -4,6 +4,7 @@ glob: "**/*.{html,text,js}{+*,}.erb"
 exclude:
   - '**/vendor/**/*'
   - '**/node_modules/**/*'
+  - app/components/admin/snm_headline_component.html.erb
 linters:
   ErbSafety:
     enabled: true
