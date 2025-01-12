@@ -16,8 +16,8 @@
   <div class="mt-4 flex">
     <%= render(Admin::SubmitComponent.new(form:, name: "submit", value: "更新する")) %>
     <%= snm_link '戻る',
-                     href: news_entry.id ? admin_news_entry_path(news_entry) : admin_news_entries_path,
-                     button_style: "secondary" %>
+                 href: news_entry.id ? admin_news_entry_path(news_entry) : admin_news_entries_path,
+                 button_style: "secondary" %>
   </div>
   <% end %>
 </div>
