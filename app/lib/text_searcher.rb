@@ -15,6 +15,8 @@ class TextSearcher
   end
 
   def add_query_param(name, text, text_selector_id)
+    return if text.blank?
+
     case text_selector_id
     when 1
       @param_keys << "#{name} like ?"

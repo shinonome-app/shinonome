@@ -17,8 +17,8 @@ module Admin
 
         text_searcher = ::TextSearcher.new
 
-        text_searcher.add_query_param('name', name, text_selector_name) if name.present?
-        text_searcher.add_query_param('name_kana', name_kana, text_selector_name_kana) if name_kana.present?
+        text_searcher.add_query_param('name', name, text_selector_name)
+        text_searcher.add_query_param('name_kana', name_kana, text_selector_name_kana)
 
         workers = Worker.where(text_searcher.where_params)
 

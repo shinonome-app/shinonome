@@ -30,14 +30,14 @@ module Admin
 
         text_searcher = ::TextSearcher.new
 
-        text_searcher.add_query_param('title', title, text_selector_title) if title.present?
-        text_searcher.add_query_param('title_kana', title_kana, text_selector_title_kana) if title_kana.present?
-        text_searcher.add_query_param('subtitle', subtitle, text_selector_subtitle) if subtitle.present?
-        text_searcher.add_query_param('subtitle_kana', subtitle_kana, text_selector_subtitle_kana) if subtitle_kana.present?
-        text_searcher.add_query_param('collection', collection, text_selector_collection) if collection.present?
-        text_searcher.add_query_param('collection_kana', collection_kana, text_selector_collection_kana) if collection_kana.present?
-        text_searcher.add_query_param('original_title', original_title, text_selector_original_title) if original_title.present?
-        text_searcher.add_query_param('description', description, text_selector_description) if description.present?
+        text_searcher.add_query_param('title', title, text_selector_title)
+        text_searcher.add_query_param('title_kana', title_kana, text_selector_title_kana)
+        text_searcher.add_query_param('subtitle', subtitle, text_selector_subtitle)
+        text_searcher.add_query_param('subtitle_kana', subtitle_kana, text_selector_subtitle_kana)
+        text_searcher.add_query_param('collection', collection, text_selector_collection)
+        text_searcher.add_query_param('collection_kana', collection_kana, text_selector_collection_kana)
+        text_searcher.add_query_param('original_title', original_title, text_selector_original_title)
+        text_searcher.add_query_param('description', description, text_selector_description)
 
         works = Work.where(text_searcher.where_params)
 

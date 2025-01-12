@@ -18,10 +18,9 @@ module Admin
 
         text_searcher = ::TextSearcher.new
 
-        text_searcher.add_query_param('name', name, text_selector_name) if name.present?
-        text_searcher.add_query_param('url', url, text_selector_url) if url.present?
-        text_searcher.add_query_param('owner_name', owner_name, text_selector_owner_name) if owner_name.present?
-
+        text_searcher.add_query_param('name', name, text_selector_name)
+        text_searcher.add_query_param('url', url, text_selector_url)
+        text_searcher.add_query_param('owner_name', owner_name, text_selector_owner_name)
         sites = Site.where(text_searcher.where_params)
 
         @pagy, @sites = pagy(sites.order(created_at: :desc), items: 50)
