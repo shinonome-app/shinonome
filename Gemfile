@@ -58,8 +58,8 @@ gem 'rexml'
 gem 'faker'
 gem 'gimei'
 
-gem 'lograge'
-gem 'lograge-sql'
+# gem 'lograge'
+# gem 'lograge-sql'
 
 # Fake mail system on web
 gem 'letter_opener_web'

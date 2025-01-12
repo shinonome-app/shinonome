@@ -184,14 +184,6 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.6.5)
-    lograge (0.14.0)
-      actionpack (>= 4)
-      activesupport (>= 4)
-      railties (>= 4)
-      request_store (~> 1.0)
-    lograge-sql (2.5.1)
-      activerecord (>= 5, < 8.1)
-      lograge (~> 0.11)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -300,8 +292,6 @@ GEM
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
-    request_store (1.7.0)
-      rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -431,8 +421,6 @@ DEPENDENCIES
   kamal
   letter_opener_web
   listen (~> 3.3)
-  lograge
-  lograge-sql
   pagy (~> 9.0)
   pg
   puma (~> 6.4)
