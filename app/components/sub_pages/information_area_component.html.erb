@@ -1,0 +1,52 @@
+  <h2 class="flex justify-center mt-4 py-1 px-5 text-lg font-semibold bg-gray-300 border border-y-gray-500"><a name="information">お知らせ</a></h2>
+
+  <table class="border-double border-2 border-gray-800 table-fixed items-center w-full" summary="">
+    <colgroup>
+      <col class="w-[30%]">
+      <col class="w-[70%]">
+    </colgroup>
+    <tr class="border-double border-2 border-gray-800 text-center">
+      <th class="border-double border-2 border-gray-800 bg-yellow-100 w-1/3 text-left align-top font-normal p-1">
+        <a href="/index_pages/whatsnew1.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline font-normal">
+          新着情報
+        </a>
+      </th>
+      <td class="border-double border-2 border-gray-800 bg-sky-50 w-2/3 text-left align-top p-1">
+        新規公開作品の一覧表です。随時更新。
+      </td>
+    </tr>
+
+    <tr class="border-double border-2 border-gray-800 text-center">
+      <th class="border-double border-2 border-gray-800 bg-yellow-100 w-1/3 text-right align-top font-normal p-1">
+        最新公開作品：
+        <br>
+        <%= new_works_published_on %>
+      </th>
+      <td class="border-double border-2 border-gray-800 bg-sky-50 w-2/3 text-left align-top p-1">
+        <ol>
+          <% new_works.each do |work| %>
+          <li>
+            <%= work.author_text %><br>
+            <%= link_to work.title,
+                        card_path(person_id: work.card_person_id, card_id: work.id, format: :html),
+                        class: "text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" %>
+            <%= work.subtitle %>
+          </li>
+          <% end %>
+        </ol>
+      </td>
+    </tr>
+
+    <tr class="border-double border-2 border-gray-800 text-center">
+      <th class="border-double border-2 border-gray-800 bg-yellow-100 w-1/3 text-left align-top font-normal p-1">
+        <a href="/soramoyou/soramoyouindex.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline font-normal">
+          そらもよう
+        </a>
+      </th>
+      <td class="border-double border-2 border-gray-800 bg-sky-50 w-2/3 text-left align-top p-1">
+        青空文庫からのお知らせを掲載します。
+        <br>
+        最終更新日：<%= latest_news_entry.published_on %>
+      </td>
+    </tr>
+  </table>

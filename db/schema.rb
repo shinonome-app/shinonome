@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_03_045608) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_12_180114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_045608) do
     t.text "extension"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "editable_contents", force: :cascade do |t|
+    t.string "area_name"
+    t.string "key"
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_name", "key"], name: "index_editable_contents_on_area_name_and_key"
   end
 
   create_table "exec_commands", force: :cascade do |t|

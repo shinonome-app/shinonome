@@ -123,6 +123,17 @@ ApplicationRecord.transaction do
       url: 'https://shinonome.example.com/dummy/workers/0' }
   )
 
+  editable_contents = [
+    {
+      id: 0,
+      area_name: 'top',
+      key: 'main',
+      value: Rails.root.join('db/seeds/texts/top_template.txt').read
+    }
+  ]
+
+  EditableContent.upsert_all(editable_contents)
+
   # rubocop:enable Rails/SkipsModelValidations
 end
 

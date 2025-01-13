@@ -23,6 +23,37 @@ module Pages
         @works_copyright_count = Work.copyrighted_count
         @works_noncopyright_count = Work.non_copyrighted_count
       end
+
+      private
+
+      def render_editable_content
+        local_vars = {
+          new_works:,
+          new_works_published_on:,
+          latest_news_entry:,
+          topics:,
+          works_count:,
+          works_copyright_count:,
+          works_noncopyright_count:
+        }
+
+        area_name = 'top'
+        key = 'main'
+        erb_content = EditableContent.latest_for(area_name, key).value
+
+        evaluate_with_context(erb_content, local_vars)
+      end
+
+      def evaluate_with_context(erb_content, local_vars)
+        local_vars.each do |key, value|
+          view_context.instance_variable_set(:"@#{key}", value)
+          view_context.define_singleton_method(key) { value }
+        end
+
+        view_context.instance_eval do
+          ERB.new(erb_content).result(binding)
+        end
+      end
     end
   end
 end
