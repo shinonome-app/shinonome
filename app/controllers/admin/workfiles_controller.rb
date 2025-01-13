@@ -68,7 +68,7 @@ module Admin
     # Only allow a list of trusted parameters through.
     def workfile_params
       params.require(:workfile).permit(:work_id, :filetype_id, :compresstype_id, :filesize, :url, :filename,
-                                       :registrated_on, :last_updated_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata,
+                                       :registered_on, :last_updated_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata,
                                        { workfile_secret_attributes: %i[id memo] })
     end
   end

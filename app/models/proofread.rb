@@ -17,12 +17,12 @@
 #  work_print    :integer          default("no_need_print"), not null
 #  worker_kana   :text
 #  worker_name   :text
-#  workfile      :bigint
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  person_id     :bigint           not null
 #  work_id       :bigint           not null
 #  worker_id     :bigint
+#  workfile_id   :bigint
 #
 # Indexes
 #

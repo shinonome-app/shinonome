@@ -304,7 +304,7 @@ ja:
         charset_id: "文字集合"
         charset: "文字集合"
         note: "備考"
-        registrated_on: "初登録日"
+        registered_on: "初登録日"
         last_updated_on: "最終更新日"
         workdata: "作品ファイル"
       shinonome/workfile_secret:

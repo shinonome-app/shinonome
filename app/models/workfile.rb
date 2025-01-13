@@ -8,7 +8,7 @@
 #  filename         :text
 #  filesize         :integer
 #  last_updated_on  :date
-#  registrated_on   :date
+#  registered_on    :date
 #  revision_count   :integer
 #  url              :text
 #  created_at       :datetime         not null

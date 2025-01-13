@@ -151,7 +151,7 @@ workfiles = work_id_status_list.map do |n, status|
       file_encoding_id: 1, # Shift_JIS
       filetype_id: 1, # テキストファイル(ルビあり) rtxt
       revision_count: 1,
-      registrated_on: Time.current,
+      registered_on: Time.current,
       last_updated_on: Time.current,
       filesize: 10000 + (rand(2000) * 17),
       created_at: Time.current,
@@ -165,7 +165,7 @@ workfiles = work_id_status_list.map do |n, status|
       file_encoding_id: 1, # Shift_JIS
       filetype_id: 3, # htmlファイル
       revision_count: 1,
-      registrated_on: Time.current,
+      registered_on: Time.current,
       last_updated_on: Time.current,
       filesize: 10000 + (rand(2000) * 17),
       created_at: Time.current,

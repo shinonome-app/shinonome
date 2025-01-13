@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_12_180114) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_13_162935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -208,7 +208,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_12_180114) do
     t.integer "work_copy", default: 0, null: false
     t.integer "work_print", default: 0, null: false
     t.text "proof_edition"
-    t.bigint "workfile"
+    t.bigint "workfile_id"
     t.text "address"
     t.text "memo"
     t.bigint "worker_id"
@@ -418,7 +418,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_12_180114) do
     t.integer "revision_count"
     t.bigint "file_encoding_id", null: false
     t.bigint "charset_id", null: false
-    t.date "registrated_on"
+    t.date "registered_on"
     t.date "last_updated_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
