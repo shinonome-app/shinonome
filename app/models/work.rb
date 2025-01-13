@@ -88,7 +88,7 @@ class Work < ApplicationRecord
   scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) OR (work_status_id = 1 AND started_on > ?)', date) }
   scope :not_proofread, -> { where('work_status_id in (5, 6)') }
 
-  scope :without_role_one_work_people, lambda {
+  scope :without_authors, lambda {
     left_outer_joins(:work_people)
       .group('works.id')
       .having('COUNT(CASE WHEN work_people.role_id = 1 THEN 1 END) = 0')

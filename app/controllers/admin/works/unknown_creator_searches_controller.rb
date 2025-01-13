@@ -7,7 +7,7 @@ module Admin
 
       # GET /admin/works/unknown_creator_searches
       def index
-        @pagy, @works = pagy(Work.without_role_one_work_people.order(created_at: :desc), limit: 50)
+        @pagy, @works = pagy(Work.without_authors.order(created_at: :desc), limit: 50)
       end
     end
   end
