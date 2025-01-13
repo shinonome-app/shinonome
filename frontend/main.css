@@ -10,20 +10,6 @@ tbody a:hover {
     text-decoration: none;
 }
 
-/* anti-floc */
-snm-headline:not(:defined) {
-  display: inline-block;
-  height: 100vh;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-snm-status:not(:defined) {
-  display: inline-block;
-  height: 100vh;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
 @layer components {
     .btn-normal {
         @apply bg-gray-200 hover:bg-gray-500 text-gray-900 hover:text-white px-8 py-2 text-center border border-gray-500 hover:border-transparent rounded;

@@ -51,9 +51,9 @@
         </td>
         <td class="text-center py-3">
           <% if receipt.ordered? %>
-          <%= tag.snm_status statusType: "green", label: "済" %>
+          <%= render(Admin::SnmStatusComponent.new(status_type: :green, label: "済")) %>
           <% else %>
-          <%= tag.snm_status statusType: "gray", label: "未" %>
+          <%= render(Admin::SnmStatusComponent.new(status_type: :gray, label: "未")) %>
           <% end %>
         </td>
       </tr>

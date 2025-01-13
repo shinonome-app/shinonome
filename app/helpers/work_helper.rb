@@ -2,6 +2,6 @@
 
 module WorkHelper
   def work_status_mark(status)
-    tag.snm_status(statusType: status.color, label: status.name)
+    render(Admin::SnmStatusComponent.new(status_type: status.color, label: status.name))
   end
 end
