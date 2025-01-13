@@ -100,13 +100,15 @@ class Work < ApplicationRecord
   validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }, if: -> { work_status_id.present? }
 
   def self.copyrighted_count
-    published.joins(:people)
-             .where(people: { copyright_flag: true })
-             .distinct.count
+    published
+      .joins(:people)
+      .where(people: { copyright_flag: true })
+      .distinct.count
   end
 
   def self.non_copyrighted_count
-    published.joins(:people)
+    published
+      .joins(:people)
       .group('works.id')
       .having('bool_and(people.copyright_flag = false)')
       .distinct.pluck('works.id').size
