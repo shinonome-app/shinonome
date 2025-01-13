@@ -4,14 +4,14 @@ module Admin
   # flash message用コンポーネント
   class SnmMessageBarComponent < ViewComponent::Base
     STYLE_CLASSES = {
-      notice: 'text-[#022C45] bg-[#C3E9FF] text-sm px-8 py-3 rounded mb-2',
-      success: 'text-[#012B14] bg-[#BFF9D9] text-sm px-8 py-3 rounded mb-2',
-      alert: 'text-[#400601] bg-[#FECDC9] text-sm px-8 py-3 rounded mb-2'
+      notice: 'text-sky-950 bg-sky-200 text-sm px-8 py-3 rounded mb-2',
+      success: 'text-green-950 bg-green-200 text-sm px-8 py-3 rounded mb-2',
+      alert: 'text-rose-950 bg-rose-300 text-sm px-8 py-3 rounded mb-2'
     }.freeze
 
-    def initialize(level: :notice)
+    def initialize(level: nil)
       super
-      @level = level.to_sym
+      @level = (level || :notice).to_sym
     end
 
     private
