@@ -1,2 +1,4 @@
-<h1>Admin::Works::UnknownCreatorSearches#index</h1>
-<p>Find me in app/views/admin/works/unknown_creator_searches/index.html.erb</p>
+<%= snm_headline h: 'h1' do %>作品一覧<% end %>
+<div class="mt-10 mb-5">
+  <%= render(Admin::WorksTableComponent.new(pagy: @pagy, works: @works)) %>
+</div>
