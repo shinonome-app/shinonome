@@ -5,12 +5,31 @@ module Admin
   class ProofreadsController < Admin::ApplicationController
     # GET /admin/proofreads
     def index
-      @proofreads = Proofread.active.order(id: :desc)
+      @proofreads = Proofread.includes(
+        :worker,
+        :person,
+        work: [
+          :kana_type,
+          :work_status,
+          :work_people,
+          :people
+        ]
+      ).active.order(id: :desc)
     end
 
     # 送付内容確認
     def show
-      @proofread = Proofread.find(params[:id])
+      # @proofread = Proofread.find(params[:id])
+      @proofread = Proofread.includes(
+        :workfile,
+        :worker,
+        :person,
+        work: [
+          :kana_type,
+          :work_status,
+          :work_people
+        ]
+      ).find(params[:id])
       @worker = @proofread.worker
       @worker_secret = @worker.worker_secret
       @work = @proofread.work

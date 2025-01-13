@@ -7,7 +7,9 @@ module Admin
 
     # GET /admin/receipts
     def index
-      @receipts = Receipt.active.order(id: :desc)
+      @receipts = Receipt.includes(
+        :kana_type
+      ).active.order(id: :desc)
     end
 
     # GET /admin/receipts/1

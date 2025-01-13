@@ -211,7 +211,8 @@ class Work < ApplicationRecord
   end
 
   def author_text
-    work_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
+    work_people.select { |wp| wp.role_id == 1 }.map { |wp| wp.person.name }.join(', ')
+    # work_people.where(role_id: 1).map { |a| a.person.name }.join(', ')
   end
 
   def base_author_text
