@@ -1,3 +1,5 @@
-<% flash.each do |type, message| %>
-<%= tag.snm_message_bar message, level: type %>
+<% flash.each do |level, message| %>
+<%= render(Admin::SnmMessageBarComponent.new(level:)) do %>
+<%= message %>
+<% end %>
 <% end %>
