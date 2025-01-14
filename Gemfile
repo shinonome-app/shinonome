@@ -49,8 +49,8 @@ gem 'devise'
 gem 'pagy', '~> 9.0'
 
 # Use importmap and TailswindCSS
-gem 'propshaft'
 gem 'importmap-rails'
+gem 'propshaft'
 gem 'tailwindcss-rails'
 
 # Some libraries use rexml as XML processor
