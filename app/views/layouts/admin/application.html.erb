@@ -7,10 +7,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <% if defined?(ViteRuby) %>
     <%= vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' } %>
-    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <%= vite_client_tag %>
     <%= vite_typescript_tag 'application' %>
+    <% else %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <% end %>
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <style>
       /*      a { text-decoration: underline blue; color: blue; }
             a:hover { text-decoration: none; background-color: transparent; color: inherit; } */
