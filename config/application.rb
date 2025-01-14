@@ -52,5 +52,8 @@ module Shinonome
     config.x.site_name = EnvConverter.unescape_ustring(ENV.fetch('SITE_NAME', 'Shinonome'))
     config.x.csv_dir = ENV.fetch('CSV_DIR', Rails.public_path.join('csv'))
     config.x.reception_email = ENV.fetch('RECEPTION_EMAIL', nil)
+
+    # make enable assets pipeline
+    # config.assets.enabled = true
   end
 end

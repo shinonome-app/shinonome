@@ -234,6 +234,11 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
+    propshaft (1.1.0)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
+      railties (>= 7.0.0)
     psych (5.2.2)
       date
       stringio
@@ -361,6 +366,13 @@ GEM
       net-ssh (>= 2.8.0)
       ostruct
     stringio (3.1.2)
+    tailwindcss-rails (3.2.0)
+      railties (>= 7.0.0)
+      tailwindcss-ruby
+    tailwindcss-ruby (3.4.17)
+    tailwindcss-ruby (3.4.17-arm64-darwin)
+    tailwindcss-ruby (3.4.17-x86_64-darwin)
+    tailwindcss-ruby (3.4.17-x86_64-linux)
     test-prof (1.4.3)
     thor (1.3.2)
     timeout (0.4.3)
@@ -418,6 +430,7 @@ DEPENDENCIES
   listen (~> 3.3)
   pagy (~> 9.0)
   pg
+  propshaft
   puma (~> 6.4)
   rack-mini-profiler
   rails (= 7.2.2.1)
@@ -434,6 +447,7 @@ DEPENDENCIES
   selenium-devtools
   selenium-webdriver
   skylight
+  tailwindcss-rails
   test-prof
   turbo-rails
   tzinfo-data

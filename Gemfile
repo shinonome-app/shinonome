@@ -48,10 +48,10 @@ gem 'devise'
 # Pagination in views
 gem 'pagy', '~> 9.0'
 
-# Use TailswindCSS
-# gem 'tailwindcss-rails'
-
+# Use importmap and TailswindCSS
+gem 'propshaft'
 gem 'importmap-rails'
+gem 'tailwindcss-rails'
 
 # Some libraries use rexml as XML processor
 gem 'rexml'
