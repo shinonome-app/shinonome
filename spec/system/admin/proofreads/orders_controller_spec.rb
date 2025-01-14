@@ -33,7 +33,7 @@ describe Admin::Proofreads::OrdersController do
         visit orders_new_admin_proofread_path(proofread)
 
         perform_enqueued_jobs do
-          click_on '送付'
+          click_on '送付する'
         end
 
         expect(page).to have_content('送信しました')
@@ -63,7 +63,7 @@ describe Admin::Proofreads::OrdersController do
 
         check '青空文庫にCCする'
         perform_enqueued_jobs do
-          click_on '送付'
+          click_on '送付する'
         end
 
         expect(page).to have_content('送信しました')
