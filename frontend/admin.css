@@ -1,4 +1,0 @@
-/** admin **/
-.news-body a {
-  @apply text-blue-500 hover:underline;
-}

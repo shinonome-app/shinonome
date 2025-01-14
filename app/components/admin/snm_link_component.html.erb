@@ -1,5 +1,11 @@
 <% if label.present? %>
- <%= link_to href, target:, class: style_class do %><%= label %><% end %>
+ <%= link_to href, target:, class: style_class do %>
+  <%= icon_svg %>
+  <span><%= label %></span>
+ <% end %>
 <% else %>
- <%= link_to href, target:, class: style_class do %><%= content %><% end %>
+ <%= link_to href, target:, class: style_class do %>
+  <%= icon_svg %>
+  <span><%= content %></span>
+ <% end %>
 <% end %>

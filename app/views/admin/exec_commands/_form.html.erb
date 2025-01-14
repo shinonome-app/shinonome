@@ -21,7 +21,7 @@
       <%= form.select :separator, [%w[タブ区切り tab], %w[カンマ区切り comma]] %>
     </div>
   </div>
-  <div class="field">
-    <%= form.submit "実行", class: "btn-admin-normal" %>
+  <div class="mt-5 flex">
+    <%= render(Admin::SubmitComponent.new(form:, name: 'commit', value: "実行する")) %>
   </div>
 <% end %>

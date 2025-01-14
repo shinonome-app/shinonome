@@ -34,15 +34,6 @@ jobs:
       with:
         ruby-version: 3.3.5
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Cache node modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: yarn install
-      run:  yarn install --check-files
     - name: migration
       run: |
         bundle exec rails db:create
@@ -52,9 +43,9 @@ jobs:
         DATABASE_USER: postgres
         DATABASE_PASS: postgres
         DATABASE_HOST: localhost
-    - name: build JS, CSS
+    - name: prepare TailwindCSS
       run:  |
-        yarn build
+        bin/rails tailwindcss:build
     - name: Run rspec
       run: |
         bundle exec rspec

@@ -48,8 +48,10 @@ gem 'devise'
 # Pagination in views
 gem 'pagy', '~> 9.0'
 
-# Use TailswindCSS
-# gem 'tailwindcss-rails'
+# Use importmap and TailswindCSS
+gem 'importmap-rails'
+gem 'propshaft'
+gem 'tailwindcss-rails'
 
 # Some libraries use rexml as XML processor
 gem 'rexml'
@@ -122,5 +124,3 @@ gem 'erb_lint', '> 0.3.0', require: false
 gem 'kamal', require: false
 
 gem 'aozora2html', '~> 3.0'
-
-gem 'vite_rails', '~> 3.0'
