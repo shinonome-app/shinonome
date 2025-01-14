@@ -4,7 +4,7 @@ import * as Turbo from '@hotwired/turbo'
 
 import "~/main.css";
 
-export * as SnmComponent from "../src/main"
+//export * as SnmComponent from "../src/main"
 
 ActiveStorage.start()
 Turbo.start()

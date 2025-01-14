@@ -1,12 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require("tailwindcss/plugin");
 
-const fs = require("node:fs");
-const svg2DataUri = (path) => {
-  svg = fs.readFileSync(`./frontend/assets/svg/${path}`, "utf-8");
-  return `url('data:image/svg+xml,${encodeURIComponent(svg)}')`;
-};
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -36,22 +30,6 @@ module.exports = {
         ab_gray: "#6F6969", //グレー
         ab_lightgray: "#F4F4F4", //淡いグレー
       },
-      content: {
-        homeIcon: svg2DataUri("home.svg"),
-        noticeIcon: svg2DataUri("notice.svg"),
-        userIcon: svg2DataUri("user.svg"),
-        workIcon: svg2DataUri("work.svg"),
-        personIcon: svg2DataUri("person.svg"),
-        workerIcon: svg2DataUri("worker.svg"),
-        websiteIcon: svg2DataUri("website.svg"),
-        dbIcon: svg2DataUri("db.svg"),
-        fileIcon: svg2DataUri("file.svg"),
-        mailIcon: svg2DataUri("mail.svg"),
-        penIcon: svg2DataUri("pen.svg"),
-        commandIcon: svg2DataUri("command.svg"),
-        rollerIcon: svg2DataUri("roller.svg"),
-        adminIcon: svg2DataUri("admin.svg"),
-      },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
@@ -61,7 +39,8 @@ module.exports = {
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         ".bg-dropdownIcon": {
-          "background-image": svg2DataUri("dropdown.svg"),
+          // URI.encode_uri_component(File.read('app/assets/icons/dropdown.svg'))
+          "background-image": "url(data:image/svg+xml,%3Csvg%20width%3D%2212%22%20height%3D%226%22%20viewBox%3D%220%200%2014%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M1%201L7%207L13%201%22%20stroke%3D%22%235E6366%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E%0A)",
         },
       };
       addUtilities(newUtilities);
