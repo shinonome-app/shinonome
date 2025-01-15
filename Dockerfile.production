@@ -7,16 +7,6 @@ RUN apt-get update -qq && apt-get upgrade -y && apt-get install -y build-essenti
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && truncate -s 0 /var/log/*log
 
-# Install node
-RUN mkdir -p /etc/apt/keyrings; \
-  curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg2 --dearmor -o /etc/apt/keyrings/nodesource.gpg; \
-  echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list; \
-  apt-get update -qq && apt-get install -y nodejs \
-  && apt-get clean \
-  && rm -rf /var/cache/apt/archives/* \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && truncate -s 0 /var/log/*log
-
 # Mount $PWD to this workdir
 RUN mkdir /myapp
 WORKDIR /myapp
@@ -25,7 +15,6 @@ ARG GIT_SHA
 
 ENV LANG="C.UTF-8"
 ENV RAILS_ENV="production"
-ENV NODE_ENV="production"
 ENV SKYLIGHT_DEPLOY_GIT_SHA=$GIT_SHA
 
 COPY Gemfile /myapp/Gemfile
