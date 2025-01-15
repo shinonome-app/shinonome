@@ -21,7 +21,6 @@ people = (1..2000).map do |n|
     born_on: born_date,
     died_on: died_date,
     copyright_flag: rand(100) >= 90,
-    email: "shinonome+person#{n}@example.com",
     url: "https://shononome.example.com/dummy/people/#{n}",
     description: desc,
     sortkey: name.last.hiragana,
@@ -34,6 +33,7 @@ end
 person_secrets = (1..2000).map do |n|
   {
     person_id: n,
+    email: "shinonome+person#{n}@example.com",
     memo: "備考#{n}"
   }
 end
