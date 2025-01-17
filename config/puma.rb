@@ -28,6 +28,12 @@ threads threads_count, threads_count
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 port ENV.fetch('PORT', 3000)
 
+ssl_bind '0.0.0.0', '9292', {
+  key: 'config/cert/server.key',
+  cert: 'config/cert/server.crt',
+  verify_mode: 'none'
+}
+
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
 
@@ -37,3 +43,4 @@ plugin :tailwindcss if ENV.fetch("RAILS_ENV", "development") == "development"
 # Specify the PID file. Defaults to tmp/pids/server.pid in development.
 # In other environments, only set the PID file if requested.
 pidfile ENV['PIDFILE'] if ENV['PIDFILE']
+
