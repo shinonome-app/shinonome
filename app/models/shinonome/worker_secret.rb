@@ -20,7 +20,7 @@
 #
 
 module Shinonome
-  # 工作員非公開情報
+  # 耕作員非公開情報
   class WorkerSecret < ApplicationRecord
     belongs_to :user, class_name: 'Shinonome::User', optional: true
     belongs_to :worker

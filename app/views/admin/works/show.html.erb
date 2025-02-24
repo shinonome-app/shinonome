@@ -67,9 +67,9 @@
 </div>
 
 <!--著者データ end-->
-<!--工作員データ start-->
+<!--耕作員データ start-->
 <div class="mt-6">
-  <%= snm_headline h: 'h2' do %>工作員データ<% end %>
+  <%= snm_headline h: 'h2' do %>耕作員データ<% end %>
 
   <% @work.work_workers.order(%i[worker_role_id worker_id]).each do |work_worker| %>
   <% worker = work_worker.worker %>
@@ -78,7 +78,7 @@
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
-        ["工作員ID", link_to(worker.id, admin_worker_path(worker))],
+        ["耕作員ID", link_to(worker.id, admin_worker_path(worker))],
         ["読み", worker.name_kana],
         ["#{work_worker.worker_role.name}名", worker.name],
         ["e-mail", worker.worker_secret&.email],
@@ -93,10 +93,10 @@
 </div>
 
 <div class="mt-2 flex gap-2">
-  <%= snm_link "工作員関連づけ", href: new_admin_work_work_worker_path(@work) %>
+  <%= snm_link "耕作員関連づけ", href: new_admin_work_work_worker_path(@work) %>
 </div>
 
-<!--工作員データ end-->
+<!--耕作員データ end-->
 <!--底本データ start-->
 
 <div class="mt-6">

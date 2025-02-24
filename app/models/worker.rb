@@ -13,7 +13,7 @@
 #  updated_at :datetime         not null
 #
 
-# 工作員
+# 耕作員
 class Worker < ApplicationRecord
   PERSON_ID_TABLE = [
     %w[あ い う え お],
@@ -85,7 +85,7 @@ class Worker < ApplicationRecord
   validates :name, :name_kana, presence: true
 
   def self.csv_header
-    "工作員id,姓名,姓名読み,email,url,備考,最終更新日,更新者,姓名ソート用読み\r\n"
+    "耕作員id,姓名,姓名読み,email,url,備考,最終更新日,更新者,姓名ソート用読み\r\n"
   end
 
   def to_csv

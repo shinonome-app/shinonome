@@ -3,7 +3,7 @@
 module Shinonome
   class ExecCommand
     class Command
-      # 工作員追加
+      # 耕作員追加
       #
       # WorkerではなくWorkWorkerへの追加なのに注意
       class AddWorker < Base

@@ -47,7 +47,7 @@ describe Admin::Proofreads::OrdersController do
         expect(mail.from).to include('from@example.com')
         expect(mail.subject).to eq("「#{work.title} #{work.subtitle}」校正のお願い")
         expect(mail.body.encoded).to include('青空文庫は、以下の内容で校正申し入れのあった作品を、校正していただくための準備を終え')
-        expect(mail.body.encoded).to include("工作員ID：#{worker.id}")
+        expect(mail.body.encoded).to include("耕作員ID：#{worker.id}")
         expect(mail.body.encoded).to include("校正者名：#{worker.name}")
         expect(mail.body.encoded).to include("作品名　　　　　：#{work.title}")
       end
@@ -78,7 +78,7 @@ describe Admin::Proofreads::OrdersController do
         expect(mail.from).to include('from@example.com')
         expect(mail.subject).to eq("「#{work.title} #{work.subtitle}」校正のお願い")
         expect(mail.body.encoded).to include('青空文庫は、以下の内容で校正申し入れのあった作品を、校正していただくための準備を終え')
-        expect(mail.body.encoded).to include("工作員ID：#{worker.id}")
+        expect(mail.body.encoded).to include("耕作員ID：#{worker.id}")
         expect(mail.body.encoded).to include("校正者名：#{worker.name}")
         expect(mail.body.encoded).to include("作品名　　　　　：#{work.title}")
       end

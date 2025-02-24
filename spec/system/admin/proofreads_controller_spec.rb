@@ -26,7 +26,7 @@ describe Admin::ProofreadsController do
   end
 
   describe '#edit' do
-    context '工作員を新規登録する場合' do
+    context '耕作員を新規登録する場合' do
       it '対象の申請が一覧に表示される' do
         work = create(:work, :with_person, work_status_id: 5)
         original_book = create(:original_book, work:)
@@ -46,7 +46,7 @@ describe Admin::ProofreadsController do
         # expect(page).to have_field('出版社名', with: original_book.publisher)
       end
 
-      it '工作員を新規登録して再検索すると-1の値が設定される' do
+      it '耕作員を新規登録して再検索すると-1の値が設定される' do
         work = create(:work, :with_person, work_status_id: 5)
         original_book = create(:original_book, work:)
         proofread = create(:proofread, :non_ordered, work:, worker: nil)
@@ -55,7 +55,7 @@ describe Admin::ProofreadsController do
 
         click_on(proofread.work.title)
         expect(page).to have_content('申請内容確認')
-        choose '上記の内容で工作員を新規登録する'
+        choose '上記の内容で耕作員を新規登録する'
         click_on('再検索')
         expect(page).to have_content('申請内容確認')
         expect(page).to have_content(proofread.worker_name)
@@ -63,7 +63,7 @@ describe Admin::ProofreadsController do
         expect(page).to have_field('admin_proofread_form_original_book_title', with: original_book.title)
       end
 
-      it '再検索後そのまま登録すると新しい工作員が登録される' do
+      it '再検索後そのまま登録すると新しい耕作員が登録される' do
         work = create(:work, :with_person, work_status_id: 5)
         _original_book = create(:original_book, work:)
         proofread = create(:proofread, :non_ordered, work:, worker: nil)
@@ -72,7 +72,7 @@ describe Admin::ProofreadsController do
 
         click_on(proofread.work.title)
         expect(page).to have_content('申請内容確認')
-        choose '上記の内容で工作員を新規登録する'
+        choose '上記の内容で耕作員を新規登録する'
         click_on('再検索')
         click_on('関連付ける')
         expect(page).to have_content('Web校正受付管理')
@@ -109,7 +109,7 @@ describe Admin::ProofreadsController do
         fill_in '底本の親本名', with: '更新底本2'
         fill_in '底本の親本出版社名', with: '更新出版社名2'
         fill_in '底本の親本初版発行年', with: '更新初版発行年2'
-        choose '上記の内容で工作員を新規登録する'
+        choose '上記の内容で耕作員を新規登録する'
         click_on('再検索')
         click_on('関連付ける')
         expect(page).to have_content('更新しました')
@@ -127,8 +127,8 @@ describe Admin::ProofreadsController do
       end
     end
 
-    context '既存の工作員を適用する場合' do
-      it '工作員を新規登録して再検索すると-1の値が設定される' do
+    context '既存の耕作員を適用する場合' do
+      it '耕作員を新規登録して再検索すると-1の値が設定される' do
         work = create(:work, :with_person, work_status_id: 5)
         worker = create(:worker, name: '青空太郎')
         original_book = create(:original_book, work:)
@@ -146,7 +146,7 @@ describe Admin::ProofreadsController do
         expect(page).to have_field('admin_proofread_form_original_book_title', with: original_book.title)
       end
 
-      it '再検索後そのまま登録すると新しい工作員が登録される' do
+      it '再検索後そのまま登録すると新しい耕作員が登録される' do
         work = create(:work, :with_person, work_status_id: 5)
         worker = create(:worker, name: '青空太郎')
         _original_book = create(:original_book, work:)
@@ -174,8 +174,8 @@ describe Admin::ProofreadsController do
       end
     end
 
-    context '工作員が指定されている場合' do
-      it 'すでに工作員が設定されている' do
+    context '耕作員が指定されている場合' do
+      it 'すでに耕作員が設定されている' do
         work = create(:work, :with_person, work_status_id: 5)
         worker = create(:worker)
         original_book = create(:original_book, work:)
@@ -209,7 +209,7 @@ describe Admin::ProofreadsController do
         proofread.reload
         expect(worker.id).to eq proofread.worker_id
 
-        # 申請の工作員名等は指定された工作員の名前と異なっていても修正されない
+        # 申請の耕作員名等は指定された耕作員の名前と異なっていても修正されない
         expect(proofread.worker_name).not_to eq worker.name
         expect(proofread.worker_kana).not_to eq worker.name_kana
 

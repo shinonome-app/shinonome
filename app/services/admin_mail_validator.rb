@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# 工作員メール送信validation
+# 耕作員メール送信validation
 class AdminMailValidator
   def validate(admin_mail_params)
     @admin_mail_secret = AdminMailSecret.new(admin_mail_params)

@@ -17,7 +17,7 @@ RSpec.describe Shinonome::ExecCommand::Command::GetWorker do
         output_file = File.join(dir, 'worker.csv')
         File.open(output_file) do |f|
           line1 = f.gets
-          expect(line1).to eq "#{Shinonome::ExecCommand::BOM}工作員id,姓名,姓名読み,email,url,備考,最終更新日,更新者,姓名ソート用読み\r\n"
+          expect(line1).to eq "#{Shinonome::ExecCommand::BOM}耕作員id,姓名,姓名読み,email,url,備考,最終更新日,更新者,姓名ソート用読み\r\n"
 
           ## line 2
           line2 = f.gets

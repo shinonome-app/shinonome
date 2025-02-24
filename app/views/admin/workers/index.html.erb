@@ -1,9 +1,9 @@
 <div class="w-full md:w-2/3">
-  <%= snm_headline h: 'h1' do %>工作員一覧<% end %>
+  <%= snm_headline h: 'h1' do %>耕作員一覧<% end %>
 
   <div class="mt-10">
     <!--人物検索 start-->
-    <%= snm_headline h: 'h2' do %>工作員検索<% end %>
+    <%= snm_headline h: 'h2' do %>耕作員検索<% end %>
     <%= form_with(url: admin_workers_text_searches_path, method: 'get') do |form| %>
     <div class="flex gap-1 items-end">
       <%= render(Admin::TextSearchInputComponent.new(form:, label: "姓名読み", name: "name_kana")) %>
@@ -24,7 +24,7 @@
 <div class="mt-10 flex flex-col lg:flex-row gap-10">
   <%= form_with(url: admin_workers_worker_index_searches_path, method: 'get') do |form| %>
   <div>
-    <%= snm_headline h: 'h2' do %>工作員50音順インデックス<% end %>
+    <%= snm_headline h: 'h2' do %>耕作員50音順インデックス<% end %>
     <%= render(Admin::SyllabaryTableComponent.new(key: "worker")) %>
   </div>
   <% end %>

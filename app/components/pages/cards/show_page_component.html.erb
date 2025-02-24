@@ -232,9 +232,9 @@
     <% end %>
   </div>
 
-  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_2">工作員データ</a></h2>
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_2">耕作員データ</a></h2>
   <div class="p-4">
-    <table summary="工作員データ">
+    <table summary="耕作員データ">
       <% work.work_workers.order(:worker_role_id).each do | work_worker | %>
       <tr>
         <th class="text-left text-red-800"><%= work_worker.worker_role.name %>：</th>

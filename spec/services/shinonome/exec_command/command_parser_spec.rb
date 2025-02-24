@@ -79,7 +79,7 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
         expect(parsed[3].body).to eq(%w[5699 翻訳者])
         expect(parsed[3].command_class).to eq(Shinonome::ExecCommand::Command::AddPerson)
 
-        expect(parsed[4].name).to eq('工作員追加')
+        expect(parsed[4].name).to eq('耕作員追加')
         expect(parsed[4].body).to eq(%w[12345 入力者])
         expect(parsed[4].command_class).to eq(Shinonome::ExecCommand::Command::AddWorker)
       end
@@ -131,7 +131,7 @@ RSpec.describe Shinonome::ExecCommand::CommandParser do
         expect(parsed[3].body).to eq(%w[5699 翻訳者])
         expect(parsed[3].command_class).to eq(Shinonome::ExecCommand::Command::AddPerson)
 
-        expect(parsed[4].name).to eq('工作員追加')
+        expect(parsed[4].name).to eq('耕作員追加')
         expect(parsed[4].body).to eq(%w[12345 入力者])
         expect(parsed[4].command_class).to eq(Shinonome::ExecCommand::Command::AddWorker)
       end
