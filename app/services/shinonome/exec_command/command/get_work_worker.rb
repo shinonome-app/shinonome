@@ -3,7 +3,7 @@
 module Shinonome
   class ExecCommand
     class Command
-      # 工作員関連づけ取得
+      # 耕作員関連づけ取得
       class GetWorkWorker < Base
         def execute(_command, output_dir:)
           filename = 'book_worker.csv'

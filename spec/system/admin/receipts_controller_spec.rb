@@ -24,12 +24,12 @@ describe Admin::ReceiptsController do
     end
   end
 
-  describe '工作員の新規登録の申請受理' do
+  describe '耕作員の新規登録の申請受理' do
     before do
       Capybara.current_session.driver.browser.manage.window.resize_to(1280, 4000)
     end
 
-    it '工作員IDが入力されていない場合、工作員名はフォームになる' do
+    it '耕作員IDが入力されていない場合、耕作員名はフォームになる' do
       receipt = create(:receipt, :non_ordered, :without_worker)
 
       visit "/admin/receipts/#{receipt.id}/edit"
@@ -38,12 +38,12 @@ describe Admin::ReceiptsController do
       expect(page).to have_field('作品名読み', with: receipt.title_kana)
     end
 
-    it '工作員を新規登録して再検索すると-1の値が設定される' do
+    it '耕作員を新規登録して再検索すると-1の値が設定される' do
       receipt = create(:receipt, :non_ordered, :without_worker)
 
       visit "/admin/receipts/#{receipt.id}/edit"
 
-      choose '上記の内容で工作員を新規登録する'
+      choose '上記の内容で耕作員を新規登録する'
       click_on('再検索')
       expect(page).to have_content('申請内容確認')
       expect(page).to have_content(receipt.worker_name)
@@ -55,7 +55,7 @@ describe Admin::ReceiptsController do
 
       visit "/admin/receipts/#{receipt.id}/edit"
 
-      choose '上記の内容で工作員を新規登録する'
+      choose '上記の内容で耕作員を新規登録する'
       click_on('再検索')
       click_on('登録する')
       expect(page).to have_content('申請内容詳細')
@@ -67,12 +67,12 @@ describe Admin::ReceiptsController do
     end
   end
 
-  describe '人物と工作員両方の新規登録の申請受理' do
+  describe '人物と耕作員両方の新規登録の申請受理' do
     before do
       Capybara.current_session.driver.browser.manage.window.resize_to(1280, 4000)
     end
 
-    it '工作員名と著者データはフォームになる' do
+    it '耕作員名と著者データはフォームになる' do
       receipt = create(:receipt, :non_ordered, :without_worker, :without_person)
 
       visit "/admin/receipts/#{receipt.id}/edit"
@@ -83,12 +83,12 @@ describe Admin::ReceiptsController do
       expect(page).to have_field('作品名読み', with: receipt.title_kana)
     end
 
-    it '工作員を新規登録して再検索すると-1の値が設定される' do
+    it '耕作員を新規登録して再検索すると-1の値が設定される' do
       receipt = create(:receipt, :non_ordered, :without_worker, :without_person)
 
       visit "/admin/receipts/#{receipt.id}/edit"
 
-      choose '上記の内容で工作員を新規登録する'
+      choose '上記の内容で耕作員を新規登録する'
       within('#worker-selector') do
         click_on('再検索')
       end
@@ -97,12 +97,12 @@ describe Admin::ReceiptsController do
       expect(page).to have_content('-1')
     end
 
-    it '工作員と人物の再検索後、登録まで実行すると登録され申請内容詳細が表示される' do
+    it '耕作員と人物の再検索後、登録まで実行すると登録され申請内容詳細が表示される' do
       receipt = create(:receipt, :non_ordered, :without_worker, :without_person)
 
       visit "/admin/receipts/#{receipt.id}/edit"
 
-      choose '上記の内容で工作員を新規登録する'
+      choose '上記の内容で耕作員を新規登録する'
       within('#worker-selector') do
         click_on('再検索')
       end
@@ -130,7 +130,7 @@ describe Admin::ReceiptsController do
       Capybara.current_session.driver.browser.manage.window.resize_to(1280, 4000)
     end
 
-    it '人物（著者なし）工作員を新規登録するとperson_id:0で登録される' do
+    it '人物（著者なし）耕作員を新規登録するとperson_id:0で登録される' do
       receipt = create(:receipt, :non_ordered, :without_person)
 
       visit "/admin/receipts/#{receipt.id}/edit"

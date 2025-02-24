@@ -21,8 +21,8 @@ describe ReceiptsController do
 
     it '一通り入力して確認すると確認画面に進む' do
       visit '/receipts/new'
-      fill_in '工作員読み', with: 'あおぞらたろう'
-      fill_in '工作員名', with: '青空太郎'
+      fill_in '耕作員読み', with: 'あおぞらたろう'
+      fill_in '耕作員名', with: '青空太郎'
       fill_in 'e-mail', with: 'test@example.com'
       fill_in 'ホームページ', with: 'http://sample.example.com'
       fill_in 'receipt_form_last_name_kana', with: 'あくたがわ'
@@ -62,8 +62,8 @@ describe ReceiptsController do
 
     it '一通り入力して確認→登録すると登録される' do
       visit '/receipts/new'
-      fill_in '工作員読み', with: 'あおぞらたろう'
-      fill_in '工作員名', with: '青空太郎'
+      fill_in '耕作員読み', with: 'あおぞらたろう'
+      fill_in '耕作員名', with: '青空太郎'
       fill_in 'e-mail', with: 'test@example.com'
       fill_in 'ホームページ', with: 'http://sample.example.com'
       fill_in 'receipt_form_last_name_kana', with: 'あくたがわ'
@@ -110,11 +110,11 @@ describe ReceiptsController do
       expect(receipt.publisher2).to eq '筑摩書房'
     end
 
-    it '存在しない工作員IDを入力するとエラーが表示される' do
+    it '存在しない耕作員IDを入力するとエラーが表示される' do
       visit '/receipts/new'
-      fill_in '工作員ID', with: '111111111'
-      fill_in '工作員読み', with: 'あおぞらたろう'
-      fill_in '工作員名', with: '青空太郎'
+      fill_in '耕作員ID', with: '111111111'
+      fill_in '耕作員読み', with: 'あおぞらたろう'
+      fill_in '耕作員名', with: '青空太郎'
       fill_in 'e-mail', with: 'test@example.com'
       fill_in 'receipt_form_last_name_kana', with: 'あくたがわ'
       fill_in 'receipt_form_last_name', with: '芥川'
@@ -142,13 +142,13 @@ describe ReceiptsController do
 
       click_on('確認')
       expect(page).to have_content('1件のエラーが見つかりました')
-      expect(page).to have_content('工作員IDは不正な値です')
+      expect(page).to have_content('耕作員IDは不正な値です')
     end
 
-    it '正しい工作員IDを入力すると、工作員名がなくてもエラーにはならない' do
+    it '正しい耕作員IDを入力すると、耕作員名がなくてもエラーにはならない' do
       worker = create(:worker)
       visit '/receipts/new'
-      fill_in '工作員ID', with: worker.id
+      fill_in '耕作員ID', with: worker.id
       fill_in 'e-mail', with: 'test@example.com'
       fill_in 'receipt_form_last_name_kana', with: 'あくたがわ'
       fill_in 'receipt_form_last_name', with: '芥川'

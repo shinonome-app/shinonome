@@ -4,25 +4,25 @@
 
   <div class="border-2 border-gray-500 my-4 mx-12 p-4 bg-yellow-100 text-base">
     <ul class="my-2 mx-8 list-disc text-base">
-      <li>まず<a href="/idlist/" target="_blank">「工作員ID一覧」</a>を参照して、IDを入力してください。</li>
+      <li>まず<a href="/idlist/" target="_blank">「耕作員ID一覧」</a>を参照して、IDを入力してください。</li>
       <li>IDが入力されていれば、<span class="text-red-500">（必須）</span>の項目も含めて、その他の項目の記入は必要ありません。</li>
-      <li>工作員IDのない人は、「入力者データ」に、お名前とメールアドレスを書き込んでください。仮名、ハンドルネームでもかまいません。</li>
+      <li>耕作員IDのない人は、「入力者データ」に、お名前とメールアドレスを書き込んでください。仮名、ハンドルネームでもかまいません。</li>
     </ul>
   </div>
   <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
     <div class="flex-1 mr-2">
-      <%= form.label :worker_id, class: "mb-2 text-lg text-grey-darkest" do %>工作員ID<% end %>
+      <%= form.label :worker_id, class: "mb-2 text-lg text-grey-darkest" do %>耕作員ID<% end %>
       <%= form.text_field :worker_id, class: "border border-gray-400 py-2 px-2 text-grey-darkest w-full" %>
     </div>
     <div class="flex-1 text-base m-auto">
       123<br>
-      ※工作員IDは、<a href="/idlist/" target="_blank">「工作員ID一覧」</a>を参照してください。<br>
+      ※耕作員IDは、<a href="/idlist/" target="_blank">「耕作員ID一覧」</a>を参照してください。<br>
       IDを入力できれば、その他の項目を記入する必要はありません。
     </div>
   </div>
   <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
     <div class="flex-1 mr-2">
-      <%= form.label :worker_kana, class: "mb-2 text-lg text-grey-darkest" do %>工作員読み<span class="text-red-500">（必須）</span><% end %>
+      <%= form.label :worker_kana, class: "mb-2 text-lg text-grey-darkest" do %>耕作員読み<span class="text-red-500">（必須）</span><% end %>
       <%= form.text_field :worker_kana, class: "border border-gray-400 py-2 px-3 text-grey-darkest w-full" %>
     </div>
     <div class="flex-1 text-base m-auto">
@@ -31,7 +31,7 @@
   </div>
   <div class="flex flex-col md:flex-row mb-3 bg-blue-200 p-2">
     <div class="flex-1 mr-2">
-      <%= form.label :worker_name, class: "mb-2 text-lg text-grey-darkest" do %>工作員名<span class="text-red-500">（必須）</span><% end %>
+      <%= form.label :worker_name, class: "mb-2 text-lg text-grey-darkest" do %>耕作員名<span class="text-red-500">（必須）</span><% end %>
       <%= form.text_field :worker_name, class: "border border-gray-400 py-2 px-3 text-grey-darkest w-full" %>
     </div>
     <div class="flex-1 text-base  m-auto">

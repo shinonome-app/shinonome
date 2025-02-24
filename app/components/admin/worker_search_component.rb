@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  # 工作員検索用フォーム
+  # 耕作員検索用フォーム
   class WorkerSearchComponent < ViewComponent::Base
     attr_reader :form_url
 

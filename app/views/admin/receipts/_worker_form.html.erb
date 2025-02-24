@@ -12,7 +12,7 @@
   <tbody>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
       <td class="odd:w-[25%] py-3 px-5">
-        工作員ID
+        耕作員ID
       </td>
       <td class="odd:w-[25%] py-3 px-5">
         <%= text_field_tag :worker_id_disabled, nil, disabled: true, autocomplete: :off, class: "w-full p-1 bg-gray-100" %>
@@ -20,7 +20,7 @@
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
       <td class="odd:w-[25%] py-3 px-5">
-        工作員名読み
+        耕作員名読み
       </td>
       <td class="odd:w-[25%] py-3 px-5">
         <%= render(Admin::SnmTextFieldComponent.new(form:, name: :worker_kana, label: '', errors:)) %>
@@ -28,7 +28,7 @@
     </tr>
     <tr class="h-10 even:bg-[#f8fafc] whitespace-nowrap">
       <td class="odd:w-[25%] py-3 px-5">
-        工作員名
+        耕作員名
       </td>
       <td class="odd:w-[25%] py-3 px-5">
         <%= render(Admin::SnmTextFieldComponent.new(form:, name: :worker_name, label: '', errors:)) %>
@@ -54,7 +54,7 @@
 </table>
 
 <div class="py-4" id="worker-selector">
-  <%= snm_headline h: 'h3' do %>工作員選択オプション<% end %>
+  <%= snm_headline h: 'h3' do %>耕作員選択オプション<% end %>
 
   <% if errors[:worker_id]&.any? %>
   <%= tag.div errors.full_messages_for(:worker_id).join(', '), class: "text-sm text-red-500 required:block" %>
@@ -62,11 +62,11 @@
 
   <div class="mb-2">
     <%= form.radio_button :worker_id, -1 %>
-    <%= form.label :worker_id, '上記の内容で工作員を新規登録する', value: -1 %>
+    <%= form.label :worker_id, '上記の内容で耕作員を新規登録する', value: -1 %>
   </div>
   <div class="mb-2">
     <%= form.radio_button :worker_id, 0 %>
-    <%= form.label :worker_id, '一時的に予備工作員に関連付ける', value: 0 %>
+    <%= form.label :worker_id, '一時的に予備耕作員に関連付ける', value: 0 %>
   </div>
   <% receipt_form.search_similar_workers.each do |searched_worker| %>
   <div class="mb-2">

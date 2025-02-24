@@ -25,7 +25,7 @@
 #  fk_rails_...  (worker_role_id => worker_roles.id)
 #
 
-# 作品・工作員関連付け
+# 作品・耕作員関連付け
 class WorkWorker < ApplicationRecord
   belongs_to :work
   belongs_to :worker
@@ -34,7 +34,7 @@ class WorkWorker < ApplicationRecord
   validates :worker_id, uniqueness: { scope: %i[work_id worker_role_id], message: 'がすでに関連付けられています' }
 
   def self.csv_header
-    "bookid,工作員id,役割フラグ\r\n"
+    "bookid,耕作員id,役割フラグ\r\n"
   end
 
   def to_csv

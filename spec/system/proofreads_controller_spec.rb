@@ -27,7 +27,7 @@ describe ProofreadsController do
       create(:work_person, work: work2, person:)
     end
 
-    context '入力フォームで工作員IDを入力する場合' do
+    context '入力フォームで耕作員IDを入力する場合' do
       it '確認画面では名前のみ表示し、メールアドレス等は表示しない' do
         visit "/proofreads/people/#{person.id}"
 
@@ -37,14 +37,14 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
-        fill_in '工作員ID', with: worker.id
+        fill_in '耕作員ID', with: worker.id
 
         click_on('確認')
 
         expect(page).to have_content('校正受付システム：記入事項の確認')
 
         # 名前は表示する
-        expect(page).to have_content('工作員名（必須） 青空太郎')
+        expect(page).to have_content('耕作員名（必須） 青空太郎')
 
         # メールアドレスやURLは非公開なので表示しない
         expect(page).to have_no_content('taro@example.com')
@@ -60,7 +60,7 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
-        fill_in '工作員ID', with: worker.id
+        fill_in '耕作員ID', with: worker.id
         check('要コピー')
 
         click_on('確認')
@@ -81,7 +81,7 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
-        fill_in '工作員ID', with: worker.id
+        fill_in '耕作員ID', with: worker.id
 
         click_on('確認')
 
@@ -111,7 +111,7 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
-        fill_in '工作員ID', with: worker.id
+        fill_in '耕作員ID', with: worker.id
         fill_in '送付先', with: "送付先A\n送付先B\n送付先C\n"
         check('要コピー')
         check('要プリントアウト')
@@ -135,7 +135,7 @@ describe ProofreadsController do
       end
     end
 
-    context '入力フォームで工作員の名前を入力する場合' do
+    context '入力フォームで耕作員の名前を入力する場合' do
       it '名前のみではエラーになる' do
         visit "/proofreads/people/#{person.id}"
 
@@ -145,8 +145,8 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
-        fill_in '工作員読み', with: 'こうさくいんいち'
-        fill_in '工作員名', with: '工作員1'
+        fill_in '耕作員読み', with: 'こうさくいんいち'
+        fill_in '耕作員名', with: '耕作員1'
 
         click_on('確認')
 
@@ -155,7 +155,7 @@ describe ProofreadsController do
         expect(page).to have_content('e-mailを入力してください')
 
         # 名前はフォームに残っている
-        expect(page).to have_content('工作員名（必須） 青空太郎')
+        expect(page).to have_content('耕作員名（必須） 青空太郎')
       end
 
       it '全部入力すると確認画面に進む' do
@@ -167,8 +167,8 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
-        fill_in '工作員読み', with: 'こうさくいんいち'
-        fill_in '工作員名', with: '工作員1'
+        fill_in '耕作員読み', with: 'こうさくいんいち'
+        fill_in '耕作員名', with: '耕作員1'
         fill_in 'e-mail', with: 'user1@example.com'
         fill_in 'ホームページ', with: 'https://example.com/user1'
 
@@ -177,7 +177,7 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：記入事項の確認')
 
         # 名前に加えて、メールアドレスやURLも表示する
-        expect(page).to have_content('工作員1')
+        expect(page).to have_content('耕作員1')
         expect(page).to have_content('連絡事項1')
         expect(page).to have_content('user1@example.com')
         expect(page).to have_content('https://example.com/user1')
@@ -194,8 +194,8 @@ describe ProofreadsController do
         expect(page).to have_content('校正受付システム：必要事項の記入')
 
         fill_in '連絡事項', with: '連絡事項1'
-        fill_in '工作員読み', with: 'こうさくいんいち'
-        fill_in '工作員名', with: '工作員1'
+        fill_in '耕作員読み', with: 'こうさくいんいち'
+        fill_in '耕作員名', with: '耕作員1'
         fill_in 'e-mail', with: 'user1@example.com'
         fill_in 'ホームページ', with: 'https://example.com/user1'
 
@@ -209,7 +209,7 @@ describe ProofreadsController do
 
         proofread = Proofread.last
         expect(proofread.worker_id).to be_nil
-        expect(proofread.worker_name).to eq '工作員1'
+        expect(proofread.worker_name).to eq '耕作員1'
         expect(proofread.worker_kana).to eq 'こうさくいんいち'
         expect(proofread.email).to eq 'user1@example.com'
         expect(proofread.need_print?).to be false

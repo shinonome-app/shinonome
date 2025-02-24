@@ -8,7 +8,7 @@ module Shinonome
         '底本追加' => AddOriginalBook,
         '分類追加' => AddBibclass,
         '人物追加' => AddPerson,
-        '工作員追加' => AddWorker,
+        '耕作員追加' => AddWorker,
         'サイト追加' => AddSite,
         'ファイル追加' => AddFile,
         '作品更新' => EditWork,
@@ -32,7 +32,7 @@ module Shinonome
         'person' => GetPerson,
         'worker' => GetWorker,
         'site' => GetSite,
-        '工作員削除' => DeleteWorker
+        '耕作員削除' => DeleteWorker
       }.freeze
 
       attr_reader :name, :body, :row

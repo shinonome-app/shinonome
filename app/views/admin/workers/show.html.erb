@@ -1,9 +1,9 @@
 <div>
-  <%= snm_headline h: 'h1' do %>工作員データ<% end %>
+  <%= snm_headline h: 'h1' do %>耕作員データ<% end %>
 
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
-        ["工作員ID", @worker.id],
+        ["耕作員ID", @worker.id],
         ["姓名読み", @worker.name_kana],
         ["ソート用読み", @worker.sortkey],
         ["姓名", @worker.name],

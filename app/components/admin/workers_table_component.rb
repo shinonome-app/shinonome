@@ -7,7 +7,7 @@ module Admin
 
     def initialize(workers:, pagy:)
       super
-      @header = %w[工作員ID 姓名 読み]
+      @header = %w[耕作員ID 姓名 読み]
       @workers = workers
       @pagy = pagy
       @classes = ['text-center w-20', 'text-center w-36', 'text-center']

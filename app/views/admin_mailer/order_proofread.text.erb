@@ -7,7 +7,7 @@
 
 ――――――――――
 校正者名：<%= @worker.name %>
-工作員ID：<%= @worker.id %>
+耕作員ID：<%= @worker.id %>
 ――――――――――
 作品名　　　　　：<%= @work.title %>
 仮名遣い種別　　：<%= @work.kana_type_name %>
@@ -36,7 +36,7 @@ https://www.aozora.gr.jp/index_pages/index_top.html
 ・校正作業が完了したら、修正済みのファイルと、作業履歴ファイルを圧縮し、メールに添付
 して、reception@aozora.gr.jp 宛に送ってください。
 
-・「<%= @worker.name %>」さんの工作員IDは、<%= @worker.id %> です。IDを記入すると、入力、校正の申し入
+・「<%= @worker.name %>」さんの耕作員IDは、<%= @worker.id %> です。IDを記入すると、入力、校正の申し入
 れ作業を簡単に進めることができます。
 
 <%= @mail_memo %>

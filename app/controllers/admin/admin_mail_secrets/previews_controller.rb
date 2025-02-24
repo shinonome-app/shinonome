@@ -2,7 +2,7 @@
 
 module Admin
   module AdminMailSecrets
-    # 工作員メール送信プレビュー用
+    # 耕作員メール送信プレビュー用
     class PreviewsController < ApplicationController
       # POST /admin/admin_mail_serets/previews
       def create

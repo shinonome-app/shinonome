@@ -13,9 +13,9 @@ ja:
         note: "備考"
         copyright_flag: "著作権"
         work_status: "状態"
-        worker_id: "工作員ID"
-        worker_kana: "工作員読み"
-        worker_name: "工作員名"
+        worker_id: "耕作員ID"
+        worker_kana: "耕作員読み"
+        worker_name: "耕作員名"
         email: "e-mail"
         url: "ホームページ"
         person_id: "人物ID"
@@ -44,7 +44,7 @@ ja:
         print: プリントアウト
         address: 送付先
         memo: 連絡事項
-        worker_id: 工作員ID
+        worker_id: 耕作員ID
         worker_kana: 姓名読み
         worker_name: 姓名
         email: e-mail
@@ -58,17 +58,17 @@ ja:
         publisher2: 底本の親本出版社名
         first_pubdate2: 底本の親本初版発行年
       proofread_form:
-        worker_id: "工作員ID"
-        worker_kana: "工作員読み"
-        worker_name: "工作員名"
+        worker_id: "耕作員ID"
+        worker_kana: "耕作員読み"
+        worker_name: "耕作員名"
         email: "e-mail"
         url: "ホームページ"
         address: "送付先"
         memo: "連絡事項"
       receipt_form:
-        worker_id: "工作員ID"
-        worker_kana: "工作員読み"
-        worker_name: "工作員名"
+        worker_id: "耕作員ID"
+        worker_kana: "耕作員読み"
+        worker_name: "耕作員名"
         email: "e-mail"
         url: "ホームページ"
         person_id: "人物ID"
@@ -121,18 +121,18 @@ ja:
       person: 人物
       receipt: 入力申請
       site: 関連サイト
-      worker: 工作員
+      worker: 耕作員
       user: ユーザー
       shinonome/user: ユーザー
-      worker: 工作員
-      work_worker: 工作員関連づけ
+      worker: 耕作員
+      work_worker: 耕作員関連づけ
       workfile: 作品ファイル
       workfile_secret: 作品ファイル(非公開情報)
     attributes:
       admin_mail_secret:
         subject: 件名
         body: 本文
-        worker_id: 工作員ID
+        worker_id: 耕作員ID
         cc_flag: 青空文庫にCCする
       base_person:
         id: "ID"
@@ -187,15 +187,15 @@ ja:
         person_id: "人物ID"
         site_id: "関連サイトID"
       proofread:
-        worker_id: "工作員ID"
-        worker_kana: "工作員読み"
-        worker_name: "工作員名"
+        worker_id: "耕作員ID"
+        worker_kana: "耕作員読み"
+        worker_name: "耕作員名"
         email: "e-mail"
         url: "ホームページ"
       receipt:
-        worker_id: "工作員ID"
-        worker_kana: "工作員読み"
-        worker_name: "工作員名"
+        worker_id: "耕作員ID"
+        worker_kana: "耕作員読み"
+        worker_name: "耕作員名"
         email: "e-mail"
         url: "ホームページ"
         person_id: "人物ID"
@@ -275,10 +275,10 @@ ja:
         site_id: "サイト"
       work_worker:
         work_id: "作品ID"
-        worker_id: "工作員ID"
+        worker_id: "耕作員ID"
         worker_role_id: "役割"
       worker:
-        id: "工作員ID"
+        id: "耕作員ID"
         name: "姓名"
         name_kana: "姓名読み"
         sortkey: "ソート用読み"
@@ -344,8 +344,8 @@ ja:
       work_not_found: "対象の作品ID%{work_id}がありません。"
       work_status_invalid: "状態には%{work_statuses}を指定してください。"
       workfile_not_found: "指定されたIDのファイルが見つかりません。"
-      worker_id_numeric: "工作員IDが数値ではありません。"
-      worker_not_found: "対象の工作員ID%{work_id}が見つかりません。"
+      worker_id_numeric: "耕作員IDが数値ではありません。"
+      worker_not_found: "対象の耕作員ID%{work_id}が見つかりません。"
       worker_role_invalid: "役割フラグには%{worker_roles}を指定してください。"
       booktype_invalid: "種別フラグには%{booktypes}を指定してください。"
   admin_mailer:

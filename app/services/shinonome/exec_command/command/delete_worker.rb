@@ -3,7 +3,7 @@
 module Shinonome
   class ExecCommand
     class Command
-      # 工作員削除
+      # 耕作員削除
       class DeleteWorker < Base
         def execute(command)
           work_id, worker_id = command.body

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# 工作員メール送信
+# 耕作員メール送信
 class AdminMailSender
   def send(admin_mail_params)
     admin_mail_secret = AdminMailSecret.new(admin_mail_params)
