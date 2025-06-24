@@ -1,57 +1,63 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/docker-existing-docker-compose
-// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 {
-	"name": "shinonome",
-
-	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
-	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
-	"dockerComposeFile": [
-		"../docker-compose.yml",
-		"docker-compose.yml"
-	],
-
-	// The 'service' property is the name of the service for the container that VS Code should
-	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
-	"service": "app",
-
-	// The optional 'workspaceFolder' property is the path VS Code should open by default when
-	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/app",
-
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-	  "terminal.integrated.shell.linux": null,
-      "solargraph.useBundler": true,
-      "solargraph.bundlerPath": "/usr/local/bin/bundle"
-	},
-
-	// Add the IDs of extensions you want installed when the container is created.
-    "extensions": [
-      "dbaeumer.vscode-eslint",
-      "github.vscode-pull-request-github",
-      "oderwat.indent-rainbow",
-      "esbenp.prettier-vscode",
-      "mechatroner.rainbow-csv",
-      "rebornix.ruby",
-      "octref.vetur",
-      "visualstudioexptteam.vscodeintellicode",
-      "redhat.vscode-yaml",
-      "castwide.solargraph"
-    ]
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000],
-
-	// Uncomment the next line if you want start specific services in your Docker Compose config.
-	"runServices": [],
-
-	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
-	// "shutdownAction": "none",
-
-	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	"postCreateCommand": "apt-get update && apt-get install -y curl less",
-
-	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+  "name": "SHINONOME Rails Development",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.Ruby",
+        "wingrunr21.vscode-ruby",
+        "shopify.ruby-lsp",
+        "ms-vscode.vscode-json",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-rename-tag",
+        "ms-vscode.vscode-typescript-next",
+        "ms-vsliveshare.vsliveshare"
+      ],
+      "settings": {
+        "ruby.rubocop.onSave": true,
+        "ruby.format": "rubocop",
+        "ruby.lint": {
+          "rubocop": true
+        },
+        "emmet.includeLanguages": {
+          "erb": "html"
+        },
+        "files.associations": {
+          "*.html.erb": "erb"
+        },
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[ruby]": {
+          "editor.defaultFormatter": "wingrunr21.vscode-ruby"
+        }
+      }
+    }
+  },
+  
+  "forwardPorts": [3000, 3035],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails Server",
+      "onAutoForward": "openBrowser",
+      "protocol": "http"
+    },
+    "3035": {
+      "label": "Tailwind Watcher",
+      "onAutoForward": "silent"
+    }
+  },
+  
+  "postCreateCommand": "bundle install && bin/rails db:prepare",
+  "postStartCommand": "bin/dev",
+  
+  "remoteUser": "vscode"
 }
