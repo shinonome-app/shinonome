@@ -47,6 +47,8 @@ FactoryBot.define do
     filename { nil }
     revision_count { 1 }
 
+    filetype { Filetype.find(1) }
+    compresstype { Compresstype.find(1) }
     charset_id { 1 }
     file_encoding_id { 1 }
 
