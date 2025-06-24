@@ -68,8 +68,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include ActionDispatch::TestProcess::FixtureFile
   config.include Devise::Test::IntegrationHelpers, type: :request
-  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include RequestSpecHelper, type: :request
+  config.include SystemSpecHelper, type: :system
   config.include ViewComponent::TestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
   config.include ActiveJob::TestHelper
@@ -79,6 +79,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 2000]
+    driven_by :selenium_chrome_headless, screen_size: [1400, 2000]
   end
 end
