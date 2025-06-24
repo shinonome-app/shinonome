@@ -34,12 +34,12 @@ describe Admin::Proofreads::OrdersController do
 
         perform_enqueued_jobs do
           click_on '送付する'
+
+          expect(page).to have_content('送信しました')
+          expect(page).to have_current_path(admin_proofreads_path, ignore_query: true)
         end
 
-        expect(page).to have_content('送信しました')
-        expect(page).to have_current_path(admin_proofreads_path, ignore_query: true)
-        # 成功のフラッシュメッセージとリダイレクト先を確認
-
+        # perform_enqueued_jobsブロック完了後にメールをチェック
         expect(ActionMailer::Base.deliveries.size).to eq(1)
 
         mail = ActionMailer::Base.deliveries.last
@@ -64,11 +64,10 @@ describe Admin::Proofreads::OrdersController do
         check '青空文庫にCCする'
         perform_enqueued_jobs do
           click_on '送付する'
-        end
 
-        expect(page).to have_content('送信しました')
-        expect(page).to have_current_path(admin_proofreads_path, ignore_query: true)
-        # 成功のフラッシュメッセージとリダイレクト先を確認
+          expect(page).to have_content('送信しました')
+          expect(page).to have_current_path(admin_proofreads_path, ignore_query: true)
+        end
 
         expect(ActionMailer::Base.deliveries.size).to eq(1)
 
