@@ -4,11 +4,11 @@
   "service": "app",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
-  
+
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  
+
   "customizations": {
     "vscode": {
       "extensions": [
@@ -42,7 +42,7 @@
       }
     }
   },
-  
+
   "forwardPorts": [3000, 3035],
   "portsAttributes": {
     "3000": {
@@ -55,9 +55,8 @@
       "onAutoForward": "silent"
     }
   },
-  
+
   "postCreateCommand": "bundle install && bin/rails db:prepare",
-  "postStartCommand": "bin/dev",
-  
+
   "remoteUser": "vscode"
 }

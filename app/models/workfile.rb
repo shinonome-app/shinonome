@@ -148,15 +148,12 @@ class Workfile < ApplicationRecord
 
   # ファイル内容の取得（ActiveStorageとFilesystemの両方に対応）
   def content
-    # テスト環境ではActiveStorageを優先、本番ではFilesystemを優先
-    if Rails.env.test? && workdata.attached?
-      workdata.download
-    elsif filesystem.exists?
+    # Phase 2: ファイルシステムを優先、ActiveStorageは後方互換性のみ
+    if filesystem.exists?
       filesystem.read
     elsif workdata.attached?
+      Rails.logger.warn "ActiveStorage fallback used for workfile ID: #{id}"
       workdata.download
-    else
-      nil
     end
   end
 
@@ -169,6 +166,11 @@ class Workfile < ApplicationRecord
     else
       filesize || 0
     end
+  end
+
+  # ActiveStorageファイルの削除（移行時のみ使用）
+  def purge_activestorage_file
+    workdata.purge if workdata.attached?
   end
 
   def uncompressed_workdata

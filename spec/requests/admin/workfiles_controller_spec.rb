@@ -153,4 +153,148 @@ RSpec.describe Admin::WorkfilesController do
       expect(response).to redirect_to(admin_work_url(work))
     end
   end
+
+  # Filesystem integration tests
+  describe 'filesystem integration' do
+    let(:person) { create(:person) }
+    let(:work_with_author) { create(:work) }
+    let(:zip_file) { fixture_file_upload('zip/sample.zip', 'application/zip') }
+    let(:zip_filetype) { Filetype.find_by(name: 'ZIP ファイル') || create(:filetype, name: 'ZIP ファイル', extension: 'zip') }
+
+    let(:filesystem_attributes) do
+      {
+        work_id: work_with_author.id,
+        filetype_id: zip_filetype.id,
+        compresstype_id: compresstype.id,
+        file_encoding_id: file_encoding.id,
+        charset_id: charset.id,
+        workdata: zip_file,
+        filename: 'sample.zip',
+        workfile_secret_attributes: { memo: 'filesystem test' }
+      }
+    end
+
+    before do
+      # Ensure work has an author for card_person_id
+      role = Role.first || create(:role)
+      work_with_author.work_people.create!(person: person, role: role)
+    end
+
+    after do
+      # Clean up filesystem files after each test
+      @created_workfile.filesystem.delete if defined?(@created_workfile) && @created_workfile && @created_workfile.filesystem.exists?
+    end
+
+    context 'when uploading to filesystem (non-test environment)' do
+      before do
+        allow(Rails.env).to receive(:test?).and_return(false)
+      end
+
+      it 'saves file to filesystem instead of ActiveStorage' do
+        expect do
+          post admin_work_workfiles_url(work_with_author), params: { workfile: filesystem_attributes }
+        end.to change(Workfile, :count).by(1)
+
+        @created_workfile = Workfile.last
+
+        # Verify file is saved to filesystem
+        expect(@created_workfile.filesystem.exists?).to be true
+        expect(@created_workfile.filesystem.size).to be > 0
+
+        # Verify ActiveStorage is not used
+        expect(@created_workfile.workdata.attached?).to be false
+
+        expect(response).to redirect_to(admin_work_url(work_with_author))
+        expect(flash[:success]).to include('ワークファイルが正常に作成されました')
+      end
+
+      it 'creates correct filesystem directory structure' do
+        post admin_work_workfiles_url(work_with_author), params: { workfile: filesystem_attributes }
+
+        @created_workfile = Workfile.last
+        expected_path = Rails.root.join('data/workfiles/cards', work_with_author.card_person_id, 'files', 'sample.zip')
+
+        expect(@created_workfile.filesystem.path).to eq(expected_path)
+        expect(File.exist?(expected_path)).to be true
+      end
+
+      context 'when file conversion is needed' do
+        let(:html_filetype) { Filetype.find_by(name: 'XHTML 1.1') || create(:filetype, name: 'XHTML 1.1', extension: 'html') }
+        let(:conversion_attributes) do
+          filesystem_attributes.merge(
+            filetype_id: html_filetype.id,
+            filename: '01jo.txt' # Will be converted to .html
+          )
+        end
+
+        it 'converts file format and saves to filesystem' do
+          # Skip conversion test since it requires aozora2html implementation
+          skip 'Conversion requires aozora2html implementation'
+        end
+
+        it 'handles conversion failure by cleaning up filesystem and database' do
+          # Skip this test since it requires specific conversion setup
+          skip 'Conversion failure testing requires aozora2html implementation'
+        end
+      end
+
+      context 'when filesystem save fails' do
+        before do
+          # Mock filesystem save to fail
+          allow_any_instance_of(Workfile::Filesystem).to receive(:save).and_raise(StandardError, 'Disk full')
+        end
+
+        it 'handles filesystem errors gracefully' do
+          expect do
+            post admin_work_workfiles_url(work_with_author), params: { workfile: filesystem_attributes }
+          end.not_to change(Workfile, :count)
+
+          expect(response).to redirect_to(admin_work_url(work_with_author))
+          expect(flash[:alert]).to include('ファイル保存に失敗しました: Disk full')
+        end
+      end
+    end
+
+    context 'when updating with filesystem' do
+      let!(:existing_workfile) { Workfile.create!(valid_attributes) }
+
+      before do
+        allow(Rails.env).to receive(:test?).and_return(false)
+      end
+
+      after do
+        existing_workfile.filesystem.delete if existing_workfile.filesystem.exists?
+      end
+
+      it 'updates workfile metadata successfully' do
+        # Test metadata update without file replacement
+        patch admin_work_workfile_url(work, existing_workfile),
+              params: { workfile: { workfile_secret_attributes: { memo: 'updated memo' } } }
+
+        existing_workfile.reload
+        expect(existing_workfile.workfile_secret.memo).to eq('updated memo')
+        expect(response).to redirect_to(admin_work_url(work))
+      end
+    end
+
+    context 'when deleting with filesystem' do
+      let!(:existing_workfile) { Workfile.create!(valid_attributes) }
+
+      before do
+        allow(Rails.env).to receive(:test?).and_return(false)
+        existing_workfile.filesystem.save(zip_file)
+      end
+
+      it 'deletes both database record and filesystem file' do
+        file_path = existing_workfile.filesystem.path
+        expect(File.exist?(file_path)).to be true
+
+        expect do
+          delete admin_work_workfile_url(work, existing_workfile)
+        end.to change(Workfile, :count).by(-1)
+
+        expect(File.exist?(file_path)).to be false
+      end
+    end
+  end
 end
