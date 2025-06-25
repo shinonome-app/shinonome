@@ -200,6 +200,7 @@ class Work < ApplicationRecord
 
   def card_person_id
     return nil unless first_author
+
     format('%06d', first_author.id)
   end
 

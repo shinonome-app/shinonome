@@ -33,7 +33,7 @@ module Admin
               unless result.converted?
                 @workfile.filesystem.delete
                 @workfile.destroy
-                redirect_to [:admin, @workfile.work], alert: "ファイル変換に失敗しました"
+                redirect_to [:admin, @workfile.work], alert: 'ファイル変換に失敗しました'
                 return
               end
             end
@@ -70,7 +70,7 @@ module Admin
             unless result.converted?
               # 失敗時はバックアップから復元
               FileUtils.mv(backup_path, @workfile.filesystem.path) if File.exist?(backup_path)
-              redirect_to [:admin, @workfile.work], alert: "ファイル変換に失敗しました"
+              redirect_to [:admin, @workfile.work], alert: 'ファイル変換に失敗しました'
               return
             end
           end
