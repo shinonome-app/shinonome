@@ -16,36 +16,81 @@ module Admin
 
     # POST /admin/workfiles
     def create
-      @workfile = Workfile.new(workfile_params)
-      @workfile.filename = @workfile.workdata.filename
+      @workfile = Workfile.new(workfile_params_without_workdata)
 
-      if @workfile.valid?
-        if File.extname(@workfile.filename) == '.txt'
-          WorkfileConverter.new.convert_format(@workfile)
+      if uploaded_file = params[:workfile][:workdata]
+        # ファイル名の設定
+        @workfile.filename = uploaded_file.original_filename
+
+        if @workfile.save
+          begin
+            # 新しい方式：直接ファイルシステムに保存
+            @workfile.filesystem.save(uploaded_file)
+
+            # ファイル形式変換の実行
+            if needs_conversion?(@workfile)
+              result = WorkfileConverter.new.convert_format(@workfile)
+              unless result.converted?
+                @workfile.filesystem.delete
+                @workfile.destroy
+                redirect_to [:admin, @workfile.work], alert: "ファイル変換に失敗しました"
+                return
+              end
+            end
+
+            redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に作成されました。'
+          rescue StandardError => e
+            @workfile.filesystem.delete
+            @workfile.destroy
+            redirect_to [:admin, @workfile.work], alert: "ファイル保存に失敗しました: #{e.message}"
+          end
         else
-          @workfile.save!
+          render :new, status: :unprocessable_entity
         end
-        redirect_to [:admin, @workfile.work], success: '追加しました.'
       else
-        flash.now[:alert] = '入力エラーがあります'
         render :new, status: :unprocessable_entity
       end
     end
 
     # PATCH/PUT /admin/work/workfiles/1
     def update
-      if @workfile.update(workfile_params)
-        if @workfile.workdata.filename.present?
-          @workfile.filename = @workfile.workdata.filename
-          if File.extname(@workfile.filename) == '.txt'
-            WorkfileConverter.new.convert_format(@workfile)
-          else
-            @workfile.save!
+      if uploaded_file = params[:workfile][:workdata]
+        begin
+          # 既存ファイルのバックアップ
+          backup_path = "#{@workfile.filesystem.path}.backup"
+          FileUtils.cp(@workfile.filesystem.path, backup_path) if @workfile.filesystem.exists?
+
+          # 新しいファイルの保存
+          @workfile.filename = uploaded_file.original_filename if uploaded_file.original_filename.present?
+          @workfile.filesystem.save(uploaded_file)
+
+          # ファイル形式変換
+          if needs_conversion?(@workfile)
+            result = WorkfileConverter.new.convert_format(@workfile)
+            unless result.converted?
+              # 失敗時はバックアップから復元
+              FileUtils.mv(backup_path, @workfile.filesystem.path) if File.exist?(backup_path)
+              redirect_to [:admin, @workfile.work], alert: "ファイル変換に失敗しました"
+              return
+            end
           end
+
+          # バックアップファイルの削除
+          File.delete(backup_path) if File.exist?(backup_path)
+
+          if @workfile.update(workfile_params_without_workdata)
+            redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に更新されました。'
+          else
+            render :edit, status: :unprocessable_entity
+          end
+        rescue StandardError => e
+          # エラー時はバックアップから復元
+          FileUtils.mv(backup_path, @workfile.filesystem.path) if File.exist?(backup_path)
+          redirect_to [:admin, @workfile.work], alert: "ファイル更新に失敗しました: #{e.message}"
         end
-        redirect_to [:admin, @workfile.work], success: '更新しました.'
+      elsif @workfile.update(workfile_params_without_workdata)
+        redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に更新されました。'
       else
-        flash.now[:alert] = '入力エラーがあります'
         render :edit, status: :unprocessable_entity
       end
     end
@@ -53,6 +98,7 @@ module Admin
     # DELETE /admin/work/workfiles/1
     def destroy
       work = @workfile.work
+      @workfile.filesystem.delete
       @workfile.destroy!
       redirect_to admin_work_url(work), success: '削除しました.'
     end
@@ -70,6 +116,16 @@ module Admin
       params.require(:workfile).permit(:work_id, :filetype_id, :compresstype_id, :filesize, :url, :filename,
                                        :registered_on, :last_updated_on, :revision_count, :file_encoding_id, :charset_id, :note, :workdata,
                                        { workfile_secret_attributes: %i[id memo] })
+    end
+
+    def workfile_params_without_workdata
+      params.require(:workfile).permit(:work_id, :filetype_id, :compresstype_id, :filesize, :url, :filename,
+                                       :registered_on, :last_updated_on, :revision_count, :file_encoding_id, :charset_id, :note,
+                                       { workfile_secret_attributes: %i[id memo] })
+    end
+
+    def needs_conversion?(workfile)
+      workfile.filename&.end_with?('.txt')
     end
   end
 end
