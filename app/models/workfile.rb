@@ -52,6 +52,11 @@ class Workfile < ApplicationRecord
           required: true,
           dependent: :destroy
 
+  # ファイルシステム操作のデリゲート
+  def filesystem
+    @filesystem ||= Workfile::Filesystem.new(self)
+  end
+
   accepts_nested_attributes_for :workfile_secret, update_only: true
 
   after_save :set_filename
@@ -129,16 +134,41 @@ class Workfile < ApplicationRecord
   end
 
   def using_ruby?
-    content = uncompressed_workdata
-    return false if content.nil?
+    file_content = content
+    return false if file_content.nil?
 
-    content.force_encoding('Shift_JIS')
-    utf8_content = content.encode('UTF-8')
+    file_content.force_encoding('Shift_JIS')
+    utf8_content = file_content.encode('UTF-8')
     utf8_content.match?(/《.*》/)
   end
 
   def compressed?
     compresstype&.compressed?
+  end
+
+  # ファイル内容の取得（ActiveStorageとFilesystemの両方に対応）
+  def content
+    # テスト環境ではActiveStorageを優先、本番ではFilesystemを優先
+    if Rails.env.test? && workdata.attached?
+      workdata.download
+    elsif filesystem.exists?
+      filesystem.read
+    elsif workdata.attached?
+      workdata.download
+    else
+      nil
+    end
+  end
+
+  # ファイルサイズの取得
+  def file_size
+    if filesystem.exists?
+      filesystem.size
+    elsif workdata.attached?
+      workdata.byte_size
+    else
+      filesize || 0
+    end
   end
 
   def uncompressed_workdata
