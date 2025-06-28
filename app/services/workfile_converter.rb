@@ -8,10 +8,8 @@ class WorkfileConverter
     filename = workfile.filename
     return Result.new(converted: false, workfile:) if File.extname(filename) != '.txt'
 
-    # テスト環境ではActiveStorageを使用、本番環境ではFilesystemを使用
-    if Rails.env.test? && workfile.workdata.attached?
-      convert_format_activestorage(workfile)
-    elsif workfile.filesystem.exists?
+    # Phase 3: Filesystemのみ使用
+    if workfile.filesystem.exists?
       convert_format_filesystem(workfile)
     else
       Result.new(converted: false, workfile:)
@@ -20,58 +18,53 @@ class WorkfileConverter
 
   private
 
-  # ActiveStorage版（テスト用）
-  def convert_format_activestorage(workfile)
-    if workfile.html?
-      convert_text_to_html(workfile)
-    elsif workfile.zip?
-      convert_text_to_zip(workfile)
-    else
-      Result.new(converted: false, workfile:)
-    end
-  end
-
-  # Filesystem版（本番用）
+  # Filesystem版
   def convert_format_filesystem(workfile)
     if workfile.html?
-      convert_to_html_filesystem(workfile)
+      convert_to_html(workfile)
     elsif workfile.zip?
-      convert_to_zip_filesystem(workfile)
+      convert_to_zip(workfile)
     else
       Result.new(converted: false, workfile:)
     end
   end
 
-  # ActiveStorage用のHTML変換
-  def convert_text_to_html(workfile)
+  # HTML変換
+  def convert_to_html(workfile)
     new_filename = workfile.filename.gsub(/\.txt$/, '.html')
+
     Dir.mktmpdir do |dir|
       src_file = File.join(dir, 'source.txt')
       dest_file = File.join(dir, 'output.html')
 
       begin
-        workfile.workdata.open do |file|
-          content = file.read
-          content.force_encoding('Shift_JIS')
-          File.binwrite(src_file, content)
+        # ソースファイルをコピー（Shift_JISエンコーディングを保持）
+        FileUtils.cp(workfile.filesystem.path, src_file)
+
+        # 空ファイルチェック
+        if File.zero?(src_file)
+          return Result.new(converted: false, workfile:)
         end
 
-        # Aozora2Html.new(src_file, dest_file).process
-        system('bundle', 'exec', 'aozora2html', src_file, dest_file)
+        # aozora2html gemを使用してHTML変換
+        # gemはコマンドライン形式で使用する必要がある
+        # エラー出力は/dev/nullにリダイレクト
+        success = system('bundle', 'exec', 'aozora2html', src_file, dest_file, err: :out, out: File::NULL)
+        
+        unless success && File.exist?(dest_file)
+          return Result.new(converted: false, workfile:)
+        end
+
+        # ファイル名を更新
+        workfile.filename = new_filename
+
+        # HTMLファイルを新しいパスにコピー
+        FileUtils.cp(dest_file, workfile.filesystem.path)
+
+        workfile.save!
       rescue StandardError => _e
         return Result.new(converted: false, workfile:)
       end
-
-      workfile.filename = new_filename
-
-      workfile.workdata.attach(
-        io: File.open(dest_file),
-        filename: new_filename,
-        content_type: 'text/html',
-        identify: false
-      )
-
-      workfile.save!
     end
 
     Result.new(converted: true, workfile:)
@@ -79,78 +72,8 @@ class WorkfileConverter
     Result.new(converted: false, workfile:)
   end
 
-  # ActiveStorage用のZIP変換
-  def convert_text_to_zip(workfile)
-    new_filename = workfile.filename.gsub(/\.txt$/, '.zip')
-
-    Dir.mktmpdir do |dir|
-      src_file = File.join(dir, 'source.txt')
-      dest_file = File.join(dir, 'output.zip')
-
-      begin
-        workfile.workdata.open do |file|
-          content = file.read
-          content.force_encoding('Shift_JIS')
-          File.binwrite(src_file, content)
-        end
-
-        Zip::File.open(dest_file, create: true) do |zipfile|
-          zipfile.add(workfile.filename, src_file)
-        end
-      rescue StandardError => _e
-        return Result.new(converted: false, workfile:)
-      end
-
-      workfile.filename = new_filename
-
-      workfile.workdata.attach(
-        io: File.open(dest_file),
-        filename: new_filename,
-        content_type: 'application/zip',
-        identify: false
-      )
-
-      workfile.save!
-    end
-
-    Result.new(converted: true, workfile:)
-  rescue StandardError => _e
-    Result.new(converted: false, workfile:)
-  end
-
-  # Filesystem用のHTML変換
-  def convert_to_html_filesystem(workfile)
-    new_filename = workfile.filename.gsub(/\.txt$/, '.html')
-
-    begin
-      # ソースファイルから内容を読み込み
-      content = File.read(workfile.filesystem.path, encoding: 'Shift_JIS').force_encoding('UTF-8')
-
-      # aozora2html変換
-      html_content = if workfile.using_ruby?
-                       Aozora2Html.new.aozora_to_html(content, use_ruby: true)
-                     else
-                       Aozora2Html.new.aozora_to_html(content, use_ruby: false)
-                     end
-
-      # ファイル名を更新
-      workfile.filename = new_filename
-
-      # HTMLファイルとして保存（新しいパスに）
-      File.write(workfile.filesystem.path, html_content, encoding: 'UTF-8')
-
-      workfile.save!
-    rescue StandardError => _e
-      return Result.new(converted: false, workfile:)
-    end
-
-    Result.new(converted: true, workfile:)
-  rescue StandardError => _e
-    Result.new(converted: false, workfile:)
-  end
-
-  # Filesystem用のZIP変換
-  def convert_to_zip_filesystem(workfile)
+  # ZIP変換
+  def convert_to_zip(workfile)
     new_filename = workfile.filename.gsub(/\.txt$/, '.zip')
 
     Dir.mktmpdir do |dir|

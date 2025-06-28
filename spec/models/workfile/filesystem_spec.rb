@@ -254,4 +254,203 @@ RSpec.describe Workfile::Filesystem do
       end
     end
   end
+
+  # 追加テスト: nil安全性とエラーハンドリング
+  describe 'nil safety and error handling' do
+    describe '#save with various file types' do
+      after do
+        FileUtils.rm_f(filesystem.path) if filesystem.path && File.exist?(filesystem.path)
+      end
+
+      context 'with StringIO object' do
+        let(:string_io) { StringIO.new('string io content') }
+
+        it 'saves content correctly' do
+          expect(filesystem.save(string_io)).to be_truthy
+          expect(filesystem.read).to eq('string io content')
+        end
+      end
+
+      context 'with Tempfile object' do
+        let(:tempfile) do
+          Tempfile.new('test').tap do |f|
+            f.write('tempfile content')
+            f.rewind
+          end
+        end
+
+        after { tempfile.close! }
+
+        it 'saves content correctly' do
+          expect(filesystem.save(tempfile)).to be_truthy
+          expect(filesystem.read).to eq('tempfile content')
+        end
+      end
+
+      context 'with ActionDispatch::Http::UploadedFile' do
+        let(:uploaded_file) do
+          ActionDispatch::Http::UploadedFile.new(
+            tempfile: Tempfile.new(['test', '.txt']).tap { |f| f.write('uploaded content'); f.rewind },
+            filename: 'upload.txt',
+            type: 'text/plain'
+          )
+        end
+
+        it 'saves content correctly' do
+          expect(filesystem.save(uploaded_file)).to be_truthy
+          expect(filesystem.read).to eq('uploaded content')
+        end
+      end
+    end
+
+    describe '#save error handling' do
+      context 'when disk is full' do
+        let(:uploaded_file) { double('uploaded_file', read: 'content') }
+
+        before do
+          allow(File).to receive(:binwrite).and_raise(Errno::ENOSPC)
+        end
+
+        it 'raises Errno::ENOSPC' do
+          expect { filesystem.save(uploaded_file) }.to raise_error(Errno::ENOSPC)
+        end
+      end
+
+      context 'when permission denied' do
+        let(:uploaded_file) { double('uploaded_file', read: 'content') }
+
+        before do
+          allow(FileUtils).to receive(:mkdir_p).and_raise(Errno::EACCES)
+        end
+
+        it 'raises Errno::EACCES' do
+          expect { filesystem.save(uploaded_file) }.to raise_error(Errno::EACCES)
+        end
+      end
+    end
+
+    describe '#read encoding handling' do
+      before do
+        FileUtils.mkdir_p(File.dirname(filesystem.path))
+      end
+
+      after do
+        FileUtils.rm_f(filesystem.path) if File.exist?(filesystem.path)
+      end
+
+      context 'with Shift_JIS encoded file' do
+        before do
+          File.write(filesystem.path, 'テスト内容'.encode('Shift_JIS'), encoding: 'Shift_JIS')
+        end
+
+        it 'reads content as binary' do
+          content = filesystem.read
+          expect(content.encoding).to eq(Encoding::UTF_8)
+        end
+      end
+
+      context 'with UTF-8 encoded file' do
+        before do
+          File.write(filesystem.path, 'テスト内容', encoding: 'UTF-8')
+        end
+
+        it 'reads content correctly' do
+          expect(filesystem.read).to eq('テスト内容')
+        end
+      end
+    end
+
+    describe 'boundary conditions' do
+      context 'with very long filename' do
+        let(:long_filename) { 'a' * 255 + '.txt' }
+        let(:workfile) { create(:workfile, work: work, filename: long_filename) }
+
+        it 'handles long filename correctly' do
+          expect(filesystem.path.to_s).to include(long_filename)
+        end
+      end
+
+      context 'with special characters in filename' do
+        let(:special_filename) { 'test file (2024) [special].txt' }
+        let(:workfile) { create(:workfile, work: work, filename: special_filename) }
+
+        it 'handles special characters correctly' do
+          expect(filesystem.path.to_s).to include(special_filename)
+        end
+      end
+
+      context 'with nil workfile' do
+        let(:filesystem) { described_class.new(nil) }
+
+        it 'handles nil workfile gracefully' do
+          expect { filesystem.path }.to raise_error(NoMethodError)
+        end
+      end
+    end
+
+    describe 'concurrent access handling' do
+      let(:uploaded_file) { double('uploaded_file', read: 'concurrent content') }
+
+      it 'handles concurrent saves' do
+        threads = []
+        5.times do |i|
+          threads << Thread.new do
+            file = double('file', read: "content #{i}")
+            filesystem.save(file)
+          end
+        end
+        threads.each(&:join)
+
+        # 最後の書き込みが保存されているはず
+        expect(filesystem.exists?).to be true
+        expect(filesystem.size).to be > 0
+      end
+    end
+  end
+
+  # 統合テスト
+  describe 'integration scenarios' do
+    describe 'full lifecycle' do
+      let(:uploaded_file) { double('uploaded_file', read: 'lifecycle test content') }
+
+      after do
+        FileUtils.rm_f(filesystem.path) if filesystem.path && File.exist?(filesystem.path)
+      end
+
+      it 'handles complete file lifecycle' do
+        # 1. 初期状態
+        expect(filesystem.exists?).to be false
+        expect(filesystem.size).to eq(0)
+        expect(filesystem.read).to be_nil
+
+        # 2. ファイル保存
+        expect(filesystem.save(uploaded_file)).to be_truthy
+        expect(filesystem.exists?).to be true
+        expect(filesystem.size).to eq('lifecycle test content'.bytesize)
+        expect(filesystem.read).to eq('lifecycle test content')
+
+        # 3. ファイル更新
+        new_file = double('new_file', read: 'updated content')
+        expect(filesystem.save(new_file)).to be_truthy
+        expect(filesystem.read).to eq('updated content')
+
+        # 4. ファイル削除
+        filesystem.delete
+        expect(filesystem.exists?).to be false
+        expect(filesystem.read).to be_nil
+      end
+    end
+
+    describe 'migration compatibility' do
+      it 'provides compatible interface for migration tasks' do
+        # 移行タスクで使用されるメソッドが存在することを確認
+        expect(filesystem).to respond_to(:path)
+        expect(filesystem).to respond_to(:exists?)
+        expect(filesystem).to respond_to(:save)
+        expect(filesystem).to respond_to(:read)
+        expect(filesystem).to respond_to(:delete)
+        expect(filesystem).to respond_to(:size)
+      end
+    end
+  end
 end
