@@ -1,3 +1,6 @@
+# Phase 3: ActiveStorage設定は移行用rakeタスクでのみ使用
+# 通常の運用では使用されません
+
 test:
   service: Disk
   root: <%= Rails.root.join("tmp/storage") %>

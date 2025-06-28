@@ -24,7 +24,8 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # Phase 3: ActiveStorage設定は移行用rakeタスクでのみ使用
+  config.active_storage.service = :local if defined?(ActiveStorage)
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true

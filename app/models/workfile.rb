@@ -45,6 +45,7 @@ class Workfile < ApplicationRecord
   belongs_to :file_encoding
   belongs_to :charset
 
+  # Phase 3: ActiveStorageサポート（移行用rake taskでのみ使用）
   has_one_attached :workdata if defined?(ActiveStorage)
 
   has_one :workfile_secret,
@@ -146,62 +147,53 @@ class Workfile < ApplicationRecord
     compresstype&.compressed?
   end
 
-  # ファイル内容の取得（ActiveStorageとFilesystemの両方に対応）
+  # ファイル内容の取得（Filesystemのみ）
   def content
-    # Phase 2: ファイルシステムを優先、ActiveStorageは後方互換性のみ
-    if filesystem.exists?
-      filesystem.read
-    elsif workdata.attached?
-      Rails.logger.warn "ActiveStorage fallback used for workfile ID: #{id}"
-      workdata.download
-    end
+    filesystem.exists? ? filesystem.read : nil
   end
 
   # ファイルサイズの取得
   def file_size
-    if filesystem.exists?
-      filesystem.size
-    elsif workdata.attached?
-      workdata.byte_size
-    else
-      filesize || 0
-    end
+    filesystem.exists? ? filesystem.size : (filesize || 0)
   end
 
-  # ActiveStorageファイルの削除（移行時のみ使用）
+  # ActiveStorageファイルの削除（移行用rakeタスクでのみ使用）
   def purge_activestorage_file
+    return unless defined?(ActiveStorage) && respond_to?(:workdata)
     workdata.purge if workdata.attached?
   end
 
   def uncompressed_workdata
-    return nil if workdata.blank? || compresstype.blank?
+    return nil if compresstype.blank?
 
-    content = workdata.open { |file| file&.read }
+    content = filesystem.read
     return content unless compressed?
 
     raise 'サポートしていない圧縮形式です' if compresstype.lha? || compresstype.sit?
 
     if compresstype.zip?
-      unzip_workdata
+      unzip_filesystem_data
     elsif compresstype.gzip?
-      gunzip_workdata
+      gunzip_filesystem_data
     else
       raise 'サポートしていない圧縮形式です'
     end
   end
 
-  def unzip_workdata
-    workdata.open do |file|
-      Zip::File.open(file) do |zip|
-        zip.each do |entry|
-          return entry.get_input_stream.read if entry.name =~ /\.txt\z/
-        end
+  def unzip_filesystem_data
+    return nil unless filesystem.exists?
+    
+    Zip::File.open(filesystem.path) do |zip|
+      zip.each do |entry|
+        return entry.get_input_stream.read if entry.name =~ /\.txt\z/
       end
     end
   end
 
-  def gunzip_workdata
-    workdata.open do |file|
+  def gunzip_filesystem_data
+    return nil unless filesystem.exists?
+    
+    File.open(filesystem.path, 'rb') do |file|
       Zlib::GzipReader.open(file) do |gz|
         return gz.read
       end

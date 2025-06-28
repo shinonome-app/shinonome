@@ -112,13 +112,21 @@ RSpec.describe Workfile do
   describe '#using_ruby?' do
     let(:workfile) { create(:workfile, :xhtml) }
 
+    after do
+      workfile.filesystem.delete if workfile.filesystem.exists?
+    end
+
     it 'ルビがあればtrue' do
-      workfile.workdata.attach(Rack::Test::UploadedFile.new('spec/fixtures/text/01jo.txt', 'text/plain'))
+      File.open('spec/fixtures/text/01jo.txt', 'rb') do |file|
+        workfile.filesystem.save(file)
+      end
       expect(workfile.using_ruby?).to be true
     end
 
     it 'ルビがなければfalse' do
-      workfile.workdata.attach(Rack::Test::UploadedFile.new('spec/fixtures/text/fukei.txt', 'text/plain'))
+      File.open('spec/fixtures/text/fukei.txt', 'rb') do |file|
+        workfile.filesystem.save(file)
+      end
       expect(workfile.using_ruby?).to be false
     end
 
@@ -131,27 +139,36 @@ RSpec.describe Workfile do
     context 'xhtmlの場合' do
       it '正しいファイル名を返す' do
         workfile = create(:workfile, :xhtml) do |tmp_workfile|
-          tmp_workfile.workdata.attach(Rack::Test::UploadedFile.new('spec/fixtures/html/01jo.html', 'text/html'))
+          File.open('spec/fixtures/html/01jo.html', 'rb') do |file|
+            tmp_workfile.filesystem.save(file)
+          end
         end
         expect(workfile.generate_filename).to eq "#{workfile.work_id}_#{workfile.id}.html"
+        workfile.filesystem.delete if workfile.filesystem.exists?
       end
     end
 
     context 'zipの場合' do
       it 'ルビがある場合は_ruby_つきのファイル名を返す' do
         workfile = create(:workfile, :zip) do |tmp_workfile|
-          tmp_workfile.workdata.attach(Rack::Test::UploadedFile.new('spec/fixtures/zip/01jo.zip', 'application/zip'))
+          File.open('spec/fixtures/zip/01jo.zip', 'rb') do |file|
+            tmp_workfile.filesystem.save(file)
+          end
           tmp_workfile.filetype_id = 1
         end
         expect(workfile.generate_filename).to eq "#{workfile.work_id}_ruby_#{workfile.id}.zip"
+        workfile.filesystem.delete if workfile.filesystem.exists?
       end
 
       it 'ルビがない場合は_txt_つきのファイル名を返す' do
         workfile = create(:workfile, :zip) do |tmp_workfile|
-          tmp_workfile.workdata.attach(Rack::Test::UploadedFile.new('spec/fixtures/zip/fukei.zip', 'application/zip'))
+          File.open('spec/fixtures/zip/fukei.zip', 'rb') do |file|
+            tmp_workfile.filesystem.save(file)
+          end
           tmp_workfile.filetype_id = 2
         end
         expect(workfile.generate_filename).to eq "#{workfile.work_id}_txt_#{workfile.id}.zip"
+        workfile.filesystem.delete if workfile.filesystem.exists?
       end
     end
   end

@@ -25,4 +25,4 @@ test:
 
 production:
   <<: *default
-  database: shinonome_production
+  database: <%= ENV.fetch("DATABASE_NAME") { "shinonome_production" }  %>
