@@ -33,7 +33,8 @@ env:
     - BUILDER_HOST
 
 volumes:
-  - "/mnt/storage/str:/myapp/storage"
+  - "/srv/storage:/rails/storage"
+  - "/srv/data/shinonome:/rails/data"
 
 builder:
   dockerfile: Dockerfile.production
