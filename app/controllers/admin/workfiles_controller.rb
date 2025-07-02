@@ -18,43 +18,43 @@ module Admin
     def create
       @workfile = Workfile.new(workfile_params_without_workdata)
 
-      if uploaded_file = params[:workfile][:workdata]
-        # ファイル名の設定
-        @workfile.filename = uploaded_file.original_filename
+      uploaded_file = params[:workfile][:workdata]
+      unless uploaded_file
+        render :new, status: :unprocessable_entity
+        return
+      end
 
-        if @workfile.save
-          begin
-            # 新しい方式：直接ファイルシステムに保存
-            @workfile.filesystem.save(uploaded_file)
+      @workfile.filename = uploaded_file.original_filename
+      unless @workfile.save
+        render :new, status: :unprocessable_entity
+        return
+      end
 
-            # ファイル形式変換の実行
-            if needs_conversion?(@workfile)
-              result = WorkfileConverter.new.convert_format(@workfile)
-              unless result.converted?
-                @workfile.filesystem.delete
-                @workfile.destroy
-                redirect_to [:admin, @workfile.work], alert: 'ファイル変換に失敗しました'
-                return
-              end
-            end
+      begin
+        @workfile.filesystem.save(uploaded_file)
 
-            redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に作成されました。'
-          rescue StandardError => e
+        if needs_conversion?(@workfile)
+          result = WorkfileConverter.new.convert_format(@workfile)
+          unless result.converted?
             @workfile.filesystem.delete
             @workfile.destroy
-            redirect_to [:admin, @workfile.work], alert: "ファイル保存に失敗しました: #{e.message}"
+            redirect_to [:admin, @workfile.work], alert: 'ファイル変換に失敗しました'
+            return
           end
-        else
-          render :new, status: :unprocessable_entity
         end
-      else
-        render :new, status: :unprocessable_entity
+
+        redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に作成されました。'
+      rescue StandardError => e
+        @workfile.filesystem.delete
+        @workfile.destroy
+        redirect_to [:admin, @workfile.work], alert: "ファイル保存に失敗しました: #{e.message}"
       end
     end
 
     # PATCH/PUT /admin/work/workfiles/1
     def update
-      if uploaded_file = params[:workfile][:workdata]
+      uploaded_file = params[:workfile][:workdata]
+      if uploaded_file
         begin
           # 既存ファイルのバックアップ
           backup_path = "#{@workfile.filesystem.path}.backup"
@@ -76,7 +76,7 @@ module Admin
           end
 
           # バックアップファイルの削除
-          File.delete(backup_path) if File.exist?(backup_path)
+          FileUtils.rm_f(backup_path)
 
           if @workfile.update(workfile_params_without_workdata)
             redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に更新されました。'
