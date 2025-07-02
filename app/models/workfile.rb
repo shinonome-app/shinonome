@@ -160,6 +160,7 @@ class Workfile < ApplicationRecord
   # ActiveStorageファイルの削除（移行用rakeタスクでのみ使用）
   def purge_activestorage_file
     return unless defined?(ActiveStorage) && respond_to?(:workdata)
+
     workdata.purge if workdata.attached?
   end
 
@@ -182,7 +183,7 @@ class Workfile < ApplicationRecord
 
   def unzip_filesystem_data
     return nil unless filesystem.exists?
-    
+
     Zip::File.open(filesystem.path) do |zip|
       zip.each do |entry|
         return entry.get_input_stream.read if entry.name =~ /\.txt\z/
@@ -192,7 +193,7 @@ class Workfile < ApplicationRecord
 
   def gunzip_filesystem_data
     return nil unless filesystem.exists?
-    
+
     File.open(filesystem.path, 'rb') do |file|
       Zlib::GzipReader.open(file) do |gz|
         return gz.read
