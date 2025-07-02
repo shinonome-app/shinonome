@@ -41,9 +41,7 @@ gem 'rails-i18n'
 gem 'view_component'
 
 # Authentication based on Rack/Warden
-# gem 'devise'
-gem 'devise'
-# gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
+gem 'devise', github: 'takahashim/devise', branch: 'v500-beta0'
 
 # Pagination in views
 gem 'pagy', '~> 9.0'
@@ -113,6 +111,9 @@ group :test do
 
   # Use Rspec instead of MiniTest
   gem 'rspec-rails'
+
+  # Retry for flaky tests
+  gem 'rspec-retry'
 
   # Support tools with Rspec
   gem 'factory_bot_rails'
