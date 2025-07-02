@@ -31,7 +31,7 @@ RSpec.describe WorkfileConverter do
         # Empty file to cause conversion error
         workfile.filesystem.delete
         File.write(workfile.filesystem.path, '')
-        
+
         result = WorkfileConverter.new.convert_format(workfile)
         expect(result.converted?).to be false
       end
@@ -52,7 +52,7 @@ RSpec.describe WorkfileConverter do
 
       it 'converts successfully' do
         result = WorkfileConverter.new.convert_format(workfile)
-        
+
         expect(result.converted?).to be true
         expect(workfile.filename).to end_with('.zip')
         expect(workfile.filesystem.exists?).to be true
@@ -61,7 +61,7 @@ RSpec.describe WorkfileConverter do
       it 'handles ZIP creation errors gracefully' do
         # Delete file to cause error
         workfile.filesystem.delete
-        
+
         result = WorkfileConverter.new.convert_format(workfile)
         expect(result.converted?).to be false
       end

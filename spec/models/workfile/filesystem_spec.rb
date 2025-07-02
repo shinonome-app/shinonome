@@ -6,7 +6,7 @@ RSpec.describe Workfile::Filesystem do
   let(:person) { create(:person) }
   let(:work) { create(:work) }
   let(:workfile) { create(:workfile, work: work, filename: 'test.txt') }
-  let(:filesystem) { described_class.new(workfile) }
+  let(:filesystem) { Workfile::Filesystem.new(workfile) }
 
   before do
     # Ensure work has a person (for card_person_id)
@@ -91,7 +91,7 @@ RSpec.describe Workfile::Filesystem do
       end
 
       after do
-        FileUtils.rm_f(filesystem.path) if File.exist?(filesystem.path)
+        FileUtils.rm_f(filesystem.path)
       end
 
       it 'returns true' do
@@ -107,7 +107,7 @@ RSpec.describe Workfile::Filesystem do
   end
 
   describe '#save' do
-    let(:uploaded_file) { double('uploaded_file', read: 'file content') }
+    let(:uploaded_file) { instance_double(ActionDispatch::Http::UploadedFile, read: 'file content') }
 
     context 'when path is nil' do
       before { allow(filesystem).to receive(:path).and_return(nil) }
@@ -119,7 +119,7 @@ RSpec.describe Workfile::Filesystem do
 
     context 'when path is valid' do
       after do
-        FileUtils.rm_f(filesystem.path) if File.exist?(filesystem.path)
+        FileUtils.rm_f(filesystem.path)
       end
 
       it 'creates directory and saves file' do
@@ -290,7 +290,10 @@ RSpec.describe Workfile::Filesystem do
       context 'with ActionDispatch::Http::UploadedFile' do
         let(:uploaded_file) do
           ActionDispatch::Http::UploadedFile.new(
-            tempfile: Tempfile.new(['test', '.txt']).tap { |f| f.write('uploaded content'); f.rewind },
+            tempfile: Tempfile.new(['test', '.txt']).tap do |f|
+              f.write('uploaded content')
+              f.rewind
+            end,
             filename: 'upload.txt',
             type: 'text/plain'
           )
@@ -305,7 +308,7 @@ RSpec.describe Workfile::Filesystem do
 
     describe '#save error handling' do
       context 'when disk is full' do
-        let(:uploaded_file) { double('uploaded_file', read: 'content') }
+        let(:uploaded_file) { instance_double(ActionDispatch::Http::UploadedFile, read: 'content') }
 
         before do
           allow(File).to receive(:binwrite).and_raise(Errno::ENOSPC)
@@ -317,7 +320,7 @@ RSpec.describe Workfile::Filesystem do
       end
 
       context 'when permission denied' do
-        let(:uploaded_file) { double('uploaded_file', read: 'content') }
+        let(:uploaded_file) { instance_double(ActionDispatch::Http::UploadedFile, read: 'content') }
 
         before do
           allow(FileUtils).to receive(:mkdir_p).and_raise(Errno::EACCES)
@@ -335,7 +338,7 @@ RSpec.describe Workfile::Filesystem do
       end
 
       after do
-        FileUtils.rm_f(filesystem.path) if File.exist?(filesystem.path)
+        FileUtils.rm_f(filesystem.path)
       end
 
       context 'with Shift_JIS encoded file' do
@@ -362,7 +365,7 @@ RSpec.describe Workfile::Filesystem do
 
     describe 'boundary conditions' do
       context 'with very long filename' do
-        let(:long_filename) { 'a' * 255 + '.txt' }
+        let(:long_filename) { "#{'a' * 255}.txt" }
         let(:workfile) { create(:workfile, work: work, filename: long_filename) }
 
         it 'handles long filename correctly' do
@@ -380,7 +383,7 @@ RSpec.describe Workfile::Filesystem do
       end
 
       context 'with nil workfile' do
-        let(:filesystem) { described_class.new(nil) }
+        let(:filesystem) { Workfile::Filesystem.new(nil) }
 
         it 'handles nil workfile gracefully' do
           expect { filesystem.path }.to raise_error(NoMethodError)
@@ -389,13 +392,13 @@ RSpec.describe Workfile::Filesystem do
     end
 
     describe 'concurrent access handling' do
-      let(:uploaded_file) { double('uploaded_file', read: 'concurrent content') }
+      let(:uploaded_file) { instance_double(ActionDispatch::Http::UploadedFile, read: 'concurrent content') }
 
       it 'handles concurrent saves' do
         threads = []
         5.times do |i|
           threads << Thread.new do
-            file = double('file', read: "content #{i}")
+            file = instance_double(ActionDispatch::Http::UploadedFile, read: "content #{i}")
             filesystem.save(file)
           end
         end
@@ -411,7 +414,7 @@ RSpec.describe Workfile::Filesystem do
   # 統合テスト
   describe 'integration scenarios' do
     describe 'full lifecycle' do
-      let(:uploaded_file) { double('uploaded_file', read: 'lifecycle test content') }
+      let(:uploaded_file) { instance_double(ActionDispatch::Http::UploadedFile, read: 'lifecycle test content') }
 
       after do
         FileUtils.rm_f(filesystem.path) if filesystem.path && File.exist?(filesystem.path)
@@ -430,7 +433,7 @@ RSpec.describe Workfile::Filesystem do
         expect(filesystem.read).to eq('lifecycle test content')
 
         # 3. ファイル更新
-        new_file = double('new_file', read: 'updated content')
+        new_file = instance_double(ActionDispatch::Http::UploadedFile, read: 'updated content')
         expect(filesystem.save(new_file)).to be_truthy
         expect(filesystem.read).to eq('updated content')
 

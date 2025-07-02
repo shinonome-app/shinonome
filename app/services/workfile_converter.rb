@@ -42,18 +42,14 @@ class WorkfileConverter
         FileUtils.cp(workfile.filesystem.path, src_file)
 
         # 空ファイルチェック
-        if File.zero?(src_file)
-          return Result.new(converted: false, workfile:)
-        end
+        return Result.new(converted: false, workfile:) if File.empty?(src_file)
 
         # aozora2html gemを使用してHTML変換
         # gemはコマンドライン形式で使用する必要がある
         # エラー出力は/dev/nullにリダイレクト
         success = system('bundle', 'exec', 'aozora2html', src_file, dest_file, err: :out, out: File::NULL)
-        
-        unless success && File.exist?(dest_file)
-          return Result.new(converted: false, workfile:)
-        end
+
+        return Result.new(converted: false, workfile:) unless success && File.exist?(dest_file)
 
         # ファイル名を更新
         workfile.filename = new_filename

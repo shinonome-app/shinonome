@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-namespace :storage do
+namespace :storage do # rubocop:disable Metrics/BlockLength
   desc 'Migrate files from ActiveStorage to filesystem'
   task migrate_to_filesystem: :environment do
     # Limit for testing (can be overridden with LIMIT env var)
@@ -71,11 +71,10 @@ namespace :storage do
 
             if filesystem_size == activestorage_size
               puts "  移行完了: #{workfile.filename} (ID: #{workfile.id}) - #{filesystem_size} bytes"
-              migrated_count += 1
             else
               puts "  警告: #{workfile.filename} (ID: #{workfile.id}) - サイズ不一致 AS:#{activestorage_size} FS:#{filesystem_size}"
-              migrated_count += 1
             end
+            migrated_count += 1
           else
             puts "  エラー: #{workfile.filename} (ID: #{workfile.id}) - ファイルシステムへの保存に失敗"
             error_count += 1
@@ -102,13 +101,12 @@ namespace :storage do
     puts "移行失敗: #{error_count}件"
     puts "移行率: #{total_count > 0 ? (migrated_count.to_f / total_count * 100).round(2) : 0}%"
     puts "時刻: #{Time.current}"
+    puts
 
     if error_count > 0
-      puts
       puts 'エラーが発生したファイルがあります。ログを確認してください。'
       exit 1
     else
-      puts
       puts '移行が正常に完了しました！'
     end
   end
@@ -241,17 +239,15 @@ namespace :storage do
 
     puts
     puts "時刻: #{Time.current}"
+    puts
 
     if verification_results[:missing_files].any? || verification_results[:size_mismatches].any?
-      puts
       puts '問題のあるファイルが見つかりました。DETAILED=true で詳細を確認してください。'
       exit 1
     elsif verification_results[:activestorage_only].any?
-      puts
       puts '移行が未完了のファイルがあります。migration:migrate_to_filesystem を実行してください。'
       exit 1
     else
-      puts
       puts 'すべてのファイルが正常に移行されています！'
     end
   end
@@ -272,7 +268,7 @@ namespace :storage do
     # Confirmation in production
     if Rails.env.production?
       print '本番環境です。続行しますか？ (yes/no): '
-      response = STDIN.gets.chomp
+      response = $stdin.gets.chomp
       unless response.downcase == 'yes'
         puts '中止しました。'
         exit 0
@@ -343,13 +339,12 @@ namespace :storage do
     puts "スキップ: #{skipped_count}件"
     puts "削除失敗: #{error_count}件"
     puts "時刻: #{Time.current}"
+    puts
 
     if error_count > 0
-      puts
       puts 'エラーが発生したファイルがあります。ログを確認してください。'
       exit 1
     else
-      puts
       puts 'クリーンアップが正常に完了しました！'
     end
   end
@@ -363,7 +358,7 @@ namespace :storage do
     # Safety confirmation
     puts '⚠️  警告: このタスクはファイルシステムのファイルを削除します。'
     print '続行しますか？ (yes/no): '
-    response = STDIN.gets.chomp
+    response = $stdin.gets.chomp
     unless response.downcase == 'yes'
       puts '中止しました。'
       exit 0
@@ -402,13 +397,12 @@ namespace :storage do
     puts "ロールバック完了: #{rollback_count}件"
     puts "ロールバック失敗: #{error_count}件"
     puts "時刻: #{Time.current}"
+    puts
 
     if error_count > 0
-      puts
       puts 'エラーが発生したファイルがあります。'
       exit 1
     else
-      puts
       puts 'ロールバックが正常に完了しました！'
     end
   end

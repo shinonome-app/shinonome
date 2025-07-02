@@ -7,6 +7,7 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+require 'rspec/retry'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -78,7 +79,12 @@ RSpec.configure do |config|
     Rails.application.load_seed # loading seeds
   end
 
+  # ChromeDriverのカスタム設定を使用
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless, screen_size: [1400, 2000]
+    driven_by :selenium_chrome_headless
   end
+
+  # リトライ設定を有効化
+  config.verbose_retry = true
+  config.display_try_failure_messages = true
 end

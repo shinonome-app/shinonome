@@ -158,17 +158,15 @@ RSpec.describe Admin::WorkfilesController do
   describe 'filesystem integration' do
     let(:person) { create(:person) }
     let(:work_with_author) { create(:work) }
-    let(:zip_file) { fixture_file_upload('zip/sample.zip', 'application/zip') }
-    let(:zip_filetype) { Filetype.find_by(name: 'ZIP ファイル') || create(:filetype, name: 'ZIP ファイル', extension: 'zip') }
 
     let(:filesystem_attributes) do
       {
         work_id: work_with_author.id,
-        filetype_id: zip_filetype.id,
+        filetype_id: filetype.id,
         compresstype_id: compresstype.id,
         file_encoding_id: file_encoding.id,
         charset_id: charset.id,
-        workdata: zip_file,
+        workdata: workdata,
         filename: 'sample.zip',
         workfile_secret_attributes: { memo: 'filesystem test' }
       }
@@ -182,7 +180,8 @@ RSpec.describe Admin::WorkfilesController do
 
     after do
       # Clean up filesystem files after each test
-      @created_workfile.filesystem.delete if defined?(@created_workfile) && @created_workfile && @created_workfile.filesystem.exists?
+      last_workfile = Workfile.last
+      last_workfile&.filesystem&.delete if last_workfile&.filesystem&.exists?
     end
 
     context 'when uploading to filesystem (non-test environment)' do
@@ -195,14 +194,14 @@ RSpec.describe Admin::WorkfilesController do
           post admin_work_workfiles_url(work_with_author), params: { workfile: filesystem_attributes }
         end.to change(Workfile, :count).by(1)
 
-        @created_workfile = Workfile.last
+        created_workfile = Workfile.last
 
         # Verify file is saved to filesystem
-        expect(@created_workfile.filesystem.exists?).to be true
-        expect(@created_workfile.filesystem.size).to be > 0
+        expect(created_workfile.filesystem.exists?).to be true
+        expect(created_workfile.filesystem.size).to be > 0
 
         # Verify ActiveStorage is not used
-        expect(@created_workfile.workdata.attached?).to be false
+        expect(created_workfile.workdata.attached?).to be false
 
         expect(response).to redirect_to(admin_work_url(work_with_author))
         expect(flash[:success]).to include('ワークファイルが正常に作成されました')
@@ -211,22 +210,14 @@ RSpec.describe Admin::WorkfilesController do
       it 'creates correct filesystem directory structure' do
         post admin_work_workfiles_url(work_with_author), params: { workfile: filesystem_attributes }
 
-        @created_workfile = Workfile.last
+        created_workfile = Workfile.last
         expected_path = Rails.root.join('data/workfiles/cards', work_with_author.card_person_id, 'files', 'sample.zip')
 
-        expect(@created_workfile.filesystem.path).to eq(expected_path)
+        expect(created_workfile.filesystem.path).to eq(expected_path)
         expect(File.exist?(expected_path)).to be true
       end
 
       context 'when file conversion is needed' do
-        let(:html_filetype) { Filetype.find_by(name: 'XHTML 1.1') || create(:filetype, name: 'XHTML 1.1', extension: 'html') }
-        let(:conversion_attributes) do
-          filesystem_attributes.merge(
-            filetype_id: html_filetype.id,
-            filename: '01jo.txt' # Will be converted to .html
-          )
-        end
-
         it 'converts file format and saves to filesystem' do
           # Skip conversion test since it requires aozora2html implementation
           skip 'Conversion requires aozora2html implementation'
@@ -241,7 +232,7 @@ RSpec.describe Admin::WorkfilesController do
       context 'when filesystem save fails' do
         before do
           # Mock filesystem save to fail
-          allow_any_instance_of(Workfile::Filesystem).to receive(:save).and_raise(StandardError, 'Disk full')
+          allow_any_instance_of(Workfile::Filesystem).to receive(:save).and_raise(StandardError, 'Disk full') # rubocop:disable RSpec/AnyInstance
         end
 
         it 'handles filesystem errors gracefully' do
@@ -282,7 +273,7 @@ RSpec.describe Admin::WorkfilesController do
 
       before do
         allow(Rails.env).to receive(:test?).and_return(false)
-        existing_workfile.filesystem.save(zip_file)
+        existing_workfile.filesystem.save(workdata)
       end
 
       it 'deletes both database record and filesystem file' do
