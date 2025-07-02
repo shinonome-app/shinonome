@@ -6,8 +6,7 @@ module Admin
 
     # GET /admin/workfiles/new
     def new
-      @workfile = Workfile.new
-      @workfile.work_id = params[:work_id]
+      @workfile = Workfile.new(work_id: params[:work_id])
       @workfile.build_workfile_secret
     end
 
@@ -16,80 +15,27 @@ module Admin
 
     # POST /admin/workfiles
     def create
-      @workfile = Workfile.new(workfile_params_without_workdata)
+      result = WorkfileCreator.new.create(workfile_params_without_workdata, params[:workfile][:workdata])
 
-      uploaded_file = params[:workfile][:workdata]
-      unless uploaded_file
+      if result.success?
+        redirect_to [:admin, result.workfile.work], success: result.message
+      elsif result.validation_error? || result.no_file_error?
+        # バリデーションエラーやファイル未選択の場合はフォームを再表示
+        @workfile = result.workfile || Workfile.new(workfile_params_without_workdata)
         render :new, status: :unprocessable_entity
-        return
-      end
-
-      @workfile.filename = uploaded_file.original_filename
-      unless @workfile.save
-        render :new, status: :unprocessable_entity
-        return
-      end
-
-      begin
-        @workfile.filesystem.save(uploaded_file)
-
-        if needs_conversion?(@workfile)
-          result = WorkfileConverter.new.convert_format(@workfile)
-          unless result.converted?
-            @workfile.filesystem.delete
-            @workfile.destroy
-            redirect_to [:admin, @workfile.work], alert: 'ファイル変換に失敗しました'
-            return
-          end
-        end
-
-        redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に作成されました。'
-      rescue StandardError => e
-        @workfile.filesystem.delete
-        @workfile.destroy
-        redirect_to [:admin, @workfile.work], alert: "ファイル保存に失敗しました: #{e.message}"
+      else
+        # ファイル保存エラーなどの場合はredirect
+        work = result.workfile&.work || Work.find(params[:work_id])
+        redirect_to [:admin, work], alert: result.message
       end
     end
 
     # PATCH/PUT /admin/work/workfiles/1
     def update
-      uploaded_file = params[:workfile][:workdata]
-      if uploaded_file
-        begin
-          # 既存ファイルのバックアップ
-          backup_path = "#{@workfile.filesystem.path}.backup"
-          FileUtils.cp(@workfile.filesystem.path, backup_path) if @workfile.filesystem.exists?
+      result = WorkfileCreator.new.update(@workfile, workfile_params_without_workdata, params[:workfile][:workdata])
 
-          # 新しいファイルの保存
-          @workfile.filename = uploaded_file.original_filename if uploaded_file.original_filename.present?
-          @workfile.filesystem.save(uploaded_file)
-
-          # ファイル形式変換
-          if needs_conversion?(@workfile)
-            result = WorkfileConverter.new.convert_format(@workfile)
-            unless result.converted?
-              # 失敗時はバックアップから復元
-              FileUtils.mv(backup_path, @workfile.filesystem.path) if File.exist?(backup_path)
-              redirect_to [:admin, @workfile.work], alert: 'ファイル変換に失敗しました'
-              return
-            end
-          end
-
-          # バックアップファイルの削除
-          FileUtils.rm_f(backup_path)
-
-          if @workfile.update(workfile_params_without_workdata)
-            redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に更新されました。'
-          else
-            render :edit, status: :unprocessable_entity
-          end
-        rescue StandardError => e
-          # エラー時はバックアップから復元
-          FileUtils.mv(backup_path, @workfile.filesystem.path) if File.exist?(backup_path)
-          redirect_to [:admin, @workfile.work], alert: "ファイル更新に失敗しました: #{e.message}"
-        end
-      elsif @workfile.update(workfile_params_without_workdata)
-        redirect_to [:admin, @workfile.work], success: 'ワークファイルが正常に更新されました。'
+      if result.success?
+        redirect_to [:admin, result.workfile.work], success: result.message
       else
         render :edit, status: :unprocessable_entity
       end
@@ -98,9 +44,13 @@ module Admin
     # DELETE /admin/work/workfiles/1
     def destroy
       work = @workfile.work
-      @workfile.filesystem.delete
-      @workfile.destroy!
-      redirect_to admin_work_url(work), success: '削除しました.'
+      result = WorkfileCreator.new.destroy(@workfile)
+
+      if result.success?
+        redirect_to admin_work_url(work), success: result.message
+      else
+        redirect_to admin_work_url(work), alert: result.message
+      end
     end
 
     private
@@ -124,8 +74,9 @@ module Admin
                                        { workfile_secret_attributes: %i[id memo] })
     end
 
-    def needs_conversion?(workfile)
-      workfile.filename&.end_with?('.txt')
+    def build_new_workfile
+      @workfile = Workfile.new(work_id: params[:work_id])
+      @workfile.build_workfile_secret
     end
   end
 end
