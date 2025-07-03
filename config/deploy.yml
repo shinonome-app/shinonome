@@ -16,13 +16,14 @@ registry:
 
 env:
   clear:
-    DATABASE_NAME: shinonome_production
     RAILS_LOG_TO_STDOUT: '1'
   secret:
     - RAILS_MASTER_KEY
     - DATABASE_HOST
+    - DATABASE_PORT
     - DATABASE_USER
     - DATABASE_PASS
+    - DATABASE_NAME
     - SENDGRID_API_KEY
     - SKYLIGHT_AUTHENTICATION
     - MAIN_SITE_URL
@@ -45,6 +46,9 @@ builder:
   args:
     GIT_SHA: <%= %x(git rev-parse HEAD) %>
 
+ssh:
+  user: <%= ENV['DEPLOY_USER'] %>
+
 sshkit:
   pool_idle_timeout: 1000
 
@@ -55,7 +59,7 @@ deploy_timeout: 100
 # Before deploy, create acme.json file on host:
 #   mkdir -p /letsencrypt && touch /letsencrypt/acme.json && chmod 600 /letsencrypt/acme.json
 proxy:
-  host: reception.aozora-renewal.cloud
+  host: <%= ENV['PROXY_HOST'] %>
   app_port: 3000
   ssl: true
   healthcheck:
