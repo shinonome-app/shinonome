@@ -22,7 +22,11 @@ module Shinonome
                      end
 
           output_file = File.join(output_dir, workfile.filename)
-          File.binwrite(output_file, workfile.workdata.download)
+
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.file_not_found') unless workfile.filesystem.exists?
+
+          # filesystemから読み込み
+          File.binwrite(output_file, workfile.filesystem.read)
 
           Result.new(executed: true, command_result: output_file)
         end

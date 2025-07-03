@@ -158,7 +158,7 @@
   <% @work.workfiles.each do |workfile| %>
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
-        ["ファイル", workfile.workdata.attached? ? link_to(workfile.filename, rails_blob_url(workfile.workdata)) : "#{workfile.filename}(⚠️ファイルなし)"],
+        ["ファイル", workfile.file_exists? ? link_to(workfile.filename, workfile.download_admin_url) : "#{workfile.filename}(⚠️ファイルなし)"],
         ["URL", workfile.url.present? ? link_to(workfile.url, workfile.url) : '-'],
         ["ファイル形式", workfile.filetype.name],
         ["圧縮形式", workfile.compresstype.name],

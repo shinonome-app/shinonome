@@ -26,6 +26,15 @@ class Workfile < ApplicationRecord
       File.exist?(path)
     end
 
+    # ファイルをコピー
+    def copy_from(source_path)
+      return false if path.nil?
+
+      ensure_directory
+      FileUtils.cp(source_path, path)
+      workfile.update!(filesize: File.size(path))
+    end
+
     # アップロードされたファイルをファイルシステムに保存
     def save(uploaded_file)
       return false if path.nil?

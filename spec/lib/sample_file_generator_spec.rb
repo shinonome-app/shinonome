@@ -122,7 +122,7 @@ TEXT
         SampleFileGenerator.new.generate_sample_html(workfile)
         expect(workfile.filename).to eq "#{workfile.work.id}_#{workfile.id}.html"
 
-        text = workfile.workdata.download.force_encoding('utf-8')
+        text = workfile.filesystem.read.force_encoding('utf-8')
 
         # rubocop:disable Layout/HeredocIndentation
         expect(text).to eq <<HTML
@@ -181,7 +181,7 @@ HTML
 
       it '正しいHTMLが生成される' do
         SampleFileGenerator.new.generate_sample_html(workfile)
-        text = workfile.workdata.download.force_encoding('utf-8')
+        text = workfile.filesystem.read.force_encoding('utf-8')
 
         # rubocop:disable Layout/HeredocIndentation
         expect(text).to eq <<HTML

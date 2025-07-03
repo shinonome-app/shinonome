@@ -14,7 +14,7 @@
 
   <%= render 'form', exec_command: @exec_command %>
 
-  <% if @last_exec_command&.result_data&.attached? %>
-    link: <%= link_to 'download', @last_exec_command.result_data %>
+  <% if @last_exec_command&.file_exists? %>
+    link: <%= link_to 'download', @last_exec_command.download_url %>
   <% end %>
 </div>
