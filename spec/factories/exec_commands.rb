@@ -16,7 +16,22 @@
 
 FactoryBot.define do
   factory :exec_command, class: 'Shinonome::ExecCommand' do
-    command { 'MyText' }
-    user_id { '' }
+    command { 'work_list_all' }
+    separator { :tab }
+    user
+
+    trait :with_result do
+      executed_at { Time.current }
+      result { { success: true } }
+    end
+
+    trait :failed do
+      executed_at { Time.current }
+      result { { success: false, messages: ['Command execution failed'] } }
+    end
+
+    trait :with_comma_separator do
+      separator { :comma }
+    end
   end
 end

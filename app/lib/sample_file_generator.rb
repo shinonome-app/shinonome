@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'zip'
+require 'tmpdir'
+
 # ダミーファイル生成
 class SampleFileGenerator
   ## Workfiles

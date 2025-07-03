@@ -78,7 +78,7 @@ Rails.application.routes.draw do
 
     resources :works do
       resources :workfiles, only: %i[new edit create update destroy] do
-        resource :download, only: %i[show]
+        resource :download, only: %i[show], controller: 'workfiles/downloads'
       end
       resources :sites
       resources :original_books, only: %i[new edit create update destroy]
@@ -118,7 +118,7 @@ Rails.application.routes.draw do
     end
 
     resources :exec_commands, only: %i[index new create] do
-      resource :download, only: %i[show]
+      resource :download, only: %i[show], controller: 'exec_commands/downloads'
     end
 
     resources :typesettings, only: %i[index show new create destroy] do

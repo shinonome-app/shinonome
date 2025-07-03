@@ -115,7 +115,7 @@ end
 
 def generate_sample_html(workfile)
   work = workfile.work
-  html_file = "#{work.id}_ruby_#{workfile.id}.html"
+  html_file = "#{work.id}_#{workfile.id}.html"
 
   Dir.mktmpdir do |folder|
     htmlfile_path = File.join(folder, html_file)
@@ -131,50 +131,47 @@ end
 
 work_id_status_list = Work.pluck(:id, :work_status_id)
 
-workfiles = work_id_status_list.map do |n, status|
+work_id_status_list.each do |work_id, status|
   # 校了と公開のみ
   next unless [1, 10].include?(status)
 
-  [
-    {
-      work_id: n,
-      filename: "#{n}_ruby_NNN.zip",
-      charset_id: 1, # JIS X 0208
-      compresstype_id: 2, # zip
-      file_encoding_id: 1, # Shift_JIS
-      filetype_id: 1, # テキストファイル(ルビあり) rtxt
-      revision_count: 1,
-      registered_on: Time.current,
-      last_updated_on: Time.current,
-      filesize: 10000 + (rand(2000) * 17),
-      created_at: Time.current,
-      updated_at: Time.current
-    },
-    {
-      work_id: n,
-      filename: "#{n}_NNN.html",
-      charset_id: 1, # JIS X 0208
-      compresstype_id: 1, # 圧縮なし
-      file_encoding_id: 1, # Shift_JIS
-      filetype_id: 3, # htmlファイル
-      revision_count: 1,
-      registered_on: Time.current,
-      last_updated_on: Time.current,
-      filesize: 10000 + (rand(2000) * 17),
-      created_at: Time.current,
-      updated_at: Time.current
-    }
-  ]
-end.flatten.compact
+  # ZIPファイルの作成
+  zip_workfile = Workfile.new(
+    work_id: work_id,
+    filename: "", # 一時的なファイル名、後で更新
+    charset_id: 1, # JIS X 0208
+    compresstype_id: 2, # zip
+    file_encoding_id: 1, # Shift_JIS
+    filetype_id: 1, # テキストファイル(ルビあり) rtxt
+    revision_count: 1,
+    registered_on: Time.current,
+    last_updated_on: Time.current,
+    filesize: 10000 + (rand(2000) * 17),
+    created_at: Time.current,
+    updated_at: Time.current
+  )
+  zip_workfile.build_workfile_secret(memo: "ZIPファイル")
+  zip_workfile.save!
 
-Workfile.insert_all(workfiles)
+  # HTMLファイルの作成
+  html_workfile = Workfile.new(
+    work_id: work_id,
+    filename: "", # 一時的なファイル名、後で更新
+    charset_id: 1, # JIS X 0208
+    compresstype_id: 1, # 圧縮なし
+    file_encoding_id: 1, # Shift_JIS
+    filetype_id: 3, # htmlファイル
+    revision_count: 1,
+    registered_on: Time.current,
+    last_updated_on: Time.current,
+    filesize: 10000 + (rand(2000) * 17),
+    created_at: Time.current,
+    updated_at: Time.current
+  )
+  html_workfile.build_workfile_secret(memo: "HTMLファイル")
+  html_workfile.save!
 
-Workfile.includes(:work).find_each do |workfile|
-  workfile.create_workfile_secret!(memo: "備考#{workfile.id}")
-  case workfile.compresstype_id
-  when 2
-    generate_sample_zip(workfile)
-  when 1
-    generate_sample_html(workfile)
-  end
+  # ファイル生成
+  generate_sample_zip(zip_workfile)
+  generate_sample_html(html_workfile)
 end
