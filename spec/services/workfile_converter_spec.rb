@@ -16,9 +16,7 @@ RSpec.describe WorkfileConverter do
       let(:workfile) { create(:workfile, :xhtml, work: work, filename: 'test.txt') }
 
       before do
-        File.open('spec/fixtures/text/01jo.txt', 'rb') do |file|
-          workfile.filesystem.save(file)
-        end
+        workfile.filesystem.copy_from('spec/fixtures/text/01jo.txt')
       end
 
       it 'converts successfully when Aozora2Html is available' do
@@ -45,9 +43,7 @@ RSpec.describe WorkfileConverter do
       let(:workfile) { create(:workfile, :zip, work: work, filename: 'test.txt') }
 
       before do
-        File.open('spec/fixtures/text/01jo.txt', 'rb') do |file|
-          workfile.filesystem.save(file)
-        end
+        workfile.filesystem.copy_from('spec/fixtures/text/01jo.txt')
       end
 
       it 'converts successfully' do
@@ -80,9 +76,7 @@ RSpec.describe WorkfileConverter do
       let(:workfile) { create(:workfile, :xhtml, work: work, filename: 'test.html') }
 
       before do
-        File.open('spec/fixtures/html/01jo.html', 'rb') do |file|
-          workfile.filesystem.save(file)
-        end
+        workfile.filesystem.copy_from('spec/fixtures/html/01jo.html')
       end
 
       it 'returns unconverted result' do

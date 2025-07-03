@@ -90,12 +90,8 @@ class SampleFileGenerator
         end
       end
 
-      if workfile.respond_to?(:workdata)
-        workfile.workdata.attach(io: File.open(zipfile_name), filename: zip_file, content_type: 'application/zip')
-
-        workfile.filename = zip_file
-      end
-      # workfile.filesize = File.size(zipfile_name)
+      workfile.filesystem.copy_from(zipfile_name)
+      workfile.update!(filename: zip_file, filesize: File.size(zipfile_name))
     end
 
     zipfile_name
@@ -112,12 +108,8 @@ class SampleFileGenerator
       html_data = "<html>\n<head>\n<title>#{work.title}</title>\n</head>\n<body>\n<pre>\n#{content}</pre>\n</body>\n</html>\n"
       File.write(htmlfile_path, html_data)
 
-      if workfile.respond_to?(:workdata)
-        File.open(htmlfile_path) do |f|
-          workfile.workdata.attach(io: f, filename: html_file, content_type: 'text/html')
-        end
-        workfile.filename = html_file
-      end
+      workfile.filesystem.copy_from(htmlfile_path)
+      workfile.update!(filename: html_file, filesize: File.size(htmlfile_path))
     end
   end
 end

@@ -117,16 +117,12 @@ RSpec.describe Workfile do
     end
 
     it 'ルビがあればtrue' do
-      File.open('spec/fixtures/text/01jo.txt', 'rb') do |file|
-        workfile.filesystem.save(file)
-      end
+      workfile.filesystem.copy_from('spec/fixtures/text/01jo.txt')
       expect(workfile.using_ruby?).to be true
     end
 
     it 'ルビがなければfalse' do
-      File.open('spec/fixtures/text/fukei.txt', 'rb') do |file|
-        workfile.filesystem.save(file)
-      end
+      workfile.filesystem.copy_from('spec/fixtures/text/fukei.txt')
       expect(workfile.using_ruby?).to be false
     end
 
@@ -139,9 +135,7 @@ RSpec.describe Workfile do
     context 'xhtmlの場合' do
       it '正しいファイル名を返す' do
         workfile = create(:workfile, :xhtml) do |tmp_workfile|
-          File.open('spec/fixtures/html/01jo.html', 'rb') do |file|
-            tmp_workfile.filesystem.save(file)
-          end
+          tmp_workfile.filesystem.copy_from('spec/fixtures/html/01jo.html')
         end
         expect(workfile.generate_filename).to eq "#{workfile.work_id}_#{workfile.id}.html"
         workfile.filesystem.delete if workfile.filesystem.exists?
@@ -151,9 +145,7 @@ RSpec.describe Workfile do
     context 'zipの場合' do
       it 'ルビがある場合は_ruby_つきのファイル名を返す' do
         workfile = create(:workfile, :zip) do |tmp_workfile|
-          File.open('spec/fixtures/zip/01jo.zip', 'rb') do |file|
-            tmp_workfile.filesystem.save(file)
-          end
+          tmp_workfile.filesystem.copy_from('spec/fixtures/zip/01jo.zip')
           tmp_workfile.filetype_id = 1
         end
         expect(workfile.generate_filename).to eq "#{workfile.work_id}_ruby_#{workfile.id}.zip"
@@ -162,9 +154,7 @@ RSpec.describe Workfile do
 
       it 'ルビがない場合は_txt_つきのファイル名を返す' do
         workfile = create(:workfile, :zip) do |tmp_workfile|
-          File.open('spec/fixtures/zip/fukei.zip', 'rb') do |file|
-            tmp_workfile.filesystem.save(file)
-          end
+          tmp_workfile.filesystem.copy_from('spec/fixtures/zip/fukei.zip')
           tmp_workfile.filetype_id = 2
         end
         expect(workfile.generate_filename).to eq "#{workfile.work_id}_txt_#{workfile.id}.zip"

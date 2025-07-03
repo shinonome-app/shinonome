@@ -32,6 +32,18 @@ module Shinonome
 
     belongs_to :user, class_name: 'Shinonome::User'
 
+    def filesystem
+      @filesystem ||= Shinonome::ExecCommand::Filesystem.new(self)
+    end
+
+    def file_exists?
+      filesystem.exists?
+    end
+
+    def download_url
+      Rails.application.routes.url_helpers.admin_exec_command_download_path(self)
+    end
+
     validates :command, presence: true
 
     attr_reader :csv_path
@@ -49,9 +61,10 @@ module Shinonome
 
         if commands_result.successful?
           make_zip(zip_dir: outputdir, path:)
-          result_data.attach(io: File.open(path), filename: 'result.zip', content_type: 'application/zip')
           self.result = { success: true }
-          save!
+          save! # 先に保存してIDを確定させる
+
+          filesystem.copy_from(path)
 
           true
         else

@@ -53,9 +53,18 @@ class Workfile < ApplicationRecord
           required: true,
           dependent: :destroy
 
-  # ファイルシステム操作のデリゲート
   def filesystem
     @filesystem ||= Workfile::Filesystem.new(self)
+  end
+
+  def file_exists?
+    filesystem.exists?
+  end
+
+  def download_admin_url
+    return nil unless persisted? && work
+
+    Rails.application.routes.url_helpers.admin_work_workfile_download_path(work, self)
   end
 
   accepts_nested_attributes_for :workfile_secret, update_only: true
