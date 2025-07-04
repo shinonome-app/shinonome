@@ -78,10 +78,9 @@ RSpec.describe Shinonome::ExecCommand::Command::AddFile do
         args2 = args.merge(work_id: 'abc')
         rows = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
                                :revision_count, :file_encoding_name, :charset_name, :note, :filename)
-        command = Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
 
         expect do
-          Shinonome::ExecCommand::Command::AddFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command.new(['ファイル追加', *rows])
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           'BookIDが数値ではありません。'

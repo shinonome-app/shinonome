@@ -127,10 +127,9 @@ RSpec.describe Shinonome::ExecCommand::Command::EditFile do
 
         row = args2.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
                               :revision_count, :file_encoding_name, :charset_name, :note, :filename, :workfile_id)
-        command = Shinonome::ExecCommand::Command.new(['ファイル更新', *row])
 
         expect do
-          Shinonome::ExecCommand::Command::EditFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command.new(['ファイル更新', *row])
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           'BookIDが数値ではありません。'

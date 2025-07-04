@@ -51,13 +51,9 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
     end
 
     context 'work_idが数値ではない場合' do
-      let(:command) do
-        Shinonome::ExecCommand::Command.new(['ファイル削除', 'abc', '', '', workfile.id])
-      end
-
       it '例外をあげる' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command.new(['ファイル削除', 'abc', '', '', workfile.id])
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           'BookIDが数値ではありません。'

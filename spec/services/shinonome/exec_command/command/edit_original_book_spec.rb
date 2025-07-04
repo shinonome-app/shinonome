@@ -41,9 +41,9 @@ RSpec.describe Shinonome::ExecCommand::Command::EditOriginalBook do
       it '例外をあげる' do
         args2 = args.dup
         args2[0] = 'abc'
-        command = Shinonome::ExecCommand::Command.new(['底本更新', *args2])
+
         expect do
-          Shinonome::ExecCommand::Command::EditOriginalBook.new.execute(command)
+          Shinonome::ExecCommand::Command.new(['底本更新', *args2])
         end.to raise_error(
           Shinonome::ExecCommand::FormatError,
           'BookIDが数値ではありません。'

@@ -20,10 +20,8 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteBibclass do
     end
 
     context 'work_idが数値ではない場合' do
-      let(:command) { Shinonome::ExecCommand::Command.new(%w[分類削除 invalid NDC 913]) }
-
       it '例外をあげる' do
-        expect { Shinonome::ExecCommand::Command::DeleteBibclass.new.execute(command) }.to raise_error(Shinonome::ExecCommand::FormatError, 'BookIDが数値ではありません。')
+        expect { Shinonome::ExecCommand::Command.new(%w[分類削除 invalid NDC 913]) }.to raise_error(Shinonome::ExecCommand::FormatError, 'BookIDが数値ではありません。')
       end
     end
 

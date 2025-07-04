@@ -51,12 +51,8 @@ RSpec.describe Shinonome::ExecCommand::Command::EditBibclass do
     end
 
     context 'work_idが数値ではない場合' do
-      let(:command) do
-        Shinonome::ExecCommand::Command.new(['分類更新', 'invalid', 'NDC', '913 914', '備考ABC'])
-      end
-
       it '例外をあげる' do
-        expect { Shinonome::ExecCommand::Command::EditBibclass.new.execute(command) }.to raise_error(Shinonome::ExecCommand::FormatError, 'BookIDが数値ではありません。')
+        expect { Shinonome::ExecCommand::Command.new(['分類更新', 'invalid', 'NDC', '913 914', '備考ABC']) }.to raise_error(Shinonome::ExecCommand::FormatError, 'BookIDが数値ではありません。')
       end
     end
 
