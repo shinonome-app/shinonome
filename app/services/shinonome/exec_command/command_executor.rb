@@ -19,7 +19,11 @@ module Shinonome
         command_results = []
         commands.each_with_index do |command, idx|
           begin
-            command_result = command.execute(output_dir:)
+            command_result = if command.method(:execute).parameters.any? { |_type, name| name == :output_dir }
+                               command.execute(output_dir:)
+                             else
+                               command.execute
+                             end
             command_results << command_result
           rescue StandardError => e
             errors << { error: e, index: idx, command: }

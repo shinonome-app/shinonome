@@ -9,3 +9,6 @@
 RSpec/PendingWithoutReason:
   Exclude:
     - 'spec/requests/**/*_spec.rb'
+
+RSpec/AnyInstance:
+  Enabled: false

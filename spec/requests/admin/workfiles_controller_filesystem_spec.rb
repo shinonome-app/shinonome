@@ -117,7 +117,7 @@ RSpec.describe Admin::WorkfilesController do
 
         it 'handles filesystem save errors gracefully' do
           # Mock filesystem save to fail
-          allow_any_instance_of(Workfile::Filesystem).to receive(:save).and_raise(StandardError, 'Disk full') # rubocop:disable RSpec/AnyInstance
+          allow_any_instance_of(Workfile::Filesystem).to receive(:save).and_raise(StandardError, 'Disk full')
 
           expect do
             post admin_work_workfiles_url(work), params: { workfile: filesystem_attributes }
@@ -182,7 +182,7 @@ RSpec.describe Admin::WorkfilesController do
 
         it 'handles filesystem delete errors gracefully', :skip_cleanup do
           # Mock filesystem delete to fail
-          allow_any_instance_of(Workfile::Filesystem).to receive(:delete).and_raise(StandardError, 'Permission denied') # rubocop:disable RSpec/AnyInstance
+          allow_any_instance_of(Workfile::Filesystem).to receive(:delete).and_raise(StandardError, 'Permission denied')
 
           expect do
             delete admin_work_workfile_url(work, existing_workfile)

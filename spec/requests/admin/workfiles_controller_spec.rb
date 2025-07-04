@@ -127,7 +127,7 @@ RSpec.describe Admin::WorkfilesController do
 
     context 'when WorkfileCreator service fails' do
       before do
-        allow_any_instance_of(WorkfileCreator).to receive(:create) # rubocop:disable RSpec/AnyInstance
+        allow_any_instance_of(WorkfileCreator).to receive(:create)
           .and_return(WorkfileCreator::Result.failure(nil, 'Service error', :service_error))
       end
 
@@ -192,7 +192,7 @@ RSpec.describe Admin::WorkfilesController do
 
     context 'when WorkfileCreator service fails' do
       before do
-        allow_any_instance_of(WorkfileCreator).to receive(:update) # rubocop:disable RSpec/AnyInstance
+        allow_any_instance_of(WorkfileCreator).to receive(:update)
           .and_return(WorkfileCreator::Result.failure(workfile, 'Update failed', :update_error))
       end
 
@@ -220,7 +220,7 @@ RSpec.describe Admin::WorkfilesController do
 
     context 'when WorkfileCreator service fails' do
       before do
-        allow_any_instance_of(WorkfileCreator).to receive(:destroy) # rubocop:disable RSpec/AnyInstance
+        allow_any_instance_of(WorkfileCreator).to receive(:destroy)
           .and_return(WorkfileCreator::Result.failure(workfile, 'Delete failed', :delete_error))
       end
 

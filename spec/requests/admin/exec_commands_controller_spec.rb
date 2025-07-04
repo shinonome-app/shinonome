@@ -57,10 +57,11 @@ RSpec.describe Admin::ExecCommandsController do
     end
 
     context 'with prev=failed parameter' do
+      let(:last_exec_command) { create(:exec_command, :failed, user: user) }
+
       before do
-        @last_exec_command = create(:exec_command, :failed, user: user)
         # Ensure error_messages returns an array for the failed command
-        allow(@last_exec_command).to receive(:error_messages).and_return(['Command execution failed'])
+        allow(last_exec_command).to receive(:error_messages).and_return(['Command execution failed'])
       end
 
       it 'shows failure state and error messages' do
@@ -137,10 +138,11 @@ RSpec.describe Admin::ExecCommandsController do
           exec_command_double = instance_double(Shinonome::ExecCommand)
           allow(Shinonome::ExecCommand).to receive(:new).and_return(exec_command_double)
           allow(exec_command_double).to receive(:user=)
-          allow(exec_command_double).to receive(:save).and_return(true)
-          expect(exec_command_double).to receive(:execute).and_return(true)
+          allow(exec_command_double).to receive_messages(save: true, execute: true)
 
           post '/admin/exec_commands', params: valid_attributes
+
+          expect(exec_command_double).to have_received(:execute)
         end
       end
 
@@ -212,9 +214,11 @@ RSpec.describe Admin::ExecCommandsController do
         exec_command = build(:exec_command, command: '')
         allow(Shinonome::ExecCommand).to receive(:new).and_return(exec_command)
         allow(exec_command).to receive(:save).and_return(false)
-        expect(exec_command).not_to receive(:execute)
+        allow(exec_command).to receive(:execute)
 
         post '/admin/exec_commands', params: invalid_attributes
+
+        expect(exec_command).not_to have_received(:execute)
       end
     end
 
@@ -390,8 +394,10 @@ RSpec.describe Admin::ExecCommandsController do
 
   describe 'download functionality integration' do
     context 'when exec command has a result file' do
+      let(:exec_command) { create(:exec_command, :with_result, user: user) }
+
       before do
-        @exec_command = create(:exec_command, :with_result, user: user)
+        exec_command # ensure it's created
         allow_any_instance_of(Shinonome::ExecCommand::Filesystem).to receive(:exists?).and_return(true)
       end
 
@@ -400,7 +406,7 @@ RSpec.describe Admin::ExecCommandsController do
 
         expect(response).to have_http_status(:success)
         expect(response.body).to include('download')
-        expect(response.body).to include(admin_exec_command_download_path(@exec_command))
+        expect(response.body).to include(admin_exec_command_download_path(exec_command))
       end
     end
 

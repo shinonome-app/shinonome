@@ -85,7 +85,7 @@ RSpec.describe WorkfileCreator do
         allow(filesystem_mock).to receive(:delete)
 
         # Mock the filesystem method to return our mock
-        allow_any_instance_of(Workfile).to receive(:filesystem).and_return(filesystem_mock) # rubocop:disable RSpec/AnyInstance
+        allow_any_instance_of(Workfile).to receive(:filesystem).and_return(filesystem_mock)
 
         result = service.create(valid_params, uploaded_file)
 
