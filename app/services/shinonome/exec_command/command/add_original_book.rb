@@ -8,7 +8,13 @@ module Shinonome
         def execute(command)
           raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.invalid_argument_number') if command.body.size > 8
 
-          work_id, title, publisher, first_pubdate, input_edition, proof_edition, booktype_name, note = command.body
+          # For continuation lines, work_id comes from previous command, not from body
+          if command.pass_work_id? && command.work_id
+            work_id = command.work_id
+            title, publisher, first_pubdate, input_edition, proof_edition, booktype_name, note = command.body
+          else
+            work_id, title, publisher, first_pubdate, input_edition, proof_edition, booktype_name, note = command.body
+          end
 
           work = find_work!(work_id)
           booktype = find_booktype_by_name!(booktype_name)

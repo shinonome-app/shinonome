@@ -25,7 +25,7 @@ module Shinonome
         prev_command = nil
 
         command_text.each_line do |line|
-          row = parse_tsv_line(line.strip)
+          row = parse_tsv_line(line.chomp)
           line_num += 1
 
           next if row.empty?
@@ -34,11 +34,13 @@ module Shinonome
             command = Command.new(row, prev_command:)
           rescue FormatError => e
             errors << "#{line_num}行目: Syntax Error: #{e.message}"
+            next
           end
 
           next if command.blank? || command.comment?
 
           parsed_commands << command if command
+          prev_command = command
         end
 
         unless errors.empty?
@@ -64,6 +66,7 @@ module Shinonome
             command = Command.new(row, prev_command:)
           rescue FormatError => e
             errors << "line #{line_num}: #{e.message}"
+            next
           end
 
           next if command.blank? || command.comment?
