@@ -11,7 +11,7 @@ module Shinonome
           work = find_work!(work_id)
           site = find_site!(site_id)
 
-          WorkSite.where(work_id: work.id, site_id: site.id).destroy_all!
+          WorkSite.where(work_id: work.id, site_id: site.id).destroy_all
 
           Result.new(executed: true, command_result: nil)
         end

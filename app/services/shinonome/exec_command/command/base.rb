@@ -62,7 +62,7 @@ module Shinonome
 
           Worker.find(worker_id)
         rescue ActiveRecord::RecordNotFound
-          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worker_not_found', worker_id:)
+          raise Shinonome::ExecCommand::FormatError, I18n.t('errors.exec_command.worker_not_found', work_id: worker_id)
         end
 
         def find_filetype_by_name!(filetype_name)

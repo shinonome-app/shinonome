@@ -138,7 +138,7 @@ work_id_status_list.each do |work_id, status|
   # ZIPファイルの作成
   zip_workfile = Workfile.new(
     work_id: work_id,
-    filename: "", # 一時的なファイル名、後で更新
+    filename: '', # 一時的なファイル名、後で更新
     charset_id: 1, # JIS X 0208
     compresstype_id: 2, # zip
     file_encoding_id: 1, # Shift_JIS
@@ -150,13 +150,13 @@ work_id_status_list.each do |work_id, status|
     created_at: Time.current,
     updated_at: Time.current
   )
-  zip_workfile.build_workfile_secret(memo: "ZIPファイル")
+  zip_workfile.build_workfile_secret(memo: 'ZIPファイル')
   zip_workfile.save!
 
   # HTMLファイルの作成
   html_workfile = Workfile.new(
     work_id: work_id,
-    filename: "", # 一時的なファイル名、後で更新
+    filename: '', # 一時的なファイル名、後で更新
     charset_id: 1, # JIS X 0208
     compresstype_id: 1, # 圧縮なし
     file_encoding_id: 1, # Shift_JIS
@@ -168,7 +168,7 @@ work_id_status_list.each do |work_id, status|
     created_at: Time.current,
     updated_at: Time.current
   )
-  html_workfile.build_workfile_secret(memo: "HTMLファイル")
+  html_workfile.build_workfile_secret(memo: 'HTMLファイル')
   html_workfile.save!
 
   # ファイル生成

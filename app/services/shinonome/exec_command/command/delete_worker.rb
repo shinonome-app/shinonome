@@ -6,12 +6,16 @@ module Shinonome
       # 耕作員削除
       class DeleteWorker < Base
         def execute(command)
-          work_id, worker_id = command.body
+          work_id, worker_id, role_name = command.body
 
           work = find_work!(work_id)
           worker = find_worker!(worker_id)
+          worker_role = find_worker_role_by_name!(role_name)
 
-          WorkPerson.where(work_id: work.id, worker_id: worker.id).destroy_all!
+          work_workers = WorkWorker.where(work_id: work.id, worker_id: worker.id, worker_role_id: worker_role.id)
+          raise ActiveRecord::RecordNotFound if work_workers.empty?
+
+          work_workers.destroy_all
 
           Result.new(executed: true, command_result: nil)
         end
