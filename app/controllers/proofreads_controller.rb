@@ -15,7 +15,7 @@ class ProofreadsController < ApplicationController
   def create
     if params[:edit]
       @proofread_form = ProofreadForm.new(proofread_form_params)
-      @author = Person.find(params[:proofread_form][:person_id])
+      @author = find_author(params[:proofread_form][:person_id])
       render :new, status: :unprocessable_entity
       return
     end
@@ -26,6 +26,7 @@ class ProofreadsController < ApplicationController
       redirect_to proofreads_thanks_path
     else
       @proofread_form = result.proofread_form
+      @author = find_author(@proofread_form.person_id)
       render :new, status: :unprocessable_entity
     end
   end
@@ -51,5 +52,15 @@ class ProofreadsController < ApplicationController
         enabled
       ]
     )
+  end
+
+  def find_author(person_id)
+    return nil if person_id.blank?
+
+    Person.find(person_id)
+  rescue ActiveRecord::RecordNotFound
+    # 著者が見つからない場合はnilを返す
+    # ビューでの適切なエラーハンドリングが必要
+    nil
   end
 end

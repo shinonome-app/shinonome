@@ -223,6 +223,10 @@
 
 <%= form.hidden_field :person_id %>
 <%= form.submit '確認', class: "btn-normal" %>
-<%= form.submit '戻る', formmethod: 'get', formaction: proofreads_person_path(@author), class: "btn-normal" %>
+<% if @author %>
+  <%= form.submit '戻る', formmethod: 'get', formaction: proofreads_person_path(@author), class: "btn-normal" %>
+<% else %>
+  <%= form.submit '戻る', formmethod: 'get', formaction: root_path, class: "btn-normal" %>
+<% end %>
 
 <% end %>
