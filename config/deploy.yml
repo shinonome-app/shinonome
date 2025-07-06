@@ -2,7 +2,7 @@
 service: shinonome
 
 # Name of the container image.
-image: takahashim/shinonome
+image: <%= ENV['IMAGE_NAME'] %>
 
 # Deploy to these servers.
 servers:
@@ -10,7 +10,7 @@ servers:
 
 # Credentials for your image host.
 registry:
-  username: takahashim
+  username: MRSK_REGISTRY_USER
   password:
     - MRSK_REGISTRY_PASSWORD
 
@@ -34,7 +34,6 @@ env:
     - BUILDER_HOST
 
 volumes:
-  - "/srv/storage:/rails/storage"
   - "/srv/data/shinonome:/rails/data"
 
 builder:
