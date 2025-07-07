@@ -10,7 +10,7 @@ servers:
 
 # Credentials for your image host.
 registry:
-  username: MRSK_REGISTRY_USER
+  username: <%= ENV['REGISTRY_USER'] %>
   password:
     - MRSK_REGISTRY_PASSWORD
 
@@ -39,9 +39,7 @@ volumes:
 builder:
   dockerfile: Dockerfile.production
   arch: amd64
-  remote: <%= ENV['BUILDER_HOST'] %>
-  cache:
-    type: registry
+  local: true
   args:
     GIT_SHA: <%= %x(git rev-parse HEAD) %>
 
