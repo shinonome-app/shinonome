@@ -143,6 +143,8 @@ Rails.application.routes.draw do
 
     resources :work_workers, only: %i[create destroy], as: :workworkers
 
+    resources :workfiles, only: %i[index show]
+
     # resources :work_sites
     # resources :person_sites
     # resources :work_people

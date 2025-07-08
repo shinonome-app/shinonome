@@ -2,15 +2,30 @@
 
 module Admin
   class WorkfilesController < Admin::ApplicationController
-    before_action :set_workfile, only: %i[edit update destroy]
+    include Pagy::Backend
+    before_action :set_workfile, only: %i[show edit update destroy]
 
-    # GET /admin/workfiles/new
+    # GET /admin/workfiles
+    def index
+      @pagy, @workfiles = pagy(
+        Workfile.includes(:work, :filetype, :compresstype, work: :people)
+                .joins(:work)
+                .order('works.started_on DESC, workfiles.updated_at DESC')
+      )
+    end
+
+    # GET /admin/workfiles/1
+    def show
+      @work = @workfile.work
+    end
+
+    # GET /admin/work/2/workfiles/new
     def new
       @workfile = Workfile.new(work_id: params[:work_id])
       @workfile.build_workfile_secret
     end
 
-    # GET /admin/workfiles/1/edit
+    # GET /admin/work/2/workfiles/1/edit
     def edit; end
 
     # POST /admin/workfiles
