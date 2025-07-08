@@ -10,9 +10,10 @@ servers:
 
 # Credentials for your image host.
 registry:
+  server: <%= ENV['REGISTRY_SERVER'] %>
   username: <%= ENV['REGISTRY_USER'] %>
   password:
-    - MRSK_REGISTRY_PASSWORD
+    - REGISTRY_PASSWORD
 
 env:
   clear:
@@ -31,7 +32,6 @@ env:
     - RECEPTION_EMAIL
     - RAILS_ADMIN_PATH
     - PRIMARY_HOST
-    - BUILDER_HOST
 
 volumes:
   - "/srv/data/shinonome:/rails/data"
