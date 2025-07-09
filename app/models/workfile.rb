@@ -81,6 +81,8 @@ class Workfile < ApplicationRecord
   validates :file_encoding_id, numericality: { only_integer: true }, if: -> { file_encoding_id.present? }
 
   validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }, allow_blank: true
+  # ファイル名に使用可能な文字：英数字、ハイフン、アンダースコア、ドットのみ
+  validates :filename, format: { with: /\A[a-zA-Z0-9\-_.]+\z/ }, allow_blank: true
 
   def self.parse(url, validate: true)
     # ex.

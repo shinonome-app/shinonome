@@ -115,6 +115,8 @@ ja:
           attributes:
             url:
               invalid: 'はhttp:またはhttps:で始まるURLを入力してください'
+            filename:
+              invalid: 'に使用できない文字が含まれています'
     models:
       work: 作品
       news_entry: そらもよう

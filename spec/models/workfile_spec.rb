@@ -320,4 +320,46 @@ RSpec.describe Workfile do
       end
     end
   end
+
+  describe 'validations' do
+    let(:work) { create(:work) }
+
+    describe 'filename validation' do
+      it '正常なファイル名を受け入れる' do
+        workfile = build(:workfile, work: work, filename: 'normal_file.txt')
+        expect(workfile).to be_valid
+      end
+
+      it '英数字とハイフン、アンダースコア、ドットを含むファイル名を受け入れる' do
+        workfile = build(:workfile, work: work, filename: 'test-file_123.txt')
+        expect(workfile).to be_valid
+      end
+
+      it '空のファイル名を受け入れる' do
+        workfile = build(:workfile, work: work, filename: '')
+        expect(workfile).to be_valid
+      end
+
+      it 'nilのファイル名を受け入れる' do
+        workfile = build(:workfile, work: work, filename: nil)
+        expect(workfile).to be_valid
+      end
+
+      it '許可されていない文字を含むファイル名を拒否する' do
+        ['<script>', 'file>test', 'file&test', 'file"test', "file'test", 'file|test', 'file:test',
+         '日本語.txt', 'file name.txt', 'file(1).txt', 'file[1].txt'].each do |invalid_filename|
+          workfile = Workfile.new(
+            work: work,
+            filename: invalid_filename,
+            filetype_id: 1,
+            compresstype_id: 1,
+            file_encoding_id: 1,
+            charset_id: 1
+          )
+          expect(workfile).not_to be_valid
+          expect(workfile.errors[:filename]).to include('に使用できない文字が含まれています')
+        end
+      end
+    end
+  end
 end
