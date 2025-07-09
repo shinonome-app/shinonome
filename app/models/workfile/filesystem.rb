@@ -19,6 +19,19 @@ class Workfile < ApplicationRecord
       Rails.root.join('data/workfiles/cards', workfile.work.card_person_id.to_s, 'files', filename)
     end
 
+    # 安全なファイルパス（パストラバーサル攻撃防止）
+    def safe_path
+      @safe_path ||= begin
+        file_path = path
+        file_path.nil? ? nil : validate_path(file_path)
+      end
+    end
+
+    # 安全なパスが存在するか
+    def safe_path?
+      safe_path.present?
+    end
+
     # ファイルが存在するか
     def exists?
       return false if path.nil?
@@ -66,6 +79,17 @@ class Workfile < ApplicationRecord
     end
 
     private
+
+    def validate_path(file_path)
+      # パスの正規化とセキュリティチェック
+      normalized_path = Pathname.new(file_path).cleanpath
+      base_directory = Pathname.new(Rails.root.join('data/workfiles'))
+
+      # ベースディレクトリ外へのアクセスを防ぐ
+      return unless normalized_path.to_s.start_with?(base_directory.to_s) && File.file?(normalized_path)
+
+      normalized_path.to_s
+    end
 
     # ディレクトリが存在しない場合は作成
     def ensure_directory
