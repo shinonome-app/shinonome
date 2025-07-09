@@ -81,6 +81,38 @@
       </div>
     </div>
 
+    <!-- 作品公開レポート -->
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <div class="ml-3 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">
+                作品公開レポート
+              </dt>
+              <dd class="text-lg font-medium text-gray-900">
+                作品の公開状況分析
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="mt-4">
+          <p class="text-sm text-gray-500">
+            過去・未来の期間を指定して作品の公開状況を分析できます。
+          </p>
+        </div>
+        <div class="mt-4">
+          <%= link_to "実行", new_admin_sysadmin_work_reporter_path,
+                      class: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+      </div>
+    </div>
+
     <!-- 将来の機能用プレースホルダー -->
     <div class="bg-gray-50 overflow-hidden shadow rounded-lg opacity-50">
       <div class="p-6">

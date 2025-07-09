@@ -380,3 +380,6 @@ ja:
           errors:
             file_not_found: "ファイルが見つかりません。"
             workfile_not_found: "ワークファイルが見つかりません。"
+      work_reporters:
+        errors:
+          generation_failed: "レポート生成中にエラーが発生しました: %{message}"
