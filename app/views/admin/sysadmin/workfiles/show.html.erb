@@ -1,0 +1,44 @@
+<div class="w-full">
+  <%= snm_headline h: 'h1' do %>作品ファイル詳細<% end %>
+
+  <div class="mt-4">
+    <%= render(Admin::SnmTableVComponent.new(rows:
+      [
+        ["ファイルID", @workfile.id],
+        ["作品ID", link_to(@work.id, admin_work_path(@work))],
+        ["作品名", link_to(@work.title, admin_work_path(@work))],
+        ["著者名", safe_join(@work.people.map { |person| link_to(person.name, admin_person_path(person)) }, ", ")],
+        ["ファイル名", @workfile.filename || "ファイル名なし"],
+        ["ファイルタイプ", @workfile.filetype&.name],
+        ["圧縮形式", @workfile.compresstype&.name],
+        ["文字エンコーディング", @workfile.file_encoding&.name],
+        ["文字コード", @workfile.charset&.name],
+        ["ファイルサイズ", @workfile.filesize ? "#{number_with_delimiter(@workfile.filesize)} bytes" : "なし"],
+        ["URL", safe_link_url(@workfile.url, target: "_blank", rel: "noopener")],
+        ["登録日", @workfile.registered_on&.strftime("%Y-%m-%d")],
+        ["最終更新日", @workfile.last_updated_on&.strftime("%Y-%m-%d")],
+        ["リビジョン数", @workfile.revision_count],
+        ["ファイル存在確認", @workfile.file_exists? ? "存在する" : "存在しない"],
+        ["ダウンロードURL", safe_link_url(@workfile.download_url, target: "_blank", rel: "noopener")],
+        ["作成日時", @workfile.created_at.strftime("%Y-%m-%d %H:%M:%S")],
+        ["更新日時", @workfile.updated_at.strftime("%Y-%m-%d %H:%M:%S")]
+      ])) %>
+
+    <% if @workfile.workfile_secret %>
+      <div class="mt-6">
+        <%= snm_headline h: 'h2' do %>非公開情報<% end %>
+        <%= render(Admin::SnmTableVComponent.new(rows:
+          [
+            ["メモ", safe_html(nl2br(@workfile.workfile_secret.memo))]
+          ])) %>
+      </div>
+    <% end %>
+
+    <div class="mt-6 flex gap-2">
+      <%= snm_link "編集", href: edit_admin_work_workfile_path(@work, @workfile) %>
+      <%= snm_link "ダウンロード", href: admin_work_workfile_download_path(@work, @workfile), class: "btn btn-primary" if @workfile.file_exists? %>
+      <%= snm_link "作品詳細へ", href: admin_work_path(@work) %>
+      <%= snm_link "一覧へ戻る", href: admin_sysadmin_workfiles_path %>
+    </div>
+  </div>
+</div>
