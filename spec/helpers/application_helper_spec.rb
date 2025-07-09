@@ -150,4 +150,152 @@ RSpec.describe ApplicationHelper do
       expect(helper.nl2br(nil)).to be_nil
     end
   end
+
+  describe '#safe_url?' do
+    context '安全なURLの場合' do
+      it 'httpスキームのURLを許可すること' do
+        expect(helper.safe_url?('http://example.com')).to be true
+      end
+
+      it 'httpsスキームのURLを許可すること' do
+        expect(helper.safe_url?('https://example.com')).to be true
+      end
+
+      it 'mailtoスキームのURLを許可すること' do
+        expect(helper.safe_url?('mailto:test@example.com')).to be true
+      end
+    end
+
+    context '危険なURLの場合' do
+      it 'javascriptスキームのURLを拒否すること' do
+        expect(helper.safe_url?('javascript:alert("XSS")')).to be false
+      end
+
+      it 'dataスキームのURLを拒否すること' do
+        expect(helper.safe_url?('data:text/html,<script>alert("XSS")</script>')).to be false
+      end
+
+      it 'vbscriptスキームのURLを拒否すること' do
+        expect(helper.safe_url?('vbscript:msgbox("XSS")')).to be false
+      end
+    end
+
+    context '不正なURLの場合' do
+      it '不正な形式のURLを拒否すること' do
+        expect(helper.safe_url?('ht!tp://example.com')).to be false
+      end
+
+      it 'スペースを含むURLを拒否すること' do
+        expect(helper.safe_url?('http://example.com/path with spaces')).to be false
+      end
+    end
+
+    context '空の入力の場合' do
+      it 'nilの場合はfalseを返すこと' do
+        expect(helper.safe_url?(nil)).to be false
+      end
+
+      it '空文字列の場合はfalseを返すこと' do
+        expect(helper.safe_url?('')).to be false
+      end
+    end
+  end
+
+  describe '#safe_link_url' do
+    context '空の入力の場合' do
+      it 'nilの場合は-を返すこと' do
+        expect(helper.safe_link_url(nil)).to eq('-')
+      end
+
+      it '空文字列の場合は-を返すこと' do
+        expect(helper.safe_link_url('')).to eq('-')
+      end
+
+      it '空白文字のみの場合は-を返すこと' do
+        expect(helper.safe_link_url('   ')).to eq('-')
+      end
+    end
+
+    context '安全なURLの場合' do
+      it 'httpスキームのURLでリンクを生成すること' do
+        result = helper.safe_link_url('http://example.com')
+        expect(result).to eq('<a href="http://example.com">http://example.com</a>')
+      end
+
+      it 'httpsスキームのURLでリンクを生成すること' do
+        result = helper.safe_link_url('https://example.com')
+        expect(result).to eq('<a href="https://example.com">https://example.com</a>')
+      end
+
+      it 'mailtoスキームのURLでリンクを生成すること' do
+        result = helper.safe_link_url('mailto:test@example.com')
+        expect(result).to eq('<a href="mailto:test@example.com">mailto:test@example.com</a>')
+      end
+
+      it 'HTMLオプションを正しく適用すること' do
+        result = helper.safe_link_url('https://example.com', target: '_blank', rel: 'noopener')
+        expect(result).to eq('<a target="_blank" rel="noopener" href="https://example.com">https://example.com</a>')
+      end
+
+      it '複数のHTMLオプションを正しく適用すること' do
+        result = helper.safe_link_url('https://example.com', target: '_blank', rel: 'noopener', class: 'external-link')
+        expect(result).to include('target="_blank"')
+        expect(result).to include('rel="noopener"')
+        expect(result).to include('class="external-link"')
+        expect(result).to include('href="https://example.com"')
+      end
+    end
+
+    context '危険なURLの場合' do
+      it 'javascriptスキームのURLは文字列として表示すること' do
+        url = 'javascript:alert("XSS")'
+        expect(helper.safe_link_url(url)).to eq(url)
+      end
+
+      it 'dataスキームのURLは文字列として表示すること' do
+        url = 'data:text/html,<script>alert("XSS")</script>'
+        expect(helper.safe_link_url(url)).to eq(url)
+      end
+
+      it 'vbscriptスキームのURLは文字列として表示すること' do
+        url = 'vbscript:msgbox("XSS")'
+        expect(helper.safe_link_url(url)).to eq(url)
+      end
+
+      it '危険なURLの場合はHTMLオプションが無視されること' do
+        url = 'javascript:alert("XSS")'
+        result = helper.safe_link_url(url, target: '_blank', rel: 'noopener')
+        expect(result).to eq(url)
+        expect(result).not_to include('target')
+        expect(result).not_to include('rel')
+      end
+    end
+
+    context '不正なURLの場合' do
+      it '不正な形式のURLは文字列として表示すること' do
+        url = 'ht!tp://example.com'
+        expect(helper.safe_link_url(url)).to eq(url)
+      end
+
+      it 'スペースを含むURLは文字列として表示すること' do
+        url = 'http://example.com/path with spaces'
+        expect(helper.safe_link_url(url)).to eq(url)
+      end
+    end
+
+    context '実際の使用例' do
+      it '正常なURLの場合は新しいタブで開くリンクを生成すること' do
+        result = helper.safe_link_url('https://www.aozora.gr.jp', target: '_blank', rel: 'noopener')
+        expect(result).to eq('<a target="_blank" rel="noopener" href="https://www.aozora.gr.jp">https://www.aozora.gr.jp</a>')
+      end
+
+      it 'XSS攻撃を防ぐこと' do
+        malicious_url = 'javascript:document.cookie'
+        result = helper.safe_link_url(malicious_url, target: '_blank')
+        expect(result).to eq(malicious_url)
+        expect(result).not_to include('<a')
+        expect(result).not_to include('href')
+      end
+    end
+  end
 end
