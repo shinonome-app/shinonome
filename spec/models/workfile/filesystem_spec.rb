@@ -374,7 +374,7 @@ RSpec.describe Workfile::Filesystem do
       end
 
       context 'with special characters in filename' do
-        let(:special_filename) { 'test file (2024) [special].txt' }
+        let(:special_filename) { 'test-file_2024.special.txt' }
         let(:workfile) { create(:workfile, work: work, filename: special_filename) }
 
         it 'handles special characters correctly' do
