@@ -39,12 +39,14 @@ module Admin
         text_searcher.add_query_param('original_title', original_title, text_selector_original_title)
         text_searcher.add_query_param('description', description, text_selector_description)
 
-        works = Work.includes(
-          :work_people,
-          :people,
-          :kana_type,
-          :work_status
-        ).where(text_searcher.where_params)
+        works = text_searcher.apply_to(
+          Work.includes(
+            :work_people,
+            :people,
+            :kana_type,
+            :work_status
+          )
+        )
 
         @pagy, @works = pagy(works.order(created_at: :desc), limit: 50)
       end

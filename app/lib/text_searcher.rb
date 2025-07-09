@@ -9,40 +9,69 @@ class TextSearcher
     ['と等しい', 4]
   ].freeze
 
+  # 許可されたカラム名のホワイトリスト
+  ALLOWED_COLUMNS = %w[
+    collection
+    collection_kana
+    description
+    first_name
+    first_name_kana
+    last_name
+    last_name_kana
+    name
+    name_kana
+    original_title
+    owner_name
+    subtitle
+    subtitle_kana
+    title
+    title_kana
+    url
+  ].freeze
+
   def initialize
-    @param_keys = []
-    @param_values = []
+    @conditions = []
   end
 
   def add_query_param(name, text, text_selector_id)
     return if text.blank?
 
+    # カラム名のセキュリティチェック
+    raise ArgumentError, "Invalid column name: #{name}. Allowed columns: #{ALLOWED_COLUMNS.join(', ')}" unless ALLOWED_COLUMNS.include?(name.to_s)
+
+    column_name = name.to_s
+
     case text_selector_id
     when 1
-      @param_keys << "#{name} like ?"
-      @param_values << "%#{text}%"
+      # を含む
+      @conditions << ["#{column_name} LIKE ?", "%#{text}%"]
     when 2
-      @param_keys << "#{name} like ?"
-      @param_values << "#{text}%"
+      # で始まる
+      @conditions << ["#{column_name} LIKE ?", "#{text}%"]
     when 3
-      @param_keys << "#{name} like ?"
-      @param_values << "%#{text}"
+      # で終わる
+      @conditions << ["#{column_name} LIKE ?", "%#{text}"]
     when 4
-      @param_keys << "#{name} = ?"
-      @param_values << text.to_s
+      # と等しい
+      @conditions << { column_name => text.to_s }
     else
-      raise 'invalid query'
+      raise ArgumentError, 'invalid query selector'
     end
   end
 
-  def where_params
-    # 何もないときは全件検索にする
-    where_key = if @param_keys.blank?
-                  'true'
-                else
-                  @param_keys.join(' AND ')
-                end
+  def where_conditions
+    return nil if @conditions.empty?
 
-    [where_key, *@param_values]
+    @conditions
+  end
+
+  def apply_to(collection)
+    return collection if @conditions.empty?
+
+    @conditions.each do |condition|
+      collection = collection.where(condition)
+    end
+
+    collection
   end
 end

@@ -26,7 +26,7 @@ module Admin
         text_searcher.add_query_param('last_name', last_name, text_selector_last_name)
         text_searcher.add_query_param('last_name_kana', last_name_kana, text_selector_last_name_kana)
 
-        people = Person.where(text_searcher.where_params)
+        people = text_searcher.apply_to(Person.all)
 
         @pagy, @people = pagy(people.order(created_at: :desc), limit: 50)
       end
