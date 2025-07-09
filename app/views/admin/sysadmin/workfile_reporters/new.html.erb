@@ -1,0 +1,59 @@
+<%= snm_headline h: 'h1' do %>WorkfileReporter<% end %>
+
+<div class="mt-6">
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+    <div class="flex items-center">
+      <div class="flex-shrink-0">
+        <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+      <div class="ml-3">
+        <p class="text-sm text-blue-800">
+          指定した期間内のワークファイル状況を集計・分析します。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%= form_with url: admin_sysadmin_workfile_reporters_path, method: :post, local: true, data: { turbo: false } do |form| %>
+    <div class="bg-white shadow rounded-lg p-6">
+      <h2 class="text-lg font-medium text-gray-900 mb-6">レポート設定</h2>
+
+      <div class="space-y-6">
+        <div>
+          <%= form.label :days, "対象期間（日数）", class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <%= form.number_field :days,
+                                  value: @days,
+                                  min: 1,
+                                  max: 365,
+                                  class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            何日前からのワークファイルを対象とするかを指定してください（1-365日）
+          </p>
+        </div>
+
+        <div>
+          <div class="flex items-center">
+            <%= form.check_box :include_details,
+                               checked: @include_details,
+                               class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+            <%= form.label :include_details, "詳細情報を含める", class: "ml-2 block text-sm font-medium text-gray-700" %>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            チェックすると、個別のワークファイル情報も表示されます
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-end space-x-3">
+        <%= link_to "キャンセル", admin_sysadmin_index_path,
+                    class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        <%= form.submit "レポート生成",
+                        class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      </div>
+    </div>
+  <% end %>
+</div>

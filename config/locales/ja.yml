@@ -371,3 +371,12 @@ ja:
       subject:
         one: "「%{title}」入力受付完了のお知らせ"
         other: "「%{title}」他の入力受付完了のお知らせ"
+  admin:
+    sysadmin:
+      workfile_reporters:
+        errors:
+          generation_failed: "レポート生成中にエラーが発生しました: %{message}"
+        files:
+          errors:
+            file_not_found: "ファイルが見つかりません。"
+            workfile_not_found: "ワークファイルが見つかりません。"

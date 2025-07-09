@@ -145,6 +145,15 @@ Rails.application.routes.draw do
 
     resources :workfiles, only: %i[index show]
 
+    # System admin menu
+    resources :sysadmin, only: %i[index]
+    namespace :sysadmin do
+      resources :workfile_reporters, only: %i[new create]
+      namespace :workfile_reporters do
+        resources :files, only: %i[show], controller: 'files'
+      end
+    end
+
     # resources :work_sites
     # resources :person_sites
     # resources :work_people
