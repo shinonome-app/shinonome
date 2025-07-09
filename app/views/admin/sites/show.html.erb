@@ -6,7 +6,7 @@
         ["関連サイト名", @site.name],
         ["関連サイト運営者", @site.site_secret&.owner_name],
         ["email", @site.site_secret&.email],
-        ["URL", link_to(@site.url, @site.url)],
+        ["URL", safe_link_url(@site.url)],
         ["備考(非公開)", @site.site_secret&.memo],
         ["最終更新日", @site.updated_at],
         ["更新者", @site.updated_user&.username]

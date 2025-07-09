@@ -12,7 +12,7 @@
         ["没年月日", @person.died_on],
         ["著作権フラグ", @person.copyright_flag_name],
         ["email", @person.person_secret&.email],
-        ["URL", link_to(@person.url, @person.url)],
+        ["URL", safe_link_url(@person.url)],
         ["人物について", safe_html(nl2br(@person.description))],
         ["別名義", @person.original_person ? link_to(@person.original_person.name, admin_person_path(@person.original_person), class: "link-normal") : ""],
         ["備考(非公開)", @person.person_secret&.memo],

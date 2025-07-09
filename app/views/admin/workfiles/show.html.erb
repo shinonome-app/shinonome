@@ -14,12 +14,12 @@
         ["文字エンコーディング", @workfile.file_encoding&.name],
         ["文字コード", @workfile.charset&.name],
         ["ファイルサイズ", @workfile.filesize ? "#{number_with_delimiter(@workfile.filesize)} bytes" : "なし"],
-        ["URL", @workfile.url.present? ? link_to(@workfile.url, @workfile.url, target: "_blank", rel: "noopener") : "なし"],
+        ["URL", safe_link_url(@workfile.url, target: "_blank", rel: "noopener")],
         ["登録日", @workfile.registered_on&.strftime("%Y-%m-%d")],
         ["最終更新日", @workfile.last_updated_on&.strftime("%Y-%m-%d")],
         ["リビジョン数", @workfile.revision_count],
         ["ファイル存在確認", @workfile.file_exists? ? "存在する" : "存在しない"],
-        ["ダウンロードURL", link_to(@workfile.download_url, @workfile.download_url, target: "_blank", rel: "noopener")],
+        ["ダウンロードURL", safe_link_url(@workfile.download_url, target: "_blank", rel: "noopener")],
         ["作成日時", @workfile.created_at.strftime("%Y-%m-%d %H:%M:%S")],
         ["更新日時", @workfile.updated_at.strftime("%Y-%m-%d %H:%M:%S")]
       ])) %>
