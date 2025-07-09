@@ -152,6 +152,7 @@ Rails.application.routes.draw do
       namespace :workfile_reporters do
         resources :files, only: %i[show], controller: 'files'
       end
+      resources :work_reporters, only: %i[new create]
       resources :workfiles, only: %i[index show]
     end
 
