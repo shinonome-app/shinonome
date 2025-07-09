@@ -57,14 +57,20 @@ class WorkfileReporter
         if workfile.file_exists?
           # rsync用の相対パスを生成（data/ディレクトリからの相対パス）
           relative_path = workfile.filesystem.path.to_s.sub(%r{^.*/data/}, '')
-          relative_path
+          {
+            path: relative_path,
+            workfile_id: workfile.id
+          }
         end
       end
     else
       workfiles.map do |workfile|
         # rsync用の相対パスを生成（data/ディレクトリからの相対パス）
         relative_path = workfile.filesystem.path.to_s.sub(%r{^.*/data/}, '')
-        relative_path
+        {
+          path: relative_path,
+          workfile_id: workfile.id
+        }
       end
     end
   end

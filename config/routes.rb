@@ -149,6 +149,9 @@ Rails.application.routes.draw do
     resources :sysadmin, only: %i[index]
     namespace :sysadmin do
       resources :workfile_reporters, only: %i[new create]
+      namespace :workfile_reporters do
+        resources :files, only: %i[show], controller: 'files'
+      end
     end
 
     # resources :work_sites
