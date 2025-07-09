@@ -143,7 +143,7 @@ Rails.application.routes.draw do
 
     resources :work_workers, only: %i[create destroy], as: :workworkers
 
-    resources :workfiles, only: %i[index show]
+    resources :workfiles, only: %i[show]
 
     # System admin menu
     resources :sysadmin, only: %i[index]
@@ -152,6 +152,7 @@ Rails.application.routes.draw do
       namespace :workfile_reporters do
         resources :files, only: %i[show], controller: 'files'
       end
+      resources :workfiles, only: %i[index show]
     end
 
     # resources :work_sites

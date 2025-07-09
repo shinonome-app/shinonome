@@ -1,0 +1,90 @@
+<%= snm_headline h: 'h1' do %>作品ファイル一覧<% end %>
+
+<div class="mt-4">
+  <!-- ソート選択 -->
+  <div class="mb-4">
+    <%= form_with url: admin_sysadmin_workfiles_path, method: :get, local: true, class: "flex items-center gap-4" do |form| %>
+      <%= form.label :sort, "ソート順:", class: "text-sm font-medium text-gray-700" %>
+      <%= form.select :sort,
+                      options_for_select([
+                                           ['公開日降順（新しい順）', 'published_date_desc'],
+                                           ['公開日昇順（古い順）', 'published_date_asc'],
+                                           ['更新日時降順（新しい順）', 'updated_at_desc'],
+                                           ['更新日時昇順（古い順）', 'updated_at_asc']
+                                         ], @sort),
+                      {},
+                      { class: "rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", onchange: "this.form.submit();" } %>
+    <% end %>
+  </div>
+
+  <!-- テーブル -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">作品ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">作品名</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">著者名</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ファイル名</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ファイルタイプ</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">圧縮形式</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">公開日</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">更新日時</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">アクション</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @workfiles.each do |workfile| %>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <%= link_to workfile.work.id, admin_work_path(workfile.work), class: "text-indigo-600 hover:text-indigo-900" %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <%= link_to truncate(workfile.work.title, length: 30), admin_work_path(workfile.work), class: "text-indigo-600 hover:text-indigo-900" %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <% if workfile.work.people.any? %>
+                <%= safe_join(workfile.work.people.map { |person| link_to person.name, admin_person_path(person), class: "text-indigo-600 hover:text-indigo-900" }, ", ") %>
+              <% else %>
+                <span class="text-gray-500">著者不明</span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <%= link_to workfile.filename || "ファイル名なし", admin_sysadmin_workfile_path(workfile), class: "text-indigo-600 hover:text-indigo-900" %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <%= workfile.filetype&.name || '-' %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <%= workfile.compresstype&.name || '-' %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <%= workfile.work.started_on&.strftime("%Y-%m-%d") || '-' %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= workfile.updated_at.strftime("%Y-%m-%d %H:%M") %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <div class="flex space-x-2">
+                <%= link_to "詳細", admin_sysadmin_workfile_path(workfile),
+                            class: "inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+                <%= link_to "ダウンロード", admin_sysadmin_workfile_reporters_file_path(workfile.id),
+                            class: "inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if @workfiles.empty? %>
+    <div class="text-center py-8 text-gray-500">
+      作品ファイルがありません
+    </div>
+  <% end %>
+
+  <div class="py-4">
+    <%== pagy_snm_nav(@pagy) %>
+  </div>
+</div>

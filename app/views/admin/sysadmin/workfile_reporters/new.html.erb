@@ -1,6 +1,7 @@
-<%= snm_headline h: 'h1' do %>WorkfileReporter<% end %>
+<div class="w-full">
+<%= snm_headline h: 'h1' do %>作品ファイル公開状況<% end %>
 
-<div class="mt-6">
+<div class="mt-4">
   <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
     <div class="flex items-center">
       <div class="flex-shrink-0">
@@ -10,7 +11,7 @@
       </div>
       <div class="ml-3">
         <p class="text-sm text-blue-800">
-          指定した期間内のワークファイル状況を集計・分析します。
+          指定した期間内の作品ファイル状況を集計・分析します。
         </p>
       </div>
     </div>
@@ -31,7 +32,7 @@
                                   class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
           </div>
           <p class="mt-2 text-sm text-gray-500">
-            何日前からのワークファイルを対象とするかを指定してください（1-365日）
+            何日前からの作品ファイルを対象とするかを指定してください（1-365日）
           </p>
         </div>
 
@@ -43,7 +44,7 @@
             <%= form.label :include_details, "詳細情報を含める", class: "ml-2 block text-sm font-medium text-gray-700" %>
           </div>
           <p class="mt-2 text-sm text-gray-500">
-            チェックすると、個別のワークファイル情報も表示されます
+            チェックすると、個別の作品ファイル情報も表示されます
           </p>
         </div>
       </div>
@@ -56,4 +57,5 @@
       </div>
     </div>
   <% end %>
+</div>
 </div>

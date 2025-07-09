@@ -29,10 +29,10 @@
           <div class="ml-3 w-0 flex-1">
             <dl>
               <dt class="text-sm font-medium text-gray-500 truncate">
-                WorkfileReporter
+                作品ファイル公開状況
               </dt>
               <dd class="text-lg font-medium text-gray-900">
-                ワークファイル状況レポート
+                作品ファイル公開レポート
               </dd>
             </dl>
           </div>
@@ -44,6 +44,38 @@
         </div>
         <div class="mt-4">
           <%= link_to "実行", new_admin_sysadmin_workfile_reporter_path,
+                      class: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 作品ファイル一覧 -->
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div class="ml-3 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">
+                作品ファイル一覧
+              </dt>
+              <dd class="text-lg font-medium text-gray-900">
+                作品ファイルの管理
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="mt-4">
+          <p class="text-sm text-gray-500">
+            全作品ファイルの一覧表示・検索・ダウンロード機能です。
+          </p>
+        </div>
+        <div class="mt-4">
+          <%= link_to "実行", admin_sysadmin_workfiles_path,
                       class: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
         </div>
       </div>
