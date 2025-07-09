@@ -22,7 +22,7 @@ module Admin
         text_searcher.add_query_param('url', url, text_selector_url)
         text_searcher.add_query_param('owner_name', owner_name, text_selector_owner_name)
 
-        sites = Site.where(text_searcher.where_params)
+        sites = text_searcher.apply_to(Site.all)
 
         @pagy, @sites = pagy(sites.order(created_at: :desc), limit: 50)
       end
