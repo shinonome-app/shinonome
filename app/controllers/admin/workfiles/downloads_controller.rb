@@ -7,8 +7,8 @@ module Admin
 
       # GET /admin/works/:work_id/workfiles/:workfile_id/download
       def show
-        if @workfile.file_exists?
-          send_file @workfile.filesystem.path,
+        if @workfile.file_exists? && @workfile.filesystem.safe_path?
+          send_file @workfile.filesystem.safe_path,
                     filename: @workfile.filename,
                     type: 'application/octet-stream',
                     disposition: 'attachment'

@@ -255,6 +255,117 @@ RSpec.describe Workfile::Filesystem do
     end
   end
 
+  describe '#safe_path' do
+    context 'ファイルが存在し、安全なパスの場合' do
+      before do
+        FileUtils.mkdir_p(File.dirname(filesystem.path))
+        File.write(filesystem.path, 'test content')
+      end
+
+      after do
+        FileUtils.rm_f(filesystem.path)
+      end
+
+      it '正規化されたパスを返す' do
+        result = filesystem.safe_path
+        expect(result).to eq(filesystem.path.to_s)
+        expect(File.file?(result)).to be true
+      end
+    end
+
+    context 'パストラバーサル攻撃を試みる場合' do
+      before do
+        # 悪意のあるパスを模擬
+        allow(filesystem).to receive(:path).and_return(Rails.root.join('data/workfiles/../../../etc/passwd'))
+      end
+
+      it 'nilを返す' do
+        result = filesystem.safe_path
+        expect(result).to be_nil
+      end
+    end
+
+    context 'ベースディレクトリ外のパスの場合' do
+      before do
+        # ベースディレクトリ外のパスを模擬
+        allow(filesystem).to receive(:path).and_return('/etc/passwd')
+      end
+
+      it 'nilを返す' do
+        result = filesystem.safe_path
+        expect(result).to be_nil
+      end
+    end
+
+    context 'ファイルが存在しない場合' do
+      it 'nilを返す' do
+        result = filesystem.safe_path
+        expect(result).to be_nil
+      end
+    end
+
+    context 'pathがnilの場合' do
+      before do
+        allow(filesystem).to receive(:path).and_return(nil)
+      end
+
+      it 'nilを返す' do
+        result = filesystem.safe_path
+        expect(result).to be_nil
+      end
+    end
+
+    context 'ディレクトリの場合' do
+      let(:dir_path) { Rails.root.join('data/workfiles/cards/1/files') }
+
+      before do
+        allow(filesystem).to receive(:path).and_return(dir_path)
+        FileUtils.mkdir_p(dir_path)
+      end
+
+      after do
+        FileUtils.rm_rf(Rails.root.join('data/workfiles'))
+      end
+
+      it 'nilを返す（ディレクトリはファイルではない）' do
+        result = filesystem.safe_path
+        expect(result).to be_nil
+      end
+    end
+  end
+
+  describe '#safe_path?' do
+    context 'safe_pathが存在する場合' do
+      before do
+        allow(filesystem).to receive(:safe_path).and_return('/valid/path/file.txt')
+      end
+
+      it 'trueを返す' do
+        expect(filesystem.safe_path?).to be true
+      end
+    end
+
+    context 'safe_pathが存在しない場合' do
+      before do
+        allow(filesystem).to receive(:safe_path).and_return(nil)
+      end
+
+      it 'falseを返す' do
+        expect(filesystem.safe_path?).to be false
+      end
+    end
+
+    context 'safe_pathが空文字の場合' do
+      before do
+        allow(filesystem).to receive(:safe_path).and_return('')
+      end
+
+      it 'falseを返す' do
+        expect(filesystem.safe_path?).to be false
+      end
+    end
+  end
+
   # 追加テスト: nil安全性とエラーハンドリング
   describe 'nil safety and error handling' do
     describe '#save with various file types' do
