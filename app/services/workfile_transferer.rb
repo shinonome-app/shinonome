@@ -8,18 +8,23 @@ class WorkfileTransferer
     @days = days
     @rsync_keyfile = Rails.root.join('tmp/rsync.key')
     @server_path = ENV.fetch('RSYNC_SERVER_PATH', nil)
+
+    write_rsync_keyfile
   end
 
   def transfer_files
-    workfiles = recent_published_works.workfiles
-
-    write_rsync_keyfile
+    workfiles = recent_published_works.flat_map { |work| work.workfiles }
 
     workfiles.each do |workfile|
       src_path = workfile.filesystem.path
-      cmd = "rsync -avhz -e \"ssh -o StrictHostKeyChecking=no -i #{rsync_keyfile}\" #{src_path} #{server_path}"
-      puts cmd
-      # system(cmd)
+      next unless src_path
+
+      remote_path = "#{server_path}/#{src_path.to_s.sub(%r{^.*/data/workfiles/}, '')}"
+
+      cmd = "rsync -avhz -e \"ssh -o StrictHostKeyChecking=no -i #{rsync_keyfile}\" #{src_path} #{remote_path}"
+      Rails.logger.info(cmd)
+
+      system(cmd)
     end
   end
 
