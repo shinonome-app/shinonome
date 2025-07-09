@@ -24,7 +24,7 @@ module Admin
           Rails.logger.error "WorkfileReporter error: #{e.message}"
           Rails.logger.error e.backtrace.join("\n")
 
-          flash.now[:alert] = "レポート生成中にエラーが発生しました: #{e.message}"
+          flash.now[:alert] = t('admin.sysadmin.workfile_reporters.errors.generation_failed', message: e.message)
           render :new, status: :unprocessable_entity
         end
       end
