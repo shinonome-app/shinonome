@@ -29,7 +29,7 @@
         <%= snm_headline h: 'h2' do %>非公開情報<% end %>
         <%= render(Admin::SnmTableVComponent.new(rows:
           [
-            ["メモ", nl2br(@workfile.workfile_secret.memo), { no_escape: true }]
+            ["メモ", safe_html(nl2br(@workfile.workfile_secret.memo))]
           ])) %>
       </div>
     <% end %>

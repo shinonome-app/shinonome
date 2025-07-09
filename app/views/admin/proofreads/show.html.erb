@@ -243,7 +243,7 @@
             備考
           </td>
           <td class="odd:w-[25%] py-3 px-5">
-            <%== nl2br(@proofread.workfile&.workfile_secret&.memo) %>
+            <%= safe_html(nl2br(@proofread.workfile&.workfile_secret&.memo)) %>
           </td>
         </tr>
       </tbody>

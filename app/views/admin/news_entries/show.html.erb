@@ -16,7 +16,7 @@
   <%= snm_headline h: 'h3' do %>本文<% end %>
 
   <div class="news-body border border-gray-600 p-4">
-    <!-- unsafe --><%== nl2br(@news_entry.body) %>
+    <%= safe_html(nl2br(@news_entry.body)) %>
   </div>
 
   <%= snm_headline h: 'h3' do %>トピックに指定する<% end %>
