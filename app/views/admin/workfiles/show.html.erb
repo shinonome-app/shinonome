@@ -7,7 +7,7 @@
         ["ファイルID", @workfile.id],
         ["作品ID", link_to(@work.id, admin_work_path(@work))],
         ["作品名", link_to(@work.title, admin_work_path(@work))],
-        ["著者名", safe_join(@work.people.map { |person| link_to(person.name, admin_person_path(person)) }, ", ") ],
+        ["著者名", safe_join(@work.people.map { |person| link_to(person.name, admin_person_path(person)) }, ", ")],
         ["ファイル名", @workfile.filename || "ファイル名なし"],
         ["ファイルタイプ", @workfile.filetype&.name],
         ["圧縮形式", @workfile.compresstype&.name],
