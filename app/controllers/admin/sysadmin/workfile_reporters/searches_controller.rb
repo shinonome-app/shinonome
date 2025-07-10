@@ -5,11 +5,16 @@ module Admin
     module WorkfileReporters
       class SearchesController < Admin::ApplicationController
         def index
-          @days = params[:days]&.to_i || 7
-          @include_details = params[:include_details] == 'true'
+          @past_days = params[:past_days]&.to_i || 7
+          @future_days = params[:future_days]&.to_i || 7
+          @include_details = true
 
           begin
-            @reporter = WorkfileReporter.new(days: @days, include_details: @include_details)
+            @reporter = WorkfileReporter.new(
+              past_days: @past_days,
+              future_days: @future_days,
+              include_details: @include_details
+            )
             @result = @reporter.generate_report
             @workfiles = @reporter.workfiles
           rescue StandardError => e

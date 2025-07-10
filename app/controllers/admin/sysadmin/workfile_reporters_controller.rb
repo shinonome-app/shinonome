@@ -3,10 +3,10 @@
 module Admin
   module Sysadmin
     class WorkfileReportersController < Admin::ApplicationController
-      # GET /admin/sysadmin/workfile-reporter/new
+      # GET /admin/sysadmin/workfile_reporters/new
       def new
-        @days = params[:days]&.to_i || 7
-        @include_details = params[:include_details] == 'true'
+        @past_days = params[:past_days]&.to_i || 7
+        @future_days = params[:future_days]&.to_i || 7
       end
     end
   end

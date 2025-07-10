@@ -2,10 +2,18 @@
 
 # 転送用に直近1週間ほどの更新ファイルを抽出し出力する
 class WorkfileReporter
-  attr_reader :days, :output_file, :include_details, :workfiles, :check_file_exists
+  attr_reader :past_days, :future_days, :output_file, :include_details, :workfiles, :check_file_exists
 
-  def initialize(days: 7, output_file: nil, include_details: false, check_file_exists: false)
-    @days = days
+  def initialize(past_days: 7, future_days: 0, output_file: nil, include_details: false, check_file_exists: false, days: nil)
+    # Backward compatibility support
+    if days
+      @past_days = days
+      @future_days = 0
+    else
+      @past_days = past_days
+      @future_days = future_days
+    end
+
     @output_file = output_file || default_output_file
     @include_details = include_details
     @check_file_exists = check_file_exists
@@ -36,11 +44,11 @@ class WorkfileReporter
   end
 
   def start_date
-    @start_date ||= days.days.ago.to_date
+    @start_date ||= past_days.days.ago.to_date
   end
 
   def end_date
-    @end_date ||= Date.current
+    @end_date ||= future_days.days.from_now.to_date
   end
 
   def fetch_recent_workfiles
@@ -89,7 +97,7 @@ class WorkfileReporter
     {
       title: 'Recently Published Workfiles Report',
       generated: Time.current,
-      period: "#{start_date} to #{end_date} (#{days} days)",
+      period: "#{start_date} to #{end_date} (past: #{past_days} days, future: #{future_days} days)",
       total_files: workfiles.count,
       workfiles: workfiles.map { |workfile| generate_workfile_data(workfile) }
     }
@@ -99,7 +107,7 @@ class WorkfileReporter
     file.puts 'Recently Published Workfiles Report'
     file.puts '==================================='
     file.puts "Generated: #{Time.current}"
-    file.puts "Period: #{start_date} to #{end_date} (#{days} days)"
+    file.puts "Period: #{start_date} to #{end_date} (past: #{past_days} days, future: #{future_days} days)"
     file.puts "Total files found: #{workfiles.count}"
     file.puts
     file.puts 'Details:'

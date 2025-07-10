@@ -11,7 +11,7 @@
       </div>
       <div class="ml-3">
         <p class="text-sm text-blue-800">
-          指定した期間内の作品ファイル状況を集計・分析します。
+          指定した期間内の作品ファイル状況を集計・分析します。過去と未来の両方の期間を指定できます。
         </p>
       </div>
     </div>
@@ -22,30 +22,34 @@
       <h2 class="text-lg font-medium text-gray-900 mb-6">レポート設定</h2>
 
       <div class="space-y-6">
-        <div>
-          <%= form.label :days, "対象期間（日数）", class: "block text-sm font-medium text-gray-700" %>
-          <div class="mt-1 relative rounded-md shadow-sm">
-            <%= form.number_field :days,
-                                  value: @days,
-                                  min: 1,
-                                  max: 365,
-                                  class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <%= form.label :past_days, "過去の対象期間（日数）", class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <%= form.number_field :past_days,
+                                    value: @past_days,
+                                    min: 0,
+                                    max: 365,
+                                    class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">
+              何日前からの作品ファイルを対象とするかを指定してください（0-365日）
+            </p>
           </div>
-          <p class="mt-2 text-sm text-gray-500">
-            何日前からの作品ファイルを対象とするかを指定してください（1-365日）
-          </p>
-        </div>
 
-        <div>
-          <div class="flex items-center">
-            <%= form.check_box :include_details,
-                               checked: @include_details,
-                               class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
-            <%= form.label :include_details, "詳細情報を含める", class: "ml-2 block text-sm font-medium text-gray-700" %>
+          <div>
+            <%= form.label :future_days, "未来の対象期間（日数）", class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <%= form.number_field :future_days,
+                                    value: @future_days,
+                                    min: 0,
+                                    max: 365,
+                                    class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">
+              何日後までの作品ファイルを対象とするかを指定してください（0-365日）
+            </p>
           </div>
-          <p class="mt-2 text-sm text-gray-500">
-            チェックすると、個別の作品ファイル情報も表示されます
-          </p>
         </div>
       </div>
 
