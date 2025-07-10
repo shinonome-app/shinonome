@@ -32,6 +32,9 @@ module Admin
       # GET /admin/sysadmin/workfiles/1
       def show
         @work = @workfile.work
+        @file_exists = @workfile.filesystem.exists?
+        @file_path = @workfile.filesystem.path if @file_exists
+        @file_stat = File.stat(@file_path) if @file_exists
       end
 
       private
