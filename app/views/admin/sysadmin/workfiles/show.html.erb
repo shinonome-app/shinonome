@@ -41,7 +41,7 @@
       <%= snm_link "編集", href: edit_admin_work_workfile_path(@work, @workfile) %>
       <%= snm_link "ダウンロード", href: admin_work_workfile_download_path(@work, @workfile), class: "btn btn-primary" if @workfile.file_exists? %>
       <%= snm_link "作品詳細へ", href: admin_work_path(@work) %>
-      <%= snm_link "一覧へ戻る", href: admin_sysadmin_workfiles_path %>
+      <%= snm_link "新しいレポートを生成", href: new_admin_sysadmin_workfile_reporter_path %>
     </div>
   </div>
 </div>
