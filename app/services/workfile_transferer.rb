@@ -31,7 +31,8 @@ class WorkfileTransferer
   private
 
   def write_rsync_keyfile
-    File.write(rsync_keyfile, ENV.fetch('RSYNC_PASS_FILE', ''))
+    File.write(rsync_keyfile, ENV.fetch('RSYNC_PASS_FILE', '').gsub('@NL@', "\n"))
+    FileUtils.chmod(0o600, rsync_keyfile)
   end
 
   def start_date
