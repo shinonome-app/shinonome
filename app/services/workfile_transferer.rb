@@ -28,6 +28,22 @@ class WorkfileTransferer
     end
   end
 
+  def output_paths(output_file = Rails.root.join('data/rsync_paths.txt'))
+    workfiles = recent_published_works.flat_map { |work| work.workfiles }
+
+    File.open(output_file, 'w') do |file|
+      workfiles.each do |workfile|
+        src_path = workfile.filesystem.path
+        next unless src_path
+
+        remote_path = "#{server_path}/#{src_path.to_s.sub(%r{^.*/data/workfiles/}, '')}"
+        file.puts "#{src_path}:#{remote_path}"
+      end
+    end
+
+    output_file
+  end
+
   private
 
   def write_rsync_keyfile
