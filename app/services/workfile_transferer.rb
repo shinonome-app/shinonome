@@ -37,7 +37,7 @@ class WorkfileTransferer
         next unless src_path
 
         remote_path = "#{server_path}/#{src_path.to_s.sub(%r{^.*/data/workfiles/}, '')}"
-        file.puts "#{src_path}:#{remote_path}"
+        file.puts "#{src_path};#{remote_path}"
       end
     end
 
