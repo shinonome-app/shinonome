@@ -57,12 +57,20 @@ namespace :rsync do
         end
       end
 
-      puts "\n転送を開始しますか？ (y/N)"
-      if $stdin.gets.chomp.downcase == 'y'
+      # TTYチェックまたは環境変数で非対話モードを判定
+      if !$stdin.tty? || ENV['RAILS_RSYNC_NOCONFIRM'].present?
+        puts "\n非対話モードで実行中。転送を開始します..."
         transferer.transfer_files
         puts '✅ 転送完了'
       else
-        puts '転送をキャンセルしました'
+        puts "\n転送を開始しますか？ (y/N)"
+        response = $stdin.gets
+        if response&.chomp&.downcase == 'y'
+          transferer.transfer_files
+          puts '✅ 転送完了'
+        else
+          puts '転送をキャンセルしました'
+        end
       end
     else
       puts '転送対象のファイルがありません'
