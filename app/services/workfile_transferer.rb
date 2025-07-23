@@ -2,10 +2,11 @@
 
 # 作品ファイルを転送する
 class WorkfileTransferer
-  attr_reader :days, :rsync_keyfile, :server_path
+  attr_reader :past_days, :future_days, :rsync_keyfile, :server_path
 
-  def initialize(days: 3)
-    @days = days
+  def initialize(past_days: 3, future_days: 0)
+    @past_days = past_days
+    @future_days = future_days
     @rsync_keyfile = Rails.root.join('tmp/rsync.key')
     @server_path = ENV.fetch('RSYNC_SERVER_PATH', nil)
 
@@ -52,11 +53,11 @@ class WorkfileTransferer
   end
 
   def start_date
-    @start_date ||= days.days.ago.to_date
+    @start_date ||= past_days.days.ago.to_date
   end
 
   def end_date
-    @end_date ||= Date.current
+    @end_date ||= future_days.days.from_now.to_date
   end
 
   def recent_published_works
