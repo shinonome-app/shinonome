@@ -58,4 +58,73 @@ RSpec.describe Work do
       end
     end
   end
+
+  describe '#note_without_link_tag' do
+    let(:link_tag) { '<div id="link"></div><script type="text/javascript" src="../link.js"></script>' }
+    let(:link_tag_broken) { '<div id=link"></div><script type="text/javascript" src="../link.js"></script>' }
+
+    context 'noteがnilの場合' do
+      let(:work) { create(:work, note: nil) }
+
+      it 'nilを返す' do
+        expect(work.note_without_link_tag).to be_nil
+      end
+    end
+
+    context 'noteにlink.jsタグが含まれない場合' do
+      let(:work) { create(:work, note: '備考テキスト') }
+
+      it 'noteをそのまま返す' do
+        expect(work.note_without_link_tag).to eq '備考テキスト'
+      end
+    end
+
+    context 'noteに<br>付きのlink.jsタグが含まれる場合' do
+      let(:work) { create(:work, note: "備考テキスト<br>#{link_tag}") }
+
+      it 'link.jsタグを除去する' do
+        expect(work.note_without_link_tag).to eq '備考テキスト'
+      end
+    end
+
+    context 'noteに<br />付きのlink.jsタグが含まれる場合' do
+      let(:work) { create(:work, note: "備考テキスト<br />#{link_tag}") }
+
+      it 'link.jsタグを除去する' do
+        expect(work.note_without_link_tag).to eq '備考テキスト'
+      end
+    end
+
+    context 'noteに<br/>付きのlink.jsタグが含まれる場合' do
+      let(:work) { create(:work, note: "備考テキスト<br/>#{link_tag}") }
+
+      it 'link.jsタグを除去する' do
+        expect(work.note_without_link_tag).to eq '備考テキスト'
+      end
+    end
+
+    context 'noteにbrなしのlink.jsタグが含まれる場合' do
+      let(:work) { create(:work, note: "備考テキスト#{link_tag}") }
+
+      it 'link.jsタグを除去する' do
+        expect(work.note_without_link_tag).to eq '備考テキスト'
+      end
+    end
+
+    context 'noteに引用符欠けのlink.jsタグが含まれる場合' do
+      let(:work) { create(:work, note: "備考テキスト<br>#{link_tag_broken}") }
+
+      it 'link.jsタグを除去する' do
+        expect(work.note_without_link_tag).to eq '備考テキスト'
+      end
+    end
+
+    context 'noteにlink.jsタグが二重に含まれる場合' do
+      let(:work) { create(:work, note: "備考テキスト<br>#{link_tag_broken}<br>#{link_tag}") }
+
+      it '両方のlink.jsタグを除去する' do
+        expect(work.note_without_link_tag).to eq '備考テキスト'
+      end
+    end
+  end
 end

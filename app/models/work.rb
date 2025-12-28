@@ -257,6 +257,17 @@ class Work < ApplicationRecord
     end
   end
 
+  # 旧システムのlink.jsタグを除去したnoteを返す
+  # DBには <div id="link"></div><script...src="../link.js"></script> が残っているが、
+  # 新システムではLinkComponentで同等の機能を実装しているため除去する
+  def note_without_link_tag
+    return nil if note.nil?
+
+    # id=link" (引用符欠け) と id="link" (正常) の両パターンに対応
+    # <br>, <br/>, <br /> のいずれにも対応
+    note.gsub(%r{(<br\s*/?>)?<div id=?"?link"?></div><script[^>]*src="[^"]*link\.js"[^>]*></script>}, '')
+  end
+
   private
 
   def set_sortkey
