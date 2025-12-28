@@ -32,3 +32,8 @@ You must define these environment variables.
 
 * `SITE_NAME`: the site name
 * `MAIN_SITE_URL`: the url for main site
+
+``console
+dotenv -f .kamal/secrets kamal app exec 'bin/rails rsync:transfer_workfiles'
+```
+

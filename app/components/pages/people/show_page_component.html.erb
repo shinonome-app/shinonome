@@ -121,7 +121,7 @@
 
   <div class="px-12 py-5">
     <ol class="list-decimal">
-      <% author.published_works.includes(:kana_type).order(:sortkey, :id).each do |work| %>
+      <% author.published_works.includes(:kana_type).order(:sortkey, :subtitle_kana, :id).each do |work| %>
       <li>
         <%= link_to work.title,
                     card_path(person_id: work.card_person_id, card_id: work.id, format: :html),
@@ -146,7 +146,7 @@
 
   <div class="px-12 py-5">
     <ol class="list-decimal">
-      <% author.unpublished_works.includes(:kana_type).order(:sortkey, :id).each do |work| %>
+      <% author.unpublished_works.includes(:kana_type).order(:sortkey, :subtitle_kana, :id).each do |work| %>
       <li>
         <%= work.title %>
         <span class="px-4">（<%= work.kana_type.name %>、作品ID：<%= work.id %>）</span>
