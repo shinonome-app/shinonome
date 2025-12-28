@@ -149,6 +149,7 @@
       <% author.unpublished_works.includes(:kana_type).order(:sortkey, :subtitle_kana, :id).each do |work| %>
       <li>
         <%= work.title %>
+        <%= work.subtitle %>
         <span class="px-4">（<%= work.kana_type.name %>、作品ID：<%= work.id %>）</span>
         <% work.work_people.order(:role_id).each do |work_person| %>
         <% next if work_person.person_id == author.id %>
