@@ -155,7 +155,10 @@
 <!--ファイル start-->
 <div class="mt-6">
   <%= snm_headline h: 'h2' do %>ファイル<% end %>
-  <% @work.workfiles.each do |workfile| %>
+  <% @work.workfiles.order(:id).each_with_index do |workfile, index| %>
+
+  <%= snm_headline h: 'h3' do %>ファイル<%= index + 1 %>: <%= workfile.filetype.name %><%= " (#{workfile.compresstype.name})" if workfile.compresstype.compressed? %><% end %>
+
   <%= render(Admin::SnmTableVComponent.new(rows:
       [
         ["ファイル", workfile.file_exists? ? link_to(workfile.filename, workfile.download_admin_url) : "#{workfile.filename}(⚠️ファイルなし)"],
