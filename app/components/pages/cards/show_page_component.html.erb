@@ -77,13 +77,13 @@
         <td><%= work.subtitle_kana %></td>
       </tr>
       <% end %>
-      <% if work.subtitle.present? %>
+      <% if work.collection.present? %>
       <tr>
         <th class="text-left text-red-800 w-1/6">作品集名：</th>
         <td><%= work.collection %></td>
       </tr>
       <% end %>
-      <% if work.subtitle_kana.present? %>
+      <% if work.collection_kana.present? %>
       <tr>
         <th class="text-left text-red-800 w-1/6">作品集名読み：</th>
         <td><%= work.collection_kana %></td>
