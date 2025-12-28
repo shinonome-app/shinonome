@@ -137,7 +137,7 @@
       <% if work.description.present? %>
       <tr>
         <th class="text-left text-red-800 align-top break-keep">作品について：</th>
-        <td>
+        <td class="[&_img]:inline [&_img]:align-middle">
           <%== work.description %>
         </td>
       </tr>
@@ -195,7 +195,7 @@
       <tr><th class="text-left text-red-800 w-1/6 align-top">没年：</th><td><%= person.died_on %></td></tr>
       <tr>
         <th class="text-left text-red-800 w-1/6 align-top">人物について：</th>
-        <td>
+        <td class="[&_img]:inline [&_img]:align-middle">
           <%== person.description %>
           <!-- TODO: データを分割
                <div class="flex flex-row">
