@@ -71,8 +71,11 @@ RSpec.describe ProofreadCreator do
     end
 
     context 'saveがnilを返す場合（データベースエラー）' do
+      let(:proofread_form) { ProofreadForm.new(proofread_params) }
+
       before do
-        allow_any_instance_of(ProofreadForm).to receive(:save).and_return(nil)
+        allow(proofread_form).to receive(:save).and_return(nil)
+        allow(ProofreadForm).to receive(:new).and_return(proofread_form)
       end
 
       it 'created?がfalseを返す' do

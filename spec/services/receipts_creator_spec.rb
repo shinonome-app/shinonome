@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe ReceiptsCreator do
   describe '#create_receipt' do
+    subject(:creator) { ReceiptsCreator.new }
+
     let(:worker) { create(:worker, name: 'テストワーカー', name_kana: 'テストカナ') }
     let(:valid_params) do
       {
@@ -29,8 +31,6 @@ RSpec.describe ReceiptsCreator do
         }
       }
     end
-
-    subject(:creator) { described_class.new }
 
     context '有効なパラメータの場合' do
       it 'Receiptを作成する' do
@@ -73,8 +73,11 @@ RSpec.describe ReceiptsCreator do
     end
 
     context 'saveがnilを返す場合（データベースエラー）' do
+      let(:receipt_form) { ReceiptForm.new(valid_params) }
+
       before do
-        allow_any_instance_of(ReceiptForm).to receive(:save).and_return(nil)
+        allow(receipt_form).to receive(:save).and_return(nil)
+        allow(ReceiptForm).to receive(:new).and_return(receipt_form)
       end
 
       it 'created?がfalseを返す' do
@@ -94,7 +97,7 @@ RSpec.describe ReceiptsCreator do
 
       it 'メールが送信されない' do
         expect { creator.create_receipt(valid_params) }
-          .not_to change { ActionMailer::Base.deliveries.count }
+          .not_to(change { ActionMailer::Base.deliveries.count })
       end
     end
   end

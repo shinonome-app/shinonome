@@ -167,7 +167,7 @@ class ReceiptForm
   end
 
   def set_person_info
-    if person_id.present? && person_id >= 0 # rubocop:disable Style/GuardClause
+    if person_id.present? && person_id >= 0
       person = Person.find(person_id)
       self.last_name = person.last_name
       self.last_name_kana = person.last_name_kana

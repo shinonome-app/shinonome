@@ -36,7 +36,7 @@ namespace :rsync do
   desc 'Transfer recently published workfiles'
   task :transfer_workfiles, [:past_days, :future_days] => :environment do |_t, args|
     past_days = args[:past_days]&.to_i || 3
-    future_days = args[:future_days]&.to_i || 0
+    future_days = args[:future_days].to_i
 
     puts '=== Workfile転送 ==='
     puts "対象期間: 過去#{past_days}日 〜 #{future_days > 0 ? "未来#{future_days}日" : '今日'}"
@@ -80,7 +80,7 @@ namespace :rsync do
   desc 'List workfiles to be transferred (dry-run)'
   task :list_workfiles, [:past_days, :future_days] => :environment do |_t, args|
     past_days = args[:past_days]&.to_i || 3
-    future_days = args[:future_days]&.to_i || 0
+    future_days = args[:future_days].to_i
 
     transferer = WorkfileTransferer.new(past_days: past_days, future_days: future_days)
     file_list = '/tmp/workfile_paths.txt'
