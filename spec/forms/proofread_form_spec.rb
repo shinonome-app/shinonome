@@ -132,6 +132,22 @@ RSpec.describe ProofreadForm do
       form.worker_name = nil
       expect(form.save).to be_falsey
     end
+
+    context 'worker_secretが存在しないworkerの場合' do
+      let(:worker_without_secret) do
+        # worker_secretなしでworkerを作成
+        worker = Worker.new(name: 'シークレットなし', name_kana: 'しーくれっとなし')
+        worker.save(validate: false)
+        worker
+      end
+
+      it 'set_emailでエラーにならない' do
+        form.worker_id = worker_without_secret.id
+        expect(form).to be_valid
+        # saveしてもエラーにならないことを確認
+        expect { form.save }.not_to raise_error
+      end
+    end
   end
 
   # SubWorkのテスト

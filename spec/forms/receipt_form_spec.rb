@@ -49,6 +49,45 @@ RSpec.describe ReceiptForm do
       expect(form.worker_name).to eq 'テストワーカー保存済み'
     end
 
+    context 'person_idが指定されている場合' do
+      let(:person) { create(:person, last_name: '夏目', last_name_kana: 'なつめ', first_name: '漱石', first_name_kana: 'そうせき') }
+
+      it 'person_idから人物情報が自動反映される' do
+        form.person_id = person.id
+        form.last_name = nil
+        form.last_name_kana = nil
+        form.first_name = nil
+        form.first_name_kana = nil
+        expect(form).to be_valid
+        expect(form.last_name).to eq '夏目'
+        expect(form.last_name_kana).to eq 'なつめ'
+        expect(form.first_name).to eq '漱石'
+        expect(form.first_name_kana).to eq 'そうせき'
+      end
+
+      it '存在しないperson_idの場合は反映されない' do
+        form.person_id = 999999
+        expect(form).to be_valid # person_id自体のバリデーションはない（一般ユーザーは新規人物も登録可能）
+        expect(form.last_name).to eq '山田'
+      end
+    end
+
+    context 'worker_secretが存在しないworkerの場合' do
+      let(:worker_without_secret) do
+        # worker_secretなしでworkerを作成
+        worker = Worker.new(name: 'シークレットなし', name_kana: 'しーくれっとなし')
+        worker.save(validate: false)
+        worker
+      end
+
+      it 'set_emailでエラーにならない' do
+        form.worker_id = worker_without_secret.id
+        expect(form).to be_valid
+        # saveしてもエラーにならないことを確認
+        expect { form.save }.not_to raise_error
+      end
+    end
+
     it 'original_book_titleがない場合は無効' do
       form.original_book_title = nil
       expect(form).not_to be_valid

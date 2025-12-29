@@ -69,6 +69,7 @@ class ReceiptForm
   attribute :person_note, :string
 
   before_validation :set_worker_info
+  before_validation :set_person_info
 
   validates :worker_kana, presence: true
   validates :worker_name, presence: true
@@ -165,10 +166,22 @@ class ReceiptForm
     # do nothing; use validates
   end
 
+  def set_person_info
+    if person_id.present? && person_id >= 0 # rubocop:disable Style/GuardClause
+      person = Person.find(person_id)
+      self.last_name = person.last_name
+      self.last_name_kana = person.last_name_kana
+      self.first_name = person.first_name
+      self.first_name_kana = person.first_name_kana
+    end
+  rescue ActiveRecord::RecordNotFound
+    # do nothing; invalid person_id will be caught by validation
+  end
+
   def set_email
     if worker_id.present? # rubocop:disable Style/GuardClause
       worker_secret = Shinonome::WorkerSecret.find_by(worker_id:)
-      self.email = worker_secret.email
+      self.email = worker_secret&.email
     end
   end
 

@@ -8,10 +8,16 @@ class ProofreadCreator
     if proofread_form.valid?
       proofreads = proofread_form.save
 
-      UserMailer.register_proofread(proofread_form, proofreads).deliver_now
-      Result.new(created: true, proofreads:, proofread_form:)
+      if proofreads.present?
+        UserMailer.register_proofread(proofread_form, proofreads).deliver_now
+        Result.new(created: true, proofreads:, proofread_form:)
+      else
+        # save failed due to database error
+        proofread_form.errors.add(:base, '登録中にエラーが発生しました。しばらく経ってから再度お試しください。')
+        Result.new(created: false, proofreads: nil, proofread_form:)
+      end
     else
-      Result.new(created: false, proofreads:, proofread_form:)
+      Result.new(created: false, proofreads: nil, proofread_form:)
     end
   end
 

@@ -8,10 +8,16 @@ class ReceiptsCreator
     if receipt_form.valid?
       receipts = receipt_form.save
 
-      UserMailer.register_receipt(receipts.first, receipt_form.sub_works).deliver_now
-      Result.new(created: true, receipts:, receipt_form:)
+      if receipts.present?
+        UserMailer.register_receipt(receipts.first, receipt_form.sub_works).deliver_now
+        Result.new(created: true, receipts:, receipt_form:)
+      else
+        # save failed due to database error
+        receipt_form.errors.add(:base, '登録中にエラーが発生しました。しばらく経ってから再度お試しください。')
+        Result.new(created: false, receipts: nil, receipt_form:)
+      end
     else
-      Result.new(created: false, receipts:, receipt_form:)
+      Result.new(created: false, receipts: nil, receipt_form:)
     end
   end
 

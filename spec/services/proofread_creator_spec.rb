@@ -69,5 +69,31 @@ RSpec.describe ProofreadCreator do
         expect(result.proofreads).to be_nil
       end
     end
+
+    context 'saveがnilを返す場合（データベースエラー）' do
+      before do
+        allow_any_instance_of(ProofreadForm).to receive(:save).and_return(nil)
+      end
+
+      it 'created?がfalseを返す' do
+        expect(result).not_to be_created
+      end
+
+      it 'proofreadsがnilを返す' do
+        expect(result.proofreads).to be_nil
+      end
+
+      it 'エラーメッセージが追加される' do
+        expect(result.proofread_form.errors[:base]).to include('登録中にエラーが発生しました。しばらく経ってから再度お試しください。')
+      end
+
+      it 'メールを送信しない' do
+        ActionMailer::Base.deliveries.clear
+        perform_enqueued_jobs do
+          result
+        end
+        expect(ActionMailer::Base.deliveries.count).to eq(0)
+      end
+    end
   end
 end
