@@ -1,4 +1,6 @@
 <%= snm_headline h: 'h1' do %>耕作員一覧<% end %>
 <div class="mt-10 mb-5">
   <%= render(Admin::WorkersTableComponent.new(pagy: @pagy, workers: @workers)) %>
+
+  <%== pagy_snm_nav(@pagy) %>
 </div>

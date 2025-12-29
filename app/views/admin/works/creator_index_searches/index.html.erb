@@ -1,4 +1,6 @@
 <%= snm_headline h: 'h1' do %>作品一覧<% end %>
 <div class="mt-10 mb-5">
   <%= render(Admin::WorksTableComponent.new(pagy: @pagy, works: @works)) %>
+
+  <%== pagy_snm_nav(@pagy) %>
 </div>

@@ -1,4 +1,6 @@
 <%= snm_headline h: 'h1' do %>人物一覧<% end %>
 <div class="mt-10 mb-5">
   <%= render(Admin::PeopleTableComponent.new(pagy: @pagy, people: @people)) %>
+
+  <%== pagy_snm_nav(@pagy) %>
 </div>
