@@ -74,7 +74,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   # Annotate models with DB
-  gem 'annotate'
+  gem 'annotaterb', require: false
 
   # Ruby static analytics and lint
   gem 'rubocop'
