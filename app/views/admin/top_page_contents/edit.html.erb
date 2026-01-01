@@ -1,0 +1,48 @@
+<%= snm_headline h: 'h1' do %>トップページHTML編集<% end %>
+
+<div class="text-sm text-gray-700">
+  <p>編集対象: render_editable_content の中身のみ</p>
+  <p>公開中: <%= @published&.published_at&.strftime("%Y-%m-%d %H:%M") || "なし" %></p>
+  <p>下書き: <%= @draft&.created_at&.strftime("%Y-%m-%d %H:%M") || "なし" %></p>
+</div>
+
+<div class="mt-6">
+  <%= form_with model: @editable_content, url: admin_top_page_content_path, method: :post do |form| %>
+    <% errors = @editable_content.errors %>
+    <%= render(Admin::SnmTextAreaComponent.new(form:, name: :value, label: "HTML/ERB", rows: 30, errors:)) %>
+
+    <div class="mt-4 flex gap-3">
+      <%= render(Admin::SubmitComponent.new(form:, name: "draft", value: "下書き保存")) %>
+      <%= form.submit "公開する",
+                      formaction: admin_top_page_content_publication_path,
+                      formmethod: :post,
+                      class: "px-4 py-2 rounded bg-ab_navy text-white hover:opacity-80" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-10">
+  <%= snm_headline h: 'h2' do %>変更履歴<% end %>
+  <div class="mt-2 border border-gray-200 rounded">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="text-left p-2">作成日時</th>
+          <th class="text-left p-2">状態</th>
+          <th class="text-left p-2">公開日時</th>
+          <th class="text-left p-2">内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @history.each do |content| %>
+          <tr class="border-t">
+            <td class="p-2"><%= content.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td class="p-2"><%= content.status == "published" ? "公開" : "下書き" %></td>
+            <td class="p-2"><%= content.published_at&.strftime("%Y-%m-%d %H:%M") || "-" %></td>
+            <td class="p-2"><%= truncate(content.value.to_s, length: 120) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

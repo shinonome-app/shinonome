@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_13_162935) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_15_090000) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -96,6 +96,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_162935) do
     t.text "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "draft", null: false
+    t.datetime "published_at"
+    t.index ["area_name", "key", "status"], name: "index_editable_contents_on_area_name_and_key_and_status"
     t.index ["area_name", "key"], name: "index_editable_contents_on_area_name_and_key"
   end
 

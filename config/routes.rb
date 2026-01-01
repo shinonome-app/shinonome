@@ -44,6 +44,10 @@ Rails.application.routes.draw do
       resources :previews, only: %i[index]
     end
 
+    resource :top_page_content, only: %i[edit create], controller: 'top_page_contents' do
+      resource :publication, only: %i[create destroy], module: :top_page_contents
+    end
+
     namespace :users do
       resources :others, only: %i[index create edit update destroy]
     end

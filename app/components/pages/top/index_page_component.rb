@@ -39,7 +39,10 @@ module Pages
 
         area_name = 'top'
         key = 'main'
-        erb_content = EditableContent.latest_for(area_name, key).value
+        content = EditableContent.latest_published_for(area_name, key)
+        return '' if content.blank?
+
+        erb_content = content.value.to_s
 
         evaluate_with_context(erb_content, local_vars)
       end

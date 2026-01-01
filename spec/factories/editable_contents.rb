@@ -20,6 +20,7 @@ FactoryBot.define do
     area_name { 'default_area' }
     key { 'default_key' }
     value { 'Default value for testing' }
+    status { 'draft' }
     created_at { Time.current }
   end
 end
