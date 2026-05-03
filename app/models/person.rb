@@ -72,10 +72,18 @@ class Person < ApplicationRecord
 
   scope :with_name_firstchar, lambda { |char|
     if char.blank? || char == 'その他'
-      where('sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
+      where('people.sortkey !~ ?', '^[あいうえおか-もやゆよら-ろわをんアイウエオカ-モヤユヨラ-ロワヲンヴ]')
     else
-      where('sortkey ~ ?', "^#{char}")
+      where('people.sortkey ~ ?', "^#{char}")
     end
+  }
+
+  # 非公開作品を持つ人物をカナ先頭でフィルタし、(sortkey, sortkey2, id) 順で返す。
+  # komadome の作家別索引 (作業中) で利用。
+  scope :with_unpublished_works_by_kana, lambda { |char|
+    with_name_firstchar(char)
+      .joins(:works).merge(Work.unpublished).distinct
+      .order(:sortkey, :sortkey2, :id)
   }
 
   def self.csv_header
