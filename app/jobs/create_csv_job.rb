@@ -8,7 +8,7 @@ class CreateCsvJob < ApplicationJob
     csv_dir = Rails.application.config.x.csv_dir
     csv_creator = CsvCreator.new
 
-    unfinished_zip = File.join(csv_dir, 'list_person_inp_all.zip')
+    unfinished_zip = File.join(csv_dir, 'list_inp_person_all.zip')
     finished_zip = File.join(csv_dir, 'list_person_all.zip')
     extended_zip = File.join(csv_dir, 'list_person_all_extended.zip')
 
