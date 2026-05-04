@@ -1,0 +1,21 @@
+bgcolor: scalar
+editable_content_html: scalar
+latest_news_published_on: scalar
+new_works: []{
+  author_text: scalar
+  card_person_dir: scalar
+  subtitle: scalar
+  title: scalar
+  work_id: scalar
+}
+new_works_published_on: scalar
+page_title: scalar
+topics: []{
+  id: scalar
+  published_on: scalar
+  title: scalar
+  year: scalar
+}
+works_copyright_count: scalar
+works_count: scalar
+works_noncopyright_count: scalar

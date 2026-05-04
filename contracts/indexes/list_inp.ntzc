@@ -1,0 +1,26 @@
+bgcolor: scalar
+next_page: scalar?
+page_title: scalar
+pagination: []{
+  is_current: bool
+  is_gap: bool
+  page: scalar?
+}
+person_id: scalar
+person_name: scalar
+prev_page: scalar?
+works: []{
+  id: scalar
+  inputer_text: scalar
+  kana_type_name: scalar
+  proofreader_text: scalar
+  row_number: scalar
+  started_on: scalar
+  subtitle: scalar
+  teihon_input_edition: scalar
+  teihon_publisher: scalar
+  teihon_title: scalar
+  title: scalar
+  translator_text: scalar
+  work_status_name: scalar
+}

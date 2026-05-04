@@ -6,7 +6,9 @@ module Admin
       layout false
 
       def index
-        render ::Pages::Top::IndexPageComponent.new
+        context = NatsuzoraContext::TopBuilder.new.build
+        html = NatsuzoraRenderer.new.render('top/index.ntzr', context)
+        render html: html.html_safe # rubocop:disable Rails/OutputSafety
       end
     end
   end

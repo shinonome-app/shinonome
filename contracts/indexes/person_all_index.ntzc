@@ -1,0 +1,14 @@
+bgcolor: scalar
+column_display: scalar
+page_title: scalar
+sections: []{
+  kana_char: scalar
+  people: []{
+    copyright_flag: bool
+    id: scalar
+    name: scalar
+    published_count: scalar
+    unpublished_count: scalar
+  }
+  section_index: scalar
+}

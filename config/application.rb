@@ -52,6 +52,12 @@ module Shinonome
     config.x.site_name = EnvConverter.unescape_ustring(ENV.fetch('SITE_NAME', 'Shinonome'))
     config.x.csv_dir = ENV.fetch('CSV_DIR', Rails.public_path.join('csv'))
     config.x.reception_email = ENV.fetch('RECEPTION_EMAIL', nil)
+    # natsuzora templates / subaru contracts は komadome-rs を真の出所とし、
+    # `bin/rails natsuzora:sync` で shinonome リポジトリ内に同期する
+    # (Rails.root/templates, Rails.root/contracts)。本番デプロイでは
+    # 同期済みのコピーを参照するため Rails.root 直下に置く。
+    config.x.natsuzora_templates_root = Rails.root.join('templates').to_s
+    config.x.natsuzora_contracts_root = Rails.root.join('contracts').to_s
 
     # make enable assets pipeline
     # config.assets.enabled = true

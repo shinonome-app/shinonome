@@ -1,0 +1,17 @@
+bgcolor: scalar
+display_char: scalar
+kana_all: []{
+  char: scalar
+  section_index: scalar
+}
+page_title: scalar
+sections: []{
+  kana_char: scalar
+  people: []{
+    copyright_flag: bool
+    name: scalar
+    person_path: scalar
+    published_works_count: scalar
+  }
+  section_index: scalar
+}

@@ -1,0 +1,23 @@
+bgcolor: scalar
+entries: []{
+  author_text: scalar
+  card_person_dir: scalar
+  inputer_text: scalar
+  proofreader_text: scalar
+  started_on: scalar
+  subtitle: scalar?
+  title: scalar
+  translator_text: scalar
+  work_id: scalar
+}
+next_page: scalar?
+page_title: scalar
+pagination: []{
+  is_current: bool
+  is_gap: bool
+  page: scalar?
+}
+pagination_nav_html: scalar
+prev_page: scalar?
+today: scalar
+year: scalar

@@ -1,0 +1,11 @@
+bgcolor: scalar
+entries: []{
+  body_html: scalar
+  id: scalar
+  published_on_display: scalar
+  title: scalar
+}
+page_title: scalar
+year_links: []{
+  year: scalar
+}

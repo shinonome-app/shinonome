@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{[ page_title ]}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/tailwind.css" />
+<link rel="stylesheet" href="/assets/inter-font.css" />
+  </head>
+
+  <body class="{[ bgcolor ]}">
+    <main class="container mx-auto py-1">
+      <div id="app" class="container mx-auto max-w-5xl py-4">
+  <span id="top" name="top">&nbsp;</span>
+
+  <header class="flex items-center justify-between">
+    <a href="/" class="md:hidden flex justify-between px-2">
+    <img src="/images/top_logo.png" alt="Logo" class="h-8 w-8">
+  </a>
+    <span class="hidden md:flex">&nbsp;</span>
+    <nav class="flex justify-end">
+      <div class="md:flex justify-end py-3 hidden">
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index.html">トップ</a>
+        </div>
+        <div class="px-2">
+          ● <span class="current font-bold text-red-500">インデックス</span>
+        </div>
+      </div>
+
+      <div class="flex md:hidden items-center space-x-3 py-3 px-3">
+        <!--
+            <button>
+              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
+              </svg>
+            </button>
+            -->
+            <button class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[メニュー]</button>
+      </div>
+    </nav>
+  </header>
+
+  <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">登録全作家インデックス</h1>
+
+  <div class="flex justify-center p-4">
+
+    <table class="border-double border-2 border-gray-800 table-fixed w-1/2 items-center" summary="作家別インデックス">
+      <tr class="w-770 border-double border-2 border-gray-800">
+        <th colspan="5" class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">作家別</th>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_a.html">あ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_a.html#sec2">い</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_a.html#sec3">う</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_a.html#sec4">え</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_a.html#sec5">お</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_ka.html">か</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ka.html#sec2">き</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ka.html#sec3">く</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ka.html#sec4">け</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ka.html#sec5">こ</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_sa.html">さ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_sa.html#sec2">し</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_sa.html#sec3">す</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_sa.html#sec4">せ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_sa.html#sec5">そ</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_ta.html">た</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ta.html#sec2">ち</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ta.html#sec3">つ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ta.html#sec4">て</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ta.html#sec5">と</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_na.html">な</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_na.html#sec2">に</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_na.html#sec3">ぬ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_na.html#sec4">ね</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_na.html#sec5">の</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_ha.html">は</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ha.html#sec2">ひ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ha.html#sec3">ふ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ha.html#sec4">へ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ha.html#sec5">ほ</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_ma.html">ま</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ma.html#sec2">み</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ma.html#sec3">む</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ma.html#sec4">め</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ma.html#sec5">も</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_ya.html">や</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50">&nbsp;</td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ya.html#sec2">ゆ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50">&nbsp;</td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ya.html#sec3">よ</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_ra.html">ら</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ra.html#sec2">り</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ra.html#sec3">る</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ra.html#sec4">れ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_ra.html#sec5">ろ</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_wa.html">わ</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50">&nbsp;</td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_wa.html#sec2">を</a></td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50">&nbsp;</td>
+        <td class="border-double border-2 border-gray-800 bg-yellow-50"><a class="underline text-blue-700" href="person_all_wa.html#sec3">ん</a></td>
+      </tr>
+      <tr class="border-double border-2 border-gray-800 text-center">
+        <td class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_zz.html">他</a></td>
+        <td colspan="4" class="border-double border-2 border-gray-800 bg-yellow-100"><a class="underline text-blue-700" href="person_all_all.html">全てを表示</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="text-right py-4">
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#top">▲</a>
+  </div>
+
+  <hr class="border-gray-400">
+
+  <footer class="pt-3 pb-14">
+    <div>
+      <span class="pr-3">
+        ●
+        <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index.html">トップ</a>
+      </span>
+    </div>
+  </footer>
+</div>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+bgcolor: scalar
+column_display: scalar
+column_nav: []{
+  column: scalar
+  display: scalar
+  is_current: bool
+}
+page_title: scalar
+sections: []{
+  kana_char: scalar
+  people: []{
+    copyright_flag: bool
+    id: scalar
+    name: scalar
+    unpublished_count: scalar
+  }
+  section_index: scalar
+}

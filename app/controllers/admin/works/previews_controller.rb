@@ -6,10 +6,11 @@ module Admin
       layout false
 
       def show
-        @work = Work.find(params[:id])
-        @person = @work.people.first
-        render ::Pages::Cards::ShowPageComponent.new(person_id: @person.id,
-                                                     card_id: @work.id)
+        work = Work.find(params[:id])
+        person = work.people.first
+        context = NatsuzoraContext::CardBuilder.new(work, person.id).build
+        html = NatsuzoraRenderer.new.render('cards/show.ntzr', context)
+        render html: html.html_safe # rubocop:disable Rails/OutputSafety
       end
     end
   end

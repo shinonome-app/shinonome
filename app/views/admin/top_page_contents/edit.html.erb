@@ -13,10 +13,16 @@
 
     <div class="mt-4 flex gap-3">
       <%= render(Admin::SubmitComponent.new(form:, name: "draft", value: "下書き保存")) %>
-      <%= form.submit "公開する",
-                      formaction: admin_top_page_content_publication_path,
-                      formmethod: :post,
-                      class: "px-4 py-2 rounded bg-ab_navy text-white hover:opacity-80" %>
+      <%= render(Admin::SubmitComponent.new(form:,
+                                            name: "preview",
+                                            value: "プレビュー",
+                                            button_style: :secondary,
+                                            options: { formaction: admin_top_page_content_preview_path, formmethod: :post, formtarget: "_blank" })) %>
+      <%= render(Admin::SubmitComponent.new(form:,
+                                            name: "publish",
+                                            value: "公開する",
+                                            button_style: :primary,
+                                            options: { formaction: admin_top_page_content_publication_path, formmethod: :post })) %>
     </div>
   <% end %>
 </div>

@@ -1,0 +1,66 @@
+airzoshi_url: scalar
+authors: []{
+  id: scalar
+  name: scalar
+}
+bgcolor: scalar
+bibclasses_text: scalar
+booklog_url: scalar
+collection: scalar
+collection_kana: scalar
+description: scalar
+first_appearance: scalar
+first_author_id: scalar
+has_copyright: bool
+kana_type: scalar
+note: scalar
+original_books: []{
+  booktype: scalar
+  first_pubdate: scalar
+  input_edition: scalar
+  is_first: bool
+  proof_edition: scalar
+  publisher: scalar
+  title: scalar
+}
+original_title: scalar
+page_title: scalar
+rodoku_url: scalar
+sites: []{
+  name: scalar
+  url: scalar
+}
+subtitle: scalar
+subtitle_kana: scalar
+title: scalar
+title_kana: scalar
+voyger_url: scalar
+work_id: scalar
+work_people_details: []{
+  born_on: scalar
+  died_on: scalar
+  description: scalar
+  is_first: bool
+  name: scalar
+  name_en: scalar
+  name_kana: scalar
+  person_id: scalar
+  role_name: scalar
+}
+work_workers: []{
+  name: scalar
+  role: scalar
+}
+workfiles: []{
+  charset: scalar
+  compresstype: scalar
+  download_display: scalar
+  download_url: scalar
+  file_encoding: scalar
+  filesize: scalar
+  filetype: scalar
+  is_html: bool
+  last_updated_on: scalar
+  registered_on: scalar
+}
+xhtml_url: scalar?

@@ -1,0 +1,23 @@
+bgcolor: scalar
+display_char: scalar
+has_next: bool
+has_prev: bool
+kana_symbol: scalar
+next_page: scalar?
+page_title: scalar
+pagination: []{
+  is_current: bool
+  is_gap: bool
+  page: scalar?
+}
+prev_page: scalar?
+works: []{
+  author_text: scalar
+  base_author_text: scalar
+  card_path: scalar
+  kana_type: scalar
+  row_number: scalar
+  subtitle: scalar
+  title: scalar
+  translator_text: scalar
+}

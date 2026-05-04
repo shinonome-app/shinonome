@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{[ page_title ]}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/tailwind.css" />
+<link rel="stylesheet" href="/assets/inter-font.css" />
+  </head>
+
+  <body class="{[ bgcolor ]}">
+    <main class="container mx-auto py-1">
+      <div id="app" class="container mx-auto max-w-5xl py-4">
+  <span id="top" name="top">&nbsp;</span>
+
+  <header class="flex items-center justify-between">
+    <a href="/" class="md:hidden flex justify-between px-2">
+    <img src="/images/top_logo.png" alt="Logo" class="h-8 w-8">
+  </a>
+    <span class="hidden md:flex">&nbsp;</span>
+    <nav class="flex justify-end">
+      <div class="md:flex justify-end py-3 hidden">
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index.html">トップ</a>
+        </div>
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/index_top.html">インデックス</a>
+        </div>
+        <div class="px-2">
+          ●作家リスト
+        </div>
+      </div>
+
+      <div class="flex md:hidden items-center space-x-3 py-3 px-3">
+        <!--
+            <button>
+              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
+              </svg>
+            </button>
+            -->
+            <button class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[メニュー]</button>
+      </div>
+    </nav>
+  </header>
+
+  <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">登録全作家　作家リスト：{[ column_display ]}行</h1>
+
+  <div class="text-right py-4">{[-#each sections as section]}
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#sec{[ section.section_index ]}">[{[ section.kana_char ]}]</a>{[/each]}
+  </div>
+{[-#each sections as section]}
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sec{[ section.section_index ]}">{[ section.kana_char ]}</a></h2>
+
+  <div class="px-12 py-5">
+    <ol class="list-decimal">{[-#each section.people as person]}
+      <li><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person{[ person.id ]}.html#sakuhin_list_1">{[ person.name ]}</a>　(公開中：{[ person.published_count ]}、作業中：{[ person.unpublished_count ]})　　{[-#if person.copyright_flag]}<strong>＊著作権存続＊</strong>　{[/if]}</li>{[/each]}
+    </ol>
+  </div>
+
+  <div class="text-right py-4">
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#top">▲</a>
+  </div>
+{[/each]}
+
+  <hr class="border-gray-400">
+
+  <footer class="pt-3 pb-14">
+    <div>
+      <span class="pr-3">●作家リスト：作業中</span>
+      <span class="text-red-500 font-bold">[あ]</span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_ka.html">[か]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_sa.html">[さ]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_ta.html">[た]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_na.html">[な]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_ha.html">[は]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_ma.html">[ま]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_ya.html">[や]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_ra.html">[ら]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_wa.html">[わ]</a></span>
+      <span><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="person_zz.html">[他]</a></span>
+    </div>
+    <div>
+      <span class="pr-3">
+        ●
+        <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index.html">トップ</a>
+      </span>
+      <span class="pr-3">
+        ●
+        <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/index_top.html">インデックス</a>
+      </span>
+    </div>
+  </footer>
+</div>
+
+    </main>
+  </body>
+</html>

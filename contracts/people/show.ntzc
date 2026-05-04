@@ -1,0 +1,44 @@
+bgcolor: scalar
+born_on: scalar
+copyright_flag: bool
+description: scalar
+died_on: scalar
+full_name: scalar
+full_name_kana: scalar
+has_unpublished_works: bool
+kana: scalar
+kana_fragment: scalar
+name_en: scalar
+other_base_people: []{
+  id: scalar
+  name: scalar
+}
+page_title: scalar
+person_id: scalar
+sites: []{
+  name: scalar
+  url: scalar
+}
+unpublished_works: []{
+  id: scalar
+  kana_type: scalar
+  subtitle: scalar
+  title: scalar
+  work_people: []{
+    name: scalar
+    person_id: scalar
+    role_name: scalar
+  }
+}
+works: []{
+  card_person_id: scalar
+  id: scalar
+  kana_type: scalar
+  subtitle: scalar
+  title: scalar
+  work_people: []{
+    name: scalar
+    person_id: scalar
+    role_name: scalar
+  }
+}

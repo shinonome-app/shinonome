@@ -1,5 +1,16 @@
-<%= render LayoutComponent.new(title: '青空文庫', bgcolor: 'bg-white-100') do -%>
-<div id="app" class="container mx-auto max-w-6xl py-2">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{[ page_title ]}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/tailwind.css" />
+<link rel="stylesheet" href="/assets/inter-font.css" />
+  </head>
+
+  <body class="{[ bgcolor ]}">
+    <main class="container mx-auto py-1">
+      <div id="app" class="container mx-auto max-w-6xl py-2">
   <div id="top" class="flex">
     <img src="/images/top_logo.png" class="p-1 bg-[#000063]">
     <div class="flex flex-col w-full">
@@ -20,13 +31,13 @@
           <script type="text/javascript"><!--
             function se(nm){
               const uu = new Array(
-                "", /* 0 */
-                "http://www.google.co.jp/search?hl=ja&num=20&q=", /* 1 */
-                "http://www.bing.com/search?q=", /* 2 */
-                "http://search.naver.jp/search?&q=", /* 3 */
-                "http://www.baidu.jp/s?rn=20&wd=", /* 4 */
-                "http://search.goo.ne.jp/web.jsp?IE=UTF-8&MT=", /* 5 */
-                "http://search.yahoo.co.jp/search?p=" /* 6 */
+                "", // 0
+                "http://www.google.co.jp/search?hl=ja&num=20&q=", // 1
+                "http://www.bing.com/search?q=", // 2
+                "http://search.naver.jp/search?&q=", // 3
+                "http://www.baidu.jp/s?rn=20&wd=", // 4
+                "http://search.goo.ne.jp/web.jsp?IE=UTF-8&MT=", // 5
+                "http://search.yahoo.co.jp/search?p=" // 6
               )
               const dkey=document.forms[0].as_q.value;
               if(dkey!=""){const url=uu[nm]+"site:www.aozora.gr.jp+"+encodeURIComponent(dkey);window.open(url,'_blank');}
@@ -56,7 +67,14 @@
       </div>
     </div>
   </div>
-  <%== render_editable_content %>
+
+{[#if editable_content_html -]}
+{[!unsecure editable_content_html -]}
+{[#else-]}
+{[!include /top/body -]}
+{[/if-]}
 </div>
-<!-- generated at: <%= Time.zone.now %> -->
-<%- end -%>
+
+    </main>
+  </body>
+</html>

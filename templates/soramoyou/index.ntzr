@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{[ page_title ]}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/tailwind.css" />
+<link rel="stylesheet" href="/assets/inter-font.css" />
+  </head>
+
+  <body class="{[ bgcolor ]}">
+    <main class="container mx-auto py-1">
+      <div id="app" class="container mx-auto max-w-5xl">
+  <div id="top" name="top">&nbsp;</div>
+
+  <header class="flex items-center justify-between">
+    <a href="/" class="md:hidden flex justify-between px-2">
+    <img src="/images/top_logo.png" alt="Logo" class="h-8 w-8">
+  </a>
+    <span class="hidden md:flex">&nbsp;</span>
+  </header>
+
+  <h1 class="flex justify-center bg-blue-800 h-12 border-y-gray-500 mb-10"><span class="lg:w-1/3 align-middle text-center text-2xl font-semibold bg-white">そらもよう</span></h1>
+
+{[-#each entries as entry-]}  <h2 class="w-full flex justify-center h-8 my-4 font-semibold">
+    <div class="w-1/4 px-4 py-1 bg-gray-300"><a name="{[ entry.id ]}">
+        {[ entry.published_on_display ]}</a>
+    </div>
+    <div class="w-3/4 px-4 py-1 bg-yellow-100">{[ entry.title ]}</div>
+  </h2>
+
+  <div class="prose prose-nonpreflight">
+    {[!unsecure entry.body_html ]}
+  </div>
+{[/each-]}
+
+  <div class="text-right py-4">
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#top">▲</a>
+  </div>
+
+  <hr class="border-gray-400">
+
+  <div class="text-center">
+{[-#each year_links as yl-]}    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/soramoyou/soramoyou{[ yl.year ]}.html">{[ yl.year ]}年のそらもよう</a>
+    <br>
+{[/each]}  </div>
+
+  <div>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index.html">トップページへ</a>
+  </div>
+</div>
+
+    </main>
+  </body>
+</html>

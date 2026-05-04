@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{[ page_title ]}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/tailwind.css" />
+<link rel="stylesheet" href="/assets/inter-font.css" />
+  </head>
+
+  <body class="{[ bgcolor ]}">
+    <main class="container mx-auto py-1">
+      <div id="app" class="container mx-auto max-w-5xl">
+  <div id="top" name="top">&nbsp;</div>
+
+  <header class="flex items-center justify-between">
+    <a href="/" class="md:hidden flex justify-between px-2">
+      <img src="/images/top_logo.png" alt="Logo" class="h-8 w-8">
+    </a>
+    <span class="hidden md:flex">&nbsp;</span>
+    <nav class="flex justify-end">
+      <div class="md:flex justify-end py-3 hidden">
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index.html">トップ</a>
+        </div>
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/index_top.html">インデックス</a>
+          ／
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+             href="/index_pages/index_all.html">全</a>
+        </div>
+        <div class="px-2">
+          ●
+          <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person{[ first_author_id ]}.html">作家別作品リスト</a>
+        </div>
+        <div class="px-2">●<span class="current font-bold text-red-500">図書カード</span></div>
+
+      </div>
+
+      <div class="flex md:hidden items-center space-x-3 py-3 px-3">
+        <!--
+            <button>
+              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
+              </svg>
+            </button>
+            -->
+            <button class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline">[メニュー]</button>
+      </div>
+    </nav>
+  </header>
+
+  <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">図書カード：No.{[ work_id ]}</h1>
+
+  <div class="p-4">
+    <table summary="タイトルデータ" class="w-full">
+      <tr>
+        <th class="text-left text-red-800 w-1/6">作品名：</th>
+        <td><span class="text-2xl">{[ title ]}</span></td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6">作品名読み：</th>
+        <td>{[ title_kana ]}</td>
+      </tr>{[-#if original_title]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">原題：</th>
+        <td>{[ original_title ]}</td>
+      </tr>{[/if]}{[-#if subtitle]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">副題：</th>
+        <td>{[ subtitle ]}</td>
+      </tr>{[/if]}{[-#if subtitle_kana]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">副題読み：</th>
+        <td>{[ subtitle_kana ]}</td>
+      </tr>{[/if]}{[-#if collection]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">作品集名：</th>
+        <td>{[ collection ]}</td>
+      </tr>{[/if]}{[-#if collection_kana]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">作品集名読み：</th>
+        <td>{[ collection_kana ]}</td>
+      </tr>{[/if]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">著者名：</th>
+        <td>{[-#each authors as author]}
+          <a class="underline text-blue-700 text-1xl" href="/index_pages/person{[ author.id ]}.html">{[ author.name ]}</a>{[/each]}
+        </td>
+      </tr>
+    </table>{[-#if has_copyright]}
+    <div class="bg-white my-2 py-1">
+      <span class="text-red-500 font-bold">＊著作権存続＊</span>
+      　作品の取り扱いについては「
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="https://www.aozora.gr.jp/guide/kijyunn.html">
+        ファイル取り扱い規準
+      </a>
+      」を御覧ください。
+    </div>{[/if]}
+  </div>
+
+  <hr class="border-gray-400">
+
+  <div class="text-right py-4">
+    ［
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#download">ファイルのダウンロード</a>{[-#if xhtml_url]}
+    ｜
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="{[ xhtml_url ]}">いますぐXHTML版で読む</a>{[/if]}
+    ］
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_1">作品データ</a></h2>
+
+  <div class="p-4">
+    <table summary="作品データ">{[-#if bibclasses_text]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6 align-top">分類：</th>
+        <td>{[ bibclasses_text ]}</td>
+      </tr>{[/if]}{[-#if description]}
+      <tr>
+        <th class="text-left text-red-800 align-top break-keep">作品について：</th>
+        <td class="[&_img]:inline [&_img]:align-middle">
+          {[!unsecure description ]}
+        </td>
+      </tr>{[/if]}{[-#if first_appearance]}
+      <tr>
+        <th class="text-left text-red-800 align-top">初出：</th>
+        <td>
+          {[!unsecure first_appearance ]}
+          <!-- TODO: データを分割
+               <div class="flex flex-row">
+                 <a href="http://ja.wikipedia.org/" target="_blank">
+                   <img align="middle" src="./images/wikipedia_logo_rounded.png" width="110" height="32" border="0" alt="wikipediaアイコン">
+                 </a>
+                 「<a class="underline text-blue-700" href="http://ja.wikipedia.org/wiki/%e3%81%8b%e3%82%82%e3%82%81_%28%e3%83%81%e3%82%a7%e3%83%bc%e3%83%9b%e3%83%95%29" target="_blank">かもめ</a>」
+               </div>
+               -->
+        </td>
+      </tr>{[/if]}
+
+      <tr>
+        <th class="text-left text-red-800 align-top break-keep">文字遣い種別：</th>
+        <td>{[ kana_type ]}</td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 align-top">備考：</th>
+        <td>
+          {[!unsecure note ]}
+          <div class="link">
+  <span class="inline-flex items-center">
+    <a href="{[ voyger_url ]}"><img src="/images/aib.png" alt="青空inBrowsersで縦書き表示" width="155" height="31"></a>
+    「<a href="{[ voyger_url ]}">青空 in Browsersで縦書き表示。PC、スマホ、タブレット対応</a>」
+  </span>
+  <form method="post" action="{[ airzoshi_url ]}"><input type="submit" value="えあ草紙・青空図書館" class="bg-gray-200 hover:bg-gray-100 border border-gray-800 px-1 rounded shadow">
+    「スマホ＆タブレットで動く青空文庫縦書き対応汎用電子書籍リーダー」
+  </form>
+  <span class="inline-flex items-center">
+    <a href="{[ booklog_url ]}">
+      <img src="/images/booklog_88_31.gif" alt="本の感想を書き込もう　web本棚サービスブクログ" width="88" height="31">
+    </a>
+    「<a href="{[ booklog_url ]}">ブクログでレビューを読む、書く。</a>」
+  </span>
+  <div>
+    <a href="{[ rodoku_url ]}" class="bg-gray-200 hover:bg-gray-100 border border-gray-800 px-1 rounded shadow">この作品の朗読</a>を Google で検索する
+  </div>
+  <span class="inline-flex items-center">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-text="{[ title ]}" data-hashtags="青空文庫" data-dnt="true">ツイート</a>この作品を twitter でつぶやく
+  </span><br>
+  <span class="inline-flex items-center">
+    <div class="fb-like" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+  </span>
+</div>
+<script>
+!function(d,s,id){
+var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_2">作家データ</a></h2>
+
+  <div class="p-4">{[-#each work_people_details as wp]}{[-#unless wp.is_first]}
+    <hr class="border-gray-400 my-2">{[/unless]}
+    <table class="table-fixed w-full" summary="作家データ">
+      <tr><th class="text-left text-red-800 w-1/6 align-top">分類：</th><td>{[ wp.role_name ]}</td></tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6 align-top">作家名：</th>
+        <td><a class="underline text-blue-700" href="/index_pages/person{[ wp.person_id ]}.html">{[ wp.name ]}</a></td>
+      </tr>
+      <tr><th class="text-left text-red-800 w-1/6 align-top">作家名読み：</th><td>{[ wp.name_kana ]}</td></tr>
+      <tr><th class="text-left text-red-800 w-1/6 align-top">ローマ字表記：</th><td>{[ wp.name_en ]}</td></tr>
+      <tr><th class="text-left text-red-800 w-1/6 align-top">生年：</th><td>{[ wp.born_on ]}</td></tr>
+      <tr><th class="text-left text-red-800 w-1/6 align-top">没年：</th><td>{[ wp.died_on ]}</td></tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6 align-top">人物について：</th>
+        <td class="[&_img]:inline [&_img]:align-middle">
+          {[!unsecure wp.description ]}
+          <!-- TODO: データを分割
+               <div class="flex flex-row">
+                 <a href="http://ja.wikipedia.org/" target="_blank">
+                   <img align="middle" src="/images/wikipedia-logo.svg" width="64" height="64" border="0" alt="wikipediaアイコン">
+                 </a>
+                 「<a class="underline text-blue-700" href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%B3%E3%83%BB%E3%83%81%E3%82%A7%E3%83%BC%E3%83%9B%E3%83%95" target="_blank">アントン・チェーホフ</a>」
+               </div>
+               -->
+        </td>
+      </tr>
+    </table>{[/each]}
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_2">底本データ</a></h2>
+
+  <div class="p-4">{[-#each original_books as book]}{[-#unless book.is_first]}
+    <hr class="border-gray-400 my-2">{[/unless]}
+    <table summary="底本データ" class="w-full">
+      <tr><th class="text-left text-red-800 w-1/6">{[ book.booktype ]}：</th><td>{[ book.title ]}</td></tr>
+      <tr><th class="text-left text-red-800">出版社：</th><td>{[ book.publisher ]}</td></tr>
+      <tr><th class="text-left text-red-800">初版発行日：</th><td>{[ book.first_pubdate ]}</td></tr>{[-#if book.input_edition]}
+      <tr><th class="text-left text-red-800">入力に使用：</th><td>{[ book.input_edition ]}</td></tr>{[/if]}{[-#if book.proof_edition]}
+      <tr><th class="text-left text-red-800">校正に使用：</th><td>{[ book.proof_edition ]}</td></tr>{[/if]}
+    </table>{[/each]}
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="sakuhin_list_2">耕作員データ</a></h2>
+  <div class="p-4">
+    <table summary="耕作員データ" class="w-full">{[-#each work_workers as worker]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">{[ worker.role ]}：</th>
+        <td>{[ worker.name ]}</td>
+      </tr>{[/each]}
+    </table>
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500"><a name="download">ファイルのダウンロード</a></h2>
+  <div class="p-4">
+    <table class="border-double border-2 border-gray-800 w-full" summary="ダウンロードデータ">
+      <tr class="w-770 border-double border-2 border-gray-800">
+        <th class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">ファイル種別</th>
+        <th class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">圧縮</th>
+        <th class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">ファイル名（リンク）</th>
+        <th class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">文字集合／符号化方式</th>
+        <th class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">サイズ</th>
+        <th class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">初登録日</th>
+        <th class="w-100 font-normal bg-black border-double border-2 border-gray-800 text-white">最終更新日</th>
+      </tr>{[-#each workfiles as file]}
+      <tr class="border-double border-2 border-gray-800 bg-white">
+        <td class="px-2">
+          <div class="flex flex-row">{[-#if file.is_html]}
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>{[/if]}{[-#unless file.is_html]}
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>{[/unless]}
+            {[ file.filetype ]}
+          </div>
+        </td>
+
+        <td class="px-2">
+          {[ file.compresstype ]}
+        </td>
+        <td class="px-2">
+          <a class="underline text-blue-700" href="{[ file.download_url ]}">
+            {[ file.download_display ]}
+          </a>
+        </td>
+        <td class="px-2">
+          {[ file.charset ]}
+          ／
+          {[ file.file_encoding ]}
+        </td>
+        <td class="px-2">
+          {[ file.filesize ]}
+        </td>
+        <td class="px-2">
+          {[ file.registered_on ]}
+        </td>
+        <td class="px-2">
+          {[ file.last_updated_on ]}
+        </td>
+      </tr>{[/each]}
+      <!--
+          <tr>
+            <td class="px-2">
+              <div class="flex flex-row">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                XHTMLファイル
+              </div>
+            </td>
+            <td class="px-2">なし</td>
+            <td class="px-2"><a class="underline text-blue-700" href="./files/51860_41507.html">51860_41507.html</a></td>
+            <td class="px-2">JIS X 0208／ShiftJIS</td>
+            <td class="px-2">191811</td>
+            <td class="px-2">2010-11-16</td>
+            <td class="px-2">2012-10-20</td>
+          </tr>
+          -->
+    </table>
+    <div align="right">●<a class="underline text-blue-700" href="/guide/download.html">ファイルのダウンロード方法・解凍方法</a></div>
+  </div>
+
+  <h2 class="flex py-1 px-5 text-2xl font-semibold bg-gray-300 border border-y-gray-500">関連サイトデータ</h2>
+  <div class="p-4">
+    <table summary="関連サイト">{[-#each sites as site]}
+      <tr>
+        <th class="text-left text-red-800 w-1/6">サイト名：</th>
+        <td>{[ site.name ]}</td>
+      </tr>
+      <tr>
+        <th class="text-left text-red-800 w-1/6">URL：</th>
+        <td><a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="{[ site.url ]}">{[ site.url ]}</a></td>
+      </tr>{[/each]}
+    </table>
+  </div>
+
+  <div class="text-right py-4">
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="#top">▲</a>
+  </div>
+
+  <hr class="border-gray-400">
+
+  <div>
+    <span>●作家リスト：公開中　</span>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_a.html">[あ]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_ka.html">[か]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_sa.html">[さ]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_ta.html">[た]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_na.html">[な]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_ha.html">[は]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_ma.html">[ま]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_ya.html">[や]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_ra.html">[ら]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_wa.html">[わ]</a>
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_zz.html">[他]</a>
+  </div>
+  <div>
+    <span>●作家リスト：全　　　</span>
+    <span>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_a.html">[あ]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_ka.html">[か]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_sa.html">[さ]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_ta.html">[た]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_na.html">[な]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_ha.html">[は]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_ma.html">[ま]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_ya.html">[や]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_ra.html">[ら]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_wa.html">[わ]</a>
+      <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person_all_zz.html">[他]</a>
+    </span>
+  </div>
+
+  <div>
+    ●
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+       href="/index.html">トップ</a>
+    ●
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+       href="/index_pages/index_top.html">インデックス</a>
+    ／
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline"
+       href="/index_pages/index_all.html">全</a>
+    ●
+    <a class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline" href="/index_pages/person{[ first_author_id ]}.html">作家別作品リスト</a>
+  </div>
+</div>
+
+    </main>
+  </body>
+</html>
