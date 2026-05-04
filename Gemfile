@@ -128,3 +128,6 @@ gem 'erb_lint', '> 0.3.0', require: false
 gem 'kamal', require: false
 
 gem 'aozora2html', '~> 3.0'
+
+gem 'natsuzora', '~> 0.4'
+gem 'lexer_kit', path: '../lexer_kit'
