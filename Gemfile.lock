@@ -127,7 +127,7 @@ GEM
     connection_pool (2.5.3)
     crass (1.0.6)
     csv (3.3.5)
-    date (3.4.1)
+    date (3.5.1)
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -212,7 +212,7 @@ GEM
     mini_portile2 (2.8.9)
     minitest (5.25.5)
     msgpack (1.7.5)
-    net-imap (0.5.9)
+    net-imap (0.5.14)
       date
       net-protocol
     net-pop (0.1.2)
@@ -397,7 +397,7 @@ GEM
     tailwindcss-ruby (3.4.17-x86_64-linux)
     test-prof (1.4.3)
     thor (1.3.2)
-    timeout (0.4.3)
+    timeout (0.6.1)
     turbo-rails (2.0.5)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
