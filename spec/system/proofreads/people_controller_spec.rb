@@ -28,6 +28,7 @@ describe Proofreads::PeopleController do
       visit '/proofreads/people?people=a'
 
       click_on('青空 太郎')
+      expect(page).to have_current_path(proofreads_person_path(person))
 
       expect(page).to have_content('校正受付システム:青空 太郎')
       expect(page).to have_content('作品その1')
@@ -46,6 +47,7 @@ describe Proofreads::PeopleController do
       visit '/proofreads/people?people=a'
 
       click_on('青空 太郎')
+      expect(page).to have_current_path(proofreads_person_path(person))
 
       expect(page).to have_content('校正受付システム:青空 太郎')
       expect(page).to have_content('作品その1')
