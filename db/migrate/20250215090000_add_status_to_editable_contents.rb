@@ -6,16 +6,20 @@ class AddStatusToEditableContents < ActiveRecord::Migration[7.2]
   end
 
   def up
-    add_column :editable_contents, :status, :string, null: false, default: 'draft'
-    add_column :editable_contents, :published_at, :datetime
-    add_index :editable_contents, %i[area_name key status]
+    change_table :editable_contents, bulk: true do |t|
+      t.string :status, null: false, default: 'draft'
+      t.datetime :published_at
+      t.index %i[area_name key status]
+    end
 
-    EditableContent.update_all(status: 'published', published_at: Time.zone.now)
+    EditableContent.update_all(status: 'published', published_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def down
-    remove_index :editable_contents, column: %i[area_name key status]
-    remove_column :editable_contents, :published_at
-    remove_column :editable_contents, :status
+    change_table :editable_contents, bulk: true do |t|
+      t.remove_index column: %i[area_name key status]
+      t.remove :published_at
+      t.remove :status
+    end
   end
 end

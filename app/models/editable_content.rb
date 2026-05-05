@@ -16,7 +16,7 @@
 #  index_editable_contents_on_area_name_and_key  (area_name,key)
 #
 class EditableContent < ApplicationRecord
-  enum status: { draft: 'draft', published: 'published' }
+  enum :status, { draft: 'draft', published: 'published' }
 
   validates :area_name, presence: true
   validates :key, presence: true

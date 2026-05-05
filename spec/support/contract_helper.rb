@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Rspec support module for loading natsuzora contracts in tests
 module ContractHelper
   def load_contract(name)
     path = File.join(Rails.application.config.x.natsuzora_contracts_root, "#{name}.ntzc")

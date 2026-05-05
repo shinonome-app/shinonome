@@ -12,15 +12,15 @@
 #     natsuzora:check` を回せば drift を検知できる。
 namespace :natsuzora do
   # __dir__ = shinonome/lib/tasks/ なので 3 階層上が aozora/、その下に komadome-rs/。
-  KOMADOME_RS_ROOT = File.expand_path('../../../komadome-rs', __dir__).freeze
-  SUBDIRS = %w[templates contracts].freeze
+  komadome_rs_root = File.expand_path('../../../komadome-rs', __dir__).freeze
+  subdirs = %w[templates contracts].freeze
 
   desc 'Sync natsuzora templates and contracts from komadome-rs'
-  task :sync do
+  task sync: :environment do
     require 'fileutils'
 
-    SUBDIRS.each do |subdir|
-      src = File.join(KOMADOME_RS_ROOT, subdir)
+    subdirs.each do |subdir|
+      src = File.join(komadome_rs_root, subdir)
       dest = Rails.root.join(subdir).to_s
 
       unless Dir.exist?(src)
@@ -36,13 +36,13 @@ namespace :natsuzora do
   end
 
   desc 'Check that local natsuzora templates/contracts match komadome-rs (exit 1 on drift)'
-  task :check do
+  task check: :environment do
     require 'fileutils'
     require 'open3'
 
     drifted = false
-    SUBDIRS.each do |subdir|
-      src = File.join(KOMADOME_RS_ROOT, subdir)
+    subdirs.each do |subdir|
+      src = File.join(komadome_rs_root, subdir)
       dest = Rails.root.join(subdir).to_s
 
       unless Dir.exist?(src)

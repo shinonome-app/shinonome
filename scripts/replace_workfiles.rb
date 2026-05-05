@@ -61,7 +61,7 @@ Dir.glob(File.join(dir, '*')).each do |path|
     next
   end
 
-  if File.size(path).zero?
+  if File.empty?(path)
     errors << "zero size: #{base}"
     reasons[:zero_size] += 1
     next
