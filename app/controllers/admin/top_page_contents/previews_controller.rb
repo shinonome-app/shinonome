@@ -4,7 +4,6 @@ module Admin
   module TopPageContents
     class PreviewsController < Admin::ApplicationController
       layout false
-      skip_before_action :verify_authenticity_token
 
       def create
         context = NatsuzoraContext::TopBuilder.new.build
