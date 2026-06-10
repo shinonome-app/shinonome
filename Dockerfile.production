@@ -28,8 +28,11 @@ RUN apt-get update -qq && \
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
+# chmod: some gems are packaged with 0600 files, unreadable by the non-root
+# runtime user (UID 1000)
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
+    chmod -R a+rX "${BUNDLE_PATH}" && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
