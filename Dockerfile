@@ -1,4 +1,4 @@
-FROM ruby:3.3.5-slim
+FROM ruby:3.4.9-slim
 
 RUN mkdir /app
 WORKDIR /app
