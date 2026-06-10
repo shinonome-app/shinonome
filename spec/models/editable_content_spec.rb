@@ -4,16 +4,19 @@
 #
 # Table name: editable_contents
 #
-#  id         :bigint           not null, primary key
-#  area_name  :string
-#  key        :string
-#  value      :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :bigint           not null, primary key
+#  area_name    :string
+#  key          :string
+#  published_at :datetime
+#  status       :string           default("draft"), not null
+#  value        :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 # Indexes
 #
-#  index_editable_contents_on_area_name_and_key  (area_name,key)
+#  index_editable_contents_on_area_name_and_key             (area_name,key)
+#  index_editable_contents_on_area_name_and_key_and_status  (area_name,key,status)
 #
 require 'rails_helper'
 

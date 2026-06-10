@@ -6,6 +6,9 @@ RSpec.describe NatsuzoraContext::TopBuilder do
   describe '#build' do
     subject(:context) { NatsuzoraContext::TopBuilder.new.build }
 
+    # rails_helper がシード（公開済み top/main を含む）を読み込むため明示的に空にする
+    before { EditableContent.delete_all }
+
     it 'returns a Hash' do
       expect(context).to be_a(Hash)
     end
@@ -30,8 +33,65 @@ RSpec.describe NatsuzoraContext::TopBuilder do
       expect(context['topics']).to be_an(Array)
     end
 
-    it 'sets editable_content_html to empty string by default' do
+    it 'sets editable_content_html to empty string when no published content exists' do
       expect(context['editable_content_html']).to eq('')
+    end
+
+    context 'with published editable content' do
+      before do
+        create(:editable_content, area_name: 'top', key: 'main', status: 'published',
+                                  value: '<p>total: {[ works_count ]}</p>')
+      end
+
+      it 'renders the published fragment into editable_content_html' do
+        expect(context['editable_content_html']).to eq("<p>total: #{Work.published.count}</p>")
+      end
+
+      it 'produces context that passes contract validation' do
+        contract_file = load_contract('top/index')
+        expect { Natsuzora::Contract.validate(contract_file, context) }.not_to raise_error
+      end
+    end
+
+    context 'with invalid published editable content' do
+      before do
+        create(:editable_content, area_name: 'top', key: 'main', status: 'published', value: '{[#if')
+      end
+
+      it 'falls back to empty string' do
+        expect(context['editable_content_html']).to eq('')
+      end
+    end
+
+    context 'with editable_content_source' do
+      subject(:context) { NatsuzoraContext::TopBuilder.new.build(editable_content_source: source) }
+
+      let(:source) { '<p>draft: {[ works_count ]}</p>' }
+
+      it 'renders the given fragment strictly' do
+        expect(context['editable_content_html']).to eq("<p>draft: #{Work.published.count}</p>")
+      end
+
+      context 'with invalid source' do
+        let(:source) { '{[#if' }
+
+        it 'raises Natsuzora::Error' do
+          expect { context }.to raise_error(Natsuzora::Error)
+        end
+      end
+
+      context 'with empty source' do
+        let(:source) { '' }
+
+        before do
+          create(:editable_content, area_name: 'top', key: 'main', status: 'published',
+                                    value: '<p>published</p>')
+        end
+
+        it 'ignores published content and sets empty string' do
+          expect(context['editable_content_html']).to eq('')
+        end
+      end
     end
 
     it 'produces valid context for natsuzora rendering' do

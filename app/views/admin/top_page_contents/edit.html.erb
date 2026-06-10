@@ -1,15 +1,36 @@
 <%= snm_headline h: 'h1' do %>トップページHTML編集<% end %>
 
 <div class="text-sm text-gray-700">
-  <p>編集対象: render_editable_content の中身のみ</p>
+  <p>編集対象: トップページ本文（空のまま公開するとデフォルトの本文が表示されます）</p>
   <p>公開中: <%= @published&.published_at&.strftime("%Y-%m-%d %H:%M") || "なし" %></p>
   <p>下書き: <%= @draft&.created_at&.strftime("%Y-%m-%d %H:%M") || "なし" %></p>
 </div>
 
+<details class="mt-4 text-sm text-gray-700 border border-gray-200 rounded p-3">
+  <summary class="cursor-pointer font-semibold">natsuzora テンプレートの書き方</summary>
+  <div class="mt-2 space-y-2">
+    <p>本文は natsuzora テンプレートとして描画されます。HTMLはそのまま記述できます（管理者の入力は無加工で公開ページに出力されるため注意してください）。</p>
+    <ul class="list-disc ml-5 space-y-1">
+      <li><code>{[ 変数 ]}</code> — 変数の値をHTMLエスケープして出力</li>
+      <li><code>{[#each new_works as work]} ... {[ work.title ]} ... {[/each]}</code> — 繰り返し</li>
+      <li><code>{[#if 変数]} ... {[#else]} ... {[/if]}</code> — 条件分岐</li>
+      <li><code>{[!include]}</code> は使用できません</li>
+    </ul>
+    <p class="font-semibold mt-2">利用できる変数:</p>
+    <ul class="list-disc ml-5 space-y-1">
+      <li><code>new_works</code> — 新着作品の配列（<code>work_id</code> / <code>title</code> / <code>subtitle</code> / <code>author_text</code> / <code>card_person_dir</code>）</li>
+      <li><code>new_works_published_on</code> — 新着作品の公開日</li>
+      <li><code>latest_news_published_on</code> — 最新のお知らせの日付</li>
+      <li><code>topics</code> — トピックスの配列（<code>id</code> / <code>title</code> / <code>published_on</code> / <code>year</code>）</li>
+      <li><code>works_count</code> / <code>works_copyright_count</code> / <code>works_noncopyright_count</code> — 作品数</li>
+    </ul>
+  </div>
+</details>
+
 <div class="mt-6">
   <%= form_with model: @editable_content, url: admin_top_page_content_path, method: :post do |form| %>
     <% errors = @editable_content.errors %>
-    <%= render(Admin::SnmTextAreaComponent.new(form:, name: :value, label: "HTML/ERB", rows: 30, errors:)) %>
+    <%= render(Admin::SnmTextAreaComponent.new(form:, name: :value, label: "本文（natsuzoraテンプレート）", rows: 30, errors:)) %>
 
     <div class="mt-4 flex gap-3">
       <%= render(Admin::SubmitComponent.new(form:, name: "draft", value: "下書き保存")) %>

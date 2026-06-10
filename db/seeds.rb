@@ -128,7 +128,7 @@ ApplicationRecord.transaction do
       id: 0,
       area_name: 'top',
       key: 'main',
-      value: Rails.root.join('db/seeds/texts/top_template.txt').read,
+      value: Rails.root.join('db/seeds/texts/top_main.ntzr').read,
       status: 'published',
       published_at: Time.zone.now
     }

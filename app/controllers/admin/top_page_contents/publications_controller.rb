@@ -4,7 +4,11 @@ module Admin
   module TopPageContents
     class PublicationsController < Admin::ApplicationController
       def create
-        @editable_content = EditableContent.new(area_name:, key:, value: content_params[:value], status: 'published')
+        value = content_params[:value].to_s
+        @editable_content = EditableContent.new(area_name:, key:, value:, status: 'published')
+
+        # 公開前に natsuzora フラグメントとして描画できることを検証する
+        NatsuzoraContext::TopBuilder.new.build(editable_content_source: value)
 
         if @editable_content.save
           redirect_to edit_admin_top_page_content_path, success: 'トップページを公開しました。'
@@ -12,6 +16,10 @@ module Admin
           load_content
           render 'admin/top_page_contents/edit', status: :unprocessable_entity
         end
+      rescue Natsuzora::Error => e
+        @editable_content.errors.add(:value, "natsuzoraテンプレートとして不正です: #{e.message}")
+        load_content
+        render 'admin/top_page_contents/edit', status: :unprocessable_entity
       end
 
       def destroy

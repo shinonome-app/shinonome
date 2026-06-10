@@ -3,7 +3,27 @@
 module NatsuzoraContext
   # Builds the context hash for top/index.ntzr (トップページ).
   class TopBuilder
-    def build
+    # editable_content_source を渡すと、その natsuzora フラグメントを厳格に
+    # 描画する（不正なら Natsuzora::Error）。空文字なら「コンテンツなし」
+    # として扱う（テンプレート側でデフォルトボディにフォールバック）。
+    # 省略（nil）時は最新の公開済み EditableContent を寛容に描画する
+    # （不正なら '' フォールバック）。
+    def build(editable_content_source: nil)
+      context = build_base_context
+      html =
+        if editable_content_source.nil?
+          EditableContentRenderer.new(area_name: 'top', key: 'main').render_published(context)
+        elsif editable_content_source.present?
+          EditableContentRenderer.new(area_name: 'top', key: 'main').render(editable_content_source, context)
+        else
+          ''
+        end
+      context.merge('editable_content_html' => html)
+    end
+
+    private
+
+    def build_base_context
       new_works, new_works_published_on = fetch_new_works
       latest_news_entry = NewsEntry.published.order(published_on: :desc).first
       topics = NewsEntry.topics.order(published_on: :desc)
@@ -21,8 +41,6 @@ module NatsuzoraContext
         'editable_content_html' => ''
       }
     end
-
-    private
 
     def fetch_new_works
       works = Work.latest_published
