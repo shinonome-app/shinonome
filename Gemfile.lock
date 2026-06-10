@@ -192,7 +192,16 @@ GEM
       letter_opener (~> 1.7)
       railties (>= 5.2)
       rexml
-    lexer_kit (0.5.0)
+    lexer_kit (0.6.1)
+      base64
+      rb_sys
+    lexer_kit (0.6.1-aarch64-linux)
+      base64
+    lexer_kit (0.6.1-arm64-darwin)
+      base64
+    lexer_kit (0.6.1-x86_64-darwin)
+      base64
+    lexer_kit (0.6.1-x86_64-linux)
       base64
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -310,9 +319,12 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
+    rake-compiler-dock (1.12.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rb_sys (0.9.128)
+      rake-compiler-dock (= 1.12.0)
     rdoc (6.14.1)
       erb
       psych (>= 4.0.0)
@@ -457,7 +469,7 @@ DEPENDENCIES
   importmap-rails
   kamal
   letter_opener_web
-  lexer_kit (~> 0.5)
+  lexer_kit (~> 0.6)
   listen (~> 3.3)
   natsuzora (~> 0.4)
   nkf

@@ -129,5 +129,5 @@ gem 'kamal', require: false
 
 gem 'aozora2html', '~> 3.0'
 
-gem 'lexer_kit', '~> 0.5'
+gem 'lexer_kit', '~> 0.6'
 gem 'natsuzora', '~> 0.4'
