@@ -9,7 +9,11 @@ class ReceiptsCreator
       receipts = receipt_form.save
 
       if receipts.present?
-        UserMailer.register_receipt(receipts.first, receipt_form.sub_works).deliver_now
+        begin
+          UserMailer.register_receipt(receipts.first, receipt_form.sub_works).deliver_now
+        rescue StandardError => e
+          Rails.logger.error("入力受付確認メールの送信に失敗しました: #{e.class}: #{e.message}")
+        end
         Result.new(created: true, receipts:, receipt_form:)
       else
         # save failed due to database error

@@ -47,6 +47,24 @@ RSpec.describe ProofreadCreator do
       end
     end
 
+    context '確認メールの送信が失敗する場合' do
+      before do
+        allow(UserMailer).to receive(:register_proofread).and_raise(StandardError, 'mail error')
+      end
+
+      it 'Proofreadは作成される' do
+        expect { result }.to change(Proofread, :count).by(1)
+      end
+
+      it 'created?がtrueを返す（メール失敗で申請を失敗させない）' do
+        expect(result).to be_created
+      end
+
+      it '例外が伝播しない' do
+        expect { result }.not_to raise_error
+      end
+    end
+
     context 'フォームが無効な場合' do
       before do
         proofread_params[:email] = nil

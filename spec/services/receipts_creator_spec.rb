@@ -54,6 +54,25 @@ RSpec.describe ReceiptsCreator do
       end
     end
 
+    context '確認メールの送信が失敗する場合' do
+      before do
+        allow(UserMailer).to receive(:register_receipt).and_raise(StandardError, 'mail error')
+      end
+
+      it 'Receiptは作成される' do
+        expect { creator.create_receipt(valid_params) }.to change(Receipt, :count).by(1)
+      end
+
+      it 'created?がtrueを返す（メール失敗で申請を失敗させない）' do
+        result = creator.create_receipt(valid_params)
+        expect(result.created?).to be true
+      end
+
+      it '例外が伝播しない' do
+        expect { creator.create_receipt(valid_params) }.not_to raise_error
+      end
+    end
+
     context '無効なパラメータの場合' do
       let(:invalid_params) { valid_params.merge(email: nil, worker_id: nil) }
 

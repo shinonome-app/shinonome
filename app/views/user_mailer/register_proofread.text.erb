@@ -18,8 +18,8 @@
 <%- work = proofread.work -%>
 作品名　　　　　：<%= work.title %>
 文字遣い種別　　：<%= work.kana_type&.name %>
-著者名　　　　　：<%= work.first_author.name %>
-底本　　　　　　：「<%= work.first_teihon.title %>」<%= work.first_teihon.publisher %>
+著者名　　　　　：<%= work.first_author&.name %>
+底本　　　　　　：「<%= work.first_teihon&.title %>」<%= work.first_teihon&.publisher %>
 入力に使用する版：<%= work.first_teihon.input_edition %>
 校正に使用する版：<%= proofread.proof_edition %>
 <%- end -%>

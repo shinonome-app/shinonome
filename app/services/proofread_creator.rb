@@ -9,7 +9,11 @@ class ProofreadCreator
       proofreads = proofread_form.save
 
       if proofreads.present?
-        UserMailer.register_proofread(proofread_form, proofreads).deliver_now
+        begin
+          UserMailer.register_proofread(proofread_form, proofreads).deliver_now
+        rescue StandardError => e
+          Rails.logger.error("校正受付確認メールの送信に失敗しました: #{e.class}: #{e.message}")
+        end
         Result.new(created: true, proofreads:, proofread_form:)
       else
         # save failed due to database error
