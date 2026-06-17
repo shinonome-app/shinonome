@@ -5,6 +5,15 @@ module Admin
     include Pagy::Backend
     before_action :set_person, only: %i[show edit update destroy]
 
+    # 「関連した作品」テーブルでソート可能な列。
+    # キーはURLパラメータ、値は ORDER BY に使うSQLカラム。
+    WORK_SORT_COLUMNS = {
+      'title' => 'works.sortkey',
+      'status' => 'work_statuses.sort_order',
+      'started_on' => 'works.started_on'
+    }.freeze
+    DEFAULT_WORK_SORT = 'title'
+
     # GET /admin/people
     def index
       @pagy, @people = pagy(Person.order(:id).all)
@@ -12,7 +21,7 @@ module Admin
 
     # GET /admin/people/1
     def show
-      @work_people = @person.work_people
+      @work_people = sorted_work_people(@person)
     end
 
     # GET /admin/people/new
@@ -58,6 +67,17 @@ module Admin
     end
 
     private
+
+    # 「関連した作品」を作品名読み・状態・状態の開始日でソートして返す。
+    def sorted_work_people(person)
+      sort = WORK_SORT_COLUMNS.key?(params[:sort]) ? params[:sort] : DEFAULT_WORK_SORT
+      direction = params[:direction] == 'desc' ? 'DESC' : 'ASC'
+
+      person.work_people
+            .joins(work: :work_status)
+            .order(Arel.sql("#{WORK_SORT_COLUMNS[sort]} #{direction}"))
+            .order('works.id ASC')
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_person

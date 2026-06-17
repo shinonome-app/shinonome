@@ -70,11 +70,16 @@
 </div>
 
 <!--作品一覧 start-->
-<div class="mt-6 mb-5">
+<div id="related-works" class="mt-6 mb-5">
   <%= snm_headline h: 'h2' do %>関連した作品<% end %>
 
   <%= render(Admin::SnmTableComponent.new(
-               header: %w[役割 作品名 副題 仮名遣い 状態 状態の開始日],
+               header: ['役割',
+                        related_work_sort_link(@person, '作品名', 'title'),
+                        '副題',
+                        '仮名遣い',
+                        related_work_sort_link(@person, '状態', 'status'),
+                        related_work_sort_link(@person, '状態の開始日', 'started_on')],
                classes: ['text-center w-24', 'text-center', 'text-center', 'text-center', 'text-center', 'text-center'],
                body: @work_people.map do |work_person|
                        work = work_person.work

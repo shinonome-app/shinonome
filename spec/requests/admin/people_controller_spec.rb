@@ -55,6 +55,52 @@ RSpec.describe Admin::PeopleController do
       get admin_person_url(person)
       expect(response).to be_successful
     end
+
+    context '関連した作品のソート' do
+      let(:person) { create(:person) }
+      # work_a: 読み「あ」/ started_on が新しい、work_b: 読み「ん」/ started_on が古い
+      let(:work_a) { create(:work, title: 'WORKAAA', sortkey: 'あ', started_on: Date.new(2020, 1, 1)) }
+      let(:work_b) { create(:work, title: 'WORKBBB', sortkey: 'ん', started_on: Date.new(2010, 1, 1)) }
+
+      before do
+        create(:work_person, work: work_a, person:, role_id: 1)
+        create(:work_person, work: work_b, person:, role_id: 1)
+      end
+
+      def positions(body)
+        [body.index('WORKAAA'), body.index('WORKBBB')]
+      end
+
+      it 'デフォルトは作品名の読み順(昇順)' do
+        get admin_person_url(person)
+        a, b = positions(response.body)
+        expect(a).to be < b
+      end
+
+      it '状態の開始日で昇順ソートできる' do
+        get admin_person_url(person, sort: 'started_on', direction: 'asc')
+        a, b = positions(response.body)
+        expect(b).to be < a # 2010(work_b) が先
+      end
+
+      it '状態の開始日で降順ソートできる' do
+        get admin_person_url(person, sort: 'started_on', direction: 'desc')
+        a, b = positions(response.body)
+        expect(a).to be < b # 2020(work_a) が先
+      end
+
+      it '状態でソートしても成功する' do
+        get admin_person_url(person, sort: 'status', direction: 'asc')
+        expect(response).to be_successful
+      end
+
+      it '不正なsortパラメータはデフォルト(作品名読み順)にフォールバックする' do
+        get admin_person_url(person, sort: 'evil; DROP TABLE works')
+        a, b = positions(response.body)
+        expect(response).to be_successful
+        expect(a).to be < b
+      end
+    end
   end
 
   describe 'GET /new' do
