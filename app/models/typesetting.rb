@@ -30,11 +30,24 @@ class Typesetting < ApplicationRecord
   validates :original_filename, presence: true
 
   def file_path
-    Rails.root.join("data/typesettings/#{created_date_path}/file_#{id}.html")
+    Rails.root.join('data', 'typesettings', created_date_path, "file_#{id}.html")
+  end
+
+  # 正規化済み (Shift_JIS + CR+LF) 入力ファイルの保存先
+  def source_path
+    Rails.root.join('data', 'typesettings', created_date_path, "source_#{id}.txt")
   end
 
   def result_filename
     "#{File.basename(original_filename, '.*')}.html"
+  end
+
+  def source_filename
+    "#{File.basename(original_filename, '.*')}.txt"
+  end
+
+  def source_available?
+    File.exist?(source_path)
   end
 
   def created_date_path

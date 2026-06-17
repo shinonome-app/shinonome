@@ -12,6 +12,8 @@ module Admin
         content.gsub!('../../aozora.css', '/css/aozora.css')
 
         render body: content, layout: false, content_type: 'text/html;charset=Shift_JIS'
+      rescue Errno::ENOENT
+        redirect_to admin_typesettings_path, alert: '変換結果のファイルが見つかりません'
       end
     end
   end

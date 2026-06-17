@@ -30,19 +30,15 @@ module Admin
       end
 
       @typesetting.user = current_admin_user
-      @typesetting.original_filename = textfile&.original_filename
-
-      unless @typesetting.save
-        flash.now[:alert] = '入力エラーがあります'
-        render :new, status: :unprocessable_entity
-      end
+      @typesetting.original_filename = textfile.original_filename
 
       content = textfile.read
       result = TypesettingConverter.new.convert_file(typesetting: @typesetting, content:)
       if result.converted?
+        flash[:warning] = result.warnings.join(' ') if result.warnings.present?
         redirect_to admin_typesetting_path(@typesetting), success: '変換しました'
       else
-        flash.now[:alert] = '変換できませんでした'
+        flash.now[:alert] = result.error_message || '変換できませんでした'
         render :new, status: :unprocessable_entity
       end
     end

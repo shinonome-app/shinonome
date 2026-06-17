@@ -128,6 +128,7 @@ Rails.application.routes.draw do
 
     resources :typesettings, only: %i[index show new create destroy] do
       resources :results, only: %i[index], controller: 'typesettings/results'
+      resources :sources, only: %i[index], controller: 'typesettings/sources'
     end
 
     resources :receipts, only: %i[index show edit update]
