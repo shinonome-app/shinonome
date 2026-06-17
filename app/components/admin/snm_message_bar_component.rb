@@ -6,6 +6,7 @@ module Admin
     STYLE_CLASSES = {
       notice: 'text-sky-950 bg-sky-200 text-sm px-8 py-3 rounded mb-2',
       success: 'text-green-950 bg-green-200 text-sm px-8 py-3 rounded mb-2',
+      warning: 'text-yellow-950 bg-yellow-200 text-sm px-8 py-3 rounded mb-2',
       alert: 'text-rose-950 bg-rose-300 text-sm px-8 py-3 rounded mb-2'
     }.freeze
 
