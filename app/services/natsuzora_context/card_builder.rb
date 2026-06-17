@@ -35,7 +35,7 @@ module NatsuzoraContext
         'started_on' => @work.started_on.to_s,
         'note' => @work.note_without_link_tag.to_s,
         'first_appearance' => @work.first_appearance.to_s,
-        'description' => @work.description.to_s,
+        'description' => nl2br(@work.description.to_s),
         'has_copyright' => @work.copyright?,
         'card_path' => "/cards/#{format('%06d', first_author_id)}/card#{@work.id}.html",
         'xhtml_url' => xhtml_url,
@@ -57,6 +57,10 @@ module NatsuzoraContext
     end
 
     private
+
+    def nl2br(str)
+      str.gsub("\r\n", '<br>').gsub("\n", '<br>')
+    end
 
     def build_authors
       @work.work_people.select { |wp| wp.role_id == 1 }.map do |wp|
@@ -139,7 +143,7 @@ module NatsuzoraContext
           'name_en' => person.name_en.to_s,
           'born_on' => person.born_on.to_s,
           'died_on' => person.died_on.to_s,
-          'description' => person.description.to_s
+          'description' => nl2br(person.description.to_s)
         }
       end
     end
