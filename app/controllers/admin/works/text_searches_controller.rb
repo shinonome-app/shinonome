@@ -48,7 +48,7 @@ module Admin
           )
         )
 
-        @pagy, @works = pagy(works.order(created_at: :desc), limit: 50)
+        @pagy, @works = pagy(works.order(created_at: :desc), limit: LIST_LIMIT)
       end
     end
   end

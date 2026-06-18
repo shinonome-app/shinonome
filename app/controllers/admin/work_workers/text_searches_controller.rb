@@ -22,7 +22,7 @@ module Admin
 
         workers = text_searcher.apply_to(Worker.all)
 
-        @pagy, @workers = pagy(workers.order(created_at: :desc), limit: 50)
+        @pagy, @workers = pagy(workers.order(created_at: :desc), limit: LIST_LIMIT)
       end
     end
   end

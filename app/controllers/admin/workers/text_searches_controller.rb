@@ -18,7 +18,7 @@ module Admin
         text_searcher.add_query_param('name_kana', name_kana, text_selector_name_kana)
         workers = text_searcher.apply_to(Worker.all)
 
-        @pagy, @workers = pagy(workers.order(created_at: :desc), limit: 50)
+        @pagy, @workers = pagy(workers.order(created_at: :desc), limit: LIST_LIMIT)
       end
     end
   end
