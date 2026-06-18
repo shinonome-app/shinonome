@@ -26,8 +26,8 @@ Rails.application.routes.draw do
     resources :thanks, only: %i[index]
   end
 
-  resources :idlists, only: %i[index]
-  namespace :idlists do
+  resources :idlists, only: %i[index], path: 'idlist'
+  namespace :idlists, path: 'idlist' do
     resources :workers, only: %i[index]
     resources :people, only: %i[index]
   end
