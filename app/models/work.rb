@@ -66,7 +66,10 @@ class Work < ApplicationRecord
   belongs_to :kana_type
   belongs_to :work_status
 
-  scope :with_year_and_status, ->(year, status) { where('extract(year from created_at) = ? AND work_status_id = ?', year, status) }
+  # created_at はUTC保存だが、JST基準で検索する
+  scope :with_year_and_status, lambda { |year, status|
+    where(created_at: Time.zone.local(year.to_i).all_year, work_status_id: status)
+  }
 
   scope :with_creator_firstchar, lambda { |char|
     if char.blank? || char == 'その他'

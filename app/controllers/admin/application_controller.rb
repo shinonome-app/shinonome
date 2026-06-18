@@ -2,6 +2,9 @@
 
 module Admin
   class ApplicationController < ActionController::Base
+    # default limit, used by search result pages and others
+    LIST_LIMIT = 50
+
     before_action :configure_permitted_parameters, if: :devise_controller?
     before_action :authenticate_admin_user!
 

@@ -22,6 +22,13 @@ RSpec.describe ReceiptsController do
         expect(response.body).to include('底本データ')
         expect(response.body).to include('作品データ')
       end
+
+      it 'ID一覧へのリンクが有効なルート(/idlist/)を指していること' do
+        get new_receipt_path
+        expect(response.body).to include('href="/idlist/"')
+        # 旧サイトの解決できないリンク(idlist.html)が残っていないこと
+        expect(response.body).not_to include('idlist.html')
+      end
     end
 
     context '申請フォームを記入する場合' do

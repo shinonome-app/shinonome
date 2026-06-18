@@ -45,6 +45,16 @@ RSpec.describe NatsuzoraContext::CardBuilder do
       expect(context['card_path']).to eq("/cards/#{format('%06d', person.id)}/card#{work.id}.html")
     end
 
+    it 'converts newlines in description to <br> (komadome / komadome-rs と同一)' do
+      work.update!(description: "一行目\r\n二行目\n三行目")
+      expect(context['description']).to eq('一行目<br>二行目<br>三行目')
+    end
+
+    it 'converts newlines in person description (work_people_details) to <br>' do
+      non_copyright_person.update!(description: "人物\r\n説明\n行")
+      expect(context['work_people_details'].first['description']).to eq('人物<br>説明<br>行')
+    end
+
     it 'sets has_copyright flag to false for non-copyrighted person' do
       expect(context['has_copyright']).to eq(false)
     end

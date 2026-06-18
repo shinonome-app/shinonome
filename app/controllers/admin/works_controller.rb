@@ -8,7 +8,7 @@ module Admin
 
     # GET /works
     def index
-      @pagy, @works = pagy(Work.order(id: :desc).all, limit: 50)
+      @pagy, @works = pagy(Work.order(id: :desc).all, limit: LIST_LIMIT)
       @years = (1995..Time.zone.now.year).to_a
     end
 

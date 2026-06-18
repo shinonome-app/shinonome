@@ -23,7 +23,7 @@ module Admin
         text_searcher.add_query_param('owner_name', owner_name, text_selector_owner_name)
         sites = text_searcher.apply_to(Site.all)
 
-        @pagy, @sites = pagy(sites.order(created_at: :desc), items: 50)
+        @pagy, @sites = pagy(sites.order(created_at: :desc), limit: LIST_LIMIT)
       end
     end
   end

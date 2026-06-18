@@ -8,8 +8,11 @@ module Admin
       # GET /admin/people/person_index_searches
       def index
         char = params[:person]
+        scope = Person.with_name_firstchar(char).order(:sortkey, :sortkey2, :id)
 
-        @pagy, @people = pagy(Person.with_name_firstchar(char).order(:sortkey, :sortkey2, :id), limit: 50)
+        @show_all = params[:all].present?
+        limit = @show_all ? [scope.count, 1].max : LIST_LIMIT
+        @pagy, @people = pagy(scope, limit:)
       end
     end
   end

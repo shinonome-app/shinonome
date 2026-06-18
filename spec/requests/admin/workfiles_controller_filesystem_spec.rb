@@ -99,7 +99,8 @@ RSpec.describe Admin::WorkfilesController do
           post admin_work_workfiles_url(work), params: { workfile: filesystem_attributes }
 
           created_workfile = Workfile.last
-          expected_path = Rails.root.join('data/workfiles/cards', work.card_person_id, 'files', 'sample.zip')
+          generated_name = "#{work.id}_#{created_workfile.id}.txt"
+          expected_path = Rails.root.join('data/workfiles/cards', work.card_person_id, 'files', generated_name)
 
           expect(created_workfile.filesystem.path).to eq(expected_path)
           expect(File.exist?(expected_path)).to be true
@@ -156,6 +157,8 @@ RSpec.describe Admin::WorkfilesController do
 
           expect(response).to redirect_to(admin_work_url(work))
           expect(flash[:success]).to eq('ワークファイルが正常に更新されました。')
+          existing_workfile.reload
+          expect(existing_workfile.filename).to eq("#{work.id}_#{existing_workfile.id}.txt")
           expect(existing_workfile.filesystem.exists?).to be true
         end
       end

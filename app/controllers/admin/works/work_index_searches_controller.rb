@@ -14,7 +14,7 @@ module Admin
           :people,
           :kana_type,
           :work_status
-        ).with_title_firstchar(char).order(created_at: :desc), limit: 50)
+        ).with_title_firstchar(char).order(created_at: :desc), limit: LIST_LIMIT)
       end
     end
   end

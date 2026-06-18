@@ -58,5 +58,15 @@ RSpec.describe Admin::People::PersonIndexSearchesController do
       shown = response.body.scan(%r{href="/admin/people/\d+"}).size
       expect(shown).to eq(50)
     end
+
+    it 'all指定時は件数制限なしで全件表示する' do
+      create_list(:person, 51, sortkey: 'あいうえお', sortkey2: '') # rubocop:disable FactoryBot/ExcessiveCreateList
+
+      get admin_people_person_index_searches_url(person: 'あ', all: 1)
+
+      expect(response).to be_successful
+      shown = response.body.scan(%r{href="/admin/people/\d+"}).size
+      expect(shown).to eq(51)
+    end
   end
 end

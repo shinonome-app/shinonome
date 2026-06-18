@@ -36,12 +36,12 @@ RSpec.describe WorkfileCreator do
     let(:service) { WorkfileCreator.new }
 
     context 'with valid parameters and file' do
-      it 'creates workfile successfully' do
+      it 'creates workfile with canonicalized filename successfully' do
         result = service.create(valid_params, uploaded_file)
 
         expect(result).to be_success
         expect(result.workfile).to be_persisted
-        expect(result.workfile.filename).to eq('test.zip')
+        expect(result.workfile.filename).to eq("#{work.id}_#{result.workfile.id}.txt")
         expect(result.message).to eq('ワークファイルが正常に作成されました。')
       end
 
@@ -50,6 +50,26 @@ RSpec.describe WorkfileCreator do
 
         expect(result.workfile.filesystem.exists?).to be true
         expect(result.workfile.filesystem.read).to eq('test content')
+      end
+    end
+
+    context 'ファイル名の自動採番（旧DBと同じ規則）' do
+      it 'ルビ付きテキストは「作品番号_ruby_連番.txt」になる' do
+        params = valid_params.merge(filetype_id: 1, compresstype_id: 1) # rtxt, 圧縮なし
+        result = service.create(params, uploaded_file)
+
+        expect(result).to be_success
+        expect(result.workfile.filename).to eq("#{work.id}_ruby_#{result.workfile.id}.txt")
+        result.workfile.filesystem.delete
+      end
+
+      it '圧縮ありは種別から拡張子を決めて「作品番号_種別_連番.zip」になる' do
+        params = valid_params.merge(filetype_id: 3, compresstype_id: 2) # HTML, ZIP圧縮
+        result = service.create(params, uploaded_file)
+
+        expect(result).to be_success
+        expect(result.workfile.filename).to eq("#{work.id}_html_#{result.workfile.id}.zip")
+        result.workfile.filesystem.delete
       end
     end
 
@@ -120,7 +140,7 @@ RSpec.describe WorkfileCreator do
         result = service.update(workfile, { charset_id: charset.id }, new_uploaded_file)
 
         expect(result).to be_success
-        expect(result.workfile.filename).to eq('updated.zip')
+        expect(result.workfile.filename).to eq("#{work.id}_#{workfile.id}.txt")
         expect(result.workfile.filesystem.read).to eq('updated content')
         expect(result.message).to eq('ワークファイルが正常に更新されました。')
       end

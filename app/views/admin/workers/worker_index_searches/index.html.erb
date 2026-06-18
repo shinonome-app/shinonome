@@ -1,6 +1,16 @@
 <%= snm_headline h: 'h1' do %>耕作員一覧<% end %>
 <div class="mt-10 mb-5">
+  <div class="my-2 flex gap-2">
+    <% if @show_all %>
+      <%= snm_link '50件ずつ表示', href: admin_workers_worker_index_searches_path(worker: params[:worker]), button_style: "secondary" %>
+    <% else %>
+      <%= snm_link '全て表示', href: admin_workers_worker_index_searches_path(worker: params[:worker], all: 1) %>
+    <% end %>
+  </div>
+
   <%= render(Admin::WorkersTableComponent.new(pagy: @pagy, workers: @workers)) %>
 
-  <%== pagy_snm_nav(@pagy) %>
+  <% unless @show_all %>
+    <%== pagy_snm_nav(@pagy) %>
+  <% end %>
 </div>

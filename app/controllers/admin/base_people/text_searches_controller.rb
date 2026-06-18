@@ -28,7 +28,7 @@ module Admin
 
         people = text_searcher.apply_to(Person.all)
 
-        @pagy, @people = pagy(people.order(created_at: :desc), limit: 50)
+        @pagy, @people = pagy(people.order(created_at: :desc), limit: LIST_LIMIT)
       end
     end
   end

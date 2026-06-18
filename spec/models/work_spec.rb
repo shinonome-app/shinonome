@@ -127,4 +127,21 @@ RSpec.describe Work do
       end
     end
   end
+
+  describe '.with_year_and_status' do
+    # JST 2025-01-01 00:30 = UTC 2024-12-31 15:30。UTC基準だと2024年に判定されてしまう。
+    let(:work) { create(:work, work_status_id: 1, created_at: Time.zone.local(2025, 1, 1, 0, 30)) }
+
+    it 'JSTの年で作品を絞り込む' do
+      expect(Work.with_year_and_status('2025', 1)).to include(work)
+    end
+
+    it 'UTC上は前年でも、JSTの年が異なれば含めない' do
+      expect(Work.with_year_and_status('2024', 1)).not_to include(work)
+    end
+
+    it '状態(work_status_id)でも絞り込む' do
+      expect(Work.with_year_and_status('2025', 2)).not_to include(work)
+    end
+  end
 end

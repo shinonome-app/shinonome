@@ -24,7 +24,7 @@ module Admin
 
         sites = text_searcher.apply_to(Site.all)
 
-        @pagy, @sites = pagy(sites.order(created_at: :desc), limit: 50)
+        @pagy, @sites = pagy(sites.order(created_at: :desc), limit: LIST_LIMIT)
       end
     end
   end

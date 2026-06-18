@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Idlists::WorkersController do
-  describe 'GET /idlists/workers/' do
+  describe 'GET /idlist/workers' do
     it 'returns http success' do
-      get '/idlists/workers/'
+      get idlists_workers_path
       expect(response).to have_http_status(:success)
     end
   end
