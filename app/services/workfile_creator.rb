@@ -8,12 +8,15 @@ class WorkfileCreator
     return Result.failure(nil, 'ファイルが選択されていません', :no_file) unless uploaded_file
 
     workfile = Workfile.new(workfile_params)
+    # at first, use original filename
     workfile.filename = uploaded_file.original_filename
 
     return Result.failure(workfile, 'バリデーションエラー', :validation_error) unless workfile.save
 
     begin
       save_file_and_convert(workfile, uploaded_file)
+      # canonicalize filename
+      assign_generated_filename(workfile)
       Result.success(workfile, 'ワークファイルが正常に作成されました。')
     rescue StandardError => e
       cleanup_on_error(workfile)
@@ -44,16 +47,20 @@ class WorkfileCreator
   # ファイル付きでの更新
   def update_with_file(workfile, workfile_params, uploaded_file)
     backup_path = create_backup(workfile)
+    old_file_path = workfile.filesystem.path
 
     begin
-      # ファイル名更新
-      workfile.filename = uploaded_file.original_filename if uploaded_file.original_filename.present?
+      # generate_filename が新しい種別を参照できるよう、先に属性を反映する
+      workfile.assign_attributes(workfile_params)
+      workfile.filename = uploaded_file.original_filename
 
-      # ファイル保存と変換
       save_file_and_convert(workfile, uploaded_file)
 
-      # メタデータ更新
-      if workfile.update(workfile_params)
+      assign_generated_filename(workfile)
+
+      if workfile.save
+        # ファイル名(パス)が変わった場合は旧ファイルを削除
+        remove_stale_file(old_file_path, workfile.filesystem.path)
         cleanup_backup(backup_path)
         Result.success(workfile, 'ワークファイルが正常に更新されました。')
       else
@@ -88,9 +95,26 @@ class WorkfileCreator
     raise StandardError, 'ファイル変換に失敗しました'
   end
 
-  # 変換が必要かチェック
+  # 変換が必要かチェック（アップロードされた .txt を、対象種別が html/zip のときだけ変換する）
   def needs_conversion?(workfile)
-    workfile.filename&.end_with?('.txt')
+    workfile.filename&.end_with?('.txt') && (workfile.html? || workfile.zip?)
+  end
+
+  def assign_generated_filename(workfile)
+    generated = workfile.generate_filename
+    return if generated.blank? || generated == workfile.filename
+
+    old_path = workfile.filesystem.path
+    workfile.filename = generated
+    new_path = workfile.filesystem.path
+    FileUtils.mv(old_path, new_path) if old_path && new_path && old_path.to_s != new_path.to_s && File.exist?(old_path)
+    workfile.save!
+  end
+
+  def remove_stale_file(old_path, new_path)
+    return unless old_path && new_path && old_path.to_s != new_path.to_s
+
+    FileUtils.rm_f(old_path)
   end
 
   # エラー時のクリーンアップ

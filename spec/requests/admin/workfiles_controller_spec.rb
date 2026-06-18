@@ -89,10 +89,11 @@ RSpec.describe Admin::WorkfilesController do
         expect(flash[:success]).to eq('ワークファイルが正常に作成されました。')
       end
 
-      it 'sets correct filename from uploaded file' do
+      it 'sets generated filename based on filetype (旧DBと同じ連番命名)' do
         post admin_work_workfiles_url(work), params: { workfile: valid_attributes }
         created_workfile = Workfile.last
-        expect(created_workfile.filename).to eq('sample.zip')
+        # not use uploaded filename (sample.zip), canonicalized
+        expect(created_workfile.filename).to eq("#{work.id}_#{created_workfile.id}.txt")
       end
     end
 
