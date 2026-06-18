@@ -63,7 +63,7 @@
   <h1 class="flex justify-center py-3 text-2xl font-semibold bg-yellow-100 border border-y-gray-500">作家別作品リスト：No.{[ person_id ]}</h1>
 
   <div class="p-4">
-    <table summary="作家データ" class="w-full">
+    <table summary="作家データ" class="table-fixed w-full">
       <tr>
         <th class="text-left text-red-800 w-1/6">作家名：</th>
         <td>
@@ -89,7 +89,7 @@
       </tr>
       <tr>
         <th class="text-left text-red-800 w-1/6">人物について：</th>
-        <td>
+        <td class="[&_img]:inline [&_img]:align-middle">
           {[!unsecure description ]}
           <!--
               <div class="flex flex-row">
