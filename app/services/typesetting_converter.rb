@@ -20,8 +20,8 @@ class TypesettingConverter
 
   private
 
-  def leading_chars_for_preview(text, n)
-    text.encode('UTF-8').slice(0, n)
+  def leading_chars_for_preview(text, num)
+    text.encode('UTF-8').slice(0, num)
   end
 
   # 正規化済み (Shift_JIS + CR+LF) の入力をダウンロード用に保存する。
