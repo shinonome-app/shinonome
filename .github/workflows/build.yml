@@ -1,0 +1,62 @@
+name: Build staging image
+
+# production は別途扱う
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+      - 'doc/**'
+  workflow_dispatch:
+
+# 連続 push 時は古いビルドをキャンセルして無駄を省く
+concurrency:
+  group: build-staging-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  IMAGE: ghcr.io/shinonome-app/shinonome-staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: docker/setup-buildx-action@v4
+
+      # ghcr.io は組み込みの GITHUB_TOKEN で push 可（shinonome-app org 配下）
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: Dockerfile.production
+          platforms: linux/amd64
+          push: true
+          build-args: |
+            GIT_SHA=${{ github.sha }}
+          # kamal は <image>:<git sha> を参照する。latest-staging は人間向けの別名。
+          tags: |
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.IMAGE }}:latest-staging
+          # kamal はデプロイ前に service ラベルを検証する
+          labels: |
+            service=shinonome-staging
+          cache-from: type=registry,ref=${{ env.IMAGE }}:build-cache
+          cache-to: type=registry,ref=${{ env.IMAGE }}:build-cache,mode=max
+
+      - name: Summary
+        run: |
+          {
+            echo "pushed: ${{ env.IMAGE }}:${{ github.sha }}"
+            echo "deploy readly."
+          } >> "$GITHUB_STEP_SUMMARY"
