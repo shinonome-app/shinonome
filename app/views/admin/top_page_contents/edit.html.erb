@@ -28,7 +28,9 @@
 </details>
 
 <div class="mt-6">
-  <%= form_with model: @editable_content, url: admin_top_page_content_path, method: :post do |form| %>
+  <%# authenticity_token で draft/preview/publish のaction振り分けとCSRF検証に対応 %>
+  <%= form_with model: @editable_content, url: admin_top_page_content_path, method: :post,
+                authenticity_token: form_authenticity_token do |form| %>
     <% errors = @editable_content.errors %>
     <%= render(Admin::SnmTextAreaComponent.new(form:, name: :value, label: "本文（natsuzoraテンプレート）", rows: 30, errors:)) %>
 
