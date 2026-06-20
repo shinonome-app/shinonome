@@ -1,0 +1,57 @@
+name: Build production image
+
+# only manual build For production
+# Usage:
+#   `gh workflow run build-production.yml --ref <ref>`
+# To deploy, use `kamal deploy --skip-push`
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: build-production-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  IMAGE: ghcr.io/shinonome-app/shinonome
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: docker/setup-buildx-action@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: Dockerfile.production
+          platforms: linux/amd64
+          push: true
+          build-args: |
+            GIT_SHA=${{ github.sha }}
+          # kamal use <image>:<git sha>, not `latest`
+          tags: |
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.IMAGE }}:latest
+          # kamal verify service label before deployment
+          labels: |
+            service=shinonome
+          cache-from: type=registry,ref=${{ env.IMAGE }}:build-cache
+          cache-to: type=registry,ref=${{ env.IMAGE }}:build-cache,mode=max
+
+      - name: Summary
+        run: |
+          {
+            echo "pushed: ${{ env.IMAGE }}:${{ github.sha }}"
+            echo "deploy: cd shinonome-ops && ./kamal/cmd.sh production deploy --skip-push"
+          } >> "$GITHUB_STEP_SUMMARY"
