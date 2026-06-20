@@ -161,6 +161,8 @@ Rails.application.routes.draw do
 
       resources :work_reporters, only: %i[new create]
       resources :workfiles, only: %i[index show]
+
+      resource :site_build, only: %i[show create]
     end
 
     # resources :work_sites

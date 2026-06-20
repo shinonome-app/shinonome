@@ -113,6 +113,38 @@
       </div>
     </div>
 
+    <!-- 公開サイト ビルド（生成のみ） -->
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <div class="ml-3 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">
+                公開サイト ビルド
+              </dt>
+              <dd class="text-lg font-medium text-gray-900">
+                公開サイトの生成（転送なし）
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="mt-4">
+          <p class="text-sm text-gray-500">
+            komadome-rs に「ビルドのみ」（DB→HTML 生成）を要求します。公開サーバへの転送は行いません。
+          </p>
+        </div>
+        <div class="mt-4">
+          <%= link_to "実行", admin_sysadmin_site_build_path,
+                      class: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+      </div>
+    </div>
+
     <!-- 将来の機能用プレースホルダー -->
     <div class="bg-gray-50 overflow-hidden shadow rounded-lg opacity-50">
       <div class="p-6">

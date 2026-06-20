@@ -1,0 +1,41 @@
+<%= snm_headline h: 'h1' do %>公開サイト ビルド（生成のみ）<% end %>
+
+<div class="mt-6 max-w-2xl space-y-4">
+  <p class="text-sm text-gray-600">
+    公開wwwサイトのビルドを行います。
+    リクエストはビルドツールが毎分チェックして実行するため、反映まで数十秒〜数分かかります。
+  </p>
+
+  <% if @requester.pending? %>
+    <div class="text-sky-950 bg-sky-200 text-sm px-4 py-3 rounded">
+      ビルド要求を受付済みです（実行待ち〜実行中）。少し待ってからこの画面を再読み込みしてください。
+    </div>
+  <% end %>
+
+  <% status = @requester.status %>
+  <div class="bg-white shadow rounded-lg p-6">
+    <dt class="text-sm font-medium text-gray-500">直近のビルド状態</dt>
+    <% if status %>
+      <dd class="mt-2 text-gray-900">
+        <span class="text-lg font-medium">
+          <%= { 'running' => '実行中', 'done' => '完了', 'failed' => '失敗' }.fetch(status.state, status.state) %>
+        </span>
+        <span class="ml-3 text-sm text-gray-500"><%= status.at %></span>
+        <% if status.pages %>
+          <span class="ml-3 text-sm text-gray-500">生成ページ数: <%= status.pages %></span>
+        <% end %>
+      </dd>
+    <% else %>
+      <dd class="mt-2 text-sm text-gray-500">まだビルド実績がありません（またはビルドツール未連携）。</dd>
+    <% end %>
+  </div>
+
+  <%= button_to "ビルドを実行", admin_sysadmin_site_build_path,
+                method: :post,
+                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+
+  <div>
+    <%= link_to "← システム管理メニューに戻る", admin_sysadmin_index_path,
+                class: "text-sm text-blue-700 hover:text-gray-100 hover:bg-blue-700 underline" %>
+  </div>
+</div>
