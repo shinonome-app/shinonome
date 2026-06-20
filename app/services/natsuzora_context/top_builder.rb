@@ -3,6 +3,9 @@
 module NatsuzoraContext
   # Builds the context hash for top/index.ntzr (トップページ).
   class TopBuilder
+    # 「歩みの記録」(topics) に出す最新件数
+    TOPICS_LIMIT = 10
+
     # editable_content_source を渡すと、その natsuzora フラグメントを厳格に
     # 描画する（不正なら Natsuzora::Error）。空文字なら「コンテンツなし」
     # として扱う（テンプレート側でデフォルトボディにフォールバック）。
@@ -26,7 +29,7 @@ module NatsuzoraContext
     def build_base_context
       new_works, new_works_published_on = fetch_new_works
       latest_news_entry = NewsEntry.published.order(published_on: :desc).first
-      topics = NewsEntry.topics.order(published_on: :desc)
+      topics = NewsEntry.topics.order(published_on: :desc).limit(TOPICS_LIMIT)
 
       {
         'page_title' => '青空文庫',

@@ -33,6 +33,11 @@ RSpec.describe NatsuzoraContext::TopBuilder do
       expect(context['topics']).to be_an(Array)
     end
 
+    it '「歩みの記録」(topics) は最新10件に絞る' do
+      15.times { |i| create(:news_entry, flag: true, published_on: Date.new(2020, 1, 1) + i) }
+      expect(context['topics'].size).to eq(10)
+    end
+
     it 'sets editable_content_html to empty string when no published content exists' do
       expect(context['editable_content_html']).to eq('')
     end
