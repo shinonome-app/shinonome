@@ -88,7 +88,7 @@ class Work < ApplicationRecord
   }
 
   scope :published, ->(date = Time.zone.today) { where('work_status_id = 1 AND started_on <= ?', date) }
-  scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11) OR (work_status_id = 1 AND started_on > ?)', date) }
+  scope :unpublished, ->(date = Time.zone.today) { where('work_status_id in (3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15) OR (work_status_id = 1 AND started_on > ?)', date) }
   scope :not_proofread, -> { where('work_status_id in (5, 6)') }
 
   scope :without_authors, lambda {
@@ -106,7 +106,7 @@ class Work < ApplicationRecord
   validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }, if: -> { kana_type_id.present? }
   validates :started_on, presence: true
   validates :work_status_id, presence: true # rubocop:disable Rails/RedundantPresenceValidationOnBelongsTo
-  validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }, if: -> { work_status_id.present? }
+  validates :work_status_id, inclusion: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] }, if: -> { work_status_id.present? }
 
   def self.copyrighted_count
     published

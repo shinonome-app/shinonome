@@ -144,4 +144,34 @@ RSpec.describe Work do
       expect(Work.with_year_and_status('2025', 2)).not_to include(work)
     end
   end
+
+  describe 'work_status_id の検証' do
+    it '校了(点検前)/校正受領/公開保留(13,14,15)も保存できる' do
+      [13, 14, 15].each do |status_id|
+        work = build(:work, work_status_id: status_id)
+        expect(work).to be_valid, "work_status_id=#{status_id} が無効と判定された"
+      end
+    end
+
+    it '未定義の状態(16)は無効' do
+      # factory の after(:build) が work_secret を作るため、有効な状態で build してから
+      # work_status_id を未定義値に上書きして検証する。
+      work = build(:work)
+      work.work_status_id = 16
+      expect(work).not_to be_valid
+    end
+  end
+
+  describe '.unpublished' do
+    it '公開保留(15)も作業中(unpublished)に含む' do
+      work = create(:work, work_status_id: 15)
+      expect(Work.unpublished).to include(work)
+    end
+
+    it '校了(点検前)(13)・校正受領(14)も作業中に含む' do
+      w13 = create(:work, work_status_id: 13)
+      w14 = create(:work, work_status_id: 14)
+      expect(Work.unpublished).to include(w13, w14)
+    end
+  end
 end
