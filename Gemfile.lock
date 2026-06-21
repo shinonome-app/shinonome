@@ -225,7 +225,7 @@ GEM
     msgpack (1.7.5)
     natsuzora (0.4.1)
       lexer_kit (>= 0.6.1)
-    net-imap (0.5.9)
+    net-imap (0.6.4.1)
       date
       net-protocol
     net-pop (0.1.2)
