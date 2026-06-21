@@ -7,23 +7,33 @@
 </div>
 
 <details class="mt-4 text-sm text-gray-700 border border-gray-200 rounded p-3">
-  <summary class="cursor-pointer font-semibold">natsuzora テンプレートの書き方</summary>
+  <summary class="cursor-pointer font-semibold">テンプレートの書き方</summary>
   <div class="mt-2 space-y-2">
-    <p>本文は natsuzora テンプレートとして描画されます。HTMLはそのまま記述できます（管理者の入力は無加工で公開ページに出力されるため注意してください）。</p>
+    <p>
+      不要なデータを出力させないために、テンプレート内の本文はnatsuzora記法という独自記法を使います。
+      HTMLはそのまま記述できます（管理者の入力は無加工で公開ページに出力されるため注意してください）。
+    </p>
+    <p><code class="text-red-500">{[ ... ]}</code>と書かれている部分はnatsuzora専用の特殊記法です。</p>
     <ul class="list-disc ml-5 space-y-1">
-      <li><code>{[ 変数 ]}</code> — 変数の値をHTMLエスケープして出力</li>
-      <li><code>{[#each new_works as work]} ... {[ work.title ]} ... {[/each]}</code> — 繰り返し</li>
-      <li><code>{[#if 変数]} ... {[#else]} ... {[/if]}</code> — 条件分岐</li>
-      <li><code>{[!include]}</code> は使用できません</li>
+      <li><code class="text-red-500">{[ 変数 ]}</code> — 変数の値をHTMLエスケープして出力</li>
+      <li><code class="text-red-500">{[#each new_works as work]} ... {[ work.title ]} ... {[/each]}</code> — 繰り返しと変数出力</li>
+      <li><code class="text-red-500">{[#if 変数]} ... {[#else]} ... {[/if]}</code> — 条件分岐</li>
     </ul>
-    <p class="font-semibold mt-2">利用できる変数:</p>
+    <p class="mt-2">トップページで利用できる変数とその属性は以下の通りです。</p>
     <ul class="list-disc ml-5 space-y-1">
-      <li><code>new_works</code> — 新着作品の配列（<code>work_id</code> / <code>title</code> / <code>subtitle</code> / <code>author_text</code> / <code>card_person_dir</code>）</li>
-      <li><code>new_works_published_on</code> — 新着作品の公開日</li>
-      <li><code>latest_news_published_on</code> — 最新のお知らせの日付</li>
-      <li><code>topics</code> — トピックスの配列（<code>id</code> / <code>title</code> / <code>published_on</code> / <code>year</code>）</li>
-      <li><code>works_count</code> / <code>works_copyright_count</code> / <code>works_noncopyright_count</code> — 作品数</li>
+      <li><code class="text-green-600">new_works</code> — 新着作品(<code class="text-green-600">work</code>)の配列（属性: <code class="text-green-600">work_id</code> / <code class="text-green-600">title</code> / <code class="text-green-600">subtitle</code> / <code class="text-green-600">author_text</code> / <code class="text-green-600">card_person_dir</code>）</li>
+      <li><code class="text-green-600">new_works_published_on</code> — 新着作品の公開日</li>
+      <li><code class="text-green-600">latest_news_published_on</code> — 最新のお知らせの日付</li>
+      <li><code class="text-green-600">topics</code> — トピックス(<code class="text-green-600">topic</code>)の配列（属性: <code class="text-green-600">id</code> / <code class="text-green-600">title</code> / <code class="text-green-600">published_on</code> / <code class="text-green-600">year</code>）</li>
+      <li><code class="text-green-600">works_count</code> / <code class="text-green-600">works_copyright_count</code> / <code class="text-green-600">works_noncopyright_count</code> — 作品数</li>
     </ul>
+    <p class="mt-2">
+      見た目（class）の書き方は
+      <%= link_to "Tailwind クラス 簡易ガイド", admin_top_page_content_tailwind_guide_path,
+                  target: "_blank", rel: "noopener",
+                  class: "text-blue-700 underline hover:text-gray-900" %>
+      を参照してください（別タブで開きます）。
+    </p>
   </div>
 </details>
 
@@ -43,7 +53,7 @@
                                             options: { formaction: admin_top_page_content_preview_path, formmethod: :post, formtarget: "_blank" })) %>
       <%= render(Admin::SubmitComponent.new(form:,
                                             name: "publish",
-                                            value: "公開する",
+                                            value: "更新する",
                                             button_style: :primary,
                                             options: { formaction: admin_top_page_content_publication_path, formmethod: :post })) %>
     </div>
