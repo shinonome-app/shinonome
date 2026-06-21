@@ -27,7 +27,7 @@ ApplicationRecord.transaction do
     { id: 2, name: 'テキストファイル(ルビなし)', extension: 'txt', is_html: false, is_text: true, is_rtxt: false },
     { id: 3, name: 'HTMLファイル', extension: 'html', is_html: true, is_text: false, is_rtxt: false },
     { id: 4, name: 'エキスパンドブックファイル', extension: 'ebk', is_html: false, is_text: false, is_rtxt: false },
-    { id: 5, name: '.workファイル', extension: 'work', is_html: false, is_text: false, is_rtxt: false },
+    { id: 5, name: '.bookファイル', extension: 'book', is_html: false, is_text: false, is_rtxt: false },
     { id: 6, name: 'TTZファイル', extension: 'ttz', is_html: false, is_text: false, is_rtxt: false },
     { id: 7, name: 'PDFファイル', extension: 'pdf', is_html: false, is_text: false, is_rtxt: false },
     { id: 8, name: 'PalmDocファイル', extension: 'doc', is_html: false, is_text: false, is_rtxt: false },
