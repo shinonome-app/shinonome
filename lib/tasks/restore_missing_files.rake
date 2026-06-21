@@ -128,6 +128,48 @@ namespace :workfiles do
     puts '(書き込むには APPLY=1 を付けて再実行)' unless apply
   end
 
+  desc 'Output www-relative paths of workfiles missing in storage (for rsync --files-from). Arg/OUT= for path.'
+  task :missing_source_list, [:out] => :environment do |_task, args|
+    out = args[:out].presence || ENV['OUT'].presence || Rails.root.join('data/missing_source_list.txt').to_s
+    count = 0
+    no_person = 0
+
+    # 新ストレージに無い workfile について、旧 www の相対パス cards/<persondir>/files/<name> を出力する。
+    # name は filename があればそれ、無ければ旧 www 命名規則（<bookid>.ebk 等）。
+    # この一覧を rsync --files-from に渡すと「不足分だけ」転送できる。
+    File.open(out, 'w') do |f|
+      Workfile.includes(:work, :filetype, :compresstype).find_each do |wf|
+        next if wf.url.present?
+        next if wf.file_exists?
+
+        ft = wf.filetype
+        ct = wf.compresstype
+        next if ft.nil? || ct.nil?
+
+        person = wf.work&.card_person_id
+        if person.blank?
+          no_person += 1
+          next
+        end
+
+        name = wf.filename.presence || if ft.rtxt?
+                                         ct.extension == 'none' ? "#{wf.work_id}_ruby.txt" : "#{wf.work_id}_ruby.#{ct.extension}"
+                                       elsif ct.extension == 'none'
+                                         "#{wf.work_id}.#{ft.extension}"
+                                       else
+                                         "#{wf.work_id}_#{ft.extension}.#{ct.extension}"
+                                       end
+        next if name.blank?
+
+        f.puts "cards/#{person}/files/#{name}"
+        count += 1
+      end
+    end
+
+    puts "Wrote #{count} paths to #{out}"
+    puts "Skipped (no author/person): #{no_person}" if no_person.positive?
+  end
+
   desc 'Check missing workfiles (dry run)'
   task :check_missing, [:source_dir] => :environment do |_task, args|
     source_dir = args[:source_dir]
