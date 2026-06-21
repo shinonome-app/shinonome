@@ -2,7 +2,7 @@
     (作業中)インターネットの電子図書館、青空文庫へようこそ。
   </h1>
 
-  <div class="flex justify-center h-10 mt-4 py-3 text-3xl font-semibold text-gray-900 w-full">
+  <div class="flex justify-center mt-4 py-3 text-3xl font-semibold text-gray-900 w-full">
     「<a href="https://www.aozora.gr.jp/soramoyou/soramoyouindex.html" class="text-blue-700 hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600 underline font-normal">
       青空文庫、新館引越中
       </a>」
