@@ -123,7 +123,7 @@
       </tr>{[/if]}{[-#if description]}
       <tr>
         <th class="text-left text-red-800 align-top break-keep">作品について：</th>
-        <td class="[&_img]:inline [&_img]:align-middle">
+        <td class="[&_img]:inline [&_img]:align-middle [&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-gray-900">
           {[!unsecure description ]}
         </td>
       </tr>{[/if]}{[-#if first_appearance]}
