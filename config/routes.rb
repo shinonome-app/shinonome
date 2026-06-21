@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resource :top_page_content, only: %i[edit create], controller: 'top_page_contents' do
       resource :publication, only: %i[create destroy], module: :top_page_contents
       resource :preview, only: %i[create], module: :top_page_contents
+      resource :tailwind_guide, only: %i[show], module: :top_page_contents
     end
 
     namespace :users do

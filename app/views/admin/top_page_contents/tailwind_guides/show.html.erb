@@ -1,0 +1,102 @@
+<%= snm_headline h: 'h1' do %>Tailwind使い方ガイド<% end %>
+
+<div class="mt-2 text-sm text-gray-700">
+  <p>トップページ本文では、HTMLの <code>class="..."</code> に Tailwind のユーティリティクラスを並べて見た目を指定します。よく使うものだけまとめました。</p>
+  <p class="mt-1">
+    <%= link_to "← トップページ編集に戻る", edit_admin_top_page_content_path, class: "text-blue-700 underline hover:text-gray-900" %>
+  </p>
+</div>
+
+<% section = ->(title) { content_tag(:h2, title, class: "mt-6 mb-2 text-lg font-semibold border-b border-gray-300 pb-1") } %>
+
+<%= section.call("基本") %>
+<div class="text-sm text-gray-700 space-y-1">
+  <p>クラスはスペース区切りで複数指定します。例：</p>
+  <pre class="bg-gray-100 p-2 rounded text-xs overflow-x-auto"><code>&lt;p class="text-lg font-semibold text-gray-900 text-center"&gt;見出し&lt;/p&gt;</code></pre>
+  <p><code>hover:〇〇</code> はマウスを乗せた時、<code>md:〇〇</code> は画面幅が中サイズ以上の時に効きます。</p>
+</div>
+
+<%= section.call("文字") %>
+<table class="text-sm w-full border border-gray-200">
+  <tbody class="[&_td]:p-2 [&_td]:border-t [&_td]:border-gray-200">
+    <tr><td class="w-48"><code>text-sm</code> / <code>text-base</code> / <code>text-lg</code> / <code>text-xl</code> 〜 <code>text-3xl</code></td><td>文字サイズ（小→大）</td></tr>
+    <tr><td><code>font-normal</code> / <code>font-semibold</code> / <code>font-bold</code></td><td>太さ</td></tr>
+    <tr><td><code>text-gray-900</code> / <code>text-blue-700</code> / <code>text-red-600</code></td><td>文字色</td></tr>
+    <tr><td><code>text-left</code> / <code>text-center</code> / <code>text-right</code></td><td>揃え</td></tr>
+    <tr><td><code>underline</code> / <code>no-underline</code></td><td>下線</td></tr>
+  </tbody>
+</table>
+
+<%= section.call("リンク（よく使うパターン）") %>
+<div class="text-sm text-gray-700 space-y-2">
+  <pre class="bg-gray-100 p-2 rounded text-xs overflow-x-auto"><code>&lt;a href="..." class="text-blue-700 underline hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600"&gt;リンク文字&lt;/a&gt;</code></pre>
+  <p>表示例：
+    <a href="#" class="text-blue-700 underline hover:text-gray-100 hover:bg-blue-700 visited:text-purple-600">リンク文字（ホバーしてみてください）</a>
+  </p>
+  <ul class="list-disc ml-5">
+    <li><code>text-blue-700</code> … 通常の文字色</li>
+    <li><code>hover:bg-blue-700</code> / <code>hover:text-gray-100</code> … ホバー時の背景・文字色</li>
+    <li><code>visited:text-purple-600</code> … 訪問済みの色</li>
+  </ul>
+</div>
+
+<%= section.call("背景色") %>
+<table class="text-sm w-full border border-gray-200">
+  <tbody class="[&_td]:p-2 [&_td]:border-t [&_td]:border-gray-200">
+    <tr><td class="w-48"><code>bg-white</code> / <code>bg-gray-100</code> / <code>bg-yellow-100</code></td><td>背景色</td></tr>
+    <tr><td><code>bg-sky-50</code> / <code>bg-blue-700</code></td><td>同上（数字が大きいほど濃い）</td></tr>
+  </tbody>
+</table>
+
+<%= section.call("余白（外側=margin / 内側=padding）") %>
+<table class="text-sm w-full border border-gray-200">
+  <tbody class="[&_td]:p-2 [&_td]:border-t [&_td]:border-gray-200">
+    <tr><td class="w-48"><code>m-2</code> / <code>p-2</code></td><td>全方向の余白（数字が大きいほど広い）</td></tr>
+    <tr><td><code>mt-4</code> / <code>mb-4</code> / <code>ml-4</code> / <code>mr-4</code></td><td>上下左右（margin）</td></tr>
+    <tr><td><code>px-3</code> / <code>py-3</code></td><td>左右（x）/ 上下（y）の padding</td></tr>
+    <tr><td><code>my-2</code></td><td>上下の margin</td></tr>
+  </tbody>
+</table>
+
+<%= section.call("配置・レイアウト") %>
+<table class="text-sm w-full border border-gray-200">
+  <tbody class="[&_td]:p-2 [&_td]:border-t [&_td]:border-gray-200">
+    <tr><td class="w-48"><code>flex</code> + <code>justify-center</code></td><td>横並びにして中央寄せ</td></tr>
+    <tr><td><code>flex flex-col</code></td><td>縦並び</td></tr>
+    <tr><td><code>items-center</code></td><td>交差方向の中央揃え</td></tr>
+    <tr><td><code>w-full</code> / <code>w-1/3</code> / <code>max-w-6xl</code></td><td>幅</td></tr>
+    <tr><td><code>mx-auto</code></td><td>左右中央（ブロックを中央に）</td></tr>
+  </tbody>
+</table>
+
+<%= section.call("リスト") %>
+<pre class="bg-gray-100 p-2 rounded text-xs overflow-x-auto"><code>&lt;ul class="list-disc ml-5 space-y-1"&gt;
+  &lt;li&gt;項目1&lt;/li&gt;
+  &lt;li&gt;項目2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<%= section.call("⚠ よくある注意点") %>
+<div class="text-sm text-gray-700 space-y-2">
+  <div class="border border-amber-300 bg-amber-50 rounded p-3">
+    <p class="font-semibold">固定の高さ <code>h-〇〇</code> はできるだけ使わない</p>
+    <p class="mt-1">文字や <code>py-〇</code> に対して高さが小さすぎると、内容がはみ出して<strong>ホバー背景が一部しか出ない</strong>等の崩れになります。高さは <code>py-〇</code>（上下の余白）と文字サイズに任せ、<code>h-〇〇</code> は付けないのが安全です。</p>
+    <pre class="bg-white border border-amber-200 p-2 rounded text-xs mt-2 overflow-x-auto"><code>NG: &lt;div class="h-10 py-3 text-3xl"&gt;...&lt;/div&gt;   ← 40px に 24px余白+大きな文字で崩れる
+OK: &lt;div class="py-3 text-3xl"&gt;...&lt;/div&gt;</code></pre>
+  </div>
+  <ul class="list-disc ml-5 space-y-1">
+    <li>非常に珍しいクラス（独自の値など）は反映されないことがあります。上の表にある一般的なクラスを使ってください。</li>
+    <li>入力した HTML は<strong>無加工で公開ページに出力</strong>されます。タグの閉じ忘れに注意してください。</li>
+    <li>変更後は「プレビュー」で確認 → 問題なければ「公開する」。</li>
+  </ul>
+</div>
+
+<%= section.call("もっと詳しく") %>
+<div class="text-sm text-gray-700">
+  <p>全クラスの一覧・検索は公式ドキュメント（英語）で確認できます：
+    <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener" class="text-blue-700 underline hover:text-gray-900">tailwindcss.com/docs</a>
+  </p>
+</div>
+
+<div class="mt-8">
+  <%= link_to "← トップページ編集に戻る", edit_admin_top_page_content_path, class: "text-blue-700 underline hover:text-gray-900" %>
+</div>
