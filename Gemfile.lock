@@ -138,7 +138,7 @@ GEM
       railties (>= 6.1)
     drb (2.2.3)
     ed25519 (1.4.0)
-    erb (5.0.1)
+    erb (6.0.4)
     erb_lint (0.8.0)
       activesupport
       better_html (>= 2.0.1)
