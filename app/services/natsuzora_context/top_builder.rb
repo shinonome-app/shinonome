@@ -73,6 +73,7 @@ module NatsuzoraContext
     def build_topic(topic)
       {
         'id' => topic.id,
+        'anchor' => topic.anchor,
         'title' => topic.title,
         'published_on' => topic.published_on.to_s,
         'year' => topic.published_on&.year || 0

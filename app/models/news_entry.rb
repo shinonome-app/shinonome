@@ -20,4 +20,8 @@ class NewsEntry < ApplicationRecord
   scope :topics, ->(date = Time.zone.today) { where('published_on <= ? and flag = true', date) }
 
   validates :title, :body, presence: true
+
+  def anchor
+    format('%06d', id)
+  end
 end
