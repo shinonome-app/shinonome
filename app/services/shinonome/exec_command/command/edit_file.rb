@@ -29,12 +29,13 @@ module Shinonome
 
           workfile ||= Workfile.where(work_id: work.id, filetype_id: filetype.id, compresstype_id: compresstype.id).first
 
-          # ファイルの削除
-          remove_filename = File.join(upload_dir, workfile.filename) if workfile.url.blank? && (filename.present? || (url.present? && url != 'null'))
+          # 置き換え/削除対象となる既存ファイルの実パスを、変更前に確定させる
+          old_path = workfile.filesystem.path if workfile.url.blank? && (filename.present? || (url.present? && url != 'null'))
 
           revision_count = workfile.revision_count + 1 if revision_count.blank?
 
           update_values = {}
+          new_file_path = nil
 
           if (url.blank? || url == 'null') && filename.present?
             # ファイルアップロードの場合、そのファイルからファイルサイズを求める
@@ -77,7 +78,17 @@ module Shinonome
 
           workfile.update!(**update_values)
 
-          Result.new(executed: true, command_result: remove_filename)
+          # 新しいファイルの保存と不要になった旧ファイルの削除はコミット成功後に行う
+          # （バッチが途中で失敗した場合はロールバックされ、ファイルは変更されない）
+          if new_file_path || old_path
+            new_path = workfile.filesystem.path
+            ActiveRecord.after_all_transactions_commit do
+              workfile.filesystem.copy_from(new_file_path) if new_file_path
+              FileUtils.rm_f(old_path) if old_path && old_path != new_path
+            end
+          end
+
+          Result.new(executed: true, command_result: old_path&.to_s)
         end
         # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       end

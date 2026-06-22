@@ -22,14 +22,28 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
       let(:command) { Shinonome::ExecCommand::Command.new(['ファイル削除', workfile.work.id, 'XHTMLファイル', '圧縮なし', nil]) }
 
       it '成功のresultを返す' do
-        result = Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+        result = Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         expect(result).to be_successful
       end
 
       it 'workfileが1つ減る' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to change(Workfile, :count).from(1).to(0)
+      end
+
+      it 'コミット成功後に実ファイルシステム上のファイルも削除される' do
+        # 実ファイルシステム上にファイルを用意する
+        workfile.filesystem.copy_from(File.join(tmpdir, workfile.filename))
+        real_path = workfile.filesystem.path
+        expect(File.exist?(real_path)).to be true
+
+        # after_all_transactions_commit を即時実行させてコミット後の挙動を検証する
+        allow(ActiveRecord).to receive(:after_all_transactions_commit).and_yield
+
+        Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
+
+        expect(File.exist?(real_path)).to be false
       end
     end
 
@@ -39,13 +53,13 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
       end
 
       it '成功のresultを返す' do
-        result = Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+        result = Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         expect(result).to be_successful
       end
 
       it 'workfileが1つ減る' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to change(Workfile, :count).from(1).to(0)
       end
     end
@@ -68,7 +82,7 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
 
       it '例外をあげる' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to raise_error(Shinonome::ExecCommand::FormatError, '対象の作品ID100000がありません。')
       end
     end
@@ -80,7 +94,7 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
 
       it '例外をあげる' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to raise_error(Shinonome::ExecCommand::FormatError, '指定されたIDのファイルが見つかりません。')
       end
     end
@@ -92,7 +106,7 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
 
       it '例外をあげる' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".bookファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"EPUBファイル"か"その他"を指定してください。')
       end
     end
@@ -104,7 +118,7 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
 
       it '例外をあげる' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式には"入力完了ファイル"か"テキストファイル(ルビあり)"か"テキストファイル(ルビなし)"か"HTMLファイル"か"エキスパンドブックファイル"か".bookファイル"か"TTZファイル"か"PDFファイル"か"PalmDocファイル"か"XHTMLファイル"か"EPUBファイル"か"その他"を指定してください。')
       end
     end
@@ -116,7 +130,7 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
 
       it '例外をあげる' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to raise_error(Shinonome::ExecCommand::FormatError, '圧縮形式には"圧縮なし"か"ZIP圧縮"か"GZIP圧縮"か"LHA圧縮"か"SIT圧縮"を指定してください。')
       end
     end
@@ -128,7 +142,7 @@ RSpec.describe Shinonome::ExecCommand::Command::DeleteFile do
 
       it '例外をあげる' do
         expect do
-          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command, upload_dir: tmpdir)
+          Shinonome::ExecCommand::Command::DeleteFile.new.execute(command)
         end.to raise_error(Shinonome::ExecCommand::FormatError, 'ファイル形式と圧縮形式かファイルIDを指定してください。')
       end
     end

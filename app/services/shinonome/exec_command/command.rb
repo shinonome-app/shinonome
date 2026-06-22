@@ -72,7 +72,7 @@ module Shinonome
           @body = row[1..]
           @is_comment = false
           @prev_command = prev_command
-          @pass_work_id = @name == '作品新規' || %w[bookselect book person worker site book_site person_site book_person book_worker source class].include?(@name)
+          @pass_work_id = @name == '作品新規' || %w[SQL bookselect book person worker site book_site person_site book_person book_worker source class].include?(@name)
 
           # Skip work_id validation for 作品新規
           if @pass_work_id
@@ -109,13 +109,13 @@ module Shinonome
         COMMAND_NAMES[@name]
       end
 
-      def execute(output_dir:)
+      def execute(output_dir:, upload_dir:)
         instance = command_class.new
-        if instance.method(:execute).parameters.any? { |_type, name| name == :output_dir }
-          instance.execute(self, output_dir:)
-        else
-          instance.execute(self)
-        end
+        param_names = instance.method(:execute).parameters.map { |_type, name| name }
+        kwargs = {}
+        kwargs[:output_dir] = output_dir if param_names.include?(:output_dir)
+        kwargs[:upload_dir] = upload_dir if param_names.include?(:upload_dir)
+        instance.execute(self, **kwargs)
       end
 
       private

@@ -5,7 +5,7 @@ module Shinonome
     class Command
       # 作品ファイル削除
       class DeleteFile < Base
-        def execute(command, upload_dir:)
+        def execute(command)
           work_id, filetype_name, compresstype_name, workfile_id = command.body
 
           work = find_work!(work_id)
@@ -21,15 +21,20 @@ module Shinonome
                        Workfile.where(work_id: work.id, filetype_id: filetype.id, compresstype_id: compresstype.id).first
                      end
 
-          # rubocop:disable Style/IfUnlessModifier
-          remove_filename = if workfile.url.blank?
-                              File.join(upload_dir, workfile.filename)
-                            end
-          # rubocop:enable Style/IfUnlessModifier
+          # 実ファイルシステム上のパスを削除前に確定させる
+          remove_path = workfile.url.blank? ? workfile.filesystem.path : nil
 
           workfile.destroy!
 
-          Result.new(executed: true, command_result: remove_filename)
+          # 物理ファイルの削除はコミット成功後に行う
+          # （バッチが途中で失敗した場合はロールバックされ、ファイルは削除されない）
+          if remove_path
+            ActiveRecord.after_all_transactions_commit do
+              FileUtils.rm_f(remove_path)
+            end
+          end
+
+          Result.new(executed: true, command_result: remove_path&.to_s)
         end
       end
     end

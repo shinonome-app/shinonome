@@ -28,7 +28,7 @@ module Admin
         return
       end
 
-      unless @exec_command.execute
+      unless @exec_command.execute(uploaded_file)
         redirect_to new_admin_exec_command_path(prev: :failed)
         return
       end
@@ -41,6 +41,11 @@ module Admin
     # Only allow a list of trusted parameters through.
     def exec_command_params
       params.require(:shinonome_exec_command).permit(:command, :separator)
+    end
+
+    # ファイル追加/更新コマンド用のアップロードファイル（任意）
+    def uploaded_file
+      params.dig(:shinonome_exec_command, :file)
     end
   end
 end

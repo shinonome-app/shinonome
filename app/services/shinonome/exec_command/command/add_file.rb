@@ -56,6 +56,12 @@ module Shinonome
             new_filesize = File.size(new_file_path)
 
             workfile.update!(filename: new_filename, filesize: new_filesize)
+
+            # アップロードファイルの実ファイルシステムへの保存はコミット成功後に行う
+            # （バッチが途中で失敗した場合はロールバックされ、ファイルは保存されない）
+            ActiveRecord.after_all_transactions_commit do
+              workfile.filesystem.copy_from(new_file_path)
+            end
           end
 
           Result.new(executed: true, command_result: workfile)

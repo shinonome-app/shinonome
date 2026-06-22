@@ -323,6 +323,7 @@ ja:
       one: "%{count}件のエラーが見つかりました"
       other: "%{count}件のエラーが見つかりました"
     exec_command:
+      already_running: "他のユーザーがコマンドを実行中です。"
       book_id_blank: "BookIDを指定してください。"
       book_id_column: "BookIDは必須です。"
       book_id_numeric: "BookIDが数値ではありません。"
@@ -341,6 +342,7 @@ ja:
       person_not_found: "対象の人物ID%{work_id}がいません。"
       role_not_found: "役割フラグには%{roles}を指定してください。"
       site_id_numeric: "関連サイトIDが数値ではありません。"
+      sql_blank: "SQLを指定してください。"
       site_not_found: "対象の関連サイトID%{site_id}がありません。"
       url_defineda: "指定されたファイルはURLです。"
       work_not_found: "対象の作品ID%{work_id}がありません。"

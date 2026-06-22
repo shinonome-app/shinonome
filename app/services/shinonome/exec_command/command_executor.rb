@@ -4,7 +4,7 @@ module Shinonome
   class ExecCommand
     # parse結果のコマンド列の実行
     class CommandExecutor
-      def execute(exec_command, output_dir:, format: :tsv)
+      def execute(exec_command, output_dir:, upload_dir:, format: :tsv)
         command_text = exec_command.command
         command_parser = Shinonome::ExecCommand::CommandParser.new
         errors = []
@@ -17,28 +17,30 @@ module Shinonome
         end
 
         command_results = []
-        commands.each_with_index do |command, idx|
-          begin
-            command_result = if command.method(:execute).parameters.any? { |_type, name| name == :output_dir }
-                               command.execute(output_dir:)
-                             else
-                               command.execute
-                             end
-            command_results << command_result
-          rescue StandardError => e
-            errors << { error: e, index: idx, command: }
+        result = nil
+
+        # コマンド列全体を1つのトランザクションで実行し、
+        # 途中で1件でも失敗したら全コマンドのDB変更をロールバックする。
+        # （ファイルシステムへの反映は各コマンドが after_all_transactions_commit で
+        #  登録するため、コミット成功時のみ実行され、ロールバック時は破棄される）
+        ActiveRecord::Base.transaction(requires_new: true) do
+          commands.each_with_index do |command, idx|
+            begin
+              command_results << command.execute(output_dir:, upload_dir:)
+            rescue StandardError => e
+              errors << { error: e, index: idx, command: }
+            end
+
+            next if errors.empty?
+
+            result = Result.new(executed: false, command_results:, errors:)
+            raise ActiveRecord::Rollback
           end
 
-          # TODO: should be ignore some errors in the loop
-          return Result.new(executed: false, command_results:, errors:) if errors.present?
+          result = Result.new(executed: true, command_results:)
         end
 
-        if errors.empty?
-          Result.new(executed: true, command_results:)
-        else
-          # TODO: never reached
-          Result.new(executed: false, command_results:, errors:)
-        end
+        result
       end
 
       # 結果返却用

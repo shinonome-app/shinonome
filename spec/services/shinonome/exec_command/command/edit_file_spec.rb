@@ -79,6 +79,27 @@ RSpec.describe Shinonome::ExecCommand::Command::EditFile do
         expect(workfile.url).to eq 'https://example.com/sample/01jo.html'
         expect(workfile.filename).to be_nil
       end
+
+      it 'コミット成功後に置き換え前の実ファイルが削除される' do
+        # 実ファイルシステム上にファイルを用意する
+        workfile.update!(filename: workfile.generate_filename)
+        File.write(File.join(tmpdir, workfile.filename), file_fixture('html/01jo.html').read)
+        workfile.filesystem.copy_from(File.join(tmpdir, workfile.filename))
+        old_path = workfile.filesystem.path
+        expect(File.exist?(old_path)).to be true
+
+        # after_all_transactions_commit を即時実行させてコミット後の挙動を検証する
+        allow(ActiveRecord).to receive(:after_all_transactions_commit).and_yield
+
+        args0 = args.merge(url: 'https://example.com/sample/01jo.html')
+        row = args0.values_at(:work_id, :filetype_name, :compresstype_name, :url, :create_date, :update_date,
+                              :revision_count, :file_encoding_name, :charset_name, :note, :filename, :workfile_id)
+        command = Shinonome::ExecCommand::Command.new(['ファイル更新', *row])
+
+        Shinonome::ExecCommand::Command::EditFile.new.execute(command, upload_dir: tmpdir)
+
+        expect(File.exist?(old_path)).to be false
+      end
     end
 
     context 'URLもファイル名も与えられた場合' do

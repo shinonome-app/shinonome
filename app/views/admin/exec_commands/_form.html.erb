@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, exec_command], url: admin_exec_commands_path, data: { turbo: false }) do |form| %>
+<%= form_with(model: [:admin, exec_command], url: admin_exec_commands_path, multipart: true, data: { turbo: false }) do |form| %>
   <% if exec_command.errors.any? %>
     <div id="error_explanation">
       <h2><%= t("errors.template.header", model: exec_command.model_name.human, count: exec_command.errors.count) %></h2>
@@ -19,6 +19,12 @@
     <div class="flex-1 mr-2">
       <%= form.label :separator, '区切り文字', class: "mb-2 text-lg text-grey-darkest" %>
       <%= form.select :separator, [%w[タブ区切り tab], %w[カンマ区切り comma]] %>
+    </div>
+  </div>
+  <div class="flex flex-col md:flex-row mb-3 p-2">
+    <div class="flex-1 mr-2">
+      <%= form.label :file, 'アップロードファイル（ファイル追加/更新用・ZIP可）', class: "mb-2 text-lg text-grey-darkest" %>
+      <%= form.file_field :file, class: "border px-3 text-grey-darkest w-full" %>
     </div>
   </div>
   <div class="mt-5 flex">
