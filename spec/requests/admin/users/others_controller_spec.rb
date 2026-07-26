@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe Admin::Users::OthersController do
   let(:valid_attributes) do
     {
-      username: 'user3',
-      email: 'user3@example.com',
+      username: 'newuser',
+      email: 'newuser@example.com',
       password: 'pass123#'
     }
   end
@@ -14,13 +14,13 @@ RSpec.describe Admin::Users::OthersController do
   let(:invalid_attributes) do
     {
       username: nil,
-      email: 'user3@example.com',
+      email: 'newuser@example.com',
       password: 'pass123#'
     }
   end
 
   let(:user) { create(:user) }
-  let(:user2) { create(:user, email: 'user2@xample.com', username: 'user2') }
+  let(:user2) { create(:user, email: 'other2@example.com', username: 'other2') }
 
   before { sign_in(user) }
 
