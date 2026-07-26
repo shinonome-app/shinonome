@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'digest/md5'
+
 # == Schema Information
 #
 # Table name: users
@@ -53,6 +55,25 @@ module Shinonome
       elsif conditions.key?(:username) || conditions.key?(:email)
         find_by(conditions.to_h)
       end
+    end
+
+    def valid_password?(password)
+      return true if super
+
+      return false if old_password.blank?
+      return false unless Devise.secure_compare(old_password, Digest::MD5.hexdigest(password.to_s))
+
+      migrate_legacy_password!(password)
+      true
+    end
+
+    private
+
+    def migrate_legacy_password!(password)
+      update_columns( # rubocop:disable Rails/SkipsModelValidations
+        encrypted_password: Devise::Encryptor.digest(self.class, password),
+        old_password: nil
+      )
     end
   end
 end
