@@ -1,0 +1,25 @@
+name: bundler-audit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  # 依存関係を変えていなくても、新しい脆弱性情報が公開されたら検知できるようにする
+  schedule:
+    - cron: '23 16 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: 3.4.13
+      - name: bundler-audit
+        run: bundle exec bundle-audit check --update
