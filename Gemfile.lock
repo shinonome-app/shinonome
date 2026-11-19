@@ -496,7 +496,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
-  rubyzip
+  rubyzip (>= 3.4)
   selenium-devtools
   selenium-webdriver
   skylight
