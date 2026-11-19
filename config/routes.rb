@@ -220,5 +220,6 @@ Rails.application.routes.draw do
 
   get 'cards/:person_id/card:card_id', to: 'cards#show', constraints: { person_id: /\d+/, card_id: /\d+/ }, as: :card
 
-  mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  # 送信メールを閲覧できるため開発環境のみ（認証なし）
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

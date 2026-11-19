@@ -73,6 +73,9 @@ class ReceiptForm
 
   validates :worker_kana, presence: true
   validates :worker_name, presence: true
+  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
+                            message: 'はhttp:またはhttps:で始まるURLを入力してください' },
+                  allow_blank: true
 
   validates :last_name_kana, presence: true
   validates :last_name, presence: true

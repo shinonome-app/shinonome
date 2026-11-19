@@ -46,7 +46,22 @@ Rails.application.configure do
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = '/up'
 
-  config.action_mailer.delivery_method = :letter_opener
+  # メール送信方式。MAIL_DELIVERY_METHOD=smtp のときのみ SendGrid 経由で実際に送信する。
+  # それ以外（staging等）は tmp/mails にファイルとして保存する（Webからは参照できない）。
+  if ENV['MAIL_DELIVERY_METHOD'] == 'smtp'
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      authentication: :plain,
+      user_name: 'apikey',
+      password: ENV.fetch('SENDGRID_API_KEY', nil),
+      enable_starttls_auto: true
+    }
+  else
+    config.action_mailer.delivery_method = :file
+    config.action_mailer.file_settings = { location: Rails.root.join('tmp/mails') }
+  end
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false

@@ -54,6 +54,9 @@ class ProofreadForm
   validates :worker_kana, presence: true
   validates :email, presence: true, if: ->(proofread) { proofread.worker_id.blank? }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, if: ->(proofread) { proofread.email.present? }
+  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
+                            message: 'はhttp:またはhttps:で始まるURLを入力してください' },
+                  allow_blank: true
 
   validate :need_address
   validate :presence_of_sub_works

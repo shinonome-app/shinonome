@@ -19,7 +19,7 @@
             <%= link_to site.name, admin_site_path(site) %>
           </td>
           <td class="text-center whitespace-nowrap py-3">
-            <%= link_to site.url, site.url %>
+            <%= safe_link_url(site.url) %>
           </td>
           <td class="text-center whitespace-nowrap py-3">
             <%= form_with(model: [:admin, @work, @work.work_sites.build], method: 'post', data: { turbo: false }) do |form| %>

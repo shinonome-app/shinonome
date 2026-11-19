@@ -61,9 +61,6 @@ gem 'gimei'
 # gem 'lograge'
 # gem 'lograge-sql'
 
-# Fake mail system on web
-gem 'letter_opener_web'
-
 gem 'skylight'
 
 gem 'csv'
@@ -100,6 +97,9 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler'
+
+  # Fake mail system on web
+  gem 'letter_opener_web'
 end
 
 group :test do
