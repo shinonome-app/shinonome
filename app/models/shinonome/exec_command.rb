@@ -139,7 +139,7 @@ module Shinonome
           zip.each do |entry|
             next if entry.directory?
 
-            entry.extract(File.join(dest_dir, File.basename(entry.name))) { true }
+            entry.extract(File.basename(entry.name), destination_directory: dest_dir) { true }
           end
         end
       else

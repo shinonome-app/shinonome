@@ -12,7 +12,7 @@ gem 'rails', '8.0.5.2'
 # gem 'sprockets-rails'
 
 # Use Puma as the app server
-gem 'puma', '~> 6.4'
+gem 'puma', '~> 7.2', '>= 7.2.3'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 # gem 'jsbundling-rails'
@@ -69,6 +69,10 @@ gem 'skylight'
 gem 'csv'
 gem 'nkf'
 
+# ZIP read/write (ExecCommand, Workfile, CsvCreator etc.)
+# 3.4+ prevents extracting entries outside the destination directory
+gem 'rubyzip', '>= 3.4'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -83,9 +87,6 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-
-  # Makes zipped bookdata for seeds
-  gem 'rubyzip'
 
   gem 'dotenv-rails'
 

@@ -54,4 +54,27 @@ RSpec.describe Shinonome::ExecCommand do
       end
     end
   end
+
+  describe '#extract_uploaded_file' do
+    let(:exec_command) { build(:exec_command) }
+
+    it 'ZIPの中身をディレクトリ階層を無視してdest_dirに展開する' do
+      Dir.mktmpdir do |tmpdir|
+        zip_path = File.join(tmpdir, 'upload.zip')
+        Zip::OutputStream.open(zip_path) do |zos|
+          zos.put_next_entry('sub/dir/a.txt')
+          zos << 'aaa'
+          zos.put_next_entry('b.txt')
+          zos << 'bbb'
+        end
+        dest_dir = File.join(tmpdir, 'dest')
+        Dir.mkdir(dest_dir)
+
+        exec_command.send(:extract_uploaded_file, Rack::Test::UploadedFile.new(zip_path, 'application/zip'), dest_dir)
+
+        expect(Dir.children(dest_dir)).to contain_exactly('a.txt', 'b.txt')
+        expect(File.read(File.join(dest_dir, 'a.txt'))).to eq 'aaa'
+      end
+    end
+  end
 end
