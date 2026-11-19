@@ -87,7 +87,7 @@ class SampleFileGenerator
       zip_file = "#{work.id}_ruby_#{workfile.id}.zip"
       zipfile_name = File.join(folder, zip_file)
 
-      Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+      Zip::File.open(zipfile_name, create: true) do |zipfile|
         input_filenames.each do |filename|
           zipfile.add(filename, File.join(folder, filename))
         end
