@@ -51,7 +51,7 @@
         ホームページ
       </td>
       <td class="odd:w-[25%] py-3 px-5">
-        <%= link_to(receipt_form.url, receipt_form.url) %>
+        <%= safe_link_url(receipt_form.url) %>
       </td>
     </tr>
   </tbody>

@@ -75,6 +75,14 @@ RSpec.describe Admin::WorkersController do
       get admin_worker_url(worker)
       expect(response).to be_successful
     end
+
+    it 'does not render javascript: URL as a link' do
+      attrs = valid_attributes.deep_merge(worker_secret_attributes: { url: 'javascript:alert(1)' })
+      worker = Worker.create! attrs
+      get admin_worker_url(worker)
+      expect(response.body).not_to include('href="javascript:')
+      expect(response.body).to include('javascript:alert(1)')
+    end
   end
 
   describe 'GET /new' do

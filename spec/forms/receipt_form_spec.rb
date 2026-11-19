@@ -100,6 +100,17 @@ RSpec.describe ReceiptForm do
       expect(form.errors[:worker_id]).to include('は不正な値です')
     end
 
+    it 'urlがhttp/httpsの場合は有効' do
+      form.url = 'https://example.com/'
+      expect(form).to be_valid
+    end
+
+    it 'urlがhttp/https以外のスキームの場合は無効' do
+      form.url = 'javascript:alert(1)'
+      expect(form).not_to be_valid
+      expect(form.errors[:url]).to include('はhttp:またはhttps:で始まるURLを入力してください')
+    end
+
     it 'emailがない場合、worker_idが必要' do
       form.email = nil
       form.worker_id = nil

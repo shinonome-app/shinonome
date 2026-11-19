@@ -51,6 +51,9 @@
     <div class="flex-1 mr-2">
       <%= form.label :url, class: "mb-2 text-lg text-grey-darkest" do %>ホームページ<% end %>
       <%= form.text_field :url, class: "border border-gray-400 py-2 px-3 text-grey-darkest w-full" %>
+      <% if receipt_form.errors[:url].any? %>
+        <p class="text-sm text-red-500"><%= receipt_form.errors.full_messages_for(:url).join(', ') %></p>
+      <% end %>
     </div>
     <div class="flex-1 text-base  m-auto">
       https://www.aozora.gr.jp
