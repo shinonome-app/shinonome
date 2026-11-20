@@ -37,6 +37,12 @@ class ProofreadForm
     end
   end
 
+  # 申請・「戻る」で共通の、受け付けるパラメータ
+  PERMITTED_PARAMS = [
+    :address, :memo, :worker_id, :worker_kana, :worker_name, :email, :url, :person_id,
+    { sub_works_attributes: %i[work_id work_copy work_print proof_edition enabled] }
+  ].freeze
+
   attribute :address, :string
   attribute :email, :string
   attribute :memo, :string

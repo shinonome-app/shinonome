@@ -99,7 +99,9 @@ RSpec.describe ReceiptsController do
       end
 
       it 'プレビュー時に編集ボタンをクリックすると編集フォームに戻ること' do
-        post receipts_path, params: complete_application_data.merge(edit: 'true')
+        expect do
+          post receipts_edits_path, params: complete_application_data
+        end.not_to change(Receipt, :count)
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.body).to include('吾輩は猫である')
