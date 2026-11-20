@@ -13,5 +13,10 @@ RSpec.describe Admin::Works::PreviewsController do
       get "/admin/works/previews/#{work.id}"
       expect(response).to have_http_status(:success)
     end
+
+    it 'sandboxes the preview with CSP' do
+      get "/admin/works/previews/#{work.id}"
+      expect(response.headers['Content-Security-Policy']).to start_with('sandbox allow-scripts')
+    end
   end
 end

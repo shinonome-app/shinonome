@@ -15,6 +15,11 @@ RSpec.describe Admin::TopPageContents::PreviewsController do
       expect(response.body).to include('preview')
     end
 
+    it 'sandboxes the preview with CSP' do
+      post '/admin/top_page_content/preview', params: { editable_content: { value: '<div>preview</div>' } }
+      expect(response.headers['Content-Security-Policy']).to start_with('sandbox allow-scripts')
+    end
+
     it 'renders a natsuzora fragment with context variables' do
       post '/admin/top_page_content/preview',
            params: { editable_content: { value: '<p>total: {[ works_count ]}</p>' } }

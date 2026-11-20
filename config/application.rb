@@ -34,6 +34,10 @@ module Shinonome
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # sandbox を付けたプレビューからもフォントを読めるようにする（lib/middleware/font_cors_headers.rb）
+    require_relative '../lib/middleware/font_cors_headers'
+    config.middleware.insert_before ActionDispatch::Static, Middleware::FontCorsHeaders
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
