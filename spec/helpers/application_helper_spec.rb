@@ -58,7 +58,7 @@ RSpec.describe ApplicationHelper do
     context '危険なHTMLの場合' do
       it 'scriptタグが除去されること' do
         html = '<p>テキスト</p><script>alert("XSS")</script>'
-        expect(helper.safe_html(html)).to eq('<p>テキスト</p>alert("XSS")')
+        expect(helper.safe_html(html)).to eq('<p>テキスト</p>')
       end
 
       it 'onclickなどのイベントハンドラが除去されること' do
@@ -68,7 +68,7 @@ RSpec.describe ApplicationHelper do
 
       it 'styleタグが除去されること' do
         html = '<style>body { display: none; }</style><p>テキスト</p>'
-        expect(helper.safe_html(html)).to eq('body { display: none; }<p>テキスト</p>')
+        expect(helper.safe_html(html)).to eq('<p>テキスト</p>')
       end
 
       it 'iframeタグが除去されること' do
@@ -109,7 +109,7 @@ RSpec.describe ApplicationHelper do
       it 'nl2br後の悪意のあるHTMLも適切に処理されること' do
         text = "テキスト\n<script>alert('XSS')</script>\n続き"
         html = helper.nl2br(text)
-        expect(helper.safe_html(html)).to eq("テキスト<br>\nalert('XSS')<br>\n続き")
+        expect(helper.safe_html(html)).to eq("テキスト<br>\n<br>\n続き")
       end
     end
 
