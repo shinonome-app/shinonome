@@ -79,6 +79,11 @@ RSpec.configure do |config|
     Rails.application.load_seed # loading seeds
   end
 
+  # rate_limit のカウンタがテストをまたいで積み上がらないようにする
+  config.before do
+    Rails.cache.clear
+  end
+
   # ChromeDriverのカスタム設定を使用
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless

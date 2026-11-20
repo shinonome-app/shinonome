@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ProofreadsController < ApplicationController
+  include RateLimitedCreate
+
   # GET /proofreads
   def index; end
 

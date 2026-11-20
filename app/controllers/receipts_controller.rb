@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReceiptsController < ApplicationController
+  include RateLimitedCreate
+
   skip_forgery_protection only: %i[new_add_work new_remove_work]
 
   # GET /receipts
