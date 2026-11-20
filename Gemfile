@@ -41,7 +41,7 @@ gem 'rails-i18n'
 gem 'view_component'
 
 # Authentication based on Rack/Warden
-gem 'devise', github: 'takahashim/devise', branch: 'v500-beta0'
+gem 'devise', '~> 5.0'
 
 # Pagination in views
 gem 'pagy', '~> 9.0'
@@ -88,6 +88,7 @@ group :development, :test do
   gem 'dotenv-rails'
 
   gem 'brakeman'
+  gem 'bundler-audit', require: false
 end
 
 group :development do
