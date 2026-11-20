@@ -111,6 +111,12 @@ RSpec.describe ReceiptForm do
       expect(form.errors[:url]).to include('はhttp:またはhttps:で始まるURLを入力してください')
     end
 
+    it 'http/https の URL を途中に含むだけの値は無効' do
+      form.url = 'javascript:alert(1)//https://example.com/'
+      expect(form).not_to be_valid
+      expect(form.errors[:url]).to include('はhttp:またはhttps:で始まるURLを入力してください')
+    end
+
     it 'emailがない場合、worker_idが必要' do
       form.email = nil
       form.worker_id = nil

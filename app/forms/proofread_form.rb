@@ -47,6 +47,10 @@ class ProofreadForm
   attribute :work_id, :integer
   attribute :worker_id, :string
 
+  def url=(value)
+    super(HttpUrlValidator.normalize(value))
+  end
+
   before_validation :set_worker_info
 
   validates :worker_id, numericality: { only_integer: true }, allow_blank: true
@@ -54,9 +58,7 @@ class ProofreadForm
   validates :worker_kana, presence: true
   validates :email, presence: true, if: ->(proofread) { proofread.worker_id.blank? }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, if: ->(proofread) { proofread.email.present? }
-  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
-                            message: 'はhttp:またはhttps:で始まるURLを入力してください' },
-                  allow_blank: true
+  validates :url, http_url: true
 
   validate :need_address
   validate :presence_of_sub_works

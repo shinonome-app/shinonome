@@ -69,6 +69,12 @@ RSpec.describe ProofreadForm do
       expect(proofread_form.errors[:url]).to include('はhttp:またはhttps:で始まるURLを入力してください')
     end
 
+    it 'http/https の URL を途中に含むだけの値は無効' do
+      proofread_form.url = 'javascript:alert(1)//https://example.com/'
+      expect(proofread_form).not_to be_valid
+      expect(proofread_form.errors[:url]).to include('はhttp:またはhttps:で始まるURLを入力してください')
+    end
+
     it 'emailの形式が不正な場合は無効' do
       proofread_form.email = 'invalid-email'
       expect(proofread_form).not_to be_valid

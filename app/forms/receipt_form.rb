@@ -75,14 +75,16 @@ class ReceiptForm
   attribute :first_name, :string
   attribute :person_note, :string
 
+  def url=(value)
+    super(HttpUrlValidator.normalize(value))
+  end
+
   before_validation :set_worker_info
   before_validation :set_person_info
 
   validates :worker_kana, presence: true
   validates :worker_name, presence: true
-  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
-                            message: 'はhttp:またはhttps:で始まるURLを入力してください' },
-                  allow_blank: true
+  validates :url, http_url: true
 
   validates :last_name_kana, presence: true
   validates :last_name, presence: true
