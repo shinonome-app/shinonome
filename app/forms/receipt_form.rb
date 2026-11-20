@@ -11,6 +11,9 @@ class ReceiptForm
     include ActiveModel::Model
     include ActiveModel::Attributes
 
+    # `<script`、`</a`、`<!--` のように、ブラウザがタグとして解釈する並び
+    HTML_TAG_PATTERN = %r{<[a-zA-Z/!?]}
+
     attribute :title_kana, :string
     attribute :title, :string
     attribute :subtitle_kana, :string
@@ -28,6 +31,10 @@ class ReceiptForm
     validates :copyright_flag, inclusion: { in: [0, 1] }, if: -> { copyright_flag.present? }
     validates :kana_type_id, presence: true
     validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }, if: -> { kana_type_id.present? }
+    # 承認時に Work の初出・解説・備考へコピーされ、図書カードにエスケープなしで出力されるため、
+    # 公開フォームからは HTML タグを受け付けない
+    validates :first_appearance, :memo, :note,
+              format: { without: HTML_TAG_PATTERN, message: 'にHTMLタグは使えません' }
 
     def title_and_subtitle
       if subtitle.present?

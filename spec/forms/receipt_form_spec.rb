@@ -196,6 +196,26 @@ RSpec.describe ReceiptForm do
       expect(sub_work.errors[:copyright_flag]).to include('は一覧にありません')
     end
 
+    %i[first_appearance memo note].each do |attr|
+      it "#{attr}にHTMLタグが含まれる場合は無効" do
+        sub_work.public_send(:"#{attr}=", '本文<img src=x onerror=alert(1)>')
+        expect(sub_work).not_to be_valid
+        expect(sub_work.errors[attr]).to include('にHTMLタグは使えません')
+      end
+
+      it "#{attr}に閉じタグやコメントが含まれる場合も無効" do
+        %w[</a> <!--x-->].each do |value|
+          sub_work.public_send(:"#{attr}=", value)
+          expect(sub_work).not_to be_valid
+        end
+      end
+
+      it "#{attr}にタグでない不等号が含まれる場合は有効" do
+        sub_work.public_send(:"#{attr}=", "1 < 2、a<1、＜全角＞\n改行")
+        expect(sub_work).to be_valid
+      end
+    end
+
     it 'title_and_subtitleが正しく生成される' do
       sub_work.subtitle = 'サブタイトル'
       expect(sub_work.title_and_subtitle).to eq('タイトル　サブタイトル')
