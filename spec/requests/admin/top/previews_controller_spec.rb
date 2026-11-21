@@ -15,6 +15,11 @@ RSpec.describe Admin::Top::PreviewsController do
       expect(response.body).to include('<html')
     end
 
+    it 'sandboxes the preview with CSP' do
+      get '/admin/top/previews'
+      expect(response.headers['Content-Security-Policy']).to start_with('sandbox allow-scripts')
+    end
+
     it 'renders the published editable content' do
       EditableContent.delete_all
       create(:editable_content, area_name: 'top', key: 'main', status: 'published',

@@ -5,18 +5,9 @@ module ApplicationHelper
     str&.gsub(/\r?\n/, "<br>\n")
   end
 
-  # HTMLを安全に出力するヘルパー
+  # DB に保存された HTML を安全に出力するヘルパー。図書カードなどと同じ規則（HtmlSanitizer）を使う
   def safe_html(text)
-    return '' if text.blank?
-
-    sanitize(text,
-             tags: %w[
-               a abbr b blockquote br caption cite code col colgroup dd div dl dt em h1 h2 h3 h4 h5 h6 hr i img
-               li ol p pre q small span strong sub sup table tbody td tfoot th thead tr u ul
-             ],
-             attributes: %w[
-               href src alt title width height class id name colspan rowspan align valign
-             ])
+    HtmlSanitizer.new.sanitize(text).html_safe # rubocop:disable Rails/OutputSafety
   end
 
   # URLが安全かどうかをチェックするヘルパー

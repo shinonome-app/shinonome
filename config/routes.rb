@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :receipts do
     resources :previews, only: %i[create]
+    resources :edits, only: %i[create]
     resources :thanks, only: %i[index]
   end
 
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   namespace :proofreads do
     resources :people, only: %i[index show]
     resources :previews, only: %i[create]
+    resources :edits, only: %i[create]
     resources :thanks, only: %i[index]
   end
 

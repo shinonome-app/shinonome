@@ -11,6 +11,9 @@ class ReceiptForm
     include ActiveModel::Model
     include ActiveModel::Attributes
 
+    # `<script`、`</a`、`<!--` のように、ブラウザがタグとして解釈する並び
+    HTML_TAG_PATTERN = %r{<[a-zA-Z/!?]}
+
     attribute :title_kana, :string
     attribute :title, :string
     attribute :subtitle_kana, :string
@@ -28,6 +31,10 @@ class ReceiptForm
     validates :copyright_flag, inclusion: { in: [0, 1] }, if: -> { copyright_flag.present? }
     validates :kana_type_id, presence: true
     validates :kana_type_id, inclusion: { in: [1, 2, 3, 4, 99] }, if: -> { kana_type_id.present? }
+    # 承認時に Work の初出・解説・備考へコピーされ、図書カードにエスケープなしで出力されるため、
+    # 公開フォームからは HTML タグを受け付けない
+    validates :first_appearance, :memo, :note,
+              format: { without: HTML_TAG_PATTERN, message: 'にHTMLタグは使えません' }
 
     def title_and_subtitle
       if subtitle.present?
@@ -45,6 +52,27 @@ class ReceiptForm
       copyright_flag.to_i > 0 ? 'あり' : 'なし'
     end
   end
+
+  # 申請・確認画面・「戻る」で共通の、受け付けるパラメータ
+  PERMITTED_PARAMS = [
+    :last_name_kana, :last_name, :last_name_en, :first_name_kana, :first_name, :first_name_en, :person_note,
+    :worker_kana, :worker_name, :email, :url,
+    :original_book_title, :publisher, :first_pubdate, :input_edition,
+    :original_book_title2, :publisher2, :first_pubdate2,
+    :person_id, :worker_id, :register_status, :original_book_note,
+    { sub_works_attributes: %i[
+      title_kana
+      title
+      subtitle_kana
+      subtitle
+      original_title
+      kana_type_id
+      first_appearance
+      memo
+      note
+      copyright_flag
+    ] }
+  ].freeze
 
   attribute :worker_id, :integer
   attribute :worker_kana, :string
@@ -68,14 +96,16 @@ class ReceiptForm
   attribute :first_name, :string
   attribute :person_note, :string
 
+  def url=(value)
+    super(HttpUrlValidator.normalize(value))
+  end
+
   before_validation :set_worker_info
   before_validation :set_person_info
 
   validates :worker_kana, presence: true
   validates :worker_name, presence: true
-  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
-                            message: 'はhttp:またはhttps:で始まるURLを入力してください' },
-                  allow_blank: true
+  validates :url, http_url: true
 
   validates :last_name_kana, presence: true
   validates :last_name, presence: true

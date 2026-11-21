@@ -137,15 +137,13 @@ RSpec.describe ProofreadsController do
 
     context '申請を編集する場合' do
       it '編集ボタンがクリックされたときに編集フォームに戻ること' do
-        post proofreads_path, params: basic_application_params.merge(edit: 'true')
+        expect do
+          post proofreads_edits_path, params: basic_application_params
+        end.not_to change(Proofread, :count)
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.body).to include('校正受付システム')
         expect(response.body).to include('校正花子')
-
-        expect do
-          # 編集中には校正申請が作成されないこと
-        end.not_to change(Proofread, :count)
       end
     end
   end

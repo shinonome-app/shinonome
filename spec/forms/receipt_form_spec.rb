@@ -111,6 +111,12 @@ RSpec.describe ReceiptForm do
       expect(form.errors[:url]).to include('はhttp:またはhttps:で始まるURLを入力してください')
     end
 
+    it 'http/https の URL を途中に含むだけの値は無効' do
+      form.url = 'javascript:alert(1)//https://example.com/'
+      expect(form).not_to be_valid
+      expect(form.errors[:url]).to include('はhttp:またはhttps:で始まるURLを入力してください')
+    end
+
     it 'emailがない場合、worker_idが必要' do
       form.email = nil
       form.worker_id = nil
@@ -194,6 +200,26 @@ RSpec.describe ReceiptForm do
       sub_work.copyright_flag = 2
       expect(sub_work).not_to be_valid
       expect(sub_work.errors[:copyright_flag]).to include('は一覧にありません')
+    end
+
+    %i[first_appearance memo note].each do |attr|
+      it "#{attr}にHTMLタグが含まれる場合は無効" do
+        sub_work.public_send(:"#{attr}=", '本文<img src=x onerror=alert(1)>')
+        expect(sub_work).not_to be_valid
+        expect(sub_work.errors[attr]).to include('にHTMLタグは使えません')
+      end
+
+      it "#{attr}に閉じタグやコメントが含まれる場合も無効" do
+        %w[</a> <!--x-->].each do |value|
+          sub_work.public_send(:"#{attr}=", value)
+          expect(sub_work).not_to be_valid
+        end
+      end
+
+      it "#{attr}にタグでない不等号が含まれる場合は有効" do
+        sub_work.public_send(:"#{attr}=", "1 < 2、a<1、＜全角＞\n改行")
+        expect(sub_work).to be_valid
+      end
     end
 
     it 'title_and_subtitleが正しく生成される' do

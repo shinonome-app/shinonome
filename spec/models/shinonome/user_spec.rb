@@ -25,6 +25,25 @@
 require 'rails_helper'
 
 RSpec.describe Shinonome::User do
+  describe 'password length' do
+    it '8文字未満のパスワードは無効' do
+      user = build(:user, password: 'a' * 7)
+      expect(user).not_to be_valid
+      expect(user.errors[:password]).to be_present
+    end
+
+    it '8文字以上のパスワードは有効' do
+      expect(build(:user, password: 'a' * 8)).to be_valid
+    end
+
+    it '既存ユーザーはパスワードを変えなければ短いパスワードのままでも保存できる' do
+      user = create(:user)
+      user.update_columns(encrypted_password: Devise::Encryptor.digest(Shinonome::User, 'short')) # rubocop:disable Rails/SkipsModelValidations
+      user.reload.email = 'changed@example.com'
+      expect(user).to be_valid
+    end
+  end
+
   describe '#valid_password?' do
     context '通常のbcryptパスワードの場合' do
       let(:user) { create(:user, password: 'secret123#') }

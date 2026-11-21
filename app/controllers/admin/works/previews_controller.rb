@@ -3,10 +3,9 @@
 module Admin
   module Works
     class PreviewsController < ApplicationController
-      layout false
+      include SandboxedPreview
 
-      # use tailwind CDN for preview
-      PREVIEW_TAILWIND_CDN = '<script src="https://cdn.tailwindcss.com"></script>'
+      layout false
 
       def show
         work = Work.find(params[:id])
@@ -14,16 +13,6 @@ module Admin
         context = NatsuzoraContext::CardBuilder.new(work, person.id).build
         html = NatsuzoraRenderer.new.render('cards/show.ntzr', context)
         render html: with_preview_styles(html).html_safe # rubocop:disable Rails/OutputSafety
-      end
-
-      private
-
-      def with_preview_styles(html)
-        if html.include?('</head>')
-          html.sub('</head>', "#{PREVIEW_TAILWIND_CDN}\n</head>")
-        else
-          "#{PREVIEW_TAILWIND_CDN}\n#{html}"
-        end
       end
     end
   end

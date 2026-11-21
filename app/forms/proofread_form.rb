@@ -37,6 +37,12 @@ class ProofreadForm
     end
   end
 
+  # 申請・「戻る」で共通の、受け付けるパラメータ
+  PERMITTED_PARAMS = [
+    :address, :memo, :worker_id, :worker_kana, :worker_name, :email, :url, :person_id,
+    { sub_works_attributes: %i[work_id work_copy work_print proof_edition enabled] }
+  ].freeze
+
   attribute :address, :string
   attribute :email, :string
   attribute :memo, :string
@@ -47,6 +53,10 @@ class ProofreadForm
   attribute :work_id, :integer
   attribute :worker_id, :string
 
+  def url=(value)
+    super(HttpUrlValidator.normalize(value))
+  end
+
   before_validation :set_worker_info
 
   validates :worker_id, numericality: { only_integer: true }, allow_blank: true
@@ -54,9 +64,7 @@ class ProofreadForm
   validates :worker_kana, presence: true
   validates :email, presence: true, if: ->(proofread) { proofread.worker_id.blank? }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, if: ->(proofread) { proofread.email.present? }
-  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
-                            message: 'はhttp:またはhttps:で始まるURLを入力してください' },
-                  allow_blank: true
+  validates :url, http_url: true
 
   validate :need_address
   validate :presence_of_sub_works

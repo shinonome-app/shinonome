@@ -15,5 +15,10 @@ RSpec.describe Admin::People::PreviewsController do
       expect(response).to have_http_status(:success)
       expect(response.body).to include('<html')
     end
+
+    it 'sandboxes the preview with CSP' do
+      get "/admin/people/previews/#{person.id}"
+      expect(response.headers['Content-Security-Policy']).to start_with('sandbox allow-scripts')
+    end
   end
 end

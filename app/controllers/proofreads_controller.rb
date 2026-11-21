@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ProofreadsController < ApplicationController
+  include RateLimitedCreate
+
   # GET /proofreads
   def index; end
 
@@ -13,13 +15,6 @@ class ProofreadsController < ApplicationController
 
   # POST /proofreads
   def create
-    if params[:edit]
-      @proofread_form = ProofreadForm.new(proofread_form_params)
-      @author = find_author(params[:proofread_form][:person_id])
-      render :new, status: :unprocessable_entity
-      return
-    end
-
     result = ProofreadCreator.new.create_proofread(proofread_form_params)
 
     if result.created?
@@ -35,23 +30,7 @@ class ProofreadsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def proofread_form_params
-    params.require(:proofread_form).permit(
-      :address,
-      :memo,
-      :worker_id,
-      :worker_kana,
-      :worker_name,
-      :email,
-      :url,
-      :person_id,
-      sub_works_attributes: %i[
-        work_id
-        work_copy
-        work_print
-        proof_edition
-        enabled
-      ]
-    )
+    params.require(:proofread_form).permit(*ProofreadForm::PERMITTED_PARAMS)
   end
 
   def find_author(person_id)

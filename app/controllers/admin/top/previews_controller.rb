@@ -3,6 +3,8 @@
 module Admin
   module Top
     class PreviewsController < ApplicationController
+      include SandboxedPreview
+
       layout false
 
       def index

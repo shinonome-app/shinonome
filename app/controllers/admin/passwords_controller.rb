@@ -2,6 +2,8 @@
 
 module Admin
   class PasswordsController < ::Devise::PasswordsController
+    include RateLimitedCreate
+
     # GET /resource/password/new
     # def new
     #   super
